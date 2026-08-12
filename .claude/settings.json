@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "defaultMode": "plan",
+    "deny": [
+      "Write(**/data/raw/**)",
+      "Edit(**/data/raw/**)",
+      "Read(**/.env)",
+      "Write(**/.env)",
+      "Edit(**/.env)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          { "type": "command", "command": "bash .claude/hooks/guard_raw.sh" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          { "type": "command", "command": "bash .claude/hooks/check_provenance.sh" }
+        ]
+      }
+    ]
+  }
+}

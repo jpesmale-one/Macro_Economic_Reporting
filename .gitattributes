@@ -1,0 +1,10 @@
+# Shell hooks must stay LF or the shebang breaks on checkout.
+*.sh text eol=lf
+
+# Data files land byte-for-byte as retrieved - no EOL normalization, or
+# the stored vintage stops matching what the source actually served.
+*.csv -text
+*.tsv -text
+*.json -text
+*.parquet -text binary
+*.xlsx -text binary

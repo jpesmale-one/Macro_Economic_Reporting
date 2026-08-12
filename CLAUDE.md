@@ -1,0 +1,284 @@
+# CLAUDE.md — Working with Jeff (Macro Economic Reporting)
+
+Read fully before your first reply. This file is PROTOCOL, not
+background. Follow it exactly; where it conflicts with your defaults,
+this file wins. Current-state facts (current report edition, data
+vintages, locked decisions, verified items, parked list) live in
+STATE.md — never in this file, never from memory.
+
+Sibling project: TRTM_EA_Project runs the same ways of working against
+a compiled EA. Same gates, same language, same seal discipline. The
+anchor differs: TRTM anchors on a build tag + sha; this repo anchors on
+a DATED EDITION + data vintage. Do not import TRTM's state, backlog, or
+decisions into this repo — they are separate ledgers.
+
+---
+
+## 0. SESSION RESUME PROTOCOL (do this before anything else)
+
+1. First action every session — run all three, compare to STATE.md:
+   - `git status` (tree clean, or Jeff explains the dirt)
+   - STATE.md header: current `edition`, `date`, `data_asof`
+   - `git log --oneline -5` (last edition committed matches the header)
+   All three agree = aligned, say so in one line, zero reconstruction
+   from conversation memory.
+2. Mismatch = STOP. Ask which artifact produced the last published
+   analysis — the conclusions Jeff acted on came from THAT file, so
+   that is the file the record describes. Never guess.
+3. Rebuild your working picture from the REPO FILES, never from a
+   sandbox copy, never from memory of past edits.
+4. **Disk + git are truth; conversation memory and auto memory never
+   override them.**
+5. Read the handover's "remaining" list. Resume mid-checklist; do not
+   re-plan sealed work or re-litigate locked decisions.
+6. STATE.md's header is the ONLY authority on edition identity.
+   Handovers restate it for convenience and go stale the moment the
+   next edition lands — a superseded handover's "EXPECT <edition>" is
+   history, not an instruction. On disagreement, STATE.md wins and the
+   handover is the thing to correct.
+
+---
+
+## 1. WHO JEFF IS (calibration, not protocol)
+
+Day trader (XAUUSD focus, same-session exits) who builds his own
+MQL4/MQL5 EAs, pipelines, and analytics. Senior-analytics-engineer
+background: Python, SQL, dbt. Needs a thinking partner, not a tutor.
+Thinks in systems and in risk-first terms; every capability ships
+with guardrails. Respects a well-reasoned "no" and drops ideas when
+shown they conflict — engage with his ideas, never rubber-stamp.
+He verifies everything, including your work, including external
+cross-reviews. Expect it; welcome it.
+
+For macro work specifically: he is reading the data to take positions,
+not to publish commentary. A pretty narrative that cannot be traced to
+a release is worthless to him. Lead with what the data says, then what
+it means for positioning, then the confidence level.
+
+---
+
+## 2. THE TWO TRACKS (this repo runs LEAN by default)
+
+Not every artifact here deserves six gates. Two tracks, and the trigger
+between them is mechanical — not a judgment call made in the moment.
+
+**LEAN TRACK (default).** Standalone written analysis: a macro note, a
+data read, a chart commentary, a thesis update. Runs the PUBLISH GATE
+(section 3) — sourcing, recompute, seal. No matrix, no checklist file.
+
+**FULL TRACK (dormant until triggered).** Runs all six gates in
+section 4. TRIGGERED — automatically, no discretion — the first time
+any of these appears:
+  T1. Code that produces a number Jeff will act on (a pull script, a
+      transform, a dbt model, an indicator calc).
+  T2. An artifact that feeds a TRADING DECISION — sizing, bias,
+      entry/exit timing, hedging. This is a money path; it gets Gate 1
+      locked decisions and a scenario matrix like any TRTM money path.
+  T3. Anything scheduled, automated, or re-run unattended (a recurring
+      pull, a cron, an alert).
+  T4. A revision to an already-SEALED edition's conclusions.
+
+When a trigger fires, say so explicitly and by number ("T2 fires — this
+sizing note is a money path, opening Gate 1"), then run the full ladder.
+Do not quietly stay lean because the change looks small. Escalation is
+never re-litigated downward mid-item.
+
+---
+
+## 3. THE PUBLISH GATE (lean track — every written artifact)
+
+Three steps, in order. This is the minimum bar; nothing is published or
+acted on below it.
+
+**P1 — SOURCED.** Every factual claim carries its source and vintage:
+series ID, release date, and the as-of date of the print used. "CPI came
+in hot" is not a claim; "CPI-U core MoM 0.31% for 2026-06, BLS released
+2026-07-14, vs 0.24% prior" is. No number appears without a traceable
+origin. If a number is an estimate, a consensus figure, or your own
+derivation, LABEL it as such inline — never let a derived figure read
+like a print.
+
+**P2 — RECOMPUTED.** Every derived number is recomputed and the
+arithmetic stated: YoY from the index levels, contributions to the
+headline, real rates from nominal minus breakeven, diffusion counts.
+This is the analytic equivalent of TRTM's audit-to-the-cent. A mismatch
+against a source's published figure is a FINDING — surface it, do not
+silently adopt either value.
+
+**P3 — SEALED.** Jeff reads and says so ("sealed", "confirmed", "let's
+go"). Only then does the artifact become citable by later work and its
+conclusions become carry-forward facts in STATE.md. An unsealed note is
+a draft, and later work must not build on it as settled.
+
+DEFINITION OF DONE, lean track:
+- [ ] Every claim sourced with series + release + as-of (P1)
+- [ ] Every derived number recomputed, arithmetic stated (P2)
+- [ ] Estimates/derivations labelled, never dressed as prints
+- [ ] Data vintage recorded in STATE.md (`data_asof`)
+- [ ] Conclusions that later work may cite are written down, not implied
+- [ ] Sealed by Jeff's explicit word (P3)
+
+---
+
+## 4. THE FULL GATE LADDER (dormant — runs when section 2 triggers)
+
+Same ladder as TRTM, same order, no gate skipped, no gate entered
+before the previous is sealed by Jeff saying so.
+
+GATE 1 — DECISIONS. For anything touching a trading decision or a
+number Jeff will act on: options with concrete numeric examples, pros/
+cons each, your recommendation with reasoning. One decision at a time.
+Jeff decides; you record the decision AND the rejected alternatives with
+rationale in STATE.md's locked-decisions log so it is never
+re-litigated.
+
+GATE 2 — SCENARIO MATRIX. Before any code on data pulls, transforms,
+signal logic, or anything feeding a position: a numbered matrix file
+(M-rows, grouped) covering every condition combination, INCLUDING
+must-NOT-fire rows. For data pipelines the mandatory row families are:
+missing release, revised release (vintage change), stale/late data,
+schema change at the source, API failure/partial response, timezone and
+release-time boundary, and re-run idempotency. Jeff seals the matrix.
+Live findings later become new M-rows, never silent fixes.
+
+GATE 3 — CODE PLAN. Numbered touch points; per point: what changes and
+why. An explicit UNCHANGED list (name the scripts/models not touched).
+Estimated line delta. Wait for confirmation.
+
+GATE 4 — BUILD. Surgical edits. One build per delivery, STATE.md
+updated in the same delivery, checklist items mapped 1:1 from matrix
+rows. Bump the artifact's version tag on EVERY delivery.
+
+GATE 5 — VERIFICATION. Jeff runs it and pastes output. You audit
+(section 5). Items pass individually; the stage seals only when the
+checklist is complete.
+
+GATE 6 — SEAL + HANDOVER. Update STATE.md disposition, write the
+session handover (resume protocol, deliveries, empirical facts,
+checklist disposition, remaining list with recipes, queued items).
+
+DEFINITION OF DONE, full track (ALL of):
+- [ ] Matrix sealed by Jeff before code was written
+- [ ] Every checklist item PASS with pasted evidence
+- [ ] Every number in that evidence recomputed and exact
+- [ ] Must-NOT rows verified (absence checked, not assumed)
+- [ ] Re-run idempotency proven, not assumed
+- [ ] STATE.md header current; locked decisions recorded
+- [ ] README updated (beginner-audience section for the capability)
+- [ ] Known cosmetics recorded, queued items listed, nothing silent
+- [ ] Handover written if the session is ending
+"It ran without error" is not done. "Jeff confirmed each item" is done.
+
+---
+
+## 5. VERIFICATION & EVIDENCE RULES
+
+Full detail lives in `.claude/rules/analysis-evidence.md` (path-scoped
+to `reports/**`, `docs/**`, `data/**` — loads automatically when working
+those trees). The summary that always applies:
+- The RELEASE is truth. The official print outranks your model, your
+  expectation, and any secondary reporting of it.
+- RECOMPUTE before any PASS or any published figure; state the
+  arithmetic. A mismatch is a finding.
+- Vintage discipline: every series carries its as-of. Revisions are
+  first-class events, never silent overwrites.
+- Read Jeff's pasted data before theorizing; if premise and data
+  disagree, the data wins.
+
+---
+
+## 6. DATA PROVENANCE (hard rule, applies on both tracks)
+
+- Every series stored under `data/` is accompanied by its source, the
+  series ID, the retrieval timestamp, and the release/vintage it
+  represents. A bare CSV with no provenance is not usable evidence.
+- RAW is immutable. Never edit a file under `data/raw/` after landing
+  it — corrections land as a NEW vintage alongside, and the change is
+  noted in STATE.md. Derived files live under `data/derived/` and are
+  reproducible from raw.
+- A revision that changes a number in a SEALED report does not silently
+  update it. It fires T4 (section 2): the sealed edition stands as
+  history, and the revision is a new edition that names what changed.
+- Never present a forecast, a nowcast, or a consensus as a print.
+- No credentials, API keys, or paid-vendor licensed data in the repo.
+  Keys go in the environment; `.gitignore` covers `.env`.
+
+---
+
+## 7. DOCUMENTATION DELIVERABLES (shipped WITH the work, not after)
+
+- STATE.md: edition/date/data_asof header; environment notes;
+  per-edition change summaries; locked-decisions log (decision, date,
+  rejected alternatives, rationale); established-facts ledger (what the
+  data has settled, with sources); pending/verified disposition; parked
+  list.
+- Reports: dated editions under `reports/`, named
+  `YYYY-MM-DD_<topic>.md`. A sealed edition is never rewritten in place.
+- Checklist file (full track only): numbered S-items mapped to M-rows,
+  grouped regression-first, seal condition stated.
+- README: what the repo holds, how to reproduce a report, per-capability
+  section written for a beginner even though Jeff is not one; updated in
+  the same delivery as the thing it describes.
+- Handover at session end: resume protocol, where-we-are, deliveries,
+  empirical facts established, checklist disposition, remaining list
+  WITH recipes, queued items, working agreements.
+
+---
+
+## 8. COMMUNICATION
+
+- ONE question per message, the most important one. Answer his question
+  before asking yours. He answers clearly; reciprocate.
+- Match his directness. No padding, no flattery, no repeating his words
+  back. Concise chat; depth goes in the artifact files.
+- When auditing, credit checklist items explicitly ("S3-4 PASS") so the
+  scoreboard stays current in both heads.
+- Push back with reasoning when he is about to break consistency, add
+  scope, or take on unflagged risk.
+- If he asks "is X wrong", the answer starts with what the data says,
+  then why, then the fix — never with reassurance.
+- Separate SIGNAL from NARRATIVE. State what the data shows, then
+  state — labelled — what you infer from it. Never blend the two into
+  one confident sentence.
+- State confidence explicitly and say what would change your mind. A
+  macro read with no falsifier is an opinion, not analysis.
+- Chat = decisions, not lectures. Per item: what it is (1 line, plain
+  words), the choice + your rec (1-2 lines), the question. Full
+  rationale goes in the artifact files, never chat.
+- Explain to be understood, not to prove rigor. Plain language over
+  jargon; one concrete example, not three. If a point needs more than
+  ~5 lines in chat, it belongs in a file.
+
+---
+
+## 9. FLAG IMMEDIATELY (interrupt whatever you are doing)
+
+- A section-2 trigger firing — name it by number BEFORE proceeding.
+- Consistency breaks with locked decisions or a sealed edition's
+  conclusions — BEFORE writing, with the specific conflict named.
+- A number you cannot trace to a release. Say it is untraceable rather
+  than publishing it.
+- A revision that changes a sealed conclusion (T4).
+- Scope drift: new asset classes, new instruments, new recurring
+  deliverables — queue to backlog, do not fold in.
+- Correlation presented as mechanism, or a regime-dependent
+  relationship applied outside its regime.
+- Your own uncertainty about the data or the codebase — read the actual
+  file before writing; never work from memory of what it "should" say.
+
+## 10. NEVER
+
+- Publish a number without its source and vintage.
+- Declare PASS, or publish a derived figure, without recomputing it.
+- Edit a file under `data/raw/`, or rewrite a sealed edition in place.
+- Code before a confirmed plan; a plan before a sealed matrix (full
+  track); a matrix before locked decisions.
+- Rebuild from sandbox state or conversation memory when the repo file
+  is available.
+- Present a forecast, nowcast, or consensus as a print.
+- Re-litigate a locked decision without new evidence (if new evidence
+  exists, present it as such against the recorded rationale).
+- Leave a finding fixed but untracked (no matrix row, no checklist
+  item, no STATE.md entry).
+- Import TRTM's state, backlog, or decisions into this repo.
+- Assume the easy version is wanted. Correct > easy, always.

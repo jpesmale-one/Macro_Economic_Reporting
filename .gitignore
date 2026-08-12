@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Credentials never enter the repo (CLAUDE.md section 6).
+.env
+.env.*
+*.key
+credentials.json
+
+# Local scratch
+scratch/
+*.tmp
