@@ -4,6 +4,21 @@ Repository for macro market analysis: the written reads, the data behind
 them, the pipelines that pull that data, and the record of what was
 decided and why.
 
+**Purpose:** analyse currency strength to form a **bias**, and spot **key
+levels**. There is **no money path in this repo** — no lot sizes, entry
+prices, stops, targets, or order instructions. "AUD is strongest, tone
+favours AUD longs" is in scope; "buy 0.5 lots at 0.6520, stop 0.6480" is
+not, and belongs in TRTM. Locked as LD-4 in [STATE.md](STATE.md).
+
+**Key levels are in scope; execution roles are not** (LD-5). A level is an
+observation about price structure — "4,435 is the swing high, rejected
+twice" — and it is published with its timeframe, lookback, type, and touch
+history. The same number labelled "stop above 4,435" is an instruction, and
+that is the line. Price and chart data come from the
+[TradingView MCP](https://github.com/tradesdontlie/tradingview-mcp): read
+and draw are allowed, alerts and `replay_trade` are not. See
+[.claude/rules/levels-and-tradingview.md](.claude/rules/levels-and-tradingview.md).
+
 It runs the same ways of working as the sibling project
 `TRTM_EA_Project` — same gate vocabulary, same seal discipline, same
 STATE.md / handover / continuation mechanics. What differs is the anchor.
@@ -60,9 +75,15 @@ Triggers are mechanical, not judgment calls, and are named by number when
 they fire:
 
 - **T1** — code that produces a number Jeff will act on
-- **T2** — an artifact feeding a trading decision (a money path)
+- **T2** — an **executable instruction** (a size, an entry, a stop, an
+  order). In this repo T2 is a **scope alarm**, not an escalation path:
+  the right response is to stop and say the artifact left scope. Bias
+  does *not* fire it.
 - **T3** — anything scheduled, automated, or re-run unattended
 - **T4** — a revision to an already-sealed edition's conclusions
+
+In practice the full ladder gets reached by **T3 and T1** — automation and
+reliability — not by T2.
 
 The full ladder is: locked decisions → sealed scenario matrix → confirmed
 code plan → build → evidence-audited verification → seal and handover.

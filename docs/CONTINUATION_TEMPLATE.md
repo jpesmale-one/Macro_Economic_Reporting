@@ -55,33 +55,50 @@ state the arithmetic before you publish it or call anything PASS.
 ```
 Resume Macro Economic Reporting. Run the section 0 resume protocol FIRST:
 git status + STATE.md header + `git log --oneline -5`, all compared
-(expect edition none, data_asof n/a, track LEAN). Report aligned in one
-line, or STOP on mismatch.
+(expect edition none, data_asof n/a, track LEAN, and TWO local commits -
+c9a9fbb "Initial Project Set-up" then the scope-boundary commit). Report
+aligned in one line, or STOP on mismatch.
 
-Then read STATE.md. The repo scaffold landed 2026-08-12 - CLAUDE.md
-protocol, STATE.md manifest, evidence rules, raw-data + provenance hooks,
-templates, directory skeleton - ported from TRTM_EA_Project with the gate
-anchor changed from "build + sha" to "edition + data vintage". There is NO
-analysis content, NO edition, and NO data landed yet. LD-1 and LD-2 are
-locked; P-1 (cadence/coverage), P-2 (canonical source set), and P-3
-(legacy artifact handling) are PARKED awaiting my input.
+Then read docs/HANDOVER_2026-08-12_repo_established.md and STATE.md. The
+repo scaffold landed 2026-08-12 and the SCOPE is locked: this project
+analyses currency strength to form a BIAS and to spot KEY LEVELS, with NO
+MONEY PATH (LD-4). There is NO analysis content, NO edition, and NO data
+landed yet - that is expected, session 1 was governance only.
 
-First task: decide P-2, the canonical source set and access method - it is
-the foundational one, because it defines what "traceable to a release"
-means for every later artifact. Give me options with concrete series
-examples and your rec, one question at a time.
+Five decisions are locked - LD-1 (WoW ported from TRTM), LD-2 (mechanical
+escalation), LD-3 (ForexFactory + TradingEconomics are SCHEDULE-only,
+never authoritative for a value), LD-4 (purpose: bias, no money path -
+this rewrote T2 into a scope alarm), LD-5 (key levels in scope,
+TradingView MCP is the price source; read + draw allowed, alert_create/
+delete and replay_trade are not). Do NOT re-litigate these.
+
+F-1 is OPEN and must not be quietly closed: TradingEconomics publishes
+UNRELEASED figures in the ACTUAL field - a forecast wearing a print's
+label, reproduced daily in my own reports. Column-checking CANNOT detect
+it; only an independent schedule check against the issuing agency can. It
+closes on evidence (an ingest that flags the mismatch), never on
+inspection.
+
+FIRST TASK THIS SESSION: I am giving you my draft of how I want this
+project to turn out. READ IT FIRST and work from it. It may reshape or
+supersede the open items O-1 (output format), O-3 (cadence vs seal
+ritual), O-4 (which of the nine reference sections survive), and O-5
+(automated price pulls) recorded in docs/REFERENCE_DAILY_ARTIFACT.md -
+so do not start building against those before reading my draft. Treat
+docs/REFERENCE_DAILY_ARTIFACT.md as REFERENCE, NEVER SPEC.
 
 Track discipline holds: LEAN by default (publish gate = sourced ->
 recomputed -> sealed). Escalate to the FULL six-gate ladder the moment a
 section-2 trigger fires, and name it by number when it does - T1 code
-producing an actionable number, T2 trading decision, T3 automation, T4
-revision to a sealed conclusion. One question per message, concrete
-numbers, your rec each; record every decision + rejected alternatives in
-STATE.md's locked-decisions log. Raw data is immutable - revisions land
-as a new vintage, never an overwrite. Recompute every derived figure and
-state the arithmetic before you publish it or call anything PASS.
+producing an actionable number, T2 EXECUTABLE INSTRUCTION (a scope alarm
+here - stop and say so, do not open Gate 1), T3 automation, T4 revision
+to a sealed conclusion. In practice expect T3 and T1, not T2. One
+question per message, concrete numbers, your rec each; record every
+decision + rejected alternatives in STATE.md's locked-decisions log. Raw
+data is immutable - revisions land as a new vintage, never an overwrite.
+Recompute every derived figure and state the arithmetic before you
+publish it; a key level is recomputed by naming the bars that formed it.
 
-Carried forward: nothing is committed yet - the scaffold is unstaged in
-the working tree and origin/main has no commits. Committing and pushing
-is my call, ask before doing it.
+Carried forward: BOTH commits are LOCAL ONLY - origin/main has nothing at
+all. Pushing is my call, ask before doing it.
 ```

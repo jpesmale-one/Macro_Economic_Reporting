@@ -6,11 +6,44 @@ this file wins. Current-state facts (current report edition, data
 vintages, locked decisions, verified items, parked list) live in
 STATE.md — never in this file, never from memory.
 
+## PURPOSE AND SCOPE (LD-4 — read this before anything else)
+
+This project analyses CURRENCY STRENGTH to form a BIAS. That is its
+whole purpose. **There is NO MONEY PATH in this repo.**
+
+IN SCOPE: relative currency strength, the drivers behind it, rate
+differentials and policy divergence, the event calendar, **KEY LEVELS**
+(LD-5), and a directional bias stated with its confidence and its
+falsifier.
+
+OUT OF SCOPE: lot sizes, entry prices, stops, targets, order
+instructions, risk-per-trade, position management — anything that
+computes or recommends an amount of money at risk.
+
+The line: "AUD is strongest, tone favours AUD longs" is in scope.
+"Buy 0.5 lots AUDUSD at 0.6520, stop 0.6480" is not, and does not get
+built here on any track.
+
+**Key levels sit closest to this line, so hold it precisely (LD-5).**
+A level is an OBSERVATION about price structure and is in scope. An
+EXECUTION ROLE assigned to that level is not. The same number, both
+sides of the line:
+
+- IN SCOPE — "4,435 is the swing high; rejected twice, Mon and Tue."
+- OUT — "Stop above 4,435."
+
+The figure is identical; the second one is an instruction. This is how
+this repo would most plausibly drift — not by adding a lot size, but by
+quietly re-labelling a level as a stop. If an artifact starts doing
+that, say so and stop — that is T2, and in this repo T2 is a scope
+alarm, not an escalation path.
+
 Sibling project: TRTM_EA_Project runs the same ways of working against
-a compiled EA. Same gates, same language, same seal discipline. The
-anchor differs: TRTM anchors on a build tag + sha; this repo anchors on
-a DATED EDITION + data vintage. Do not import TRTM's state, backlog, or
-decisions into this repo — they are separate ledgers.
+a compiled EA, and owns execution. Same gates, same language, same seal
+discipline. The anchor differs: TRTM anchors on a build tag + sha; this
+repo anchors on a DATED EDITION + data vintage. Do not import TRTM's
+state, backlog, or decisions into this repo — they are separate
+ledgers, and the separation is what keeps this one lean.
 
 ---
 
@@ -71,17 +104,26 @@ section 4. TRIGGERED — automatically, no discretion — the first time
 any of these appears:
   T1. Code that produces a number Jeff will act on (a pull script, a
       transform, a dbt model, an indicator calc).
-  T2. An artifact that feeds a TRADING DECISION — sizing, bias,
-      entry/exit timing, hedging. This is a money path; it gets Gate 1
-      locked decisions and a scenario matrix like any TRTM money path.
+  T2. AN EXECUTABLE INSTRUCTION — a specific lot size, entry price, stop,
+      target, or an order to place at a stated level. See LD-4: this repo
+      produces BIAS, and bias is IN SCOPE and stays LEAN. T2 fires only
+      when an artifact crosses from "AUD looks strongest, tone favours
+      AUD longs" into "buy 0.5 lots AUDUSD at 0.6520, stop 0.6480".
   T3. Anything scheduled, automated, or re-run unattended (a recurring
       pull, a cron, an alert).
   T4. A revision to an already-SEALED edition's conclusions.
 
-When a trigger fires, say so explicitly and by number ("T2 fires — this
-sizing note is a money path, opening Gate 1"), then run the full ladder.
-Do not quietly stay lean because the change looks small. Escalation is
-never re-litigated downward mid-item.
+When a trigger fires, say so explicitly and by number ("T3 fires — this
+pull runs unattended, opening Gate 1"), then run the full ladder. Do not
+quietly stay lean because the change looks small. Escalation is never
+re-litigated downward mid-item.
+
+NOTE ON T2 AND SCOPE (LD-4): the correct response to a T2 trigger in THIS
+repo is not usually to open the full ladder — it is to STOP and say the
+artifact has left scope. Execution instructions belong in TRTM or in
+Jeff's own head, not here. Escalating to the full ladder is the fallback
+if Jeff explicitly decides to bring that work in; the default answer is
+that it does not belong.
 
 ---
 
