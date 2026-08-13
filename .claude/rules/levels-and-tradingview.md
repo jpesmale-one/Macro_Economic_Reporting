@@ -57,12 +57,22 @@ This is the evidence-gathering path.
 **DRAW — allowed.** Horizontal lines, trend lines, rectangles, text for
 levels and annotation. Display-only; touches no account.
 
-**NEVER without Jeff asking in the moment:**
-- `alert_create` / `alert_delete` — an alert is an unattended action that
-  outlives the session. It is also T3-shaped (scheduled/automated).
-- `replay_trade` — places simulated orders; execution-shaped, and outside
-  this repo's purpose regardless of being simulated.
-- Anything that rewrites saved layouts, watchlists, or Pine scripts.
+**DENIED in `.claude/settings.json` (LD-6) — not merely discouraged.**
+Project deny beats the global allow, so these fail rather than relying on
+me to remember. If one is genuinely needed, Jeff allows it in the moment:
+- `replay_trade` — places simulated orders; execution-shaped.
+- `alert_create` / `alert_delete` — unattended, outlives the session,
+  T3-shaped.
+- `pine_set_source`, `pine_save`, `pine_new`, `pine_compile`,
+  `pine_smart_compile` — mutate Jeff's saved scripts.
+- `watchlist_add`, `watchlist_add_bulk`, `watchlist_remove`, `layout_new`
+  — mutate his saved workspace.
+- `ui_click`, `ui_mouse_click`, `ui_type_text`, `ui_keyboard`,
+  `ui_evaluate` — blind UI puppeteering can do anything the UI can do,
+  including everything above, so it is a bypass of every other deny.
+
+The deny is PROJECT-SCOPED. Jeff's other Claude Code session keeps full
+access; nothing was taken away from him globally.
 
 **It is Jeff's live workspace, not a scratchpad.** The MCP drives the chart
 he is actually looking at. Do not reorganise panes, swap symbols, change

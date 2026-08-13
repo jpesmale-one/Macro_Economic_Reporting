@@ -116,8 +116,28 @@ Two hooks back the rules that cost money if broken:
 - `check_provenance.sh` (PostToolUse) — flags any data file written under
   `data/` without its `.provenance.md` sidecar.
 
-`.claude/settings.json` adds deny rules for `data/raw/` and `.env`, and
-sets plan mode as the default.
+`.claude/settings.json` adds deny rules for `data/raw/` and `.env`, sets
+plan mode as the default, and **denies the TradingView MCP tools that LD-5
+puts out of bounds** — `replay_trade`, `alert_create`/`alert_delete`, the
+Pine and watchlist/layout mutators, and the raw `ui_*` automation tools
+(which could otherwise drive the UI to do any of the above). Project deny
+beats the global allow, so the boundary holds by configuration rather than
+by good intentions. The deny is project-scoped: other sessions are
+unaffected.
+
+## TradingView MCP
+
+Already configured — **no clone or install needed**. The server is
+registered globally in `~/.claude/.mcp.json` pointing at a single shared
+checkout of [tradesdontlie/tradingview-mcp](https://github.com/tradesdontlie/tradingview-mcp),
+and every project on this machine inherits it. This repo also ships a
+project-level [.mcp.json](.mcp.json) so the dependency is declared rather
+than assumed.
+
+Requires TradingView Desktop running with `--remote-debugging-port=9222`.
+Verify with `tv_health_check`; if it fails, launch via
+`scripts\launch_tv_debug.bat` in the server checkout, or the `tv_launch`
+tool.
 
 ---
 

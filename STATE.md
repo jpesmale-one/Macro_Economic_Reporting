@@ -194,6 +194,42 @@ REJECTED:
 RATIONALE: Where price has repeatedly turned is a fact. What to do about it
 is a decision, and this repo does not make decisions with money attached.
 
+### LD-6 - LD-5's MCP boundary is ENFORCED in project settings, not just written (2026-08-12)
+CONTEXT: LD-5 said alert_create/delete and replay_trade require an explicit
+in-the-moment ask. Inspection of ~/.claude/settings.json showed all 78
+TradingView tools AUTO-ALLOWED globally, including those three. LD-5 was a
+rule with nothing behind it - exactly the gap TRTM closes with "the rules
+explain the wall, the hook IS the wall".
+DECISION: The restricted tools are DENIED in this project's
+.claude/settings.json. Project deny beats global allow, so the boundary now
+holds by configuration rather than by my compliance. Denied here:
+  - EXECUTION-SHAPED: replay_trade.
+  - UNATTENDED / OUTLIVES THE SESSION: alert_create, alert_delete.
+  - MUTATES JEFF'S SAVED WORK: pine_set_source, pine_save, pine_new,
+    pine_compile, pine_smart_compile, watchlist_add, watchlist_add_bulk,
+    watchlist_remove, layout_new.
+  - BLIND UI PUPPETEERING: ui_click, ui_mouse_click, ui_type_text,
+    ui_keyboard, ui_evaluate. These can do anything the UI can do,
+    including the above, which makes them a bypass of every other deny.
+READ and DRAW remain allowed: data_get_*, quote_get, symbol_*, chart_get_*,
+chart_set_* (navigation), draw_shape, draw_list, draw_remove_one,
+capture_screenshot, tv_health_check.
+SCOPE OF THE DENY: PROJECT-LEVEL ONLY. Jeff's other Claude Code session and
+the global config are untouched - a tool he legitimately uses elsewhere is
+not taken away from him there.
+IF A DENIED TOOL IS GENUINELY NEEDED: Jeff asks in the moment and can allow
+it for that action. The deny converts a silent capability into a decision.
+REJECTED:
+  (a) Trusting LD-5 as written, since I would simply follow it. Rejected:
+      an unenforced rule survives exactly until a session where it is not
+      re-read. The whole point of the TRTM hook pattern is that the wall
+      does not depend on the agent remembering.
+  (b) Narrowing the global allowlist instead. Rejected: it would change
+      behaviour in Jeff's other session, which is out of scope for this
+      repo's decisions and is his call, not mine.
+RATIONALE: A boundary that exists only in prose is a preference. A boundary
+in settings.json is a boundary.
+
 ---
 
 ## ESTABLISHED FACTS LEDGER
@@ -213,7 +249,7 @@ cited as settled.
 | First macro edition | NOT STARTED | Needs scope: coverage, cadence, source set. O-4 asks which of the existing nine sections survive. |
 | Data source set | PARTIAL - LD-3 locked | Calendar role settled (FF + TE, schedule only). VALUE source still open = P-2. |
 | Calendar ingest | NOT STARTED | Fires T1 + T3. Access method for FF is P-4. |
-| Key levels / TradingView MCP | IN SCOPE per LD-5 | MCP already configured (78 tools). Read + draw allowed; alerts and replay_trade are not. Rules in .claude/rules/levels-and-tradingview.md. |
+| Key levels / TradingView MCP | IN SCOPE per LD-5, CONNECTION VERIFIED 2026-08-12 | tv_health_check: cdp_connected true, VANTAGE:EURCHF 15m, api_available true. chart_get_state + data_get_ohlcv both returned live data. NO CLONE NEEDED - server is registered globally and inherited. LD-5's restricted tools are now DENIED in project settings (they were auto-allowed globally - see LD-6). |
 | Pipeline code | NOT STARTED | Fires T1 when it lands. |
 
 ---
