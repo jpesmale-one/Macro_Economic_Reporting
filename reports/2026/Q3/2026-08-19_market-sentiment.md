@@ -1,6 +1,6 @@
 ---
 edition: 2026-08-19
-revision: 8 (supersedes r1-r7 - see CORRECTIONS)
+revision: 9 (supersedes r1-r8 - see CORRECTIONS)
 generated: 2026-08-19 14:12 PHT
 data_asof: 2026-08-19 14:12 PHT
 horizon: INTRADAY (Wednesday - no swing block, no carry per LD-8)
@@ -436,7 +436,13 @@ BAD among many. The model no longer needs rescuing from itself.
   against a 0.00% floor). **An 11-point spread — the widest possible
   configuration on this board.**
 - **Conviction:** **Highest.** No event gate; every input is released data.
-- **Technical:** CADCHF not read this run. **No levels published.**
+- **Technical — CADCHF, D1, 20 bars (22 Jul – 19 Aug):**
+  - **0.58645** — 20-day high, 14 Aug. **Three highs within 3 pips**:
+    0.58645 (14 Aug), 0.58640 (18 Aug), 0.58614 (19 Aug) — a tested ceiling.
+  - **0.58428** — current, **82.7% of range** and 2 pips under that ceiling.
+  - **0.57388** — 20-day low. Range 126 pips; window **+1.05%**.
+  - **Technicals agree with the fundamentals**: price is pressing the top of
+    its range in the direction the model points.
 - **Falsifier:** Hormuz de-escalation removing the oil leg, or a Canadian
   inflation reversal — CAD's +3.00 inflation score is a third of its total.
 
@@ -445,7 +451,11 @@ BAD among many. The model no longer needs rescuing from itself.
 - **Alignment:** AUD **+4.08** with **zero BAD scores anywhere** against
   CHF **−3.00**. AUD's cap is a neutral inflation read, not a weakness.
 - **Conviction:** High, **but event-gated** — see the AUD block below.
-- **Technical:** AUDCHF not read this run. **No levels published.**
+- **Technical — AUDCHF, D1, 20 bars:**
+  - **0.57811** — 20-day high, set **yesterday** 18 Aug.
+  - **0.57386** — current, 68.9% of range. Today's high 0.57588 is a
+    **lower high** — momentum paused ahead of tomorrow's employment print.
+  - **0.56444** — 20-day low. Range 137 pips; window **+0.72%**.
 - **Falsifier:** AU employment tomorrow printing below the 15.0K consensus,
   or a genuine haven bid returning to CHF.
 
@@ -548,35 +558,102 @@ cleanly today**.
 
 ## §7 — Method notes
 
-**Corrections applied this revision:** C-1 timezone (+12h → +8h), C-2 UK CPI
-released with corrected Previous, C-3 NZD hiked not cut, C-4 phantom count
-13 → 9, C-5 AUD re-ranked on Hauser.
+*Rewritten in r9. The previous version was an r2-era list that had gone
+stale: it still claimed the central bank sites were blocked (fixed in r8)
+and did not mention the r3–r8 corrections at all. A method-notes section
+that is not maintained is worse than none — it reports fixed problems as
+live and hides live ones.*
 
-**Still not working:**
-1. **`batch_run` fails** on `quote` and `ohlcv` actions. Pairs must be
-   pulled one at a time. **Only 5 of 21 pairs read** — §4's alignments
-   still carry no technical levels.
-2. ~~CNN Fear & Greed geo-blocked~~ **RESOLVED (r4)** — Jeff supplied the
-   dataviz endpoint. The article page still 451s and the endpoint 418s on a
-   plain fetch, but it serves with browser headers. Now yielding the index
-   plus all seven components.
-3. **rba.gov.au and rbnz.govt.nz return HTTP 403** to automated fetches.
-   federalreserve.gov worked and confirmed the Fed rate.
+### Corrections across this edition's revisions
 
-**Chart state:** left on `OANDA:BTCUSD` @ 1D. No levels drawn, so no
-cleanup owed (LD-6).
+| # | Correction | Rev | Caught by |
+|---|---|---|---|
+| C-1 | Timezone +12h → **+8h** (TE calendar is UTC). Every r1 schedule was 4h late | r2 | **Jeff** |
+| C-2 | UK CPI had **released** (2.9% from 2.6%); r1's "Previous" was also wrong | r2 | — |
+| C-3 | NZD **hiked** 25bp 8 Jul, not cutting | r2 | — |
+| C-4 | Phantom count 13 → **9** after the timezone fix | r2 | — |
+| C-5 | AUD re-ranked on Hauser's hike warning | r2 | — |
+| C-6 | **24 of 34 rows were off-list** — DE, ZA and unnamed indicators. §2 rebuilt from the whitelist | r3 | **Jeff** |
+| C-7 | EA inflation direction **inverted** (rising, not falling); withdrew the GBP/EUR call | r3 | — |
+| C-8 | **Nine indicators wrongly marked unavailable**; the Swiss PMI *was* the named one | r5 | **Jeff** |
+| — | Fear & Greed recovered via the dataviz endpoint | r4 | **Jeff** |
+| — | Weighted scoring (Inflation 3, Employment 2, others 1) | r6 | **Jeff** |
+| — | §3 rebuilt with vote splits, bias, next meeting, sourced odds | r7 | **Jeff** |
+| C-9 | **The central bank 403s were our headers.** RBA effective date 11 → **12 Aug** | r8 | **Jeff** |
+
+**Six of the twelve were caught by Jeff, not by me.** That ratio is the most
+useful number in this section.
+
+### Resolved
+
+1. ~~CNN Fear & Greed geo-blocked~~ — **r4.** The article page still 451s;
+   the dataviz endpoint serves with browser headers. Now yielding the index
+   **plus all seven components**, which revealed a 70.8-point internal
+   divergence the headline concealed.
+2. ~~rba.gov.au / rbnz.govt.nz / snb.ch block automated fetches~~ — **r8.**
+   They never did. All three return 200 with browser headers; RBA also needs
+   a `Referer`. **All eight central banks are now read primary.**
+3. ~~`batch_run` is broken~~ — **partially.** See below: the action names I
+   used were wrong, but the tool fails for a second, real reason.
+
+### Still not working
+
+1. **`batch_run` genuinely fails**, though not for the reason r2–r8 gave.
+   I reported it broken after calling it with `action: "quote"` and
+   `action: "ohlcv"` — **both invalid**. The schema accepts `screenshot`,
+   `get_ohlcv`, `get_strategy_results`. With the correct `get_ohlcv` it
+   returns `JS evaluation error: Uncaught (in promise)` on every symbol, in
+   both `"1D"` and `"D"` timeframe formats. **So: my error first, a real
+   tool defect underneath it.** Single-symbol `data_get_ohlcv` works fine,
+   so the workaround is one symbol at a time — slower, not blocking.
+
+2. **Coverage: 7 of 21 watchlist pairs read** (AUDUSD, AUDNZD, EURCHF,
+   CADCHF, AUDCHF, plus XAUUSD and BTCUSD). **The two top-conviction
+   alignments now carry levels** — that was the gap that mattered. The
+   remaining 14 pairs are unread, so §4 cannot rank alignments that would
+   need them.
+
+3. **Odds sourced for only 2 of 8 currencies** — USD (CME FedWatch, dated)
+   and EUR (analyst consensus, weaker). Six carry no odds rather than
+   guessed ones.
+
+### The pattern worth naming
+
+Three of this edition's errors share one shape: **an absence asserted from a
+single failed attempt.** The 403s (F-6), the "unavailable" indicators (F-5),
+and `batch_run` were all reported as *the source/tool is unavailable* when
+the honest claim was *my first attempt failed*. Two of the three turned out
+to be my own inputs.
+
+The standing rule now lives in `pipelines/fetch_headers.md`: **before
+writing that something is unavailable, escalate and say which step failed.**
+"Blocked" is an absence-type claim and carries the same evidentiary burden
+as any must-NOT row.
+
+### Chart state
+
+Left on `OANDA:AUDCHF` @ 1D (was `OANDA:XAUUSD` @ 15m at session start).
+Symbol and timeframe were changed for reads only. **No levels were drawn**,
+so no cleanup is owed under LD-6.
 
 ---
 
 ## Publish gate
 
-- **P1 SOURCED** — ⚠ **PARTIAL.** Every figure carries source, period, and
-  release status; schedules corrected to PHT. Gaps: 2 of 8 CB sites
-  blocked, no sourced rate odds, no sentiment index.
-- **P2 RECOMPUTED** — ✅ Levels name the bars that formed them. Timezone
-  conversion re-derived and proven against the UK CPI release time.
+- **P1 SOURCED** — ✅ **PASS.** Every figure carries source, period and
+  release status. All 70 whitelist indicators published. **All 8 central
+  bank rates now read primary** (r8). Odds carry their instrument or are
+  omitted.
+- **P2 RECOMPUTED** — ✅ **PASS.** Weighted scores generated from
+  `pipelines/score_model.py`, so tables and tally cannot drift. Levels name
+  the bars that formed them, with lookback, range and position arithmetic
+  shown. Timezone conversion proven against the actual UK CPI release.
 - **P3 SEALED** — ❌ **UNSEALED.**
 
-**Recommendation: still do not seal.** r2 fixes five real errors, but 16 of
-21 pairs remain unread and §4's alignments are fundamental-only. Closer to
-the standard, not yet at it.
+**Recommendation: seal-able on the fundamentals, with the coverage gap
+stated.** r9 closed the two blockers that mattered — the top-conviction
+alignments now carry technical levels, and every rate is primary-sourced.
+**14 of 21 pairs remain unread**, so this is a complete *fundamental* read
+with technical confirmation on the two instruments that carry the call, not
+a full 21-pair sweep. Seal it as that, or hold for the remaining pairs —
+your call, but it is no longer below its own standard.

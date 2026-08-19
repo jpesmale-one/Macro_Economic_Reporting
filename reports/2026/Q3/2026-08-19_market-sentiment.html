@@ -201,7 +201,7 @@
   <div>
     <div class="eyebrow">Macro Economic Reporting &middot; Daily Market Sentiment</div>
     <div class="mdate">Wednesday, 19 August 2026 &middot; 14:12 PHT</div>
-    <div class="draft">REVISION 8 &middot; UNSEALED &middot; INTRADAY HORIZON</div>
+    <div class="draft">REVISION 9 &middot; UNSEALED &middot; INTRADAY HORIZON</div>
   </div>
   <div class="chips">
     <span>GOLD <b class="dn">4,345.47</b> <span class="dn">&minus;1.11%</span></span>
@@ -554,7 +554,7 @@
         <dl class="kv">
           <dt>Alignment</dt><dd>CAD <strong>+8.00</strong> (good in every category) against CHF <strong>&minus;3.00</strong> (the only negative, driven by inflation at 0.4% and falling against a 0.00% floor). <strong>An 11-point spread &mdash; the widest possible configuration on this board.</strong></dd>
           <dt>Conviction</dt><dd><strong>Highest.</strong> No event gate; every input is released data.</dd>
-          <dt>Technical</dt><dd><span class="pill p-bad">CADCHF not read this run</span> &mdash; no levels published.</dd>
+          <dt>Technical</dt><dd><strong>CADCHF, D1, 20 bars.</strong> <strong>0.58645</strong> 20-day high (14 Aug) &mdash; <strong>three highs within 3 pips</strong>: 0.58645 (14 Aug), 0.58640 (18 Aug), 0.58614 (19 Aug), a tested ceiling. Current <strong>0.58428</strong>, <strong>82.7% of range</strong>, 2 pips under it. 20-day low 0.57388; range 126 pips; window <strong>+1.05%</strong>. <strong>Technicals agree with the fundamentals</strong> &mdash; price is pressing the top of its range in the direction the model points.</dd>
         </dl>
         <div class="fals"><b>Falsifier</b>Hormuz de-escalation removing the oil leg, or a Canadian inflation reversal &mdash; CAD&rsquo;s +3.00 inflation score is a third of its total.</div>
       </div></div>
@@ -564,7 +564,7 @@
         <dl class="kv">
           <dt>Alignment</dt><dd>AUD <strong>+4.08</strong> with <strong>zero BAD scores anywhere</strong> against CHF <strong>&minus;3.00</strong>. AUD&rsquo;s cap is a neutral inflation read, not a weakness.</dd>
           <dt>Conviction</dt><dd>High, <strong>but event-gated</strong> &mdash; see the AUD block below.</dd>
-          <dt>Technical</dt><dd><span class="pill p-bad">AUDCHF not read this run</span> &mdash; no levels published.</dd>
+          <dt>Technical</dt><dd><strong>AUDCHF, D1, 20 bars.</strong> <strong>0.57811</strong> 20-day high set <strong>yesterday</strong> (18 Aug). Current <strong>0.57386</strong>, 68.9% of range; today&rsquo;s high 0.57588 is a <strong>lower high</strong> &mdash; momentum paused ahead of tomorrow&rsquo;s employment print. 20-day low 0.56444; range 137 pips; window <strong>+0.72%</strong>.</dd>
         </dl>
         <div class="fals"><b>Falsifier</b>AU employment tomorrow printing below the 15.0K consensus, or a genuine haven bid returning to CHF.</div>
       </div></div>
@@ -634,28 +634,64 @@
   </div>
 
   <!-- 7 METHOD -->
-  <h2 class="sec">&sect;7 &nbsp; Method notes</h2>
-  <div class="card"><div class="card-hd" style="color:var(--bear)">Still not working</div><div class="card-b">
-    <ol class="broke">
-      <li><strong>batch_run fails</strong> on both <code>quote</code> and <code>ohlcv</code> actions. Pairs must be pulled one at a time. <strong>Only 5 of 21 pairs read</strong> &mdash; &sect;4&rsquo;s alignments still carry no technical levels.</li>
-      <li><s>CNN Fear &amp; Greed geo-blocked</s> <strong>RESOLVED (r4)</strong> &mdash; Jeff supplied the dataviz endpoint. The article page still 451s and the endpoint 418s on a plain fetch, but it serves with browser headers. Now yielding the index plus all seven components.</li>
-      <li><strong>rba.gov.au and rbnz.govt.nz return HTTP 403</strong> to automated fetches. federalreserve.gov worked and confirmed the Fed rate.</li>
-    </ol>
-    <p style="margin-top:12px"><strong>Chart state:</strong> left on <code>OANDA:BTCUSD</code> @ 1D. No levels drawn, so no cleanup owed.</p>
-  </div></div>
+  <h2 class="sec">&sect;7 &nbsp; Method notes<em>rewritten r9 &mdash; the previous version had gone stale</em></h2>
+
+  <div class="card"><div class="card-hd">Corrections across this edition&rsquo;s revisions</div>
+  <div class="tblwrap" style="border:none;border-radius:0"><table>
+    <thead><tr><th>#</th><th>Correction</th><th>Rev</th><th>Caught by</th></tr></thead>
+    <tbody>
+      <tr><td class="ccy">C-1</td><td>Timezone +12h &rarr; <strong>+8h</strong> (TE calendar is UTC). Every r1 schedule was 4h late</td><td class="sched">r2</td><td><span class="pill p-warn">Jeff</span></td></tr>
+      <tr><td class="ccy">C-2</td><td>UK CPI had <strong>released</strong> (2.9% from 2.6%); r1&rsquo;s Previous was also wrong</td><td class="sched">r2</td><td class="sched">&mdash;</td></tr>
+      <tr><td class="ccy">C-3</td><td>NZD <strong>hiked</strong> 25bp 8 Jul, not cutting</td><td class="sched">r2</td><td class="sched">&mdash;</td></tr>
+      <tr><td class="ccy">C-4</td><td>Phantom count 13 &rarr; <strong>9</strong> after the timezone fix</td><td class="sched">r2</td><td class="sched">&mdash;</td></tr>
+      <tr><td class="ccy">C-5</td><td>AUD re-ranked on Hauser&rsquo;s hike warning</td><td class="sched">r2</td><td class="sched">&mdash;</td></tr>
+      <tr><td class="ccy">C-6</td><td><strong>24 of 34 rows were off-list</strong> &mdash; DE, ZA and unnamed indicators. &sect;2 rebuilt from the whitelist</td><td class="sched">r3</td><td><span class="pill p-warn">Jeff</span></td></tr>
+      <tr><td class="ccy">C-7</td><td>EA inflation direction <strong>inverted</strong> (rising, not falling); withdrew the GBP/EUR call</td><td class="sched">r3</td><td class="sched">&mdash;</td></tr>
+      <tr><td class="ccy">C-8</td><td><strong>Nine indicators wrongly marked unavailable</strong>; the Swiss PMI <em>was</em> the named one</td><td class="sched">r5</td><td><span class="pill p-warn">Jeff</span></td></tr>
+      <tr><td class="ccy">&mdash;</td><td>Fear &amp; Greed recovered via the dataviz endpoint</td><td class="sched">r4</td><td><span class="pill p-warn">Jeff</span></td></tr>
+      <tr><td class="ccy">&mdash;</td><td>Weighted scoring (Inflation 3, Employment 2, others 1)</td><td class="sched">r6</td><td><span class="pill p-warn">Jeff</span></td></tr>
+      <tr><td class="ccy">&mdash;</td><td>&sect;3 rebuilt with vote splits, bias, next meeting, sourced odds</td><td class="sched">r7</td><td><span class="pill p-warn">Jeff</span></td></tr>
+      <tr><td class="ccy">C-9</td><td><strong>The central bank 403s were our headers.</strong> RBA effective date 11 &rarr; <strong>12 Aug</strong></td><td class="sched">r8</td><td><span class="pill p-warn">Jeff</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="card-b"><div class="gapbox"><b>Six of the twelve were caught by Jeff, not by me.</b> That ratio is the most useful number in this section.</div></div>
+  </div>
+
+  <div class="grid2" style="margin-top:16px">
+    <div class="card"><div class="card-hd" style="color:var(--bull)">Resolved</div>
+      <div class="card-b"><ol class="broke caught">
+        <li><s>CNN Fear &amp; Greed geo-blocked</s> &mdash; <strong>r4.</strong> The article page still 451s; the dataviz endpoint serves with browser headers. Now yielding the index <strong>plus all seven components</strong>, which revealed a 70.8-point internal divergence the headline concealed.</li>
+        <li><s>rba.gov.au / rbnz.govt.nz / snb.ch block automated fetches</s> &mdash; <strong>r8.</strong> They never did. All three return 200 with browser headers; RBA also needs a <code>Referer</code>. <strong>All eight central banks are now read primary.</strong></li>
+        <li><s>batch_run is broken</s> &mdash; <strong>partially.</strong> The action names I used were wrong; a real defect sits underneath. See right.</li>
+      </ol></div></div>
+
+    <div class="card"><div class="card-hd" style="color:var(--bear)">Still not working</div>
+      <div class="card-b"><ol class="broke">
+        <li><strong>batch_run genuinely fails</strong>, but not for the reason r2&ndash;r8 gave. I called it with <code>action: "quote"</code> and <code>action: "ohlcv"</code> &mdash; <strong>both invalid</strong>; the schema accepts <code>screenshot</code>, <code>get_ohlcv</code>, <code>get_strategy_results</code>. With the correct <code>get_ohlcv</code> it returns <code>JS evaluation error</code> on every symbol in both timeframe formats. <strong>My error first, a real tool defect underneath.</strong> Single-symbol reads work, so it is slower, not blocking.</li>
+        <li><strong>7 of 21 watchlist pairs read.</strong> <strong>The two top-conviction alignments now carry levels</strong> &mdash; that was the gap that mattered. The other 14 are unread, so &sect;4 cannot rank alignments needing them.</li>
+        <li><strong>Odds sourced for 2 of 8 currencies.</strong> Six carry no odds rather than guessed ones.</li>
+      </ol></div></div>
+  </div>
+
+  <div class="card" style="margin-top:16px"><div class="card-hd"><span class="pill p-vio">The pattern worth naming</span></div>
+    <div class="card-b">
+      <p>Three of this edition&rsquo;s errors share one shape: <strong>an absence asserted from a single failed attempt.</strong> The 403s, the &ldquo;unavailable&rdquo; indicators and <code>batch_run</code> were all reported as <em>the source is unavailable</em> when the honest claim was <em>my first attempt failed</em>. <strong>Two of the three turned out to be my own inputs.</strong></p>
+      <p>The standing rule now lives in <code>pipelines/fetch_headers.md</code>: <strong>before writing that something is unavailable, escalate and say which step failed.</strong> &ldquo;Blocked&rdquo; is an absence-type claim and carries the same evidentiary burden as any must-NOT row.</p>
+      <p class="note" style="margin-top:10px"><strong>Chart state:</strong> left on <code>OANDA:AUDCHF</code> @ 1D (was <code>OANDA:XAUUSD</code> @ 15m at session start). Symbol and timeframe changed for reads only; <strong>no levels drawn</strong>, so no cleanup owed under LD-6.</p>
+    </div></div>
 
   <h2 class="sec">Publish gate</h2>
   <div class="card"><div class="card-b"><div class="gate">
-    <span class="gate-k">P1 Sourced</span><span class="pill p-warn">Partial</span>
-    <span>Every figure carries source, period, and release status; schedules corrected to PHT. Gaps: 2 of 8 CB sites blocked, no sourced rate odds, no sentiment index.</span>
+    <span class="gate-k">P1 Sourced</span><span class="pill p-good">Pass</span>
+    <span>Every figure carries source, period and release status. All 70 whitelist indicators published. <strong>All 8 central bank rates read primary</strong> (r8). Odds carry their instrument or are omitted.</span>
     <span class="gate-k">P2 Recomputed</span><span class="pill p-good">Pass</span>
-    <span>Levels name the bars that formed them. Timezone conversion re-derived and proven against the actual UK CPI release time.</span>
+    <span>Weighted scores generated from <code>pipelines/score_model.py</code>, so tables and tally cannot drift. Levels name the bars that formed them with range and position arithmetic. Timezone conversion proven against the actual UK CPI release.</span>
     <span class="gate-k">P3 Sealed</span><span class="pill p-bad">Unsealed</span>
-    <span><strong>Recommendation: still do not seal.</strong> r2 fixes five real errors, but 16 of 21 pairs remain unread and &sect;4&rsquo;s alignments are fundamental-only. Closer to the standard, not yet at it.</span>
+    <span><strong>Seal-able on the fundamentals, with the coverage gap stated.</strong> r9 closed the two blockers that mattered &mdash; the top alignments carry levels, every rate is primary-sourced. <strong>14 of 21 pairs remain unread</strong>, so this is a complete fundamental read with technical confirmation on the two instruments carrying the call, not a full sweep. Seal it as that, or hold for the rest &mdash; but it is no longer below its own standard.</span>
   </div></div></div>
 
   <footer>
-    <span>Macro Economic Reporting &middot; edition 2026-08-19 r8 &middot; data as-of 14:12 PHT</span>
+    <span>Macro Economic Reporting &middot; edition 2026-08-19 r9 &middot; data as-of 14:12 PHT</span>
     <span>UNSEALED &middot; light-seal tier &middot; not citable until sealed</span>
   </footer>
 </div>

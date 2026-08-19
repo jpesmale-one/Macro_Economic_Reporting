@@ -589,6 +589,38 @@ abandoned - each entry says what would un-park it.
 
 ## OPEN FINDINGS
 
+### F-7 - batch_run reported broken after being called with invalid actions (2026-08-19)
+OBSERVED: r2-r8 all carried "batch_run fails on quote and ohlcv actions" in the
+method notes, and the 16-unread-pairs gap was blamed on it across six revisions.
+On re-testing (prompted by Jeff asking whether section 7 still had problems), the
+tool schema shows the valid actions are: screenshot, get_ohlcv,
+get_strategy_results. I had called it with "quote" and "ohlcv" - NEITHER EXISTS.
+The tool answered exactly as it should: "Unknown action or API not available".
+WHAT IS ACTUALLY BROKEN: with the correct action name it still fails, returning
+"JS evaluation error: Uncaught (in promise)" for every symbol, in both the "1D"
+and the documented "D" timeframe format, with delay_ms raised to 3000. So there
+IS a real defect - but it was underneath my own error, and I never reached it
+because I stopped at the first failure and wrote a conclusion.
+IMPACT: the workaround (single-symbol data_get_ohlcv, switching the chart symbol)
+was available the whole time and works. Using it, the two top-conviction
+alignments finally got technical levels in r9 - CADCHF at 82.7% of its 20-day
+range pressing a three-touch ceiling, AUDCHF making a lower high into tomorrow's
+employment print. That was the gap that mattered, and it was closed by one
+retry with the right parameter.
+THE PATTERN (third instance in one edition): F-5 "indicator not available",
+F-6 "central bank blocks us", F-7 "batch_run is broken" - all three asserted an
+ABSENCE from a SINGLE failed attempt, and TWO of the three were my own inputs.
+The honest claim in each case was "my first attempt failed", not "the thing does
+not work". This is the shape to watch for, more than any individual bug.
+FIX: pipelines/fetch_headers.md already carries the escalation rule for sources.
+Extended in principle to TOOLS: read the schema before concluding a tool is
+broken, and when reporting a defect, state the exact parameters used so the
+claim is checkable.
+STATUS: OPEN - the JS evaluation error is a genuine batch_run defect and is not
+ours to fix. Single-symbol reads are the standing workaround; it is slower, not
+blocking. Do not re-blame batch_run for unread pairs without saying that the
+workaround exists.
+
 ### F-6 - Central bank sites reported as BLOCKING when the headers were ours (2026-08-19)
 OBSERVED: Jeff, after r7: "Is there no other way we can get data from these
 sites?" There was. rba.gov.au, rbnz.govt.nz and snb.ch were reported across

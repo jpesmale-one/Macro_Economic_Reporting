@@ -99,6 +99,6 @@ data is immutable - revisions land as a new vintage, never an overwrite.
 Recompute every derived figure and state the arithmetic before you
 publish it; a key level is recomputed by naming the bars that formed it.
 
-Carried forward: BOTH commits are LOCAL ONLY - origin/main has nothing at
+Carried forward: BOTH commits are LOCAL ONLY - origin/main has nothing at 
 all. Pushing is my call, ask before doing it.
 ```
