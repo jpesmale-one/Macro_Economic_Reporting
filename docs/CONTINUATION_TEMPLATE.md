@@ -54,51 +54,77 @@ state the arithmetic before you publish it or call anything PASS.
 
 ```
 Resume Macro Economic Reporting. Run the section 0 resume protocol FIRST:
-git status + STATE.md header + `git log --oneline -5`, all compared
-(expect edition none, data_asof n/a, track LEAN, and TWO local commits -
-c9a9fbb "Initial Project Set-up" then the scope-boundary commit). Report
-aligned in one line, or STOP on mismatch.
+git status + STATE.md header + `git log --oneline -5`, all compared. Expect
+TEN local commits, newest first: 53968cf r9, 1f6bed5 r8, c276384 r7,
+0f67bf0 r6, 7843030 r5, 3a85b8b r4, 0fffa7b r3, e682a5b r2, a181487 r1,
+1f6db5b Idea_dump, c9a9fbb initial. Report aligned in one line, or STOP.
 
-Then read docs/HANDOVER_2026-08-12_repo_established.md and STATE.md. The
-repo scaffold landed 2026-08-12 and the SCOPE is locked: this project
-analyses currency strength to form a BIAS and to spot KEY LEVELS, with NO
-MONEY PATH (LD-4). There is NO analysis content, NO edition, and NO data
-landed yet - that is expected, session 1 was governance only.
+Read docs/REPORT_SPEC.md FIRST - it is the authoritative build spec and
+supersedes the Idea_dump draft wherever they differ. Then STATE.md.
 
-Five decisions are locked - LD-1 (WoW ported from TRTM), LD-2 (mechanical
-escalation), LD-3 (ForexFactory + TradingEconomics are SCHEDULE-only,
-never authoritative for a value), LD-4 (purpose: bias, no money path -
-this rewrote T2 into a scope alarm), LD-5 (key levels in scope,
-TradingView MCP is the price source; read + draw allowed, alert_create/
-delete and replay_trade are not). Do NOT re-litigate these.
+THIRTEEN DECISIONS ARE LOCKED. Do not re-litigate. The ones that bind
+daily work:
+  LD-4  PURPOSE: currency strength -> BIAS + KEY LEVELS. NO MONEY PATH.
+        No lot sizes, entries, stops, targets, orders. T2 is a SCOPE
+        ALARM here, not an escalation path.
+  LD-9  TradingEconomics is the primary macro VALUE source, defended by
+        the MANDATORY phantom-Actual guard.
+  LD-10 Ship as HTML artifact AND commit to reports/YYYY/QN/. The .md is
+        the sealed source of truth; the .html is the deliverable.
+  LD-12 Daily = LIGHT seal (P1+P2 still mandatory). Weekly = FULL seal,
+        and only a FULL seal promotes to the established-facts ledger.
+  LD-13 WEIGHTED scoring: Inflation 3, Employment 2, Production/Spending/
+        Trade 1, split evenly among a currency's indicators in each
+        category. Range +8.00 to -8.00. Generated from
+        pipelines/score_model.py so tables and tally cannot drift.
 
-F-1 is OPEN and must not be quietly closed: TradingEconomics publishes
-UNRELEASED figures in the ACTUAL field - a forecast wearing a print's
-label, reproduced daily in my own reports. Column-checking CANNOT detect
-it; only an independent schedule check against the issuing agency can. It
-closes on evidence (an ingest that flags the mismatch), never on
-inspection.
+SEVEN FINDINGS ARE OPEN. F-1 is the one that can cost money:
+TradingEconomics publishes UNRELEASED figures in the ACTUAL field. Column-
+checking CANNOT detect it - the phantom matches the forecast by
+construction. ONLY a schedule check against the issuing agency catches it.
+Run the guard FIRST, every run, before using any TE figure.
 
-FIRST TASK THIS SESSION: I am giving you my draft of how I want this
-project to turn out. READ IT FIRST and work from it. It may reshape or
-supersede the open items O-1 (output format), O-3 (cadence vs seal
-ritual), O-4 (which of the nine reference sections survive), and O-5
-(automated price pulls) recorded in docs/REFERENCE_DAILY_ARTIFACT.md -
-so do not start building against those before reading my draft. Treat
-docs/REFERENCE_DAILY_ARTIFACT.md as REFERENCE, NEVER SPEC.
+F-5, F-6 and F-7 share ONE shape and it is the most important lesson in
+the repo: an ABSENCE asserted from a SINGLE failed attempt. Nine
+indicators "unavailable" (all published), three central banks "blocking"
+(all fine with browser headers), batch_run "broken" (called with invalid
+action names). TWO OF THREE WERE MY OWN INPUTS. Before writing that
+anything is unavailable, escalate and say WHICH STEP failed -
+pipelines/fetch_headers.md has the ladder.
 
-Track discipline holds: LEAN by default (publish gate = sourced ->
-recomputed -> sealed). Escalate to the FULL six-gate ladder the moment a
-section-2 trigger fires, and name it by number when it does - T1 code
-producing an actionable number, T2 EXECUTABLE INSTRUCTION (a scope alarm
-here - stop and say so, do not open Gate 1), T3 automation, T4 revision
-to a sealed conclusion. In practice expect T3 and T1, not T2. One
-question per message, concrete numbers, your rec each; record every
-decision + rejected alternatives in STATE.md's locked-decisions log. Raw
-data is immutable - revisions land as a new vintage, never an overwrite.
-Recompute every derived figure and state the arithmetic before you
-publish it; a key level is recomputed by naming the bars that formed it.
+STATE OF THE 2026-08-19 EDITION: r9, UNSEALED, P1 PASS / P2 PASS. All 70
+whitelist indicators published; all 8 central bank rates read primary;
+Fear & Greed with all 7 components. CADCHF (+8.00, a perfect score) and
+AUDCHF carry technical levels. 14 of 21 pairs remain unread - batch_run
+is genuinely defective, single-symbol reads are the workaround.
 
-Carried forward: BOTH commits are LOCAL ONLY - origin/main has nothing at 
-all. Pushing is my call, ask before doing it.
+FIRST TASK THIS SESSION:
+{{PICK ONE}}
+ (a) SEAL the 2026-08-19 edition as a fundamental read with technical
+     confirmation on the two instruments carrying the call - or hold it
+     for the remaining 14 pairs. My call either way; ask me.
+ (b) RUN TODAY'S EDITION. It is a fresh day: re-run the phantom-Actual
+     guard, re-verify the TE calendar timezone against one already-
+     released event (do NOT assume +8h), re-pull all 70 indicators,
+     re-score, and check whether AU employment (was due Thu 09:30 PHT
+     with a phantom 76.3K showing) actually landed and what it printed.
+ (c) Close the 14-pair coverage gap on the existing edition by pulling
+     them one symbol at a time.
+
+Track discipline: LEAN by default (sourced -> recomputed -> sealed).
+Escalate to the FULL ladder when a section-2 trigger fires and name it by
+number - T1 code producing an actionable number, T2 EXECUTABLE
+INSTRUCTION (scope alarm: stop and say so), T3 automation, T4 revision to
+a sealed conclusion. Expect T3/T1, not T2. One question per message,
+concrete numbers, your rec each. Record every decision + rejected
+alternatives in STATE.md's locked-decisions log. Raw data is immutable.
+Recompute every derived figure and state the arithmetic; a key level is
+recomputed by naming the bars that formed it.
+
+ALL TIMES PHT (UTC+8). TradingEconomics calendar is UTC, so PHT = UTC+8 -
+but VERIFY it each run against a known release rather than assuming; F-2
+was a 4-hour error that corrupted the phantom guard in both directions.
+
+Carried forward: ALL TEN COMMITS ARE LOCAL ONLY - origin/main has nothing.
+Pushing is my call, ask before doing it.
 ```
