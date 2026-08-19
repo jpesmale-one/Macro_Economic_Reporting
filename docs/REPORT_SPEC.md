@@ -20,6 +20,16 @@ Its output is a **bias with key levels and a falsifier** — never an order.
 converted, and the conversion is stated. TradingView must be on UTC+8; if
 not, set it before reading any chart.
 
+**THE TRADINGECONOMICS CALENDAR COLUMN IS UTC. PHT = UTC + 8h.**
+Established 2026-08-19 by proof, after r1 of the first edition wrongly
+assumed ET (UTC-4) and applied +12h, putting every schedule 4 hours late.
+Proof: UK CPI released 07:00 BST = 06:00 UTC; the TE row showed `06:00`;
+06:00 UTC + 8h = 14:00 PHT, which is when it landed.
+**VERIFY THIS EACH RUN** against one known release rather than assuming it
+- Jeff may change the TE display timezone, which would change the offset.
+Pick a release that has already happened, convert it, and confirm the
+result matches the time it actually landed.
+
 ---
 
 ## 1. THE SCOPE LINE (read before writing a single line of §4)
@@ -49,6 +59,12 @@ sentence gives it. Levels are published; execution roles are not.
 Run in this order. Later steps depend on earlier ones.
 
 ### 2.1 Calendar + macro prints — TradingEconomics (LD-9)
+
+**STEP ZERO — CONFIRM THE CALENDAR TIMEZONE.** Take one release that has
+already happened today, convert it, and check the result against the time
+it actually landed. As of 2026-08-19 the column is **UTC (PHT = +8h)**.
+Do not assume it; a display-timezone change would silently shift every
+schedule in the report.
 
 **THE PHANTOM-ACTUAL GUARD IS MANDATORY AND RUNS FIRST.**
 
@@ -85,10 +101,15 @@ Authoritative for rate decisions and tone; TE is not.
 | CAD | bankofcanada.ca |
 | CHF | snb.ch |
 
-### 2.3 Sentiment + corroboration
-- **edition.cnn.com** — Fear & Greed Index
-- **investing.com**, **investinglive.com** — news, facts, confluence.
-  Corroboration only, never a primary value.
+### 2.3 News + sentiment
+- **investinglive.com** and **investing.com** — the PRIMARY feed for §1.
+  Pull geopolitical events, disasters, central bank speeches, trade and
+  tariff actions, and market-structure moves. These are news sources, so
+  they are authoritative for *what happened*, never for a macro print's
+  value.
+- **edition.cnn.com** — Fear & Greed Index. **BLOCKED: returns HTTP 451
+  (geo-restricted), observed 2026-08-19.** Record the gap; never
+  substitute another index and label it CNN's.
 
 ### 2.4 Technicals — TradingView MCP (LD-5, LD-6)
 - **OANDA** exchange for all forex pairs.
@@ -149,30 +170,60 @@ bare "AUD: Production = Good" is not publishable.
 
 Six sections, following the draft's numbering.
 
-### §1 — Headline Alerts, News & Fundamentals
-Events affecting the 8 currencies, Gold, and BTC. Each item: what
-happened, when (PHT), source, and why it matters. Release status
-(RELEASED / NOT YET RELEASED) explicit on every scheduled item.
+### §1 — Headline Alerts, News & Current Events
+**NOT a data table** — this is genuine news. Wars, geopolitical
+escalation, disasters, pandemics, trade/tariff actions, central bank
+speeches and commentary, and market-structure events (equity selloffs,
+yield moves, oil moves) affecting the 8 currencies, Gold, and BTC.
 
-### §2 — Interest Rates & Rate-Change Probability
-Per currency: current rate, last decision with date and vote split,
-next meeting date (PHT), and hike/hold/cut leaning **with the inflation
-and employment prints that justify it**. Market-implied odds are quoted
-only with their source instrument; unsourced odds are unauditable and are
-omitted rather than guessed.
+Sourced from **investinglive.com** and **investing.com** (Sources.txt),
+corroborated where possible. Each item: time (PHT), what happened, and
+which instrument it moves. Grouped by kind — Geopolitical / Central banks
+/ Risk events — not by currency.
 
-### §3 — Currency Strength Rankings
-All 8 ranked, each with its catalyst. The ranking is **derived from the §3
-scoring model**, not from price action alone — and where the model and
-price disagree, that disagreement is stated. It is usually the most
-interesting thing on the page.
+A central bank *speech* belongs here; the *rate* belongs in §3.
 
-Per currency: rank, composite lean, the categories driving it, and the
-single strongest catalyst.
+### §2 — Macro Economic Indicators
+**ONE TABLE PER CATEGORY**, in the causal order of the model:
+**2.1 Production · 2.2 Spending · 2.3 Trade · 2.4 Employment ·
+2.5 Inflation.**
+
+Every row carries: **scheduled time in PHT**, currency, event, Actual,
+Previous, Consensus, the threshold applied, and the resulting score
+(GOOD / BAD / NEUTRAL per §3's table).
+
+**Not-yet-released rows are visually distinct and scored `NOT RELEASED`**
+— never given a GOOD/BAD score off a phantom Actual. Each category closes
+with a one-paragraph read naming which currency it favours.
+
+Interest Rate is category 6 in the model but gets its own section (§3),
+so it is not repeated here.
+
+### §3 — Interest Rates
+Per currency: current rate, last change with date, **the source used**,
+and hike/hold/cut leaning with the inflation and employment prints that
+justify it.
+
+**Source order: the central bank's own site FIRST**, TradingEconomics as
+fallback. State which was used per row.
+
+Known blocked (HTTP 403 to automated fetch, observed 2026-08-19):
+`rba.gov.au`, `rbnz.govt.nz`. Known working: `federalreserve.gov`.
+When a CB site is blocked, say so and label the row as TE-sourced — the
+gap is disclosed, never papered over.
+
+Market-implied odds are quoted only with their source instrument;
+unsourced odds are unauditable and are omitted rather than guessed.
 
 ### §4 — Conviction Playbook  *(reshaped per LD-7)*
 
-Instruments where **fundamental bias and technical structure agree**.
+Opens with the **currency strength ranking** — all 8 ranked with the
+evidence driving each, derived from §2's category scores plus §1's news
+and §3's policy leaning. Where the model and price disagree, say so; that
+disagreement is usually the most interesting line on the page.
+
+Then the alignments: instruments where **fundamental bias and technical
+structure agree**.
 
 Per instrument:
 - **Alignment** — the fundamental read, the technical structure, and the

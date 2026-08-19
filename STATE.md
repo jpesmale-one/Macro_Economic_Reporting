@@ -531,6 +531,33 @@ abandoned - each entry says what would un-park it.
 
 ## OPEN FINDINGS
 
+### F-2 - TE calendar timezone assumed, not verified - 4h error (2026-08-19)
+OBSERVED: In r1 of the first edition I assumed the TradingEconomics calendar
+time column was ET (UTC-4) and applied +12h to reach PHT. It is UTC, so the
+correct conversion is +8h. EVERY schedule in r1 was FOUR HOURS LATE. Jeff
+caught it: "the schedule is actually 2PM and released just now" for UK CPI,
+which r1 had at 18:00 PHT and marked NOT YET RELEASED.
+PROOF OF THE CORRECT OFFSET: UK CPI released 07:00 BST = 06:00 UTC. The TE
+row showed 06:00. 06:00 UTC + 8h = 14:00 PHT = when it actually landed.
+COLLATERAL DAMAGE - the error did not stay contained:
+  (a) UK CPI was reported as pending when it had released 12 minutes earlier,
+      so the edition missed the single most important print of its own day.
+  (b) The phantom-Actual count was inflated 13 -> 9, because four rows judged
+      "future" had in fact already released.
+  (c) The r1 conclusion "today's dominant event is UK CPI at 18:00" was an
+      instruction to wait for something already known.
+WHY IT MATTERS BEYOND THE ARITHMETIC: the phantom-Actual guard is BUILT ON the
+schedule comparison. A wrong timezone offset does not merely mislabel times -
+it corrupts the guard itself, in both directions. It can mark a released row
+phantom (seen here) and could equally mark a phantom row released, which is
+the dangerous direction.
+FIX APPLIED: docs/REPORT_SPEC.md section 2.1 now opens with STEP ZERO -
+verify the calendar timezone every run against one release that has already
+happened, rather than assuming the offset. Recorded in section 0 as well.
+STATUS: OPEN as a standing procedure. Closes only if the verification becomes
+automated. Note the offset is NOT a constant - Jeff can change the TE display
+timezone, which is precisely why it is verified rather than hardcoded.
+
 ### F-1 - Trading Economics publishes UNRELEASED figures as "Actual" (2026-08-12)
 *** CORRECTED 2026-08-12 on evidence from the sample artifact (see F-1 note
 at the end). The original entry blamed this on my column misreading. The
