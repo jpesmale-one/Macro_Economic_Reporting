@@ -53,11 +53,21 @@ state the arithmetic before you publish it or call anything PASS.
 ## Current instance - pre-filled for the NEXT break
 
 ```
-Resume Macro Economic Reporting. Run the section 0 resume protocol FIRST:
-git status + STATE.md header + `git log --oneline -5`, all compared. Expect
-TEN local commits, newest first: 53968cf r9, 1f6bed5 r8, c276384 r7,
-0f67bf0 r6, 7843030 r5, 3a85b8b r4, 0fffa7b r3, e682a5b r2, a181487 r1,
-1f6db5b Idea_dump, c9a9fbb initial. Report aligned in one line, or STOP.
+Resume Macro Economic Reporting. Run the section 0 resume protocol FIRST.
+
+DO NOT compare against a hardcoded commit list - it goes stale the moment
+anything commits, and it did exactly that on 2026-08-19 (F-8). Instead run:
+
+    git log --oneline -5
+    git rev-list --count HEAD
+    git status -sb
+    git log --oneline origin/main..HEAD | wc -l    # unpushed count
+
+Then compare THOSE against STATE.md's header, which is the single authority
+on edition identity. Aligned = say so in one line. A mismatch between the
+header and the repo is a real STOP; a mismatch between this prompt and the
+repo just means this prompt is older than the repo - read the newest
+handover in docs/ and trust that instead.
 
 Read docs/REPORT_SPEC.md FIRST - it is the authoritative build spec and
 supersedes the Idea_dump draft wherever they differ. Then STATE.md.
@@ -125,6 +135,8 @@ ALL TIMES PHT (UTC+8). TradingEconomics calendar is UTC, so PHT = UTC+8 -
 but VERIFY it each run against a known release rather than assuming; F-2
 was a 4-hour error that corrupted the phantom guard in both directions.
 
-Carried forward: ALL TEN COMMITS ARE LOCAL ONLY - origin/main has nothing.
-Pushing is my call, ask before doing it.
+Carried forward: as of the 2026-08-19 wrap, everything was PUSHED -
+origin/main == HEAD == 8128a3c. Do not assert push state from this line;
+CHECK it (`git log --oneline origin/main..HEAD`). Pushing remains my call:
+ask before pushing anything new.
 ```

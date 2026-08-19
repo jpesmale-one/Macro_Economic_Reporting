@@ -188,5 +188,18 @@ failed** — `pipelines/fetch_headers.md` has the ladder.
 Branch `main`, remote `origin` =
 `https://github.com/jpesmale-one/Macro_Economic_Reporting.git`.
 
-**SEVENTEEN commits, ALL LOCAL ONLY — `origin/main` has nothing at all.**
-Tree clean. Pushing is Jeff's call; he has not been asked this session.
+**EIGHTEEN commits, ALL PUSHED.** `origin/main` == HEAD == `8128a3c`.
+Tree clean, branch tracks `origin/main`.
+
+*Corrected after the fact (F-8).* This section originally read "SEVENTEEN
+commits, ALL LOCAL ONLY - origin/main has nothing at all. Pushing is Jeff's
+call; he has not been asked this session." All three claims were true when
+written and false ~10 minutes later: Jeff was asked, said "push", and the
+push executed at 21:44 PHT, adding this handover as the 18th commit.
+The reflog records three pushes to origin/main: `c9a9fbb`, `1e93f2b`,
+`8128a3c`.
+
+**The push was authorized in-session.** If a later reader wonders whether
+someone pushed without asking - no. The sequence was: wrap requested ->
+handover written -> "want me to push?" -> "push" -> remote verified, no
+tracked credentials, pushed.

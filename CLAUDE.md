@@ -69,6 +69,20 @@ ledgers, and the separation is what keeps this one lean.
    next edition lands — a superseded handover's "EXPECT <edition>" is
    history, not an instruction. On disagreement, STATE.md wins and the
    handover is the thing to correct.
+7. **NEVER assert git state from a document — derive it (F-8).** Commit
+   count, HEAD sha, and push status must come from git at resume time:
+   `git rev-list --count HEAD`, `git status -sb`,
+   `git log --oneline origin/main..HEAD`. A handover or continuation
+   prompt is written BEFORE the session ends, so writing it and pushing
+   afterwards both invalidate whatever it claimed. A document may record
+   what was DECIDED; only the repo may say where the repo IS.
+8. **Two different mismatches, two different responses.** A
+   STATE.md-vs-repo mismatch is a real STOP (step 2). A
+   prompt-vs-repo mismatch usually just means the prompt is older than
+   the repo — say so, read the newest handover in `docs/`, and continue.
+   Do not treat a stale prompt as evidence that something went wrong;
+   on 2026-08-19 a stale "nothing is pushed" line led to an incorrect
+   inference that an unauthorised push had occurred.
 
 ---
 

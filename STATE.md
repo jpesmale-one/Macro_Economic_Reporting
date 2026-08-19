@@ -614,6 +614,54 @@ abandoned - each entry says what would un-park it.
 
 ## OPEN FINDINGS
 
+### F-8 - Handover/continuation documents describe a state they then invalidate (2026-08-19)
+OBSERVED: Jeff pasted the continuation prompt to resume and correctly STOPPED
+on a failed resume check. Two mismatches, both in the same direction - the repo
+had moved past what the prompt described:
+  - prompt expected TEN commits and HEAD at 53968cf (r9); actual was EIGHTEEN
+    commits with HEAD at 8128a3c, two newer.
+  - prompt said "ALL TEN COMMITS ARE LOCAL ONLY - origin/main has nothing";
+    actual was origin/main == HEAD, fully pushed.
+ROOT CAUSE - STRUCTURAL, NOT AN OVERSIGHT: a continuation template that
+hardcodes a commit count and HEAD sha is written BEFORE the session ends, and
+is therefore invalidated by its own wrap. The template landed at 0c32de9,
+commit 16 of 18. The handover (8128a3c) and the push both came after it. It
+described an accurate state for roughly seven minutes.
+The handover has the same defect in the other direction: its section 11 said
+"SEVENTEEN commits, ALL LOCAL ONLY... Pushing is Jeff's call; he has not been
+asked this session." All three claims were true at write time and false ten
+minutes later, because writing the handover IS a commit and asking about the
+push immediately follows.
+A SECOND-ORDER HARM, and the reason this is a finding rather than a tidy-up:
+the stale "local only" line led Jeff to infer that SOMEONE ELSE had pushed
+without authorisation, and to flag it as a possible security finding. It was
+not - the push was requested and approved in-session at 21:44 PHT (reflog:
+c9a9fbb, 1e93f2b, 8128a3c). A stale provenance claim does not merely go out of
+date; it manufactures suspicion about work that was properly authorised.
+FIX APPLIED:
+  (a) The continuation template no longer hardcodes a commit list or push
+      state. It instructs the reader to DERIVE both - `git rev-list --count
+      HEAD`, `git log --oneline origin/main..HEAD` - and compare against
+      STATE.md's header, which is the single authority. It also distinguishes
+      the two failure modes explicitly: header-vs-repo mismatch is a real
+      STOP; prompt-vs-repo mismatch just means the prompt is older than the
+      repo, so read the newest handover instead.
+  (b) The handover's section 11 is corrected in place WITH the original text
+      quoted, so the error is visible rather than erased, and states plainly
+      that the push was authorised.
+STANDING RULE (added to CLAUDE.md section 0): NEVER assert push state,
+commit count, or HEAD from a document. Derive them from git at resume time.
+A document may describe WHAT was decided; only the repo may describe WHERE
+the repo is.
+RELATIONSHIP TO F-5/F-6/F-7: those were absences asserted from a single failed
+attempt. This is the mirror image - a PRESENCE asserted from a stale snapshot.
+Same underlying error: stating as current fact something that was only ever a
+point-in-time observation.
+STATUS: FIXED for the mechanism (the template no longer carries the claim).
+OPEN as a discipline - every future handover must resist restating git state
+as fact, and section 11 should describe intent ("pushing is Jeff's call")
+rather than status ("nothing is pushed").
+
 ### F-7 - batch_run reported broken after being called with invalid actions (2026-08-19)
 OBSERVED: r2-r8 all carried "batch_run fails on quote and ohlcv actions" in the
 method notes, and the 16-unread-pairs gap was blamed on it across six revisions.
