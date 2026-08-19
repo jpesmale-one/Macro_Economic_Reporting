@@ -4,10 +4,12 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: none
-date: 2026-08-12
-data_asof: n/a
-track: LEAN (no section-2 trigger has fired yet)
+edition: 2026-08-19 (r9, UNSEALED)
+date: 2026-08-19
+data_asof: 2026-08-19 14:12 PHT
+track: LEAN (no section-2 trigger has fired)
+artifact: https://claude.ai/code/artifact/6ad31052-2b2c-4935-9573-908f00af2e7a
+source_of_truth: reports/2026/Q3/2026-08-19_market-sentiment.md
 
 # 2026-08-12 - REPO ESTABLISHED. Ways-of-working scaffold ported from
 #   TRTM_EA_Project (CLAUDE.md protocol, STATE.md manifest, rules, hooks,
@@ -36,6 +38,22 @@ track: LEAN (no section-2 trigger has fired yet)
 #   why. STILL NO EDITION PUBLISHED and no data landed.
 #   ONE finding: F-1, corrected on evidence, STILL OPEN (the guard is a
 #   procedure, not tooling).
+
+# 2026-08-19 - FIRST EDITION BUILT, spec hardened over NINE revisions.
+#   docs/REPORT_SPEC.md is now the AUTHORITATIVE build spec (supersedes the
+#   Idea_dump draft wherever they differ). pipelines/score_model.py generates
+#   section 2 and the ranking so tables and tally cannot drift.
+#   SEVEN decisions locked: LD-7 (LD-4 reaffirmed - my amend recommendation
+#   REJECTED), LD-8 (carry is a tiebreak), LD-9 (TE primary + phantom guard,
+#   P-2 closed), LD-10 (artifact + repo), LD-11 (quarterly compaction, never
+#   deletion), LD-12 (light daily / full weekly seal), LD-13 (weighted
+#   scoring: Inflation 3, Employment 2, others 1).
+#   FIVE findings opened: F-3, F-4, F-5, F-6, F-7. F-5/F-6/F-7 share ONE
+#   shape - an ABSENCE asserted from a SINGLE failed attempt, and TWO of the
+#   three were my own inputs. That is the lesson to carry, not the individual
+#   bugs.
+#   EDITION STATE: r9, UNSEALED, P1 PASS / P2 PASS. 14 of 21 pairs unread.
+#   Handover: docs/HANDOVER_2026-08-19_first_edition.md
 
 ## Environment note
 Analysis-only repo. NO MONEY PATH by design (LD-4) - this project analyses
@@ -549,7 +567,10 @@ cited as settled.
 | Reference daily artifact | RECORDED 2026-08-12 | docs/REFERENCE_DAILY_ARTIFACT.md. REFERENCE, NEVER SPEC - Jeff has said this project does things differently. Carries O-1..O-5 open decisions. |
 | Project direction draft | RECEIVED + COMMITTED VERBATIM 2026-08-19 | Idea_dump/ (4 files). Jeff's INPUT - never edited by me. Derived spec lives in docs/REPORT_SPEC.md. |
 | Daily report SPEC | DELIVERED 2026-08-19 | docs/REPORT_SPEC.md. Authoritative build spec; where it and the draft differ the SPEC wins (LD-7). O-4 RESOLVED - the draft's 6 sections supersede the reference artifact's 9. |
-| First macro edition | READY TO RUN - NOT STARTED | Spec complete and all format/cadence blockers cleared (LD-10 artifact+repo, LD-12 light/full seal). Nothing further is needed before the first edition. |
+| First macro edition | **BUILT 2026-08-19, r9, UNSEALED** | reports/2026/Q3/. P1 PASS / P2 PASS. Nine revisions, six of twelve corrections caught by Jeff. 14 of 21 pairs unread (batch_run defective, single-symbol is the workaround). |
+| Report spec | AUTHORITATIVE 2026-08-19 | docs/REPORT_SPEC.md. Supersedes the Idea_dump draft wherever they differ. |
+| Scoring engine | DELIVERED 2026-08-19 | pipelines/score_model.py (LD-13). Generates section 2 + ranking so they cannot drift. Data + arithmetic only - wiring it to fetch fires T1/T3. |
+| Source access | SOLVED 2026-08-19 | pipelines/fetch_headers.md. All 8 central banks + CNN dataviz reachable. A 4xx from a plain fetch is NOT proof a source is closed (F-6). |
 | Output format + storage | SETTLED - LD-10 | HTML artifact + repo copy in reports/YYYY/QN/. .md is the sealed source of truth, .html the deliverable. New artifact URL per edition. |
 | Retention | SETTLED - LD-11 | Quarterly COMPACTION, never deletion. Measured ~68KB/edition, ~5MB/yr in git - storage is not the constraint, readability is. |
 | Seal cadence | SETTLED - LD-12 | Daily = LIGHT (P1+P2 mandatory, P3 by acknowledgement). Weekly = FULL, and only FULL promotes to the facts ledger. T4 revisions always FULL. |
@@ -578,6 +599,10 @@ abandoned - each entry says what would un-park it.
   back-filled as sealed editions or landed as unsealed archive. UN-PARKS
   when Jeff brings the first legacy artifact in.
 - P-4: ForexFactory ACCESS METHOD, given there is no accessible API.
+  **RETRY THIS with the F-6 header ladder (pipelines/fetch_headers.md) before
+  assuming it is closed** - it was written off in session 1, before the ladder
+  existed, and three central banks that were written off the same way turned
+  out to be fine.  Original note follows:
   Options not yet worked: scrape the calendar page, an unofficial
   third-party wrapper, a paid calendar vendor, or manual entry of the week
   ahead. LD-3 already confines it to the SCHEDULE role, so the money-path
