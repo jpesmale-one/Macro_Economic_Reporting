@@ -98,8 +98,17 @@ Sample read: "Market Sentiment - Wed 12 Aug 2026 (Early AM)", artifact
   explicit word is a real daily cost. Options: seal dailies lightly and
   reserve full sealing for weekly/thematic editions, or seal every one.
   Relates to P-1.
-- **O-4: Which of the nine sections survive?** "Doing things differently"
-  may mean fewer, deeper sections rather than the same nine.
+- ~~**O-4: Which of the nine sections survive?**~~ **RESOLVED 2026-08-19 by
+  Jeff's project draft.** Superseded by the SIX sections specified in
+  `Idea_dump/Project_Plan.txt` and built out in `docs/REPORT_SPEC.md`:
+  (1) headline alerts/news, (2) interest rates + hike/cut likelihood,
+  (3) currency strength rankings + catalysts, (4) conviction playbook
+  (reshaped per LD-7), (5) Gold intraday, (6) BTC intraday.
+  What carried over from the nine: strength rankings, rates+odds, drivers/
+  catalysts, alerts, the playbook, and gold. What did NOT: pair-by-pair as a
+  standalone table (folded into section 4), session playbook, and the
+  news+monthly-calendar section as its own block (folded into section 1).
+  BTC is NEW - it was not in the reference artifact at all.
 - **O-5: Where do the index chips and pair prices come from?** The
   tradingview MCP server is already configured and could supply OHLCV
   directly, replacing manual entry. Fires T1 when automated.

@@ -18,10 +18,24 @@ track: LEAN (no section-2 trigger has fired yet)
 #   T2 executable instruction / SCOPE ALARM, T3 automation, T4 sealed-
 #   conclusion revision). In practice the full ladder is expected to be
 #   reached by T3 and T1, not T2 - see LD-4.
-#   FIVE DECISIONS LOCKED this session: LD-1 (WoW ported), LD-2 (mechanical
+#   SIX DECISIONS LOCKED session 1: LD-1 (WoW ported), LD-2 (mechanical
 #   escalation), LD-3 (calendar sources are schedule-only), LD-4 (PURPOSE:
 #   bias, no money path), LD-5 (key levels in scope, TradingView MCP is the
-#   price source). ONE finding: F-1, corrected on evidence.
+#   price source), LD-6 (MCP boundary enforced in settings).
+#
+# 2026-08-19 - PROJECT DIRECTION RECEIVED. Jeff's draft landed in Idea_dump/
+#   (Project_Plan.txt, Watch_list.txt, Sources.txt,
+#   Macro_economic_indicators.txt), committed VERBATIM as input - never edited.
+#   THREE MORE DECISIONS: LD-7 (LD-4 REAFFIRMED - Jeff declined to loosen the
+#   boundary, so report section 4 was reshaped instead; my recommendation to
+#   amend was REJECTED), LD-8 (carry is a swing-ranking tiebreak, not a
+#   filter), LD-9 (P-2 CLOSED - TradingEconomics is the primary macro value
+#   source, defended by the mandatory phantom-Actual guard).
+#   DERIVED SPEC: docs/REPORT_SPEC.md is now the authoritative build spec for
+#   the daily report. Where it and the draft differ, the SPEC wins and says
+#   why. STILL NO EDITION PUBLISHED and no data landed.
+#   ONE finding: F-1, corrected on evidence, STILL OPEN (the guard is a
+#   procedure, not tooling).
 
 ## Environment note
 Analysis-only repo. NO MONEY PATH by design (LD-4) - this project analyses
@@ -30,9 +44,15 @@ sizes, entries, stops, targets, or orders; those belong to TRTM. T2 is
 therefore a SCOPE ALARM here rather than an escalation path.
 Sibling project TRTM_EA_Project holds the EA and its own separate ledger;
 the two never share state, backlog, or decisions.
-TradingView MCP is configured (~/.claude/.mcp.json, 78 tools) and is the
-price/chart source per LD-5: read and draw allowed; alert_create/delete and
-replay_trade are NOT, absent an explicit in-the-moment ask.
+TradingView MCP is configured (~/.claude/.mcp.json + project .mcp.json) and
+is the price/chart source per LD-5, CONNECTION VERIFIED 2026-08-12. Read and
+draw allowed; replay_trade, alert_create/delete, Pine/watchlist/layout
+mutators and raw ui_* are DENIED in project settings (LD-6).
+Deliverable: a DAILY market sentiment report, refreshed at the start of the
+trading session - spec in docs/REPORT_SPEC.md, source draft in Idea_dump/.
+All times PHT (UTC+8); TradingView chart timezone must match.
+Watchlist: 21 forex pairs (OANDA) + XAUUSD + BTCUSD. USOIL and 7 indices are
+CONFLUENCE-ONLY inputs and never appear as tradeable instruments.
 
 ---
 
@@ -230,6 +250,118 @@ REJECTED:
 RATIONALE: A boundary that exists only in prose is a preference. A boundary
 in settings.json is a boundary.
 
+### LD-7 - LD-4 REAFFIRMED against the project draft; section 4 reshaped instead (2026-08-19)
+CONTEXT: Idea_dump/Project_Plan.txt section 4a asks the playbook to "propose
+Forex Instruments for Swing Trades INCLUDING THEIR ENTRY AND TARGET LEVELS",
+and 4c asks to monitor open swings for "already a loss or already reached the
+target". Both collide head-on with LD-4 (no money path) and LD-5 (a level is
+an observation; an EXECUTION ROLE assigned to it is not). Presented to Jeff as
+a three-way choice: amend LD-4, keep it and reshape section 4, or split into
+two layers. My recommendation was to AMEND, on the reasoning that the draft
+plainly wants tradeable output and an explicit decision is not drift.
+DECISION: JEFF CHOSE TO KEEP LD-4. The boundary stands exactly as locked. The
+REPORT is reshaped to fit the boundary; the boundary is not moved to fit the
+report. My recommendation was rejected and the record says so.
+WHAT SECTION 4 (Conviction Playbook) THEREFORE IS:
+  IN: which instruments are aligned (fundamental bias AND technical structure
+      agreeing), the direction of that alignment, the conviction ranking with
+      its reasoning, the KEY LEVELS around the instrument (support/resistance/
+      swing/range boundary) published to the LD-5 evidence standard, and the
+      falsifier - the observation that would void the alignment.
+  OUT: entry price, target price, stop level, "buy here / sell there", risk
+      per trade, lot size, R-multiples, and any label assigning a level an
+      execution role.
+  THE TEST, applied per line: does this sentence describe what the market has
+      done, or instruct what to do about it? The first ships; the second does
+      not.
+SECTION 4c (monitor open swing trades) IS DROPPED. Tracking the P/L state of a
+position is position management, which is the clearest money-path activity in
+the whole draft. What REPLACES it and preserves the intent: the report
+re-states each prior alignment CURRENT STATUS as analysis - does the
+fundamental+technical alignment STILL HOLD, has the structure broken, has the
+falsifier fired. That answers "is this thesis still good" without ever
+tracking a trade.
+SECTION 4a/4b CADENCE SURVIVES INTACT: Monday = swing-horizon alignments,
+Tuesday-Friday = intraday-horizon alignments. The horizon distinction is
+about which timeframe structure and which drivers dominate, not about
+issuing orders, so it is untouched by this decision.
+REJECTED:
+  (a) AMEND LD-4 to allow entries/targets (MY RECOMMENDATION). Rejected by
+      Jeff. Recorded in full because a future session WILL re-encounter
+      section 4a as written and must not "helpfully" reinstate it: the draft
+      predates this decision, and this decision wins.
+  (b) Split into a separate execution layer. Rejected: more machinery to
+      maintain for a boundary that a reshaped section 4 already holds.
+RATIONALE (Jeff call, my reading of it): the draft was written before the
+boundary existed. Given the choice between loosening a deliberate constraint
+and adjusting a document, adjust the document. The analysis loses nothing
+that matters - alignment plus levels plus falsifier is the whole analytical
+content; the entry label was never the insight.
+
+### LD-8 - Carry is a TIEBREAK for swing ranking, never a filter (2026-08-19)
+CONTEXT: Project_Plan.txt section 4d says "For swing trades give more weight to
+carry aligned trades to minimize swap fees." The watchlist is cross-heavy
+(AUDCAD, AUDNZD, NZDCAD, NZDCHF, CADCHF, EURCHF, GBPCHF...) where positive
+carry and fundamental/technical direction frequently point OPPOSITE ways -
+so "more weight" needs a defined tiebreak or it becomes improvisation.
+DECISION: Rank swing-horizon alignments by FUNDAMENTAL + TECHNICAL CONVICTION
+FIRST. Carry enters only to separate candidates of SIMILAR conviction.
+Negative carry is disclosed as a HOLDING COST on the alignment, never a veto.
+MECHANICS: every swing-horizon line in section 4 shows the carry SIGN
+(positive/negative/flat) derived from the two policy rates in section 2, and
+names the cost direction. When conviction is close and carry breaks the tie,
+the report SAYS that carry broke the tie - the tiebreak is visible, not
+silent.
+REJECTED:
+  (a) Carry as a hard filter excluding negative-carry pairs from swing
+      consideration. Rejected: swap is small next to a wrong directional
+      call, and on a cross-heavy watchlist a hard filter would routinely
+      discard the highest-conviction alignment on the board.
+  (b) Show both with no weighting, resolve manually each time. Rejected: it
+      is not a decision, it is a deferral - and it would have to be re-made
+      every week.
+RATIONALE: Carry is a cost input, not a directional signal. It should shade a
+close call, never overrule the analysis.
+NOTE: carry applies to SWING horizon only. Intraday alignments (Tue-Fri) hold
+no position overnight, so swap is not a factor and carry is omitted there.
+
+### LD-9 - P-2 RESOLVED: TradingEconomics is the primary macro VALUE source (2026-08-19)
+CONTEXT: P-2 (canonical value source) has been parked since session 1. LD-3
+made calendar sources SCHEDULE-only after F-1, which pushed toward an
+agency-API spine. But Idea_dump/Sources.txt names tradingeconomics.com as the
+macro data source - and, critically, states the guard against F-1 itself:
+"If the data is tagged as Actual but the report schedule is on future date
+then it is the Previous Actual Data not the current one."
+DECISION: TradingEconomics is the PRIMARY macro value source, as Sources.txt
+specifies. P-2 is CLOSED. The defence is the rule Jeff wrote, now MANDATORY:
+  THE PHANTOM-ACTUAL GUARD - before using any TE figure, compare the row
+  RELEASE SCHEDULE DATE against now. If the scheduled release is in the
+  FUTURE but an Actual is displayed, that Actual is the PREVIOUS period
+  print, NOT the current one. Use it as Previous, never as the new release,
+  and label it so.
+Central bank sites named in Sources.txt (federalreserve.gov, ecb.europa.eu,
+bankofengland.co.uk, boj.or.jp, rba.gov.au, rbnz.govt.nz, bankofcanada.ca,
+snb.ch) are the AUTHORITY for interest-rate decisions and policy language -
+TE is not authoritative there. investing.com and investinglive.com are
+corroboration for news and confluence, never a primary value.
+RELATIONSHIP TO LD-3: LD-3 stands unchanged for the CALENDAR role (what
+releases when). LD-9 additionally admits TE as a VALUE source for macro
+prints, which LD-3 alone forbade - the difference is that the phantom-Actual
+guard is now mandatory and mechanical, which is what LD-3 was protecting
+against in the first place.
+F-1 STAYS OPEN. The guard is a PROCEDURE, executed by me each morning. It is
+not tooling and it can be forgotten under time pressure. F-1 closes only on
+an automated check that flags schedule-date-vs-now mismatches. Do not mark
+it closed because the guard exists.
+REJECTED:
+  (a) TE + FRED cross-check on high-impact US prints. Rejected by Jeff -
+      correctly, for now: FRED covers US only, and the report spans 8
+      currencies where FRED adds nothing. Revisit only if the guard is
+      observed to fail on a US print.
+  (b) TE alone with no guard. Never on the table - F-1 is reproduced daily.
+RATIONALE: Use the source the workflow already uses, and make the defence
+that was already working into a written, mandatory step.
+
 ---
 
 ## ESTABLISHED FACTS LEDGER
@@ -246,8 +378,11 @@ cited as settled.
 |---|---|---|
 | Repo scaffold | DELIVERED 2026-08-12 | Not yet committed at time of writing; commit is Jeff's call. |
 | Reference daily artifact | RECORDED 2026-08-12 | docs/REFERENCE_DAILY_ARTIFACT.md. REFERENCE, NEVER SPEC - Jeff has said this project does things differently. Carries O-1..O-5 open decisions. |
-| First macro edition | NOT STARTED | Needs scope: coverage, cadence, source set. O-4 asks which of the existing nine sections survive. |
-| Data source set | PARTIAL - LD-3 locked | Calendar role settled (FF + TE, schedule only). VALUE source still open = P-2. |
+| Project direction draft | RECEIVED + COMMITTED VERBATIM 2026-08-19 | Idea_dump/ (4 files). Jeff's INPUT - never edited by me. Derived spec lives in docs/REPORT_SPEC.md. |
+| Daily report SPEC | DELIVERED 2026-08-19 | docs/REPORT_SPEC.md. Authoritative build spec; where it and the draft differ the SPEC wins (LD-7). O-4 RESOLVED - the draft's 6 sections supersede the reference artifact's 9. |
+| First macro edition | NOT STARTED | Spec is ready. Blocked only on O-1 (output format) and O-3 (seal cadence). |
+| Data source set | SETTLED - LD-3 + LD-9 | Calendar role = FF + TE (schedule). VALUE = TradingEconomics primary + mandatory phantom-Actual guard; central banks authoritative for rates. P-2 CLOSED. |
+| Fundamental scoring model | SPECIFIED 2026-08-19 | 8 currencies x 6 categories with explicit thresholds, from Idea_dump/Macro_economic_indicators.txt. Transcribed into REPORT_SPEC.md section 3. NOT yet exercised on real data. |
 | Calendar ingest | NOT STARTED | Fires T1 + T3. Access method for FF is P-4. |
 | Key levels / TradingView MCP | IN SCOPE per LD-5, CONNECTION VERIFIED 2026-08-12 | tv_health_check: cdp_connected true, VANTAGE:EURCHF 15m, api_available true. chart_get_state + data_get_ohlcv both returned live data. NO CLONE NEEDED - server is registered globally and inherited. LD-5's restricted tools are now DENIED in project settings (they were auto-allowed globally - see LD-6). |
 | Pipeline code | NOT STARTED | Fires T1 when it lands. |
@@ -261,9 +396,10 @@ abandoned - each entry says what would un-park it.
 - P-1: Report cadence and standing coverage (weekly? monthly? event-driven
   around releases?). UN-PARKS when Jeff states the intended rhythm; it
   shapes the reports/ layout and the continuation template.
-- P-2: Canonical source set and access method (FRED API, BLS, direct CSV,
-  vendor). UN-PARKS at the first data pull; it is a Gate 1 decision
-  because it determines what "traceable to a release" means in practice.
+- ~~P-2: Canonical source set and access method.~~ **CLOSED 2026-08-19 by
+  LD-9.** TradingEconomics is the primary macro value source, defended by
+  the mandatory phantom-Actual guard; central bank sites are authoritative
+  for rate decisions and policy language.
 - P-3: Whether historical analysis produced before this repo existed gets
   back-filled as sealed editions or landed as unsealed archive. UN-PARKS
   when Jeff brings the first legacy artifact in.
