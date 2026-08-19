@@ -187,15 +187,38 @@ Per instrument:
 - **Falsifier** — the observation that voids the alignment. Required.
 
 **Cadence:**
-- **Monday** — swing-horizon alignments (daily/H4 structure, policy
-  divergence dominant). Carry shown.
-- **Tuesday–Friday** — intraday-horizon alignments (H1/M15 structure,
-  session flow and event risk dominant). No carry — nothing is held
-  overnight.
+- **Monday–Friday (EVERY DAY)** — **intraday-horizon** alignments (H1/M15
+  structure, session flow and event risk dominant). No carry — nothing is
+  held overnight.
+- **Monday, ADDITIONALLY** — **swing-horizon** alignments (daily/H4
+  structure, policy divergence dominant). Carry shown (LD-8).
 - **Daily** — **thesis status review** (replaces draft §4c): for each
   prior alignment, does it **still hold**, has the structure broken, has
   the falsifier fired? This is analysis of a thesis, not tracking of a
   position — the distinction is what keeps §4 inside LD-4.
+
+So **Monday carries two blocks** — swing and intraday — kept visually
+separate, because they answer different questions on different timeframes
+and must never be read as one list.
+
+**MONDAY INTRADAY CAVEAT — state it in the report, do not skip it.**
+Monday intraday is structurally different from Tuesday–Friday and the read
+must say so rather than treating Monday like a Wednesday:
+- **Weekend gap.** Price has not traded since Friday's close. Any level
+  derived from Friday's structure may be invalidated at the open, and a gap
+  can leave a level untested on the new side. Say whether the open gapped
+  and by how much.
+- **Thin Asian liquidity.** The Monday Asian session is the thinnest of the
+  week. Structure formed in it is lower-confidence and breaks more readily;
+  weight London/NY structure higher on Mondays.
+- **Accumulated weekend news.** Two days of headlines price in at once with
+  no intervening discovery. Check for weekend events (geopolitics, central
+  bank speakers, elections, China data) before reading Monday price action
+  as a clean technical signal.
+- **Consequence for conviction:** a Monday intraday alignment resting only
+  on Asian-session structure is flagged **lower confidence** and says why.
+  If the weekend produced a material headline, the fundamental read leads
+  and the technical read confirms — not the reverse.
 
 ### §5 — Gold (XAUUSD), intraday approach
 Drivers (real yields, DXY, haven demand, geopolitics), technical

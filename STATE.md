@@ -285,6 +285,15 @@ SECTION 4a/4b CADENCE SURVIVES INTACT: Monday = swing-horizon alignments,
 Tuesday-Friday = intraday-horizon alignments. The horizon distinction is
 about which timeframe structure and which drivers dominate, not about
 issuing orders, so it is untouched by this decision.
+  *** AMENDED 2026-08-19 (same session, by Jeff) - INTRADAY IS NOW EVERY DAY,
+  MONDAY THROUGH FRIDAY, so Monday tradables are not missed. Monday therefore
+  carries BOTH blocks: swing-horizon AND intraday-horizon, kept visually
+  separate. Swing remains Monday-only. This EXTENDS the cadence and changes
+  nothing about the scope boundary - both blocks ship alignment + levels +
+  falsifier and neither ships entries or targets.
+  A MONDAY INTRADAY CAVEAT is mandatory in the report (weekend gap, thin
+  Asian liquidity, accumulated weekend news) - see docs/REPORT_SPEC.md
+  section 4. Monday intraday is NOT read like a Wednesday. ***
 REJECTED:
   (a) AMEND LD-4 to allow entries/targets (MY RECOMMENDATION). Rejected by
       Jeff. Recorded in full because a future session WILL re-encounter
@@ -322,8 +331,11 @@ REJECTED:
       every week.
 RATIONALE: Carry is a cost input, not a directional signal. It should shade a
 close call, never overrule the analysis.
-NOTE: carry applies to SWING horizon only. Intraday alignments (Tue-Fri) hold
-no position overnight, so swap is not a factor and carry is omitted there.
+NOTE: carry applies to SWING horizon only. Intraday alignments hold no
+position overnight, so swap is not a factor and carry is omitted there.
+(Amended 2026-08-19: intraday now runs Mon-Fri, not Tue-Fri. Carry is still
+omitted from every intraday block including Monday's - the horizon, not the
+weekday, is what decides whether carry applies.)
 
 ### LD-9 - P-2 RESOLVED: TradingEconomics is the primary macro VALUE source (2026-08-19)
 CONTEXT: P-2 (canonical value source) has been parked since session 1. LD-3
