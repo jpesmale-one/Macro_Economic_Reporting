@@ -258,28 +258,75 @@ chart as necessary when updating."*
 
 ---
 
-## 7. Publish gate (per edition)
+## 7. Output, storage, and the publish gate
 
-- **P1 SOURCED** — every figure carries source, series/indicator name,
-  release date, as-of. Release status explicit.
+### 7.1 Deliverable and storage (LD-10)
+
+Each edition ships as an **HTML artifact** and is **saved in the repo**:
+
+```
+reports/YYYY/QN/YYYY-MM-DD_market-sentiment.md     <- sealed SOURCE OF TRUTH
+reports/YYYY/QN/YYYY-MM-DD_market-sentiment.html   <- rendered deliverable
+```
+
+The `.md` is what P3 seals; the `.html` is what Jeff reads. If they ever
+disagree, the `.md` wins and the HTML is re-rendered from it.
+
+Each edition is a **new artifact with its own URL** — a daily report is a
+dated record, not a living page, so it is never republished over
+yesterday's URL. Record the URL in the `.md` front matter.
+
+### 7.2 Seal tiers (LD-12)
+
+| | **LIGHT seal** — every daily | **FULL seal** — weekly (Friday / last edition) |
+|---|---|---|
+| P1 SOURCED | **Mandatory** | **Mandatory** |
+| P2 RECOMPUTED | **Mandatory** | **Mandatory** |
+| P3 | Jeff's acknowledgement in-session | Explicit pass over the week |
+| Citable by later work | Yes, marked `LIGHT` | Yes |
+| Promotes to ESTABLISHED FACTS | No | **Yes** |
+
+- **P1 SOURCED** — every figure carries source, indicator name, release
+  date, as-of. Release status explicit.
 - **P2 RECOMPUTED** — every derived number shows its arithmetic. For a
   **level**, the recompute is *naming the bars that formed it*.
-- **P3 SEALED** — Jeff's explicit word. Only then do conclusions become
-  carry-forward facts in STATE.md.
 
-**Daily seal cadence is O-3 and still open** — sealing a full edition
-every morning is a real cost. Options: light seal for dailies with full
-sealing weekly, or seal every edition. Decide before the first run.
+**The tier changes the ceremony, never the evidence.** A daily may not
+publish an unsourced figure, an unrecomputed derivation, or a bare level.
+
+**T4 escalation:** any daily that would change a previously sealed
+conclusion takes a **FULL** seal regardless of the day. Revisions never get
+the light path.
+
+### 7.3 Quarterly compaction (LD-11) — nothing is ever deleted
+
+At the close of each quarter, manually and on Jeff's trigger:
+
+1. **Write** `reports/YYYY/QN/_QN_SUMMARY.md` — what the quarter
+   established: regime calls that held, calls that broke, falsifiers that
+   fired, recurring anomalies, scoring thresholds that misfired.
+2. **Promote** durable conclusions into STATE.md's established-facts
+   ledger, with source and vintage. Sealed editions only.
+3. **Gzip** the quarter's `.html` files in place. The `.md` sources stay
+   uncompressed and readable forever.
+4. **Confirm** every edition's `.md` is present and sealed. A missing or
+   unsealed edition is a finding.
+
+Measured before deciding: ~68 KB per edition, ~24 MB/year raw, ~5 MB/year
+in git. **Storage is not the constraint — readability is.** Deletion was
+rejected: git keeps deleted files in history anyway, so it reclaims nothing
+while destroying the citation trail.
 
 ---
 
 ## 8. Open items this spec does not settle
 
-- **O-1** — output format: HTML artifact, repo markdown, or both.
-- **O-3** — daily seal cadence (above).
+- ~~**O-1**~~ — **RESOLVED by LD-10**: HTML artifact + repo copy, both.
+- ~~**O-3**~~ — **RESOLVED by LD-12**: light seal daily, full seal weekly.
 - **O-5** — whether data pulls run automated. Automation fires **T1 + T3**
   and pulls the whole thing onto the full gate ladder. Manual-driven for
-  now.
+  now — and the quarterly compaction job (LD-11) is manual for the same
+  reason.
 - **P-1** — standing coverage/cadence beyond the daily.
 - **P-4** — ForexFactory access method (schedule role only, LD-3).
 - **F-1** — stays **OPEN**. The phantom-Actual guard is a procedure I run,

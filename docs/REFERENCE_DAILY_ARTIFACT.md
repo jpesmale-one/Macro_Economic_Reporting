@@ -83,9 +83,11 @@ Sample read: "Market Sentiment - Wed 12 Aug 2026 (Early AM)", artifact
 
 ## OPEN - Gate 1 decisions not yet made
 
-- **O-1: Does the daily continue as an HTML artifact, a repo markdown
-  edition, or both?** Both is plausible - markdown edition sealed in
-  `reports/`, artifact rendered from it for reading. Not decided.
+- ~~**O-1: HTML artifact, repo markdown, or both?**~~ **RESOLVED 2026-08-19
+  by LD-10.** BOTH - exactly the shape guessed here. The `.md` edition is
+  sealed in `reports/YYYY/QN/` as the source of truth; the HTML artifact is
+  the rendered deliverable Jeff reads. Retention is quarterly COMPACTION,
+  never deletion (LD-11).
 - ~~**O-2: Does §6 Conviction Playbook fire T2?**~~ **RESOLVED 2026-08-12
   by LD-4.** NO. This project produces bias, not execution, and there is no
   money path in the repo. §6's directional BUY/SELL calls are pure bias -
@@ -94,10 +96,10 @@ Sample read: "Market Sentiment - Wed 12 Aug 2026 (Early AM)", artifact
   That is the specific way this repo would cross the line, and it would
   cross one column at a time, each addition looking reasonable on its own.
   If those columns are ever wanted, that is TRTM's job, not this repo's.
-- **O-3: Daily cadence vs the seal ritual.** A daily edition sealed by
-  explicit word is a real daily cost. Options: seal dailies lightly and
-  reserve full sealing for weekly/thematic editions, or seal every one.
-  Relates to P-1.
+- ~~**O-3: Daily cadence vs the seal ritual.**~~ **RESOLVED 2026-08-19 by
+  LD-12.** Dailies take a LIGHT seal (P1 sourced + P2 recomputed still
+  mandatory; P3 by acknowledgement). Weeklies take a FULL seal, and only a
+  FULL seal promotes conclusions into the established-facts ledger.
 - ~~**O-4: Which of the nine sections survive?**~~ **RESOLVED 2026-08-19 by
   Jeff's project draft.** Superseded by the SIX sections specified in
   `Idea_dump/Project_Plan.txt` and built out in `docs/REPORT_SPEC.md`:

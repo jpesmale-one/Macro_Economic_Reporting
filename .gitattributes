@@ -8,3 +8,8 @@
 *.json -text
 *.parquet -text binary
 *.xlsx -text binary
+
+# Published editions are byte-stable records (LD-10). Gzipped archives from
+# the quarterly compaction (LD-11) are binary and must never be normalized.
+*.html -text
+*.gz -text binary

@@ -374,6 +374,107 @@ REJECTED:
 RATIONALE: Use the source the workflow already uses, and make the defence
 that was already working into a written, mandatory step.
 
+### LD-10 - O-1 RESOLVED: HTML artifact is the deliverable; the repo holds every edition (2026-08-19)
+DECISION: The daily report ships as an HTML ARTIFACT (published via the
+Artifact tool, same reading experience as the existing ShadowTradeMonitor
+product), AND every edition is saved into this repository. Both, not either.
+LAYOUT:
+  reports/YYYY/QN/YYYY-MM-DD_market-sentiment.html   <- the published page
+  reports/YYYY/QN/YYYY-MM-DD_market-sentiment.md     <- the sealed source
+The .md is the SOURCE OF TRUTH and what P3 seals; the .html is the rendered
+deliverable. Where they ever disagree the .md wins and the .html is re-
+rendered from it. Quarter folders exist so a quarter can be operated on as a
+unit (LD-11) without touching the rest.
+WHY BOTH: the artifact is how Jeff reads it; the repo copy is what makes the
+established-facts ledger citable. An artifact alone has no git history, no
+diff, and no provenance - which is the exact gap this repo was created to
+close (see docs/REFERENCE_DAILY_ARTIFACT.md, "it lives only as an artifact").
+ARTIFACT MECHANICS: each edition is a NEW artifact with its own URL - a daily
+report is a dated record, not a living page, so it is never republished over
+yesterday's URL. The URL is recorded in the .md front matter so the sealed
+source and the published page stay linked.
+REJECTED:
+  (a) Artifact only, no repo copy. Rejected: it reproduces the exact defect
+      the reference artifact has today - nothing persists, nothing is
+      citable, and a two-week-old observation gets re-asserted from memory
+      instead of cited to a sealed edition.
+  (b) Markdown only, render on demand. Rejected: Jeff reads the HTML
+      product daily and the visual density (colour-coded banners, strength
+      bars, tables) carries real information. Losing it is a downgrade.
+RATIONALE: Publish for reading, commit for remembering.
+
+### LD-11 - Quarterly ARCHIVAL COMPACTION, never deletion (2026-08-19)
+CONTEXT: Jeff asked for a quarterly cleanup of stored artifacts.
+MEASURED FIRST, before designing anything: the reference artifact is 67.7 KB.
+At one edition per weekday that is ~24 MB/year raw and ~5 MB/year in git
+after compression. Storage is NOT a problem at this scale and no cleanup is
+needed to control size.
+DECISION: The quarterly job is COMPACTION AND REVIEW, not deletion. Nothing
+is ever deleted. At the close of each quarter:
+  1. WRITE reports/YYYY/QN/_QN_SUMMARY.md - what the quarter established:
+     regime calls that held, calls that broke, falsifiers that fired,
+     recurring anomalies (e.g. the sustained CHF haven anomaly), and any
+     scoring-model threshold that misfired repeatedly. This is the quarter
+     distilled into something a cold start can read in two minutes instead
+     of re-reading 60 editions.
+  2. PROMOTE anything durable into STATE.md's ESTABLISHED FACTS LEDGER, with
+     source and vintage. Only SEALED editions may contribute.
+  3. GZIP the raw .html files in place (.html.gz) once the quarter is closed
+     and summarised. The .md sources stay uncompressed and readable forever.
+  4. CONFIRM the .md source of every edition in the quarter is present and
+     sealed. A missing or unsealed edition is a finding, not a shrug.
+WHY NOT DELETE: (a) git retains deleted files in history anyway, so deletion
+reclaims nothing while making the archive harder to read; (b) these editions
+ARE the record of what was thought on a given morning, and the established-
+facts ledger cites them; (c) an unsealed draft that gets deleted takes its
+own evidence of being unsealed with it.
+REJECTED:
+  (a) Delete artifacts older than N quarters. Rejected on the measurement -
+      it solves a storage problem that does not exist, and destroys the
+      citation trail that justifies the repo.
+  (b) Keep everything with no quarterly job at all. Rejected: the volume is
+      fine but the READABILITY is not - 250 editions a year with no
+      distillation is an archive nobody reads, which is the same as not
+      having one.
+RATIONALE: The scarce resource here is attention, not disk. Compact for
+readability; never destroy the record.
+NOTE: the quarterly job is MANUAL and Jeff-triggered for now. Automating it
+would fire T3 and pull it onto the full gate ladder - see O-5.
+
+### LD-12 - O-3 RESOLVED: dailies get a LIGHT seal, weeklies get a FULL seal (2026-08-19)
+CONTEXT: O-3 asked whether every daily edition runs the full publish gate.
+Jeff took the recommendation.
+DECISION: Two seal tiers.
+  LIGHT SEAL (every daily edition). P1 SOURCED and P2 RECOMPUTED are
+  MANDATORY and are never reduced - every figure keeps its source and
+  vintage, every derived number shows its arithmetic, every level names the
+  bars that formed it. What is relaxed is P3: a daily is sealed by Jeff's
+  acknowledgement in the session ("looks right", "go", "sealed"), not by a
+  formal per-item audit walkthrough. A light-sealed daily is CITABLE by
+  later work but is marked LIGHT in its front matter.
+  FULL SEAL (weekly, Friday or the last edition of the week). The complete
+  publish gate: P1, P2, and an explicit P3 pass over the week - every claim
+  that entered the established-facts ledger re-checked against its source,
+  every falsifier that fired recorded, every carried-forward conclusion
+  re-validated against revisions. This is what promotes conclusions into
+  STATE.md's ESTABLISHED FACTS LEDGER.
+WHAT THIS DOES NOT RELAX: the evidence standard itself. A daily may not
+publish an unsourced figure, an unrecomputed derivation, or a bare level.
+The tier changes the CEREMONY, never the EVIDENCE.
+ESCALATION: any daily that would change a previously sealed conclusion fires
+T4 and takes a FULL seal regardless of the day. Revisions do not get the
+light path.
+REJECTED:
+  (a) Full seal on every daily. Rejected: a formal audit walkthrough every
+      morning before a trading session is friction that gets abandoned
+      within two weeks, and an abandoned protocol is worse than a lean one
+      (the same reasoning as LD-1).
+  (b) No seal on dailies at all, weekly only. Rejected: an unsealed daily
+      cannot be cited, so five days of work would be uncitable until Friday
+      - and the week's own conclusions build on the days inside it.
+RATIONALE: Pay the ceremony where it changes what gets believed long-term.
+The daily is a read; the week is the record.
+
 ---
 
 ## ESTABLISHED FACTS LEDGER
@@ -392,7 +493,10 @@ cited as settled.
 | Reference daily artifact | RECORDED 2026-08-12 | docs/REFERENCE_DAILY_ARTIFACT.md. REFERENCE, NEVER SPEC - Jeff has said this project does things differently. Carries O-1..O-5 open decisions. |
 | Project direction draft | RECEIVED + COMMITTED VERBATIM 2026-08-19 | Idea_dump/ (4 files). Jeff's INPUT - never edited by me. Derived spec lives in docs/REPORT_SPEC.md. |
 | Daily report SPEC | DELIVERED 2026-08-19 | docs/REPORT_SPEC.md. Authoritative build spec; where it and the draft differ the SPEC wins (LD-7). O-4 RESOLVED - the draft's 6 sections supersede the reference artifact's 9. |
-| First macro edition | NOT STARTED | Spec is ready. Blocked only on O-1 (output format) and O-3 (seal cadence). |
+| First macro edition | READY TO RUN - NOT STARTED | Spec complete and all format/cadence blockers cleared (LD-10 artifact+repo, LD-12 light/full seal). Nothing further is needed before the first edition. |
+| Output format + storage | SETTLED - LD-10 | HTML artifact + repo copy in reports/YYYY/QN/. .md is the sealed source of truth, .html the deliverable. New artifact URL per edition. |
+| Retention | SETTLED - LD-11 | Quarterly COMPACTION, never deletion. Measured ~68KB/edition, ~5MB/yr in git - storage is not the constraint, readability is. |
+| Seal cadence | SETTLED - LD-12 | Daily = LIGHT (P1+P2 mandatory, P3 by acknowledgement). Weekly = FULL, and only FULL promotes to the facts ledger. T4 revisions always FULL. |
 | Data source set | SETTLED - LD-3 + LD-9 | Calendar role = FF + TE (schedule). VALUE = TradingEconomics primary + mandatory phantom-Actual guard; central banks authoritative for rates. P-2 CLOSED. |
 | Fundamental scoring model | SPECIFIED 2026-08-19 | 8 currencies x 6 categories with explicit thresholds, from Idea_dump/Macro_economic_indicators.txt. Transcribed into REPORT_SPEC.md section 3. NOT yet exercised on real data. |
 | Calendar ingest | NOT STARTED | Fires T1 + T3. Access method for FF is P-4. |
