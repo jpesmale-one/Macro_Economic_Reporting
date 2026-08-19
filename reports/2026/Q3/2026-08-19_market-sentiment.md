@@ -1,6 +1,6 @@
 ---
 edition: 2026-08-19
-revision: 7 (supersedes r1-r6 - see CORRECTIONS)
+revision: 8 (supersedes r1-r7 - see CORRECTIONS)
 generated: 2026-08-19 14:12 PHT
 data_asof: 2026-08-19 14:12 PHT
 horizon: INTRADAY (Wednesday - no swing block, no carry per LD-8)
@@ -361,23 +361,35 @@ evidence points; **EXPECTATION** names what actually decides it next.
 |---|---|---|---|---|---|
 | **GBP** | **3.75%** | Hold, 30 Jul — **6–3** (three wanted +25bp) | **CPI DECIDES** | **17 Sep** | **CPI released today 14:00 PHT: 2.9% vs 2.6% prior**, core 2.6% beating 2.5%. That is the hawks' case made. But Tuesday's wage data was soft — Avg Earnings 4.1% from 4.4%, HMRC payrolls −13K — which undercuts it. A 6–3 committee with hot CPI and cooling wages is the tightest call on the board. |
 | **EUR** | **2.40%** | Hold, 23 Jul | **HIKE RISK** | **10 Sep** | **~78–80% priced for a September hike** (market pricing via analyst consensus, mid-Aug). Final July CPI landed today at **2.9%, up from 2.8%** — rising, not cooling. Lagarde has named Middle East energy as an upside inflation risk. |
-| **AUD** | **4.35%** | Hold, 11 Aug (2nd consecutive; **+75bp since Feb**) | **HIKE RISK** | **29 Sep** | **Highest G10 rate.** Hauser today named three upside risks — Middle East, AI boom, productivity — and **warned of a hike if they crystallise**. **Employment tomorrow 09:30 PHT, cons +15.0K** — and TE is showing a phantom 76.3K for it (§0). Wages flat at 3.2% is the counterweight. |
+| **AUD** | **4.35%** | Hold, **effective 12 Aug** (2nd consecutive; **+75bp since Feb**) — *rba.gov.au* | **HIKE RISK** | **29 Sep** | **Highest G10 rate.** Hauser today named three upside risks — Middle East, AI boom, productivity — and **warned of a hike if they crystallise**. **Employment tomorrow 09:30 PHT, cons +15.0K** — and TE is showing a phantom 76.3K for it (§0). Wages flat at 3.2% is the counterweight. |
 | **CAD** | **2.25%** | Hold | **REPRICING** | **9 Sep** | **CPI beat at 3.0% from 2.8%**, and the model scores CAD a perfect **+8.00**. The rate looks low against that, but the market has not pressed it. Oil's 4th straight up day and the tariff pause both add pressure. |
 | **USD** | **3.50–3.75%** | Hold, 29 Jul — **3 dissents** | **TRAPPED** | **15–16 Sep** | **~31% hike priced** (CME FedWatch, 14 Aug). Odds peaked near **82%** in late July, then **payrolls (−23K) and CPI (3.4%, falling) collapsed them**. **FOMC Minutes tonight 02:00 PHT Thursday.** Hot energy against a contracting labour market — trapped between its two mandates. |
-| **CHF** | **0.00%** | Hold, 18 Jun | **FLOORED** | **Sep 2026** *(date unconfirmed)* | **ZIRP — no room to cut**, and inflation at **0.4% and falling** is the only cut-leaning read on the board (model −3.00). A haven bid on Iran escalation is a live threat to short-CHF positions regardless of policy. |
+| **CHF** | **0.00%** | Hold, 18 Jun — *snb.ch, 18.08.2026* | **FLOORED** | **Sep 2026** *(quarterly; exact date not on the SNB landing page)* | **ZIRP — no room to cut**, and inflation at **0.4% and falling** is the only cut-leaning read on the board (model −3.00). A haven bid on Iran escalation is a live threat to short-CHF positions regardless of policy. |
 | **JPY** | **1.00%** | Hold, 31 Jul — **8–1** (Takata wanted 1.25%) | **TIGHTENING** | **17 Sep** | Tightening bias intact, but **inflation 1.7% is still below the 2% target** so there is no forcing reason. **Oil near $85 hits an energy importer hard** — trade deficit widened again. Model nets exactly 0.00. |
-| **NZD** | **2.50%** | **Hiked +25bp, 8 Jul** — first hike in 3 years | **SPLIT** | **2 Sep** | **Inflation 4.1% from 3.1% — the largest jump on the board** (model +3.00). But **employment takes the full −2.00** (unemployment 5.6% from 5.4%) and China demand is weak. Hot inflation against a deteriorating labour market. |
+| **NZD** | **2.50%** | **Hiked +25bp, 8 Jul 14:00 NZ** — first hike in 3 years — *rbnz.govt.nz* | **SPLIT** | **2 Sep, 14:00 NZ** — *rbnz.govt.nz confirmed* | **Inflation 4.1% from 3.1% — the largest jump on the board** (model +3.00). But **employment takes the full −2.00** (unemployment 5.6% from 5.4%) and China demand is weak. Hot inflation against a deteriorating labour market. |
 
 ### Source discipline on this section
 
 - **Rates:** TradingEconomics country pages. **USD confirmed independently
   against `federalreserve.gov`** (3.50–3.75%, last changed 11 Dec 2025).
 - **Meeting dates:** `federalreserve.gov` for the FOMC (**15–16 Sep**,
-  two-day, with Summary of Economic Projections); centralbank.watch for
-  ECB 10 Sep, BoE 17 Sep, BoJ 17 Sep, RBA 29 Sep, BoC 9 Sep.
-  **⚠ RBNZ (2 Sep) is from a secondary source and CHF's September date is
-  unconfirmed** — `rbnz.govt.nz` and `snb.ch` both return **HTTP 403** to
-  automated fetches. Flagged rather than asserted.
+  two-day, with Summary of Economic Projections). **RBNZ 2 Sep 14:00 NZ is
+  now CONFIRMED from `rbnz.govt.nz` itself** (its OCR page states "Next
+  update: 2:00pm, 02 Sep 2026"). centralbank.watch for ECB 10 Sep, BoE
+  17 Sep, BoJ 17 Sep, RBA 29 Sep, BoC 9 Sep.
+  The SNB's exact September date is not published on its landing page; it
+  assesses quarterly. Still flagged rather than asserted.
+
+- **THE 403s WERE OURS, NOT THEIRS (F-6).** r3–r7 reported that
+  `rba.gov.au`, `rbnz.govt.nz` and `snb.ch` "block automated fetches". They
+  do not. All three return **200 with ordinary browser headers**; RBA needs
+  a `Referer` as well. Primary-source rates for AUD, NZD and CHF are now
+  read from the central banks themselves:
+  - **RBA** cash rate table: 4.35%, **effective 12 Aug 2026**, change 0.00 —
+    and the +75bp-since-February claim is confirmed from its own history
+    (3.60 → 3.85 → 4.10 → 4.35 across 4 Feb, 18 Mar, 6 May).
+  - **RBNZ**: OCR **2.5%**, updated 2:00pm 08 Jul 2026.
+  - **SNB**: policy rate **0.00%** as of 18.08.2026, SARON −0.06%.
 - **Odds carry their instrument:** USD ~31% is **CME FedWatch**, dated
   14 Aug. EUR ~78–80% is analyst-consensus market pricing, mid-Aug, **not**
   a single named instrument — weaker evidence, labelled as such.

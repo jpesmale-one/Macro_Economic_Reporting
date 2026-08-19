@@ -556,6 +556,7 @@ cited as settled.
 | Data source set | SETTLED - LD-3 + LD-9 | Calendar role = FF + TE (schedule). VALUE = TradingEconomics primary + mandatory phantom-Actual guard; central banks authoritative for rates. P-2 CLOSED. |
 | Fundamental scoring model | SPECIFIED 2026-08-19 | 8 currencies x 6 categories with explicit thresholds, from Idea_dump/Macro_economic_indicators.txt. Transcribed into REPORT_SPEC.md section 3. NOT yet exercised on real data. |
 | Calendar ingest | NOT STARTED | Fires T1 + T3. Access method for FF is P-4. |
+| Central bank sites | ALL 8 REACHABLE 2026-08-19 (F-6) | federalreserve.gov plain; rbnz.govt.nz + snb.ch with browser headers; rba.gov.au needs headers + Referer. Recipe in pipelines/fetch_headers.md. Previously and wrongly recorded as blocking. |
 | CNN Fear & Greed | WORKING 2026-08-19 (Jeff's fix) | Article page 451s; dataviz endpoint production.dataviz.cnn.io/index/fearandgreed/graphdata returns 418 to a plain fetch but serves with browser headers. Yields index + all 7 components. Index verified = SIMPLE AVERAGE of the seven. Recorded in REPORT_SPEC section 2.3. |
 | Key levels / TradingView MCP | IN SCOPE per LD-5, CONNECTION VERIFIED 2026-08-12 | tv_health_check: cdp_connected true, VANTAGE:EURCHF 15m, api_available true. chart_get_state + data_get_ohlcv both returned live data. NO CLONE NEEDED - server is registered globally and inherited. LD-5's restricted tools are now DENIED in project settings (they were auto-allowed globally - see LD-6). |
 | Pipeline code | NOT STARTED | Fires T1 when it lands. |
@@ -587,6 +588,46 @@ abandoned - each entry says what would un-park it.
 ---
 
 ## OPEN FINDINGS
+
+### F-6 - Central bank sites reported as BLOCKING when the headers were ours (2026-08-19)
+OBSERVED: Jeff, after r7: "Is there no other way we can get data from these
+sites?" There was. rba.gov.au, rbnz.govt.nz and snb.ch were reported across
+r3-r7 as returning HTTP 403 to automated fetches and therefore unusable. All
+three return 200 with ordinary browser headers. RBA additionally needs a
+Referer; without one it returns 403 to a GET while still returning 200 to a
+HEAD, which is why a status-only probe looked like intermittent success.
+ROOT CAUSE: I equated "WebFetch's default headers were rejected" with "the
+source blocks automated access", and wrote the second claim in the report.
+The first is a fact about my tooling; the second is a claim about the world,
+and I had no evidence for it. Same shape as F-5 - an absence asserted from a
+single failed attempt rather than established by trying.
+WHY IT MATTERED MORE THAN A MISSING ROW: spec section 2.2 makes the central
+bank's own site AUTHORITATIVE for rates and policy language, with
+TradingEconomics only a fallback. By declaring three of the eight banks
+unreachable I silently demoted three currencies to fallback sourcing and
+then printed that demotion as a permanent structural constraint. A source
+recorded as blocked gets skipped on every future run - the error compounds
+rather than repeating.
+WHAT THE PRIMARY SOURCES THEN GAVE, that the fallback had not:
+  RBA - the full cash-rate table. Rate 4.35% EFFECTIVE 12 AUGUST (r7 said
+    "11 Aug"; the meeting was 11-12 Aug, the effective date is the 12th),
+    change 0.00, second consecutive hold. The "+75bp since February" claim
+    is now confirmed from RBA's own history: 3.60 -> 3.85 (4 Feb) -> 4.10
+    (18 Mar) -> 4.35 (6 May), then holds on 17 Jun and 12 Aug.
+  RBNZ - OCR 2.5%, updated 2:00pm 08 Jul 2026, and "Next update: 2:00pm,
+    02 Sep 2026". The 2 Sep date r7 flagged as SECONDARY-SOURCED is now
+    primary-confirmed, with a time.
+  SNB - policy rate 0.00% as of 18.08.2026, SARON -0.06%, plus SNB's own
+    EUR/CHF at 0.9394 which corroborates our OANDA read of 0.93973.
+FIX APPLIED: pipelines/fetch_headers.md documents a four-step escalation
+ladder (plain -> browser headers -> +Referer -> API Accept+Referer), the
+confirmed working recipe per source, and the rule: before writing that a
+source is unavailable, run the ladder and say WHICH STEP failed. "Blocked"
+is an absence-type claim and carries the same burden as any must-NOT row.
+NOTE ON THE HEAD/GET TRAP: check the RESPONSE SIZE, not just the status.
+RBA returned 200 with 405 bytes on one probe and 403 on the real fetch.
+STATUS: CLOSED for these three sources (all now read primary). The general
+discipline is OPEN and lives in the ladder doc.
 
 ### F-5 - "Not available" claimed without checking the indicator page (2026-08-19)
 OBSERVED: Jeff, on r4: "I believe TE has published results for these." He was

@@ -306,8 +306,14 @@ fallback. State which was used. Meeting dates come from the bank's own
 calendar where reachable — `federalreserve.gov` publishes the FOMC calendar
 and is authoritative for it.
 
-Known blocked (HTTP 403 to automated fetch, observed 2026-08-19):
-`rba.gov.au`, `rbnz.govt.nz`, `snb.ch`. Known working: `federalreserve.gov`.
+**ALL EIGHT CENTRAL BANK SITES ARE REACHABLE** (established 2026-08-19,
+F-6). `federalreserve.gov` works on a plain fetch; `rbnz.govt.nz` and
+`snb.ch` need browser headers; `rba.gov.au` needs browser headers **plus a
+`Referer`**. The recipes are in **`pipelines/fetch_headers.md`** — follow
+that ladder before recording any source as unavailable, and say which step
+failed. A 403 from a default fetch is a fact about our headers, not about
+the source.
+
 **A date from a secondary source is labelled as such**, and an unconfirmed
 date says "unconfirmed" rather than being asserted.
 

@@ -201,7 +201,7 @@
   <div>
     <div class="eyebrow">Macro Economic Reporting &middot; Daily Market Sentiment</div>
     <div class="mdate">Wednesday, 19 August 2026 &middot; 14:12 PHT</div>
-    <div class="draft">REVISION 7 &middot; UNSEALED &middot; INTRADAY HORIZON</div>
+    <div class="draft">REVISION 8 &middot; UNSEALED &middot; INTRADAY HORIZON</div>
   </div>
   <div class="chips">
     <span>GOLD <b class="dn">4,345.47</b> <span class="dn">&minus;1.11%</span></span>
@@ -470,7 +470,7 @@
       </tr>
       <tr>
         <td class="ccy">AUD</td><td class="num">4.35%</td>
-        <td class="sched">Hold, 11 Aug<br><span class="vote">2nd consecutive &middot; +75bp since Feb</span></td>
+        <td class="sched">Hold, <strong>eff. 12 Aug</strong><br><span class="vote">2nd consecutive &middot; +75bp since Feb<br><span style="color:var(--bull)">rba.gov.au</span></span></td>
         <td><span class="bias b-hike">Hike risk</span></td>
         <td class="sched">29 Sep</td>
         <td class="exp"><strong>Highest G10 rate.</strong> Hauser today named three upside risks &mdash; Middle East, AI boom, productivity &mdash; and <strong>warned of a hike if they crystallise</strong>. <strong>Employment tomorrow 09:30 PHT, cons +15.0K</strong> &mdash; and TE is showing a phantom 76.3K for it. Wages flat at 3.2% is the counterweight.</td>
@@ -491,9 +491,9 @@
       </tr>
       <tr>
         <td class="ccy">CHF</td><td class="num">0.00%</td>
-        <td class="sched">Hold, 18 Jun</td>
+        <td class="sched">Hold, 18 Jun<br><span class="vote"><span style="color:var(--bull)">snb.ch 18.08.2026</span></span></td>
         <td><span class="bias b-floor">Floored</span></td>
-        <td class="sched">Sep 2026 <span class="note">(unconfirmed)</span></td>
+        <td class="sched">Sep 2026 <span class="note">(quarterly)</span></td>
         <td class="exp"><strong>ZIRP &mdash; no room to cut</strong>, and inflation at <strong>0.4% and falling</strong> is the only cut-leaning read on the board (model &minus;3.00). A haven bid on Iran escalation is a live threat to short-CHF positions regardless of policy.</td>
       </tr>
       <tr>
@@ -505,9 +505,9 @@
       </tr>
       <tr>
         <td class="ccy">NZD</td><td class="num">2.50%</td>
-        <td class="sched"><strong>Hiked +25bp, 8 Jul</strong><br><span class="vote">first hike in 3 years</span></td>
+        <td class="sched"><strong>Hiked +25bp, 8 Jul</strong><br><span class="vote">first hike in 3 years<br><span style="color:var(--bull)">rbnz.govt.nz</span></span></td>
         <td><span class="bias b-split">Split</span></td>
-        <td class="sched">2 Sep</td>
+        <td class="sched"><strong>2 Sep</strong> 14:00 NZ<br><span class="vote"><span style="color:var(--bull)">confirmed</span></span></td>
         <td class="exp"><strong>Inflation 4.1% from 3.1% &mdash; the largest jump on the board</strong> (model +3.00). But <strong>employment takes the full &minus;2.00</strong> (unemployment 5.6% from 5.4%) and China demand is weak. Hot inflation against a deteriorating labour market.</td>
       </tr>
     </tbody>
@@ -520,7 +520,13 @@
         <dt>Dates</dt><dd><code>federalreserve.gov</code> for the FOMC (<strong>15&ndash;16 Sep</strong>, two-day, with Summary of Economic Projections); centralbank.watch for ECB 10 Sep, BoE 17 Sep, BoJ 17 Sep, RBA 29 Sep, BoC 9 Sep.</dd>
         <dt>Odds</dt><dd>USD ~31% is <strong>CME FedWatch, 14 Aug</strong>. EUR ~78&ndash;80% is analyst-consensus market pricing, mid-Aug &mdash; <strong>not a single named instrument</strong>, so it is weaker evidence and labelled as such.</dd>
       </dl>
-      <div class="gapbox"><b>Unconfirmed, flagged not asserted.</b> RBNZ (2 Sep) comes from a secondary source and the SNB&rsquo;s September date could not be confirmed &mdash; <code>rbnz.govt.nz</code> and <code>snb.ch</code> both return <strong>HTTP 403</strong> to automated fetches.</div>
+      <div class="readbox"><b>The 403s were ours, not theirs (F-6)</b>r3&ndash;r7 reported that <code>rba.gov.au</code>, <code>rbnz.govt.nz</code> and <code>snb.ch</code> block automated fetches. <strong>They do not.</strong> All three return <strong>200 with ordinary browser headers</strong>; RBA additionally needs a <code>Referer</code>. Primary-source rates are now read from the central banks themselves:
+      <ul style="margin:8px 0 0 18px;line-height:1.6">
+      <li><strong>RBA</strong> &mdash; cash rate 4.35%, <strong>effective 12 Aug 2026</strong>, change 0.00. The +75bp-since-February claim is confirmed from its own history (3.60 &rarr; 3.85 &rarr; 4.10 &rarr; 4.35 across 4 Feb, 18 Mar, 6 May).</li>
+      <li><strong>RBNZ</strong> &mdash; OCR <strong>2.5%</strong>, updated 2:00pm 08 Jul 2026, <strong>next update 2:00pm 02 Sep 2026</strong> (so the 2 Sep date is now primary-confirmed, not secondary).</li>
+      <li><strong>SNB</strong> &mdash; policy rate <strong>0.00%</strong> as of 18.08.2026, SARON &minus;0.06%.</li>
+      </ul></div>
+      <p class="note" style="margin-top:10px">The SNB&rsquo;s exact September date is not on its landing page &mdash; it assesses quarterly. Still flagged rather than asserted.</p>
       <div class="warnbox"><b>No odds for GBP, AUD, CAD, JPY, NZD or CHF.</b> None was obtained with a named source. An unsourced probability is unauditable, so it is omitted rather than guessed.</div>
     </div></div>
 
@@ -649,7 +655,7 @@
   </div></div></div>
 
   <footer>
-    <span>Macro Economic Reporting &middot; edition 2026-08-19 r7 &middot; data as-of 14:12 PHT</span>
+    <span>Macro Economic Reporting &middot; edition 2026-08-19 r8 &middot; data as-of 14:12 PHT</span>
     <span>UNSEALED &middot; light-seal tier &middot; not citable until sealed</span>
   </footer>
 </div>
