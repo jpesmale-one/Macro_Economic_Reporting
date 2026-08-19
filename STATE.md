@@ -532,6 +532,40 @@ abandoned - each entry says what would un-park it.
 
 ## OPEN FINDINGS
 
+### F-5 - "Not available" claimed without checking the indicator page (2026-08-19)
+OBSERVED: Jeff, on r4: "I believe TE has published results for these." He was
+right about all of them. r3/r4 declared NINE whitelist indicators "not
+released / not available": JP Machine Tool Orders, JP S&P Global Mfg PMI
+Final, AU Household Spending, AU Westpac Consumer Confidence, AU NAB Business
+Confidence, AU ANZ-Indeed Job Ads, NZ Electronic Retail Card Spending, NZ ANZ
+Business Confidence, JP Household Spending. Every one is published on
+TradingEconomics with a current print.
+ROOT CAUSE: I inferred absence from SUMMARIZED country-page fetches. Those
+summaries are partial by design - an indicator missing from one is evidence of
+nothing. I treated "absent from my summary" as "absent from the source",
+which is an assumption dressed as a finding.
+A TENTH ERROR, WORSE IN KIND: I described the Swiss PMI row as a "generic
+Swiss Manufacturing PMI" substituted for the named Procure.ch Manufacturing
+PMI, and said so in the report as a flagged data-quality caveat. It IS the
+named indicator - TE's own page text reads "procure.ch-UBS Manufacturing
+PMI". I invented a substitution that never happened. An omission leaves a
+gap; a false substitution warning fabricates one, and it discredits the
+genuine flags around it.
+IMPACT - NOT COSMETIC: AUD +3 -> +6 (now tied first, with ZERO bad scores),
+JPY +2 -> +3, NZD +1 -> +3. The top-conviction alignment changed from
+CAD/CHF to AUD/CHF. Three of eight currencies were mis-scored, and the one
+that moved most is the one with a live event tomorrow.
+RELATIONSHIP TO F-3: same family. F-3 was pulling rows the list does not
+name; F-5 is failing to pull rows it does. Both come from letting a
+convenient fetch define the dataset instead of the list defining it.
+FIX APPLIED: docs/REPORT_SPEC.md section 4 now requires that a MISSING claim
+be PROVEN from the indicator's own page (tradingeconomics.com/<country>/
+<indicator-slug>), treats absence as an ABSENCE-TYPE assertion carrying the
+same evidentiary burden as a must-NOT row, and requires reading the page text
+for the vendor's series name before ever calling something a substitute.
+STATUS: OPEN. Closes when the pull is automated per-indicator FROM the list
+(fires T1/T3), which removes the human step that produced this.
+
 ### F-3 - Report filled with off-list indicators instead of the whitelist (2026-08-19)
 OBSERVED: Jeff, reviewing r2: "why are we injecting other data/country to the
 report? Thu 14:00 DE PPI YoY - is this in the macro economic indicator list

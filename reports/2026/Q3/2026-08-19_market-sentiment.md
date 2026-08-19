@@ -1,6 +1,6 @@
 ---
 edition: 2026-08-19
-revision: 4 (supersedes r1, r2, r3 - see CORRECTIONS)
+revision: 5 (supersedes r1-r4 - see CORRECTIONS)
 generated: 2026-08-19 14:12 PHT
 data_asof: 2026-08-19 14:12 PHT
 horizon: INTRADAY (Wednesday - no swing block, no carry per LD-8)
@@ -44,6 +44,25 @@ on 8 July — its first hike in three years**. No August meeting; next is
 **C-4 — PHANTOM COUNT REVISED 13 → 9.** With the corrected +8h conversion,
 four rows previously flagged had in fact already released. The finding
 stands; the count was inflated by C-1.
+
+**C-8 — NINE WHITELIST INDICATORS WRONGLY MARKED UNAVAILABLE (Jeff caught
+it).** r3/r4 declared these "not released / not available": JP Machine Tool
+Orders, JP S&P Global Mfg PMI Final, AU Household Spending, AU Westpac
+Consumer Confidence, AU NAB Business Confidence, AU ANZ-Indeed Job Ads,
+NZ Electronic Retail Card Spending, NZ ANZ Business Confidence, JP
+Household Spending. **All nine are published on TradingEconomics.** I read
+summarized country-page fetches instead of the indicators' own pages, and
+treated "absent from the summary" as "not released".
+
+**A tenth was worse than an omission:** I described the Swiss PMI row as a
+"generic Swiss Manufacturing PMI" substituted for the named
+`Procure.ch Manufacturing PMI`. It **is** the named indicator — TE's own
+text reads "procure.ch–UBS Manufacturing PMI". I flagged a substitution
+that never happened, implying a data gap that did not exist.
+
+**IMPACT ON THE RANKING — this was not cosmetic.** AUD **+3 → +6**, now
+tied with CAD at the top with **zero BAD scores**; JPY +2 → +3; NZD +1 →
++3. The top alignment changed from CAD/CHF to AUD/CHF.
 
 **C-6 — OFF-LIST DATA WAS INJECTED (Jeff caught it).** r1/r2 filled §2 with
 whatever TradingEconomics served: DE PPI, ZA Retail Sales, US Housing Starts,
@@ -189,10 +208,12 @@ narrative in §1, but they are never scored rows.
 | NZ | Global Dairy Trade Price Index | 2.3% | 0.1% | Aug/26 | >0.5% | **GOOD** |
 | JP | Industrial Production YoY | 4.9% | −2.1% | Jun/26 | >0.5% | **GOOD** |
 | JP | Machinery Orders YoY | 16.9% | −1.9% | Jun/26 | >0.5% | **GOOD** |
+| JP | Machine Tool Orders YoY | 50.4% | 52.8% | Jul/26 | >0.5% | **GOOD** |
+| JP | S&P Global Mfg PMI Final | 54.5 | 54.8 | Jul/26 | >50.5 | **GOOD** |
 | GB | S&P Global Mfg PMI | 51.9 | 52.5 | Jul/26 | >50.5 | **GOOD** |
 | GB | Industrial Production YoY | −0.2% | 1.0% | Jun/26 | <0% | **BAD** |
 | GB | Manufacturing Production YoY | 0.5% | 2.0% | Jun/26 | 0–0.5% | NEUTRAL |
-| CH | Manufacturing PMI | 53.2 | 54.3 | Jul/26 | >50.5 | **GOOD** |
+| CH | procure.ch–UBS Manufacturing PMI | 53.2 | 54.3 | Jul/26 | >50.5 | **GOOD** |
 | CH | Industrial Production YoY | −7.1% | −0.4% | Mar/26 | <0% | **BAD** (Q1 — stale) |
 
 **Read:** JP production is the standout — Industrial Production +4.9% from
@@ -201,10 +222,11 @@ the weak leg: PMI still expanding but Industrial Production has turned
 negative. CH Industrial Production is **Mar/26 — five months stale** and
 carries little weight.
 
-**Not released / not available this period:** JP Machine Tool Orders YoY,
-JP S&P Global Mfg PMI Final, CH Procure.ch Manufacturing PMI (TE lists a
-generic Swiss Manufacturing PMI instead — flagged, not silently
-substituted).
+**All named Production indicators are present.** JP Machine Tool Orders
++50.4% YoY (Jul) after +52.8% in Jun — two consecutive months above +50%.
+JP Manufacturing PMI Final 54.5, its seventh straight month of expansion.
+The Swiss PMI row IS `procure.ch–UBS`, the indicator named in the list —
+r4 wrongly described it as a generic substitute (see C-8).
 
 ### 2.2 SPENDING
 
@@ -218,9 +240,15 @@ substituted).
 | EA | Consumer Confidence | −15.9 | −17.6 | Jul/26 | >Prev | **GOOD** |
 | CA | Retail Sales YoY | 5.9% | 3.6% | May/26 | >0.5% | **GOOD** |
 | CA | Building Permits MoM | +18.5% | −3.0% | Jun/26 | >0.5% | **GOOD** |
+| AU | Household Spending YoY | 6.0% | — | Jun/26 | >0.5% | **GOOD** |
 | AU | Building Permits YoY | 8.9% | 5.5% | Jun/26 | >0.5% | **GOOD** |
+| AU | Westpac Consumer Conf | 88.9 | 83.9 | Aug/26 | >Prev | **GOOD** |
+| AU | NAB Business Confidence | −6 | −6 | Jul/26 | >Prev | NEUTRAL |
 | NZ | Building Permits MoM | −3.6% | −4.9% | Jun/26 | <0% | **BAD** |
+| NZ | Electronic Retail Card Spending | 0.9% | 0.9% | Q1/26 | >0.5% | **GOOD** |
+| NZ | ANZ Business Confidence | 56.1 | 36.6 | Jul/26 | >Prev | **GOOD** |
 | NZ | ANZ Roy Morgan Consumer Conf | 99.3 | 91.3 | Jul/26 | >Prev | **GOOD** |
+| JP | Household Spending YoY | −3.3% | −0.4% | Jun/26 | <0% | **BAD** |
 | JP | Consumer Confidence | 34.9 | 33.8 | Jul/26 | >Prev | **GOOD** |
 | JP | Retail Sales YoY | 0.5% | 5.0% | Jun/26 | 0–0.5% | NEUTRAL (sharp drop) |
 | GB | GfK Consumer Confidence | −17 | −23 | Jul/26 | >Prev | **GOOD** |
@@ -234,10 +262,11 @@ and Building Permits +18.5%. US is split: permits and retail strong, but
 forward-looking warning in this category. JP Retail Sales collapsed from
 5.0% to 0.5%.
 
-**Not released / not available:** AU Household Spending YoY, AU Westpac
-Consumer Confidence Change, AU NAB Business Confidence, NZ Electronic
-Retail Card Spending YoY, NZ ANZ Business Confidence, JP Household
-Spending YoY.
+**All named Spending indicators are present** (r4 wrongly listed six of
+these as unavailable — see C-8). Two stand out: **NZ ANZ Business
+Confidence surged 36.6 → 56.1**, the strongest since February, and
+**JP Household Spending fell −3.3% YoY**, its seventh straight month of
+contraction and the sharpest of the run.
 
 ### 2.3 TRADE
 
@@ -267,6 +296,7 @@ NZ$23M).
 | CA | Unemployment Rate | 6.4% | 6.5% | Jul/26 | <Prev | **GOOD** |
 | CA | Full Time Employment Chg | 38.6K | 0.6K | Jul/26 | >Prev | **GOOD** |
 | CA | Part Time Employment Chg | 36.6K | 17.5K | Jul/26 | <Prev | **BAD** |
+| AU | ANZ-Indeed Job Ads MoM | +0.8% | −0.1% | Jul/26 | >0.5% | **GOOD** |
 | AU | Unemployment Rate | 4.4% | 4.4% | Jun/26 | unchanged | NEUTRAL |
 | NZ | Unemployment Rate | 5.6% | 5.4% | Jun/26 | >Prev | **BAD** |
 | JP | Unemployment Rate | 2.5% | 2.5% | Jun/26 | unchanged | NEUTRAL |
@@ -311,16 +341,22 @@ which, against a 0.00% policy rate, means the SNB has nowhere to go.
 
 ### Model tally — all whitelist indicators (net = GOOD − BAD)
 
-| Ccy | GOOD | BAD | NEUTRAL | Net |
-|---|---|---|---|---|
-| **CAD** | 7 | 1 | 0 | **+6** |
-| **USD** | 7 | 2 | 2 | **+5** |
-| **EUR** | 5 | 0 | 2 | **+5** |
-| **GBP** | 5 | 2 | 1 | **+3** |
-| **AUD** | 3 | 0 | 2 | **+3** |
-| **JPY** | 3 | 1 | 3 | **+2** |
-| **NZD** | 4 | 3 | 0 | **+1** |
-| **CHF** | 3 | 4 | 0 | **−1** |
+| Ccy | GOOD | BAD | NEUTRAL | Net | vs r4 |
+|---|---|---|---|---|---|
+| **AUD** | 6 | **0** | 3 | **+6** | **+3 → +6** |
+| **CAD** | 7 | 1 | 0 | **+6** | unchanged |
+| **USD** | 7 | 2 | 2 | **+5** | unchanged |
+| **EUR** | 5 | **0** | 2 | **+5** | unchanged |
+| **GBP** | 5 | 2 | 1 | **+3** | unchanged |
+| **JPY** | 5 | 2 | 3 | **+3** | +2 → +3 |
+| **NZD** | 6 | 3 | 0 | **+3** | +1 → +3 |
+| **CHF** | 3 | 4 | 0 | **−1** | unchanged |
+
+**Three currencies moved** once the missing rows landed (C-8). **AUD is the
+big one: +3 → +6, now tied with CAD at the top and one of only two
+currencies with ZERO bad scores.** The three rows that did it — Household
+Spending +6.0%, Westpac Consumer Confidence 88.9 from 83.9, ANZ-Indeed Job
+Ads +0.8% — were all published and all missed.
 
 **The tally is the model's raw output, not the ranking.** §4 weights it
 against policy direction (§3) and live news (§1) — USD scores +5 on the
@@ -368,14 +404,14 @@ stated — a model score is an input, not a verdict.
 
 | # | Ccy | Model net | Lean | Driving evidence |
 |---|---|---|---|---|
-| **1** | **CAD** | **+6** | **Strong** | Top of the model AND the news. Employment: Full Time **+38.6K from +0.6K**, unemployment 6.4% from 6.5%. Spending: Retail Sales 5.9%, Building Permits **+18.5%**. Inflation 3.0% from 2.8% — hike-leaning. Plus **oil's 4th straight up day** (Hormuz) and the **50% tariff pause**. Model and news agree. |
-| **2** | **EUR** | **+5** | **Strengthening** | **Zero BAD scores — the only currency on the board with none.** Balance of Trade swung **−€9.0B → +€8.6B**. Consumer Confidence −15.9 from −17.6, Mfg PMI 51.9. Inflation **2.9% from 2.8%, rising** (this corrects r2, which had it falling). |
-| **3** | **GBP** | **+3** | **Firm** | CPI **2.9% from 2.6%** with core 2.6% beating consensus — the strongest single inflation acceleration among released prints. Claimant Count **−11K vs +11.2K expected**. Offset: Industrial Production −0.2% and the trade deficit widened to £5.5B. |
-| **4** | **AUD** | **+3** | **Firm** | **No BAD scores.** Mfg PMI 52.0, Building Permits +8.9%, Balance of Trade flipped **−A$2.4B → +A$1.9B**. **Hauser warned of a hike today**, naming Middle East / AI boom / productivity. Held back by flat wages (3.2%) and China youth unemployment at 17.9%. |
-| **5** | **JPY** | **+2** | **Mildly positive** | Production is the story: Industrial Production **+4.9% from −2.1%**, Machinery Orders **+16.9% from −1.9%**. But Retail Sales collapsed 5.0% → 0.5%, trade deficit widened, and inflation 1.7% is still below target — BoJ has no forcing reason at 1.00%. |
-| **6** | **NZD** | **+1** | **Mixed** | **Inflation 4.1% from 3.1% — the largest jump on the board**, and the RBNZ already hiked 25bp on 8 Jul (first in 3 years). But the model is nearly balanced: unemployment rose to 5.6%, building permits −3.6%, and trade surplus almost vanished (NZ$577M → NZ$23M). Business NZ PMI still >50 but fell hard, 60.1 → 54.3. |
-| **7** | **USD** | **+5** | **Weak — model overstates it** | **The tally says +5; the ranking says 7th, and the gap is the point.** The model counts breadth, not severity: **NFP −23K is the first negative headline print this cycle**, and CB Consumer Confidence fell to 51.0 from 55.2. Inflation is *falling* (3.4% from 3.5%) with the Fed at 3.50–3.75% and a cut bias. Three good production scores do not outweigh a contracting labour market plus an easing central bank. |
-| **8** | **CHF** | **−1** | **Weakest** | Only negative model score. Inflation **0.4% and falling — the only cut-leaning currency**, against a policy rate already at **0.00%**, so the SNB has no room. Unemployment rose to 3.0%, trade surplus shrank CHF5.5B → CHF3.8B, Industrial Production −7.1% (though that print is Mar/26 and stale). |
+| **1** | **AUD** | **+6** | **Strong** | **Tied top of the model with ZERO bad scores.** Household Spending +6.0%, Building Permits +8.9%, Westpac Consumer Confidence 88.9 from 83.9, ANZ-Indeed Job Ads +0.8%, Balance of Trade flipped **−A$2.4B → +A$1.9B**, Mfg PMI 52.0. **Plus Hauser warned of a hike today**, naming Middle East / AI boom / productivity. Only drags: flat wages (3.2%) and China youth unemployment at 17.9%. |
+| **2** | **CAD** | **+6** | **Strong** | Employment: Full Time **+38.6K from +0.6K**, unemployment 6.4% from 6.5%. Spending: Retail Sales 5.9%, Building Permits **+18.5%**. Inflation 3.0% from 2.8%, hike-leaning. Plus **oil's 4th straight up day** and the **50% tariff pause**. Ranked below AUD only on the one BAD score (part-time skew). |
+| **3** | **EUR** | **+5** | **Strengthening** | The other **zero-BAD** currency. Balance of Trade swung **−€9.0B → +€8.6B**. Consumer Confidence −15.9 from −17.6. Inflation **2.9% from 2.8%, rising**. |
+| **4** | **GBP** | **+3** | **Firm** | CPI **2.9% from 2.6%**, core 2.6% beating consensus — the strongest inflation acceleration among released prints. Claimant Count **−11K vs +11.2K expected**. Offset: Industrial Production −0.2%, trade deficit widened to £5.5B. |
+| **5** | **NZD** | **+3** | **Firm but split** | Re-rated up from r4's +1. **ANZ Business Confidence surged 36.6 → 56.1**, strongest since February; Retail Card Spending +0.9%. **Inflation 4.1% from 3.1% is the largest jump on the board** and the RBNZ already hiked 25bp on 8 Jul. But 3 BAD scores remain: unemployment 5.6%, permits −3.6%, trade surplus nearly gone. |
+| **6** | **JPY** | **+3** | **Mixed** | Production is exceptional — Industrial Production **+4.9%**, Machinery Orders **+16.9%**, **Machine Tool Orders +50.4%** (two months >+50%), PMI Final 54.5 on seven straight expansion months. **But the consumer is contracting**: Household Spending **−3.3% YoY**, seventh straight decline and the sharpest; Retail Sales collapsed 5.0% → 0.5%. Inflation 1.7% still below target. Factory strong, household weak. |
+| **7** | **USD** | **+5** | **Weak — model overstates it** | **The tally says +5; the ranking says 7th, and the gap is the point.** The model counts breadth, not severity: **NFP −23K is the first negative headline print this cycle**, and CB Consumer Confidence fell to 51.0 from 55.2. Inflation is *falling* (3.4% from 3.5%) with the Fed at 3.50–3.75% and a cut bias. |
+| **8** | **CHF** | **−1** | **Weakest** | Only negative model score. Inflation **0.4% and falling — the only cut-leaning currency**, against a policy rate already at **0.00%**, so the SNB has no room. Unemployment rose to 3.0%, trade surplus shrank CHF5.5B → CHF3.8B. procure.ch–UBS PMI 53.2, down from 54.3 and the weakest since February. |
 
 **Model-vs-ranking disagreement (the line worth reading twice):** USD
 scores **+5** on breadth yet ranks **7th**. A tally counts how many
@@ -383,19 +419,33 @@ indicators are good; it cannot see that one of them (NFP) is a
 regime-defining print while three others are second-tier production
 readings. This is exactly why the ranking is not the tally.
 
-### 1. CAD/CHF — widest spread on the board
+### 1. AUD/CHF — top vs bottom of the model
 
-- **Alignment:** CAD #1 (+6 model, strongest employment and spending, oil
-  tailwind, tariff pause) against CHF #8 (−1 model, the only cut-leaning
-  currency, at a 0.00% floor with no room). **Top and bottom of both the
-  model and the policy direction.**
-- **Conviction:** **Highest.** No event gate — every input is released data.
+- **Alignment:** AUD #1 (**+6, zero BAD scores**, broad-based across
+  spending, employment and trade) against CHF #8 (**−1**, the only
+  cut-leaning currency, at a 0.00% floor with no room). Plus Hauser
+  explicitly flagging hike risk today against an SNB that cannot cut.
+- **Conviction:** **Highest on the fundamental spread.**
+- **⚠ EVENT-GATED:** **AU Employment releases Thu 09:30 PHT.** See the AUD
+  block below — TE is showing a phantom 76.3K. The alignment is sound on
+  released data; the event is the risk, not the thesis.
+- **Technical:** AUDCHF not read this run. **No levels published.**
+- **Falsifier:** AU employment printing materially below the 15.0K
+  consensus tomorrow, or a genuine haven bid returning to CHF.
+
+### 2. CAD/CHF — same short leg, no event gate
+
+- **Alignment:** CAD #2 (+6, strongest employment and spending, oil
+  tailwind, tariff pause) against CHF #8. **Materially the same spread as
+  #1 without tomorrow's event risk.**
+- **Conviction:** **Highest of the ungated set** — every input is
+  released data.
 - **Technical:** CADCHF not read this run. **No levels published.**
 - **Falsifier:** Hormuz de-escalation. Oil gives back the four-day gain and
-  CAD's news leg is gone within a session — the model leg (+6) would
-  survive, but the conviction drops to moderate.
+  CAD's news leg is gone within a session — the model leg (+6) survives,
+  but conviction drops to moderate.
 
-### 2. EUR/CHF — clean model separation
+### 3. EUR/CHF — clean model separation
 
 - **Alignment:** EUR #2 with **zero BAD scores** — the only currency on the
   board with none — against CHF #8. Trade swing −€9.0B → +€8.6B, confidence
@@ -416,7 +466,7 @@ inflation was rising while EUR was falling. **The EUR half was wrong**
 hike-leaning, so there is no divergence to trade. Withdrawn rather than
 quietly re-scored.
 
-### 3. AUD — DO NOT TRADE INTO THURSDAY 09:30 PHT
+### 4. AUD event gate — DO NOT TRADE INTO THURSDAY 09:30 PHT
 
 - **Alignment:** #4, no BAD scores, Hauser hawkish today.
 - **⛔ Blocked:** **AU Employment releases Thu 09:30 PHT** and TE already

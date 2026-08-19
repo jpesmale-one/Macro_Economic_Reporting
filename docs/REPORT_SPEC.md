@@ -220,6 +220,22 @@ is the WHITELIST, not a starting point.**
 - **A missing indicator is reported as MISSING**, with its next scheduled
   release. It is never substituted with a similar-sounding one. "No US
   Production data released this week" is a valid and useful row.
+- **BUT "MISSING" MUST BE PROVEN, NOT ASSUMED.** Before writing that an
+  indicator is unavailable, fetch **its own TradingEconomics page** -
+  `tradingeconomics.com/<country>/<indicator-slug>`. A country-page summary
+  omitting it is NOT evidence it is unpublished; those summaries are
+  partial by design. On 2026-08-19 nine indicators were wrongly declared
+  unavailable off summary fetches, and all nine were published - the
+  correction moved AUD from +3 to +6 and changed the top alignment.
+- **CHECK THE VENDOR'S NAME FOR THE SERIES BEFORE CALLING IT A
+  SUBSTITUTE.** TE often lists an indicator under a generic title while its
+  page text names the exact series - "Manufacturing PMI" on the Swiss page
+  is the `procure.ch-UBS Manufacturing PMI`. Read the page text before
+  declaring a mismatch: a false substitution warning invents a data gap.
+- **The absence claim is an ABSENCE-TYPE assertion** and carries the same
+  burden as any must-NOT row: say what was checked and where. "Not on the
+  country summary" is not a check; "its own page shows no print since
+  <date>" is.
 - The list is Jeff's specification of what drives his bias. Filling the
   tables with whatever the calendar happened to serve produces a different
   analysis than the one he asked for.
