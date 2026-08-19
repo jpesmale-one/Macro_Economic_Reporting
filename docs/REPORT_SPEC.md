@@ -286,20 +286,40 @@ Interest Rate is category 6 in the model but gets its own section (§3),
 so it is not repeated here.
 
 ### §3 — Interest Rates
-Per currency: current rate, last change with date, **the source used**,
-and hike/hold/cut leaning with the inflation and employment prints that
-justify it.
 
-**Source order: the central bank's own site FIRST**, TradingEconomics as
-fallback. State which was used per row.
+**Format (locked r7, from Jeff's reference layout).** One row per currency,
+**ordered by policy pressure, not alphabetically**. Columns:
+
+| Column | Content |
+|---|---|
+| **Ccy / Rate** | Current policy rate |
+| **Last decision** | Action + date + **vote split** where published (6–3, 8–1, dissent names) |
+| **Bias** | A short chip naming the pressure: HIKE RISK / CPI DECIDES / TRAPPED / FLOORED / TIGHTENING / REPRICING / SPLIT |
+| **Next meeting** | Date, PHT |
+| **Expectation** | One paragraph naming **what actually decides it next** — the pending release, the odds, the internal conflict |
+
+The Expectation column is the point of the section. It is not a summary of
+the rate; it is the answer to "what would move this."
+
+**Source order:** the central bank's own site FIRST, TradingEconomics as
+fallback. State which was used. Meeting dates come from the bank's own
+calendar where reachable — `federalreserve.gov` publishes the FOMC calendar
+and is authoritative for it.
 
 Known blocked (HTTP 403 to automated fetch, observed 2026-08-19):
-`rba.gov.au`, `rbnz.govt.nz`. Known working: `federalreserve.gov`.
-When a CB site is blocked, say so and label the row as TE-sourced — the
-gap is disclosed, never papered over.
+`rba.gov.au`, `rbnz.govt.nz`, `snb.ch`. Known working: `federalreserve.gov`.
+**A date from a secondary source is labelled as such**, and an unconfirmed
+date says "unconfirmed" rather than being asserted.
 
-Market-implied odds are quoted only with their source instrument;
-unsourced odds are unauditable and are omitted rather than guessed.
+**MARKET-IMPLIED ODDS REQUIRE A NAMED INSTRUMENT AND A DATE.** "~31% hike
+(CME FedWatch, 14 Aug)" is publishable. "~70% priced" is not. Where no
+sourced number exists, **omit the odds and say so** — every currency without
+odds should be visibly without them, so the gap is not mistaken for
+certainty. Analyst-consensus pricing may be used but must be labelled as
+weaker evidence than a single named instrument.
+
+**Times are PHT (UTC+8)** — convert and say so. A reference layout carrying
+another timezone (PST, ET) is converted, never copied.
 
 ### §4 — Conviction Playbook  *(reshaped per LD-7)*
 

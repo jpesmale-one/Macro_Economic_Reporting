@@ -177,6 +177,19 @@
   .wt-3{background:var(--violet-bg);color:var(--violet);border-color:var(--violet)}
   .wt-2{background:var(--info-bg);color:var(--info);border-color:var(--info)}
   .wt-1{background:var(--surface2);color:var(--muted)}
+  table.rates td{padding:11px 11px;vertical-align:top}
+  table.rates td.exp{font-family:var(--sans);font-size:.8rem;line-height:1.5;color:var(--text);min-width:300px}
+  table.rates td.ccy{font-size:.9rem}
+  .vote{font-size:.65rem;color:var(--muted);font-family:var(--mono)}
+  .bias{display:inline-block;font-family:var(--mono);font-size:.6rem;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:3px;white-space:nowrap}
+  .b-decide{background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn)}
+  .b-hike{background:var(--bear-bg);color:var(--bear);border:1px solid var(--bear)}
+  .b-reprice{background:var(--warn-bg);color:var(--warn)}
+  .b-trap{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+  .b-floor{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+  .b-tighten{background:var(--bear-bg);color:var(--bear)}
+  .b-split{background:var(--violet-bg);color:var(--violet);border:1px solid var(--violet)}
   footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--border);
     font-family:var(--mono);font-size:.65rem;color:var(--muted);
     display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
@@ -188,7 +201,7 @@
   <div>
     <div class="eyebrow">Macro Economic Reporting &middot; Daily Market Sentiment</div>
     <div class="mdate">Wednesday, 19 August 2026 &middot; 14:12 PHT</div>
-    <div class="draft">REVISION 6 &middot; UNSEALED &middot; INTRADAY HORIZON</div>
+    <div class="draft">REVISION 7 &middot; UNSEALED &middot; INTRADAY HORIZON</div>
   </div>
   <div class="chips">
     <span>GOLD <b class="dn">4,345.47</b> <span class="dn">&minus;1.11%</span></span>
@@ -437,30 +450,80 @@
     </div></div>
 
   <!-- 3 INTEREST RATES -->
-  <h2 class="sec">&sect;3 &nbsp; Interest Rates<em>central bank sites where reachable</em></h2>
-  <div class="tblwrap"><table>
-    <thead><tr><th>Ccy</th><th>Rate</th><th>Last change</th><th>Source</th><th>Lean</th></tr></thead>
+  <h2 class="sec">&sect;3 &nbsp; Interest Rates<em>ordered by policy pressure &middot; times PHT</em></h2>
+  <div class="tblwrap"><table class="rates">
+    <thead><tr><th>Ccy</th><th>Rate</th><th>Last decision</th><th>Bias</th><th>Next meeting</th><th>Expectation</th></tr></thead>
     <tbody>
-      <tr><td class="ccy">AUD</td><td class="num">4.35%</td><td class="sched">Hold, 2nd mtg &middot; +75bp since Feb</td><td class="sched">TE</td><td><span class="pill p-good">Hawkish hold</span> <span class="note">Hauser flags hike risk</span></td></tr>
-      <tr><td class="ccy">USD</td><td class="num">3.50&ndash;3.75%</td><td class="sched">&minus;25bp, 11 Dec 2025</td><td><span class="pill p-good">federalreserve.gov</span></td><td><span class="pill p-bad">Hold / cut</span> <span class="note">housing weak, prices deflating</span></td></tr>
-      <tr><td class="ccy">GBP</td><td class="num">3.75%</td><td class="sched">Jul/26</td><td class="sched">TE</td><td><span class="pill p-good">Hawkish hold</span> <span class="note">CPI accelerating</span></td></tr>
-      <tr><td class="ccy">NZD</td><td class="num">2.50%</td><td class="sched"><strong>+25bp, 8 Jul 2026</strong> &mdash; first hike in 3 yrs</td><td class="sched">TE</td><td><span class="pill p-good">Tightening</span> <span class="note">next 2 Sep</span></td></tr>
-      <tr><td class="ccy">EUR</td><td class="num">2.40%</td><td class="sched">Jul/26</td><td class="sched">TE</td><td><span class="pill p-bad">Hold / dovish</span> <span class="note">inflation undershooting</span></td></tr>
-      <tr><td class="ccy">CAD</td><td class="num">2.25%</td><td class="sched">Jul/26</td><td class="sched">TE</td><td><span class="pill p-neut">Hold</span> <span class="note">oil + tariff pause help</span></td></tr>
-      <tr><td class="ccy">JPY</td><td class="num">1.00%</td><td class="sched">Jul/26</td><td class="sched">TE</td><td><span class="pill p-neut">Hold, hike watch</span> <span class="note">core still &lt;2%</span></td></tr>
-      <tr><td class="ccy">CHF</td><td class="num">0.00%</td><td class="sched">Jun/26</td><td class="sched">TE</td><td><span class="pill p-neut">Hold</span> <span class="note">at the floor</span></td></tr>
+      <tr>
+        <td class="ccy">GBP</td><td class="num">3.75%</td>
+        <td class="sched">Hold, 30 Jul<br><span class="vote">6&ndash;3</span></td>
+        <td><span class="bias b-decide">CPI decides</span></td>
+        <td class="sched">17 Sep</td>
+        <td class="exp"><strong>CPI released today 14:00 PHT: 2.9% vs 2.6% prior</strong>, core 2.6% beating 2.5% &mdash; the hawks&rsquo; case made. But Tuesday&rsquo;s wage data was soft (Avg Earnings 4.1% from 4.4%, HMRC payrolls &minus;13K), which undercuts it. <strong>A 6&ndash;3 committee with hot CPI and cooling wages is the tightest call on the board.</strong></td>
+      </tr>
+      <tr>
+        <td class="ccy">EUR</td><td class="num">2.40%</td>
+        <td class="sched">Hold, 23 Jul</td>
+        <td><span class="bias b-hike">Hike risk</span></td>
+        <td class="sched">10 Sep</td>
+        <td class="exp"><strong>~78&ndash;80% priced for September</strong> (market pricing, mid-Aug). Final July CPI landed today at <strong>2.9%, up from 2.8%</strong> &mdash; rising, not cooling. Lagarde has named Middle East energy as an upside inflation risk.</td>
+      </tr>
+      <tr>
+        <td class="ccy">AUD</td><td class="num">4.35%</td>
+        <td class="sched">Hold, 11 Aug<br><span class="vote">2nd consecutive &middot; +75bp since Feb</span></td>
+        <td><span class="bias b-hike">Hike risk</span></td>
+        <td class="sched">29 Sep</td>
+        <td class="exp"><strong>Highest G10 rate.</strong> Hauser today named three upside risks &mdash; Middle East, AI boom, productivity &mdash; and <strong>warned of a hike if they crystallise</strong>. <strong>Employment tomorrow 09:30 PHT, cons +15.0K</strong> &mdash; and TE is showing a phantom 76.3K for it. Wages flat at 3.2% is the counterweight.</td>
+      </tr>
+      <tr>
+        <td class="ccy">CAD</td><td class="num">2.25%</td>
+        <td class="sched">Hold</td>
+        <td><span class="bias b-reprice">Repricing</span></td>
+        <td class="sched">9 Sep</td>
+        <td class="exp"><strong>CPI beat at 3.0% from 2.8%</strong>, and the model scores CAD a perfect <strong>+8.00</strong>. The rate looks low against that, but the market has not pressed it. Oil&rsquo;s 4th straight up day and the tariff pause both add pressure.</td>
+      </tr>
+      <tr>
+        <td class="ccy">USD</td><td class="num">3.50&ndash;3.75%</td>
+        <td class="sched">Hold, 29 Jul<br><span class="vote">3 dissents</span></td>
+        <td><span class="bias b-trap">Trapped</span></td>
+        <td class="sched"><strong>15&ndash;16 Sep</strong></td>
+        <td class="exp"><strong>~31% hike priced</strong> (CME FedWatch, 14 Aug). Odds peaked near <strong>82%</strong> in late July, then <strong>payrolls (&minus;23K) and CPI (3.4%, falling) collapsed them</strong>. <strong>FOMC Minutes tonight 02:00 PHT Thursday.</strong> Hot energy against a contracting labour market &mdash; trapped between its two mandates.</td>
+      </tr>
+      <tr>
+        <td class="ccy">CHF</td><td class="num">0.00%</td>
+        <td class="sched">Hold, 18 Jun</td>
+        <td><span class="bias b-floor">Floored</span></td>
+        <td class="sched">Sep 2026 <span class="note">(unconfirmed)</span></td>
+        <td class="exp"><strong>ZIRP &mdash; no room to cut</strong>, and inflation at <strong>0.4% and falling</strong> is the only cut-leaning read on the board (model &minus;3.00). A haven bid on Iran escalation is a live threat to short-CHF positions regardless of policy.</td>
+      </tr>
+      <tr>
+        <td class="ccy">JPY</td><td class="num">1.00%</td>
+        <td class="sched">Hold, 31 Jul<br><span class="vote">8&ndash;1 &middot; Takata wanted 1.25%</span></td>
+        <td><span class="bias b-tighten">Tightening</span></td>
+        <td class="sched">17 Sep</td>
+        <td class="exp">Tightening bias intact, but <strong>inflation 1.7% is still below the 2% target</strong> so there is no forcing reason. <strong>Oil near $85 hits an energy importer hard</strong> &mdash; trade deficit widened again. Model nets exactly 0.00.</td>
+      </tr>
+      <tr>
+        <td class="ccy">NZD</td><td class="num">2.50%</td>
+        <td class="sched"><strong>Hiked +25bp, 8 Jul</strong><br><span class="vote">first hike in 3 years</span></td>
+        <td><span class="bias b-split">Split</span></td>
+        <td class="sched">2 Sep</td>
+        <td class="exp"><strong>Inflation 4.1% from 3.1% &mdash; the largest jump on the board</strong> (model +3.00). But <strong>employment takes the full &minus;2.00</strong> (unemployment 5.6% from 5.4%) and China demand is weak. Hot inflation against a deteriorating labour market.</td>
+      </tr>
     </tbody>
   </table></div>
-  <div class="card" style="margin-top:12px"><div class="card-hd"><span class="pill p-warn">Central bank verification</span> partially blocked</div>
+
+  <div class="card" style="margin-top:14px"><div class="card-hd"><span class="pill p-info">Source discipline</span> what is confirmed and what is not</div>
     <div class="card-b">
       <dl class="kv">
-        <dt>Confirmed</dt><dd><strong>federalreserve.gov</strong> &mdash; Fed at 3.50&ndash;3.75%, last changed 11 Dec 2025. <strong>Matches TE.</strong></dd>
-        <dt>Blocked</dt><dd><strong>rba.gov.au</strong> and <strong>rbnz.govt.nz</strong> both return HTTP 403 to automated fetches.</dd>
-        <dt>Not attempted</dt><dd>ECB, BoE, BoJ, BoC, SNB &mdash; not reached this run.</dd>
+        <dt>Rates</dt><dd>TradingEconomics country pages. <strong>USD confirmed independently against <code>federalreserve.gov</code></strong> (3.50&ndash;3.75%, last changed 11 Dec 2025).</dd>
+        <dt>Dates</dt><dd><code>federalreserve.gov</code> for the FOMC (<strong>15&ndash;16 Sep</strong>, two-day, with Summary of Economic Projections); centralbank.watch for ECB 10 Sep, BoE 17 Sep, BoJ 17 Sep, RBA 29 Sep, BoC 9 Sep.</dd>
+        <dt>Odds</dt><dd>USD ~31% is <strong>CME FedWatch, 14 Aug</strong>. EUR ~78&ndash;80% is analyst-consensus market pricing, mid-Aug &mdash; <strong>not a single named instrument</strong>, so it is weaker evidence and labelled as such.</dd>
       </dl>
-      <div class="warnbox"><b>Structural constraint, not an oversight.</b> Several central bank sites block programmatic access. Where blocked, TradingEconomics is used and labelled as the source.</div>
-      <div class="warnbox"><b>No market-implied odds quoted.</b> None obtained with a named source instrument. Every lean is derived from prints, not from pricing.</div>
+      <div class="gapbox"><b>Unconfirmed, flagged not asserted.</b> RBNZ (2 Sep) comes from a secondary source and the SNB&rsquo;s September date could not be confirmed &mdash; <code>rbnz.govt.nz</code> and <code>snb.ch</code> both return <strong>HTTP 403</strong> to automated fetches.</div>
+      <div class="warnbox"><b>No odds for GBP, AUD, CAD, JPY, NZD or CHF.</b> None was obtained with a named source. An unsourced probability is unauditable, so it is omitted rather than guessed.</div>
     </div></div>
+
 
   <!-- 4 PLAYBOOK -->
   <h2 class="sec">&sect;4 &nbsp; Conviction Playbook<em>intraday horizon &middot; no carry &middot; levels are structure, never entries</em></h2>
@@ -586,7 +649,7 @@
   </div></div></div>
 
   <footer>
-    <span>Macro Economic Reporting &middot; edition 2026-08-19 r6 &middot; data as-of 14:12 PHT</span>
+    <span>Macro Economic Reporting &middot; edition 2026-08-19 r7 &middot; data as-of 14:12 PHT</span>
     <span>UNSEALED &middot; light-seal tier &middot; not citable until sealed</span>
   </footer>
 </div>
