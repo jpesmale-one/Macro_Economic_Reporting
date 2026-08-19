@@ -531,6 +531,56 @@ abandoned - each entry says what would un-park it.
 
 ## OPEN FINDINGS
 
+### F-3 - Report filled with off-list indicators instead of the whitelist (2026-08-19)
+OBSERVED: Jeff, reviewing r2: "why are we injecting other data/country to the
+report? Thu 14:00 DE PPI YoY - is this in the macro economic indicator list
+that we have?" It was not. An audit of the published section 2 found 24 of 34
+rows were either an unauthorized COUNTRY or an indicator never named in
+Idea_dump/Macro_economic_indicators.txt. Unauthorized countries published:
+DE (PPI YoY, twice) and ZA (Retail Sales YoY) - neither is one of the eight.
+Unauthorized indicators published under authorized countries: US Housing
+Starts, US Pending Home Sales, US Initial Jobless Claims, US Import/Export
+Prices, EA Current Account, CA PPI, GB HMRC Payrolls, GB RPI, AU Consumer
+Inflation Expectations, and more.
+ROOT CAUSE: I built section 2 from the TradingEconomics CALENDAR - i.e. from
+whatever released in the last 48 hours - instead of querying the country
+series pages for the indicators Jeff actually named. The calendar answers
+"what came out"; the list answers "what drives the bias". Those are different
+questions and I answered the wrong one.
+WHY IT MATTERS - IT CHANGED THE ANSWER, not just the presentation:
+  (a) The strength ranking is DERIVED from these rows. Rebuilt on the
+      whitelist, CAD went from #2 to #1 (+6 net, the strongest score on the
+      board) and NZD - which r2 could not even rank - came in at +1.
+  (b) It let a second error hide. Reading EA inflation off a calendar row
+      instead of the series page inverted its DIRECTION (F-4 below), which
+      was the entire premise of r2's highest-conviction call.
+  (c) The list is Jeff's specification of his own framework. Substituting a
+      similar-sounding indicator silently replaces his model with mine.
+FIX APPLIED: docs/REPORT_SPEC.md section 4 now states the list is a CLOSED
+SET - a whitelist, not a starting point - with three rules: only the 8
+currencies, only the named indicators, and a missing indicator is reported as
+MISSING with its next release rather than substituted. Off-list data may
+inform the READ in section 1 but never becomes a scored row.
+STATUS: OPEN as a standing discipline. Closes only when the indicator pull is
+automated FROM the list (which fires T1/T3), rather than assembled by hand
+from whatever the calendar served.
+
+### F-4 - EA inflation direction inverted by reading the calendar row (2026-08-19)
+OBSERVED: r2 reported Euro Area inflation FALLING to 2.8% from 2.9% and built
+its highest-conviction call (GBP/EUR divergence: GBP hot, EUR cooling) on it.
+The EA country-page series shows 2.9% from 2.8% - RISING. EA is hike-leaning.
+The divergence did not exist; the call was WITHDRAWN in r3, not re-scored.
+ROOT CAUSE: the calendar row "Inflation Rate YoY Final JUL" carried a
+Previous of 2.8% that did not correspond to the prior YoY print. Read in
+isolation, without the series page, it produced the opposite direction.
+RELATIONSHIP TO F-3: this is F-3's collateral damage. Had section 2 been
+built from the country series pages - which is what the whitelist forces -
+the direction would have been right the first time. Two findings, one root.
+FIX: the whitelist rule (F-3) requires country-page values, which is the
+structural fix. Additionally: a DIRECTION claim (rising/falling) is a derived
+figure and gets the P2 treatment - state both prints and the comparison.
+STATUS: OPEN with F-3.
+
 ### F-2 - TE calendar timezone assumed, not verified - 4h error (2026-08-19)
 OBSERVED: In r1 of the first edition I assumed the TradingEconomics calendar
 time column was ET (UTC-4) and applied +12h to reach PHT. It is UTC, so the

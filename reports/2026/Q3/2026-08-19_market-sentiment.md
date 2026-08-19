@@ -1,6 +1,6 @@
 ---
 edition: 2026-08-19
-revision: 2 (supersedes r1 - see CORRECTIONS)
+revision: 3 (supersedes r1, r2 - see CORRECTIONS)
 generated: 2026-08-19 14:12 PHT
 data_asof: 2026-08-19 14:12 PHT
 horizon: INTRADAY (Wednesday - no swing block, no carry per LD-8)
@@ -16,7 +16,7 @@ artifact_url: https://claude.ai/code/artifact/6ad31052-2b2c-4935-9573-908f00af2e
 
 ---
 
-## CORRECTIONS TO REVISION 1
+## CORRECTIONS (r1 -> r2 -> r3)
 
 **C-1 — TIMEZONE CONVERSION WAS WRONG (my error, caught by Jeff).**
 r1 treated the TE time column as **ET (UTC-4)** and applied **+12h**. It is
@@ -44,6 +44,18 @@ on 8 July — its first hike in three years**. No August meeting; next is
 **C-4 — PHANTOM COUNT REVISED 13 → 9.** With the corrected +8h conversion,
 four rows previously flagged had in fact already released. The finding
 stands; the count was inflated by C-1.
+
+**C-6 — OFF-LIST DATA WAS INJECTED (Jeff caught it).** r1/r2 filled §2 with
+whatever TradingEconomics served: DE PPI, ZA Retail Sales, US Housing Starts,
+US Jobless Claims, EA Current Account and more — 24 of 34 rows were either
+an unauthorized country or an indicator never named in
+`Idea_dump/Macro_economic_indicators.txt`. §2 is now rebuilt from the
+WHITELIST only. Off-list data may still shape the narrative in §1; it is
+never a scored row. This changed the ranking materially (CAD to #1, EUR up).
+
+**C-7 — EA INFLATION DIRECTION WAS INVERTED.** r2 read the calendar row and
+reported EA inflation falling to 2.8% from 2.9%. The country-page series
+shows **2.9% from 2.8% — rising**. EA is hike-leaning, not cooling.
 
 **C-5 — AUD RANKING WAS WRONG.** r1 put AUD at #6 on flat wages. It missed
 **RBA Deputy Governor Hauser's 19 Aug speech** naming three upside
@@ -97,94 +109,165 @@ CNN's.
 
 ## §2 — Macro Economic Indicators
 
-Framework: `Idea_dump/Macro_economic_indicators.txt`. One table per
-category. **Times PHT. Release status explicit.**
+**WHITELIST ONLY.** Every row below is an indicator named in
+`Idea_dump/Macro_economic_indicators.txt`, for one of the 8 listed
+currencies. Values are the LATEST RELEASED print per TradingEconomics
+country pages (read 2026-08-19 14:12 PHT). Off-list countries (DE, ZA, CN,
+FR…) and off-list indicators do not appear here — they may inform the
+narrative in §1, but they are never scored rows.
 
 ### 2.1 PRODUCTION
 
-| Sched (PHT) | Ccy | Event | Actual | Prev | Cons | Threshold | Score |
-|---|---|---|---|---|---|---|---|
-| Tue 21:15 | US | Industrial Production YoY JUL | 1.1% | 1.29% | — | >0.5% | **GOOD** (decelerating) |
-| Tue 21:15 | US | Manufacturing Production YoY JUL | 1.2% | 1.1% | — | >0.5% | **GOOD** |
-| Tue 21:15 | US | Industrial Production MoM JUL | 0.2% | 0.3% | 0.3% | >0.5% | NEUTRAL |
-| **Thu 14:00** | DE | PPI YoY JUL | *1.8%* | 2.7% | 2.4% | — | ⛔ **NOT RELEASED** |
-| **Thu 20:30** | CA | PPI MoM JUL | *−1.4%* | — | 0.2% | — | ⛔ **NOT RELEASED** |
-| **Fri 07:00** | AU | S&P Mfg PMI Flash AUG | *52.0* | — | 50.9 | >50.5 | ⛔ **NOT RELEASED** |
-| Fri 15:30–21:45 | EA/GB/US | Flash PMIs AUG | — | — | — | >50.5 | Pending |
+| Ccy | Indicator | Actual | Prev | Ref | Threshold | Score |
+|---|---|---|---|---|---|---|
+| US | ISM Manufacturing PMI | 53.9 | 53.9 | Jul/26 | >50.5 | **GOOD** |
+| US | Industrial Production YoY | 1.1% | 1.29% | Jul/26 | >0.5% | **GOOD** |
+| US | Durable Goods Ex Transp MoM | 0.6% | 1.8% | Jun/26 | >0.5% | **GOOD** |
+| EA | S&P Global Mfg PMI | 51.9 | 51.4 | Jul/26 | >50.5 | **GOOD** |
+| EA | Industrial Production YoY | 0.1% | −0.1% | Jun/26 | 0–0.5% | NEUTRAL |
+| CA | S&P Global Mfg PMI | 53.5 | 53.0 | Jul/26 | >50.5 | **GOOD** |
+| AU | S&P Global Mfg PMI | 52.0 | 51.5 | Jul/26 | >50.5 | **GOOD** |
+| NZ | Business NZ PMI | 54.3 | 60.1 | Jul/26 | >50.5 | **GOOD** (falling hard) |
+| NZ | Global Dairy Trade Price Index | 2.3% | 0.1% | Aug/26 | >0.5% | **GOOD** |
+| JP | Industrial Production YoY | 4.9% | −2.1% | Jun/26 | >0.5% | **GOOD** |
+| JP | Machinery Orders YoY | 16.9% | −1.9% | Jun/26 | >0.5% | **GOOD** |
+| GB | S&P Global Mfg PMI | 51.9 | 52.5 | Jul/26 | >50.5 | **GOOD** |
+| GB | Industrial Production YoY | −0.2% | 1.0% | Jun/26 | <0% | **BAD** |
+| GB | Manufacturing Production YoY | 0.5% | 2.0% | Jun/26 | 0–0.5% | NEUTRAL |
+| CH | Manufacturing PMI | 53.2 | 54.3 | Jul/26 | >50.5 | **GOOD** |
+| CH | Industrial Production YoY | −7.1% | −0.4% | Mar/26 | <0% | **BAD** (Q1 — stale) |
 
-**Production read:** Only US production data is genuinely released.
-US manufacturing is expanding but decelerating — **mildly GOOD for USD**.
+**Read:** JP production is the standout — Industrial Production +4.9% from
+−2.1% and Machinery Orders +16.9% from −1.9%, both sharp reversals. GB is
+the weak leg: PMI still expanding but Industrial Production has turned
+negative. CH Industrial Production is **Mar/26 — five months stale** and
+carries little weight.
+
+**Not released / not available this period:** JP Machine Tool Orders YoY,
+JP S&P Global Mfg PMI Final, CH Procure.ch Manufacturing PMI (TE lists a
+generic Swiss Manufacturing PMI instead — flagged, not silently
+substituted).
 
 ### 2.2 SPENDING
 
-| Sched (PHT) | Ccy | Event | Actual | Prev | Cons | Threshold | Score |
-|---|---|---|---|---|---|---|---|
-| Tue 20:30 | US | Building Permits MoM JUL | **+5.0%** | −2.6% | — | >0.5% | **GOOD** |
-| Tue 20:30 | US | Building Permits Prel JUL | 1.443M | 1.374M | 1.37M | beat | **GOOD** |
-| Tue 20:30 | US | Housing Starts MoM JUL | **−12.4%** | +19.7% | — | <0% | **BAD** |
-| Tue 22:00 | US | Pending Home Sales MoM JUL | −2.3% | −4.8% | 0.3% | <0% | **BAD** |
-| Tue 20:15 | CA | Housing Starts JUL | 229.1K | 240.8K | 248K | miss | **BAD** |
-| Wed 19:00 | ZA | Retail Sales YoY JUN | 2.3% | — | 2.6% | — | context |
-| **Fri 07:01** | GB | GfK Consumer Confidence AUG | *−17* | −18 | −18 | >Prev | ⛔ **NOT RELEASED** |
+| Ccy | Indicator | Actual | Prev | Ref | Threshold | Score |
+|---|---|---|---|---|---|---|
+| US | Building Permits MoM | +5.0% | −2.6% | Jul/26 | >0.5% | **GOOD** |
+| US | Retail Sales YoY | 5.0% | 6.8% | Jul/26 | >0.5% | **GOOD** (decelerating) |
+| US | CB Consumer Confidence | 51.0 | 55.2 | Aug/26 | >Prev | **BAD** |
+| US | Personal Spending MoM | 0.3% | 0.9% | Jun/26 | 0–0.5% | NEUTRAL |
+| EA | Retail Sales YoY | 0.7% | 1.9% | Jun/26 | >0.5% | **GOOD** (decelerating) |
+| EA | Consumer Confidence | −15.9 | −17.6 | Jul/26 | >Prev | **GOOD** |
+| CA | Retail Sales YoY | 5.9% | 3.6% | May/26 | >0.5% | **GOOD** |
+| CA | Building Permits MoM | +18.5% | −3.0% | Jun/26 | >0.5% | **GOOD** |
+| AU | Building Permits YoY | 8.9% | 5.5% | Jun/26 | >0.5% | **GOOD** |
+| NZ | Building Permits MoM | −3.6% | −4.9% | Jun/26 | <0% | **BAD** |
+| NZ | ANZ Roy Morgan Consumer Conf | 99.3 | 91.3 | Jul/26 | >Prev | **GOOD** |
+| JP | Consumer Confidence | 34.9 | 33.8 | Jul/26 | >Prev | **GOOD** |
+| JP | Retail Sales YoY | 0.5% | 5.0% | Jun/26 | 0–0.5% | NEUTRAL (sharp drop) |
+| GB | GfK Consumer Confidence | −17 | −23 | Jul/26 | >Prev | **GOOD** |
+| GB | Retail Sales YoY | 4.2% | 3.5% | Jun/26 | >0.5% | **GOOD** |
+| CH | Consumer Confidence | −35 | −36 | Jul/26 | >Prev | **GOOD** |
+| CH | Retail Sales YoY | 1.5% | 3.4% | Jun/26 | >0.5% | **GOOD** (decelerating) |
 
-**Spending read:** US housing is **contradictory** — permits strong (+5%),
-starts collapsing (−12.4%), pending sales negative. Forward intent up,
-current activity down. Net **BAD for USD**. **CAD** housing also weak.
+**Read:** CAD spending is the strongest on the board — Retail Sales 5.9%
+and Building Permits +18.5%. US is split: permits and retail strong, but
+**CB Consumer Confidence dropped to 51.0 from 55.2**, the clearest
+forward-looking warning in this category. JP Retail Sales collapsed from
+5.0% to 0.5%.
+
+**Not released / not available:** AU Household Spending YoY, AU Westpac
+Consumer Confidence Change, AU NAB Business Confidence, NZ Electronic
+Retail Card Spending YoY, NZ ANZ Business Confidence, JP Household
+Spending YoY.
 
 ### 2.3 TRADE
 
-| Sched (PHT) | Ccy | Event | Actual | Prev | Cons | Threshold | Score |
-|---|---|---|---|---|---|---|---|
-| Wed 16:00 | EA | Current Account s.a JUN | €25.1B | €22.1B | €24.7B | >Prev | **GOOD** |
-| Wed 16:00 | EA | Current Account JUN | €−6.2B | — | €32.0B | — | Large miss (n.s.a.) |
-| **Thu 07:50** | JP | Balance of Trade JUL | *¥−406.9B* | ¥−680B | ¥−500.0B | >Prev | ⛔ **NOT RELEASED** |
-| Tue 20:30 | US | Export Prices MoM JUL | −1.3% | −0.7% | 0.2% | — | Disinflationary |
-| Tue 20:30 | US | Import Prices MoM JUL | −0.4% | −0.3% | 0.1% | — | Disinflationary |
+| Ccy | Indicator | Actual | Prev | Ref | Threshold | Score |
+|---|---|---|---|---|---|---|
+| US | Balance of Trade | −$73.26B | −$77.65B | Jun/26 | >Prev | **GOOD** |
+| EA | Balance of Trade | €8,600M | €−9,000M | Jun/26 | >Prev | **GOOD** |
+| CA | Balance of Trade | C$3,860M | C$3,700M | Jun/26 | >Prev | **GOOD** |
+| AU | Balance of Trade | A$1,929M | A$−2,367M | Jun/26 | >Prev | **GOOD** |
+| NZ | Balance of Trade | NZ$23M | NZ$577M | Jun/26 | <Prev | **BAD** |
+| JP | Balance of Trade | ¥−407B | ¥−392B | Jun/26 | <Prev | **BAD** |
+| GB | Balance of Trade | £−5,537M | £−3,464M | Jun/26 | <Prev | **BAD** |
+| CH | Balance of Trade | CHF3,800M | CHF5,530M | Jun/26 | <Prev | **BAD** |
 
-**Trade read:** EA current account improving — **GOOD for EUR**. US import
-and export prices both falling: **disinflationary, USD-dovish**.
+**Read:** A clean 4–4 split. **EA swung from −€9.0B to +€8.6B** — the
+largest single improvement in this category. AU also flipped positive.
+GB's deficit widened sharply; NZ's surplus nearly vanished (NZ$577M →
+NZ$23M).
 
 ### 2.4 EMPLOYMENT
 
-| Sched (PHT) | Ccy | Event | Actual | Prev | Cons | Threshold | Score |
-|---|---|---|---|---|---|---|---|
-| Tue 14:00 | GB | **Claimant Count Change JUL** | **−11K** | −6.4K | 11.2K | <Prev | **GOOD** — big beat |
-| Tue 14:00 | GB | Unemployment Rate JUN | 4.9% | 4.9% | 4.8% | <Prev | NEUTRAL |
-| Tue 14:00 | GB | Employment Change JUN | 83K | 147K | — | >Prev | **BAD** — slowing |
-| Tue 14:00 | GB | HMRC Payrolls JUL | −13K | −13K | — | >Prev | **BAD** |
-| Tue 14:00 | GB | Avg Earnings incl. Bonus JUN | 4.1% | 4.4% | 4.1% | — | Wages cooling |
-| **Thu 09:30** | AU | Employment Change JUL | *76.3K* | 15K | 15.0K | >Cons | ⛔ **NOT RELEASED** |
-| **Thu 09:30** | AU | Unemployment Rate JUL | *4.4%* | 4.4% | 4.5% | <Prev | ⛔ **NOT RELEASED** |
-| **Thu 20:30** | US | Initial Jobless Claims | *209K* | 210K | 201.0K | <Prev | ⛔ **NOT RELEASED** |
+| Ccy | Indicator | Actual | Prev | Ref | Threshold | Score |
+|---|---|---|---|---|---|---|
+| US | Non Farm Payrolls | **−23K** | 20K | Jul/26 | >Consensus | **BAD** |
+| US | Unemployment Rate | 4.1% | 4.2% | Jul/26 | <Prev | **GOOD** |
+| EA | Unemployment Rate | 6.3% | 6.3% | Jun/26 | unchanged | NEUTRAL |
+| CA | Unemployment Rate | 6.4% | 6.5% | Jul/26 | <Prev | **GOOD** |
+| CA | Full Time Employment Chg | 38.6K | 0.6K | Jul/26 | >Prev | **GOOD** |
+| CA | Part Time Employment Chg | 36.6K | 17.5K | Jul/26 | <Prev | **BAD** |
+| AU | Unemployment Rate | 4.4% | 4.4% | Jun/26 | unchanged | NEUTRAL |
+| NZ | Unemployment Rate | 5.6% | 5.4% | Jun/26 | >Prev | **BAD** |
+| JP | Unemployment Rate | 2.5% | 2.5% | Jun/26 | unchanged | NEUTRAL |
+| GB | Claimant Count Change | **−11K** | −6.4K | Jul/26 | <Prev | **GOOD** |
+| CH | Unemployment Rate | 3.0% | 2.9% | Jul/26 | >Prev | **BAD** |
 
-**Employment read:** **GBP is the only currency with genuinely released
-employment data**, and it is mixed — claimants sharply down (good) but
-payrolls and employment change weak. **The AU employment number everyone
-can see is a phantom** (§0 of r1; still 15 hours away).
+**Read:** **US NFP at −23K is the worst print on the entire board** — the
+first negative headline this cycle, against a 20K prior. Unemployment
+falling to 4.1% is a participation effect, not strength. **CAD employment
+is the mirror image**: Full Time +38.6K from +0.6K, which your framework
+weights heavier than part-time by design.
+
+**AU Employment Change is NOT in this table.** TE displays 76.3K, but the
+July print releases **Thu 20 Aug 09:30 PHT** — the latest *released* AU
+employment is Jun/26. See §0.
 
 ### 2.5 INFLATION
 
-| Sched (PHT) | Ccy | Event | Actual | Prev | Cons | Rule | Score |
-|---|---|---|---|---|---|---|---|
-| **Wed 14:00** | **GB** | **Inflation Rate YoY JUL** | **2.9%** | **2.6%** | 2.9% | >2% & rising | **HIKE-LEANING** |
-| **Wed 14:00** | **GB** | **Core Inflation YoY JUL** | **2.6%** | 2.6% | 2.5% | >2%, beat | **HIKE-LEANING** |
-| Wed 14:00 | GB | Inflation Rate MoM JUL | 0.3% | 0.1% | 0.3% | rising | Confirms |
-| Wed 14:00 | GB | PPI Core Output YoY JUL | 2.8% | 2.6% | — | rising | Pipeline pressure |
-| Wed 14:00 | GB | RPI YoY JUL | 3.2% | 3.0% | 3.3% | rising | Confirms |
-| Wed 17:00 | EA | **Inflation Rate YoY Final JUL** | **2.8%** | 2.9% | 2.9% | >2% & falling | **HOLD-LEANING** |
-| Wed 17:00 | EA | Core Inflation YoY Final JUL | 2.4% | 2.5% | 2.5% | >2% & falling | **HOLD-LEANING** |
-| Wed 09:30 | AU | Wage Price Index YoY Q2 | 3.2% | 3.2% | 3.2% | flat | NEUTRAL |
-| **Thu 09:00** | AU | Consumer Inflation Expectations | *4.7%* | — | 4.4% | — | ⛔ **NOT RELEASED** |
-| **Fri 07:30** | JP | Core Inflation YoY JUL | *1.6%* | 1.8% | 1.7% | <2% | ⛔ **NOT RELEASED** |
+| Ccy | Indicator | Actual | Prev | Ref | Rule | Score |
+|---|---|---|---|---|---|---|
+| GB | Inflation Rate YoY | **2.9%** | 2.6% | Jul/26 | >2% & rising | **HIKE-LEANING** |
+| EA | Inflation Rate YoY | 2.9% | 2.8% | Jul/26 | >2% & rising | **HIKE-LEANING** |
+| CA | Inflation Rate YoY | 3.0% | 2.8% | Jul/26 | >2% & rising | **HIKE-LEANING** |
+| NZ | Inflation Rate YoY | **4.1%** | 3.1% | Jun/26 | >2% & rising | **HIKE-LEANING** |
+| US | Inflation Rate YoY | 3.4% | 3.5% | Jul/26 | >2% & falling | NEUTRAL (hold) |
+| AU | Inflation Rate YoY | 3.8% | 4.0% | Jun/26 | >2% & falling | NEUTRAL (hold) |
+| JP | Inflation Rate YoY | 1.7% | 1.5% | Jun/26 | <2% & rising | NEUTRAL (hold) |
+| CH | Inflation Rate YoY | 0.4% | 0.5% | Jul/26 | <2% & falling | **CUT-LEANING** |
 
-**Inflation read — the decisive category today.**
-**GBP: hot.** Headline 2.9% from 2.6%, core 2.6% beating 2.5%, MoM
-accelerating, PPI rising. Driven partly by the **Ofgem cap +13% on 1 July**
-(£1,862 average bill). Against a 3.75% Bank Rate this is **hawkish**.
-**EUR: cooling.** 2.8% from 2.9%, core 2.4% from 2.5% — both undershooting.
-**Divergent from GBP, in the opposite direction.**
+**Read — the decisive category.** Four currencies are hike-leaning under
+your rule. **NZ is the most extreme: 4.1% from 3.1%, a full point jump**,
+and the RBNZ already hiked in July. GB, EA and CA are all rising above
+target. **CHF is the only cut-leaning currency at 0.4% and falling** —
+which, against a 0.00% policy rate, means the SNB has nowhere to go.
 
----
+> **CORRECTION TO r2 (C-6).** r2 reported EA inflation *falling* to 2.8%
+> from 2.9% off the "Inflation Rate YoY Final JUL" calendar row. The EA
+> country-page series shows **2.9% from 2.8% — rising**. EA is
+> **hike-leaning, not cooling**, which inverts r2's GBP/EUR divergence
+> call. Root cause: the calendar row was read without cross-checking the
+> series page.
+
+### Model tally — all whitelist indicators (net = GOOD − BAD)
+
+| Ccy | GOOD | BAD | NEUTRAL | Net |
+|---|---|---|---|---|
+| **CAD** | 7 | 1 | 0 | **+6** |
+| **USD** | 7 | 2 | 2 | **+5** |
+| **EUR** | 5 | 0 | 2 | **+5** |
+| **GBP** | 5 | 2 | 1 | **+3** |
+| **AUD** | 3 | 0 | 2 | **+3** |
+| **JPY** | 3 | 1 | 3 | **+2** |
+| **NZD** | 4 | 3 | 0 | **+1** |
+| **CHF** | 3 | 4 | 0 | **−1** |
+
+**The tally is the model's raw output, not the ranking.** §4 weights it
+against policy direction (§3) and live news (§1) — USD scores +5 on the
+model yet carries the worst single print on the board (NFP −23K) and a
+cutting central bank, so it does not rank 2nd.
 
 ## §3 — Interest Rates
 
@@ -221,41 +304,66 @@ entries or targets (LD-4, LD-5, LD-7).*
 
 ### Currency strength ranking
 
-| # | Ccy | Lean | Driving evidence |
-|---|---|---|---|
-| **1** | **GBP** | **Strong** | CPI **2.9% from 2.6%**, core 2.6% beating consensus, MoM and PPI both accelerating, against a 3.75% Bank Rate. Claimant Count −11K vs +11.2K expected. Inflation side dominates. |
-| **2** | **CAD** | **Strengthening** | **Oil 4th straight up day**, WTI $84.85 on Hormuz. Plus **Trump paused 50% tariffs**. Housing weak, but two live positive catalysts today. |
-| **3** | **AUD** | **Firmer than it looks** | **Hauser explicitly warned of a hike** naming Middle East, AI boom, productivity. RBA +75bp since Feb, hawkish hold at 4.35%. Wages flat is the offset; China youth unemployment 17.9% is a headwind. |
-| 4 | NZD | Mild-positive | **Hiked 25bp to 2.50% on 8 Jul, first in 3 years.** Tightening bias, but no fresh data. |
-| 5 | JPY | Neutral | Core 1.8% below target. No released JP data. |
-| 6 | CHF | Neutral | No CHF data. 0.00%. |
-| **7** | **EUR** | **Weakening** | **Inflation undershooting** — 2.8% from 2.9%, core 2.4% from 2.5%. Removes ECB hawkishness. ZEW 31.4 was a strong beat, so this is a genuine split. |
-| **8** | **USD** | **Weak** | Housing starts −12.4%, pending sales −2.3%, import/export prices both negative. Permits +5% is the exception. Fed at 3.50–3.75% with a cut bias. |
+Derived from §2's whitelist model tally, weighted by §3 policy direction
+and §1 news. Where the raw tally and the ranking differ, the reason is
+stated — a model score is an input, not a verdict.
 
-### 1. GBP/EUR — cleanest divergence on the board
+| # | Ccy | Model net | Lean | Driving evidence |
+|---|---|---|---|---|
+| **1** | **CAD** | **+6** | **Strong** | Top of the model AND the news. Employment: Full Time **+38.6K from +0.6K**, unemployment 6.4% from 6.5%. Spending: Retail Sales 5.9%, Building Permits **+18.5%**. Inflation 3.0% from 2.8% — hike-leaning. Plus **oil's 4th straight up day** (Hormuz) and the **50% tariff pause**. Model and news agree. |
+| **2** | **EUR** | **+5** | **Strengthening** | **Zero BAD scores — the only currency on the board with none.** Balance of Trade swung **−€9.0B → +€8.6B**. Consumer Confidence −15.9 from −17.6, Mfg PMI 51.9. Inflation **2.9% from 2.8%, rising** (this corrects r2, which had it falling). |
+| **3** | **GBP** | **+3** | **Firm** | CPI **2.9% from 2.6%** with core 2.6% beating consensus — the strongest single inflation acceleration among released prints. Claimant Count **−11K vs +11.2K expected**. Offset: Industrial Production −0.2% and the trade deficit widened to £5.5B. |
+| **4** | **AUD** | **+3** | **Firm** | **No BAD scores.** Mfg PMI 52.0, Building Permits +8.9%, Balance of Trade flipped **−A$2.4B → +A$1.9B**. **Hauser warned of a hike today**, naming Middle East / AI boom / productivity. Held back by flat wages (3.2%) and China youth unemployment at 17.9%. |
+| **5** | **JPY** | **+2** | **Mildly positive** | Production is the story: Industrial Production **+4.9% from −2.1%**, Machinery Orders **+16.9% from −1.9%**. But Retail Sales collapsed 5.0% → 0.5%, trade deficit widened, and inflation 1.7% is still below target — BoJ has no forcing reason at 1.00%. |
+| **6** | **NZD** | **+1** | **Mixed** | **Inflation 4.1% from 3.1% — the largest jump on the board**, and the RBNZ already hiked 25bp on 8 Jul (first in 3 years). But the model is nearly balanced: unemployment rose to 5.6%, building permits −3.6%, and trade surplus almost vanished (NZ$577M → NZ$23M). Business NZ PMI still >50 but fell hard, 60.1 → 54.3. |
+| **7** | **USD** | **+5** | **Weak — model overstates it** | **The tally says +5; the ranking says 7th, and the gap is the point.** The model counts breadth, not severity: **NFP −23K is the first negative headline print this cycle**, and CB Consumer Confidence fell to 51.0 from 55.2. Inflation is *falling* (3.4% from 3.5%) with the Fed at 3.50–3.75% and a cut bias. Three good production scores do not outweigh a contracting labour market plus an easing central bank. |
+| **8** | **CHF** | **−1** | **Weakest** | Only negative model score. Inflation **0.4% and falling — the only cut-leaning currency**, against a policy rate already at **0.00%**, so the SNB has no room. Unemployment rose to 3.0%, trade surplus shrank CHF5.5B → CHF3.8B, Industrial Production −7.1% (though that print is Mar/26 and stale). |
 
-- **Alignment:** GBP #1 (CPI accelerating, hawkish) vs EUR #7 (inflation
-  undershooting, dovish). **Both legs confirmed by released data today**
-  — genuinely opposite directions.
-- **Conviction:** **Highest.** No event gate remaining — both CPIs are out.
-- **Technical:** EURGBP not read this run. **No levels published.**
-- **Falsifier:** ECB commentary reasserting a hawkish stance despite the
-  undershoot, or a UK fiscal event overriding the CPI read.
+**Model-vs-ranking disagreement (the line worth reading twice):** USD
+scores **+5** on breadth yet ranks **7th**. A tally counts how many
+indicators are good; it cannot see that one of them (NFP) is a
+regime-defining print while three others are second-tier production
+readings. This is exactly why the ranking is not the tally.
 
-### 2. CAD strength vs weak-currency legs
+### 1. CAD/CHF — widest spread on the board
 
-- **Alignment:** CAD #2 on **oil + tariff pause**, both today.
-- **Conviction:** Moderate — event-driven, and Hormuz can reverse fast.
-- **Technical:** USDCAD not read this run. **No levels published.**
-- **Falsifier:** Hormuz de-escalation. Oil gives back the 4-day gain and
-  the CAD case is gone within a session.
+- **Alignment:** CAD #1 (+6 model, strongest employment and spending, oil
+  tailwind, tariff pause) against CHF #8 (−1 model, the only cut-leaning
+  currency, at a 0.00% floor with no room). **Top and bottom of both the
+  model and the policy direction.**
+- **Conviction:** **Highest.** No event gate — every input is released data.
+- **Technical:** CADCHF not read this run. **No levels published.**
+- **Falsifier:** Hormuz de-escalation. Oil gives back the four-day gain and
+  CAD's news leg is gone within a session — the model leg (+6) would
+  survive, but the conviction drops to moderate.
+
+### 2. EUR/CHF — clean model separation
+
+- **Alignment:** EUR #2 with **zero BAD scores** — the only currency on the
+  board with none — against CHF #8. Trade swing −€9.0B → +€8.6B, confidence
+  improving, inflation rising to 2.9%.
+- **Conviction:** Moderate-high.
+- **Technical:** **EURCHF read.** 20-day high **0.94120** with **four
+  consecutive daily highs at 0.9410–0.9412** (14, 15, 18, 19 Aug) — a
+  tested ceiling; current 0.93973 sits just under it; 20-day low 0.92719.
+  The pair is up **+1.11%** over the window and pressing that ceiling.
+- **Falsifier:** ECB commentary undercutting the inflation read, or a
+  genuine haven bid returning to CHF (which has been absent for weeks).
+
+### ~~GBP/EUR~~ — WITHDRAWN
+
+r2 called this the highest-conviction divergence on the premise that GBP
+inflation was rising while EUR was falling. **The EUR half was wrong**
+(C-7): EUR inflation is **2.9% from 2.8%, rising**. Both legs are now
+hike-leaning, so there is no divergence to trade. Withdrawn rather than
+quietly re-scored.
 
 ### 3. AUD — DO NOT TRADE INTO THURSDAY 09:30 PHT
 
-- **Alignment:** Hauser hawkish, but wages flat.
+- **Alignment:** #4, no BAD scores, Hauser hawkish today.
 - **⛔ Blocked:** **AU Employment releases Thu 09:30 PHT** and TE already
-  displays a **phantom 76.3K vs 15.0K consensus**. Any AUD position taken
-  on the visible number is taken on a figure that does not exist.
+  displays a **phantom 76.3K against a 15.0K consensus**. Any AUD position
+  taken on the visible number is taken on a figure that does not exist.
 - **Not proposed for intraday.**
 
 ### Observed structure

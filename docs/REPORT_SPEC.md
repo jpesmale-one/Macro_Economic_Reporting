@@ -184,6 +184,30 @@ which instrument it moves. Grouped by kind — Geopolitical / Central banks
 A central bank *speech* belongs here; the *rate* belongs in §3.
 
 ### §2 — Macro Economic Indicators
+
+**THE INDICATOR LIST IS A CLOSED SET. `Idea_dump/Macro_economic_indicators.txt`
+is the WHITELIST, not a starting point.**
+
+- **Only the 8 currencies** in the list appear: USD, EUR (EA), GBP, JPY,
+  AUD, NZD, CAD, CHF. **DE, FR, IT, ES, ZA, CN, IN and every other country
+  are NOT reportable rows** — even when TradingEconomics serves them and
+  even when they look relevant.
+- **Only the named indicators** for each currency appear. If the list says
+  US Production = ISM Manufacturing PMI, Industrial Production YoY, Durable
+  Goods Orders Ex Transp MoM, then Housing Starts and Pending Home Sales do
+  **not** belong in §2 — they were never specified.
+- **A missing indicator is reported as MISSING**, with its next scheduled
+  release. It is never substituted with a similar-sounding one. "No US
+  Production data released this week" is a valid and useful row.
+- The list is Jeff's specification of what drives his bias. Filling the
+  tables with whatever the calendar happened to serve produces a different
+  analysis than the one he asked for.
+
+**Off-list data may still inform the READ** — a German PPI print or a China
+number can legitimately shape the EUR or AUD narrative. When it does, it
+goes in **§1 (news/context)** or in the category's prose read, clearly
+labelled as context. It never becomes a scored row in a §2 table.
+
 **ONE TABLE PER CATEGORY**, in the causal order of the model:
 **2.1 Production · 2.2 Spending · 2.3 Trade · 2.4 Employment ·
 2.5 Inflation.**
