@@ -157,6 +157,31 @@ Trade     → ┘   Inflation ─┴→ INTEREST RATE → currency strength
 Categories 1–3 forecast Employment and Inflation. Categories 4–5 forecast
 the rate decision. Category 6 is the decision itself — the core driver.
 
+### Category weights (LD-13)
+
+Categories are weighted by distance from the rate decision:
+
+| Category | Weight |
+|---|---|
+| **Inflation** | **3** |
+| **Employment** | **2** |
+| Production / Spending / Trade | 1 each |
+
+**Within a category, a currency's N indicators split the weight evenly** —
+each is worth `weight / N`. GOOD `+weight/N`, BAD `−weight/N`, NEUTRAL `0`.
+Range **+8.00 to −8.00**.
+
+A currency with one indicator in a category stakes the full weight on it;
+one with three spreads the risk. That is a real property of data coverage
+and is left visible, not smoothed.
+
+**ALL 70 NAMED INDICATORS ARE PUBLISHED EVERY EDITION.** An indicator that
+cannot be sourced is published with score **NOT FOUND** so Jeff can verify
+it — never dropped. A silent omission is unverifiable; a flagged gap is not.
+
+Implementation: `pipelines/score_model.py`. §2's tables and the tally are
+**generated from it**, so they cannot drift apart.
+
 **Scoring thresholds** (as specified in the source file):
 
 | Type | Good | Bad | Neutral |

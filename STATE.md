@@ -475,6 +475,62 @@ REJECTED:
 RATIONALE: Pay the ceremony where it changes what gets believed long-term.
 The daily is a read; the week is the record.
 
+### LD-13 - WEIGHTED category scoring; the whitelist is published COMPLETE (2026-08-19)
+CONTEXT: Jeff, after r5: "let's put all indicators in my list in the report.
+If you cannot find the result just flag it so I can verify it." And: "not
+every category weights the same. Employment and Inflation weights more than
+Production, Spending, and Trade."
+DECISION A - COMPLETENESS. All 70 indicators named in
+Idea_dump/Macro_economic_indicators.txt across the five scored categories are
+published EVERY edition, for all 8 currencies. An indicator that cannot be
+sourced is published with score NOT FOUND, never dropped. Rationale (Jeff's):
+a flagged gap is verifiable by him; a silent omission is not. This closes the
+failure mode behind F-5, where nine indicators vanished from the report
+because a summary fetch did not mention them.
+DECISION B - WEIGHTS. Categories are weighted by their distance from the rate
+decision, per Jeff's framework (Production/Spending/Trade forecast Employment
+and Inflation, which forecast the rate):
+    Inflation  = 3
+    Employment = 2
+    Production = 1
+    Spending   = 1
+    Trade      = 1
+DECISION C - EVEN SPLIT WITHIN A CATEGORY. A currency's N indicators in a
+category each carry weight/N. GOOD = +weight/N, BAD = -weight/N, NEUTRAL = 0.
+So US Production (3 indicators, weight 1) scores 0.333 each; AU Employment
+(3 indicators, weight 2) scores 0.667 each; GB Employment (1 indicator,
+weight 2) scores the full 2.00.
+  CONSEQUENCE, and it is deliberate: a currency with ONE employment indicator
+  stakes the whole 2.00 on it, while one with three spreads the risk. That is
+  a real property of the data coverage, not a modelling error - GB's Claimant
+  Count is doing the work of three AU indicators, and the model says so.
+RANGE: +8.00 (every category good) to -8.00.
+WHAT IT CHANGED IMMEDIATELY: five of eight currencies moved rank vs the
+unweighted tally. CAD +8.00 (a perfect score, good in every category) took
+first. AUD fell #1 -> #4 with ZERO bad scores, because its inflation is
+NEUTRAL and therefore scores 0.00 of the 3.00 available. JPY netted exactly
+0.00 - strong production cancelled by a weak consumer and widening trade
+deficit - where the unweighted tally showed +3 and hid the balance.
+THE STRONGEST ARGUMENT FOR IT: in r5 the unweighted model scored USD +5 (3rd)
+and I had to MANUALLY OVERRIDE the ranking to 7th, explaining in prose that
+breadth was hiding severity. Under LD-13 USD lands 5th on its own arithmetic,
+because NFP -23K cancels against the unemployment print inside a category
+worth 2. The model no longer needs rescuing from itself - which is the point
+of having one.
+REJECTED:
+  (a) Keep the unweighted GOOD-minus-BAD tally. Rejected: it counts breadth,
+      not severity, and required manual override to produce a sane ranking.
+      A model that must be overridden is not a model.
+  (b) Weight individual INDICATORS rather than splitting evenly within a
+      category. Rejected for now: it needs a defensible per-indicator
+      ranking Jeff has not specified, and the even split already captures
+      the category-level judgement he did specify. Revisit only if a
+      specific indicator is repeatedly mis-weighted in practice.
+IMPLEMENTATION: pipelines/score_model.py holds W and compute(). Section 2 and
+the ranking table are GENERATED from it, so the tables and the tally cannot
+drift apart. It is data + arithmetic only; wiring it to fetch its own data
+would fire T1/T3 and take the full gate ladder.
+
 ---
 
 ## ESTABLISHED FACTS LEDGER
