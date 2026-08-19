@@ -1,0 +1,40 @@
+Forex: - Instruments to Trade
+AUDCAD
+AUDNZD
+AUDUSD
+AUDCHF
+NZDCAD
+NZDUSD
+NZDCHF
+CADCHF
+EURCHF
+EURGBP
+EURUSD
+EURNZD
+EURCAD
+EURAUD
+USDCAD
+USDCHF
+GBPUSD
+GBPCAD
+GBPAUD
+GBPNZD
+GBPCHF
+
+Metal: - Instrument to Trade
+XAUUSD
+
+Crypto: - Instrument to Trade
+BTCUSD
+
+Futures: - Use these Futures to strengthen analysis
+USOIL
+
+Indices: - Use these indices to strengthen analysis
+SPI200
+NIKKEI225
+DJI
+SPX
+NAS100
+STOXX50
+FTSE

@@ -1,0 +1,42 @@
+Sources:
+tradingeconomics.com
+	- Source of macro economic data
+	- Fetch Actual, Previous, and set Consensus & Forecast as range.
+	- If the data is tagged as Actual but the report schedule is on future date then it is the Previous Actual Data not the current one.
+
+edition.cnn.com
+	- Get the Fear and Greed Index
+
+investing.com
+	- Get/verify facts, news and other confluences
+
+investinglive.com
+	- Get/verify facts, news and other confluences
+
+TradingView MCP
+	- To perform Technical Analysis
+	- Use OANDA Exchange for Every Forex pairs
+
+federalreserve.gov
+	- Reference for USD interest rate news and data
+
+ecb.europa.eu
+	- Reference for EUR interest rate news and data
+
+bankofengland.co.uk
+	- Reference for GBP interest rate news and data
+
+boj.or.jp
+	- Reference for JPY interest rate news and data
+
+rba.gov.au
+	- Reference for AUD interest rate news and data
+
+rbnz.govt.nz
+	- Reference for NZD interest rate news and data
+
+bankofcanada.ca
+	- Reference for CAD interest rate news and data
+
+snb.ch
+	- Reference for CHF interest rate news and data

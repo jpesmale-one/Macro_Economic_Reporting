@@ -1,0 +1,272 @@
+Core Currencies and Countries:
+Safe Heaven
+USD - US - United States
+JPY - JP - Japan
+CHF - CH - Switzerland
+Gold
+
+Commodities 
+AUD - AU - Australia
+NZD - NZ - New Zealand
+CAD - CA - Canada
+
+Risk-correlated
+EUR - EA - Euro Area
+GBP - GB - United Kingdom
+
+Macro-Economic Indicators:
+	1. Production
+	2. Spending
+	3. Trade
+	4. Employment
+	5. Inflation
+	6. Interest Rate
+1-3 aims to foresee what will happen to Employment and Inflation. While 4 and 5 aims to foresee Interest Rate Decision.
+
+Forward Looking Macro-Economic Indicators:
+	1. Production - Related to producing goods. Get Actual vs Previous
+		a. US
+			i. ISM Manufacturing PMI
+				1) Actual > 50.5 is Good, Actual < 49.5 is Bad, Actual in between 49.5 - 50.5 is Neutral
+			ii. Industrial Production YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			iii. Durable Goods Orders Ex Tansp MoM
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+		b. EA
+			i. S&P Global Manufacturing PMI Final
+				1) Actual > 50.5 is Good, Actual < 49.5 is Bad, Actual in between 49.5 - 50.5 is Neutral
+			ii. Industrial Production YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+		c. CA
+			i. S&P Global Manufacturing PMI
+				1) Actual > 50.5 is Good, Actual < 49.5 is Bad, Actual in between 49.5 - 50.5 is Neutral
+		d. AU
+			i. S&P Global Manufacturing PMI Final
+				1) Actual > 50.5 is Good, Actual < 49.5 is Bad, Actual in between 49.5 - 50.5 is Neutral
+		e. NZ
+			i. Business NZ PMI
+				1) Actual > 50.5 is Good, Actual < 49.5 is Bad, Actual in between 49.5 - 50.5 is Neutral
+			ii. Global Dairy Trade Price Index
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+		f. JP
+			i. Industrial Production YoY Final
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			ii. Machinery Orders YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			iii. Machine Tool Orders YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			iv. S&P Global Manufacturing PMI Final
+				1) Actual > 50.5 is Good, Actual < 49.5 is Bad, Actual in between 49.5 - 50.5 is Neutral
+		g. GB
+			i. S&P Global Manufacturing PMI Final
+				1) Actual > 50.5 is Good, Actual < 49.5 is Bad, Actual in between 49.5 - 50.5 is Neutral
+			ii. Industrial Production YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			iii. Manufacturing Production YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+		h. CH
+			i. Procure.ch Manufacturing PMI
+				1) Actual > 50.5 is Good, Actual < 49.5 is Bad, Actual in between 49.5 - 50.5 is Neutral
+			ii. Industrial Production YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+				
+	2. Spending - Related to People and Business Spending. Get Actual vs Previous
+		a. US
+			i. Building Permits MoM Final
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			ii. Retail Sales YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			iii. CB Consumer Confidence
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+			iv. Personal Spending MoM
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+		b. EA
+			i. Retail Sales YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			ii. Consumer Confidence Final
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		c. CA
+			i. Retail Sales YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			ii. Building Permits MoM
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+		d. AU
+			i. Household Spending YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			ii. Building Permits YoY Final
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			iii. Westpac Consumer Confidence Change
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+			iv. NAB Business Confidence
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		e. NZ
+			i. Building Permits MoM
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			ii. Electronic Retail Card Spending YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			iii. ANZ Business Confidence
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+			iv. ANZ Roy Morgan Consumer Confidence
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		f. JP
+			i. Household Spending YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			ii. Consumer Confidence
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+			iii. Retail Sales YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+		g. GB
+			i. GfK Consumer Confidence
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+			ii. Retail Sales YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+		h. CH
+			i. Consumer Confidence
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+			ii. Retail Sales YoY
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+				
+	3. Trade - The difference between Export and Import of a Country. Get Actual vs Previous
+		a. US
+			i. Balance of Trade
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		b. EA
+			i. Balance of Trade
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		c. CA
+			i. Balance of Trade
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		d. AU
+			i. Balance of Trade
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		e. NZ
+			i. Balance of Trade
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		f. JP
+			i. Balance of Trade
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		g. GB
+			i. Balance of Trade
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		h. CH
+			i. Balance of Trade
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+				
+	4. Employment - Measures how much of the available workforce currently being paid to produce goods and services. Get Previous, Consensus/Forecast, and Actual
+		a. US
+			i. Non Farm Payrolls
+				1) Actual > Consensus/Forecast is Good, Actual < Consensus/Forecast is Bad
+			ii. Unemployment Rate
+				1) Actual < Previous is Good, Actual > Previous is Bad. No change is Neutral
+		b. EA
+			i. Unemployment Rate
+				1) Actual < Previous is Good, Actual > Previous is Bad. No change is Neutral
+		c. CA
+			i. Unemployment Rate
+				1) Actual < Previous is Good, Actual > Previous is Bad. No change is Neutral
+			ii. Employment Change - Actual > 0 is Good but gives more weight to Full Time Employment
+				1) Full Time Employment Chg
+					a) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+				2) Part Time Employment Chg
+					a) Actual < Previous is Good, Actual > Previous is Bad. No change is Neutral
+		d. AU
+			i. ANZ-Indeed Job Ads MoM
+				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			ii. Employment Change - Actual > 0 is Good but gives more weight to Full Time Employment
+				1) Full Time Employment Chg
+					a) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+				2) Part Time Employment Chg
+					a) Actual < Previous is Good, Actual > Previous is Bad. No change is Neutral
+			iii. Unemployment Rate
+				1) Actual < Previous is Good, Actual > Previous is Bad. No change is Neutral
+			
+		e. NZ - Employment data of NZ is QoQ only which is already late
+			i. Unemployment Rate
+				1) Actual < Previous is Good, Actual > Previous is Bad. No change is Neutral
+		f. JP
+			i. Unemployment Rate
+				1) Actual < Previous is Good, Actual > Previous is Bad. No change is Neutral
+		g. GB
+			i. Claimant Count Change
+				1) Actual < Previous is Good, Actual > Previous is Bad. No change is Neutral
+		h. CH
+			i. Non Farm Payrolls
+				1) Actual > Consensus/Forecast is Good, Actual < Consensus/Forecast is Bad
+			ii. Unemployment Rate
+				1) Actual < Previous is Good, Actual > Previous is Bad. No change is Neutral
+				
+	5. Inflation - Rate at which the general price of Goods and Services rises causing the Purchasing Power of money to fall. It is the main driver for interest rate decision. Ideal Inflation Rate = 2%
+		a. US
+			i. Inflation Rate YoY
+				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+		b. EA
+			i. Inflation Rate YoY Final
+				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+		c. CA
+			i. Inflation Rate YoY
+				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+		d. AU
+			i. Inflation Rate YoY
+				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+		e. NZ - Inflation data of NZ is QoQ which is already late
+			i. Inflation Rate YoY
+				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+		f. JP
+			i. Inflation Rate YoY
+				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+		g. GB
+			i. Inflation Rate YoY
+				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+		h. CH
+			i. Inflation Rate YoY
+				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+	
+	6. Interest Rate - Used to control inflation. The core indicator which tells the strength of a currency
+		a. US
+			i. Fed Interest Rate Decision
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		b. EA
+			i. ECB Interest Rate Decision
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		c. CA
+			i. BoC Interest Rate Decision
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		d. AU
+			i. RBA Interest Rate Decision
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		e. NZ
+			i. RBNZ Interest Rate Decision
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		f. JP
+			i. BoJ Interest Rate Decision
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		g. GB
+			i. BoE Interest Rate Decision
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+		h. CH
+			i. SNB Interest Rate Decision
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
