@@ -148,6 +148,29 @@
   .gate{display:grid;grid-template-columns:auto auto 1fr;gap:9px 14px;align-items:baseline;font-size:.84rem}
   .gate-k{font-family:var(--mono);font-size:.65rem;letter-spacing:.08em;color:var(--muted);white-space:nowrap}
 
+
+  .fng-head{display:flex;align-items:center;gap:26px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--border)}
+  .fng-big{font-family:var(--mono);font-size:2.6rem;font-weight:700;color:var(--strong);line-height:1;
+    font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:12px}
+  .fng-lab{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .fng-hist{display:flex;gap:20px;flex-wrap:wrap;margin-left:auto}
+  .fng-h{font-family:var(--mono);font-size:.72rem;display:flex;flex-direction:column;gap:2px;font-variant-numeric:tabular-nums}
+  .fng-h span{color:var(--muted);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase}
+  .fng-h b{color:var(--strong);font-size:.9rem}
+  .fng-h i{font-style:normal;font-size:.68rem}
+  .fng-h i.up{color:var(--bull)}.fng-h i.dn{color:var(--bear)}.fng-h i.flat{color:var(--muted)}
+  .fng-bars{display:flex;flex-direction:column;gap:7px;margin-top:14px}
+  .fng-row{display:grid;grid-template-columns:170px 1fr 46px auto;gap:11px;align-items:center;
+    font-family:var(--mono);font-size:.76rem;font-variant-numeric:tabular-nums}
+  .fng-n{color:var(--text);font-size:.74rem}
+  .fng-track{height:9px;background:var(--surface2);border-radius:2px;overflow:hidden;border:1px solid var(--border)}
+  .fng-fill{display:block;height:100%;border-radius:1px}
+  .fng-fill.x-eg{background:var(--bear)}
+  .fng-fill.x-g{background:var(--bull)}
+  .fng-fill.x-n{background:var(--muted)}
+  .fng-fill.x-f{background:var(--warn)}
+  .fng-v{font-weight:700;color:var(--strong);text-align:right}
+  @media(max-width:640px){.fng-row{grid-template-columns:1fr 46px;}.fng-track{grid-column:1/-1}}
   footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--border);
     font-family:var(--mono);font-size:.65rem;color:var(--muted);
     display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
@@ -159,7 +182,7 @@
   <div>
     <div class="eyebrow">Macro Economic Reporting &middot; Daily Market Sentiment</div>
     <div class="mdate">Wednesday, 19 August 2026 &middot; 14:12 PHT</div>
-    <div class="draft">REVISION 3 &middot; UNSEALED &middot; INTRADAY HORIZON</div>
+    <div class="draft">REVISION 4 &middot; UNSEALED &middot; INTRADAY HORIZON</div>
   </div>
   <div class="chips">
     <span>GOLD <b class="dn">4,345.47</b> <span class="dn">&minus;1.11%</span></span>
@@ -236,8 +259,38 @@
     <div class="newsrow"><div class="newstime">~10:00</div><div>Gold recovers modestly after its largest drop in nearly a month.</div></div>
   </div></div>
 
-  <div class="card" style="margin-top:16px"><div class="card-hd"><span class="pill p-bad">Source gap</span></div>
-  <div class="card-b"><p><strong>CNN Fear &amp; Greed Index unavailable</strong> &mdash; <code>edition.cnn.com</code> returns HTTP 451 (geo-blocked). No sentiment index this edition, and no substitute presented as CNN&rsquo;s.</p></div></div>
+  <h3 class="sub"><span class="pill p-info">Sentiment</span> CNN Fear &amp; Greed Index</h3>
+  <div class="card"><div class="card-b">
+    <div class="fng-head">
+      <div class="fng-big">54.29<span class="fng-lab">Neutral</span></div>
+      <div class="fng-hist">
+        <div class="fng-h"><span>Prev close</span><b>54.40</b><i class="flat">&minus;0.11</i></div>
+        <div class="fng-h"><span>1 week ago</span><b>62.94</b><i class="dn">&minus;8.66</i></div>
+        <div class="fng-h"><span>1 month ago</span><b>37.23</b><i class="up">+17.06</i></div>
+        <div class="fng-h"><span>1 year ago</span><b>59.89</b><i class="dn">&minus;5.60</i></div>
+      </div>
+    </div>
+
+    <div class="fng-bars">
+      <div class="fng-row"><span class="fng-n">Junk Bond Demand</span><span class="fng-track"><span class="fng-fill x-eg" style="width:96.6%"></span></span><span class="fng-v">96.6</span><span class="pill p-bad">Extreme greed</span></div>
+      <div class="fng-row"><span class="fng-n">Safe Haven Demand</span><span class="fng-track"><span class="fng-fill x-g" style="width:58.4%"></span></span><span class="fng-v">58.4</span><span class="pill p-neut">Greed</span></div>
+      <div class="fng-row"><span class="fng-n">Stock Price Breadth</span><span class="fng-track"><span class="fng-fill x-g" style="width:57.2%"></span></span><span class="fng-v">57.2</span><span class="pill p-neut">Greed</span></div>
+      <div class="fng-row"><span class="fng-n">Market Volatility (VIX)</span><span class="fng-track"><span class="fng-fill x-n" style="width:50%"></span></span><span class="fng-v">50.0</span><span class="pill p-neut">Neutral</span></div>
+      <div class="fng-row"><span class="fng-n">Put / Call Options</span><span class="fng-track"><span class="fng-fill x-n" style="width:48%"></span></span><span class="fng-v">48.0</span><span class="pill p-neut">Neutral</span></div>
+      <div class="fng-row"><span class="fng-n">Market Momentum S&amp;P 500</span><span class="fng-track"><span class="fng-fill x-f" style="width:44%"></span></span><span class="fng-v">44.0</span><span class="pill p-warn">Fear</span></div>
+      <div class="fng-row"><span class="fng-n">Stock Price Strength</span><span class="fng-track"><span class="fng-fill x-f" style="width:25.8%"></span></span><span class="fng-v">25.8</span><span class="pill p-warn">Fear</span></div>
+    </div>
+
+    <div class="readbox" style="margin-top:14px"><b>Recompute (P2)</b>(96.6 + 58.4 + 57.2 + 50.0 + 48.0 + 44.0 + 25.8) &divide; 7 = <strong>54.29</strong> &mdash; matches the published index exactly. CNN uses a <strong>simple average</strong> of the seven, not a weighted one, so the components fully explain the headline.</div>
+
+    <div class="gapbox"><b>The headline hides the story.</b> &ldquo;Neutral 54&rdquo; is the average of a market that is <em>not</em> neutral internally. The spread between highest and lowest component is <strong>70.8 points</strong>: <strong>Junk Bond Demand 96.6 (extreme greed)</strong> &mdash; credit pricing almost no risk premium &mdash; against <strong>Stock Price Strength 25.8 (fear)</strong>, few stocks at 52-week highs. Credit is euphoric while equity breadth is thin, and the index&rsquo;s own averaging conceals it.</div>
+
+    <div class="readbox"><b>Cross-check vs &sect;1</b>Consistent with today&rsquo;s tape &mdash; the Asian semiconductor selloff (KOSPI halted at &minus;5%) and the Nasdaq&rsquo;s yield-driven decline are equity-side stress, matching Stock Price Strength at 25.8. <strong>Junk bond demand at 96.6 has not repriced for it yet.</strong></div>
+
+    <div class="fals"><b>Falsifier</b>Junk Bond Demand dropping below ~70 would confirm credit repricing to match equity stress, turning this divergence into broad risk-off. Stock Price Strength recovering above 50 resolves it the other way.</div>
+
+    <p class="note" style="margin-top:10px"><strong>Source gap closed (Jeff&rsquo;s fix).</strong> <code>edition.cnn.com</code> returns HTTP 451 (geo-blocked) and the dataviz endpoint returns HTTP 418 to a plain fetch, but it serves normally with browser headers. Endpoint: <code>production.dataviz.cnn.io/index/fearandgreed/graphdata</code>. CNN timestamp 19 Aug 08:00 PHT.</p>
+  </div></div>
 
   <!-- 2 MACRO INDICATORS -->
   <h2 class="sec">&sect;2 &nbsp; Macro Economic Indicators<em>whitelist only &middot; the 8 listed currencies &middot; the named indicators</em></h2>
@@ -496,7 +549,7 @@
   <div class="card"><div class="card-hd" style="color:var(--bear)">Still not working</div><div class="card-b">
     <ol class="broke">
       <li><strong>batch_run fails</strong> on both <code>quote</code> and <code>ohlcv</code> actions. Pairs must be pulled one at a time. <strong>Only 5 of 21 pairs read</strong> &mdash; &sect;4&rsquo;s alignments still carry no technical levels.</li>
-      <li><strong>CNN Fear &amp; Greed geo-blocked</strong> (HTTP 451).</li>
+      <li><s>CNN Fear &amp; Greed geo-blocked</s> <strong>RESOLVED (r4)</strong> &mdash; Jeff supplied the dataviz endpoint. The article page still 451s and the endpoint 418s on a plain fetch, but it serves with browser headers. Now yielding the index plus all seven components.</li>
       <li><strong>rba.gov.au and rbnz.govt.nz return HTTP 403</strong> to automated fetches. federalreserve.gov worked and confirmed the Fed rate.</li>
     </ol>
     <p style="margin-top:12px"><strong>Chart state:</strong> left on <code>OANDA:BTCUSD</code> @ 1D. No levels drawn, so no cleanup owed.</p>
@@ -513,7 +566,7 @@
   </div></div></div>
 
   <footer>
-    <span>Macro Economic Reporting &middot; edition 2026-08-19 r3 &middot; data as-of 14:12 PHT</span>
+    <span>Macro Economic Reporting &middot; edition 2026-08-19 r4 &middot; data as-of 14:12 PHT</span>
     <span>UNSEALED &middot; light-seal tier &middot; not citable until sealed</span>
   </footer>
 </div>

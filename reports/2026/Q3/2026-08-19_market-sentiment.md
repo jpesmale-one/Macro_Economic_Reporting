@@ -1,6 +1,6 @@
 ---
 edition: 2026-08-19
-revision: 3 (supersedes r1, r2 - see CORRECTIONS)
+revision: 4 (supersedes r1, r2, r3 - see CORRECTIONS)
 generated: 2026-08-19 14:12 PHT
 data_asof: 2026-08-19 14:12 PHT
 horizon: INTRADAY (Wednesday - no swing block, no carry per LD-8)
@@ -99,11 +99,69 @@ hawkish hold, not a neutral one** — and r1 missed it entirely.
 | Yesterday | **Trump pauses 50% tariffs on Canada**, claims deal imminent | **CAD positive** |
 | ~10:00 | Gold recovers modestly after its largest drop in a month | See §5 |
 
-### Source gap
+### 📊 Sentiment — CNN Fear & Greed Index
 
-**CNN Fear & Greed Index unavailable** — `edition.cnn.com` returns
-**HTTP 451 (geo-blocked)**. No sentiment index. No substitute presented as
-CNN's.
+**Source gap CLOSED (Jeff's fix).** `edition.cnn.com` returns HTTP 451
+(geo-blocked) and the dataviz endpoint returns HTTP 418 to a plain fetch,
+but it serves normally with browser headers. Endpoint:
+`production.dataviz.cnn.io/index/fearandgreed/graphdata`.
+
+**Index: 54.29 — NEUTRAL** (CNN timestamp 19 Aug 08:00 PHT)
+
+| Horizon | Value | Rating | Δ vs now |
+|---|---|---|---|
+| **Now** | **54.29** | **Neutral** | — |
+| Previous close | 54.40 | Neutral | −0.11 |
+| 1 week ago | 62.94 | Greed | **−8.66** |
+| 1 month ago | 37.23 | Fear | **+17.06** |
+| 1 year ago | 59.89 | Greed | −5.60 |
+
+#### The seven components
+
+| Component | Score | Rating | As of (PHT) |
+|---|---|---|---|
+| **Junk Bond Demand** | **96.6** | **EXTREME GREED** | 19 Aug 08:00 |
+| Safe Haven Demand | 58.4 | Greed | 19 Aug 03:59 |
+| Stock Price Breadth | 57.2 | Greed | 19 Aug 07:59 |
+| Market Volatility (VIX) | 50.0 | Neutral | 19 Aug 04:15 |
+| Put/Call Options | 48.0 | Neutral | 19 Aug 04:38 |
+| Market Momentum (S&P 500) | 44.0 | Fear | 19 Aug 04:38 |
+| **Stock Price Strength** | **25.8** | **FEAR** | 19 Aug 07:59 |
+
+**Recompute (P2):** (96.6 + 58.4 + 57.2 + 50.0 + 48.0 + 44.0 + 25.8) / 7 =
+**54.29** — matches the published index exactly. CNN uses a **simple
+average** of the seven, not a weighted one. The components therefore fully
+explain the headline.
+
+**Read — the headline hides the story.** "Neutral 54" is the average of a
+market that is **not** neutral internally. The spread between the highest
+and lowest component is **70.8 points**:
+
+- **Junk Bond Demand 96.6 (extreme greed)** — credit markets are pricing
+  almost no risk premium. This is the single most stretched reading on the
+  board.
+- **Stock Price Strength 25.8 (fear)** — few stocks at 52-week highs.
+  Narrow participation.
+
+Credit is euphoric while equity breadth is thin. That combination is a
+**divergence**, and the index's own averaging conceals it — which is
+exactly why the components are published here rather than the headline
+alone.
+
+**Cross-check against §1:** this is consistent with today's tape. The
+Asian semiconductor selloff (KOSPI halted at −5%) and the Nasdaq's
+yield-driven decline are equity-side stress, matching Stock Price
+Strength at 25.8. Junk bond demand at 96.6 has not repriced for it yet.
+
+**Direction:** the index fell from **62.94 a week ago** (greed) to 54.29
+(neutral) — sentiment cooling — but is still far above **37.23 a month
+ago** (fear). Range-bound in neutral, drifting down.
+
+**Falsifier:** junk bond demand dropping below ~70 would confirm credit
+repricing to match equity stress, turning this from a divergence into a
+broad risk-off. Stock price strength recovering above 50 would resolve it
+the other way.
+
 
 ---
 
@@ -444,7 +502,10 @@ released with corrected Previous, C-3 NZD hiked not cut, C-4 phantom count
 1. **`batch_run` fails** on `quote` and `ohlcv` actions. Pairs must be
    pulled one at a time. **Only 5 of 21 pairs read** — §4's alignments
    still carry no technical levels.
-2. **CNN Fear & Greed geo-blocked** (HTTP 451).
+2. ~~CNN Fear & Greed geo-blocked~~ **RESOLVED (r4)** — Jeff supplied the
+   dataviz endpoint. The article page still 451s and the endpoint 418s on a
+   plain fetch, but it serves with browser headers. Now yielding the index
+   plus all seven components.
 3. **rba.gov.au and rbnz.govt.nz return HTTP 403** to automated fetches.
    federalreserve.gov worked and confirmed the Fed rate.
 

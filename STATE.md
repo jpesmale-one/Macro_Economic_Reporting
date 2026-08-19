@@ -500,6 +500,7 @@ cited as settled.
 | Data source set | SETTLED - LD-3 + LD-9 | Calendar role = FF + TE (schedule). VALUE = TradingEconomics primary + mandatory phantom-Actual guard; central banks authoritative for rates. P-2 CLOSED. |
 | Fundamental scoring model | SPECIFIED 2026-08-19 | 8 currencies x 6 categories with explicit thresholds, from Idea_dump/Macro_economic_indicators.txt. Transcribed into REPORT_SPEC.md section 3. NOT yet exercised on real data. |
 | Calendar ingest | NOT STARTED | Fires T1 + T3. Access method for FF is P-4. |
+| CNN Fear & Greed | WORKING 2026-08-19 (Jeff's fix) | Article page 451s; dataviz endpoint production.dataviz.cnn.io/index/fearandgreed/graphdata returns 418 to a plain fetch but serves with browser headers. Yields index + all 7 components. Index verified = SIMPLE AVERAGE of the seven. Recorded in REPORT_SPEC section 2.3. |
 | Key levels / TradingView MCP | IN SCOPE per LD-5, CONNECTION VERIFIED 2026-08-12 | tv_health_check: cdp_connected true, VANTAGE:EURCHF 15m, api_available true. chart_get_state + data_get_ohlcv both returned live data. NO CLONE NEEDED - server is registered globally and inherited. LD-5's restricted tools are now DENIED in project settings (they were auto-allowed globally - see LD-6). |
 | Pipeline code | NOT STARTED | Fires T1 when it lands. |
 
