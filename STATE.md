@@ -1586,3 +1586,42 @@ EMPIRICAL - CNN Fear & Greed 2026-08-21 16:41 PHT (index ts 08:41 UTC):
   Safe-haven demand fell 68.0 -> 62.80, consistent with the CHF bid fading
   (section 0). It does NOT explain the CHF move - EF-2 stands as an
   observation with no mechanism.
+
+LD-25 - THE FEAR & GREED BLOCK USES THE r9 (2026-08-19) FORMAT AND OPENS
+  SECTION 1. Jeff, 2026-08-21: "I liked the Aug 19 edition Fear and Greed
+  format better. can we keep that under the headlines?"
+  THE FORMAT, which my 21/08 rewrite had degraded:
+    1. Source line naming the endpoint AND the two failure modes it defeats
+       (451 geo-block on the article page, 418 on a plain fetch).
+    2. HORIZON TABLE - now / prev close / 1w / 1m / 1y, each with its rating
+       AND a DELTA vs now. The deltas are the point: -11.83 vs a week ago says
+       more than "neutral".
+    3. THE SEVEN COMPONENTS with score, rating, and a PER-COMPONENT PHT
+       TIMESTAMP. The timestamps are not decoration - they explain recompute
+       residuals (see below).
+    4. P2 recompute with the full arithmetic spelled out.
+    5. The READ - what the spread means, with the two extreme components named.
+    6. Spread history across editions.
+    7. Cross-check against the rest of the edition.
+    8. Direction.
+    9. A FALSIFIER. My rewrite had dropped this entirely, which is the worst of
+       the losses: an analysis with no falsifier is an opinion (CLAUDE.md 8).
+  PLACEMENT: FIRST subsection of section 1, ahead of news and central banks.
+  Sentiment frames the tape that follows.
+
+F-16 - THE RENDERER ATE EMPHASIS THAT SPANNED A CODE SPAN.
+  Found 2026-08-21 while restoring the F&G block. `*Source: `code` - text*`
+  rendered with LITERAL ASTERISKS.
+  CAUSE: inline() split the string on backticks FIRST, then ran emphasis on
+  each fragment. An opening `*` before a code span and its closing `*` after
+  landed in DIFFERENT fragments and never paired.
+  FIX: stash code spans behind a sentinel, run emphasis over the WHOLE string,
+  restore afterwards. Verified: 0 literal asterisks before a letter in the
+  rendered body, no sentinel leak.
+  ALSO FIXED same pass: the list matcher treated a line starting `*Source`
+  as a bullet. A bullet now requires `* ` or `- ` followed by a non-asterisk.
+  WHY IT MATTERS BEYOND COSMETICS: the renderer is the deliverable path
+  (LD-10). A parser bug that silently mangles text is a data-integrity problem,
+  not a styling one - and this one only surfaced because a section was being
+  restored by hand.
+  STATUS: FIXED. Both fixes are in pipelines/render_edition.py.

@@ -74,13 +74,19 @@ def esc(t):
 
 
 def inline(t):
-    out, i = [], 0
-    for m in re.finditer(r'`([^`]+)`', t):
-        out.append(esc(t[i:m.start()]))
-        out.append('<code>%s</code>' % H.escape(m.group(1)))
-        i = m.end()
-    out.append(esc(t[i:]))
-    return ''.join(out)
+    """Protect code spans behind a sentinel, run emphasis over the WHOLE
+    string, then restore. Splitting first breaks *emphasis spanning a code
+    span* - the opening and closing markers land in different fragments."""
+    codes = []
+
+    def stash(m):
+        codes.append(H.escape(m.group(1)))
+        return '␟%d␟' % (len(codes) - 1)
+
+    t = re.sub(r'`([^`]+)`', stash, t)
+    t = esc(t)
+    return re.sub(r'␟(\d+)␟',
+                  lambda m: '<code>%s</code>' % codes[int(m.group(1))], t)
 
 
 def cell(c):
@@ -170,12 +176,12 @@ def render(md):
                 i += 1
             emit('<div class="warnbox">%s</div>' % inline(' '.join(buf)))
             continue
-        if re.match(r'^([-*]|\d+\.)\s+', s):
+        if re.match(r'^(-\s+|\*\s+(?!\*)|\d+\.\s+)', s) and not re.match(r'^\*[^*\s]', s):
             ordered = bool(re.match(r'^\d+\.\s+', s))
             items = []
             while i < n:
                 t = lines[i].strip()
-                if re.match(r'^([-*]|\d+\.)\s+', t):
+                if re.match(r'^(-\s+|\*\s+(?!\*)|\d+\.\s+)', t) and not re.match(r'^\*[^*\s]', t):
                     items.append(re.sub(r'^([-*]|\d+\.)\s+', '', t)); i += 1
                 elif t and items and not t.startswith(('|', '#', '>', '---')):
                     items[-1] += ' ' + t; i += 1

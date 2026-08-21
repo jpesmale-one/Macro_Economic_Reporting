@@ -1,6 +1,6 @@
 ---
 edition: 2026-08-21
-revision: 9 (SEALED FULL, T4-amended: section 1 market structure restored)
+revision: 10 (SEALED FULL, T4-amended: F&G restored in the r9 format, placed under the headline)
 generated: 2026-08-21 07:00 PHT
 data_asof: 2026-08-21 16:40 PHT (macro 06:50 + 16:37; charts 16:40)
 horizon: WEEKLY selection (Fri - last edition of the week, Mon 17 - Fri 21)
@@ -24,9 +24,11 @@ prior_edition: 2026-08-20 (r11, UNSEALED)
 > subsection. It degraded across three editions — **9 mentions on 08-19, 1 on
 > 08-20, 0 here.**
 >
-> **What changed:** §1 gains the block, pulled fresh at 16:41 PHT (index 52.14,
-> all seven components, recompute shown). **No score, no band, no carried pair,
-> no falsifier changed** — F&G is context, not a scored input.
+> **What changed:** §1 now **opens** with the block, in the r9 (2026-08-19)
+> format Jeff preferred — horizon table with deltas, per-component PHT
+> timestamps, and a falsifier. Pulled fresh at 16:41 PHT. **No score, no band,
+> no carried pair, no trade falsifier changed** — F&G is context, not a scored
+> input.
 >
 > **The seal stands.** Per CLAUDE.md §2 this is a T4 revision to a sealed
 > edition, so it is disclosed here rather than silently patched, and the
@@ -198,6 +200,76 @@ later, from a different cause. Logged as **F-14**: calendar captures must be
 
 ## §1 — Headline Alerts, News & Current Events
 
+### 📊 Sentiment — CNN Fear &amp; Greed Index
+
+*Source: `production.dataviz.cnn.io/index/fearandgreed/graphdata` — browser
+headers + Referer. The article page returns HTTP 451 (geo-blocked) and the
+endpoint returns 418 to a plain fetch.*
+
+**Index: 52.14 — NEUTRAL** (CNN timestamp 21 Aug 16:41 PHT)
+
+| Horizon | Value | Rating | Δ vs now |
+|---|---|---|---|
+| **Now** | **52.14** | **Neutral** | — |
+| Previous close | 52.49 | Neutral | −0.34 |
+| 1 week ago | 63.97 | Greed | **−11.83** |
+| 1 month ago | 43.37 | Fear | **+8.77** |
+| 1 year ago | 52.60 | Neutral | −0.46 |
+
+#### The seven components
+
+| Component | Score | Rating | As of (PHT) |
+|---|---|---|---|
+| **Junk Bond Demand** | **94.40** | **EXTREME GREED** | 21 Aug 08:00 |
+| Safe Haven Demand | 62.80 | Greed | 21 Aug 03:59 |
+| Stock Price Breadth | 52.80 | Neutral | 21 Aug 08:59 |
+| Market Volatility (VIX) | 50.00 | Neutral | **21 Aug 16:41** |
+| Put/Call Options | 40.20 | Fear | 21 Aug 04:14 |
+| Market Momentum (S&P 500) | 35.80 | Fear | 21 Aug 05:10 |
+| **Stock Price Strength** | **29.20** | **FEAR** | 21 Aug 08:59 |
+
+**Recompute (P2) — and a residual, explained rather than rounded away.**
+`(94.40 + 62.80 + 52.80 + 50.00 + 40.20 + 35.80 + 29.20) / 7 = 365.20 / 7 = 52.1714`
+Published: **52.142857…**, a difference of **0.0286**.
+
+The two prior editions reproduced the index to **0.0000**. This one does not,
+and the timestamps say why: **the published value is exactly `365.0 / 7`**, so
+CNN computed the index when the component sum was 0.2 lower — and **VIX is
+stamped 16:41, the same minute as the index**, while every other component is
+from 03:59–08:59. **VIX refreshed as the index computed.**
+
+**The simple-average property holds.** CNN uses a simple average of the seven,
+not a weighted one; the inputs simply moved between snapshots. 0.03 on a 0–100
+scale is 0.05%.
+
+**Read — the headline fell to neutral, the split did not.** 56.34 (greed) on
+20 Aug → **52.14 (neutral)** today. But the spread between highest and lowest
+component is **65.20 points**:
+
+- **Junk Bond Demand 94.40 (extreme greed)** — credit is pricing almost no risk
+  premium. Still the most stretched reading on the board, three sessions running.
+- **Stock Price Strength 29.20 (fear)** — few stocks at 52-week highs. Narrow
+  participation.
+
+Credit is euphoric while equity breadth is thin. **The index's own averaging
+conceals the divergence** — which is exactly why the components are published
+here rather than the headline alone.
+
+**Spread history: 70.80 (19 Aug) → 66.60 (20 Aug) → 65.20 (today).** Narrowing
+slowly, but still wide enough that "neutral" describes no part of this market.
+
+**Cross-check against this week's carry.** Safe Haven Demand fell **68.0 →
+62.80**, consistent with §0's finding that the CHF bid faded. It does **not**
+explain the CHF move — EF-2 is sealed as an observation with no mechanism, and
+a falling haven-demand component is corroboration, not a cause.
+
+**Direction.** Down **11.83** from a week ago (greed → neutral) but still
+**+8.77** above a month ago (fear). Drifting down through neutral.
+
+**Falsifier.** Junk Bond Demand dropping below **~70** would confirm credit
+repricing to match equity stress, turning this divergence into broad risk-off.
+Stock Price Strength recovering above **50** would resolve it the other way.
+
 ### Overnight US data — strong, and it matters for the USD read
 
 | Release | Actual | Consensus | Previous | Read |
@@ -230,48 +302,6 @@ hike** (Hammack, Kashkari, Logan); BoE Vote Hike 3/9; RBNZ hiked to 2.50%
 > **STILL UNVERIFIED, carried:** the FOMC voting list names **Kevin Warsh** in
 > the Chair's position with Powell voting as a member. Not confirmed against a
 > second source. §3 names no Chair.
-
-### Market structure — CNN Fear &amp; Greed **52.14 (NEUTRAL)**
-
-*Source: `production.dataviz.cnn.io/index/fearandgreed/graphdata`, browser
-headers + Referer. Index timestamp **2026-08-21 08:41 UTC = 16:41 PHT**.*
-
-Prev close **52.49** · 1 week **63.97** · 1 month **43.37** · 1 year **52.60**
-
-| Component | Score | Rating | | Component | Score | Rating |
-|---|---|---|---|---|---|---|
-| Junk bond demand | **94.40** | extreme greed | | Put/call options | 40.20 | fear |
-| Safe haven demand | 62.80 | greed | | Market momentum S&P 500 | 35.80 | fear |
-| Stock price breadth | 52.80 | neutral | | Stock price strength | **29.20** | fear |
-| Market volatility (VIX) | 50.00 | neutral | | | | |
-
-**P2 RECOMPUTE — and a residual worth naming.**
-`(94.40 + 62.80 + 52.80 + 50.00 + 40.20 + 35.80 + 29.20) / 7 = 365.20 / 7 = 52.1714`
-Published: **52.142857…** — a difference of **0.0286**.
-
-The two prior editions reproduced the index to **0.0000**. This one does not,
-and the cause is identifiable rather than mysterious: **the published value is
-exactly `365.0 / 7`**, so CNN computed the index when the component sum was
-0.2 lower. **The components carry independent timestamps** — VIX last updated
-at 08:41:16 UTC, safe-haven demand at 03:59:59 — so a component refreshing
-after the index recomputes leaves a residual.
-
-**The simple-average property holds; the inputs simply moved between
-snapshots.** 0.03 on a 0–100 scale is 0.05%. Reported rather than rounded away.
-
-**THE INDEX FELL, THE SPLIT DID NOT.** 56.34 (greed) on 20 Aug → **52.14
-(neutral)** today. But the internal spread is **65.20 points** — junk bond
-demand **94.40 (extreme greed)** against stock price strength **29.20 (fear)** —
-against 66.60 yesterday and 70.80 on 19 Aug.
-
-**Read:** the headline has drifted back to neutral while the market underneath
-stayed just as split. **Credit is still euphoric and equity breadth is still
-weak** — three sessions running. A neutral headline averaging a 65-point spread
-is not a neutral market, and the spread is the tradeable information.
-
-**Relevance to this week's carry:** safe-haven demand fell 68.0 → **62.80**,
-which is consistent with §0's finding that the CHF bid faded. It does **not**
-explain the CHF move — see EF-2, sealed as an observation with no mechanism.
 
 ---
 
