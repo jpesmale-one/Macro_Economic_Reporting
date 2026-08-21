@@ -1396,3 +1396,29 @@ EMPIRICAL - 2026-08-21 r7 afternoon update:
   CARRIED PAIRS ALL INTACT at 16:40, none near a falsifier: CADJPY 115.347
   (new high 115.579), EURCHF 0.93567 (new high 0.93614, highest since the
   19 Aug break), GBPUSD 1.36507. Friday's daily bar still FORMING.
+
+LD-24 - THE HTML DELIVERABLE COLLAPSES REFERENCE DETAIL, NEVER THE READ.
+  Jeff, 2026-08-21: "can we tidy up the report? make it look more professional
+  without loosing context. If we can add Retractable windows let's do it per
+  section."
+  WHAT COLLAPSES: only reference-weight blocks - section 2's five 70-row
+  indicator tables and section 4.2's full candidate matrix. Together they were
+  46% of the page (155 + 169 of 706 lines).
+  WHAT STAYS OPEN: pre-flight guards, section 0 grading, section 0b update,
+  section 1 news, the 2.0 tally, 2.6 interest rate, section 3 rates, 4.1 bands,
+  4.3 carried, 4.3b correlated, 4.4 rejected, 4.5 summary, sections 5-9.
+  Those are the read; a collapsed section a reader has to hunt for is worse
+  than a long page.
+  MECHANISM: <details>/<summary>, so the content is IN THE DOM - searchable
+  with ctrl-F, and forced open in @media print. NOT removed, NOT lazy-loaded.
+  Each summary carries its row count so the reader knows the size before
+  opening. Keyboard focus has a visible outline; the disclosure arrow honours
+  prefers-reduced-motion.
+  ALSO ADDED: an executive summary block at the top - carried pairs with
+  confidence, what changed, the tally in one line. A full-seal candidate should
+  open with its conclusion, not with its guards.
+  VERIFICATION BEFORE PUBLISH: unescape the rendered HTML and confirm every
+  score_model indicator name is present. Ran on r7: 0 of 70 missing. Collapsing
+  must never be able to drop content, and the check proves it did not.
+  Implementation: pipelines/render_edition.py (the .md remains the source of
+  truth per LD-10; this is the renderer).

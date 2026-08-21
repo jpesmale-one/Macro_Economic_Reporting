@@ -194,7 +194,41 @@
     font-family:var(--mono);font-size:.65rem;color:var(--muted);
     display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 </style>
-<div class="tzbar">ALL TIMES PHILIPPINE STANDARD TIME (UTC+8) &middot; TRADINGECONOMICS CALENDAR IS UTC &rarr; PHT = UTC + 8h &middot; RE-VERIFIED THIS RUN</div>
+<style>
+  details.fold{background:var(--surface);border:1px solid var(--border);
+    border-radius:4px;margin:14px 0;overflow:hidden}
+  details.fold>summary{cursor:pointer;list-style:none;padding:10px 15px;
+    background:var(--surface2);font-family:var(--mono);font-size:.68rem;
+    letter-spacing:.11em;text-transform:uppercase;font-weight:700;
+    color:var(--strong);display:flex;align-items:center;gap:10px;
+    user-select:none;transition:background .12s}
+  details.fold>summary:hover{background:var(--border)}
+  details.fold>summary::-webkit-details-marker{display:none}
+  details.fold>summary::before{content:'▸';color:var(--info);font-size:.85rem;
+    transition:transform .15s;display:inline-block}
+  details.fold[open]>summary::before{transform:rotate(90deg)}
+  details.fold>summary .cnt{margin-left:auto;font-size:.6rem;letter-spacing:.08em;
+    color:var(--muted);font-weight:600;text-transform:none}
+  details.fold>summary:focus-visible{outline:2px solid var(--info);outline-offset:-2px}
+  .foldbody{padding:4px 15px 14px}
+  .foldbody .tblwrap{border:none;border-radius:0}
+  @media print{details.fold[open],details.fold{display:block}
+    details.fold>summary::before{display:none}
+    details.fold:not([open])>.foldbody{display:block}}
+  @media (prefers-reduced-motion:reduce){
+    details.fold>summary::before{transition:none}}
+
+  .exec{background:var(--surface);border:1px solid var(--info);
+    border-left:4px solid var(--info);border-radius:4px;margin:20px 0;overflow:hidden}
+  .exec-hd{background:var(--info-bg);padding:11px 18px;font-family:var(--mono);
+    font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--info)}
+  .exec-b{padding:14px 18px}
+  .exec-b p{margin-bottom:9px;max-width:78ch;font-size:.88rem}
+  .exec-b p:last-child{margin-bottom:0}
+</style>
+
+<div class="tzbar">ALL TIMES PHILIPPINE STANDARD TIME (UTC+8) &middot; TE CALENDAR IS UTC &rarr; PHT = UTC + 8h &middot; RE-VERIFIED THIS RUN</div>
 <div class="masthead"><div class="wrap mh">
   <div>
     <div class="eyebrow">Macro Economic Reporting &middot; Daily Market Sentiment</div>
@@ -202,13 +236,37 @@
     <div class="draft">REVISION 7 &middot; FULL SEAL CANDIDATE &middot; WEEK GRADED 10/13</div>
   </div>
   <div class="chips">
-    <span>CARRIED <b class="up">CADJPY HIGH</b> · EURCHF MED · GBPUSD LOW</span>
-    <span>WEEK <b class="up">10 of 13 projections</b> <span class="dn">3 misses all surveys</span></span>
-    <span>JPY CROSSES <b class="up">+82 / +108 / +163 pips</b></span>
-    <span>CHF BID <b class="dn">42.9% retraced</b></span>
+    <span>CARRIED <b class="up">CADJPY HIGH</b> &middot; EURCHF MED &middot; GBPUSD LOW</span>
+    <span>WEEK <b class="up">10 of 13</b> <span class="dn">3 misses all surveys</span></span>
+    <span>SCALE <b>&plusmn;11.00</b> <span class="dn">rate = cat 6</span></span>
   </div>
 </div></div>
 <div class="wrap">
+
+<div class="exec">
+  <div class="exec-hd">The week in one screen &middot; Mon 17 &ndash; Fri 21 Aug</div>
+  <div class="exec-b">
+    <p><b>Carried three leg-disjoint reads, ranked by confidence:</b>
+       <b>CADJPY LONG (HIGH)</b> &middot; <b>EURCHF LONG (MEDIUM)</b> &middot;
+       <b>GBPUSD LONG (LOW)</b>. All three are intact at 16:40 and none is near
+       its falsifier. Six currencies, each used once &mdash; three independent
+       tests, not one bet counted three times.</p>
+    <p><b>Yesterday's four positions all worked</b> (+82 / +108 / +163 pips and
+       &minus;29), <b>but that was two bets, not four</b> &mdash; three shared the
+       JPY leg. The scorecard is corrected in &sect;0 rather than quietly fixed.</p>
+    <p><b>Interest Rate is now scored</b> (&sect;2.6, weight 3) &mdash; it was
+       defined as category 6 from the start and had never fed the tally.
+       <b>NZD jumps two ranks</b> as the only active hiker; USD and AUD each drop
+       one on inflation that is above target but <em>falling</em>.</p>
+    <p><b>The week's projections graded 10 of 13.</b> All three misses were
+       BAD-projected <em>survey</em> indicators that printed GOOD &mdash; a
+       one-directional error, recorded as a finding about the method rather than
+       patched.</p>
+    <p><b>Tally:</b> CAD +8.38 &middot; EUR +6.25 &middot; GBP +5.75 &middot;
+       NZD +3.75 &middot; USD +2.25 &middot; AUD +2.08 &middot; JPY +0.00 &middot;
+       CHF &minus;3.38 &nbsp;<span class="note">(scale &plusmn;11.00)</span></p>
+  </div>
+</div>
 <p><b>All times Philippine Standard Time (UTC+8).</b> <b>TE calendar is UTC → PHT = UTC + 8h — re-verified this run.</b></p>
 <h2 class="sec">Pre-flight — both guards run, plus the new span assertion</h2>
 <div class="tblwrap"><table>
@@ -322,57 +380,54 @@
 </table></div>
 <p><b>INTEREST RATE IS SCORED FROM THIS EDITION (LD-23).</b> It was defined as category 6 in the Idea_dump — <em>"the core indicator which tells the strength of a currency"</em> — but had never fed the tally. The causal chain the model draws (Production/Spending/Trade → Employment/Inflation → <b>Interest Rate</b> → currency strength) stopped one step short of its own conclusion.</p>
 <p><b>What changed:</b> <b>NZD +1.50 → +3.75, up two ranks</b> — the only currency actively hiking, with inflation above its ceiling and rising. <b>USD and AUD each drop one rank</b>, both because their inflation is above target but <em>falling</em>, which is hold-leaning on the same test every currency faces.</p>
-<h3 class="sub">2.1 Production (weight 1)</h3>
-<div class="tblwrap"><table>
+<details class="fold"><summary>2.1 Production (weight 1)<span class="cnt">18 rows</span></summary><div class="foldbody"><div class="tblwrap"><table>
 <tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
-<tr><td class="num">USD</td><td>ISM Manufacturing PMI</td><td class="num">53.9</td><td class="num">53.9</td><td>Jul/26</td><td class="num">&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">USD</td><td>Industrial Production YoY</td><td class="num">1.1%</td><td class="num">1.29%</td><td>Jul/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">USD</td><td>Durable Goods Ex Transp MoM</td><td class="num">0.6%</td><td class="num">1.8%</td><td>Jun/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">EUR</td><td>S&amp;P Global Mfg PMI Final</td><td class="num">51.9</td><td class="num">51.4</td><td>Jul/26</td><td class="num">&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">USD</td><td>ISM Manufacturing PMI</td><td class="num">53.9</td><td class="num">53.9</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">USD</td><td>Industrial Production YoY</td><td class="num">1.1%</td><td class="num">1.29%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">USD</td><td>Durable Goods Ex Transp MoM</td><td class="num">0.6%</td><td class="num">1.8%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">EUR</td><td>S&amp;P Global Mfg PMI Final</td><td class="num">51.9</td><td class="num">51.4</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">EUR</td><td>Industrial Production YoY</td><td class="num">0.1%</td><td class="num">-0.1%</td><td>Jun/26</td><td>0-0.5%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
-<tr><td class="num">GBP</td><td>S&amp;P Global Mfg PMI Final</td><td class="num">51.9</td><td class="num">52.5</td><td>Jul/26</td><td class="num">&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">GBP</td><td>Industrial Production YoY</td><td class="num">-0.2%</td><td class="num">1.0%</td><td>Jun/26</td><td class="num">&lt;0%</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td class="num">GBP</td><td>S&amp;P Global Mfg PMI Final</td><td class="num">51.9</td><td class="num">52.5</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">GBP</td><td>Industrial Production YoY</td><td class="num">-0.2%</td><td class="num">1.0%</td><td>Jun/26</td><td>&lt;0%</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 <tr><td class="num">GBP</td><td>Manufacturing Production YoY</td><td class="num">0.5%</td><td class="num">2.0%</td><td>Jun/26</td><td>0-0.5%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
-<tr><td class="num">JPY</td><td>Industrial Production YoY Final</td><td class="num">4.9%</td><td class="num">-2.1%</td><td>Jun/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">JPY</td><td>Machinery Orders YoY</td><td class="num">16.9%</td><td class="num">-1.9%</td><td>Jun/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">JPY</td><td>Machine Tool Orders YoY</td><td class="num">50.4%</td><td class="num">52.8%</td><td>Jul/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">JPY</td><td>S&amp;P Global Mfg PMI Final</td><td class="num">54.5</td><td class="num">54.8</td><td>Jul/26</td><td class="num">&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">AUD</td><td>S&amp;P Global Mfg PMI Final</td><td class="num">52.0</td><td class="num">51.5</td><td>Jul/26</td><td class="num">&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">NZD</td><td>Business NZ PMI</td><td class="num">54.3</td><td class="num">60.1</td><td>Jul/26</td><td class="num">&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">NZD</td><td>Global Dairy Trade Price Index</td><td class="num">2.3%</td><td class="num">0.1%</td><td>Aug/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">CAD</td><td>S&amp;P Global Mfg PMI</td><td class="num">53.5</td><td class="num">53.0</td><td>Jul/26</td><td class="num">&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">CHF</td><td>Procure.ch-UBS Mfg PMI</td><td class="num">53.2</td><td class="num">54.3</td><td>Jul/26</td><td class="num">&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">CHF</td><td>Industrial Production YoY</td><td class="num">-7.1%</td><td class="num">-0.4%</td><td>Mar/26</td><td class="num">&lt;0%</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
-</table></div>
-<h3 class="sub">2.2 Spending (weight 1)</h3>
-<div class="tblwrap"><table>
+<tr><td class="num">JPY</td><td>Industrial Production YoY Final</td><td class="num">4.9%</td><td class="num">-2.1%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">JPY</td><td>Machinery Orders YoY</td><td class="num">16.9%</td><td class="num">-1.9%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">JPY</td><td>Machine Tool Orders YoY</td><td class="num">50.4%</td><td class="num">52.8%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">JPY</td><td>S&amp;P Global Mfg PMI Final</td><td class="num">54.5</td><td class="num">54.8</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">AUD</td><td>S&amp;P Global Mfg PMI Final</td><td class="num">52.0</td><td class="num">51.5</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">NZD</td><td>Business NZ PMI</td><td class="num">54.3</td><td class="num">60.1</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">NZD</td><td>Global Dairy Trade Price Index</td><td class="num">2.3%</td><td class="num">0.1%</td><td>Aug/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CAD</td><td>S&amp;P Global Mfg PMI</td><td class="num">53.5</td><td class="num">53.0</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CHF</td><td>Procure.ch-UBS Mfg PMI</td><td class="num">53.2</td><td class="num">54.3</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CHF</td><td>Industrial Production YoY</td><td class="num">-7.1%</td><td class="num">-0.4%</td><td>Mar/26</td><td>&lt;0%</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+</table></div></div></details>
+<details class="fold"><summary>2.2 Spending (weight 1)<span class="cnt">23 rows</span></summary><div class="foldbody"><div class="tblwrap"><table>
 <tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
-<tr><td class="num">USD</td><td>Building Permits MoM Final</td><td class="num">+5.0%</td><td class="num">-2.6%</td><td>Jul/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">USD</td><td>Retail Sales YoY</td><td class="num">5.0%</td><td class="num">6.8%</td><td>Jul/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">USD</td><td>Building Permits MoM Final</td><td class="num">+5.0%</td><td class="num">-2.6%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">USD</td><td>Retail Sales YoY</td><td class="num">5.0%</td><td class="num">6.8%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">USD</td><td>CB Consumer Confidence</td><td class="num">51.0</td><td class="num">55.2</td><td>Aug/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 <tr><td class="num">USD</td><td>Personal Spending MoM</td><td class="num">0.3%</td><td class="num">0.9%</td><td>Jun/26</td><td>0-0.5%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
-<tr><td class="num">EUR</td><td>Retail Sales YoY</td><td class="num">0.7%</td><td class="num">1.9%</td><td>Jun/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">EUR</td><td>Retail Sales YoY</td><td class="num">0.7%</td><td class="num">1.9%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">EUR</td><td>Consumer Confidence Final</td><td class="num">-15.9</td><td class="num">-17.6</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">GBP</td><td>GfK Consumer Confidence</td><td class="num">-17</td><td class="num">-23</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">GBP</td><td>Retail Sales YoY</td><td class="num">4.2%</td><td class="num">3.5%</td><td>Jun/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">JPY</td><td>Household Spending YoY</td><td class="num">-3.3%</td><td class="num">-0.4%</td><td>Jun/26</td><td class="num">&lt;0%</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td class="num">GBP</td><td>Retail Sales YoY</td><td class="num">4.2%</td><td class="num">3.5%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">JPY</td><td>Household Spending YoY</td><td class="num">-3.3%</td><td class="num">-0.4%</td><td>Jun/26</td><td>&lt;0%</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 <tr><td class="num">JPY</td><td>Consumer Confidence</td><td class="num">34.9</td><td class="num">33.8</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">JPY</td><td>Retail Sales YoY</td><td class="num">0.5%</td><td class="num">5.0%</td><td>Jun/26</td><td>0-0.5%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
-<tr><td class="num">AUD</td><td>Household Spending YoY</td><td class="num">6.0%</td><td>-</td><td>Jun/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">AUD</td><td>Building Permits YoY Final</td><td class="num">8.9%</td><td class="num">5.5%</td><td>Jun/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">AUD</td><td>Household Spending YoY</td><td class="num">6.0%</td><td>-</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">AUD</td><td>Building Permits YoY Final</td><td class="num">8.9%</td><td class="num">5.5%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">AUD</td><td>Westpac Consumer Conf Change</td><td class="num">88.9</td><td class="num">83.9</td><td>Aug/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">AUD</td><td>NAB Business Confidence</td><td class="num">-6</td><td class="num">-6</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
-<tr><td class="num">NZD</td><td>Building Permits MoM</td><td class="num">-3.6%</td><td class="num">-4.9%</td><td>Jun/26</td><td class="num">&lt;0%</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
-<tr><td class="num">NZD</td><td>Electronic Retail Card Spending YoY</td><td class="num">0.9%</td><td class="num">0.9%</td><td>Q1/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">NZD</td><td>Building Permits MoM</td><td class="num">-3.6%</td><td class="num">-4.9%</td><td>Jun/26</td><td>&lt;0%</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td class="num">NZD</td><td>Electronic Retail Card Spending YoY</td><td class="num">0.9%</td><td class="num">0.9%</td><td>Q1/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">NZD</td><td>ANZ Business Confidence</td><td class="num">56.1</td><td class="num">36.6</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">NZD</td><td>ANZ Roy Morgan Consumer Conf</td><td class="num">99.3</td><td class="num">91.3</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">CAD</td><td>Retail Sales YoY</td><td class="num">5.9%</td><td class="num">3.6%</td><td>May/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">CAD</td><td>Building Permits MoM</td><td class="num">+18.5%</td><td class="num">-3.0%</td><td>Jun/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CAD</td><td>Retail Sales YoY</td><td class="num">5.9%</td><td class="num">3.6%</td><td>May/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CAD</td><td>Building Permits MoM</td><td class="num">+18.5%</td><td class="num">-3.0%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Consumer Confidence</td><td class="num">-35</td><td class="num">-36</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">CHF</td><td>Retail Sales YoY</td><td class="num">1.5%</td><td class="num">3.4%</td><td>Jun/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-</table></div>
-<h3 class="sub">2.3 Trade (weight 1)</h3>
-<div class="tblwrap"><table>
+<tr><td class="num">CHF</td><td>Retail Sales YoY</td><td class="num">1.5%</td><td class="num">3.4%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+</table></div></div></details>
+<details class="fold"><summary>2.3 Trade (weight 1)<span class="cnt">8 rows</span></summary><div class="foldbody"><div class="tblwrap"><table>
 <tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
 <tr><td class="num">USD</td><td>Balance of Trade</td><td>-$73.26B</td><td>-$77.65B</td><td>Jun/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">EUR</td><td>Balance of Trade</td><td>EUR8,600M</td><td>EUR-9,000M</td><td>Jun/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
@@ -382,16 +437,15 @@
 <tr><td class="num">NZD</td><td>Balance of Trade</td><td>NZ$23M</td><td>NZ$577M</td><td>Jun/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 <tr><td class="num">CAD</td><td>Balance of Trade</td><td>C$3,860M</td><td>C$3,700M</td><td>Jun/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Balance of Trade</td><td>CHF3,800M</td><td>CHF5,530M</td><td>Jun/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
-</table></div>
-<h3 class="sub">2.4 Employment (weight 2)</h3>
-<div class="tblwrap"><table>
+</table></div></div></details>
+<details class="fold"><summary>2.4 Employment (weight 2)<span class="cnt">13 rows</span></summary><div class="foldbody"><div class="tblwrap"><table>
 <tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
 <tr><td class="num">USD</td><td>Non Farm Payrolls</td><td class="num">-23K</td><td class="num">20K</td><td>Jul/26</td><td>&gt;Cons</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 <tr><td class="num">USD</td><td>Unemployment Rate</td><td class="num">4.1%</td><td class="num">4.2%</td><td>Jul/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">EUR</td><td>Unemployment Rate</td><td class="num">6.3%</td><td class="num">6.3%</td><td>Jun/26</td><td>unchanged</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
 <tr><td class="num">GBP</td><td>Claimant Count Change</td><td class="num">-11K</td><td class="num">-6.4K</td><td>Jul/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">JPY</td><td>Unemployment Rate</td><td class="num">2.5%</td><td class="num">2.5%</td><td>Jun/26</td><td>unchanged</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
-<tr><td class="num">AUD</td><td>ANZ-Indeed Job Ads MoM</td><td class="num">+0.8%</td><td class="num">-0.1%</td><td>Jul/26</td><td class="num">&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">AUD</td><td>ANZ-Indeed Job Ads MoM</td><td class="num">+0.8%</td><td class="num">-0.1%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">AUD</td><td>Employment Change</td><td class="num">-15.8K</td><td class="num">76.3K</td><td>Jul/26</td><td>&lt;Prev, FT +16.3K vs 29.3K</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 <tr><td class="num">AUD</td><td>Unemployment Rate</td><td class="num">4.5%</td><td class="num">4.4%</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 <tr><td class="num">NZD</td><td>Unemployment Rate</td><td class="num">5.6%</td><td class="num">5.4%</td><td>Jun/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
@@ -399,9 +453,8 @@
 <tr><td class="num">CAD</td><td>Employment Change</td><td class="num">75.1K</td><td class="num">18.2K</td><td>Jul/26</td><td>&gt;Prev, FT-weighted</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Non Farm Payrolls</td><td class="num">+0.5%</td><td class="num">+0.2%</td><td>Q1/26</td><td>&gt;Cons</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Unemployment Rate</td><td class="num">3.0%</td><td class="num">2.9%</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
-</table></div>
-<h3 class="sub">2.5 Inflation (weight 3)</h3>
-<div class="tblwrap"><table>
+</table></div></div></details>
+<details class="fold"><summary>2.5 Inflation (weight 3)<span class="cnt">8 rows</span></summary><div class="foldbody"><div class="tblwrap"><table>
 <tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
 <tr><td class="num">USD</td><td>Inflation Rate YoY</td><td class="num">3.4%</td><td class="num">3.5%</td><td>Jul/26</td><td>&gt;2% &amp; falling</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
 <tr><td class="num">EUR</td><td>Inflation Rate YoY Final</td><td class="num">2.9%</td><td class="num">2.8%</td><td>Jul/26</td><td>&gt;2% &amp; rising</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
@@ -411,7 +464,7 @@
 <tr><td class="num">NZD</td><td>Inflation Rate YoY</td><td class="num">4.1%</td><td class="num">3.1%</td><td>Jun/26</td><td>&gt;2% &amp; rising</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CAD</td><td>Inflation Rate YoY</td><td class="num">3.0%</td><td class="num">2.8%</td><td>Jul/26</td><td>&gt;2% &amp; rising</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Inflation Rate YoY</td><td class="num">0.4%</td><td class="num">0.5%</td><td>Jul/26</td><td>&lt;2% &amp; falling</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
-</table></div>
+</table></div></div></details>
 <h3 class="sub">2.6 Interest Rate (weight 3) — NEW, category 6</h3>
 <p><b>Score = (realised + expected) / 2 × 3.</b> <em>Realised</em> is the Idea_dump rule on the last decision (hiked +1.0, held 0.0, cut −1.0). <em>Expected</em> is <b>inflation versus the bank's own mandate</b> — and nothing else.</p>
 <div class="tblwrap"><table>
@@ -480,8 +533,7 @@
 </table></div>
 <p><b>Group standings</b> — Safe haven: USD +2.25 › JPY +0.00 › CHF −3.38 · Commodity: CAD +8.38 › NZD +3.75 › AUD +2.08 · Risk-correlated: EUR +6.25 › GBP +5.75</p>
 <p><b>NZD moved up two ranks this edition</b> on the new rate leg (+2.25 — the only currency actively hiking, inflation above its 1–3% ceiling and rising). <b>AUD and USD each dropped one</b>, both scoring 0.00 on rate: inflation above target but <em>falling</em>, which is hold-leaning on the same test every currency faces.</p>
-<h3 class="sub">4.2 All candidate pairings</h3>
-<p>Grouped by type, tradable first. Minimum spread <b>1.00</b>. ✅ carried · ⬜ no edge · ❌ rejected</p>
+<details class="fold"><summary>4.2 All candidate pairings<span class="cnt">12 rows</span></summary><div class="foldbody"><p>Grouped by type, tradable first. Minimum spread <b>1.00</b>. ✅ carried · ⬜ no edge · ❌ rejected</p>
 <div class="tblwrap"><table>
 <tr><th>Pair</th><th>Dir</th><th>Type</th><th>Spread</th><th>Thu close</th><th>Structure verdict</th></tr>
 <tr><td><b>CADJPY</b></td><td>LONG</td><td><b>RISK-ON</b></td><td class="num"><b>8.38</b></td><td class="num">115.366</td><td>✅ <b>broke resistance, closed +82.2 pips</b></td></tr>
@@ -497,7 +549,7 @@
 <tr><td>CHFJPY</td><td>SHORT</td><td>SAFE</td><td class="num">3.00</td><td>—</td><td>⬜ not re-read this run</td></tr>
 <tr><td>USDJPY</td><td>LONG</td><td>SAFE</td><td class="num">2.25</td><td>—</td><td>⬜ not re-read this run</td></tr>
 </table></div>
-<p><b>RISK-OFF: still nil.</b> The 3×3 haven-minus-commodity matrix is unchanged because no whitelist score moved — not one cell reaches +1.00, and the binding case was <b>USD +2.25 failing to clear NZD +1.50 by a full point (+0.75)</b>. <b>THAT HAS NOW CHANGED</b> — see below. It did not close on the US data night, precisely because neither jobless claims nor Philly Fed is a whitelist indicator.</p>
+<p><b>RISK-OFF: still nil.</b> The 3×3 haven-minus-commodity matrix is unchanged because no whitelist score moved — not one cell reaches +1.00, and the binding case was <b>USD +2.25 failing to clear NZD +1.50 by a full point (+0.75)</b>. <b>THAT HAS NOW CHANGED</b> — see below. It did not close on the US data night, precisely because neither jobless claims nor Philly Fed is a whitelist indicator.</p></div></details>
 <h3 class="sub">4.3 CARRIED — three leg-disjoint pairs, with confidence</h3>
 <p><b>These are HIGH-PROBABILITY reads from fundamentals plus structure. They are not guarantees and nothing here is a prediction.</b> Every one carries a falsifier; if it fires, the read was wrong and that is the point of stating it.</p>
 <p><b>Selection:</b> spread floor 1.00 → structure filter → leg-disjoint (LD-19). <b>Confidence (LD-20)</b> is a tally of independent supports, not a probability — the arithmetic is shown so you can disagree with any line of it.</p>
