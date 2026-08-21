@@ -4,7 +4,7 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-08-21 (r12, SEALED FULL; T4 PENDING on F-17 - resolve in R-9)
+edition: 2026-08-21 (r13, SEALED FULL; T4 RESOLVED - F-17 corrected in-edition)
 date: 2026-08-21
 data_asof: 2026-08-21 16:40 PHT (macro 06:50 + 16:37; charts 16:40)
 track: LEAN (no section-2 trigger has fired)
@@ -1852,3 +1852,70 @@ T4 PENDING - OPENED 2026-08-21 AT WRAP, TO RESOLVE IN R-9. Jeff: "yes let's
     4. Re-seal as a NEW revision. T4 never takes the light path.
   DO NOT let R-8 (cut the noise) run first. Cutting interpretation before
   adding reporting would delete the wrong text and leave the gap intact.
+
+
+T4 RESOLVED - 2026-08-21 20:25 PHT. R-9 executed. Jeff: "proceed."
+  PRIMARY SOURCE CONFIRMED VERBATIM. home.treasury.gov press release sb0607,
+  dated 19 August 2026, captured to data/raw/news/:
+    "The U.S. Department of the Treasury is increasing, by at least double, the
+     size of liquidity support buyback operations for longer-dated nominal
+     coupon securities (the 10-year to 20-year sector and the 20-year to
+     30-year sector). The current maximum size of $2 billion per operation will
+     be at least $4 billion per operation. This change is effective September 9,
+     2026 and will be in effect for the remainder of this refunding quarter
+     (through November 4, 2026)."
+  A DATE TRAP AVOIDED: the page also carries "August 20, 2026" in a sidebar of
+  OTHER releases. Checked the date attached to THIS release before using it -
+  19 Aug, matching every secondary source. A date lifted from the wrong block
+  would have mis-attributed the whole correction.
+  BOTH MANDATED NEWS SOURCES FETCHED, first time in the repo's history.
+  investinglive.com 200/788KB and investing.com/news/forex-news 200/1.2MB, both
+  at STEP 2 of the F-6 ladder (browser User-Agent only). Captured immutably.
+
+  THREE CORRECTIONS APPLIED IN-EDITION, originals RETAINED and struck through
+  per the CLAUDE.md FAIL protocol:
+    1. EF-2 / section 0 - "CHF-specific bid, cause unidentified" -> THE USD LEG
+       WAS PRIMARY. Dollar -0.8% on the announcement, later a three-month low;
+       CHF and gold rallied AGAINST A FALLING DOLLAR.
+       Source: investing.com "Dollar hits three-month low as Treasury buybacks
+       sink yields".
+    2. Section 5 Gold - "real yields rose 25-30bp, gold rose anyway, THAT IS
+       THE SIGNAL" -> WRONG PREMISE. Those 25-30bp were the FOMC intermeeting
+       move. ON 19 AUG YIELDS FELL (10y -5bp, 30y -9bp). Gold rose WITH falling
+       yields on a debasement trade.
+       Source: investinglive.com "Gold's oversized reaction to Treasury buyback
+       reflects debasement trade".
+    3. Section 6 BTC - "DECOUPLED - and now decisively" -> NOT DECOUPLED. Same
+       buyback liquidity as gold. BTC subsequently topped $77,000, above the
+       74,991 window high this edition published.
+       Source: investinglive.com "Why gold and Bitcoin surged together: What
+       Treasury buybacks teach investors about dollar debasement".
+
+  A FOURTH ITEM THE NEWS SURFACED, not previously flagged: "Canadian dollar
+  rises to new highs after Trump's tariff TACO, US Treasury announcement" and
+  "Canadian dollar hits near three-month high". CAD's strength - the basis of
+  the #1 carried trade - was PARTLY A USD-SIDE MOVE, not purely its +8.38
+  fundamental score. Does not void CADJPY (a JPY cross, no USD leg), but the
+  CAD read was better sourced than the report showed.
+
+  THE SEAL STANDS AND THE FIGURES ARE UNCHANGED. Every price, pip, score, band,
+  zone, touch count and falsifier was independently sourced and recomputed;
+  none depended on the missing news. EF-1, EF-3, EF-4, EF-5 unchanged. EF-2's
+  OBSERVATION unchanged - only its absent mechanism is now supplied, which is
+  exactly why sealing it as an observation was the right call. That distinction
+  did real work here.
+
+LD-26 - AN UNEXPLAINED PRICE MOVE IS A RESEARCH TRIGGER, NOT A FINDING.
+  Before any edition writes "cause unidentified", "unexplained", or "no sourced
+  explanation", it MUST first search the mandated news sources for that date.
+  EF-2 was sealed as unexplained after ZERO searches.
+  All three wrong readings were hedged, careful and internally consistent. THE
+  HEDGING SUBSTITUTED FOR LOOKING, and hedged prose READS AS RIGOUR - which is
+  more dangerous than being plainly wrong, because it survives review.
+  COROLLARY: "I could not find an explanation" is only publishable after naming
+  WHERE you looked. Same evidentiary burden as any absence-type claim
+  (F-5/F-6/F-7).
+
+F-17 STATUS: the diagnosis is CLOSED (three editions, zero news fetches, cost
+  quantified, corrections applied). The FIX is still OPEN - R-9 must become
+  routine, not a one-off, and the source-presence assertion is not written yet.

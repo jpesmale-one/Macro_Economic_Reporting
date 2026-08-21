@@ -53,6 +53,7 @@ EXTRA_CSS = """
   @media (prefers-reduced-motion:reduce){
     details.fold>summary::before{transition:none}}
 
+  del{opacity:.62;text-decoration-color:var(--bear)}
   .exec{background:var(--surface);border:1px solid var(--info);
     border-left:4px solid var(--info);border-radius:4px;margin:20px 0;overflow:hidden}
   .exec-hd{background:var(--info-bg);padding:11px 18px;font-family:var(--mono);
@@ -67,6 +68,9 @@ EXTRA_CSS = """
 
 def esc(t):
     t = H.escape(t, quote=False)
+    # strikethrough FIRST: retained-original text (FAIL protocol) often contains
+    # bold and quotes, and ~~ must not be eaten by the emphasis passes.
+    t = re.sub(r'~~(.+?)~~', r'<del>\1</del>', t, flags=re.S)
     t = re.sub(r'\*\*([^*]+)\*\*', r'<b>\1</b>', t)
     t = re.sub(r'(?<!\*)\*([^*\n]+)\*(?!\*)', r'<em>\1</em>', t)
     t = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2">\1</a>', t)
@@ -268,7 +272,7 @@ if __name__ == '__main__':
   <div>
     <div class="eyebrow">Macro Economic Reporting &middot; Daily Market Sentiment</div>
     <div class="mdate">Friday, 21 August 2026 &middot; 16:40 PHT</div>
-    <div class="draft">REVISION 7 &middot; FULL SEAL CANDIDATE &middot; WEEK GRADED 10/13</div>
+    <div class="draft">REVISION 13 &middot; SEALED FULL &middot; T4 RESOLVED (F-17)</div>
   </div>
   <div class="chips">
     <span>CARRIED <b class="up">CADJPY HIGH</b> &middot; EURCHF MED &middot; GBPUSD LOW</span>

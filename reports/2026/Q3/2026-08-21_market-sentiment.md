@@ -1,10 +1,10 @@
 ---
 edition: 2026-08-21
-revision: 12 (SEALED FULL; T4 PENDING on F-17 - three causal readings suspect, figures stand)
+revision: 13 (SEALED FULL; T4 RESOLVED - three causal readings corrected, figures unchanged)
 generated: 2026-08-21 07:00 PHT
 data_asof: 2026-08-21 16:40 PHT (macro 06:50 + 16:37; charts 16:40)
 horizon: WEEKLY selection (Fri - last edition of the week, Mon 17 - Fri 21)
-seal: SEALED (FULL) - Jeff, 2026-08-21; T4 amendments (F-15); T4 PENDING (F-17)
+seal: SEALED (FULL) - Jeff, 2026-08-21; T4 amendments (F-15); T4 RESOLVED (F-17)
 seal_tier: FULL (LD-12: Friday, last edition of the week Mon 17 - Fri 21 Aug)
 artifact_url: https://claude.ai/code/artifact/eee6e597-8644-4c5d-b69b-db6879803abc
 prior_edition: 2026-08-20 (r11, UNSEALED)
@@ -12,28 +12,20 @@ prior_edition: 2026-08-20 (r11, UNSEALED)
 
 # Daily Market Sentiment — Friday 21 August 2026
 
-> ## ⚠ T4 PENDING — THREE SEALED CONCLUSIONS ARE SUSPECT (F-17)
+> ## ✅ T4 RESOLVED — three causal readings corrected (F-17)
 >
-> **Raised 2026-08-21 at session wrap, after the seal. Not yet resolved.**
+> **The 19 Aug US Treasury buyback announcement was missing from this edition.**
+> §1's two mandated news sources had never been fetched. **Three conclusions
+> sealed as "cause not identified" now have their cause** — see **§0c**.
 >
-> §1's two mandated news sources (`investinglive.com`, `investing.com`) were
-> **never fetched in any edition.** §1 was built from calendar and agency
-> sources, which can only report *scheduled* releases.
+> **Every figure stands. EF-1, EF-3, EF-4, EF-5 stand. EF-2's observation
+> stands** — only its absent mechanism is now supplied, which is precisely why
+> it was sealed as an observation.
 >
-> **The 19 Aug US Treasury buyback announcement is therefore absent from this
-> edition** — Bessent more than doubled long-end buybacks to ≥$4bn/operation
-> after the 30-year hit a 19-year high; **dollar −0.8%, 30y −9bp, 10y −5bp.**
->
-> **It is the missing cause behind three conclusions sealed as unexplained:**
->
-> | Sealed as | Candidate correction |
-> |---|---|
-> | **EF-2** CHF anomaly, *cause unidentified* | A **USD-negative** shock — CHF and gold rallying against a weakening dollar, not a CHF-specific bid |
-> | **§5 Gold**, *"real yields rose, gold rose anyway"* | **Yields FELL** on 19 Aug. Wrong premise; the move reads as a debasement trade |
-> | **§6 BTC**, *DECOUPLED, cause not established* | **Not decoupled** — the same buyback liquidity that lifted gold |
->
-> **The figures in this edition stand; the causal readings above do not.**
-> Resolution is **R-9**, next session. Detail in STATE.md under **F-17**.
+> Corrected: **EF-2** (the USD leg was primary, not CHF) · **§5 Gold** (yields
+> *fell* on 19 Aug — wrong premise) · **§6 BTC** (not decoupled — the same
+> buyback liquidity as gold). **Original text is preserved below each
+> correction**, per the FAIL protocol.
 
 > ## ⚠ T4 — SEALED EDITION AMENDED
 >
@@ -133,10 +125,18 @@ pattern repeats the filter needs re-examining, not defending.
 20 Aug: **CADCHF +30.9 pips, USDCHF +32.3 pips** — CHF gave ground back.
 **CADCHF has recovered 42.9% of the 19 Aug drop** (`0.00309 / 0.00720`).
 
-The read that CHF was bid for an unexplained reason **still has no
-explanation**, but it is now visibly one-sided rather than sustained. No CHF
-release lands this week, so the −3.00 score cannot correct — the resolution
-is coming from price, not from data.
+**CORRECTED (T4/F-17): the explanation is the 19 Aug Treasury buyback.** The
+dollar fell 0.8% on the announcement and later hit a three-month low; CHF and
+gold both rallied **against a falling dollar**. The USD leg was primary, not a
+CHF-specific bid. *Source: investing.com, "Dollar hits three-month low as
+Treasury buybacks sink yields"; Treasury sb0607.*
+
+~~*"The read that CHF was bid for an unexplained reason still has no
+explanation"*~~ — **retained per the FAIL protocol.** It was sealed as an
+observation without a mechanism, and the mechanism was published the same day.
+
+No CHF release lands this week, so the −3.00 score cannot correct — but that
+is no longer the interesting part. **The resolution came from the dollar side.**
 
 ---
 
@@ -218,6 +218,74 @@ it was captured at 06:50. **The morning capture is the sole record.**
 silently re-published with Monday missing — exactly the F-13 failure, one day
 later, from a different cause. Logged as **F-14**: calendar captures must be
 **persisted per edition**, because the source does not keep them.
+
+## §0c — T4 RESOLVED: the missing news, and what it corrects
+
+**Raised at wrap 2026-08-21, resolved 20:25 PHT. Three causal readings in this
+sealed edition were wrong. The figures were not.**
+
+### What was missing
+
+**US Treasury, press release `sb0607`, 19 August 2026** *(primary —
+home.treasury.gov, captured to `data/raw/news/`)*:
+
+> "The U.S. Department of the Treasury is **increasing, by at least double, the
+> size of liquidity support buyback operations** for longer-dated nominal coupon
+> securities (the 10-year to 20-year sector and the 20-year to 30-year sector).
+> The current maximum size of **$2 billion per operation will be at least $4
+> billion per operation.** This change is effective **September 9, 2026** and
+> will be in effect for the remainder of this refunding quarter (through
+> **November 4, 2026**)."
+
+Treasury's stated reason: *"greater liquidity support in longer-dated nominal
+sectors where there is consistent strong sponsorship."* Context the feeds add:
+it followed the **30-year yield hitting a 19-year high**, and was **unscheduled**
+— two weeks after the quarter's buyback schedule had already been published.
+
+**Market reaction on the 19 Aug bar:** 10y **−5bp to 4.647%**, 30y **−9bp to
+5.196%**, **dollar −0.8%** against a basket, later **a three-month low**.
+
+### The three corrections
+
+| # | Sealed text | Correction | Evidence |
+|---|---|---|---|
+| **1** | **EF-2:** "a **CHF-specific** bid plus broad USD weakness… cause unidentified" | **The USD leg was primary, not the CHF leg.** An unscheduled USD-negative shock; CHF and gold both rallied *against a falling dollar* | *"Dollar hits three-month low as Treasury buybacks sink yields"* — investing.com |
+| **2** | **§5 Gold:** "real yields rose 25–30bp… **Gold rose anyway — that is the signal**" | **Wrong premise.** Those 25–30bp were the FOMC *intermeeting* move. **On 19 Aug yields FELL.** Gold rose *with* falling yields on a debasement trade | *"Gold's oversized reaction to Treasury buyback reflects debasement trade"* — investinglive.com |
+| **3** | **§6 BTC:** "**DECOUPLED** — and now decisively… cause not established" | **Not decoupled.** The same buyback liquidity that lifted gold | *"Why gold and Bitcoin surged together: What Treasury buybacks teach investors about dollar debasement"* — investinglive.com |
+
+**A fourth item the news adds, not previously flagged:** *"Canadian dollar rises
+to new highs after Trump's tariff TACO, US Treasury announcement"* and *"Canadian
+dollar hits near three-month high."* **CAD's strength — the basis of the #1
+carried trade — was partly a USD-side move**, not purely the +8.38 fundamental
+score. That does not void CADJPY (a JPY cross, no USD leg), but it means the
+CAD read was better sourced than the report showed.
+
+### What does NOT change
+
+**Every figure in this edition stands.** All prices, pips, scores, bands,
+zones, touch counts and falsifiers were independently sourced and recomputed;
+none depended on the missing news. **EF-1, EF-3, EF-4 and EF-5 stand unchanged.**
+
+**EF-2's observation stands** — the arithmetic of the 19 Aug move is unaffected.
+Only its *mechanism* is now identified, and EF-2 was deliberately sealed as an
+observation **without** a mechanism. That distinction is what makes this a
+correction to an interpretation rather than a retraction of a fact.
+
+### Why it happened, and what changed as a result
+
+§1's two mandated sources — `investinglive.com`, `investing.com` — **had never
+been fetched in any edition.** §1 was built from TradingEconomics and
+federalreserve.gov: **calendar and agency sources, which can only report what
+was already scheduled.** An unscheduled announcement is invisible to them by
+construction.
+
+**Both return 200 with a browser User-Agent** — step 2 of the F-6 ladder.
+Nothing more was ever needed.
+
+**The rule that follows (LD-26): an unexplained price move is a research
+trigger, not a finding.** All three readings were hedged, careful, and
+well-reasoned — and the hedging substituted for looking. That reads as rigour,
+which is worse than being plainly wrong. Recorded as **F-17**.
 
 ---
 
@@ -635,9 +703,10 @@ two positions.** That is the whole reason they are listed separately.
 
 | | Detail |
 |---|---|
-| **Headwind** | Real yields **+25–30bp** over the FOMC intermeeting period; three hawkish dissents; **Thursday's US data ran hot** (Philly Fed 47.4 vs 25, claims 206K vs 210K). |
+| **Driver (CORRECTED — T4/F-17)** | **The 19 Aug Treasury buyback.** Yields **FELL** that day — 10y −5bp, 30y −9bp — and the dollar fell 0.8%. Gold rose **with** falling yields on a **debasement trade**, not against rising ones. *Source: investinglive.com, "Gold's oversized reaction to Treasury buyback reflects debasement trade"; Treasury sb0607.* |
+| **Headwind** | Real yields **+25–30bp** over the FOMC intermeeting period; three hawkish dissents; Thursday's US data ran hot (Philly Fed 47.4 vs 25, claims 206K vs 210K). |
 | **Tailwind** | Haven demand. F&G safe-haven-demand component **68.0 (greed)**. |
-| **The signal** | **Gold went up anyway, and then held.** A market that shrugs off a hawkish repricing *and* strong data is being bought for a reason the rate story does not explain. |
+| ~~The signal~~ | ~~*"Gold went up anyway, and then held. A market that shrugs off a hawkish repricing and strong data is being bought for a reason the rate story does not explain."*~~ **WRONG PREMISE — retained per the FAIL protocol.** The 25–30bp was the FOMC *intermeeting* move; it was not what happened on the 19 Aug bar. |
 
 ### Levels — recomputed, naming the bars
 
