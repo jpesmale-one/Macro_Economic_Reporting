@@ -351,37 +351,29 @@
 <p><b>This is why the span assertion exists.</b> Without it the table would have silently re-published with Monday missing — exactly the F-13 failure, one day later, from a different cause. Logged as <b>F-14</b>: calendar captures must be <b>persisted per edition</b>, because the source does not keep them.</p>
 <h2 class="sec">§1 — Headline Alerts, News &amp; Current Events</h2>
 <h3 class="sub">📊 Sentiment — CNN Fear &amp;amp; Greed Index</h3>
-<p><em>Source: <code>production.dataviz.cnn.io/index/fearandgreed/graphdata</code> — browser headers + Referer. The article page returns HTTP 451 (geo-blocked) and the endpoint returns 418 to a plain fetch.</em></p>
-<p><b>Index: 52.14 — NEUTRAL</b> (CNN timestamp 21 Aug 16:41 PHT)</p>
-<div class="tblwrap"><table>
-<tr><th>Horizon</th><th>Value</th><th>Rating</th><th>Δ vs now</th></tr>
-<tr><td><b>Now</b></td><td class="num"><b>52.14</b></td><td><b>Neutral</b></td><td>—</td></tr>
-<tr><td>Previous close</td><td class="num">52.49</td><td>Neutral</td><td class="num">−0.34</td></tr>
-<tr><td>1 week ago</td><td class="num">63.97</td><td>Greed</td><td class="num"><b>−11.83</b></td></tr>
-<tr><td>1 month ago</td><td class="num">43.37</td><td>Fear</td><td class="num"><b>+8.77</b></td></tr>
-<tr><td>1 year ago</td><td class="num">52.60</td><td>Neutral</td><td class="num">−0.46</td></tr>
-</table></div>
-<h3 class="sub" style="opacity:.85">The seven components</h3>
-<div class="tblwrap"><table>
-<tr><th>Component</th><th>Score</th><th>Rating</th><th>As of (PHT)</th></tr>
-<tr><td><b>Junk Bond Demand</b></td><td class="num"><b>94.40</b></td><td><b>EXTREME GREED</b></td><td>21 Aug 08:00</td></tr>
-<tr><td>Safe Haven Demand</td><td class="num">62.80</td><td>Greed</td><td>21 Aug 03:59</td></tr>
-<tr><td>Stock Price Breadth</td><td class="num">52.80</td><td>Neutral</td><td>21 Aug 08:59</td></tr>
-<tr><td>Market Volatility (VIX)</td><td class="num">50.00</td><td>Neutral</td><td><b>21 Aug 16:41</b></td></tr>
-<tr><td>Put/Call Options</td><td class="num">40.20</td><td>Fear</td><td>21 Aug 04:14</td></tr>
-<tr><td>Market Momentum (S&amp;P 500)</td><td class="num">35.80</td><td>Fear</td><td>21 Aug 05:10</td></tr>
-<tr><td><b>Stock Price Strength</b></td><td class="num"><b>29.20</b></td><td><b>FEAR</b></td><td>21 Aug 08:59</td></tr>
-</table></div>
-<p><b>Recompute (P2) — and a residual, explained rather than rounded away.</b> <code>(94.40 + 62.80 + 52.80 + 50.00 + 40.20 + 35.80 + 29.20) / 7 = 365.20 / 7 = 52.1714</code> Published: <b>52.142857…</b>, a difference of <b>0.0286</b>.</p>
-<p>The two prior editions reproduced the index to <b>0.0000</b>. This one does not, and the timestamps say why: <b>the published value is exactly <code>365.0 / 7</code></b>, so CNN computed the index when the component sum was 0.2 lower — and <b>VIX is stamped 16:41, the same minute as the index</b>, while every other component is from 03:59–08:59. <b>VIX refreshed as the index computed.</b></p>
-<p><b>The simple-average property holds.</b> CNN uses a simple average of the seven, not a weighted one; the inputs simply moved between snapshots. 0.03 on a 0–100 scale is 0.05%.</p>
-<p><b>Read — the headline fell to neutral, the split did not.</b> 56.34 (greed) on 20 Aug → <b>52.14 (neutral)</b> today. But the spread between highest and lowest component is <b>65.20 points</b>:</p>
-<ul><li><b>Junk Bond Demand 94.40 (extreme greed)</b> — credit is pricing almost no risk premium. Still the most stretched reading on the board, three sessions running.</li><li><b>Stock Price Strength 29.20 (fear)</b> — few stocks at 52-week highs. Narrow participation.</li></ul>
-<p>Credit is euphoric while equity breadth is thin. <b>The index's own averaging conceals the divergence</b> — which is exactly why the components are published here rather than the headline alone.</p>
-<p><b>Spread history: 70.80 (19 Aug) → 66.60 (20 Aug) → 65.20 (today).</b> Narrowing slowly, but still wide enough that "neutral" describes no part of this market.</p>
-<p><b>Cross-check against this week's carry.</b> Safe Haven Demand fell <b>68.0 → 62.80</b>, consistent with §0's finding that the CHF bid faded. It does <b>not</b> explain the CHF move — EF-2 is sealed as an observation with no mechanism, and a falling haven-demand component is corroboration, not a cause.</p>
+<div class="fng-head">
+<div class="fng-big">52.14 <span class="fng-lab">NEUTRAL</span></div>
+<div class="fng-hist">
+<div class="fng-h"><span class="fng-lab">PREV CLOSE</span><b>52.49</b><span class="dn">-0.34</span></div>
+<div class="fng-h"><span class="fng-lab">1 WEEK AGO</span><b>63.97</b><span class="dn">-11.83</span></div>
+<div class="fng-h"><span class="fng-lab">1 MONTH AGO</span><b>43.37</b><span class="up">+8.77</span></div>
+<div class="fng-h"><span class="fng-lab">1 YEAR AGO</span><b>52.60</b><span class="dn">-0.46</span></div>
+</div></div>
+<div class="fng-bars">
+<div class="fng-row"><span class="fng-n">Junk Bond Demand</span><span class="fng-track"><i class="fng-fill" style="width:94.4%;background:var(--bear)"></i></span><span class="fng-v">94.4</span><span class="pill p-bad">extreme greed</span></div>
+<div class="fng-row"><span class="fng-n">Safe Haven Demand</span><span class="fng-track"><i class="fng-fill" style="width:62.8%;background:var(--bull)"></i></span><span class="fng-v">62.8</span><span class="pill p-good">greed</span></div>
+<div class="fng-row"><span class="fng-n">Stock Price Breadth</span><span class="fng-track"><i class="fng-fill" style="width:52.8%;background:var(--muted)"></i></span><span class="fng-v">52.8</span><span class="pill p-neut">neutral</span></div>
+<div class="fng-row"><span class="fng-n">Market Volatility (VIX)</span><span class="fng-track"><i class="fng-fill" style="width:50.0%;background:var(--muted)"></i></span><span class="fng-v">50.0</span><span class="pill p-neut">neutral</span></div>
+<div class="fng-row"><span class="fng-n">Put / Call Options</span><span class="fng-track"><i class="fng-fill" style="width:40.2%;background:var(--warn)"></i></span><span class="fng-v">40.2</span><span class="pill p-warn">fear</span></div>
+<div class="fng-row"><span class="fng-n">Market Momentum S&P 500</span><span class="fng-track"><i class="fng-fill" style="width:35.8%;background:var(--warn)"></i></span><span class="fng-v">35.8</span><span class="pill p-warn">fear</span></div>
+<div class="fng-row"><span class="fng-n">Stock Price Strength</span><span class="fng-track"><i class="fng-fill" style="width:29.2%;background:var(--warn)"></i></span><span class="fng-v">29.2</span><span class="pill p-warn">fear</span></div>
+</div>
+<div class="readbox"><b>Recompute (P2)</b>(94.4 + 62.8 + 52.8 + 50.0 + 40.2 + 35.8 + 29.2) &divide; 7 = <b>52.1714</b> &mdash; published <b>52.1429</b>, difference <b>0.0286</b>. <b>The simple-average property still holds</b> &mdash; the components carry <b>independent timestamps</b> (Market Volatility (VIX) is stamped 21 Aug 16:41, the others earlier), so one refreshed after the index computed. 0.03 on a 0&ndash;100 scale is 0.03%.</div>
+<div class="warnbox"><b>The headline hides the story.</b> &ldquo;Neutral 52&rdquo; is the average of a market that is <em>not</em> neutral internally. The spread between highest and lowest component is <b>65.2 points</b>: <b>Junk Bond Demand 94.4 (extreme greed)</b> against <b>Stock Price Strength 29.2 (fear)</b>. Spread history: <b>70.80</b> (19 Aug) &rarr; <b>66.60</b> (20 Aug) &rarr; <b>65.20</b> (today) &mdash; narrowing slowly, but still wide enough that &ldquo;neutral&rdquo; describes no part of this market.</div>
+<div class="readbox"><b>Cross-check</b> Safe Haven Demand fell <b>68.0 &rarr; 62.80</b>, consistent with &sect;0&rsquo;s finding that the CHF bid faded. It does <b>not</b> explain the CHF move &mdash; EF-2 is sealed as an observation with no mechanism.</div>
 <p><b>Direction.</b> Down <b>11.83</b> from a week ago (greed → neutral) but still <b>+8.77</b> above a month ago (fear). Drifting down through neutral.</p>
 <p><b>Falsifier.</b> Junk Bond Demand dropping below <b>~70</b> would confirm credit repricing to match equity stress, turning this divergence into broad risk-off. Stock Price Strength recovering above <b>50</b> would resolve it the other way.</p>
+<p><em>Source: <code>production.dataviz.cnn.io/index/fearandgreed/graphdata</code> — browser headers + Referer. The article page returns HTTP 451 (geo-blocked) and the endpoint returns 418 to a plain fetch. Capture persisted at <code>data/raw/fng/2026-08-21_1641PHT.json</code>; the chart is generated from it by <code>pipelines/fng_block.py</code>, so the figures cannot drift from the source.</em></p>
 <h3 class="sub">Overnight US data — strong, and it matters for the USD read</h3>
 <div class="tblwrap"><table>
 <tr><th>Release</th><th>Actual</th><th>Consensus</th><th>Previous</th><th>Read</th></tr>

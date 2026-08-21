@@ -1625,3 +1625,37 @@ F-16 - THE RENDERER ATE EMPHASIS THAT SPANNED A CODE SPAN.
   not a styling one - and this one only surfaced because a section was being
   restored by hand.
   STATUS: FIXED. Both fixes are in pipelines/render_edition.py.
+
+LD-25 AMENDED - THE F&G BLOCK IS THE r9 BAR CHART, GENERATED, NOT HAND-WRITTEN.
+  Jeff, 2026-08-21, with a screenshot of the r9 rendering: "why can't we put it
+  in this format?"
+  He was right twice over. My markdown-table version had lost the VISUAL, and
+  the visual is the point: publishing the seven components exists to show that
+  THE HEADLINE AVERAGES A DIVERGENCE. A 65-point gap is something you see in
+  one glance on a bar chart and have to compute by eye from a table.
+  WHAT THE CHART CARRIES:
+    - the index as a large number with its rating
+    - four horizon cells (prev close / 1w / 1m / 1y) each with a SIGNED DELTA
+    - seven horizontal bars, width = score, COLOUR = RATING
+    - the P2 recompute with full arithmetic
+    - the divergence read, naming both extremes
+    - cross-check and falsifier
+  COLOUR ENCODES THE RATING, NOT THE VALUE, and maps onto existing palette
+  tokens (bear/bull/muted/warn/violet), so the block stays theme-correct in
+  light and dark without introducing new colours.
+  IT IS NOW GENERATED: pipelines/fng_block.py builds the HTML from the
+  PERSISTED CAPTURE under data/raw/fng/. The markdown carries only a <!--FNG-->
+  marker. CONSEQUENCE: the figures in the deliverable cannot drift from the
+  source, and the block cannot silently degrade again the way it did across
+  r9 -> r11 -> r8 (F-15). If no capture exists the renderer emits nothing
+  rather than failing - the markdown still carries direction, falsifier and
+  source line.
+  RECOMPUTE TEXT IS ADAPTIVE: it states "matches exactly" when the residual is
+  under 0.005, and otherwise NAMES THE NEWEST COMPONENT and explains the
+  timestamp skew. On 2026-08-21 it correctly identified VIX (stamped 16:41,
+  the same minute as the index) as the cause of a 0.0286 difference.
+
+F&G CAPTURES ARE NOW PERSISTED - data/raw/fng/YYYY-MM-DD_HHMMPHT.json.
+  The endpoint serves ONLY a current snapshot; there is no historical query, so
+  a capture cannot be reconstructed after the fact. Same class of problem as
+  F-14 on the TE calendar, and the same fix.

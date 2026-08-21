@@ -101,6 +101,32 @@ def cell(c):
     return '', inline(c)
 
 
+FNG_MARKER = '<!--FNG-->'
+
+
+def fng_html():
+    """Build the Fear & Greed bar chart from the persisted capture (LD-25).
+    Returns '' if no capture exists, so the renderer degrades to whatever the
+    markdown says rather than failing."""
+    import glob, json
+    caps = sorted(glob.glob(os.path.join(REPO, 'data/raw/fng/*.json')))
+    if not caps:
+        return ''
+    sys.path.insert(0, os.path.join(REPO, 'pipelines'))
+    from fng_block import build
+    d = json.load(io.open(caps[-1], encoding='utf-8'))
+    return build(
+        d,
+        cross_check=(' Safe Haven Demand fell <b>68.0 &rarr; 62.80</b>, consistent '
+                     'with &sect;0&rsquo;s finding that the CHF bid faded. It does '
+                     '<b>not</b> explain the CHF move &mdash; EF-2 is sealed as an '
+                     'observation with no mechanism.'),
+        spread_history=('Spread history: <b>70.80</b> (19 Aug) &rarr; <b>66.60</b> '
+                        '(20 Aug) &rarr; <b>65.20</b> (today) &mdash; narrowing '
+                        'slowly, but still wide enough that &ldquo;neutral&rdquo; '
+                        'describes no part of this market.'))
+
+
 def render(md):
     out, i = [], 0
     lines = md.split('\n')
@@ -189,6 +215,10 @@ def render(md):
                     break
             tag = 'ol' if ordered else 'ul'
             emit('<%s>%s</%s>' % (tag, ''.join('<li>%s</li>' % inline(x) for x in items), tag))
+            continue
+        if s == FNG_MARKER:
+            emit(fng_html())
+            i += 1
             continue
         buf = [lines[i].strip()]; i += 1
         while i < n and lines[i].strip() and not lines[i].strip().startswith(('|', '#', '>', '---')) \
