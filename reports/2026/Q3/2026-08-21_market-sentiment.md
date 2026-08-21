@@ -1,16 +1,36 @@
 ---
 edition: 2026-08-21
-revision: 8 (SEALED FULL)
+revision: 9 (SEALED FULL, T4-amended: section 1 market structure restored)
 generated: 2026-08-21 07:00 PHT
 data_asof: 2026-08-21 16:40 PHT (macro 06:50 + 16:37; charts 16:40)
 horizon: WEEKLY selection (Fri - last edition of the week, Mon 17 - Fri 21)
-seal: SEALED (FULL) - Jeff, 2026-08-21
+seal: SEALED (FULL) - Jeff, 2026-08-21; T4 amendment 16:55 PHT (F-15)
 seal_tier: FULL (LD-12: Friday, last edition of the week Mon 17 - Fri 21 Aug)
 artifact_url: https://claude.ai/code/artifact/eee6e597-8644-4c5d-b69b-db6879803abc
 prior_edition: 2026-08-20 (r11, UNSEALED)
 ---
 
 # Daily Market Sentiment — Friday 21 August 2026
+
+> ## ⚠ T4 — SEALED EDITION AMENDED
+>
+> **This edition was sealed FULL at 16:45 PHT. It was amended at 16:55 PHT
+> because §1 was missing its Market-structure block entirely** — CNN Fear &
+> Greed, which the spec (§2.3) makes mandatory and which both prior editions
+> carried. **Jeff caught it, not me.**
+>
+> **What was wrong:** when §1 was rebuilt this morning I wrote the new US data,
+> carried the central-bank items, and simply did not write the market-structure
+> subsection. It degraded across three editions — **9 mentions on 08-19, 1 on
+> 08-20, 0 here.**
+>
+> **What changed:** §1 gains the block, pulled fresh at 16:41 PHT (index 52.14,
+> all seven components, recompute shown). **No score, no band, no carried pair,
+> no falsifier changed** — F&G is context, not a scored input.
+>
+> **The seal stands.** Per CLAUDE.md §2 this is a T4 revision to a sealed
+> edition, so it is disclosed here rather than silently patched, and the
+> omission is recorded as **F-15**.
 
 **All times Philippine Standard Time (UTC+8).**
 **TE calendar is UTC → PHT = UTC + 8h — re-verified this run.**
@@ -210,6 +230,48 @@ hike** (Hammack, Kashkari, Logan); BoE Vote Hike 3/9; RBNZ hiked to 2.50%
 > **STILL UNVERIFIED, carried:** the FOMC voting list names **Kevin Warsh** in
 > the Chair's position with Powell voting as a member. Not confirmed against a
 > second source. §3 names no Chair.
+
+### Market structure — CNN Fear &amp; Greed **52.14 (NEUTRAL)**
+
+*Source: `production.dataviz.cnn.io/index/fearandgreed/graphdata`, browser
+headers + Referer. Index timestamp **2026-08-21 08:41 UTC = 16:41 PHT**.*
+
+Prev close **52.49** · 1 week **63.97** · 1 month **43.37** · 1 year **52.60**
+
+| Component | Score | Rating | | Component | Score | Rating |
+|---|---|---|---|---|---|---|
+| Junk bond demand | **94.40** | extreme greed | | Put/call options | 40.20 | fear |
+| Safe haven demand | 62.80 | greed | | Market momentum S&P 500 | 35.80 | fear |
+| Stock price breadth | 52.80 | neutral | | Stock price strength | **29.20** | fear |
+| Market volatility (VIX) | 50.00 | neutral | | | | |
+
+**P2 RECOMPUTE — and a residual worth naming.**
+`(94.40 + 62.80 + 52.80 + 50.00 + 40.20 + 35.80 + 29.20) / 7 = 365.20 / 7 = 52.1714`
+Published: **52.142857…** — a difference of **0.0286**.
+
+The two prior editions reproduced the index to **0.0000**. This one does not,
+and the cause is identifiable rather than mysterious: **the published value is
+exactly `365.0 / 7`**, so CNN computed the index when the component sum was
+0.2 lower. **The components carry independent timestamps** — VIX last updated
+at 08:41:16 UTC, safe-haven demand at 03:59:59 — so a component refreshing
+after the index recomputes leaves a residual.
+
+**The simple-average property holds; the inputs simply moved between
+snapshots.** 0.03 on a 0–100 scale is 0.05%. Reported rather than rounded away.
+
+**THE INDEX FELL, THE SPLIT DID NOT.** 56.34 (greed) on 20 Aug → **52.14
+(neutral)** today. But the internal spread is **65.20 points** — junk bond
+demand **94.40 (extreme greed)** against stock price strength **29.20 (fear)** —
+against 66.60 yesterday and 70.80 on 19 Aug.
+
+**Read:** the headline has drifted back to neutral while the market underneath
+stayed just as split. **Credit is still euphoric and equity breadth is still
+weak** — three sessions running. A neutral headline averaging a 65-point spread
+is not a neutral market, and the spread is the tradeable information.
+
+**Relevance to this week's carry:** safe-haven demand fell 68.0 → **62.80**,
+which is consistent with §0's finding that the CHF bid faded. It does **not**
+explain the CHF move — see EF-2, sealed as an observation with no mechanism.
 
 ---
 
@@ -665,10 +727,11 @@ assets.
 
 ## §8 — Findings
 
-**One new finding this edition — F-14.** Detail in STATE.md; the report cites IDs.
+**Two new findings this edition — F-14 and F-15.** Detail in STATE.md; the report cites IDs.
 
 | ID | One line | Status |
 |---|---|---|
+| **F-15** | **A mandatory section silently vanished across three editions.** §1's market-structure block (CNN Fear & Greed, spec §2.3) went 9 mentions → 1 → **0**. Nothing failed; §1 was rebuilt each day and the block was simply not re-written. **Caught by Jeff after the seal.** | **NEW** — T4 amendment; needs a section-presence check |
 | **F-14** | **The TE calendar window ROLLS.** Same URL returned 17–30 Aug at 06:50 and 18–31 Aug at 16:37; Monday went 47 rows → 0 in ten hours, and the `dates` start parameter is ignored. **A week cannot be rebuilt after the fact.** | **NEW** — captures now persisted immutably under `data/raw/calendar/` |
 | **F-13** | Span assertion — the week table silently dropped Mon–Tue. | **FIX VERIFIED** — the assertion fired correctly on its first real test, catching F-14 |
 | **F-1** | TE publishes unreleased figures in the ACTUAL field. | OPEN — the guard is procedure, not tooling |

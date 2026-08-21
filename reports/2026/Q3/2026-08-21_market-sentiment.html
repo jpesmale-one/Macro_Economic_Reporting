@@ -267,6 +267,7 @@
        CHF &minus;3.38 &nbsp;<span class="note">(scale &plusmn;11.00)</span></p>
   </div>
 </div>
+<div class="warnbox">## ⚠ T4 — SEALED EDITION AMENDED  <b>This edition was sealed FULL at 16:45 PHT. It was amended at 16:55 PHT because §1 was missing its Market-structure block entirely</b> — CNN Fear &amp; Greed, which the spec (§2.3) makes mandatory and which both prior editions carried. <b>Jeff caught it, not me.</b>  <b>What was wrong:</b> when §1 was rebuilt this morning I wrote the new US data, carried the central-bank items, and simply did not write the market-structure subsection. It degraded across three editions — <b>9 mentions on 08-19, 1 on 08-20, 0 here.</b>  <b>What changed:</b> §1 gains the block, pulled fresh at 16:41 PHT (index 52.14, all seven components, recompute shown). <b>No score, no band, no carried pair, no falsifier changed</b> — F&amp;G is context, not a scored input.  <b>The seal stands.</b> Per CLAUDE.md §2 this is a T4 revision to a sealed edition, so it is disclosed here rather than silently patched, and the omission is recorded as <b>F-15</b>.</div>
 <p><b>All times Philippine Standard Time (UTC+8).</b> <b>TE calendar is UTC → PHT = UTC + 8h — re-verified this run.</b></p>
 <h2 class="sec">Pre-flight — both guards run, plus the new span assertion</h2>
 <div class="tblwrap"><table>
@@ -361,6 +362,22 @@
 <p><b>ECB Monetary Policy Meeting Accounts</b> were due 19:30 PHT Thursday. Not yet retrieved this run — <b>flagged as an open item, not reported as absent.</b></p>
 <p>Carried from Thursday, unchanged: FOMC minutes 9–3 with three dissents <b>for a hike</b> (Hammack, Kashkari, Logan); BoE Vote Hike 3/9; RBNZ hiked to 2.50% 8 Jul; <b>Jackson Hole 27–29 Aug</b>, now six days out.</p>
 <div class="warnbox"><b>STILL UNVERIFIED, carried:</b> the FOMC voting list names <b>Kevin Warsh</b> in the Chair's position with Powell voting as a member. Not confirmed against a second source. §3 names no Chair.</div>
+<h3 class="sub">Market structure — CNN Fear &amp;amp; Greed <b>52.14 (NEUTRAL)</b></h3>
+<p>*Source: <code>production.dataviz.cnn.io/index/fearandgreed/graphdata</code>, browser headers + Referer. Index timestamp <b>2026-08-21 08:41 UTC = 16:41 PHT</b>.*</p>
+<p>Prev close <b>52.49</b> · 1 week <b>63.97</b> · 1 month <b>43.37</b> · 1 year <b>52.60</b></p>
+<div class="tblwrap"><table>
+<tr><th>Component</th><th>Score</th><th>Rating</th><th></th><th>Component</th><th>Score</th><th>Rating</th></tr>
+<tr><td>Junk bond demand</td><td class="num"><b>94.40</b></td><td>extreme greed</td><td></td><td>Put/call options</td><td class="num">40.20</td><td>fear</td></tr>
+<tr><td>Safe haven demand</td><td class="num">62.80</td><td>greed</td><td></td><td>Market momentum S&amp;P 500</td><td class="num">35.80</td><td>fear</td></tr>
+<tr><td>Stock price breadth</td><td class="num">52.80</td><td>neutral</td><td></td><td>Stock price strength</td><td class="num"><b>29.20</b></td><td>fear</td></tr>
+<tr><td>Market volatility (VIX)</td><td class="num">50.00</td><td>neutral</td><td></td><td></td><td></td><td></td></tr>
+</table></div>
+<p><b>P2 RECOMPUTE — and a residual worth naming.</b> <code>(94.40 + 62.80 + 52.80 + 50.00 + 40.20 + 35.80 + 29.20) / 7 = 365.20 / 7 = 52.1714</code> Published: <b>52.142857…</b> — a difference of <b>0.0286</b>.</p>
+<p>The two prior editions reproduced the index to <b>0.0000</b>. This one does not, and the cause is identifiable rather than mysterious: **the published value is exactly <code>365.0 / 7</code><b>, so CNN computed the index when the component sum was 0.2 lower. </b>The components carry independent timestamps** — VIX last updated at 08:41:16 UTC, safe-haven demand at 03:59:59 — so a component refreshing after the index recomputes leaves a residual.</p>
+<p><b>The simple-average property holds; the inputs simply moved between snapshots.</b> 0.03 on a 0–100 scale is 0.05%. Reported rather than rounded away.</p>
+<p><b>THE INDEX FELL, THE SPLIT DID NOT.</b> 56.34 (greed) on 20 Aug → <b>52.14 (neutral)</b> today. But the internal spread is <b>65.20 points</b> — junk bond demand <b>94.40 (extreme greed)</b> against stock price strength <b>29.20 (fear)</b> — against 66.60 yesterday and 70.80 on 19 Aug.</p>
+<p><b>Read:</b> the headline has drifted back to neutral while the market underneath stayed just as split. <b>Credit is still euphoric and equity breadth is still weak</b> — three sessions running. A neutral headline averaging a 65-point spread is not a neutral market, and the spread is the tradeable information.</p>
+<p><b>Relevance to this week's carry:</b> safe-haven demand fell 68.0 → <b>62.80</b>, which is consistent with §0's finding that the CHF bid faded. It does <b>not</b> explain the CHF move — see EF-2, sealed as an observation with no mechanism.</p>
 <h2 class="sec">§2 — Macro Economic Indicators</h2>
 <p><b>All 70 whitelist indicators, published in full every edition</b> — including the ones that did not move. A score you cannot see is a score you cannot check.</p>
 <p><b>No whitelist indicator released since yesterday's cut.</b> 26 whitelist-currency events landed overnight — jobless claims, Philly Fed, Canadian PPI, auctions, mortgage rates — and <b>not one is on the 70-name closed set</b>, so not one scores. The tables below are therefore identical in value to r11's, and that is the finding: <em>the scores did not move because nothing that scores was released.</em></p>
@@ -662,9 +679,10 @@
 <tr><td class="num">5</td><td><b>Falsifiers were raised on two breakouts</b> — a judgement call, flagged as such.</td></tr>
 <tr><td class="num">6</td><td><b>§5 and §6 were RE-READ, not republished.</b> Carrying Thursday's Gold/BTC figures under a Friday date would have been stale-publishing; instead both were pulled fresh on closed bars. <b>BTC had moved +12.56% in two sessions</b> — republishing yesterday's 69,488 would have been materially wrong, not merely old.</td></tr>
 </table></div></div></details>
-<details class="fold"><summary>§8 — Findings<span class="cnt">7 rows</span></summary><div class="foldbody"><p><b>One new finding this edition — F-14.</b> Detail in STATE.md; the report cites IDs.</p>
+<details class="fold"><summary>§8 — Findings<span class="cnt">8 rows</span></summary><div class="foldbody"><p><b>Two new findings this edition — F-14 and F-15.</b> Detail in STATE.md; the report cites IDs.</p>
 <div class="tblwrap"><table>
 <tr><th>ID</th><th>One line</th><th>Status</th></tr>
+<tr><td><b>F-15</b></td><td><b>A mandatory section silently vanished across three editions.</b> §1's market-structure block (CNN Fear &amp; Greed, spec §2.3) went 9 mentions → 1 → <b>0</b>. Nothing failed; §1 was rebuilt each day and the block was simply not re-written. <b>Caught by Jeff after the seal.</b></td><td><b>NEW</b> — T4 amendment; needs a section-presence check</td></tr>
 <tr><td><b>F-14</b></td><td><b>The TE calendar window ROLLS.</b> Same URL returned 17–30 Aug at 06:50 and 18–31 Aug at 16:37; Monday went 47 rows → 0 in ten hours, and the <code>dates</code> start parameter is ignored. <b>A week cannot be rebuilt after the fact.</b></td><td><b>NEW</b> — captures now persisted immutably under <code>data/raw/calendar/</code></td></tr>
 <tr><td><b>F-13</b></td><td>Span assertion — the week table silently dropped Mon–Tue.</td><td><b>FIX VERIFIED</b> — the assertion fired correctly on its first real test, catching F-14</td></tr>
 <tr><td><b>F-1</b></td><td>TE publishes unreleased figures in the ACTUAL field.</td><td>OPEN — the guard is procedure, not tooling</td></tr>

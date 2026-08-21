@@ -1521,3 +1521,68 @@ LD-24 - THE HTML DELIVERABLE COLLAPSES REFERENCE DETAIL, NEVER THE READ.
     holding; BTC +12.56% in two sessions) with NO sourced explanation. The
     moves are facts; the causes are not established.
   - Any conclusion about the 12 of 21 watchlist pairs never read this week.
+
+F-15 - A MANDATORY SECTION SILENTLY VANISHED ACROSS THREE EDITIONS.
+  Caught by Jeff 2026-08-21 16:50 PHT, AFTER the FULL seal: "wait I noticed
+  something. our Fear and Greed Intdex is gone."
+  MEASURED DECAY - mentions of Fear/Greed per edition:
+    2026-08-19 (r9)  : 9
+    2026-08-20 (r11) : 1
+    2026-08-21 (r8)  : 0   <- SEALED WITHOUT IT
+  WHAT HAPPENED: section 1 was rebuilt from scratch each morning. On 21/08 I
+  wrote the new US data, carried the central-bank items, and simply did not
+  write the market-structure subsection. NOTHING FAILED - no fetch error, no
+  exception, no missing source. The section just was not written.
+  WHY THE EXISTING GUARDS MISSED IT: every check I run is a CONTENT check -
+  does this figure match the model, do the tags balance, are all 70 indicators
+  present. There is NO STRUCTURE check asking "does this edition contain every
+  section the spec mandates?" A section that is absent has no figures to
+  verify, so absence is invisible to a content check.
+  THIS IS THE F-5/F-6/F-7 SHAPE ONE LEVEL UP: not an absence asserted from a
+  failed attempt, but an absence NOBODY ASSERTED AT ALL. The 08-20 edition
+  degraded it to a bare heading and I did not notice; the 08-21 edition
+  dropped it entirely and I sealed it.
+  ALSO NOTE: LD-24 collapsed nine sections the same afternoon. Collapsing makes
+  a missing section HARDER to spot, not easier - there is no fold to open.
+  FIX APPLIED: T4 amendment, section 1 restored with a fresh 16:41 PHT pull.
+  FIX REQUIRED (R-7): a SECTION-PRESENCE ASSERTION in the renderer - the spec
+  mandates sections 1-6 plus the sub-blocks named in spec section 2.3 (news,
+  central banks, market structure). Refuse to render an edition missing any of
+  them. A content check cannot catch a missing section; only a manifest can.
+  STATUS: OPEN until the assertion exists.
+
+T4 EVENT - 2026-08-21 16:55 PHT. First T4 in the repo.
+  The 2026-08-21 edition was SEALED FULL at 16:45 and AMENDED at 16:55.
+  Per CLAUDE.md section 2 a revision to a sealed edition fires T4 and never
+  gets the light path, so the amendment is DISCLOSED IN THE EDITION ITSELF -
+  a banner directly under the title naming what was wrong, what changed, and
+  who caught it.
+  WHAT CHANGED: section 1 gained the market-structure block (F&G 52.14, all
+  seven components, recompute shown).
+  WHAT DID NOT CHANGE: no score, no band, no carried pair, no falsifier, no
+  established fact. F&G is CONTEXT, not a scored input, which is why the seal
+  stands rather than being withdrawn. Had it been a scored input the correct
+  action would have been to unseal.
+  THE SEAL STANDS. EF-1..EF-6 are unaffected.
+
+EMPIRICAL - CNN Fear & Greed 2026-08-21 16:41 PHT (index ts 08:41 UTC):
+  HEADLINE 52.14 NEUTRAL, down from 56.34 GREED on 20/08.
+  prev close 52.49 | 1w 63.97 | 1m 43.37 | 1y 52.60
+  Components: junk bond demand 94.40 extreme greed | safe haven 62.80 greed |
+  breadth 52.80 neutral | VIX 50.00 neutral | put/call 40.20 fear |
+  momentum 35.80 fear | stock price strength 29.20 fear.
+  SPREAD 65.20 points (was 66.60 on 20/08, 70.80 on 19/08) - THE HEADLINE FELL
+  TO NEUTRAL WHILE THE SPLIT HELD. Credit euphoric, equity breadth weak, three
+  sessions running.
+  P2 RECOMPUTE RESIDUAL, and it is explained rather than rounded away:
+    mean of the seven = 365.20/7 = 52.1714; published = 52.142857... which is
+    EXACTLY 365.0/7. CNN computed the index when the component sum was 0.2
+    lower. The components carry INDEPENDENT TIMESTAMPS (VIX 08:41:16 UTC,
+    safe-haven 03:59:59), so one refreshing after the index recomputes leaves a
+    residual. Difference 0.0286 on a 0-100 scale = 0.05%.
+    THE SIMPLE-AVERAGE PROPERTY HOLDS - the inputs moved between snapshots.
+    The two prior editions reproduced it to 0.0000; this is a timestamp skew,
+    not a broken relationship.
+  Safe-haven demand fell 68.0 -> 62.80, consistent with the CHF bid fading
+  (section 0). It does NOT explain the CHF move - EF-2 stands as an
+  observation with no mechanism.
