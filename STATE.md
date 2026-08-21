@@ -4,7 +4,7 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-08-21 (r11, SEALED FULL + 3 T4 amendments - see T4 EVENT log)
+edition: 2026-08-21 (r12, SEALED FULL; T4 PENDING on F-17 - resolve in R-9)
 date: 2026-08-21
 data_asof: 2026-08-21 16:40 PHT (macro 06:50 + 16:37; charts 16:40)
 track: LEAN (no section-2 trigger has fired)
@@ -1821,3 +1821,34 @@ F-17 ADDENDUM - THE COST IS THREE SEALED CONCLUSIONS, NOT TWO.
   LOOKING, and it read as rigour, which is worse than being obviously wrong.
   THIS IS WHY R-9 OUTRANKS R-8. Cutting interpretation without adding
   reporting would leave a shorter report that is still missing the news.
+
+
+T4 PENDING - OPENED 2026-08-21 AT WRAP, TO RESOLVE IN R-9. Jeff: "yes let's
+  address this next session."
+  TRIGGER: F-17. Three conclusions in the SEALED 2026-08-21 edition were
+  written as "cause not identified" when the cause was published the same day
+  by the US Treasury and carried on the front page of the news source the spec
+  mandates.
+  SCOPE OF THE REVISION - causal readings only:
+    EF-2  "CHF-specific bid"        -> candidate: USD-negative shock
+    S5    "real yields rose anyway"  -> yields FELL 19 Aug; debasement trade
+    S6    "BTC decoupled"            -> same buyback liquidity as gold
+  THE FIGURES ARE NOT IN SCOPE AND DO NOT CHANGE. Every price, pip count,
+  score, band and falsifier in that edition was independently sourced and
+  recomputed. What is suspect is the INTERPRETATION laid over them.
+  A BANNER IS ON THE EDITION ITSELF (r12) so a reader cannot cite the causal
+  readings without seeing the flag. The seal is NOT withdrawn - EF-1, EF-3,
+  EF-4, EF-5 and every figure stand; EF-2's OBSERVATION stands and only its
+  (absent) mechanism was ever in question, which is exactly why it was sealed
+  as an observation.
+  RESOLUTION PATH (R-9):
+    1. Fetch investinglive.com + investing.com for 19-21 Aug. Step 2 of the
+       F-6 ladder is verified working.
+    2. Corroborate the buyback against home.treasury.gov (primary) - the press
+       release is sb0607.
+    3. Rewrite the three causal readings with sources and dates. Keep the
+       original text visible - a correction that erases its own history
+       teaches nothing (CLAUDE.md FAIL protocol).
+    4. Re-seal as a NEW revision. T4 never takes the light path.
+  DO NOT let R-8 (cut the noise) run first. Cutting interpretation before
+  adding reporting would delete the wrong text and leave the gap intact.

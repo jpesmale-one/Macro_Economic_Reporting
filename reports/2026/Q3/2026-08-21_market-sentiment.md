@@ -1,16 +1,39 @@
 ---
 edition: 2026-08-21
-revision: 11 (SEALED FULL, T4-amended: F&G as the r9 BAR CHART, generated from the persisted capture)
+revision: 12 (SEALED FULL; T4 PENDING on F-17 - three causal readings suspect, figures stand)
 generated: 2026-08-21 07:00 PHT
 data_asof: 2026-08-21 16:40 PHT (macro 06:50 + 16:37; charts 16:40)
 horizon: WEEKLY selection (Fri - last edition of the week, Mon 17 - Fri 21)
-seal: SEALED (FULL) - Jeff, 2026-08-21; T4 amendment 16:55 PHT (F-15)
+seal: SEALED (FULL) - Jeff, 2026-08-21; T4 amendments (F-15); T4 PENDING (F-17)
 seal_tier: FULL (LD-12: Friday, last edition of the week Mon 17 - Fri 21 Aug)
 artifact_url: https://claude.ai/code/artifact/eee6e597-8644-4c5d-b69b-db6879803abc
 prior_edition: 2026-08-20 (r11, UNSEALED)
 ---
 
 # Daily Market Sentiment — Friday 21 August 2026
+
+> ## ⚠ T4 PENDING — THREE SEALED CONCLUSIONS ARE SUSPECT (F-17)
+>
+> **Raised 2026-08-21 at session wrap, after the seal. Not yet resolved.**
+>
+> §1's two mandated news sources (`investinglive.com`, `investing.com`) were
+> **never fetched in any edition.** §1 was built from calendar and agency
+> sources, which can only report *scheduled* releases.
+>
+> **The 19 Aug US Treasury buyback announcement is therefore absent from this
+> edition** — Bessent more than doubled long-end buybacks to ≥$4bn/operation
+> after the 30-year hit a 19-year high; **dollar −0.8%, 30y −9bp, 10y −5bp.**
+>
+> **It is the missing cause behind three conclusions sealed as unexplained:**
+>
+> | Sealed as | Candidate correction |
+> |---|---|
+> | **EF-2** CHF anomaly, *cause unidentified* | A **USD-negative** shock — CHF and gold rallying against a weakening dollar, not a CHF-specific bid |
+> | **§5 Gold**, *"real yields rose, gold rose anyway"* | **Yields FELL** on 19 Aug. Wrong premise; the move reads as a debasement trade |
+> | **§6 BTC**, *DECOUPLED, cause not established* | **Not decoupled** — the same buyback liquidity that lifted gold |
+>
+> **The figures in this edition stand; the causal readings above do not.**
+> Resolution is **R-9**, next session. Detail in STATE.md under **F-17**.
 
 > ## ⚠ T4 — SEALED EDITION AMENDED
 >
