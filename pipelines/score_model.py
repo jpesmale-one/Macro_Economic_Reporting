@@ -15,6 +15,8 @@
 # coverage, which is reported so a thin category is visible.
 
 W = {"Production":1, "Spending":1, "Trade":1, "Employment":2, "Inflation":3}
+# Interest Rate is category 6, weight 3 - scored in pipelines/rate_model.py (LD-23).
+# Range is therefore +/-11.00, not +/-8.00.
 
 # (category, ccy, indicator, actual, prev, ref, rule, score)  score in GOOD/BAD/NEUTRAL/MISSING
 ROWS = [
@@ -88,7 +90,7 @@ ROWS = [
  ("Inflation","US","Inflation Rate YoY","3.4%","3.5%","Jul/26",">2% & falling","NEUTRAL"),
  ("Inflation","EA","Inflation Rate YoY Final","2.9%","2.8%","Jul/26",">2% & rising","GOOD"),
  ("Inflation","GB","Inflation Rate YoY","2.9%","2.6%","Jul/26",">2% & rising","GOOD"),
- ("Inflation","JP","Inflation Rate YoY","1.7%","1.5%","Jun/26","<2% & rising","NEUTRAL"),
+ ("Inflation","JP","Inflation Rate YoY","1.9%","1.6%","Jul/26","<2% & rising","NEUTRAL"),
  ("Inflation","AU","Inflation Rate YoY","3.8%","4.0%","Jun/26",">2% & falling","NEUTRAL"),
  ("Inflation","NZ","Inflation Rate YoY","4.1%","3.1%","Jun/26",">2% & rising","GOOD"),
  ("Inflation","CA","Inflation Rate YoY","3.0%","2.8%","Jul/26",">2% & rising","GOOD"),
@@ -98,7 +100,11 @@ ROWS = [
 CCYS = ["US","EA","GB","JP","AU","NZ","CA","CH"]
 LABEL = {"US":"USD","EA":"EUR","GB":"GBP","JP":"JPY","AU":"AUD","NZ":"NZD","CA":"CAD","CH":"CHF"}
 
-def compute():
+def compute(include_rate=True):
+    """Five scored categories plus Interest Rate (LD-23, weight 3) when
+    include_rate is True. Rate scores come from pipelines/rate_model.py, which
+    scores inflation-vs-own-mandate only - see that file for why steps 2-4
+    (priced odds, vote splits, forward paths) were rejected."""
     from collections import defaultdict
     by = defaultdict(list)
     for r in ROWS:
@@ -125,5 +131,14 @@ def compute():
                     scored += 1
             cat_score[(cat, ccy)] = (s, n, scored)
             tot += s
+        if include_rate:
+            try:
+                from rate_model import compute as _rate
+                r = _rate().get(ccy)
+                if r:
+                    cat_score[("Rate", ccy)] = (r["score"], 1, 1)
+                    tot += r["score"]
+            except ImportError:
+                pass
         totals[ccy] = tot
     return cat_score, totals

@@ -4,13 +4,13 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-08-20 (r11, UNSEALED)
-date: 2026-08-20
-data_asof: 2026-08-20 11:20 PHT (macro 10:00; charts 11:20)
+edition: 2026-08-21 (r1, UNSEALED)
+date: 2026-08-21
+data_asof: 2026-08-21 06:55 PHT (macro 06:50; charts 06:55)
 track: LEAN (no section-2 trigger has fired)
-artifact: https://claude.ai/code/artifact/a69403a7-a636-4ca2-8b41-1006e8c62806
-source_of_truth: reports/2026/Q3/2026-08-20_market-sentiment.md
-prior_edition: 2026-08-19 (r9, UNSEALED) - artifact 6ad31052-2b2c-4935-9573-908f00af2e7a
+artifact: https://claude.ai/code/artifact/eee6e597-8644-4c5d-b69b-db6879803abc
+source_of_truth: reports/2026/Q3/2026-08-21_market-sentiment.md
+prior_edition: 2026-08-20 (r11, UNSEALED) - artifact a69403a7-a636-4ca2-8b41-1006e8c62806
 
 # 2026-08-12 - REPO ESTABLISHED. Ways-of-working scaffold ported from
 #   TRTM_EA_Project (CLAUDE.md protocol, STATE.md manifest, rules, hooks,
@@ -1159,3 +1159,240 @@ LD-18 AMENDED (2026-08-20, Jeff): PROVE A NIL CATEGORY ON THE FULL MATRIX,
   qualifying. NZD is frozen this week (no releases); USD has jobless claims +
   Philly Fed 20:30 PHT 20/08 and Jackson Hole 27-29 Aug. A 0.25 USD gain makes
   it live. A nil category with a live near-miss is a WATCH item, not a dead end.
+
+
+# 2026-08-21 - FRIDAY EDITION. First edition to GRADE ITS OWN PRIOR CALL.
+#   CARRIED 4 OF 4 WORKED on Thursday's closed bar: CADJPY +82.2 pips,
+#   EURJPY +108.0, GBPJPY +163.1, AUDCAD -28.8. All three JPY longs BROKE
+#   ABOVE the resistance zones published Thursday, so those zones are now
+#   support and the falsifiers were RAISED to the broken zones (a judgement,
+#   flagged as such in the edition).
+#   BUT BOTH REJECTED CHF LONGS WOULD ALSO HAVE WORKED: CADCHF +30.9 pips,
+#   USDCHF +32.3. The structure filter rejected two trades that paid. Recorded
+#   in the edition rather than buried. ONE DAY IS NOT A VERDICT on the filter;
+#   if it repeats, the filter needs re-examining, not defending.
+#   CHF ANOMALY RESOLVING FROM PRICE, NOT DATA: CADCHF retraced 42.9% of the
+#   19 Aug drop (0.00309 of 0.00720) in one session. The -3.00 score never
+#   corrected and cannot this week - no CHF release lands Mon-Fri.
+#   PROJECTION SCORECARD for the week: 8 correct, 2 wrong, both wrong ones
+#   BAD-projected-printed-GOOD (one-directional error so far, sample far too
+#   small to call a bias).
+#   F-13 SPAN ASSERTION RAN AND PASSED - first use, fix verified.
+#   F-9 RECIPE WORKED ON A COLD START - second independent confirmation.
+#   NOT DONE, stated as open: sections 5/6 not re-read (absent, not stale-
+#   published), ECB accounts not retrieved, 3 Friday releases have no TE values
+#   yet (07:00-07:30 PHT), Fed Chair still unverified.
+#   LD-12 NOTE: Friday is the WEEKLY FULL SEAL edition. This one is UNSEALED
+#   and a full seal needs an explicit pass over the week, not a light ack.
+
+LD-19 - CARRIED PAIRS MUST BE LEG-DISJOINT. Jeff, 2026-08-21: "CADJPY, GBPJPY,
+  and EURJPY are all co-related pairs. Since JPY's bias held, All 3 rise at the
+  same time but if the other way around happened then all 3 would be doomed as
+  well. Next time let's find Non-corelated pairs so that we can truly see the
+  result of our analysis and pinpoint where we can improve."
+  HE IS RIGHT AND THE 2026-08-20 SCORECARD WAS MISLEADING. Three of the four
+  carried pairs shared the JPY leg. They returned +0.72%, +0.76%, +0.58% - a
+  0.18pp spread - because they were ONE position sliced three ways. A fourth,
+  AUDCAD, put CAD on the long side a second time (long CADJPY + short AUDCAD =
+  long CAD twice).
+  "4 OF 4 WORKED" WAS REALLY 2 INDEPENDENT BETS, and under the correct filter
+  ordering it was ONE. The scorecard overstated the evidence by 4x.
+  THE RULE:
+    1. Rank candidates by spread, floor 1.00 (LD-18).
+    2. APPLY THE STRUCTURE FILTER FIRST.
+    3. THEN walk the survivors by spread and carry a pair only if NEITHER leg
+       is already used. Others are published as CORRELATED, naming the pair
+       they duplicate - they are not rejects, they are the same bet.
+    4. Report NET EXPOSURE (long/short counts per currency) to catch the
+       same-side duplicate that leg-disjointness alone misses.
+  ORDERING IS LOAD-BEARING, verified against Thursday's outcome: disjoint-first
+  would have carried CADCHF (spread 11.00, structure FAILED) and blocked
+  CADJPY, which gained 82 pips. Structure-first carries CADJPY. Do not reorder.
+  CEILING: 8 currencies = at most 4 leg-disjoint pairs; in practice 2-3.
+  CONSEQUENCE ACCEPTED: fewer carried pairs per edition. That is the point -
+  the count now means something. A correlated cluster is ONE test of the model,
+  and reporting it as several is how a method looks better than it is.
+  Implementation: pipelines/select_pairs.py (data + arithmetic only, no fetch).
+
+LD-20 - EVERY CARRIED PAIR STATES A CONFIDENCE, AND THE TARGET IS >=3 PAIRS.
+  Jeff, 2026-08-21: "try to find 3 at least then just add your confidence level
+  so that the user would have an Idea what to focus at. Remember we're not
+  implying these are guaranteed win. We just saw these pairs as High
+  Probability trades based on our Fundamental and Technical Analysis."
+  TARGET: at least 3 leg-disjoint carried pairs. If the top-spread disjoint set
+  runs out, search DOWN the spread ranking for untested disjoint candidates
+  rather than stopping - on 2026-08-21 the first pass yielded only CADJPY, and
+  searching the remaining currencies produced GBPUSD and EURCHF.
+  CONFIDENCE IS A TALLY OF SUPPORTS, NOT A PROBABILITY. Published with its
+  arithmetic so it can be disagreed with line by line:
+    +2 spread >=8.00 | +1 spread 4.00-7.99 | 0 spread 1.00-3.99
+    +2 structure confirms with a broken level or multi-touch zone behind it
+    +1 structure confirms on range position alone
+    +1 price moved WITH the read on the last closed bar
+    +1 the fundamental leg changed in our favour this week (fresh, not stale)
+    -2 either leg is a currency the model is currently getting WRONG
+    -1 score and news disagree on a leg
+    -1 thinnest spread in the carried set
+    >=5 HIGH | 3-4 MEDIUM | <=2 LOW
+  LANGUAGE IS BINDING: these are HIGH-PROBABILITY READS, never guarantees and
+  never predictions. Every carried pair keeps its falsifier. LOW does not mean
+  bad - it means know why it is the weakest of the set.
+  Implementation: pipelines/confidence.py (data + arithmetic only).
+
+LD-21 - THE CORRELATED LIST IS A SECONDARY-ENTRY LIST, published separately.
+  Jeff, 2026-08-21: "I may have found a use for them in case the core
+  instruments have already fly then the user can take a look at these
+  correlated as secondary."
+  Correlated pairs are NOT rejects - their reads stand. They are the same
+  currency call on a different chart, useful when a carried pair has already
+  run and the entry looks extended.
+  MUST CARRY THE WARNING: taking a carried pair AND its correlated sibling is
+  ONE position at double size, not two positions. That is the whole reason the
+  two lists are kept apart.
+  Each correlated row names the carried pair it duplicates and via which leg.
+
+EMPIRICAL - 2026-08-21 r3 selection:
+  CARRIED (leg-disjoint, 6 currencies used once each):
+    1. CADJPY LONG  HIGH   (+6) spread 8.00, broke a 4-touch zone, +82.2 pips
+    2. EURCHF LONG  MEDIUM (+3) spread 8.50, 72.7% of range, +37.5 pips,
+       PENALISED -2 for the CHF leg the model has been wrong on all week
+    3. GBPUSD LONG  LOW    (+1) spread 2.75 thin, 94.4% of range, +27.5 pips,
+       PENALISED -1 score-vs-news (Thu US data hot) and -1 thinnest spread
+  CORRELATED as secondary entries: GBPJPY, EURJPY (via JPY), AUDCAD (via CAD),
+  AUDCHF (via CHF).
+  REJECTED on structure while disjoint: EURNZD LONG (26.4% of range, -27.4 pips).
+
+LD-22 - THE EDITION IS SELF-CONTAINED. NEVER CARRY A SECTION BY REFERENCE.
+  Jeff, 2026-08-21: "Let's keep displaying the Data even though they have not
+  changed, its important for the user to go back to that every now and then."
+  DEFECT: the 2026-08-21 r1-r3 editions replaced section 2's 70 indicator rows,
+  section 3's rate table, and section 4.1's bands with "unchanged from r11" plus
+  a pointer. I did that under LD-17 (compression), but LD-17 permits
+  PROSE-TO-TABLE conversion - it never permitted removing the evidence itself.
+  A reader wanting to check a score had to open a prior edition.
+  THE RULE: sections 2 (all 70 whitelist rows + tally), 3 (all 8 policy rates),
+  and 4.1 (the bands with their category detail) are published IN FULL in every
+  edition, whether or not the values moved. They are the evidence the whole
+  report rests on; P1 requires the figures backing a conclusion to sit in the
+  edition that draws it.
+  WHEN NOTHING MOVED, SAY SO EXPLICITLY AND SAY WHY - "the scores did not move
+  because nothing that scores was released" is a finding, not filler. On
+  2026-08-21, 26 whitelist-CURRENCY events landed overnight and not one was on
+  the 70-name closed set.
+  COMPRESSION STILL APPLIES to prose, method notes, and restated reasoning -
+  LD-15 and LD-17 stand. It does not apply to data tables.
+  Cost: r3 -> r4 grew 304 -> 504 lines. Accepted deliberately.
+
+LD-23 - INTEREST RATE IS THE SIXTH SCORED CATEGORY, WEIGHT 3.
+  Jeff, 2026-08-21: "are we considering the impact of interest rates to our
+  Conviction Playbook? The increase in the Interest Rate means Good for the
+  currency because it will lessen the supply of that currency... That's why we
+  are trying to foresee if there will be a Hike or Cut."
+  DEFECT FOUND: the Idea_dump defines SIX categories and calls Interest Rate
+  "the core indicator which tells the strength of a currency". score_model.py
+  scored FIVE. Interest Rate was split into report section 3 for presentation
+  and silently stopped feeding the tally, so the causal chain the model draws
+  (Production/Spending/Trade -> Employment/Inflation -> INTEREST RATE ->
+  currency strength) stopped one step short of its own conclusion.
+  FORMULA: score = (REALISED + EXPECTED) / 2 * 3
+    REALISED - Idea_dump rule on the last decision: hiked +1.0, held 0.0, cut -1.0
+    EXPECTED - inflation vs THE BANK'S OWN MANDATE, and NOTHING ELSE:
+                          RISING   FALLING
+      above ceiling        +0.5      0.0
+      inside band         +0.25    -0.25
+      below floor           0.0     -0.5
+  HALVED because realised and expected are two views of one thing; summing
+  would let one category reach 2.0 raw and swamp Inflation. Range stays +/-3.00.
+  SCALE IS NOW +/-11.00, was +/-8.00. Band cuts held proportional:
+  STRONG >= +5.50, WEAK <= 0.00.
+
+  MANDATES ARE NOT ALL 2% - this was a real error in my first draft. FOUR of
+  eight banks target a RANGE: AUD 2-3%, NZD 1-3%, CAD 1-3%, CHF 0-2%. I had
+  scored every currency against a 2% point target, which penalised CHF -0.5 for
+  0.4% inflation that sits INSIDE the SNB's own 0-2% mandate. Each bank is now
+  judged against its own published target. (USD note: the Fed targets PCE; CPI
+  is used as the published proxy and the report says so.)
+
+  THREE INPUTS WERE DESIGNED AND REJECTED - Jeff's call, and it is the important
+  part of this decision:
+    STEP 2 priced odds - an instrument exists for ALL EIGHT (CME FedWatch,
+      SONIA, ESTR, CORRA, ASX RBA Rate Tracker, NZ OIS, TONA, SARON) but only
+      USD was ever sourced. Scoring it would credit USD for evidence the other
+      seven HAVE and I had not fetched - a sourcing gap masquerading as signal.
+    STEP 3 vote splits - Fed (12 voters) and BoE (9) publish them, BoJ
+      sometimes. The ECB, RBA, BoC and SNB publish NONE, ever - the BoC decides
+      by consensus and the SNB board is three people. Six currencies could
+      never score it.
+    STEP 4 forward path - only the RBNZ publishes an OCR track. One of eight.
+  Jeff: "if we cannot find an equilibrium for Steps 2,3,4 then I'd say let's
+  just used Step 1 in the scoring. this way we are not nit-picking and create a
+  unfavorable bias for other currencies."
+  These inputs STILL inform the section-3 Bias chip and the written expectation.
+  They are simply not allowed to move the NUMBER.
+
+  ALSO SETTLED HERE - a zero must say WHICH KIND of zero it is. Jeff asked
+  whether "cannot supply evidence" meant absent or unpublished. Three different
+  cases were collapsing into one 0.0: (A) the institution never publishes it,
+  (B) it exists and I had not sourced it - MY gap, (C) it exists and has not
+  been released yet - timing. Under step-1-only scoring this no longer bites,
+  but if steps 2-4 are ever revived every zero must carry its status:
+  SCORED / N-A-tested / NONE / UNSOURCED / PENDING. Seven of the zeros in the
+  rejected design were UNSOURCED - the F-5/F-6/F-7 shape, in the score itself.
+
+EMPIRICAL - 2026-08-21 r6, rate leg first run:
+  NZD +2.25 (HIKED 8 Jul, 4.1% above its 1-3% ceiling and rising) - UP 2 RANKS
+  EUR +0.75, GBP +0.75 (2.9% above 2% point target, rising)
+  CAD +0.38 (3.0% inside 1-3%, rising)
+  USD  0.00 (3.4% above target but FALLING) - DOWN 1 RANK
+  JPY  0.00 (1.7% below floor but rising)
+  AUD  0.00 (3.8% above its 2-3% ceiling but falling) - DOWN 1 RANK
+  CHF -0.38 (0.4% inside its 0-2% band, falling)
+  NEW TALLY: CAD +8.38, EUR +6.25, GBP +5.75, NZD +3.75, USD +2.25, AUD +2.08,
+             JPY +0.00, CHF -3.38
+  CONSEQUENCE: NZDUSD SHORT spread went +0.75 -> +1.50 and CLEARS the 1.00
+  floor for the first time. It qualifies on spread, on NZD strength rather than
+  USD weakness, and still needs a structure read before it could carry.
+  Implementation: pipelines/rate_model.py, wired into score_model.compute()
+  behind include_rate=True (default) so the five-category tally stays available.
+
+F-14 - THE TE CALENDAR WINDOW ROLLS AND OLD DAYS FALL OUT OF THE FEED.
+  Discovered 2026-08-21 16:37 PHT when the F-13 span assertion FIRED.
+  EVIDENCE, same day, same URL:
+    06:50 PHT fetch -> 541 rows, span 2026-08-17 .. 2026-08-30
+    16:37 PHT fetch -> 532 rows, span 2026-08-18 .. 2026-08-31
+    Monday 17 Aug: 47 rows in the morning, ZERO in the afternoon.
+  The endpoint serves a rolling ~14-day window from the REQUEST DATE and
+  IGNORES the `dates` start parameter - requesting 2026-08-15/2026-08-21
+  returned the same 18-31 Aug window.
+  CONSEQUENCE: a week's calendar CANNOT be rebuilt after the fact. Monday's
+  CAD inflation print survives in the 2026-08-21 edition only because it was
+  captured at 06:50.
+  FIX APPLIED: calendar captures are now persisted per edition under
+  data/raw/calendar/YYYY-MM-DD_HHMMPHT_cal_<span>.json, immutable per
+  CLAUDE.md section 6. Two captures landed for 2026-08-21.
+  THE SPAN ASSERTION EARNED ITS PLACE ON ITS FIRST REAL TEST - without it the
+  afternoon re-run would have silently republished the week table with Monday
+  missing: the F-13 failure again, one day later, from a different cause.
+  STATUS: OPEN - the persistence fix handles it going forward, but any
+  historical week not already captured is unrecoverable from this source.
+
+EMPIRICAL - 2026-08-21 r7 afternoon update:
+  WEEK PROJECTIONS FULLY GRADED: 10 correct, 3 wrong on 13 = 77%.
+  Friday adds: JPY CPI NEUTRAL correct; GBP Retail Sales GOOD correct (though
+  1.6% missed the 2.2-3.7 expected range low by 0.6pp); GBP GfK BAD -> printed
+  -14 vs -18 expected, WRONG.
+  THE ERROR IS ONE-DIRECTIONAL AND NOW A PATTERN: all THREE misses were
+  BAD-projected that printed GOOD, and all three are SURVEY/SENTIMENT
+  indicators - AUD Westpac, GBP Claimant Count, GBP GfK. The method takes
+  consensus at face value where surveys have been beating. Three instances is
+  not proof; it is no longer noise. CARRIED AS A FINDING ABOUT THE METHOD, not
+  a correction to it - the fix is to keep grading, never a fudge factor.
+  JP INFLATION 1.7% -> 1.9% (Jun -> Jul, released 07:30 PHT). Stays NEUTRAL:
+  below the BoJ 2% floor while rising. Neither the Inflation category nor the
+  rate leg moved. WATCH: 1.9% is 0.1pp from target - the next print could flip
+  JPY's rate leg 0.00 -> +0.25.
+  TALLY UNCHANGED: CAD +8.38, EUR +6.25, GBP +5.75, NZD +3.75, USD +2.25,
+  AUD +2.08, JPY +0.00, CHF -3.38.
+  CARRIED PAIRS ALL INTACT at 16:40, none near a falsifier: CADJPY 115.347
+  (new high 115.579), EURCHF 0.93567 (new high 0.93614, highest since the
+  19 Aug break), GBPUSD 1.36507. Friday's daily bar still FORMING.
