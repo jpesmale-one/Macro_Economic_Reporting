@@ -1,11 +1,11 @@
 ---
 edition: 2026-08-21
-revision: 7 (afternoon update: week fully graded 10/13; F-14 calendar window rolls)
+revision: 8 (SEALED FULL)
 generated: 2026-08-21 07:00 PHT
 data_asof: 2026-08-21 16:40 PHT (macro 06:50 + 16:37; charts 16:40)
 horizon: WEEKLY selection (Fri - last edition of the week, Mon 17 - Fri 21)
-seal: UNSEALED - DRAFT
-seal_tier: FULL candidate (LD-12: Friday is the weekly full seal)
+seal: SEALED (FULL) - Jeff, 2026-08-21
+seal_tier: FULL (LD-12: Friday, last edition of the week Mon 17 - Fri 21 Aug)
 artifact_url: https://claude.ai/code/artifact/eee6e597-8644-4c5d-b69b-db6879803abc
 prior_edition: 2026-08-20 (r11, UNSEALED)
 ---
@@ -665,10 +665,17 @@ assets.
 
 ## §8 — Findings
 
-No new findings this run. Open: **F-1** (guard is procedure, not tooling) ·
-**F-7** (`batch_run` defective) · **F-10** (RBA same-origin Referer) ·
-**F-11** (200 ≠ data) · **F-13** (span assertion — **fix verified working**).
-Closed: **F-9**. Detail in STATE.md.
+**One new finding this edition — F-14.** Detail in STATE.md; the report cites IDs.
+
+| ID | One line | Status |
+|---|---|---|
+| **F-14** | **The TE calendar window ROLLS.** Same URL returned 17–30 Aug at 06:50 and 18–31 Aug at 16:37; Monday went 47 rows → 0 in ten hours, and the `dates` start parameter is ignored. **A week cannot be rebuilt after the fact.** | **NEW** — captures now persisted immutably under `data/raw/calendar/` |
+| **F-13** | Span assertion — the week table silently dropped Mon–Tue. | **FIX VERIFIED** — the assertion fired correctly on its first real test, catching F-14 |
+| **F-1** | TE publishes unreleased figures in the ACTUAL field. | OPEN — the guard is procedure, not tooling |
+| **F-7** | `batch_run` defective (retested on a valid call, 3/3 failed). | OPEN |
+| **F-10** | RBA needs a *same-origin* Referer, and its page is JS-rendered anyway. | OPEN |
+| **F-11** | A 200 response is not proof of data. **Fired again today** — AU S&P Global Mfg PMI served without a calendar table. | OPEN |
+| **F-9** | TradingView CDP unreachable on a Store-installed app. | **CLOSED** — `TvMsixLaunch.exe`; worked again on a cold start this morning |
 
 ## §9 — Publish gate — FULL SEAL CANDIDATE (LD-12, Friday)
 
@@ -676,7 +683,7 @@ Closed: **F-9**. Detail in STATE.md.
 |---|---|
 | **P1 SOURCED** | **PASS** — 70/70 whitelist indicators with source, reference period and release status. 8/8 policy rates. Both guards documented, and the F-13 span assertion **fired correctly** (see F-14). Zones carry venue-prefixed symbol, timeframe, touch count and dates. |
 | **P2 RECOMPUTED** | **PASS** — tally from `score_model.py` + `rate_model.py`, recomputed this run; F&G seven-mean to 4dp (0.0000 diff); every zone shows range and position arithmetic; every move shows open → close in pips and percent; the confidence tally shows every point. |
-| **P3 — explicit pass over the week** | **AWAITING JEFF.** This is the only gate a FULL seal adds over a LIGHT one. |
+| **P3 — explicit pass over the week** | **SEALED.** Jeff, 2026-08-21: *"Seal"*. Verified before recording: tally reproduced from `score_model.py` + `rate_model.py`, all 70 whitelist indicators present in the deliverable, md/html agreement checked on key figures, falsifier published for every carried pair. |
 
 ### What a FULL seal commits to
 

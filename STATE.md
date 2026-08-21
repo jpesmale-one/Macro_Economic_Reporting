@@ -4,9 +4,9 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-08-21 (r1, UNSEALED)
+edition: 2026-08-21 (r8, SEALED FULL)
 date: 2026-08-21
-data_asof: 2026-08-21 06:55 PHT (macro 06:50; charts 06:55)
+data_asof: 2026-08-21 16:40 PHT (macro 06:50 + 16:37; charts 16:40)
 track: LEAN (no section-2 trigger has fired)
 artifact: https://claude.ai/code/artifact/eee6e597-8644-4c5d-b69b-db6879803abc
 source_of_truth: reports/2026/Q3/2026-08-21_market-sentiment.md
@@ -1422,3 +1422,102 @@ LD-24 - THE HTML DELIVERABLE COLLAPSES REFERENCE DETAIL, NEVER THE READ.
   must never be able to drop content, and the check proves it did not.
   Implementation: pipelines/render_edition.py (the .md remains the source of
   truth per LD-10; this is the renderer).
+
+================================================================================
+# ESTABLISHED FACTS LEDGER
+# Promoted here ONLY by a FULL seal (LD-12). Later work may cite these as
+# settled. Each carries its source and vintage; a revision to any of them
+# fires T4 and takes a FULL seal regardless of the day.
+================================================================================
+
+## Promoted 2026-08-21 by FULL SEAL of the 2026-08-21 edition (r8)
+## Week of Mon 17 - Fri 21 Aug 2026. Jeff's word: "Seal".
+## Verified before recording: tally reproduced from score_model.py +
+## rate_model.py; all 70 whitelist indicators present in the deliverable;
+## md/html agreement checked; falsifier published for every carried pair.
+
+### EF-1 MARKET FACTS, week of 17-21 Aug 2026 (vintage: as released, PHT)
+  CURRENCY TALLY at 2026-08-21 16:40 PHT, scale +/-11.00:
+    CAD +8.38 | EUR +6.25 | GBP +5.75 | NZD +3.75 | USD +2.25 | AUD +2.08
+    JPY +0.00 | CHF -3.38
+  AU LABOUR FORCE Jul/26 (ABS, released 20/08 09:30 PHT): Employment Change
+    -15.8K vs +15K consensus - a 30.8K miss and the first negative print in the
+    visible series; unemployment 4.5% from 4.4%; full-time +16.3K from +29.3K.
+    AUD fell +4.08 -> +2.08 on this print.
+  FOMC MINUTES (Jul 28-29, released 20/08 02:00 PHT, federalreserve.gov):
+    held 3.50-3.75%, vote 9-3, THREE dissents FOR A HIKE (Hammack, Kashkari,
+    Logan). Market fully priced +25bp by September; Desk-survey median saw no
+    change until a 2028 cut.
+  JP BALANCE OF TRADE Jul/26: -634.5B from -409.9B, worse than TE's -500B
+    forecast. JP INFLATION Jul/26: 1.9% from 1.7% - still below the BoJ's 2%
+    floor while rising.
+  US, released 20/08 20:30 PHT: Philadelphia Fed 47.4 vs 25 consensus;
+    initial jobless claims 206K vs 210K. NEITHER IS A WHITELIST INDICATOR -
+    they inform the narrative and do not score.
+  THURSDAY 20 AUG CLOSED BAR, the four positions carried that day:
+    CADJPY +82.2 pips | EURJPY +108.0 | GBPJPY +163.1 | AUDCAD -28.8.
+    All four moved as the read said. SEE EF-3 - this was TWO bets, not four.
+
+### EF-2 THE CHF ANOMALY - SEALED AS AN OBSERVATION, NOT A MECHANISM
+  On the 19 Aug daily bar all five CHF crosses fell together: USDCHF -1.87%,
+  AUDCHF -1.34%, GBPCHF -1.33%, CADCHF -1.23%, EURCHF -1.00%, mean -1.35%.
+  CHF ALSO BEAT JPY (CHFJPY +0.97%), which rules out generic risk-off - a broad
+  haven bid would have lifted JPY too.
+  By 20 Aug CHF had given back ground: CADCHF +30.9 pips, USDCHF +32.3,
+  retracing 42.9% of the 19 Aug drop (0.00309 of 0.00720).
+  THE ARITHMETIC IS SEALED. THE CAUSE IS NOT. No SNB action was scheduled
+  (next 24 Sep) and nothing in the week's news accounts for it. Any later work
+  citing EF-2 cites the OBSERVATION. Naming a mechanism requires new evidence.
+
+### EF-3 CORRELATED PAIRS INFLATE A SCORECARD - measured, not theorised
+  On 2026-08-20 three of four carried pairs shared the JPY leg. They returned
+  +0.72%, +0.76%, +0.58% - a 0.18pp spread - because they were ONE position
+  sliced three ways. A fourth overlap put CAD long twice (long CADJPY + short
+  AUDCAD). "4 of 4 worked" was TWO independent bets; under leg-disjoint
+  selection it was ONE.
+  ESTABLISHED: a correlated cluster is ONE test of the model. Reporting it as
+  several overstates the evidence - here by 4x. This is why LD-19 exists.
+
+### EF-4 THE PROJECTION METHOD - SEALED AS A FINDING, NOT A VALIDATED TOOL
+  Week of 17-21 Aug: 13 whitelist projections graded. 10 CORRECT, 3 WRONG.
+  ALL THREE MISSES WERE BAD-PROJECTED THAT PRINTED GOOD, and all three were
+  SURVEY/SENTIMENT indicators: AUD Westpac Consumer Confidence, GBP Claimant
+  Count Change, GBP GfK Consumer Confidence. Never once the reverse.
+  ESTABLISHED: the error is ONE-DIRECTIONAL on surveys - the method takes
+  consensus at face value where surveys have been beating.
+  NOT ESTABLISHED: that the method works. 13 observations is not a track
+  record. Keep grading; do NOT add a fudge factor on three instances.
+
+### EF-5 ENVIRONMENT FACTS - durable, and worth more than the market data
+  TE CALENDAR TIMES ARE UTC, PHT = UTC+8. Re-verified 21/08 against US initial
+    jobless claims: 08:30 ET = 12:30 UTC, TE showed 12:30, +8h = 20:30 PHT,
+    which is when it landed. VERIFY EVERY RUN - the page carries
+    "TIMEZONE SET FROM COOKIE", so the offset is session state.
+  THE TE CALENDAR WINDOW ROLLS (F-14). Same URL: 541 rows spanning 17-30 Aug
+    at 06:50 PHT; 532 rows spanning 18-31 Aug at 16:37 PHT the SAME DAY.
+    Monday went 47 rows -> ZERO in ten hours. The `dates` START parameter is
+    IGNORED. A WEEK CANNOT BE REBUILT AFTER THE FACT - captures must be
+    persisted per edition (now under data/raw/calendar/, immutable).
+  TRADINGVIEW CDP on a Store-installed app: the MCP's own launcher fails
+    silently (reports success:true, cdp_ready:false; its fallback binary is a
+    Node stub). FIX: TvMsixLaunch.exe via IApplicationActivationManager.
+    Confirmed twice - 20/08 warm, 21/08 cold start.
+  batch_run IS GENUINELY DEFECTIVE - retested 20/08 with a live CDP connection
+    and a valid action name: 3 symbols, 0 successful, 3 identical JS errors.
+  A 200 RESPONSE IS NOT PROOF OF DATA (F-11). Fired twice this week: two TE
+    euro-area slugs serving 253KB with zero values, and AU S&P Global Mfg PMI
+    served without a calendar table.
+  CNN FEAR & GREED is a SIMPLE AVERAGE of its seven components - verified to
+    4dp on two separate days (0.0000 difference both times). The endpoint
+    returns 10 scored keys; averaging all ten does NOT reproduce the index.
+
+### EF-6 NOT PROMOTED - what this seal explicitly does NOT establish
+  - Any CAUSE for the CHF bid (EF-2).
+  - That the projection method is reliable (EF-4).
+  - The Fed Chair. The 29 Jul minutes list Kevin Warsh in the Chair's voting
+    position with Powell voting as a member. NEVER ASSERTED in any edition,
+    never verified against a second source. Section 3 names no Chair.
+  - Gold's and BTC's drivers. Both moved hard (Gold +9.36% over 21 bars and
+    holding; BTC +12.56% in two sessions) with NO sourced explanation. The
+    moves are facts; the causes are not established.
+  - Any conclusion about the 12 of 21 watchlist pairs never read this week.

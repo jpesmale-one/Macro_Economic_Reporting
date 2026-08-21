@@ -465,8 +465,7 @@
 <tr><td class="num">CAD</td><td>Inflation Rate YoY</td><td class="num">3.0%</td><td class="num">2.8%</td><td>Jul/26</td><td>&gt;2% &amp; rising</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Inflation Rate YoY</td><td class="num">0.4%</td><td class="num">0.5%</td><td>Jul/26</td><td>&lt;2% &amp; falling</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 </table></div></div></details>
-<h3 class="sub">2.6 Interest Rate (weight 3) — NEW, category 6</h3>
-<p><b>Score = (realised + expected) / 2 × 3.</b> <em>Realised</em> is the Idea_dump rule on the last decision (hiked +1.0, held 0.0, cut −1.0). <em>Expected</em> is <b>inflation versus the bank's own mandate</b> — and nothing else.</p>
+<details class="fold"><summary>2.6 Interest Rate (weight 3) — NEW, category 6<span class="cnt">8 rows</span></summary><div class="foldbody"><p><b>Score = (realised + expected) / 2 × 3.</b> <em>Realised</em> is the Idea_dump rule on the last decision (hiked +1.0, held 0.0, cut −1.0). <em>Expected</em> is <b>inflation versus the bank's own mandate</b> — and nothing else.</p>
 <div class="tblwrap"><table>
 <tr><th>CCY</th><th>Rate</th><th>Last decision</th><th>CPI</th><th>Own mandate</th><th>vs mandate</th><th>Realised</th><th>Expected</th><th><b>Score</b></th></tr>
 <tr><td class="num"><b>NZD</b></td><td class="num">2.50%</td><td><b>HIKED +25bp 8 Jul</b></td><td class="num">4.1%</td><td>1–3%</td><td>above 1-3% ceiling and RISING</td><td class="num">+1.0</td><td class="num">+0.50</td><td class="num"><b>+2.25</b></td></tr>
@@ -477,7 +476,7 @@
 <tr><td class="num"><b>JPY</b></td><td class="num">1.00%</td><td>HELD 31 Jul</td><td class="num">1.7%</td><td>2% point</td><td>below 2% point floor but rising</td><td class="num">+0.0</td><td class="num">+0.00</td><td class="num"><b>+0.00</b></td></tr>
 <tr><td class="num"><b>AUD</b></td><td class="num">4.35%</td><td>HELD 11 Aug</td><td class="num">3.8%</td><td>2–3%</td><td>above 2-3% ceiling but falling</td><td class="num">+0.0</td><td class="num">+0.00</td><td class="num"><b>+0.00</b></td></tr>
 <tr><td class="num"><b>CHF</b></td><td class="num">0.00%</td><td>HELD 18 Jun</td><td class="num">0.4%</td><td>0–2%</td><td>inside 0-2%, falling</td><td class="num">+0.0</td><td class="num">-0.25</td><td class="num"><b>-0.38</b></td></tr>
-</table></div>
+</table></div></div></details>
 <h2 class="sec">§3 — Interest Rates</h2>
 <p>Ordered by policy pressure, not alphabetically. <b>Source order:</b> the central bank's own site where the value is machine-readable, TradingEconomics as a labelled fallback. <b>No policy decision has occurred since r11</b> — the values below are unchanged, and are republished in full so the rate picture can be read without opening a prior edition.</p>
 <div class="tblwrap"><table>
@@ -654,8 +653,7 @@
 <p><b>BTC rose on a day when the haven trade faded, equity breadth stayed weak, and rates repriced hawkish. It is not tracking risk assets, havens, or the rate path.</b> Whatever is driving it is idiosyncratic to crypto — and this report has no sourced explanation for it, so none is offered.</p>
 <p><b>Confidence: LOW as an analytical read, despite the strong move.</b> A price move this size with no identifiable driver is exactly what the report should flag rather than narrate. <b>The move is a fact; the cause is not established.</b></p>
 <p><b>Falsifier:</b> a daily close below <b>69,098.5</b> (Wednesday's close, the base of the two-day advance) voids the decoupling read and puts BTC back with risk assets.</p>
-<h2 class="sec">§7 — Method notes</h2>
-<div class="tblwrap"><table>
+<details class="fold"><summary>§7 — Method notes<span class="cnt">6 rows</span></summary><div class="foldbody"><div class="tblwrap"><table>
 <tr><th>#</th><th>Note</th></tr>
 <tr><td class="num">1</td><td><b>The F-13 span assertion ran and passed</b> — first use. The dated endpoint returned 17–30 Aug; the undated one yesterday started at Wed 19. The fix works.</td></tr>
 <tr><td class="num">2</td><td><b>The F-9 recipe worked on a cold start.</b> CDP had dropped overnight; <code>TvMsixLaunch.exe</code> restored it first try. Second independent confirmation.</td></tr>
@@ -663,15 +661,24 @@
 <tr><td class="num">4</td><td><b>Yesterday's rejects were graded, including the two that would have paid.</b> Recorded in §4.4 rather than quietly dropped.</td></tr>
 <tr><td class="num">5</td><td><b>Falsifiers were raised on two breakouts</b> — a judgement call, flagged as such.</td></tr>
 <tr><td class="num">6</td><td><b>§5 and §6 were RE-READ, not republished.</b> Carrying Thursday's Gold/BTC figures under a Friday date would have been stale-publishing; instead both were pulled fresh on closed bars. <b>BTC had moved +12.56% in two sessions</b> — republishing yesterday's 69,488 would have been materially wrong, not merely old.</td></tr>
-</table></div>
-<h2 class="sec">§8 — Findings</h2>
-<p>No new findings this run. Open: <b>F-1</b> (guard is procedure, not tooling) · <b>F-7</b> (<code>batch_run</code> defective) · <b>F-10</b> (RBA same-origin Referer) · <b>F-11</b> (200 ≠ data) · <b>F-13</b> (span assertion — <b>fix verified working</b>). Closed: <b>F-9</b>. Detail in STATE.md.</p>
+</table></div></div></details>
+<details class="fold"><summary>§8 — Findings<span class="cnt">7 rows</span></summary><div class="foldbody"><p><b>One new finding this edition — F-14.</b> Detail in STATE.md; the report cites IDs.</p>
+<div class="tblwrap"><table>
+<tr><th>ID</th><th>One line</th><th>Status</th></tr>
+<tr><td><b>F-14</b></td><td><b>The TE calendar window ROLLS.</b> Same URL returned 17–30 Aug at 06:50 and 18–31 Aug at 16:37; Monday went 47 rows → 0 in ten hours, and the <code>dates</code> start parameter is ignored. <b>A week cannot be rebuilt after the fact.</b></td><td><b>NEW</b> — captures now persisted immutably under <code>data/raw/calendar/</code></td></tr>
+<tr><td><b>F-13</b></td><td>Span assertion — the week table silently dropped Mon–Tue.</td><td><b>FIX VERIFIED</b> — the assertion fired correctly on its first real test, catching F-14</td></tr>
+<tr><td><b>F-1</b></td><td>TE publishes unreleased figures in the ACTUAL field.</td><td>OPEN — the guard is procedure, not tooling</td></tr>
+<tr><td><b>F-7</b></td><td><code>batch_run</code> defective (retested on a valid call, 3/3 failed).</td><td>OPEN</td></tr>
+<tr><td><b>F-10</b></td><td>RBA needs a <em>same-origin</em> Referer, and its page is JS-rendered anyway.</td><td>OPEN</td></tr>
+<tr><td><b>F-11</b></td><td>A 200 response is not proof of data. <b>Fired again today</b> — AU S&amp;P Global Mfg PMI served without a calendar table.</td><td>OPEN</td></tr>
+<tr><td><b>F-9</b></td><td>TradingView CDP unreachable on a Store-installed app.</td><td><b>CLOSED</b> — <code>TvMsixLaunch.exe</code>; worked again on a cold start this morning</td></tr>
+</table></div></div></details>
 <h2 class="sec">§9 — Publish gate — FULL SEAL CANDIDATE (LD-12, Friday)</h2>
 <div class="tblwrap"><table>
 <tr><th>Gate</th><th>Status</th></tr>
 <tr><td><b>P1 SOURCED</b></td><td><b>PASS</b> — 70/70 whitelist indicators with source, reference period and release status. 8/8 policy rates. Both guards documented, and the F-13 span assertion <b>fired correctly</b> (see F-14). Zones carry venue-prefixed symbol, timeframe, touch count and dates.</td></tr>
 <tr><td><b>P2 RECOMPUTED</b></td><td><b>PASS</b> — tally from <code>score_model.py</code> + <code>rate_model.py</code>, recomputed this run; F&amp;G seven-mean to 4dp (0.0000 diff); every zone shows range and position arithmetic; every move shows open → close in pips and percent; the confidence tally shows every point.</td></tr>
-<tr><td><b>P3 — explicit pass over the week</b></td><td><b>AWAITING JEFF.</b> This is the only gate a FULL seal adds over a LIGHT one.</td></tr>
+<tr><td><b>P3 — explicit pass over the week</b></td><td><b>SEALED.</b> Jeff, 2026-08-21: <em>"Seal"</em>. Verified before recording: tally reproduced from <code>score_model.py</code> + <code>rate_model.py</code>, all 70 whitelist indicators present in the deliverable, md/html agreement checked on key figures, falsifier published for every carried pair.</td></tr>
 </table></div>
 <h3 class="sub">What a FULL seal commits to</h3>
 <p>It promotes this week's conclusions into STATE.md's <b>established-facts ledger</b>, where later work cites them as settled. Two items I would seal narrowly:</p>

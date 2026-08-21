@@ -19,7 +19,13 @@ STYLE_FROM = os.path.join(REPO, 'reports/2026/Q3/2026-08-19_market-sentiment.htm
 # h3 headings whose bodies collapse (reference detail, not the read)
 COLLAPSE = (
     '2.1 Production', '2.2 Spending', '2.3 Trade', '2.4 Employment',
-    '2.5 Inflation', '4.2 All candidate pairings',
+    '2.5 Inflation', '2.6 Interest Rate', '4.2 All candidate pairings',
+)
+
+# h2 sections whose bodies collapse. Section 9 is deliberately NOT here: it is
+# the publish gate, and its open-items list is what a seal is judged against.
+COLLAPSE_H2 = (
+    '§7 — Method notes', '§8 — Findings',
 )
 
 EXTRA_CSS = """
@@ -102,7 +108,7 @@ def render(md):
         nonlocal fold
         if fold:
             title, buf = fold
-            rows = sum(x.count('<tr>') for x in buf) - sum(x.count('<th>') > 0 for x in buf)
+            rows = sum(x.count('<tr>') for x in buf) - sum(1 for x in buf if '<th>' in x)
             cnt = '%d rows' % rows if rows > 0 else ''
             out.append('<details class="fold"><summary>%s<span class="cnt">%s</span></summary>'
                        '<div class="foldbody">%s</div></details>'
@@ -140,7 +146,10 @@ def render(md):
             if lvl <= 2:
                 flush()
                 if lvl == 2:
-                    out.append('<h2 class="sec">%s</h2>' % inline(txt))
+                    if any(txt.startswith(c) for c in COLLAPSE_H2):
+                        fold = (txt, [])
+                    else:
+                        out.append('<h2 class="sec">%s</h2>' % inline(txt))
             elif lvl == 3:
                 flush()
                 if any(txt.startswith(c) for c in COLLAPSE):
