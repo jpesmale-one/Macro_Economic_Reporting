@@ -1727,3 +1727,97 @@ every edition; R-8 says cut the noise. These do not conflict - LD-22 protects
 DATA, R-8 targets INTERPRETATION. The rule to write is: a table row is data and
 stays; a sentence explaining a table row is interpretation and must earn its
 place or move to STATE.md.
+
+================================================================================
+F-17 - THE NEWS SECTION NEVER USED A NEWS SOURCE. THREE EDITIONS.
+================================================================================
+Jeff, 2026-08-21: "we have bombarded the report with our interpretation and
+thoughts. But we are missing the news that could impact the currencies and
+other assets like Gold and BTC"
+
+MEASURED: grep for the two MANDATED section-1 sources across every edition:
+  2026-08-19 : 0 references to investinglive.com / investing.com
+  2026-08-20 : 0
+  2026-08-21 : 0
+The spec (section 4, "section 1") says plainly: "Sourced from investinglive.com
+and investing.com (Sources.txt)". Sources.txt lists them first, for every
+currency. THEY WERE NEVER FETCHED, NOT ONCE.
+
+WHAT I USED INSTEAD: TradingEconomics series pages and federalreserve.gov.
+Those are CALENDAR and AGENCY sources. They report what a SCHEDULED RELEASE
+printed. THEY CANNOT REPORT AN UNSCHEDULED EVENT. So section 1 could only ever
+contain things that were already on the calendar - which is precisely the
+category of news that does NOT surprise a market.
+
+WHAT IT COST - the 2026-08-19 Treasury buyback:
+  19 Aug: Treasury announced it will MORE THAN DOUBLE liquidity-support
+  buybacks to at least $4bn per operation (from $2bn) for the 10y-30y sector,
+  effective 9 Sep through 4 Nov, after the 30-year yield hit a 19-YEAR HIGH.
+  Reaction that day: 10y -5bp to 4.647%, 30y -9bp to 5.196%, DOLLAR -0.8%
+  against a basket. Deutsche Bank published "4 reasons Treasury buyback move is
+  dollar negative". Commentary tied Gold's move to a DEBASEMENT trade.
+  Sources: home.treasury.gov/news/press-releases/sb0607, Bloomberg, CNBC,
+  NBC News, investinglive.com (the site the spec told me to read).
+
+  THIS IS THE 19 AUG BAR. The same bar on which the sealed edition records:
+  USDCHF -1.87%, USD losing to BOTH havens, gold +4.35% on 1.34x volume, CHF
+  gaining 1.35% against a five-cross basket - AND CALLS THE CAUSE UNIDENTIFIED
+  (EF-2). The cause was published the same day by the US Treasury.
+
+TWO SEALED CLAIMS ARE NOW SUSPECT (T4 - see below):
+  1. EF-2 "CHF-SPECIFIC bid". A USD-negative shock fits the tape better: CHF
+     and gold both rallying against a weakening dollar. The leg I named may be
+     the wrong one.
+  2. Section 5's Gold read: "real yields rose 25-30bp... Gold rose anyway -
+     that is the signal." Those 25-30bp were the FOMC INTERMEETING move. On
+     19 Aug itself YIELDS FELL. The premise was wrong for that bar.
+
+ROOT CAUSE, and it is not laziness: I treated "section 1" as a section to FILL
+rather than a QUESTION TO ANSWER. Filling it from the calendar always
+succeeds - there is always a scheduled release - so the gap never announced
+itself. Nothing failed. Same shape as F-15 (a missing section is invisible to
+a content check) and F-14 (a rolling window is invisible without a span
+assertion): THE ABSENCE OF A CHECK IS NOT AN ERROR SIGNAL.
+
+THE DEEPER POINT, which is Jeff's: the 220 prose lines of interpretation in
+r11 were me EXPLAINING a move whose explanation I had not gone to look for.
+Interpretation expanded to fill the space where reporting should have been.
+R-8 (cut the noise) and F-17 (fetch the news) are THE SAME FIX from two sides.
+
+FIX REQUIRED - R-9, and it outranks R-8:
+  a. FETCH investinglive.com AND investing.com EVERY RUN, before writing
+     section 1. Use the F-6 header ladder; record which step worked.
+  b. Section 1 must carry, per item: TIME (PHT), WHAT HAPPENED, WHICH
+     INSTRUMENT IT MOVES, and the SOURCE. Grouped Geopolitical / Central banks
+     / Risk events, per the spec.
+  c. AN UNEXPLAINED PRICE MOVE IS A RESEARCH TRIGGER, NOT A FINDING. Before
+     writing "cause unidentified", search the news for that date. EF-2 was
+     sealed as unexplained after zero searches.
+  d. A SOURCE-PRESENCE ASSERTION alongside R-7's section-presence assertion:
+     refuse to render an edition whose section 1 cites no news source.
+STATUS: OPEN. Nothing is fixed yet - this entry is the diagnosis only.
+
+F-17 ADDENDUM - THE COST IS THREE SEALED CONCLUSIONS, NOT TWO.
+  Fetched investinglive.com with the F-6 ladder at wrap. STEP 2 SUCCEEDS -
+  a browser User-Agent and nothing else. 788KB. investing.com/news/forex-news
+  also 200 at step 2, 1.2MB. Both were one header away, for three editions.
+  ON THE FRONT PAGE, unprompted:
+    "Bitcoin tops $77,000 as Treasury's doubled buybacks boost risk assets"
+    "Why markets care more about the signal than the size of the Treasury
+     buyback ... Bessent's pledge to do more is what matters most for markets"
+    "Gold's oversized reaction to Treasury buyback reflects debasement trade"
+  THREE SEALED CONCLUSIONS TRACE TO THIS ONE UNFETCHED SOURCE:
+    1. EF-2 CHF anomaly - sealed "cause unidentified". Cause: a USD-negative
+       shock. CHF and gold rallied against a weakening dollar.
+    2. Section 5 Gold - "real yields rose, gold rose anyway, that is the
+       signal". Wrong premise: yields FELL on 19 Aug. The real driver was a
+       debasement trade, named in the feed.
+    3. Section 6 BTC - sealed "DECOUPLED, cause not established, LOW
+       confidence". NOT decoupled: the same buyback liquidity trade that
+       lifted gold. BTC then topped $77,000 - above the 74,991 high the sealed
+       edition published as its window top.
+  ALL THREE were written as careful, hedged, well-reasoned analysis. NONE of
+  them was reported. The hedging was not rigour - IT WAS A SUBSTITUTE FOR
+  LOOKING, and it read as rigour, which is worse than being obviously wrong.
+  THIS IS WHY R-9 OUTRANKS R-8. Cutting interpretation without adding
+  reporting would leave a shorter report that is still missing the news.

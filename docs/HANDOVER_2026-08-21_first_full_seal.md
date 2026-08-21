@@ -1,7 +1,19 @@
 # Handover — 2026-08-21 — first FULL seal, week of 17–21 Aug
 
-> **NEXT SESSION STARTS WITH R-8 (cut the noise).** Jeff's call at wrap.
-> Everything else in §7 is queued behind it.
+> ## ⚠ NEXT SESSION STARTS WITH R-9, THEN R-8
+>
+> **R-9 — FETCH THE NEWS.** §1's two mandated sources (`investinglive.com`,
+> `investing.com`) were **never fetched in any edition — zero references across
+> all three.** Both return **200 at step 2 of the F-6 ladder** (a browser
+> User-Agent, nothing more).
+>
+> **It cost three sealed conclusions.** The 19 Aug Treasury buyback — dollar
+> −0.8%, 30y −9bp — explains the CHF anomaly (EF-2), Gold's move (§5), and
+> BTC's (§6). All three were sealed as *"cause not identified"* while the cause
+> sat on the front page of the site the spec named. See **F-17** in STATE.md.
+>
+> **R-8 (cut the noise) follows.** They are the same fix from two sides:
+> interpretation expanded to fill the space where reporting should have been.
 
 Session 3. Started with an unsealed 2026-08-19 edition and a stale continuation
 prompt; ended with **two editions built and the week FULL-sealed**, eleven
@@ -122,8 +134,21 @@ reliability, the Fed Chair, and Gold/BTC drivers as **not established**.
 
 ## 7. Remaining — WITH RECIPES
 
-**R-8. CUT THE NOISE — DATA OVER INTERPRETATION.** *(Jeff's call at wrap, and
-the first thing he wants next session)*
+**R-9. FETCH THE NEWS — §1 HAS NEVER USED A NEWS SOURCE.** *(first item)*
+> *"we have bombarded the report with our interpretation and thoughts. But we
+> are missing the news that could impact the currencies and other assets like
+> Gold and BTC"*
+
+**Recipe:** fetch `investinglive.com` and `investing.com/news/forex-news` with
+a browser UA (step 2 of the F-6 ladder — verified working at wrap, 788KB and
+1.2MB). Per item record **time (PHT) · what happened · which instrument it
+moves · source**, grouped Geopolitical / Central banks / Risk events.
+**An unexplained price move is a research trigger, not a finding** — search the
+news for that date *before* writing "cause unidentified". Add a
+source-presence assertion alongside R-7's section-presence one.
+
+**R-8. CUT THE NOISE — DATA OVER INTERPRETATION.** *(second — and the same fix
+from the other side)*
 > *"there's a lot of noise and interpretations which I think can be compressed.
 > let's focuse on Data not overflowing information"*
 
