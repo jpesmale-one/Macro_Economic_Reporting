@@ -4,7 +4,7 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-08-21 (r8, SEALED FULL)
+edition: 2026-08-21 (r11, SEALED FULL + 3 T4 amendments - see T4 EVENT log)
 date: 2026-08-21
 data_asof: 2026-08-21 16:40 PHT (macro 06:50 + 16:37; charts 16:40)
 track: LEAN (no section-2 trigger has fired)
@@ -1659,3 +1659,71 @@ F&G CAPTURES ARE NOW PERSISTED - data/raw/fng/YYYY-MM-DD_HHMMPHT.json.
   The endpoint serves ONLY a current snapshot; there is no historical query, so
   a capture cannot be reconstructed after the fact. Same class of problem as
   F-14 on the TE calendar, and the same fix.
+
+================================================================================
+# QUEUED FOR NEXT SESSION - R-8: CUT THE NOISE. DATA OVER INTERPRETATION.
+# Jeff, 2026-08-21 at session wrap: "next up we might want to reduce the noice
+# in our report. there's a lot of noise and interpretations which I think can be
+# compressed. let's focuse on Data not overflowing information"
+================================================================================
+
+MEASURED BASELINE - 2026-08-21 edition r11, 753 lines:
+  table rows   296  (39%)
+  PROSE        220  (29%)   <- the target
+  headings      49
+  blockquote    24
+  blank        164
+
+PROSE BY SECTION (prose lines of section total):
+   45 of 169  section 4 Conviction Playbook
+   32 of  81  section 0b afternoon update
+   31 of  68  section 0 yesterday graded
+   28 of  54  section 1 headlines
+   24 of 155  section 2 macro indicators
+   14 of  46  section 6 BTC
+   14 of  42  section 5 Gold
+   11 of  27  section 3 interest rates
+    5 of  34  section 9 publish gate
+    1 of  15  section 8 findings
+    1 of  10  pre-flight
+    0 of  11  section 7 method notes
+
+THE DIAGNOSIS, and it is mine to own: sections 0 and 0b together carry 63 prose
+lines - 29% of ALL prose in the edition - and NONE of it is market data. It is
+meta-commentary about the method: grading my own prior call, correcting the
+scorecard, narrating the F-14 discovery. Valuable once; not valuable every day
+at that length. I have been writing the REASONING into the deliverable instead
+of the FINDING.
+
+WHAT TO CUT (proposals for next session - Jeff decides):
+  1. SECTION 0 GRADING -> a table. Pair | direction | prior close | new close |
+     move | result. The narrative about what the result MEANS goes to STATE.md
+     and the edition cites it. Target: 31 prose lines -> under 8.
+  2. SECTION 0b -> merge into section 0. There is no reason a morning edition
+     and an afternoon update need separate narrative blocks; one "what changed
+     since data_asof" table covers it. Target: 32 -> under 6.
+  3. SECTION 4 -> the tables already carry the decision. The prose repeats what
+     the confidence tally and the falsifier column already state. Target:
+     45 -> under 15.
+  4. SECTIONS 5 and 6 -> level table + one-line read + falsifier. Drop the
+     driver paragraphs; a driver that cannot be sourced does not belong, and a
+     sourced one belongs in section 1. Target: 28 combined -> under 10.
+  5. EVERY "why this matters" PARAGRAPH -> delete or move to STATE.md. If a
+     number needs a paragraph to be legible, the table is wrong.
+
+WHAT MUST NOT BE CUT (LD-15/LD-17/LD-22 still bind):
+  - any figure, source, vintage, date, touch count, or FALSIFIER
+  - the two mandatory guards and their evidence
+  - all 70 whitelist rows, all 8 policy rates, the bands with category detail
+  - the confidence arithmetic (LD-20) - it is the audit trail for the ranking
+  - anything that would make the edition non-self-contained (LD-22)
+
+PROPOSED TARGET: prose under 15% of lines (from 29%), tables and figures
+untouched. VERIFY THE SAME WAY LD-17 DOES - diff the numeric-token set before
+and after; anything in old-minus-new must be a reformat, never a loss.
+
+NOTE THE TENSION AND RESOLVE IT EXPLICITLY: LD-22 says publish the data in full
+every edition; R-8 says cut the noise. These do not conflict - LD-22 protects
+DATA, R-8 targets INTERPRETATION. The rule to write is: a table row is data and
+stays; a sentence explaining a table row is interpretation and must earn its
+place or move to STATE.md.

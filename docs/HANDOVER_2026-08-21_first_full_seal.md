@@ -1,5 +1,8 @@
 # Handover — 2026-08-21 — first FULL seal, week of 17–21 Aug
 
+> **NEXT SESSION STARTS WITH R-8 (cut the noise).** Jeff's call at wrap.
+> Everything else in §7 is queued behind it.
+
 Session 3. Started with an unsealed 2026-08-19 edition and a stale continuation
 prompt; ended with **two editions built and the week FULL-sealed**, eleven
 decisions locked, and six facts promoted to the established-facts ledger.
@@ -21,7 +24,8 @@ git status -sb
 git log --oneline origin/main..HEAD    # unpushed count
 ```
 
-Expect: edition **`2026-08-21` (r8, SEALED FULL)**, `data_asof`
+Expect: edition **`2026-08-21` (r11, SEALED FULL)** — r9/r10/r11 are T4
+amendments to a sealed edition, each disclosed in the edition itself, `data_asof`
 **2026-08-21 16:40 PHT**, track **LEAN**.
 
 **Read `docs/REPORT_SPEC.md` FIRST** — authoritative build spec. Then STATE.md.
@@ -39,12 +43,14 @@ the scale ±11.00. **Reconciling the spec is the first queued item (R-1).**
 | Edition | State | Artifact |
 |---|---|---|
 | 2026-08-20 (r11) | UNSEALED | `a69403a7-a636-4ca2-8b41-1006e8c62806` |
-| **2026-08-21 (r8)** | **SEALED (FULL)** | `eee6e597-8644-4c5d-b69b-db6879803abc` |
+| **2026-08-21 (r11)** | **SEALED (FULL)**, T4-amended ×3 | `eee6e597-8644-4c5d-b69b-db6879803abc` |
 
 The 08-20 edition stays unsealed as history. It carries a staleness notice and
 is superseded by 08-21.
 
-**Blocked on nothing.** Four commits are **unpushed** — pushing is Jeff's call.
+**Blocked on nothing.** Commits are **unpushed** — derive the count with
+`git log --oneline origin/main..HEAD` (F-8), never from this line. Pushing is
+Jeff's call and he has not been asked.
 
 ---
 
@@ -58,12 +64,14 @@ is superseded by 08-21.
 | `pipelines/select_pairs.py` | LD-19 — leg-disjoint selection + net-exposure check |
 | `pipelines/confidence.py` | LD-20 — the confidence tally |
 | `pipelines/render_edition.py` | LD-24 — md → html with collapsible reference blocks |
+| `pipelines/fng_block.py` | LD-25 — the F&G bar chart, generated from the capture |
 | `data/raw/calendar/` | F-14 — immutable per-edition calendar captures |
-| `STATE.md` | LD-14 … LD-24, F-13, F-14, and the **established-facts ledger** |
+| `data/raw/fng/` | LD-25 — immutable F&G captures (the endpoint has no history) |
+| `STATE.md` | LD-14 … LD-25, F-13 … F-16, and the **established-facts ledger** |
 
 ---
 
-## 4. Decisions locked (LD-14 … LD-24)
+## 4. Decisions locked (LD-14 … LD-25)
 
 Full text with rejected alternatives is in STATE.md. The ones that bind daily
 work:
@@ -79,6 +87,7 @@ work:
 | **LD-22** | The edition is **self-contained** — §2, §3, §4.1, §5, §6 published in full every time, never by reference. |
 | **LD-23** | **Interest Rate is category 6, weight 3.** Scored on inflation vs the bank's **own mandate** only. Scale is now **±11.00**. |
 | **LD-24** | The HTML collapses **reference detail**, never the read. |
+| **LD-25** | The F&G block is the **r9 bar chart**, opens §1, and is **generated from a persisted capture** so it cannot drift or silently degrade. |
 
 ---
 
@@ -105,13 +114,37 @@ reliability, the Fed Chair, and Gold/BTC drivers as **not established**.
 | **F-11** | OPEN — **a 200 response is not proof of data.** Fired twice this week. |
 | **F-13** | **FIX VERIFIED** — the span assertion fired correctly on its first real test. |
 | **F-14** | **OPEN, NEW** — the TE calendar window rolls; a week cannot be rebuilt after the fact. Captures now persisted. |
+| **F-15** | **OPEN, NEW** — a mandatory section (F&G) silently vanished across three editions and I sealed without it. **Every guard is a content check; absence is invisible to one.** Needs R-7. |
+| ~~F-16~~ | **FIXED** — the renderer ate emphasis spanning a code span. Parser bug on the deliverable path. |
 | ~~F-9~~ | **CLOSED** — `TvMsixLaunch.exe`, confirmed twice. |
 
 ---
 
 ## 7. Remaining — WITH RECIPES
 
-**R-1. RECONCILE `docs/REPORT_SPEC.md` WITH LD-23.** *(highest priority)*
+**R-8. CUT THE NOISE — DATA OVER INTERPRETATION.** *(Jeff's call at wrap, and
+the first thing he wants next session)*
+> *"there's a lot of noise and interpretations which I think can be compressed.
+> let's focuse on Data not overflowing information"*
+
+**Measured baseline, r11: 753 lines — 296 table rows (39%), 220 PROSE (29%).**
+Full per-section breakdown and five specific cut proposals are in STATE.md
+under `R-8`.
+
+**The diagnosis, and it is mine to own:** §0 and §0b together carry **63 prose
+lines — 29% of all prose in the edition — and none of it is market data.** It
+is meta-commentary about the method. I have been writing the *reasoning* into
+the deliverable instead of the *finding*.
+
+**Target: prose under 15% of lines, tables and figures untouched.** Verify with
+the LD-17 token diff — anything lost must be a reformat, never a figure.
+
+**Resolve this tension explicitly when you write the rule:** LD-22 says publish
+the data in full every edition; R-8 says cut. They do not conflict — **LD-22
+protects DATA, R-8 targets INTERPRETATION.** A table row is data and stays; a
+sentence explaining a table row must earn its place or move to STATE.md.
+
+**R-1. RECONCILE `docs/REPORT_SPEC.md` WITH LD-23 … LD-25.** *(still critical)*
 The spec describes 5 categories and ±8.00; the model is 6 and ±11.00. Also
 fold in LD-19 through LD-24. **The spec is the authoritative build document and
 it currently contradicts the code.**
@@ -136,6 +169,12 @@ then `data_get_ohlcv`, one symbol at a time — `batch_run` is defective (F-7).
 voting position. Never asserted; needs a second source before any edition names
 a Chair.
 
+**R-7. SECTION-PRESENCE ASSERTION IN THE RENDERER** *(from F-15)*.
+The spec mandates §1–§6 plus the sub-blocks in spec §2.3. **Refuse to render an
+edition missing any of them.** F-15 happened because every check is a *content*
+check — a section that is absent has no figures to verify, so absence is
+invisible. Only a manifest catches it.
+
 **R-6. SOURCE PRICED ODDS FOR ALL EIGHT** *(optional, reopens LD-23 step 2)*.
 An instrument exists for every currency — CME, SONIA, ESTR, CORRA, ASX RBA
 Tracker, NZ OIS, TONA, SARON. Only USD was ever sourced, which is why the step
@@ -155,8 +194,12 @@ was dropped. Sourcing all eight would let it back in **on equal terms**.
 
 - **Jeff catches what the method hides.** The correlated-pairs inflation
   (EF-3), the interest-rate gap (LD-23), the criteria that favoured USD, the
-  missing Mon–Tue (F-13) — **all four were his catches, not mine.** Expect that
-  and welcome it.
+  missing Mon–Tue (F-13), **the vanished F&G section (F-15)**, and the
+  downgraded F&G format (LD-25) — **all six were his catches, not mine.**
+  Expect that and welcome it.
+- **Content checks cannot see a missing section.** F-15 is the lesson: every
+  verification in this repo asks "is this figure right?", none asks "is this
+  section here?" A manifest is the only fix (R-7).
 - **A nil result is a finding.** "No risk-off trade this week" is information —
   but it must be **proved on the full matrix**, not argued from the extremes.
 - **Grade the method, don't patch it.** EF-4 records a one-directional error on
