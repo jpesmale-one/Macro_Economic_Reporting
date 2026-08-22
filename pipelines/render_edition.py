@@ -126,11 +126,22 @@ def cell(c):
 
 FNG_MARKER = '<!--FNG-->'
 
+# Front-matter of the edition being rendered; set in __main__ before render().
+FM = {}
 
-def fng_html():
+
+def fng_html(fm=None):
     """Build the Fear & Greed bar chart from the persisted capture (LD-25).
-    Returns '' if no capture exists, so the renderer degrades to whatever the
-    markdown says rather than failing."""
+
+    F-19/F-23: the cross-check and spread-history commentary is EDITION
+    CONTENT and comes from front-matter (fng_note / fng_spread), not from
+    this file. It was hardcoded to r13's narrative ("Safe Haven Demand fell
+    68.0 -> 62.80", "today" meaning 21 Aug), so any later edition would have
+    silently published 21 Aug's commentary under its own date.
+
+    Returns '' if no capture exists, so the renderer degrades to whatever
+    the markdown says rather than failing.
+    """
     import glob, json
     caps = sorted(glob.glob(os.path.join(REPO, 'data/raw/fng/*.json')))
     if not caps:
@@ -138,17 +149,10 @@ def fng_html():
     sys.path.insert(0, os.path.join(REPO, 'pipelines'))
     from fng_block import build
     d = json.load(io.open(caps[-1], encoding='utf-8'))
-    return build(
-        d,
-        cross_check=(' Safe Haven Demand fell <b>68.0 &rarr; 62.80</b>, consistent '
-                     'with &sect;0&rsquo;s finding that the CHF bid faded. It does '
-                     '<b>not</b> explain the CHF move &mdash; EF-2 is sealed as an '
-                     'observation with no mechanism.'),
-        spread_history=('Spread history: <b>70.80</b> (19 Aug) &rarr; <b>66.60</b> '
-                        '(20 Aug) &rarr; <b>65.20</b> (today) &mdash; narrowing '
-                        'slowly, but still wide enough that &ldquo;neutral&rdquo; '
-                        'describes no part of this market.'))
-
+    fm = fm or {}
+    return build(d,
+                 cross_check=fm.get('fng_note', ''),
+                 spread_history=fm.get('fng_spread', ''))
 
 def render(md):
     out, i = [], 0
@@ -240,7 +244,7 @@ def render(md):
             emit('<%s>%s</%s>' % (tag, ''.join('<li>%s</li>' % inline(x) for x in items), tag))
             continue
         if s == FNG_MARKER:
-            emit(fng_html())
+            emit(fng_html(FM))
             i += 1
             continue
         buf = [lines[i].strip()]; i += 1
@@ -351,6 +355,17 @@ REQUIRED_SUB = {
     'MONDAY':  ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear'],
     'WEEKEND': ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear'],
 }
+# LD-38 / F-23 - MANDATORY GENERATED BLOCKS, asserted by MARKER not heading.
+# A heading proves a section EXISTS; it does not prove it was BUILT the way
+# the spec requires. On 2026-08-23 the F&G section had its heading and
+# plausible content but was hand-written markdown tables instead of the
+# LD-25 bar chart - a DOWNGRADE, invisible to a presence check.
+REQUIRED_MARKERS = {
+    '<!--FNG-->': 'the Fear & Greed bar chart (LD-25) - do not hand-write it '
+                  'as markdown tables; emit the marker and fng_block.py '
+                  'builds it from the persisted capture',
+}
+
 NEWS_HOSTS = ('investinglive.com', 'investing.com', 'reuters.com', 'bloomberg.com',
               'treasury.gov', 'federalreserve.gov', 'ecb.europa.eu',
               'bankofengland.co.uk', 'rba.gov.au', 'boj.or.jp', 'snb.ch',
@@ -377,6 +392,18 @@ def assert_sections(md, etype):
             '(F-15: the Fear & Greed block vanished from three editions this way.)'
             % ', '.join(sub_missing))
     return len(heads)
+
+
+def assert_markers(md):
+    """Refuse to render if a mandatory generated block was hand-written."""
+    missing = [(k, why) for k, why in REQUIRED_MARKERS.items() if k not in md]
+    if missing:
+        detail = chr(10).join('  %s  -> %s' % (k, why) for k, why in missing)
+        raise SystemExit(
+            'FATAL (LD-38/F-23): mandatory generated block(s) not emitted:'
+            + chr(10) + detail + chr(10) +
+            'A heading is not enough - the FORMAT is locked to the generator.')
+    return len(REQUIRED_MARKERS)
 
 
 def assert_news_sources(md):
@@ -437,15 +464,19 @@ if __name__ == '__main__':
     src = sys.argv[1] if len(sys.argv) > 1 else SRC
     md = io.open(src, encoding='utf-8').read()
     fm = front_matter(md)
+    globals()['FM'] = fm
     dst = os.path.join(REPO, 'reports/2026/Q3/%s_market-sentiment.html' % fm['date'])
 
     # --- guards run BEFORE a single byte is written ---
     nheads = assert_sections(md, fm['type'])
+    nmark = assert_markers(md)
     sources = assert_news_sources(md)
     pn, bn, pct = prose_ratio(md)
     print('guards:')
     print('  R-7  sections   %d headings, all mandated present (%s)'
           % (nheads, fm['type']))
+    print('  LD-38 markers   %d/%d generated blocks emitted'
+          % (nmark, len(REQUIRED_MARKERS)))
     print('  F-17 sources    §1 cites %d: %s' % (len(sources), ', '.join(sources)))
     print('  LD-27 prose     %d prose blocks of %d units = %.1f%% %s'
           % (pn, bn, pct, 'OK' if pct < 15 else '*** OVER 15% TARGET ***'))

@@ -2302,3 +2302,39 @@ LD-37 - A WEEKEND EDITION'S PROPOSALS STAY IN SECTION 4.
 #   Found by the weekend news sweep - i.e. by the LD-30 process that F-17
 #   exists to enforce. First time the news sweep has produced a risk the
 #   scoring model structurally cannot see.
+
+F-23 - I HAND-WROTE THE FEAR & GREED BLOCK AS PLAIN TABLES. LD-25 VIOLATED ON
+  ITS FIRST TEST. Jeff caught it: "I asked that the Fear and Greed Index format
+  would retain like the Aug 21 report."
+  WHAT HAPPENED: the 2026-08-23 weekend edition rendered F&G as two hand-written
+  markdown tables instead of emitting the <!--FNG--> marker that
+  pipelines/fng_block.py fills with the r9 BAR CHART. The renderer wiring was
+  already there (FNG_MARKER, fng_html) and correct. I simply did not use it.
+  THIS IS THE EXACT REGRESSION LD-25 WAS WRITTEN TO PREVENT. LD-25 exists
+  because the markdown-table version had ALREADY silently downgraded the r9
+  chart once, on 2026-08-21, and Jeff caught THAT too ("why can't we put it in
+  this format?"). Same downgrade, same catch, one edition later.
+  WHY THE FORMAT IS NOT COSMETIC, restating fng_block.py's own docstring: the
+  headline AVERAGES A DIVERGENCE. The 66.4-point spread between Junk Bond
+  Demand 95.8 and Stock Price Strength 29.4 IS the finding, and a bar chart
+  shows it in one glance where a table makes you compute it by eye.
+  WHY NO GUARD CAUGHT IT: R-7 checks that a section is PRESENT by heading. The
+  F&G heading was present and the content was plausible - only the FORMAT was
+  wrong. This is F-15's lesson one layer deeper: a presence check cannot see a
+  DOWNGRADE. Fixed by an assertion, below.
+  ALSO FOUND WHILE FIXING: fng_html() hardcoded r13's cross_check and
+  spread_history commentary - "Safe Haven Demand fell 68.0 -> 62.80", "today"
+  meaning 21 Aug. Any later edition would have published 21 Aug's narrative
+  under its own date. Same defect class as F-19, in a function F-19 did not
+  reach. Commentary now comes from front-matter (fng_note / fng_spread).
+
+LD-38 - MANDATORY GENERATED BLOCKS ARE ASSERTED BY MARKER, NOT BY HEADING.
+  R-7's manifest checks headings. A heading proves a section exists; it does
+  not prove the section was BUILT the way the spec requires. F-23 slipped
+  through exactly there.
+  RULE: where a section's format is locked to a generator (currently F&G per
+  LD-25), the edition must emit that generator's MARKER, and the renderer
+  refuses without it. Presence checks catch absence; marker checks catch
+  DOWNGRADE. Both are needed and they are not the same check.
+  Implemented as REQUIRED_MARKERS in render_edition.py, verified against a
+  fixture with the marker stripped.

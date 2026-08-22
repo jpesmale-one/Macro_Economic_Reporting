@@ -307,26 +307,29 @@
 <p><b>What it means for the bias:</b> CAD retail sales missing at −0.8% is a real dent in the strongest currency on the board. CAD's Spending category scored +1.00 on data now superseded. <b>This is the single most likely score change on Monday.</b></p>
 <h2 class="sec">§1 — Headline Alerts, News &amp; Current Events</h2>
 <h3 class="sub">📊 Sentiment — CNN Fear &amp; Greed Index</h3>
-<p><b>55.2 — GREED</b> <em>(capture 21 Aug 23:59 UTC = Sat 22 Aug 07:59 PHT, <code>data/raw/fng/2026-08-23_0100PHT.json</code>)</em></p>
-<div class="tblwrap"><table>
-<tr><th></th><th>Score</th><th>Rating</th></tr>
-<tr><td><b>Index</b></td><td class="num"><b>55.2</b></td><td><b>Greed</b></td></tr>
-<tr><td>Previous close</td><td class="num">52.5</td><td>Neutral</td></tr>
-<tr><td>1 week ago</td><td class="num">64.0</td><td>Greed</td></tr>
-<tr><td>1 month ago</td><td class="num">43.4</td><td>Fear</td></tr>
-<tr><td>1 year ago</td><td class="num">52.6</td><td>Neutral</td></tr>
-</table></div>
-<div class="tblwrap"><table>
-<tr><th>Component</th><th>Score</th><th>Rating</th></tr>
-<tr><td>Junk bond demand</td><td class="num"><b>95.8</b></td><td><b>Extreme greed</b></td></tr>
-<tr><td>Safe haven demand</td><td class="num">71.0</td><td>Greed</td></tr>
-<tr><td>Stock price breadth</td><td class="num">57.6</td><td>Greed</td></tr>
-<tr><td>Market volatility (VIX)</td><td class="num">50.0</td><td>Neutral</td></tr>
-<tr><td>Put/call options</td><td class="num">43.4</td><td>Fear</td></tr>
-<tr><td>Market momentum S&amp;P500</td><td class="num">39.0</td><td>Fear</td></tr>
-<tr><td>Stock price strength</td><td class="num">29.4</td><td>Fear</td></tr>
-</table></div>
-<p><b>The index is Greed; four of seven components are Fear.</b> The reading is carried almost entirely by <b>junk bond demand at 95.8 (extreme greed)</b> and safe haven demand at 71.0. Momentum and breadth internals are weak. <b>Down from 64.0 a week ago</b> — risk appetite cooled through the week even as indices rose.</p>
+<div class="fng-head">
+<div class="fng-big">55.17 <span class="fng-lab">GREED</span></div>
+<div class="fng-hist">
+<div class="fng-h"><span class="fng-lab">PREV CLOSE</span><b>52.49</b><span class="up">+2.69</span></div>
+<div class="fng-h"><span class="fng-lab">1 WEEK AGO</span><b>63.97</b><span class="dn">-8.80</span></div>
+<div class="fng-h"><span class="fng-lab">1 MONTH AGO</span><b>43.37</b><span class="up">+11.80</span></div>
+<div class="fng-h"><span class="fng-lab">1 YEAR AGO</span><b>52.60</b><span class="up">+2.57</span></div>
+</div></div>
+<div class="fng-bars">
+<div class="fng-row"><span class="fng-n">Junk Bond Demand</span><span class="fng-track"><i class="fng-fill" style="width:95.8%;background:var(--bear)"></i></span><span class="fng-v">95.8</span><span class="pill p-bad">extreme greed</span></div>
+<div class="fng-row"><span class="fng-n">Safe Haven Demand</span><span class="fng-track"><i class="fng-fill" style="width:71.0%;background:var(--bull)"></i></span><span class="fng-v">71.0</span><span class="pill p-good">greed</span></div>
+<div class="fng-row"><span class="fng-n">Stock Price Breadth</span><span class="fng-track"><i class="fng-fill" style="width:57.6%;background:var(--bull)"></i></span><span class="fng-v">57.6</span><span class="pill p-good">greed</span></div>
+<div class="fng-row"><span class="fng-n">Market Volatility (VIX)</span><span class="fng-track"><i class="fng-fill" style="width:50.0%;background:var(--muted)"></i></span><span class="fng-v">50.0</span><span class="pill p-neut">neutral</span></div>
+<div class="fng-row"><span class="fng-n">Put / Call Options</span><span class="fng-track"><i class="fng-fill" style="width:43.4%;background:var(--warn)"></i></span><span class="fng-v">43.4</span><span class="pill p-warn">fear</span></div>
+<div class="fng-row"><span class="fng-n">Market Momentum S&P 500</span><span class="fng-track"><i class="fng-fill" style="width:39.0%;background:var(--warn)"></i></span><span class="fng-v">39.0</span><span class="pill p-warn">fear</span></div>
+<div class="fng-row"><span class="fng-n">Stock Price Strength</span><span class="fng-track"><i class="fng-fill" style="width:29.4%;background:var(--warn)"></i></span><span class="fng-v">29.4</span><span class="pill p-warn">fear</span></div>
+</div>
+<div class="readbox"><b>Recompute (P2)</b>(95.8 + 71.0 + 57.6 + 50.0 + 43.4 + 39.0 + 29.4) &divide; 7 = <b>55.1714</b> &mdash; published <b>55.1714</b>, difference <b>0.0000</b>. <b>Matches exactly.</b> CNN uses a <b>simple average</b> of the seven, not a weighted one, so the components fully explain the headline.</div>
+<div class="warnbox"><b>The headline hides the story.</b> &ldquo;Greed 55&rdquo; is the average of a market that is <em>not</em> neutral internally. The spread between highest and lowest component is <b>66.4 points</b>: <b>Junk Bond Demand 95.8 (extreme greed)</b> against <b>Stock Price Strength 29.4 (fear)</b>. Index history: <b>43.4</b> (1mo) &rarr; <b>64.0</b> (1wk) &rarr; <b>52.5</b> (prev close) &rarr; <b>55.2</b> (Fri close). <b>Down 8.8 from a week ago</b> even as indices rose &mdash; risk appetite cooled through the week. Spread top-to-bottom bar: <b>95.8 &minus; 29.4 = 66.4</b>, wider than the 65.20 carried on 21 Aug.</div>
+<div class="readbox"><b>Cross-check</b>The index reads <b>Greed</b> while <b>four of seven components sit in Fear</b>. Junk Bond Demand at <b>95.8</b> (extreme greed) and Safe Haven Demand at <b>71.0</b> carry the headline on their own; Stock Price Strength <b>29.4</b>, Momentum <b>39.0</b> and Put/Call <b>43.4</b> all read Fear. Credit is priced for calm while equity internals are not.</div>
+<p><b>Falsifier.</b> Junk Bond Demand dropping below <b>~70</b> would remove the single support holding the headline in Greed and turn this divergence into broad risk-off. Stock Price Strength recovering above <b>50</b> resolves it the other way.</p>
+<p><b>What it means for the week's proposals.</b> A Greed headline resting on credit alone is a weak risk-on signal. It does <b>not</b> contradict the three proposals — none is a risk-appetite trade — but it is the wrong backdrop for reading BTC's +20% as broad risk-seeking (§6).</p>
+<p><em>Source: <code>production.dataviz.cnn.io/index/fearandgreed/graphdata</code> — browser headers + Referer (the article page returns HTTP 451, the endpoint 418 to a plain fetch). Capture persisted at <code>data/raw/fng/2026-08-23_0100PHT.json</code>, timestamped 21 Aug 23:59 UTC = Sat 22 Aug 07:59 PHT. The chart is generated from that capture by <code>pipelines/fng_block.py</code>, so the figures cannot drift.</em></p>
 <h3 class="sub">🇺🇸 United States — read against USD, Gold AND BTC (LD-30)</h3>
 <p><b>Dollar at three-month lows, worst week since late July.</b> <em>(investing.com, 21 Aug)</em></p>
 <div class="tblwrap"><table>

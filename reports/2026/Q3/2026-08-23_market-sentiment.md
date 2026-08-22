@@ -8,6 +8,8 @@ eyebrow: Macro Economic Reporting &middot; Weekend Prep &mdash; week of 24&ndash
 chip: PROPOSED <b class="up">CADJPY HIGH</b> &middot; EURCHF MED &middot; GBPUSD LOW
 chip: WEEK AHEAD <b>AU CPI Wed</b> &middot; <span class="dn">Jackson Hole Thu&ndash;Sat</span>
 chip: SCALE <b>&plusmn;11.00</b> <span class="dn">rate = cat 6</span>
+fng_note: The index reads <b>Greed</b> while <b>four of seven components sit in Fear</b>. Junk Bond Demand at <b>95.8</b> (extreme greed) and Safe Haven Demand at <b>71.0</b> carry the headline on their own; Stock Price Strength <b>29.4</b>, Momentum <b>39.0</b> and Put/Call <b>43.4</b> all read Fear. Credit is priced for calm while equity internals are not.
+fng_spread: Index history: <b>43.4</b> (1mo) &rarr; <b>64.0</b> (1wk) &rarr; <b>52.5</b> (prev close) &rarr; <b>55.2</b> (Fri close). <b>Down 8.8 from a week ago</b> even as indices rose &mdash; risk appetite cooled through the week. Spread top-to-bottom bar: <b>95.8 &minus; 29.4 = 66.4</b>, wider than the 65.20 carried on 21 Aug.
 -->
 
 <!--exec
@@ -120,31 +122,23 @@ data now superseded. **This is the single most likely score change on Monday.**
 
 ### 📊 Sentiment — CNN Fear & Greed Index
 
-**55.2 — GREED** *(capture 21 Aug 23:59 UTC = Sat 22 Aug 07:59 PHT,
-`data/raw/fng/2026-08-23_0100PHT.json`)*
+<!--FNG-->
 
-| | Score | Rating |
-|---|---|---|
-| **Index** | **55.2** | **Greed** |
-| Previous close | 52.5 | Neutral |
-| 1 week ago | 64.0 | Greed |
-| 1 month ago | 43.4 | Fear |
-| 1 year ago | 52.6 | Neutral |
+**Falsifier.** Junk Bond Demand dropping below **~70** would remove the single
+support holding the headline in Greed and turn this divergence into broad
+risk-off. Stock Price Strength recovering above **50** resolves it the other
+way.
 
-| Component | Score | Rating |
-|---|---|---|
-| Junk bond demand | **95.8** | **Extreme greed** |
-| Safe haven demand | 71.0 | Greed |
-| Stock price breadth | 57.6 | Greed |
-| Market volatility (VIX) | 50.0 | Neutral |
-| Put/call options | 43.4 | Fear |
-| Market momentum S&P500 | 39.0 | Fear |
-| Stock price strength | 29.4 | Fear |
+**What it means for the week's proposals.** A Greed headline resting on credit
+alone is a weak risk-on signal. It does **not** contradict the three proposals
+— none is a risk-appetite trade — but it is the wrong backdrop for reading
+BTC's +20% as broad risk-seeking (§6).
 
-**The index is Greed; four of seven components are Fear.** The reading is carried
-almost entirely by **junk bond demand at 95.8 (extreme greed)** and safe haven
-demand at 71.0. Momentum and breadth internals are weak. **Down from 64.0 a week
-ago** — risk appetite cooled through the week even as indices rose.
+*Source: `production.dataviz.cnn.io/index/fearandgreed/graphdata` — browser
+headers + Referer (the article page returns HTTP 451, the endpoint 418 to a
+plain fetch). Capture persisted at `data/raw/fng/2026-08-23_0100PHT.json`,
+timestamped 21 Aug 23:59 UTC = Sat 22 Aug 07:59 PHT. The chart is generated
+from that capture by `pipelines/fng_block.py`, so the figures cannot drift.*
 
 ### 🇺🇸 United States — read against USD, Gold AND BTC (LD-30)
 
