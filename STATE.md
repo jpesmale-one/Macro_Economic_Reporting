@@ -14,6 +14,7 @@ spec_rev: 2026-08-23 - LD-27..LD-34 written in; R-1, R-7, F-19 CLOSED.
   Spec is AUTHORITATIVE again (6 cat / +/-11.00, weekly selection, section 0
   specified, weekend edition type). Renderer now enforces structure:
   `python pipelines/render_edition.py <path-to-md>`, front-matter required.
+artifact: https://claude.ai/code/artifact/3ea8d236-ca2b-44de-ab66-30e3986a55d3
 source_of_truth: reports/2026/Q3/2026-08-23_market-sentiment.md (unsealed prep)
 sealed_source: reports/2026/Q3/2026-08-21_market-sentiment.md (r13, artifact
   eee6e597-8644-4c5d-b69b-db6879803abc)
