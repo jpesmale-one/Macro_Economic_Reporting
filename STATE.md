@@ -2654,3 +2654,30 @@ F-29 - I SUBSTITUTED A FLASH FOR A FINAL IN THE WHITELIST. Jeff: "Consumer
   RULE ADDED: when writing a print back to score_model.py, the row NAME is part
   of the whitelist and may not be edited. Only the value, previous, ref and
   score may change. Renaming a row silently redefines the indicator.
+
+LD-42 - NOTHING ROLLS OVER. A REPEAT IS A RE-PROPOSAL, AND IT IS LABELLED.
+  Jeff: "So last week's pairs will continue on next week?"
+  THE ANSWER IS NO, AND THE EDITION DID NOT SAY SO. LD-29 already settles the
+  mechanics - a set is selected Monday and holds for THAT week, so last week's
+  selection ended when the week ended. But the 2026-08-23 edition proposed
+  CADJPY, EURCHF and GBPUSD for 24-28 Aug, THE SAME THREE NAMES that ran
+  17-21 Aug, and never said whether that was a rollover or a fresh pick.
+  IT IS A FRESH PICK. The full board was re-derived (section 4.2, 18 rows); the
+  same three won their place again because NO BAND MOVED - section 2's scores
+  are identical to Friday's, so the method produces the same leg-disjoint set.
+  Reasonable to misread, and the ambiguity was mine to remove.
+  JEFF'S CALL, asked explicitly: FRESH SELECTION, LABELLED CLEARLY.
+    - every week starts clean; the confidence tally scores ONLY current evidence
+    - the edition MUST mark each pair as a re-proposal or a new entry, with the
+      consecutive-week count (W1, W2, ...), so a repeat is VISIBLE
+    - last week's outcome is shown as HISTORY and scored as NOTHING
+  REJECTED: (b) a +1 confidence bonus for a pair that was onside all last week.
+  It compounds - by week 4 a pair collects +1 every week for having been chosen
+  before, which is confidence accruing to selection history rather than to
+  evidence. That is the EF-3 error in the time dimension.
+  REJECTED: (c) a hard cap on consecutive weeks. It would retire a valid read
+  mid-trend on a rule unconnected to the evidence. If a pair keeps scoring
+  highest on fresh evidence every week, that is a signal, not a problem.
+  IMPLEMENTED in the 2026-08-23 edition: a W-column, an explicit "nothing rolls
+  over" block above the table, and the note that last week's +95/+46/+42 pips
+  are history and score nothing.

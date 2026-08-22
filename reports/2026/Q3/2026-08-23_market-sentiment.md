@@ -614,11 +614,25 @@ result argued from CAD and CHF alone would not be.
 **These are high-probability reads from fundamentals plus structure. They are
 not guarantees and nothing here is a prediction.** Every one carries a falsifier.
 
-| Rank | Pair | Dir | Conf | Spread | **Fri close** | Falsifier | Clear by |
-|---|---|---|---|---|---|---|---|
-| **1** | **CADJPY** | LONG | **HIGH (+5)** | **8.38** | **115.490** | close < **114.992** | 49.8 pips |
-| **2** | **EURCHF** | LONG | **LOW (+2)** | **9.63** | **0.93562** | close < **0.93071** | 49.1 pips |
-| **3** | **GBPUSD** | LONG | **LOW (+1)** | **3.50** | **1.36456** | close < **1.35197** | 125.9 pips |
+> **NOTHING ROLLS OVER (LD-42).** Last week's set ended when the week ended and
+> is graded in §0. These three are a **fresh selection for 24–28 Aug** that
+> re-derived the full board and won their place again — not a continuation.
+> They are the same three names because **no band moved**: §2's scores are
+> identical to Friday's, so the method produces the same leg-disjoint pairs.
+
+| Rank | Pair | Dir | Conf | **Week** | Spread | **Fri close** | Falsifier | Clear by |
+|---|---|---|---|---|---|---|---|---|
+| **1** | **CADJPY** | LONG | **HIGH (+5)** | **W2** — re-proposed | **8.38** | **115.490** | close < **114.992** | 49.8 pips |
+| **2** | **EURCHF** | LONG | **LOW (+2)** | **W2** — re-proposed | **9.63** | **0.93562** | close < **0.93071** | 49.1 pips |
+| **3** | **GBPUSD** | LONG | **LOW (+1)** | **W2** — re-proposed | **3.50** | **1.36456** | close < **1.35197** | 125.9 pips |
+
+**W2 = second consecutive week proposed.** Last week's result (§0: +95, +46 and
++42 pips, all onside) is **shown as history and scored as nothing** — the tally
+above reads only current evidence. A pair that ran well last week gets no credit
+for it here; it has to earn its place on this week's spread, structure and
+projections. **That is deliberate:** crediting a repeat would let a pair
+accumulate confidence for being repeatedly chosen rather than for the evidence
+in front of it.
 
 **Net exposure: long CAD · EUR · GBP, short JPY · CHF · USD.** Six currencies,
 each used once — **three independent tests** (LD-19).

@@ -420,7 +420,16 @@ projections. Output: a small set of pairs with a direction and a
 falsifier.
 
 **SELECTION IS WEEKLY, NOT DAILY (LD-29).** §4 selects on **Monday** and
-the set **holds all week**. Tuesday–Friday §4 does **not** re-derive the
+the set **holds all week**.
+
+**NOTHING ROLLS OVER BETWEEN WEEKS (LD-42).** A set is selected for one
+week and ends with it. Monday re-derives the **full board** — a pair that
+ran last week has no standing and must win its place again on current
+evidence. When the same pair is selected again it is marked a
+**re-proposal** with its consecutive-week count (`W2`, `W3`…), and last
+week's result is shown as **history that scores nothing**. Crediting a
+repeat would let confidence accrue to selection history rather than to
+evidence — EF-3's error in the time dimension. Tuesday–Friday §4 does **not** re-derive the
 pairs — it publishes the bands and any *change* in structure, and §0
 carries the tracking. Re-deriving the same three pairs five times was a
 primary noise source (R-8). A pair leaves the set mid-week only by its
