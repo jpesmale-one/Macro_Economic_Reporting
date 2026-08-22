@@ -261,67 +261,118 @@ Commodity: CAD +8.38 › NZD +3.75 › AUD +2.08 · Risk-corr: EUR +6.25 › GBP
 data superseded by Friday's −0.8% retail sales miss (§0L). AUD's +2.08 faces its
 weight-3 Inflation category — currently **0.00** — on Wednesday.
 
+**All 70 whitelist indicators published in full** — Actual, Previous, reference period, the threshold applied and the resulting score, every one. An indicator that cannot be sourced is published as **NOT FOUND** so it can be verified, never dropped or blanked. Generated from `pipelines/score_model.py` by `pipelines/section2.py`, so the tables and the §2.0 tally cannot drift apart.
+
 ### 2.1 Production (weight 1)
 
-| CCY | Indicator | Actual | Previous | Test | Score |
-|---|---|---|---|---|---|
-| USD | Industrial Production YoY | 1.1% | 1.29% | >0.5% | **GOOD** |
-| EUR | Industrial Production YoY | mixed | — | — | **SPLIT +0.50** |
-| GBP | Industrial Production | flat | — | — | **NEUTRAL** |
-| JPY | Industrial Production YoY Final | 4.9% | −2.1% | >0.5% | **GOOD** |
-| AUD | Mfg PMI Flash | 52.0 | 52.0 | >50.5 | **GOOD** |
-| NZD | Production | — | — | — | **GOOD** |
-| CAD | Production | — | — | — | **GOOD** |
-| CHF | Production | — | — | — | **NEUTRAL** |
+**18 indicators — 14 GOOD · 2 BAD · 2 NEUTRAL**
+
+| CCY | Indicator | Actual | Previous | Ref | Threshold | Score |
+|---|---|---|---|---|---|---|
+| USD | Durable Goods Ex Transp MoM | 0.6% | 1.8% | Jun/26 | >0.5% | **GOOD** |
+| USD | ISM Manufacturing PMI | 53.9 | 53.9 | Jul/26 | >50.5 | **GOOD** |
+| USD | Industrial Production YoY | 1.1% | 1.29% | Jul/26 | >0.5% | **GOOD** |
+| EUR | Industrial Production YoY | 0.1% | -0.1% | Jun/26 | 0-0.5% | NEUTRAL |
+| EUR | S&P Global Mfg PMI Final | 51.9 | 51.4 | Jul/26 | >50.5 | **GOOD** |
+| GBP | Industrial Production YoY | -0.2% | 1.0% | Jun/26 | <0% | **BAD** |
+| GBP | Manufacturing Production YoY | 0.5% | 2.0% | Jun/26 | 0-0.5% | NEUTRAL |
+| GBP | S&P Global Mfg PMI Final | 51.9 | 52.5 | Jul/26 | >50.5 | **GOOD** |
+| JPY | Industrial Production YoY Final | 4.9% | -2.1% | Jun/26 | >0.5% | **GOOD** |
+| JPY | Machine Tool Orders YoY | 50.4% | 52.8% | Jul/26 | >0.5% | **GOOD** |
+| JPY | Machinery Orders YoY | 16.9% | -1.9% | Jun/26 | >0.5% | **GOOD** |
+| JPY | S&P Global Mfg PMI Final | 54.5 | 54.8 | Jul/26 | >50.5 | **GOOD** |
+| AUD | S&P Global Mfg PMI Final | 52.0 | 51.5 | Jul/26 | >50.5 | **GOOD** |
+| NZD | Business NZ PMI | 54.3 | 60.1 | Jul/26 | >50.5 | **GOOD** |
+| NZD | Global Dairy Trade Price Index | 2.3% | 0.1% | Aug/26 | >0.5% | **GOOD** |
+| CAD | S&P Global Mfg PMI | 53.5 | 53.0 | Jul/26 | >50.5 | **GOOD** |
+| CHF | Industrial Production YoY | -7.1% | -0.4% | Mar/26 | <0% | **BAD** |
+| CHF | Procure.ch-UBS Mfg PMI | 53.2 | 54.3 | Jul/26 | >50.5 | **GOOD** |
 
 ### 2.2 Spending (weight 1)
 
-| CCY | Indicator | Actual | Previous | Test | Score |
-|---|---|---|---|---|---|
-| **CAD** | **Retail Sales MoM Prel Jul** | **−0.8%** | −0.5% | <Prev | **⚠ SUPERSEDES +1.00** |
-| **GBP** | **Retail Sales MoM Jul** | **−0.5%** | −0.5% | =Prev | **⚠ flat, not GOOD** |
-| USD | Retail Sales | — | — | — | **+0.25** |
-| EUR | Retail Sales | — | — | — | **GOOD** |
-| AUD | Retail Sales | — | — | — | **+0.75** |
-| NZD | Retail Sales | — | — | — | **+0.50** |
-| CHF | Retail Sales | — | — | — | **GOOD** |
-| JPY | Spending | — | — | — | **NEUTRAL** |
+**23 indicators — 17 GOOD · 3 BAD · 3 NEUTRAL**
 
-**These two rows are the reason Monday must re-score before it locks.**
+| CCY | Indicator | Actual | Previous | Ref | Threshold | Score |
+|---|---|---|---|---|---|---|
+| USD | Building Permits MoM Final | +5.0% | -2.6% | Jul/26 | >0.5% | **GOOD** |
+| USD | CB Consumer Confidence | 51.0 | 55.2 | Aug/26 | >Prev | **BAD** |
+| USD | Personal Spending MoM | 0.3% | 0.9% | Jun/26 | 0-0.5% | NEUTRAL |
+| USD | Retail Sales YoY | 5.0% | 6.8% | Jul/26 | >0.5% | **GOOD** |
+| EUR | Consumer Confidence Final | -15.9 | -17.6 | Jul/26 | >Prev | **GOOD** |
+| EUR | Retail Sales YoY | 0.7% | 1.9% | Jun/26 | >0.5% | **GOOD** |
+| GBP | GfK Consumer Confidence | -17 | -23 | Jul/26 | >Prev | **GOOD** |
+| GBP | Retail Sales YoY | 4.2% | 3.5% | Jun/26 | >0.5% | **GOOD** |
+| JPY | Consumer Confidence | 34.9 | 33.8 | Jul/26 | >Prev | **GOOD** |
+| JPY | Household Spending YoY | -3.3% | -0.4% | Jun/26 | <0% | **BAD** |
+| JPY | Retail Sales YoY | 0.5% | 5.0% | Jun/26 | 0-0.5% | NEUTRAL |
+| AUD | Building Permits YoY Final | 8.9% | 5.5% | Jun/26 | >0.5% | **GOOD** |
+| AUD | Household Spending YoY | 6.0% | - | Jun/26 | >0.5% | **GOOD** |
+| AUD | NAB Business Confidence | -6 | -6 | Jul/26 | >Prev | NEUTRAL |
+| AUD | Westpac Consumer Conf Change | 88.9 | 83.9 | Aug/26 | >Prev | **GOOD** |
+| NZD | ANZ Business Confidence | 56.1 | 36.6 | Jul/26 | >Prev | **GOOD** |
+| NZD | ANZ Roy Morgan Consumer Conf | 99.3 | 91.3 | Jul/26 | >Prev | **GOOD** |
+| NZD | Building Permits MoM | -3.6% | -4.9% | Jun/26 | <0% | **BAD** |
+| NZD | Electronic Retail Card Spending YoY | 0.9% | 0.9% | Q1/26 | >0.5% | **GOOD** |
+| CAD | Building Permits MoM | +18.5% | -3.0% | Jun/26 | >0.5% | **GOOD** |
+| CAD | Retail Sales YoY | 5.9% | 3.6% | May/26 | >0.5% | **GOOD** |
+| CHF | Consumer Confidence | -35 | -36 | Jul/26 | >Prev | **GOOD** |
+| CHF | Retail Sales YoY | 1.5% | 3.4% | Jun/26 | >0.5% | **GOOD** |
+
+**⚠ TWO ROWS ARE SUPERSEDED BY FRIDAY'S PRINTS (§0L).** CAD Retail Sales MoM Prel printed **−0.8%** against +1.0% expected, and GBP Retail Sales MoM **−0.5%** against +0.7%. Both scored GOOD on data now superseded. **These are the most likely score changes on Monday** and neither is corrected here — a weekend edition republishes Friday's scores unchanged (LD-32).
 
 ### 2.3 Trade (weight 1)
 
-| CCY | Indicator | Actual | Previous | Score |
-|---|---|---|---|---|
-| **JPY** | **Balance of Trade** | **¥−634.5B** | ¥−409.9B | **BAD** |
-| USD · EUR · CAD · AUD | Balance of Trade | — | — | **GOOD** |
-| GBP · NZD · CHF | Balance of Trade | — | — | **BAD** |
+**8 indicators — 4 GOOD · 4 BAD · 0 NEUTRAL**
+
+| CCY | Indicator | Actual | Previous | Ref | Threshold | Score |
+|---|---|---|---|---|---|---|
+| USD | Balance of Trade | -$73.26B | -$77.65B | Jun/26 | >Prev | **GOOD** |
+| EUR | Balance of Trade | EUR8,600M | EUR-9,000M | Jun/26 | >Prev | **GOOD** |
+| GBP | Balance of Trade | GBP-5,537M | GBP-3,464M | Jun/26 | <Prev | **BAD** |
+| JPY | Balance of Trade | JPY-634.5B | JPY-409.9B | Jul/26 | <Prev | **BAD** |
+| AUD | Balance of Trade | A$1,929M | A$-2,367M | Jun/26 | >Prev | **GOOD** |
+| NZD | Balance of Trade | NZ$23M | NZ$577M | Jun/26 | <Prev | **BAD** |
+| CAD | Balance of Trade | C$3,860M | C$3,700M | Jun/26 | >Prev | **GOOD** |
+| CHF | Balance of Trade | CHF3,800M | CHF5,530M | Jun/26 | <Prev | **BAD** |
 
 ### 2.4 Employment (weight 2)
 
-| CCY | Indicator | Actual | Previous | Score |
-|---|---|---|---|---|
-| GBP | Claimant Count Change | −11K | −6.4K | **GOOD +2.00** |
-| CAD | Employment | — | — | **GOOD +2.00** |
-| **AUD** | **Employment Change** | **−15.8K** | 76.3K | **BAD** |
-| **AUD** | **Unemployment Rate** | **4.5%** | 4.4% | **BAD** |
-| **NZD** | Employment (quarterly — stale by construction) | — | — | **BAD −2.00** |
-| USD · EUR · JPY · CHF | Employment | — | — | **NEUTRAL** |
+**13 indicators — 6 GOOD · 5 BAD · 2 NEUTRAL**
+
+| CCY | Indicator | Actual | Previous | Ref | Threshold | Score |
+|---|---|---|---|---|---|---|
+| USD | Non Farm Payrolls | -23K | 20K | Jul/26 | >Cons | **BAD** |
+| USD | Unemployment Rate | 4.1% | 4.2% | Jul/26 | <Prev | **GOOD** |
+| EUR | Unemployment Rate | 6.3% | 6.3% | Jun/26 | unchanged | NEUTRAL |
+| GBP | Claimant Count Change | -11K | -6.4K | Jul/26 | <Prev | **GOOD** |
+| JPY | Unemployment Rate | 2.5% | 2.5% | Jun/26 | unchanged | NEUTRAL |
+| AUD | ANZ-Indeed Job Ads MoM | +0.8% | -0.1% | Jul/26 | >0.5% | **GOOD** |
+| AUD | Employment Change | -15.8K | 76.3K | Jul/26 | <Prev, FT +16.3K vs 29.3K | **BAD** |
+| AUD | Unemployment Rate | 4.5% | 4.4% | Jul/26 | >Prev | **BAD** |
+| NZD | Unemployment Rate | 5.6% | 5.4% | Jun/26 | >Prev | **BAD** |
+| CAD | Employment Change | 75.1K | 18.2K | Jul/26 | >Prev, FT-weighted | **GOOD** |
+| CAD | Unemployment Rate | 6.4% | 6.5% | Jul/26 | <Prev | **GOOD** |
+| CHF | Non Farm Payrolls | +0.5% | +0.2% | Q1/26 | >Cons | **GOOD** |
+| CHF | Unemployment Rate | 3.0% | 2.9% | Jul/26 | >Prev | **BAD** |
+
+**AUD's employment deteriorated on both counts** — Employment Change −15.8K against +76.3K prior, unemployment 4.5% from 4.4%. That is the −0.67 dragging AUD to +2.08 and out of the STRONG band.
 
 ### 2.5 Inflation (weight 3)
 
-| CCY | Indicator | Actual | Previous | Test | Score |
-|---|---|---|---|---|---|
-| CAD | Inflation Rate YoY | 3.0% | 2.8% | >2% & rising | **GOOD +3.00** |
-| EUR | Inflation Rate YoY Final | 2.9% | 2.8% | >2% & rising | **GOOD +3.00** |
-| GBP | Inflation Rate YoY | 2.9% | 2.6% | >2% & rising | **GOOD +3.00** |
-| NZD | Inflation Rate YoY | 4.1% | 3.1% | >2% & rising | **GOOD +3.00** |
-| **JPY** | **Inflation Rate YoY** | **1.9%** | **1.6%** ↺ | <2% & rising | **NEUTRAL** |
-| USD | Inflation Rate YoY | 3.4% | 3.5% | >2% & falling | **NEUTRAL** |
-| AUD | Inflation Rate YoY | 3.8% | 4.0% | >2% & falling | **NEUTRAL** |
-| **CHF** | **Inflation Rate YoY** | **0.4%** | 0.5% | <2% & falling | **BAD −3.00** |
+**8 indicators — 4 GOOD · 1 BAD · 3 NEUTRAL**
 
-↺ JPY previous revised 1.7% → 1.6% (Statistics Bureau, 21 Aug). Grade unchanged.
+| CCY | Indicator | Actual | Previous | Ref | Threshold | Score |
+|---|---|---|---|---|---|---|
+| USD | Inflation Rate YoY | 3.4% | 3.5% | Jul/26 | >2% & falling | NEUTRAL |
+| EUR | Inflation Rate YoY Final | 2.9% | 2.8% | Jul/26 | >2% & rising | **GOOD** |
+| GBP | Inflation Rate YoY | 2.9% | 2.6% | Jul/26 | >2% & rising | **GOOD** |
+| JPY | Inflation Rate YoY | 1.9% | 1.6% | Jul/26 | <2% & rising | NEUTRAL |
+| AUD | Inflation Rate YoY | 3.8% | 4.0% | Jun/26 | >2% & falling | NEUTRAL |
+| NZD | Inflation Rate YoY | 4.1% | 3.1% | Jun/26 | >2% & rising | **GOOD** |
+| CAD | Inflation Rate YoY | 3.0% | 2.8% | Jul/26 | >2% & rising | **GOOD** |
+| CHF | Inflation Rate YoY | 0.4% | 0.5% | Jul/26 | <2% & falling | **BAD** |
+
+**JPY's 1.9% is the week's move** (Statistics Bureau, 21 Aug — highest since Dec 2025, previous revised 1.7% → 1.6%). Still below the BoJ's 2% target, so it stays NEUTRAL — but a yen with rising inflation **and** an intervention backstop (§1) is a different short from one carrying neither.
 
 ### 2.6 Interest Rate (weight 3) — scored on inflation vs each bank's own mandate
 

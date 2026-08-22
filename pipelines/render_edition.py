@@ -406,6 +406,44 @@ def assert_markers(md):
     return len(REQUIRED_MARKERS)
 
 
+def assert_whitelist(md):
+    """All 70 whitelist indicators published, none blanked (LD-39 / F-24).
+
+    The spec is explicit: ALL 70 NAMED INDICATORS ARE PUBLISHED EVERY EDITION,
+    and one that cannot be sourced is published as NOT FOUND so it can be
+    verified. A blank cell is not a NOT FOUND - it is an unverifiable silent
+    omission. On 2026-08-23 section 2 shipped ~40 summary rows carrying
+    em-dashes while all 70 rows sat in score_model.ROWS.
+    """
+    try:
+        sys.path.insert(0, os.path.join(REPO, 'pipelines'))
+        import score_model
+        expected = len(score_model.ROWS)
+    except Exception:
+        return 0, 0
+    try:
+        sec = md[md.index('### 2.1'):md.index('### 2.6')]
+    except ValueError:
+        raise SystemExit('FATAL (LD-39): cannot locate section 2.1-2.5.')
+    rows = [l for l in sec.splitlines()
+            if l.startswith('| ') and not l.startswith('|---')
+            and 'CCY | Indicator' not in l]
+    if len(rows) < expected:
+        raise SystemExit(
+            'FATAL (LD-39/F-24): section 2 publishes %d indicator rows, '
+            'expected %d.%sAll %d whitelist indicators are published EVERY '
+            'edition; an unsourced one is published as NOT FOUND, never '
+            'dropped. Generate the section with pipelines/section2.py rather '
+            'than hand-writing it.' % (len(rows), expected, chr(10), expected))
+    blank = [l for l in rows if '|  |' in l or '| \u2014 |' in l]
+    if blank:
+        raise SystemExit(
+            'FATAL (LD-39/F-24): %d indicator row(s) carry a BLANK cell.%s'
+            'A blank is not a NOT FOUND - it cannot be verified. First: %s'
+            % (len(blank), chr(10), blank[0][:110]))
+    return len(rows), expected
+
+
 def assert_news_sources(md):
     """Section 1 must cite a real news source (F-17 / LD-30)."""
     m = re.search(r'^##\s*§1\b.*?$(.*?)(?=^##\s*§)', md, re.S | re.M)
@@ -470,6 +508,7 @@ if __name__ == '__main__':
     # --- guards run BEFORE a single byte is written ---
     nheads = assert_sections(md, fm['type'])
     nmark = assert_markers(md)
+    nrow, nexp = assert_whitelist(md)
     sources = assert_news_sources(md)
     pn, bn, pct = prose_ratio(md)
     print('guards:')
@@ -477,6 +516,9 @@ if __name__ == '__main__':
           % (nheads, fm['type']))
     print('  LD-38 markers   %d/%d generated blocks emitted'
           % (nmark, len(REQUIRED_MARKERS)))
+    if nexp:
+        print('  LD-39 whitelist %d/%d indicator rows, no blanks'
+              % (nrow, nexp))
     print('  F-17 sources    §1 cites %d: %s' % (len(sources), ', '.join(sources)))
     print('  LD-27 prose     %d prose blocks of %d units = %.1f%% %s'
           % (pn, bn, pct, 'OK' if pct < 15 else '*** OVER 15% TARGET ***'))

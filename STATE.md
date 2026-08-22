@@ -2338,3 +2338,47 @@ LD-38 - MANDATORY GENERATED BLOCKS ARE ASSERTED BY MARKER, NOT BY HEADING.
   DOWNGRADE. Both are needed and they are not the same check.
   Implemented as REQUIRED_MARKERS in render_edition.py, verified against a
   fixture with the marker stripped.
+
+F-24 - I SUMMARISED SECTION 2 INSTEAD OF PUBLISHING IT. 70 ROWS -> ~40 WITH
+  BLANKS. Jeff: "the format on section 2 has changed. I mentioned before that I
+  want to see the whole data. why do we have blanks on this section?"
+  WHAT SHIPPED: section 2.1-2.5 of the 2026-08-23 weekend edition carried about
+  40 condensed rows with em-dashes in the Actual / Previous / Ref / Threshold
+  cells. r13's format is one row per indicator with all five data columns
+  populated - 18 rows in Production alone.
+  THE DATA WAS NEVER MISSING. All 70 rows sit in score_model.ROWS
+  (Production 18, Spending 23, Trade 8, Employment 13, Inflation 8) and I
+  REGENERATED THE TALLY FROM THEM IN THE SAME SESSION. I had the data in hand,
+  used it for the arithmetic, and then hand-wrote a summary of it.
+  WHY IT IS WORSE THAN F-23: the F&G downgrade changed a FORMAT. This dropped
+  PUBLISHED EVIDENCE. Section 2 is the section Jeff calls the most important -
+  it sets the market sentiment for the week - and a blank cell is not a
+  NOT FOUND. The spec's rule exists precisely so a gap is VERIFIABLE: "an
+  indicator that cannot be sourced is published with score NOT FOUND so Jeff
+  can verify it - never dropped. A silent omission is unverifiable; a flagged
+  gap is not." A blank is the silent omission.
+  ROOT CAUSE, SAME AS F-23 ONE STEP ON: I hand-wrote a block that is DERIVED
+  FROM DATA. LD-13 generates the tally so tables cannot drift; LD-25 generates
+  F&G so the format cannot degrade. Section 2's tables were the last derived
+  block still being hand-copied every edition - r13 hand-wrote them too and got
+  away with it. This is the failure that was waiting to happen.
+  FIX: pipelines/section2.py generates 2.1-2.5 from score_model.ROWS. 70 rows,
+  zero blanks, verified. Plus LD-39's guard.
+
+LD-39 - EVERY DERIVED BLOCK IS GENERATED, AND THE RENDERER COUNTS THE ROWS.
+  THE GENERAL RULE, now stated once: if a block is derived from data in this
+  repo, GENERATE IT. Do not hand-copy it into the edition. Three findings have
+  now landed on this exact point - LD-13 (tally), LD-25/F-23 (F&G), F-24
+  (section 2) - and each time the hand-written version silently degraded while
+  the generator sat unused in pipelines/.
+  Generators: score_model.py + rate_model.py (2.0 tally), section2.py (2.1-2.5),
+  fng_block.py (F&G), select_pairs.py (disjointness), confidence.py (tally).
+  GUARD: assert_whitelist() in render_edition.py refuses to render unless
+  section 2 carries >= len(score_model.ROWS) indicator rows AND no row has a
+  blank cell. Verified against two fixtures - halved row count (caught: "35
+  rows, expected 70") and one blanked row (caught by cell content).
+  Note the guard reads its expectation FROM THE MODEL, so adding a 71st
+  indicator to the whitelist raises the bar automatically.
+  WHY A ROW COUNT AND NOT A CONTENT CHECK: this is the F-15 lesson a third
+  time. Content checks ask "is this figure right?" and cannot see a figure that
+  was never published. Only counting catches an omission.
