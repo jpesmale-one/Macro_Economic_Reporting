@@ -442,7 +442,16 @@ falsifier firing, and is not replaced until the next Monday.
    pair is the most informative row in the section.
 6. **Leg-disjoint** (LD-19): structure filter FIRST, then disjointness.
    Ordering is load-bearing.
-7. **Confidence** (LD-20): HIGH/MEDIUM/LOW with its arithmetic.
+7. **Confidence** (LD-20, amended by LD-40): HIGH/MEDIUM/LOW with its
+   arithmetic. **THREE INPUTS — §2 macro, technical structure, AND the
+   §4.0 week-ahead projections.** The first two are realised evidence;
+   the projection term scores what is *scheduled*, at **half weight**,
+   because a forecast of a score must never outrank a print:
+   **+1** a scored projection supports the favoured leg · **−1** it
+   opposes the favoured leg · **−1** an unscorable but price-moving
+   event (LD-3 speech, intervention risk) lands on either leg.
+   A tally built only on realised evidence ranks a pair by what has
+   already happened and ignores what is about to.
    **THREE IS THE FLOOR, NOT THE TARGET (LD-35).** Carry **every** pair
    that clears conviction and is leg-disjoint from those already carried
    — four, five, six if they qualify. Do **not** stop at three. Fewer

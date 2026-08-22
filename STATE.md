@@ -2509,3 +2509,52 @@ F-27 - I GRADED AN ADVANCE ESTIMATE AS A SETTLED FIGURE. CORRECTED IN-EDITION.
 #   the 225 lines of process narrative LD-29 abolished and Jeff asked to remove.
 #   Renumbering: 4.2 inserted, so PROPOSED 4.2->4.3, REJECTED 4.3->4.4,
 #   CORRELATED 4.4->4.5, week-ahead-risk 4.5->4.6. Section 4.0 unchanged.
+
+LD-40 - THE CONFIDENCE TALLY MUST SCORE THE WEEK AHEAD. LD-20 AMENDED (Jeff).
+  "did you consider our projection when you form the bias? I mentioned to
+  combine the macro economic indicator + Technical analysis + Week Ahead
+  Projections when analyzing the bias."
+  I DID NOT. Verified against the published table: the LD-20 tally scores
+  SPREAD (section 2 macro), STRUCTURE (technicals), LAST BAR, FRESH DRIVER and
+  AGAINST - five terms, and EVERY ONE IS BACKWARD-LOOKING. Each describes what
+  has already happened. The section 4.0 projections sat in the same section as
+  the pairs and never entered the arithmetic that ranks them.
+  ROOT CAUSE, AND IT IS A DESIGN GAP NOT A SLIP: LD-20 was written 2026-08-21,
+  when section 4.0's projections were being GRADED AS HISTORY at the end of a
+  week. Nobody had yet used them as INPUT to the coming week's selection,
+  because 2026-08-23 is the first edition that ever proposed a week in advance.
+  The weekend edition is what exposed the gap.
+  THE AMENDMENT - two new terms:
+    +1  a scored projection on the pair's FAVOURED leg supports the read
+        (long leg projected GOOD, or short leg projected BAD)
+    -1  a scored projection on the pair's favoured leg OPPOSES the read
+        (long leg projected BAD, or short leg projected GOOD)
+    -1  an UNSCORABLE but price-moving event (LD-3 speech, intervention risk)
+        lands on either leg - it cannot move the score but it moves the price
+  A projection is a FORECAST OF A SCORE, so it is scored at HALF the weight of
+  a realised term. Never more: LD-20's language is binding - high-probability
+  reads, never predictions - and letting a forecast outweigh a print would
+  invert that.
+  MEASURED EFFECT ON THE 2026-08-23 PROPOSALS - it changes the ranking:
+    CADJPY  +6 -> +5  long leg CAD projected BAD (GDP -0.1% Fri 28) -1
+                      still HIGH, but no longer comfortably
+    EURCHF  +3 -> +4  long leg EUR projected GOOD (flash infl 3.1%) +1
+                      AND the CHF leg has NO release all week, so the short
+                      leg cannot correct - MEDIUM, at the top of the band
+    GBPUSD  +1 -> +0  Jackson Hole on the short leg, unscorable, -1
+                      LOW, and now the weakest by two points
+  THE GAP BETWEEN #1 AND #2 CLOSES FROM 3 POINTS TO 1. That is the finding: on
+  backward evidence CADJPY looks decisively best; on forward evidence EURCHF is
+  nearly level, because the only week-ahead event on its legs is favourable and
+  CADJPY's is not.
+  DOES NOT change the SELECTION - all three still clear conviction and remain
+  leg-disjoint. It changes the RANKING and therefore the focus order, which is
+  exactly what LD-20 says confidence is for.
+
+# LD-40 APPLIED 2026-08-23. Corrected totals after re-summing: CADJPY +5 HIGH,
+#   EURCHF +4 MEDIUM, GBPUSD +1 LOW. (I first published GBPUSD as 0 after
+#   restructuring the table - dropped its "score vs hot US data" -1 and wrote
+#   the total from memory instead of the column. Caught by re-summing every
+#   column before publishing. RULE: after editing a tally, re-add it.)
+#   The finding is unchanged: the gap between #1 and #2 falls from 3 points to
+#   1 once the projections are scored.

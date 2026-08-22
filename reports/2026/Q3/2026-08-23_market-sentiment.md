@@ -5,7 +5,7 @@ revision: r1
 seal: PREP
 type: WEEKEND
 eyebrow: Macro Economic Reporting &middot; Weekend Prep &mdash; week of 24&ndash;28 Aug
-chip: PROPOSED <b class="up">CADJPY HIGH</b> &middot; EURCHF MED &middot; GBPUSD LOW
+chip: PROPOSED <b class="up">CADJPY +5</b> &middot; EURCHF +4 &middot; <span class="dn">GBPUSD +1</span>
 chip: WEEK AHEAD <b>AU CPI Wed</b> &middot; <span class="dn">Jackson Hole Thu&ndash;Sat</span>
 chip: SCALE <b>&plusmn;11.00</b> <span class="dn">rate = cat 6</span>
 fng_note: The index reads <b>Greed</b> while <b>four of seven components sit in Fear</b>. Junk Bond Demand at <b>95.8</b> (extreme greed) and Safe Haven Demand at <b>71.0</b> carry the headline on their own; Stock Price Strength <b>29.4</b>, Momentum <b>39.0</b> and Put/Call <b>43.4</b> all read Fear. Credit is priced for calm while equity internals are not.
@@ -16,6 +16,8 @@ fng_spread: Index history: <b>43.4</b> (1mo) &rarr; <b>64.0</b> (1wk) &rarr; <b>
 No market has traded since Friday's close. Every price, level and score below is Friday's, republished for preparation. The bias is PROPOSED &mdash; Monday's edition confirms or revises it against the real open.
 
 The week closed with the dollar at three-month lows and all three carried pairs advancing on Friday. CADJPY 115.490, EURCHF 0.93562, GBPUSD 1.36456 &mdash; none within 40 pips of a falsifier.
+
+THE WEEK-AHEAD PROJECTIONS CLOSE THE GAP BETWEEN THE TOP TWO. CADJPY's only scheduled event is against it (CAD GDP &minus;0.1% Fri); EURCHF's only scheduled event is for it (EUR flash inflation 3.1% Fri) and CHF has no release all week. On realised evidence CADJPY leads by three points; on the full read, by one.
 
 Gold +1.85% and BTC +6.7% ON THE SAME DAY. That is the debasement trade, not two independent stories, and it confirms the T4 correction that BTC was never decoupled.
 
@@ -457,6 +459,12 @@ the model *will* record if the consensus figure prints, so next week's edition
 can grade the method against itself. This is the table F-21 came from — it only
 exists because the projections were written down in advance.
 
+**These projections are an INPUT to the bias, not a footnote to it (LD-40).**
+The confidence tally in §4.3 scores three things — **§2 macro, technical
+structure, and the projections below** — and the week-ahead term is what
+separates CADJPY from EURCHF this week. Read this table before the ranking, not
+after it.
+
 **Source:** TradingEconomics calendar, captured to
 `data/raw/calendar/2026-08-23_0130PHT_cal_24-28aug_prep.json` (F-14 — the TE
 window rolls, so a week cannot be rebuilt after the fact). **89 whitelist-
@@ -583,8 +591,8 @@ not guarantees and nothing here is a prediction.** Every one carries a falsifier
 
 | Rank | Pair | Dir | Conf | Spread | **Fri close** | Falsifier | Clear by |
 |---|---|---|---|---|---|---|---|
-| **1** | **CADJPY** | LONG | **HIGH (+6)** | **8.38** | **115.490** | close < **114.992** | 49.8 pips |
-| **2** | **EURCHF** | LONG | **MEDIUM (+3)** | **9.63** | **0.93562** | close < **0.93071** | 49.1 pips |
+| **1** | **CADJPY** | LONG | **HIGH (+5)** | **8.38** | **115.490** | close < **114.992** | 49.8 pips |
+| **2** | **EURCHF** | LONG | **MEDIUM (+4)** | **9.63** | **0.93562** | close < **0.93071** | 49.1 pips |
 | **3** | **GBPUSD** | LONG | **LOW (+1)** | **3.50** | **1.36456** | close < **1.35197** | 125.9 pips |
 
 **Net exposure: long CAD · EUR · GBP, short JPY · CHF · USD.** Six currencies,
@@ -594,16 +602,47 @@ each used once — **three independent tests** (LD-19).
 
 Confidence is a **tally of independent supports, not a probability.**
 
-| | **CADJPY — HIGH (+6)** | **EURCHF — MEDIUM (+3)** | **GBPUSD — LOW (+1)** |
+**Three inputs, weighted: §2 macro · technical structure · §4.0 week-ahead
+projections** (LD-40). The first four rows are **realised** evidence — what has
+already happened. The **week ahead** row scores what is *scheduled*, at half
+weight, because a projection is a forecast of a score and must never outrank a
+print.
+
+| | **CADJPY — HIGH (+5)** | **EURCHF — MEDIUM (+4)** | **GBPUSD — LOW (+1)** |
 |---|---|---|---|
-| Spread | **+2** — 8.38 | **+2** — 9.63 | **0** — 3.50, thinnest carried |
-| Structure | **+2** — cleared 114.992–115.203 and held above it all Friday | **+1** — held 0.93071 support, 2 touches | **+1** — new run high 1.36758 |
+| **§2 spread** | **+2** — 8.38 | **+2** — 9.63 | **0** — 3.50, thinnest carried |
+| **Structure** | **+2** — cleared 114.992–115.203 and held above it all Friday | **+1** — held 0.93071 support, 2 touches | **+1** — new run high 1.36758 |
 | Last bar | **+1** — +12.4 pips with the read | **+1** — +8.3 pips with the read | **+1** — +14.8 pips with the read |
 | Fresh driver | **+1** — JPY trade deficit doubled; CAD tariff relief | **+1** — SNB confirms low inflation is structural (§1) | **+1** — dollar at 3-month lows |
-| Against | — | **−2** — **CHF leg; the model was wrong on CHF all last week** | **−1** score vs hot US data · **−1** Jackson Hole lands on the USD leg |
-| **Total** | **+6 → HIGH** | **+3 → MEDIUM** | **+1 → LOW** |
+| **§4.0 week ahead** | **−1** — **long leg CAD projected BAD** (GDP −0.1% vs +3.4%, Fri 28) | **+1** — **long leg EUR projected GOOD** (flash inflation 3.1%, Fri 28) **and CHF has no release all week**, so the short leg cannot correct | **−1** — **Jackson Hole on the short leg** (Thu–Fri): unscorable, but it moves the price |
+| Against | — | **−2** — **CHF leg; the model was wrong on CHF all last week** | **−1** score vs hot US data |
+| **Total** | **+5 → HIGH** | **+4 → MEDIUM** | **+1 → LOW** |
 
-Bands: **≥5 HIGH · 3–4 MEDIUM · ≤2 LOW**
+Bands: **≥5 HIGH · 3–4 MEDIUM · ≤2 LOW** · projection terms: **+1** favoured
+leg supported · **−1** favoured leg opposed · **−1** unscorable price-moving
+event on either leg
+
+#### ⚠ The projections close the gap between #1 and #2
+
+**On realised evidence alone CADJPY leads by three points. On the full read it
+leads by one.** That is what adding the week-ahead term does, and it is the
+reason to add it:
+
+- **CADJPY's only scheduled event is against it.** CAD GDP is forecast at
+  **−0.1% annualized against +3.4% prior** (Fri 28). It is not a whitelist row,
+  so it cannot move CAD's +8.38 — **but it is a contraction print on the long
+  leg of the top-ranked pair**, and CAD already carries a superseded Spending
+  row from Friday (§2.7).
+- **EURCHF's only scheduled event is for it.** EUR flash inflation is forecast
+  **3.1% against 2.9%** — above target and *rising*, which holds both EUR's
+  +3.00 Inflation and +0.75 Rate legs. **And no CHF release lands all week**, so
+  the −3.38 short leg cannot correct through data.
+- **GBPUSD draws the worst of it.** Jackson Hole scores nothing (LD-3) and
+  lands squarely on its short-USD leg with markets fully priced for +25bp.
+
+**This does not change the selection** — all three still clear conviction and
+remain leg-disjoint. **It changes the focus order**, which is what confidence is
+for.
 
 **Read the ranking as focus order, not a quality gate.** LOW does not mean bad —
 GBPUSD confirms on every technical input it has. It scores low because the
