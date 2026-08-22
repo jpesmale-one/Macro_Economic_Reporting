@@ -252,58 +252,204 @@ def render(md):
     return '\n'.join(out)
 
 
-EXEC = """
-<div class="exec">
-  <div class="exec-hd">The week in one screen &middot; Mon 17 &ndash; Fri 21 Aug</div>
-  <div class="exec-b">
-    <p><b>Carried three leg-disjoint reads, ranked by confidence:</b>
-       <b>CADJPY LONG (HIGH)</b> &middot; <b>EURCHF LONG (MEDIUM)</b> &middot;
-       <b>GBPUSD LONG (LOW)</b>. All three are intact at 16:40 and none is near
-       its falsifier. Six currencies, each used once &mdash; three independent
-       tests, not one bet counted three times.</p>
-    <p><b>Yesterday's four positions all worked</b> (+82 / +108 / +163 pips and
-       &minus;29), <b>but that was two bets, not four</b> &mdash; three shared the
-       JPY leg. The scorecard is corrected in &sect;0 rather than quietly fixed.</p>
-    <p><b>Interest Rate is now scored</b> (&sect;2.6, weight 3) &mdash; it was
-       defined as category 6 from the start and had never fed the tally.
-       <b>NZD jumps two ranks</b> as the only active hiker; USD and AUD each drop
-       one on inflation that is above target but <em>falling</em>.</p>
-    <p><b>The week's projections graded 10 of 13.</b> All three misses were
-       BAD-projected <em>survey</em> indicators that printed GOOD &mdash; a
-       one-directional error, recorded as a finding about the method rather than
-       patched.</p>
-    <p><b>Tally:</b> CAD +8.38 &middot; EUR +6.25 &middot; GBP +5.75 &middot;
-       NZD +3.75 &middot; USD +2.25 &middot; AUD +2.08 &middot; JPY +0.00 &middot;
-       CHF &minus;3.38 &nbsp;<span class="note">(scale &plusmn;11.00)</span></p>
-  </div>
-</div>
-"""
+# The executive summary is EDITION CONTENT, not renderer content (F-19).
+# It came hardcoded in this script until 2026-08-23, which meant every new
+# edition inherited the previous one's summary unless someone remembered to
+# edit it. It now comes from an optional <!--exec ... --> block in the .md;
+# blank-line-separated paragraphs become <p>. No block = no panel.
+EXEC_RE = re.compile(r'<!--exec\s*(.*?)-->', re.S)
+
+
+def exec_panel(md):
+    m = EXEC_RE.search(md)
+    if not m:
+        return ''
+    paras = [p.strip() for p in re.split(r'\n\s*\n', m.group(1)) if p.strip()]
+    if not paras:
+        return ''
+    inner = '\n'.join('  <p>%s</p>' % inline(' '.join(p.split()))
+                      for p in paras)
+    return ('\n<div class="exec"><div class="exec-hd">The read</div>'
+            '<div class="exec-b">\n' + inner + '\n</div></div>\n')
+
+
+
+# ---------------------------------------------------------------------------
+# F-19 - EDITION IDENTITY COMES FROM THE .md, NEVER FROM THIS SCRIPT.
+# Until 2026-08-23 the date, revision, seal state and chips were hardcoded in
+# __main__. Rendering a new edition meant EDITING THE RENDERER, and the failure
+# mode was silent: a fresh edition wearing a stale "SEALED FULL" badge looks
+# correct. Identity now comes from an HTML-comment front-matter block at the
+# top of the .md, so the source of truth (LD-10) carries its own identity.
+#
+#   <!--edition
+#   date: 2026-08-24
+#   title: Monday, 24 August 2026 - 07:10 PHT
+#   revision: r1
+#   seal: UNSEALED
+#   type: DAILY            # DAILY | MONDAY | WEEKEND
+#   chip: CARRIED <b class="up">CADJPY HIGH</b>
+#   chip: SCALE <b>&plusmn;11.00</b>
+#   -->
+# ---------------------------------------------------------------------------
+
+FM_RE = re.compile(r'<!--edition\s*(.*?)-->', re.S)
+
+
+def front_matter(md):
+    """Parse the edition front-matter block. Absence is a hard failure."""
+    m = FM_RE.search(md)
+    if not m:
+        raise SystemExit(
+            'FATAL (F-19): no <!--edition ... --> front-matter block in the .md.\n'
+            'The renderer will not guess the date, revision or seal state.\n'
+            'Add the block at the top of the .md - see render_edition.py header.')
+    fm, chips = {}, []
+    for line in m.group(1).splitlines():
+        line = line.split('#')[0].strip() if not line.strip().startswith('#') else ''
+        if not line or ':' not in line:
+            continue
+        k, v = line.split(':', 1)
+        k, v = k.strip().lower(), v.strip()
+        if k == 'chip':
+            chips.append(v)
+        else:
+            fm[k] = v
+    for req in ('date', 'title', 'revision', 'seal', 'type'):
+        if req not in fm:
+            raise SystemExit('FATAL (F-19): front-matter missing "%s".' % req)
+    if fm['type'] not in ('DAILY', 'MONDAY', 'WEEKEND'):
+        raise SystemExit('FATAL (F-19): type must be DAILY, MONDAY or WEEKEND, '
+                         'got "%s".' % fm['type'])
+    # A WEEKEND edition is never sealed (LD-32).
+    if fm['type'] == 'WEEKEND' and fm['seal'].upper() not in ('UNSEALED', 'NONE', 'PREP'):
+        raise SystemExit('FATAL (LD-32): a WEEKEND edition is never sealed, '
+                         'got seal="%s".' % fm['seal'])
+    fm['chips'] = chips
+    return fm
+
+
+# ---------------------------------------------------------------------------
+# R-7 / F-15 - SECTION-PRESENCE MANIFEST.
+# Every other check in this repo is a CONTENT check - "is this figure right?"
+# A section that is ABSENT has no figures to verify, so absence is invisible to
+# all of them. F-15: the Fear & Greed block vanished across three editions and
+# was sealed without. Only a manifest catches that.
+#
+# F-17 / LD-30 - SOURCE-PRESENCE. Section 1 mandates real news sources; three
+# editions shipped with none, costing three sealed conclusions.
+# ---------------------------------------------------------------------------
+
+REQUIRED = {
+    'DAILY':   ['§0', '§1', '§2', '§3', '§4', '§5', '§6', '§7', '§8', '§9'],
+    'MONDAY':  ['§0', '§1', '§2', '§3', '§4', '§5', '§6', '§7', '§8', '§9'],
+    'WEEKEND': ['§0', '§0w', '§1', '§2', '§3', '§5', '§6'],
+}
+# Sub-blocks that must appear within section 2 (spec 2.3) plus the F&G block.
+REQUIRED_SUB = {
+    'DAILY':   ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear'],
+    'MONDAY':  ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear'],
+    'WEEKEND': ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear'],
+}
+NEWS_HOSTS = ('investinglive.com', 'investing.com', 'reuters.com', 'bloomberg.com',
+              'treasury.gov', 'federalreserve.gov', 'ecb.europa.eu',
+              'bankofengland.co.uk', 'rba.gov.au', 'boj.or.jp', 'snb.ch',
+              'bankofcanada.ca', 'rbnz.govt.nz', 'apnews.com', 'ft.com',
+              'cnbc.com', 'wsj.com', 'marketwatch.com', 'forexlive.com')
+
+
+def assert_sections(md, etype):
+    """Refuse to render an edition missing a mandated section (R-7)."""
+    heads = re.findall(r'^#{1,4}\s+(.+)$', md, re.M)
+    blob = '\n'.join(heads)
+    missing = [s for s in REQUIRED[etype]
+               if not re.search(r'%s\s*[—\-–]' % re.escape(s), blob)]
+    if missing:
+        raise SystemExit(
+            'FATAL (R-7/F-15): %s edition is missing mandated section(s): %s\n'
+            'A missing section has no figures to verify - no content check can '
+            'see it. Add the section or change the edition type.'
+            % (etype, ', '.join(missing)))
+    sub_missing = [s for s in REQUIRED_SUB[etype] if s not in blob]
+    if sub_missing:
+        raise SystemExit(
+            'FATAL (R-7/F-15): missing mandated sub-block(s): %s\n'
+            '(F-15: the Fear & Greed block vanished from three editions this way.)'
+            % ', '.join(sub_missing))
+    return len(heads)
+
+
+def assert_news_sources(md):
+    """Section 1 must cite a real news source (F-17 / LD-30)."""
+    m = re.search(r'^##\s*§1\b.*?$(.*?)(?=^##\s*§)', md, re.S | re.M)
+    if not m:
+        raise SystemExit('FATAL (R-7): cannot locate §1 to check its sources.')
+    body = m.group(1).lower()
+    hits = sorted({h for h in NEWS_HOSTS if h in body})
+    if not hits:
+        raise SystemExit(
+            'FATAL (F-17/LD-30): §1 cites NO news source.\n'
+            'Three editions shipped this way and it cost three sealed '
+            'conclusions (the 19 Aug Treasury buyback). §1 must name where its '
+            'news came from. Known hosts: %s ...' % ', '.join(NEWS_HOSTS[:4]))
+    return hits
+
+
+def prose_ratio(md):
+    """LD-27 advisory check - prose as a share of content lines."""
+    lines = [l.rstrip() for l in md.splitlines()]
+    body = [l for l in lines if l.strip()]
+    prose = [l for l in body
+             if not l.lstrip().startswith(('|', '#', '>', '<!--', '<', '- ', '* ',
+                                           '```', '---'))
+             and not re.match(r'^\d+\.\s', l.lstrip())]
+    return len(prose), len(body), (100.0 * len(prose) / max(1, len(body)))
+
 
 if __name__ == '__main__':
-    md = io.open(SRC, encoding='utf-8').read()
+    src = sys.argv[1] if len(sys.argv) > 1 else SRC
+    md = io.open(src, encoding='utf-8').read()
+    fm = front_matter(md)
+    dst = os.path.join(REPO, 'reports/2026/Q3/%s_market-sentiment.html' % fm['date'])
+
+    # --- guards run BEFORE a single byte is written ---
+    nheads = assert_sections(md, fm['type'])
+    sources = assert_news_sources(md)
+    pn, bn, pct = prose_ratio(md)
+    print('guards:')
+    print('  R-7  sections   %d headings, all mandated present (%s)'
+          % (nheads, fm['type']))
+    print('  F-17 sources    §1 cites %d: %s' % (len(sources), ', '.join(sources)))
+    print('  LD-27 prose     %d of %d lines = %.1f%% %s'
+          % (pn, bn, pct, 'OK' if pct < 15 else '*** OVER 15% TARGET ***'))
+
     style = io.open(STYLE_FROM, encoding='utf-8').read()
     head = style[:style.find('</style>') + len('</style>')]
-    head = head.replace('<title>Market Sentiment 19 Aug</title>',
-                        '<title>Market Sentiment 21 Aug</title>') + EXTRA_CSS
+    head = re.sub(r'<title>[^<]*</title>',
+                  '<title>Market Sentiment %s</title>' % fm['date'], head) + EXTRA_CSS
+
+    chips = '\n'.join('    <span>%s</span>' % c for c in fm['chips'])
     mast = """
 <div class="tzbar">ALL TIMES PHILIPPINE STANDARD TIME (UTC+8) &middot; TE CALENDAR IS UTC &rarr; PHT = UTC + 8h &middot; RE-VERIFIED THIS RUN</div>
 <div class="masthead"><div class="wrap mh">
   <div>
-    <div class="eyebrow">Macro Economic Reporting &middot; Daily Market Sentiment</div>
-    <div class="mdate">Friday, 21 August 2026 &middot; 16:40 PHT</div>
-    <div class="draft">REVISION 13 &middot; SEALED FULL &middot; T4 RESOLVED (F-17)</div>
+    <div class="eyebrow">Macro Economic Reporting &middot; %s</div>
+    <div class="mdate">%s</div>
+    <div class="draft">%s &middot; %s</div>
   </div>
   <div class="chips">
-    <span>CARRIED <b class="up">CADJPY HIGH</b> &middot; EURCHF MED &middot; GBPUSD LOW</span>
-    <span>WEEK <b class="up">10 of 13</b> <span class="dn">3 misses all surveys</span></span>
-    <span>SCALE <b>&plusmn;11.00</b> <span class="dn">rate = cat 6</span></span>
+%s
   </div>
 </div></div>
 <div class="wrap">
-""" + EXEC
-    io.open(DST, 'w', encoding='utf-8').write(head + mast + render(md) + '\n</div>\n')
-    h = io.open(DST, encoding='utf-8').read()
-    print('rendered %d bytes' % len(h))
+""" % (fm.get('eyebrow', 'Daily Market Sentiment'), fm['title'],
+       fm['revision'].upper(), fm['seal'].upper(), chips)
+
+    body = EXEC_RE.sub('', md[FM_RE.search(md).end():])
+    io.open(dst, 'w', encoding='utf-8').write(
+        head + mast + exec_panel(md) + render(body) + '\n</div>\n')
+    h = io.open(dst, encoding='utf-8').read()
+    print('rendered %d bytes -> %s' % (len(h), os.path.basename(dst)))
     for t in ['table', 'div', 'tr', 'td', 'th', 'details', 'summary', 'p', 'ul', 'ol', 'li']:
         o = len(re.findall(r'<%s[ >]' % t, h)); c = len(re.findall(r'</%s>' % t, h))
         print('  %-8s %d/%d %s' % (t, o, c, 'OK' if o == c else '*** MISMATCH ***'))

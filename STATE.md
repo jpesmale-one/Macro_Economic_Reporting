@@ -8,8 +8,10 @@ edition: 2026-08-21 (r13, SEALED FULL; T4 RESOLVED - F-17 corrected in-edition)
 date: 2026-08-21
 data_asof: 2026-08-21 16:40 PHT (macro 06:50 + 16:37; charts 16:40)
 track: LEAN (no section-2 trigger has fired)
-spec_rev: 2026-08-23 - LD-27..LD-31 written in; R-1 CLOSED (6 cat / +/-11.00,
-  weekly selection, section 0 specified). Spec is AUTHORITATIVE again.
+spec_rev: 2026-08-23 - LD-27..LD-34 written in; R-1, R-7, F-19 CLOSED.
+  Spec is AUTHORITATIVE again (6 cat / +/-11.00, weekly selection, section 0
+  specified, weekend edition type). Renderer now enforces structure:
+  `python pipelines/render_edition.py <path-to-md>`, front-matter required.
 artifact: https://claude.ai/code/artifact/eee6e597-8644-4c5d-b69b-db6879803abc
 source_of_truth: reports/2026/Q3/2026-08-21_market-sentiment.md
 prior_edition: 2026-08-20 (r11, UNSEALED) - artifact a69403a7-a636-4ca2-8b41-1006e8c62806
@@ -2055,3 +2057,91 @@ F-19 - THE RENDERER IS A ONE-SHOT SCRIPT, NOT A RENDERER. OPEN, NEW.
 #   rewritten to LD-27..LD-31.
 # R-8 SUPERSEDED by LD-27 - the target is now a per-sentence contract, not a
 #   line count. The 15% figure survives as a check, not as the rule.
+
+LD-32 - THE WEEKEND PREP EDITION. THE BIAS SHIPS BEFORE THE WEEK OPENS (Jeff).
+  "there should be a way we can produce this on a Weekend like Saturday or
+  Sunday because if we already know our bias for the upcoming week then the
+  user can prepare early and make his own analysis/charting while the market is
+  closed."
+  I HAD REFUSED A SATURDAY EDITION EARLIER IN THIS SESSION. The refusal was
+  right about one thing and wrong about the thing that mattered. Right: you
+  cannot re-date Friday's prices and call them Saturday's data. Wrong: I
+  treated "no new data" as "no value", when the value is LEAD TIME on data that
+  already exists. The bias is known at Friday's close; holding it to Monday
+  hands the reader their own analysis at the moment they have least time to use
+  it. The weekend is the ONLY window with the bias in hand and the market shut.
+  THE REPORT IS A CYCLE, NOT ONE SHAPE REPEATED:
+    WEEKEND PREP (Sat or Sun) - PROPOSES the coming week's pairs
+    MONDAY               - CONFIRMS or REVISES, then LOCKS the set (LD-29)
+    DAILY (Tue-Fri)      - section 0 tracks the locked set
+  MANDATORY HONESTY LINE at the top of every weekend edition: no market has
+  traded since Friday's close, every price/level/score is Friday's, the bias is
+  PROPOSED not carried, Monday confirms against the real open.
+  MUST NOT: re-date Friday's prices as newly observed; re-pull the 70
+  indicators (nothing publishes on a weekend and re-pulling invites F-1 for
+  zero gain); claim any score/band/zone CHANGED since Friday; LOCK the
+  selection - the weekend proposes, Monday locks.
+  CONTAINS: section 0 week-that-was (its natural home) - section 0w PROPOSED
+  pairs with direction, score, zones, touch counts, falsifier and confidence
+  arithmetic, i.e. everything needed to chart it - LATE FRIDAY GRADES (the one
+  genuinely new data: 6 events in r13 were still awaiting/pending at seal) -
+  section 1 weekend news sweep per LD-30 - sections 2/3 republished labelled AS
+  AT FRIDAY CLOSE - the Mon-Fri calendar with what would VOID each proposal -
+  sections 5/6 per LD-31.
+  SEAL TIER: NONE. Never sealed, never promotes to the established-facts
+  ledger. LD-12 unchanged. It is a preparation document; Monday seals.
+  Saturday or Sunday both valid - Sunday carries more news and is closer to the
+  open, Saturday gives more preparation time. The edition states which.
+
+LD-33 - EDITION IDENTITY LIVES IN THE .md, AND THE RENDERER REFUSES WITHOUT IT.
+  Closes F-19. render_edition.py hardcoded date, title, revision, seal state,
+  masthead chips AND the entire executive-summary panel in __main__. Rendering
+  a new edition meant editing the renderer, and the failure was silent - a
+  fresh edition inherits the previous one's summary and a stale SEALED FULL
+  badge, which LOOKS CORRECT.
+  Identity now comes from <!--edition ... --> front-matter in the .md, which is
+  the sealed source of truth (LD-10) and should therefore carry its own
+  identity. The exec panel comes from an optional <!--exec ... --> block.
+  Missing front-matter is a HARD REFUSAL - the renderer will not guess a date.
+  Usage: python pipelines/render_edition.py <path-to-md>
+
+LD-34 - THE RENDERER ENFORCES STRUCTURE, NOT JUST FORMATTING. Closes R-7.
+  THREE GUARDS, all run BEFORE a byte is written:
+   1. SECTION-PRESENCE (R-7/F-15) - a manifest per edition type. Every other
+      check in this repo is a CONTENT check ("is this figure right?"). A
+      section that is ABSENT has no figures to verify, so absence is invisible
+      to all of them. F-15: the F&G block vanished across three editions and
+      was sealed without it. Sub-blocks 2.0-2.6 and the F&G block are checked
+      by name.
+   2. SOURCE-PRESENCE (F-17/LD-30) - section 1 must cite a known news host.
+      Three editions shipped with none, costing three sealed conclusions.
+   3. PROSE RATIO (LD-27) - advisory, prints the percentage against the 15%
+      target. Advisory not fatal: a hard fail would tempt figure-deletion,
+      which LD-17 forbids.
+  Plus a WEEKEND-NEVER-SEALED check (LD-32).
+  ALL FOUR VERIFIED AGAINST DELIBERATELY BROKEN FIXTURES - missing F&G block,
+  redacted sources, weekend-declared-sealed, absent front-matter. Each fired
+  with the right message. A guard that has never been seen to fail is not a
+  verified guard (F-13 precedent).
+
+F-20 - r13's SECTION 1 CITES NO NEWS SOURCE. THE R-9 FIX LANDED IN THE WRONG
+  SECTION. OPEN, FOUND BY THE NEW GUARD ON ITS FIRST REAL RUN.
+  MEASURED: section 0c carries 6 source citations (investinglive.com x3,
+  investing.com x2, treasury.gov x1). Section 1 carries ZERO.
+  F-17 was recorded as "diagnosis CLOSED, fix OPEN". This is what the open half
+  looks like structurally: the news that corrected three sealed conclusions was
+  written into a PROCESS section (the T4 resolution narrative) instead of the
+  NEWS section. Any reader of section 1 still sees no sources.
+  This is also LD-27's problem in miniature - analysis living inside process
+  commentary. Fixing section 1 and abolishing section 0c are THE SAME EDIT.
+  FIX: on the next edition, section 1 carries the sources per LD-30. The guard
+  now makes shipping without them impossible.
+  NOTE: the guard found this on a real edition within minutes of being written.
+  That is the argument for structural checks over content checks.
+
+# R-7 CLOSED 2026-08-23 by LD-34. F-15 fix VERIFIED against a fixture.
+# F-19 CLOSED 2026-08-23 by LD-33.
+# R-9 becomes ROUTINE via LD-30 + LD-34 guard 2 - F-17's open half now has
+#   enforcement, though F-20 shows the current edition still fails it.
+# MEASURED for R-8/LD-27: r13 prose = 256 of 672 content lines = 38.1%,
+#   against a 15% target. The tooling now measures this every render.

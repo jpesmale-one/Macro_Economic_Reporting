@@ -277,7 +277,9 @@ Then **at most three sentences** of analysis: what the set is doing as a
 whole, and any pair approaching its falsifier.
 
 **On Monday** §0 carries the **week-that-was summary** for the *prior*
-week — absorbed from the old §4.5, which is deleted. Monday's §0 grades
+week — absorbed from the old §4.5, which is deleted. **If a WEEKEND PREP
+edition ran (§4b), it already carried that summary and Monday's §0 cites
+it rather than repeating it.** Monday's §0 grades
 the closed week; Tuesday–Friday's §0 tracks the open one.
 
 **§0 NEVER carries:** guard results, tool failures, revision history,
@@ -501,6 +503,82 @@ standard, same depth. BTC is not a lesser section.
   flips, and the answer changes the read. A decoupling claim needs the
   correlation stated, not asserted.
 - **Falsifier.**
+
+## 4b. EDITION TYPES — the weekly cycle (LD-32)
+
+The report is not one shape repeated five times. It is a **cycle** with
+three edition types, and the reader's job differs in each.
+
+| Type | When | Selects? | Job |
+|---|---|---|---|
+| **WEEKEND PREP** | Sat **or** Sun | **PROPOSES** the coming week | reader charts and prepares while markets are shut |
+| **MONDAY** | Mon | **CONFIRMS or REVISES**, then locks | the set for the week is fixed |
+| **DAILY** | Tue–Fri | no | §0 tracks the locked set |
+
+### The WEEKEND PREP edition (LD-32)
+
+**Why it exists.** The bias for the coming week is already known at
+Friday's close. Holding it until Monday hands the reader their own
+analysis at the moment they have least time to use it. The weekend is
+**the only window with the bias in hand and the market shut** — the
+reader can chart the levels, run their own analysis, and disagree before
+a single pip moves. **The value is LEAD TIME on data that already
+exists, not new data.**
+
+**MANDATORY HONESTY LINE, top of the edition, every time:**
+
+> **No market has traded since Friday's close.** Every price, level and
+> score in this edition is Friday's, republished here for preparation.
+> Nothing below is new price data. The bias is **PROPOSED** — Monday's
+> edition confirms or revises it against the real open.
+
+**A weekend edition MUST NOT:**
+- present Friday's prices as if newly observed, or re-date them;
+- re-pull the 70 macro indicators — nothing publishes on a weekend, and
+  re-pulling invites the phantom-Actual failure (F-1) for zero gain;
+- claim a score, band or zone has *changed* since Friday;
+- **LOCK the selection.** The weekend proposes; **Monday locks** (LD-29).
+
+**A weekend edition CONTAINS:**
+
+1. **§0 — Week that was.** The closed week graded: carried pairs and
+   their outcome, the projection scorecard, what the falsifiers did.
+   This is the old §4.5, and the weekend is its natural home.
+
+2. **§0w — PROPOSED for the coming week.** The heart of the edition.
+   Per proposed pair: **direction, the §2 score driving it, the zones
+   with touch counts and dates, the falsifier level, and confidence with
+   its arithmetic** — everything the reader needs to chart it. Marked
+   **PROPOSED**, never carried.
+
+3. **Late Friday grades.** Events that released before Friday's seal but
+   had not posted values yet are graded here. This is **genuinely new
+   information** and the one place a weekend edition adds data.
+
+4. **§1 — Weekend news sweep.** Two days of headlines price in at once
+   at Monday's open with no intervening discovery. Per LD-30: summarize
+   to impact, sources are a floor not a ceiling, US items read against
+   **USD, Gold AND BTC**.
+
+5. **§2/§3 — republished unchanged**, explicitly labelled *as at Friday
+   close*. Self-contained per LD-22.
+
+6. **The week ahead.** The Mon–Fri calendar with each event's projected
+   score, **and what would change the proposed bias** if it prints
+   otherwise. Name the events that can void a proposal before it is ever
+   locked.
+
+7. **§5/§6 — Gold and BTC**, drivers per LD-31, levels as at Friday.
+
+**Seal tier: NONE.** A weekend edition is **never sealed** and never
+promotes to the established-facts ledger (LD-12 unchanged: light daily,
+full weekly). It is a preparation document. Monday's edition is what
+seals.
+
+**Saturday or Sunday, reader's choice.** Sunday carries more weekend news
+and is closer to the open; Saturday gives more preparation time. Both are
+valid; the edition states which day it is and that the other was
+available.
 
 ## 5. Confluence inputs (context, never ranked)
 
