@@ -442,11 +442,23 @@ falsifier firing, and is not replaced until the next Monday.
    pair is the most informative row in the section.
 6. **Leg-disjoint** (LD-19): structure filter FIRST, then disjointness.
    Ordering is load-bearing.
-7. **Confidence** (LD-20): HIGH/MEDIUM/LOW with its arithmetic, target
-   ≥3 pairs. Binding language — high-probability reads, **never**
-   guarantees.
+7. **Confidence** (LD-20): HIGH/MEDIUM/LOW with its arithmetic.
+   **THREE IS THE FLOOR, NOT THE TARGET (LD-35).** Carry **every** pair
+   that clears conviction and is leg-disjoint from those already carried
+   — four, five, six if they qualify. Do **not** stop at three. Fewer
+   than three means searching further down the spread ranking; more than
+   three means the week offered more, which is information, not excess.
+   Binding language — high-probability reads, **never** guarantees.
 8. **Draw** the zones on the OANDA chart, record entity IDs for clearing
    next run, never touch Jeff's own drawings.
+
+**FOUR IS A HARD CEILING (LD-35)** — 8 currencies, each claimable once,
+so 4 leg-disjoint pairs is the arithmetic maximum. A qualifying fifth
+pair goes to **4.3b CORRELATED** naming the pair it duplicates: visible,
+chartable, available as a secondary entry (LD-21), but **not counted as
+an independent test**. The carried count is the scorecard's denominator —
+N carried must mean N independent tests of the model. Reporting a shared
+leg as a separate test overstated the 2026-08-20 evidence **4×** (EF-3).
 
 **Sub-sections:** 4.0 week-ahead projections · 4.1 currency bands ·
 4.2 candidate pairings · 4.3 CARRIED with confidence and zones ·
@@ -546,6 +558,8 @@ exists, not new data.**
    This is the old §4.5, and the weekend is its natural home.
 
 2. **§0w — PROPOSED for the coming week.** The heart of the edition.
+   **Up to FOUR pairs** (LD-35) — publish every leg-disjoint qualifier,
+   not just three; the reader has two days to chart them.
    Per proposed pair: **direction, the §2 score driving it, the zones
    with touch counts and dates, the falsifier level, and confidence with
    its arithmetic** — everything the reader needs to chart it. Marked

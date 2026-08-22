@@ -1212,7 +1212,9 @@ LD-19 - CARRIED PAIRS MUST BE LEG-DISJOINT. Jeff, 2026-08-21: "CADJPY, GBPJPY,
   ORDERING IS LOAD-BEARING, verified against Thursday's outcome: disjoint-first
   would have carried CADCHF (spread 11.00, structure FAILED) and blocked
   CADJPY, which gained 82 pips. Structure-first carries CADJPY. Do not reorder.
-  CEILING: 8 currencies = at most 4 leg-disjoint pairs; in practice 2-3.
+  CEILING: 8 currencies = at most 4 leg-disjoint pairs on the STRONG-vs-WEAK
+  axis. NOTE 2026-08-23: "in practice 2-3" was my gloss and it read as a cap.
+  It is not one - see LD-35. The real ceiling is how many qualify.
   CONSEQUENCE ACCEPTED: fewer carried pairs per edition. That is the point -
   the count now means something. A correlated cluster is ONE test of the model,
   and reporting it as several is how a method looks better than it is.
@@ -2145,3 +2147,42 @@ F-20 - r13's SECTION 1 CITES NO NEWS SOURCE. THE R-9 FIX LANDED IN THE WRONG
 #   enforcement, though F-20 shows the current edition still fails it.
 # MEASURED for R-8/LD-27: r13 prose = 256 of 672 content lines = 38.1%,
 #   against a 15% target. The tooling now measures this every render.
+
+LD-35 - THREE IS THE FLOOR, NOT THE TARGET. FOUR IS THE CEILING (Jeff).
+  "the 3 pairs is just the Minimum I asked. But it doesn't mean we can't go
+  more than 3. As long as we have high conviction without correlation to the
+  other selected ones then we can still add them."
+  MY ERROR, IN PROSE ONLY: LD-20 recorded the floor correctly ("at least 3"),
+  but LD-19 glossed the ceiling as "in practice 2-3" and the spec wrote "target
+  >=3". Both read as a cap on a rule Jeff had written as a MINIMUM. The code
+  was never wrong - select_pairs.select_disjoint walks every candidate with no
+  limit and never had a cap. This was a documentation defect that would have
+  become a real one the first time a week offered four qualifiers.
+  THE RULE: carry EVERY pair that clears conviction and is leg-disjoint from
+  those already carried. Do not stop at three. Fewer than three means searching
+  further down the spread ranking (LD-20); more than three means the week
+  offered more, which is INFORMATION, not excess.
+
+  FOUR IS A HARD CEILING, and it is arithmetic, not preference. Eight
+  currencies, two legs per pair, each currency claimable once under LD-19 =
+  4 pairs maximum. A fifth is impossible without reusing a currency.
+  JEFF'S CALL (2026-08-23), asked explicitly: HARD STOP AT 4. A qualifying
+  fifth pair goes to the CORRELATED list naming which carried pair it
+  duplicates - visible, chartable, and available as a secondary entry (LD-21),
+  but NOT counted as an independent test.
+  WHY THIS MATTERS AND WHY IT IS THE RIGHT CALL: the carried count is the
+  scorecard's denominator. N carried must mean N INDEPENDENT tests of the
+  model. The 2026-08-20 edition reported "4 of 4 worked" when three shared the
+  JPY leg - one bet sliced three ways, overstating the evidence 4x (LD-19,
+  EF-3). Admitting a fifth pair with a shared leg would reintroduce exactly
+  that, in exchange for a row the CORRELATED list already publishes.
+  REJECTED: (b) allow a 5th at HIGH conviction with a net-exposure warning -
+  a warning does not fix a denominator, and EF-3 measured the inflation at 4x.
+  REJECTED: (c) widen the pool with XAUUSD/BTCUSD to lift the ceiling - both
+  carry a USD leg, so it does not cleanly escape disjointness, and Gold/BTC
+  already get full treatment in sections 5 and 6 (LD-31). Worth revisiting only
+  as a deliberate scope change, not as a way around a ceiling.
+
+  CONSEQUENCE FOR THE WEEKEND EDITION (LD-32): section 0w proposes up to FOUR
+  pairs, not three. If the week offers four leg-disjoint qualifiers, publish
+  four - the reader has two days to chart them.
