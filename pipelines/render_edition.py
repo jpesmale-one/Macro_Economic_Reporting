@@ -449,6 +449,57 @@ def assert_whitelist(md):
     return len(rows), expected
 
 
+def assert_no_offlist_scores(md):
+    """Section 4.0 may only SCORE whitelist indicators (F-3 / F-28 / LD-41).
+
+    F-3, 2026-08-19: section 2 was built from the TE calendar instead of the
+    named list, and 24 of 34 rows were off-list. It CHANGED THE RANKING.
+    F-28, 2026-08-23: the same error in section 4.0 - 9 of 14 projection rows
+    off-list, two of them SCORED, and those two fed the LD-40 confidence tally
+    and changed the published ranking of the proposals.
+
+    The rule is settled: off-list data informs the READ, never a SCORE. This
+    checks the scored column of 4.0 only - the off-list NARRATIVE block below
+    it is allowed and expected, because it carries no score.
+    """
+    import sys as _s
+    try:
+        _s.path.insert(0, os.path.join(REPO, 'pipelines'))
+        import score_model
+    except Exception:
+        return 0
+    names = {}
+    for r in score_model.ROWS:
+        names.setdefault(score_model.LABEL[r[1]], set()).add(r[2].lower())
+    try:
+        blk = md[md.index('### 4.0'):]
+        blk = blk[:blk.index('#### Off the whitelist')] if '#### Off the whitelist' in blk \
+            else blk[:blk.index('#### ')] if '#### ' in blk else blk
+    except ValueError:
+        return 0
+    SCORED = ('GOOD', 'BAD', 'NEUTRAL')
+    bad = []
+    for line in blk.splitlines():
+        if not line.startswith('| ') or line.startswith('|---'):
+            continue
+        cells = [c.strip().replace('*', '') for c in line.strip('|').split('|')]
+        if len(cells) < 6 or 'When' in cells[0]:
+            continue
+        ccy, ind, proj = cells[1], cells[2], cells[5].upper()
+        if not any(proj == v for v in SCORED):
+            continue          # UNSCORED / UNSCORABLE rows are fine
+        key = ind.lower()
+        if not any(key == n or key in n or n in key for n in names.get(ccy, ())):
+            bad.append('%s %s (projected %s)' % (ccy, ind, proj))
+    if bad:
+        raise SystemExit(
+            'FATAL (F-3/F-28/LD-41): section 4.0 SCORES off-list indicator(s):'
+            + chr(10) + chr(10).join('  ' + b for b in bad) + chr(10) +
+            'Off-list data informs the READ, never a SCORE. Move these to the '
+            '"Off the whitelist" narrative block, or publish them UNSCORED.')
+    return len([l for l in blk.splitlines() if l.startswith('| ')])
+
+
 def assert_news_sources(md):
     """Section 1 must cite a real news source (F-17 / LD-30)."""
     m = re.search(r'^##\s*§1\b.*?$(.*?)(?=^##\s*§)', md, re.S | re.M)
@@ -514,6 +565,7 @@ if __name__ == '__main__':
     nheads = assert_sections(md, fm['type'])
     nmark = assert_markers(md)
     nrow, nexp = assert_whitelist(md)
+    assert_no_offlist_scores(md)
     sources = assert_news_sources(md)
     pn, bn, pct = prose_ratio(md)
     print('guards:')
@@ -522,6 +574,7 @@ if __name__ == '__main__':
     print('  LD-38 markers   %d/%d generated blocks emitted'
           % (nmark, len(REQUIRED_MARKERS)))
     if nexp:
+        print('  LD-41 4.0 scores  whitelist indicators only')
         print('  LD-39 whitelist %d/%d indicator rows, no blanks'
               % (nrow, nexp))
     print('  F-17 sources    §1 cites %d: %s' % (len(sources), ', '.join(sources)))

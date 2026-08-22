@@ -2558,3 +2558,60 @@ LD-40 - THE CONFIDENCE TALLY MUST SCORE THE WEEK AHEAD. LD-20 AMENDED (Jeff).
 #   column before publishing. RULE: after editing a tally, re-add it.)
 #   The finding is unchanged: the gap between #1 and #2 falls from 3 points to
 #   1 once the projections are scored.
+
+F-28 - F-3 REPEATED IN SECTION 4.0. I BUILT THE PROJECTIONS FROM THE CALENDAR.
+  Jeff: "We're bloating the report again with news that is not in our Indicator
+  list. I have instructions against this last time can you check?"
+  THE INSTRUCTION EXISTS AND I FOUND IT: F-3, 2026-08-19, opened when he asked
+  "why are we injecting other data/country to the report? Thu 14:00 DE PPI YoY
+  - is this in the macro economic indicator list that we have?"
+  F-3's root cause, in my own words at the time: "I built section 2 from the
+  TradingEconomics CALENDAR - i.e. from whatever released in the last 48 hours
+  - instead of querying the country series pages for the indicators Jeff
+  actually named. The calendar answers 'what came out'; the list answers 'what
+  drives the bias'. Those are different questions and I answered the wrong one."
+  I DID THE IDENTICAL THING IN SECTION 4.0, FOUR DAYS LATER. Audited the
+  published table: 9 OF 14 ROWS OFF-LIST. Jackson Hole, CAD GDP, USD GDP 2nd
+  Est, US Initial Jobless Claims, US Chicago PMI, US Michigan Sentiment, JPY
+  Tokyo CPI, AUD RBA Trimmed Mean, EUR flash inflation.
+  AND IT CHANGED THE ANSWER, exactly as F-3 did. TWO of the nine carried SCORED
+  projections and both fed the LD-40 confidence tally:
+    CAD GDP Annualized -> BAD, scored -1 against CADJPY
+    EUR Inflation Flash -> GOOD, scored +1 for EURCHF
+  On those two rows I published "the projections close the gap between #1 and
+  #2 from three points to one". THE FINDING DOES NOT SURVIVE. Rebuilt on
+  whitelist rows the ranking is CADJPY +5 / EURCHF +3 / GBPUSD +1 - a two-point
+  gap, and the correction is disclosed in-edition rather than quietly amended.
+  THE EUR ROW WAS DOUBLY WRONG: the whitelist names "Inflation Rate YoY FINAL",
+  not the flash - a different indicator - AND the flash is dated 1 SEPTEMBER,
+  outside the Mon-Fri window LD-14 fixes. Off-list AND out-of-window, and I
+  scored it.
+  REBUILT SECTION 4.0: NINE whitelist indicators land Mon-Fri, five with a
+  scored projection, four UNSCORED with the reason. NOT ONE PROJECTED SCORE
+  CHANGES - on consensus figures no currency's category score moves next week.
+  Off-list events now sit in a clearly separated NARRATIVE block carrying no
+  score, which is what F-3 always permitted: "off-list data may inform the READ
+  in section 1 but never becomes a scored row."
+  WHY I MISSED IT: I treated section 4.0 as a calendar preview rather than as a
+  whitelist projection. F-3 was filed against section 2 and I read its scope as
+  section 2. THE RULE IS ABOUT SCORING, NOT ABOUT A SECTION NUMBER.
+
+LD-41 - THE WHITELIST BINDS EVERY SCORED FIGURE, IN EVERY SECTION.
+  Restating F-3 as a rule with a guard, because three findings have now landed
+  on it (F-3 section 2, F-4 its collateral damage, F-28 section 4.0) and none
+  of the existing checks caught any of them.
+  THE RULE: a figure may be SCORED only if it is one of the 70 named
+  indicators for one of the 8 named currencies. This binds section 2's rows,
+  section 4.0's projections, and any future scored block. Off-list data is
+  welcome as NARRATIVE - it moves price and the reader should know - but it
+  never carries GOOD/BAD/NEUTRAL and never enters the confidence tally.
+  GUARD: assert_no_offlist_scores() in render_edition.py parses section 4.0,
+  ignores UNSCORED/UNSCORABLE rows, and refuses to render if any row carrying
+  GOOD/BAD/NEUTRAL names an indicator absent from score_model.ROWS for that
+  currency. Verified against a fixture reinserting the exact two rows that
+  shipped - both caught by name.
+  NOTE THE GUARD READS THE MODEL, so adding an indicator to the whitelist
+  authorises it everywhere at once, with no second edit.
+  STILL NOT GUARDED, stated honestly: the WINDOW. Nothing yet checks that a
+  projection falls inside Mon-Fri of the current week (LD-14) - the EUR flash
+  row was dated 1 Sep and only caught by hand. Queued.

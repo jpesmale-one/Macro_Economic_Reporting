@@ -5,7 +5,7 @@ revision: r1
 seal: PREP
 type: WEEKEND
 eyebrow: Macro Economic Reporting &middot; Weekend Prep &mdash; week of 24&ndash;28 Aug
-chip: PROPOSED <b class="up">CADJPY +5</b> &middot; EURCHF +4 &middot; <span class="dn">GBPUSD +1</span>
+chip: PROPOSED <b class="up">CADJPY +5</b> &middot; EURCHF +3 &middot; <span class="dn">GBPUSD +1</span>
 chip: WEEK AHEAD <b>AU CPI Wed</b> &middot; <span class="dn">Jackson Hole Thu&ndash;Sat</span>
 chip: SCALE <b>&plusmn;11.00</b> <span class="dn">rate = cat 6</span>
 fng_note: The index reads <b>Greed</b> while <b>four of seven components sit in Fear</b>. Junk Bond Demand at <b>95.8</b> (extreme greed) and Safe Haven Demand at <b>71.0</b> carry the headline on their own; Stock Price Strength <b>29.4</b>, Momentum <b>39.0</b> and Put/Call <b>43.4</b> all read Fear. Credit is priced for calm while equity internals are not.
@@ -17,7 +17,7 @@ No market has traded since Friday's close. Every price, level and score below is
 
 The week closed with the dollar at three-month lows and all three carried pairs advancing on Friday. CADJPY 115.490, EURCHF 0.93562, GBPUSD 1.36456 &mdash; none within 40 pips of a falsifier.
 
-THE WEEK-AHEAD PROJECTIONS CLOSE THE GAP BETWEEN THE TOP TWO. CADJPY's only scheduled event is against it (CAD GDP &minus;0.1% Fri); EURCHF's only scheduled event is for it (EUR flash inflation 3.1% Fri) and CHF has no release all week. On realised evidence CADJPY leads by three points; on the full read, by one.
+THE WEEK AHEAD IS ALMOST SILENT. Nine whitelist indicators land Mon&ndash;Fri and NOT ONE PROJECTED SCORE CHANGES &mdash; the bands stand as published. Jackson Hole Thu&ndash;Fri is the week's largest price risk and it scores nothing (LD-3): it is a speech, not a release.
 
 Gold +1.85% and BTC +6.7% ON THE SAME DAY. That is the debasement trade, not two independent stories, and it confirms the T4 correction that BTC was never decoupled.
 
@@ -474,27 +474,38 @@ move a category score or a band; the rest are noise for this purpose.
 **Times are PHT, verified this run** — UTC 16:54 Sat 22 Aug = 00:54 Sun 23 Aug
 PHT, so PHT = UTC+8 (F-2).
 
-| When (PHT) | CCY | Indicator | Previous | Expected | **Projected** | Why |
+| When (PHT) | CCY | Indicator | Current | Forecast | **Projected** | Test applied |
 |---|---|---|---|---|---|---|
-| **Wed 26 09:30** | **AUD** | **Inflation Rate YoY** | **3.8%** | **3.2%** | **NEUTRAL** | >2% and **falling** — same test every currency faces. Inflation stays 0.00. |
-| **Wed 26 09:30** | **AUD** | **RBA Trimmed Mean CPI YoY** | — | — | **UNSCORED** | Not on the 70-name whitelist; watched, not scored |
-| Wed 26 20:30 | USD | Durable Goods Ex Transp MoM | 0.6% | — | **UNSCORED** | No consensus sourced — no projection published |
-| Wed 26 20:30 | USD | GDP Growth QoQ 2nd Est | — | — | **UNSCORED** | Not a whitelist indicator |
-| **Thu 27 – Fri 28** | **USD** | **JACKSON HOLE SYMPOSIUM** | — | — | **UNSCORABLE** | Speech, not a release (LD-3). **Moves price, scores nothing.** |
-| Thu 27 20:30 | USD | Initial Jobless Claims | 206K | — | **UNSCORED** | No consensus sourced |
-| Fri 28 07:30 | JPY | Unemployment Rate | 2.5% | **2.5%** | **NEUTRAL** | Unchanged vs previous |
-| Fri 28 07:30 | JPY | Tokyo Core CPI YoY | — | — | **UNSCORED** | Tokyo CPI is a national-CPI leading indicator, not whitelisted |
-| **Fri 28 15:00** | **EUR** | **Inflation Rate YoY Flash (Aug)** | **2.9%** | **3.1%** | **GOOD** | >2% and **rising** — holds EUR's +3.00 and its **+0.75 rate leg** |
-| Fri 28 15:00 | EUR | Retail Sales YoY | — | — | **UNSCORED** | No consensus sourced |
-| Fri 28 15:55 | EUR | Unemployment Rate | — | — | **UNSCORED** | No consensus sourced |
-| **Fri 28 20:30** | **CAD** | **GDP Growth Annualized (Q2)** | **3.4%** | **−0.1%** | **BAD** | A contraction against +3.4% prior. **Not a whitelist row**, but it is the strongest currency on the board |
-| Fri 28 21:45 | USD | Chicago PMI | — | — | **UNSCORED** | No consensus sourced |
-| Fri 28 22:00 | USD | Michigan Sentiment Final | — | — | **UNSCORED** | No consensus sourced |
+| Tue 25 14:45 | EUR | Consumer Confidence Flash | −15.5 | — | **UNSCORED** | no consensus sourced |
+| **Tue 25 22:00** | **USD** | **CB Consumer Confidence** | **51.0** | — | **UNSCORED** | no consensus sourced; currently **BAD** |
+| **Wed 26 09:30** | **AUD** | **Inflation Rate YoY** | **3.8%** | **3.2%** | **NEUTRAL** | >2% & **falling** — unchanged at 0.00 |
+| **Wed 26 20:30** | **USD** | **Personal Spending MoM** | **0.3%** | **0.2%** | **NEUTRAL** | 0–0.5% band — unchanged |
+| **Thu 27 09:30** | **AUD** | **Household Spending YoY** | **6.0%** | **4.4%** | **GOOD** | >0.5% — holds, though decelerating 1.6pp |
+| **Fri 28 07:30** | **JPY** | **Unemployment Rate** | **2.5%** | **2.5%** | **NEUTRAL** | unchanged vs previous |
+| **Fri 28 13:00** | **JPY** | **Consumer Confidence** | **34.9** | **35.0** | **GOOD** | >Prev — holds |
+| Fri 28 15:00 | EUR | Retail Sales YoY | 0.7% | — | **UNSCORED** | no consensus sourced |
+| Fri 28 15:55 | EUR | Unemployment Rate | 6.3% | — | **UNSCORED** | no consensus sourced |
 
-**Only four events carry a scored projection.** The rest are published as
-**UNSCORED** with the reason, rather than given a guessed number — the same
-discipline §3 applies to market-implied odds. **An unscored row is not a
-missing row.**
+**Nine whitelist indicators land Mon–Fri. Five carry a scored projection**; four
+are published UNSCORED with the reason rather than given a guessed number — the
+same discipline §3 applies to market-implied odds.
+
+**⚠ NOT ONE PROJECTED SCORE CHANGES.** All five hold their current grade. On the
+consensus figures, **no currency's category score moves next week** and the
+bands stand as published.
+
+#### Off the whitelist — narrative only, never scored (F-3)
+
+These move price and are worth knowing. **None is one of the 70 named
+indicators, so none scores and none enters the confidence tally.**
+
+| When (PHT) | What | Why it is here |
+|---|---|---|
+| **Thu 27 – Fri 28** | **JACKSON HOLE SYMPOSIUM** | A speech, schedule-only by LD-3. Markets fully priced +25bp Sept. **Moves USD, Gold and BTC; scores nothing.** |
+| Fri 28 20:30 | CAD GDP Growth Annualized (Q2) | Forecast **−0.1%** vs +3.4% prior. Not a whitelist row — narrative only |
+| Wed 26 09:30 | AUD RBA Trimmed Mean CPI | The RBA's preferred core measure; not whitelisted |
+| Fri 28 07:30 | JPY Tokyo CPI | Leads national CPI by ~3 weeks; not whitelisted |
+| Wed 26 20:30 | USD Durable Goods, GDP 2nd Est | Durable Goods **Ex Transp** is whitelisted; the headline and GDP are not |
 
 #### What the projections imply for the bands
 
@@ -592,7 +603,7 @@ not guarantees and nothing here is a prediction.** Every one carries a falsifier
 | Rank | Pair | Dir | Conf | Spread | **Fri close** | Falsifier | Clear by |
 |---|---|---|---|---|---|---|---|
 | **1** | **CADJPY** | LONG | **HIGH (+5)** | **8.38** | **115.490** | close < **114.992** | 49.8 pips |
-| **2** | **EURCHF** | LONG | **MEDIUM (+4)** | **9.63** | **0.93562** | close < **0.93071** | 49.1 pips |
+| **2** | **EURCHF** | LONG | **MEDIUM (+3)** | **9.63** | **0.93562** | close < **0.93071** | 49.1 pips |
 | **3** | **GBPUSD** | LONG | **LOW (+1)** | **3.50** | **1.36456** | close < **1.35197** | 125.9 pips |
 
 **Net exposure: long CAD · EUR · GBP, short JPY · CHF · USD.** Six currencies,
@@ -603,57 +614,49 @@ each used once — **three independent tests** (LD-19).
 Confidence is a **tally of independent supports, not a probability.**
 
 **Three inputs, weighted: §2 macro · technical structure · §4.0 week-ahead
-projections** (LD-40). The first four rows are **realised** evidence — what has
-already happened. The **week ahead** row scores what is *scheduled*, at half
-weight, because a projection is a forecast of a score and must never outrank a
-print.
+projections** (LD-40). The first four rows are **realised** evidence. The **week
+ahead** row scores what is *scheduled*, at half weight — and **only from
+whitelist indicators** (F-3). Off-list events inform the narrative and never
+score, however much they move price.
 
-| | **CADJPY — HIGH (+5)** | **EURCHF — MEDIUM (+4)** | **GBPUSD — LOW (+1)** |
+| | **CADJPY — HIGH (+5)** | **EURCHF — MEDIUM (+3)** | **GBPUSD — LOW (+1)** |
 |---|---|---|---|
 | **§2 spread** | **+2** — 8.38 | **+2** — 9.63 | **0** — 3.50, thinnest carried |
 | **Structure** | **+2** — cleared 114.992–115.203 and held above it all Friday | **+1** — held 0.93071 support, 2 touches | **+1** — new run high 1.36758 |
 | Last bar | **+1** — +12.4 pips with the read | **+1** — +8.3 pips with the read | **+1** — +14.8 pips with the read |
 | Fresh driver | **+1** — JPY trade deficit doubled; CAD tariff relief | **+1** — SNB confirms low inflation is structural (§1) | **+1** — dollar at 3-month lows |
-| **§4.0 week ahead** | **−1** — **long leg CAD projected BAD** (GDP −0.1% vs +3.4%, Fri 28) | **+1** — **long leg EUR projected GOOD** (flash inflation 3.1%, Fri 28) **and CHF has no release all week**, so the short leg cannot correct | **−1** — **Jackson Hole on the short leg** (Thu–Fri): unscorable, but it moves the price |
+| **§4.0 week ahead** | **−1** — **JPY Consumer Confidence projected GOOD** (Fri 28). A short-JPY read wants JPY weak; a GOOD JPY print opposes it | **0** — EUR's two events are UNSCORED, **and CHF has no release all week**, so neither leg can correct through data | **−1** — **Jackson Hole on the short leg** (Thu–Fri): off-list and unscorable, but it moves the price |
 | Against | — | **−2** — **CHF leg; the model was wrong on CHF all last week** | **−1** score vs hot US data |
-| **Total** | **+5 → HIGH** | **+4 → MEDIUM** | **+1 → LOW** |
+| **Total** | **+5 → HIGH** | **+3 → MEDIUM** | **+1 → LOW** |
 
-Bands: **≥5 HIGH · 3–4 MEDIUM · ≤2 LOW** · projection terms: **+1** favoured
-leg supported · **−1** favoured leg opposed · **−1** unscorable price-moving
-event on either leg
+Bands: **≥5 HIGH · 3–4 MEDIUM · ≤2 LOW** · projection terms: **+1** favoured leg
+supported · **−1** favoured leg opposed · **−1** unscorable price-moving event
 
-#### ⚠ The projections close the gap between #1 and #2
+#### ⚠ CORRECTION — an earlier revision of this edition scored two off-list rows
 
-**On realised evidence alone CADJPY leads by three points. On the full read it
-leads by one.** That is what adding the week-ahead term does, and it is the
-reason to add it:
+**This table previously read CADJPY +5 / EURCHF +4 / GBPUSD +1**, and concluded
+that the projections closed the gap between #1 and #2 from three points to one.
+**That conclusion rested on two rows that are not whitelist indicators** — CAD
+GDP Annualized (−1 on CADJPY) and EUR flash inflation (+1 on EURCHF, and dated
+**1 September**, outside the Mon–Fri window besides). Both removed under F-3.
 
-- **CADJPY's only scheduled event is against it.** CAD GDP is forecast at
-  **−0.1% annualized against +3.4% prior** (Fri 28). It is not a whitelist row,
-  so it cannot move CAD's +8.38 — **but it is a contraction print on the long
-  leg of the top-ranked pair**, and CAD already carries a superseded Spending
-  row from Friday (§2.7).
-- **EURCHF's only scheduled event is for it.** EUR flash inflation is forecast
-  **3.1% against 2.9%** — above target and *rising*, which holds both EUR's
-  +3.00 Inflation and +0.75 Rate legs. **And no CHF release lands all week**, so
-  the −3.38 short leg cannot correct through data.
-- **GBPUSD draws the worst of it.** Jackson Hole scores nothing (LD-3) and
-  lands squarely on its short-USD leg with markets fully priced for +25bp.
+**The gap between #1 and #2 is two points, not one.** Rebuilt on whitelist
+events only, the week ahead is close to silent: **no projected score changes for
+any currency**, so the ranking rests almost entirely on realised evidence — which
+is what the tally is supposed to tell you when nothing is scheduled.
 
-**This does not change the selection** — all three still clear conviction and
-remain leg-disjoint. **It changes the focus order**, which is what confidence is
-for.
+**What the week ahead actually says about these three:**
 
-**Read the ranking as focus order, not a quality gate.** LOW does not mean bad —
-GBPUSD confirms on every technical input it has. It scores low because the
-fundamental gap is thin, its score disagrees with Thursday's hot US data, **and
-Jackson Hole lands directly on its short-USD leg this week.** Know which of the
-three you are least sure about, and why.
-
-**⚠ CADJPY's +6 does not price intervention.** The tally scores spread,
-structure, momentum and drivers. A coordinated yen-buying operation (§1) is
-none of those — it is a discrete event that the arithmetic cannot represent.
-**HIGH here means high on the evidence the model can see.**
+- **CADJPY** — the only whitelist event touching either leg is **JPY Consumer
+  Confidence Fri 28**, projected GOOD. A strengthening yen read works against a
+  short-JPY position. **CAD GDP is not a whitelist row** and does not score,
+  though it is worth watching (§4.0, off-list block).
+- **EURCHF** — **CHF has no release all week**, so the −3.38 short leg cannot
+  correct through data. EUR's two events are unscored. The leg that could hurt
+  this trade is silent.
+- **GBPUSD** — **no GBP whitelist event lands at all.** Its only week-ahead term
+  is Jackson Hole on the short-USD leg: off-list, unscorable, and the single
+  largest price risk in the set.
 
 #### Zones to chart this weekend (LD-5 — structure, never entry/stop/target)
 
