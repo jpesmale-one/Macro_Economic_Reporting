@@ -412,10 +412,90 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 > Everything below rests on Friday's structure and may be invalidated at the
 > open by a weekend gap.
 
+### 4.0 — Week ahead: projections for Mon 24 – Fri 28 Aug
+
+**A projection is a forecast of a SCORE, never a score.** Each row states what
+the model *will* record if the consensus figure prints, so next week's edition
+can grade the method against itself. This is the table F-21 came from — it only
+exists because the projections were written down in advance.
+
+**Source:** TradingEconomics calendar, captured to
+`data/raw/calendar/2026-08-23_0130PHT_cal_24-28aug_prep.json` (F-14 — the TE
+window rolls, so a week cannot be rebuilt after the fact). **89 whitelist-
+relevant events land next week.** The table below carries the ones that can
+move a category score or a band; the rest are noise for this purpose.
+
+**Times are PHT, verified this run** — UTC 16:54 Sat 22 Aug = 00:54 Sun 23 Aug
+PHT, so PHT = UTC+8 (F-2).
+
+| When (PHT) | CCY | Indicator | Previous | Expected | **Projected** | Why |
+|---|---|---|---|---|---|---|
+| **Wed 26 09:30** | **AUD** | **Inflation Rate YoY** | **3.8%** | **3.2%** | **NEUTRAL** | >2% and **falling** — same test every currency faces. Inflation stays 0.00. |
+| **Wed 26 09:30** | **AUD** | **RBA Trimmed Mean CPI YoY** | — | — | **UNSCORED** | Not on the 70-name whitelist; watched, not scored |
+| Wed 26 20:30 | USD | Durable Goods Ex Transp MoM | 0.6% | — | **UNSCORED** | No consensus sourced — no projection published |
+| Wed 26 20:30 | USD | GDP Growth QoQ 2nd Est | — | — | **UNSCORED** | Not a whitelist indicator |
+| **Thu 27 – Fri 28** | **USD** | **JACKSON HOLE SYMPOSIUM** | — | — | **UNSCORABLE** | Speech, not a release (LD-3). **Moves price, scores nothing.** |
+| Thu 27 20:30 | USD | Initial Jobless Claims | 206K | — | **UNSCORED** | No consensus sourced |
+| Fri 28 07:30 | JPY | Unemployment Rate | 2.5% | **2.5%** | **NEUTRAL** | Unchanged vs previous |
+| Fri 28 07:30 | JPY | Tokyo Core CPI YoY | — | — | **UNSCORED** | Tokyo CPI is a national-CPI leading indicator, not whitelisted |
+| **Fri 28 15:00** | **EUR** | **Inflation Rate YoY Flash (Aug)** | **2.9%** | **3.1%** | **GOOD** | >2% and **rising** — holds EUR's +3.00 and its **+0.75 rate leg** |
+| Fri 28 15:00 | EUR | Retail Sales YoY | — | — | **UNSCORED** | No consensus sourced |
+| Fri 28 15:55 | EUR | Unemployment Rate | — | — | **UNSCORED** | No consensus sourced |
+| **Fri 28 20:30** | **CAD** | **GDP Growth Annualized (Q2)** | **3.4%** | **−0.1%** | **BAD** | A contraction against +3.4% prior. **Not a whitelist row**, but it is the strongest currency on the board |
+| Fri 28 21:45 | USD | Chicago PMI | — | — | **UNSCORED** | No consensus sourced |
+| Fri 28 22:00 | USD | Michigan Sentiment Final | — | — | **UNSCORED** | No consensus sourced |
+
+**Only four events carry a scored projection.** The rest are published as
+**UNSCORED** with the reason, rather than given a guessed number — the same
+discipline §3 applies to market-implied odds. **An unscored row is not a
+missing row.**
+
+#### What the projections imply for the bands
+
+**AUD does not move on Wednesday, and that is the finding.** A 3.2% print is a
+sharp fall from 3.8%, and the instinct is to read a big move as a big signal.
+It is not — the test is *direction against target*, and >2%-and-falling is
+NEUTRAL whether the print is 3.8% or 3.2%. **AUD's Inflation category stays
+0.00 and its +2.08 band is unchanged.**
+
+**The rate leg is unchanged at the consensus, and the threshold is 3.0%.**
+Run against `rate_model.py` rather than assumed: at **3.2% AUD stays 0.00**
+("above 2–3% ceiling but falling") because 3.2 is still above the RBA's 3.0%
+ceiling. The score only turns **negative at a print of 3.0% or below** — CPI
+inside the band while falling scores **−0.38**, which would take AUD from +2.08
+to **+1.70**. Below 2.0% it falls to −0.75.
+
+| AU CPI prints | Rate score | AUD total | State |
+|---|---|---|---|
+| 3.2% *(consensus)* | **0.00** | **+2.08** | above ceiling, falling — unchanged |
+| **3.0% or below** | **−0.38** | **+1.70** | inside 2–3% band, falling |
+| below 2.0% | −0.75 | +1.33 | below floor, falling |
+
+**So Wednesday is a threshold event, not a magnitude event.** A 3.2% print and
+a 3.4% print are the same score; 3.0% is a different score. That distinction is
+worth more than the headline number.
+
+**EUR flash inflation on Friday is the week's biggest scored event.** EUR's
++3.00 Inflation and +0.75 Rate legs both rest on ">2% and rising". A 3.1% print
+holds both. **A print below 2.9% would break the "rising" test and cost EUR up
+to 3.75 points** — enough to drop it out of STRONG and directly weaken the
+**EURCHF** proposal.
+
+**CAD GDP is the risk nobody is pricing.** A **−0.1% annualized contraction**
+against +3.4% prior is a severe deterioration in the strongest currency on the
+board. It is not a whitelist row, so it does not move the score — **but CAD is
+the long leg of the #1 proposal, and it already has a superseded Spending row
+from Friday's retail sales miss (§0L).** Two hits to CAD in one week.
+
+**Jackson Hole is unscorable and still the most important event.** Per LD-3 a
+speech is schedule-only — it scores nothing. It moves **USD, Gold and BTC**, and
+GBPUSD is the proposal most exposed to it.
+
 ### 4.1 Currency bands — as at Friday close
 
-Unchanged from §2.0. **STRONG:** CAD +8.38 · EUR +6.25 · GBP +5.75 ·
-**NEUTRAL:** NZD +3.75 · USD +2.25 · AUD +2.08 · **WEAK:** JPY +0.00 · CHF −3.38
+**Merged into §2.0** — the tally and the bands are one table now, so a band can never disagree with the score that produced it.
+
+**STRONG:** CAD +8.38 · EUR +6.25 · GBP +5.75 · **NEUTRAL:** NZD +3.75 · USD +2.25 · AUD +2.08 · **WEAK:** JPY +0.00 · CHF −3.38
 
 ### 4.2 PROPOSED — three leg-disjoint pairs
 

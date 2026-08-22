@@ -350,10 +350,15 @@ REQUIRED = {
     'WEEKEND': ['§0', '§0L', '§1', '§2', '§3', '§4', '§5', '§6'],
 }
 # Sub-blocks that must appear within section 2 (spec 2.3) plus the F&G block.
+# 4.0 is the WEEK-AHEAD PROJECTION table and it is mandatory (F-25). It is the
+# only forward-looking record the method keeps: next week's edition grades the
+# method against it, and F-21 exists ONLY because the projections were written
+# down in advance. It went missing from the 2026-08-23 edition and no guard saw
+# it, because the manifest checked h2 sections and 2.x sub-blocks but not 4.x.
 REQUIRED_SUB = {
-    'DAILY':   ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear'],
-    'MONDAY':  ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear'],
-    'WEEKEND': ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear'],
+    'DAILY':   ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear', '4.0'],
+    'MONDAY':  ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear', '4.0'],
+    'WEEKEND': ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear', '4.0'],
 }
 # LD-38 / F-23 - MANDATORY GENERATED BLOCKS, asserted by MARKER not heading.
 # A heading proves a section EXISTS; it does not prove it was BUILT the way

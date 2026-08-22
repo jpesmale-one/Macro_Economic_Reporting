@@ -1,0 +1,3194 @@
+[
+ {
+  "date": "2026-08-18",
+  "time": "12:30 AM",
+  "iso": "AU",
+  "event": "westpac consumer confidence change"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "12:30 AM",
+  "iso": "AU",
+  "event": "westpac consumer confidence index"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "02:30 AM",
+  "iso": "KR",
+  "event": "10-year ktb auction"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "5-year jgb auction"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "mas 12-week bill auction"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "mas 36-week bill auction"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "mas 4-week bill auction"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "unemployment rate"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "average earnings incl. bonus (3mo/yr)"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "employment change"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "average earnings excl. bonus (3mo/yr)"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "claimant count change"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "hmrc payrolls change"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "08:00 AM",
+  "iso": "ES",
+  "event": "balance of trade"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "08:30 AM",
+  "iso": "GB",
+  "event": "labour productivity qoq"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "zew economic sentiment index"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "09:00 AM",
+  "iso": "DE",
+  "event": "zew economic sentiment index"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "09:00 AM",
+  "iso": "DE",
+  "event": "zew current conditions"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "09:00 AM",
+  "iso": "GB",
+  "event": "treasury gilt 2036 auction"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "2033 bond auction"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "2038 bond auction"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "2040 bond auction"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "sacci business confidence"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "sacci business confidence"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "11:45 AM",
+  "iso": "EA",
+  "event": "ecb lane speech"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "12:15 PM",
+  "iso": "CA",
+  "event": "housing starts"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "12:15 PM",
+  "iso": "US",
+  "event": "adp employment change weekly"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "building permits prel"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "housing starts"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "building permits mom prel"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "export prices mom"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "housing starts mom"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "import prices mom"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "export prices yoy"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "import prices yoy"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "ny fed services activity index"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "12:55 PM",
+  "iso": "US",
+  "event": "redbook yoy"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "01:15 PM",
+  "iso": "US",
+  "event": "industrial production mom"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "01:15 PM",
+  "iso": "US",
+  "event": "capacity utilization"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "01:15 PM",
+  "iso": "US",
+  "event": "industrial production yoy"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "01:15 PM",
+  "iso": "US",
+  "event": "manufacturing production mom"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "01:15 PM",
+  "iso": "US",
+  "event": "manufacturing production yoy"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "pending home sales mom"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "pending home sales yoy"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "6-week bill auction"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "09:00 PM",
+  "iso": "US",
+  "event": "api crude oil stock change"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "machinery orders mom"
+ },
+ {
+  "date": "2026-08-18",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "machinery orders yoy"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "wage price index qoq"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "wage price index yoy"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "02:45 AM",
+  "iso": "AU",
+  "event": "rba hauser speech"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "52-week bill auction"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "boj jgb purchase"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "inflation rate yoy"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "core inflation rate yoy"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "inflation rate mom"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "core inflation rate mom"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "ppi core output mom"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "ppi core output yoy"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "ppi input mom"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "ppi input yoy"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "ppi output mom"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "ppi output yoy"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "retail price index mom"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "retail price index yoy"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "07:10 AM",
+  "iso": "EA",
+  "event": "ecb president lagarde speech"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "07:15 AM",
+  "iso": "ID",
+  "event": "loan growth yoy"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "07:20 AM",
+  "iso": "ID",
+  "event": "interest rate decision"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "07:20 AM",
+  "iso": "ID",
+  "event": "deposit facility rate"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "07:20 AM",
+  "iso": "ID",
+  "event": "lending facility rate"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "current account"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "current account s.a"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "08:00 AM",
+  "iso": "IT",
+  "event": "current account"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "08:00 AM",
+  "iso": "ZA",
+  "event": "inflation rate mom"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "08:00 AM",
+  "iso": "ZA",
+  "event": "inflation rate yoy"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "08:00 AM",
+  "iso": "ZA",
+  "event": "core inflation rate mom"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "08:00 AM",
+  "iso": "ZA",
+  "event": "core inflation rate yoy"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "core inflation rate yoy final"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "cpi final"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "inflation rate mom final"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "inflation rate yoy final"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "09:30 AM",
+  "iso": "DE",
+  "event": "10-year bund auction"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "11:00 AM",
+  "iso": "ZA",
+  "event": "retail sales mom"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "11:00 AM",
+  "iso": "ZA",
+  "event": "retail sales yoy"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba 30-year mortgage rate"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage applications"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage market index"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage refinance index"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba purchase index"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia crude oil stocks change"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia gasoline stocks change"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia crude oil imports change"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia cushing crude oil stocks change"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia distillate fuel production change"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia distillate stocks change"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia gasoline production change"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia heating oil stocks change"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia refinery crude runs change"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "17-week bill auction"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "04:00 PM",
+  "iso": "CA",
+  "event": "2-year bond auction"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "04:00 PM",
+  "iso": "RU",
+  "event": "ppi mom"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "04:00 PM",
+  "iso": "RU",
+  "event": "ppi yoy"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "20-year bond auction"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "06:00 PM",
+  "iso": "US",
+  "event": "fomc minutes"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "balance of trade"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "exports yoy"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "foreign bond investment"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "imports yoy"
+ },
+ {
+  "date": "2026-08-19",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "stock investment by foreigners"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "01:00 AM",
+  "iso": "AU",
+  "event": "consumer inflation expectations"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "01:15 AM",
+  "iso": "CN",
+  "event": "loan prime rate 1y"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "01:15 AM",
+  "iso": "CN",
+  "event": "loan prime rate 5y"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "employment change"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "full time employment chg"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "unemployment rate"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "part time employment chg"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "participation rate"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "20-year jgb auction"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "06:00 AM",
+  "iso": "DE",
+  "event": "ppi yoy"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "06:00 AM",
+  "iso": "DE",
+  "event": "ppi mom"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "construction output yoy"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "labour cost index yoy flash"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "09:00 AM",
+  "iso": "FR",
+  "event": "2029 oat auction"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "09:00 AM",
+  "iso": "FR",
+  "event": "2031 oat auction"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "09:00 AM",
+  "iso": "FR",
+  "event": "2032 oat auction"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "09:00 AM",
+  "iso": "FR",
+  "event": "2034 oat auction"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "10:00 AM",
+  "iso": "FR",
+  "event": "2032 oat\u20aci auction"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "10:00 AM",
+  "iso": "FR",
+  "event": "2043 oat\u20aci auction"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "10:00 AM",
+  "iso": "FR",
+  "event": "2047 oat\u20aci auction"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "10:00 AM",
+  "iso": "DE",
+  "event": "bundesbank monthly report"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "10:00 AM",
+  "iso": "GB",
+  "event": "cbi industrial trends orders"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "11:30 AM",
+  "iso": "IN",
+  "event": "infrastructure output yoy"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "11:30 AM",
+  "iso": "TR",
+  "event": "foreign exchange reserves"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "new housing price index mom"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "ppi mom"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "ppi yoy"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "raw materials prices mom"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "raw materials prices yoy"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "12:30 PM",
+  "iso": "ZA",
+  "event": "building permits yoy"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "initial jobless claims"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "philadelphia fed manufacturing index"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "continuing jobless claims"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "jobless claims 4-week average"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "philly fed business conditions"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "philly fed capex index"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "philly fed employment"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "philly fed new orders"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "philly fed prices paid"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "cb leading index mom"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "02:30 PM",
+  "iso": "TR",
+  "event": "central government debt"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia natural gas stocks change"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "03:00 PM",
+  "iso": "AR",
+  "event": "consumer confidence"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "03:00 PM",
+  "iso": "MX",
+  "event": "monetary policy meeting minutes"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "4-week bill auction"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "8-week bill auction"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "15-year mortgage rate"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "30-year mortgage rate"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "30-year tips auction"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "05:30 PM",
+  "iso": "AR",
+  "event": "leading indicator mom"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "07:10 PM",
+  "iso": "AR",
+  "event": "balance of trade"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "07:10 PM",
+  "iso": "AR",
+  "event": "economic activity yoy"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "08:30 PM",
+  "iso": "US",
+  "event": "fed balance sheet"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "09:00 PM",
+  "iso": "KR",
+  "event": "ppi mom"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "09:00 PM",
+  "iso": "KR",
+  "event": "ppi yoy"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "11:00 PM",
+  "iso": "AU",
+  "event": "s&p global manufacturing pmi flash"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "11:00 PM",
+  "iso": "AU",
+  "event": "s&p global services pmi flash"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "11:00 PM",
+  "iso": "AU",
+  "event": "s&p global composite pmi flash"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "11:01 PM",
+  "iso": "GB",
+  "event": "gfk consumer confidence"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "inflation rate yoy"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "core inflation rate yoy"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "inflation rate ex-food and energy yoy"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "inflation rate mom"
+ },
+ {
+  "date": "2026-08-20",
+  "time": "",
+  "iso": "BR",
+  "event": "bcb national monetary council meeting"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "12:30 AM",
+  "iso": "JP",
+  "event": "s&p global manufacturing pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "12:30 AM",
+  "iso": "JP",
+  "event": "s&p global services pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "12:30 AM",
+  "iso": "JP",
+  "event": "s&p global composite pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "3-month bill auction"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "03:40 AM",
+  "iso": "ID",
+  "event": "current account"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "05:00 AM",
+  "iso": "IN",
+  "event": "hsbc composite pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "05:00 AM",
+  "iso": "IN",
+  "event": "hsbc manufacturing pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "05:00 AM",
+  "iso": "IN",
+  "event": "hsbc services pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "retail sales mom"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "retail sales yoy"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "public sector net borrowing ex banks"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "retail sales ex fuel mom"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "retail sales ex fuel yoy"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "business confidence"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "business climate indicator"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "business confidence"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "consumer confidence"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "capacity utilization"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "07:15 AM",
+  "iso": "FR",
+  "event": "s&p global composite pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "07:15 AM",
+  "iso": "FR",
+  "event": "s&p global manufacturing pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "07:15 AM",
+  "iso": "FR",
+  "event": "s&p global services pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "07:30 AM",
+  "iso": "DE",
+  "event": "s&p global manufacturing pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "07:30 AM",
+  "iso": "DE",
+  "event": "s&p global composite pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "07:30 AM",
+  "iso": "DE",
+  "event": "s&p global services pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "s&p global composite pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "s&p global manufacturing pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "s&p global services pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "ecb consumer inflation expectations"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "08:00 AM",
+  "iso": "TR",
+  "event": "tourist arrivals yoy"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "08:30 AM",
+  "iso": "GB",
+  "event": "s&p global manufacturing pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "08:30 AM",
+  "iso": "GB",
+  "event": "s&p global services pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "08:30 AM",
+  "iso": "GB",
+  "event": "s&p global composite pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "11:00 AM",
+  "iso": "CA",
+  "event": "cfib business barometer"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "11:30 AM",
+  "iso": "IN",
+  "event": "bank loan growth yoy"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "11:30 AM",
+  "iso": "IN",
+  "event": "deposit growth yoy"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "11:30 AM",
+  "iso": "IN",
+  "event": "foreign exchange reserves"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "retail sales mom"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "retail sales yoy"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "retail sales ex autos mom"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "retail sales mom final"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "retail sales mom prel"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "retail sales yoy"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "01:45 PM",
+  "iso": "US",
+  "event": "s&p global composite pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "01:45 PM",
+  "iso": "US",
+  "event": "s&p global manufacturing pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "01:45 PM",
+  "iso": "US",
+  "event": "s&p global services pmi flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "02:00 PM",
+  "iso": "EA",
+  "event": "consumer confidence flash"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "02:30 PM",
+  "iso": "CA",
+  "event": "senior loan officer survey"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "baker hughes oil rig count"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "baker hughes total rigs count"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "07:00 PM",
+  "iso": "AR",
+  "event": "retail sales yoy"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "",
+  "iso": "CN",
+  "event": "fdi (ytd) yoy"
+ },
+ {
+  "date": "2026-08-21",
+  "time": "",
+  "iso": "EA",
+  "event": "negotiated wage growth"
+ },
+ {
+  "date": "2026-08-23",
+  "time": "06:00 AM",
+  "iso": "SA",
+  "event": "construction cost index"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "02:30 AM",
+  "iso": "KR",
+  "event": "5-year ktb auction"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "10-year climate transition jgb auction"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "core inflation rate yoy"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "inflation rate mom"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "inflation rate yoy"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "182-day t-bill auction"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "273-day t-bill auction"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "364-day t-bill auction"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "91-day t-bill auction"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "economic activity mom"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "economic activity yoy"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "gdp growth rate qoq final"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "gdp growth rate yoy final"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "mid-month core inflation rate mom"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "mid-month core inflation rate yoy"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "mid-month inflation rate mom"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "mid-month inflation rate yoy"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "manufacturing sales mom prel"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "chicago fed national activity index"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "01:00 PM",
+  "iso": "FR",
+  "event": "12-month btf auction"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "01:00 PM",
+  "iso": "FR",
+  "event": "3-month btf auction"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "01:00 PM",
+  "iso": "FR",
+  "event": "6-month btf auction"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "3-month bill auction"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "6-month bill auction"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "09:00 PM",
+  "iso": "KR",
+  "event": "consumer confidence"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "",
+  "iso": "ID",
+  "event": "m2 money supply yoy"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "",
+  "iso": "DE",
+  "event": "11-month bubill auction"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "",
+  "iso": "DE",
+  "event": "5-month bubill auction"
+ },
+ {
+  "date": "2026-08-24",
+  "time": "",
+  "iso": "BR",
+  "event": "bcb focus market readout"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "rba meeting minutes"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "02:30 AM",
+  "iso": "KR",
+  "event": "20-year ktb auction"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "05:00 AM",
+  "iso": "AU",
+  "event": "rba jacobs speech"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "05:00 AM",
+  "iso": "JP",
+  "event": "coincident index final"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "05:00 AM",
+  "iso": "JP",
+  "event": "leading economic index final"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "mas 12-week bill auction"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "mas 4-week bill auction"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "06:00 AM",
+  "iso": "DE",
+  "event": "gdp growth rate qoq final"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "06:00 AM",
+  "iso": "DE",
+  "event": "gdp growth rate yoy final"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "06:00 AM",
+  "iso": "SA",
+  "event": "balance of trade"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "06:00 AM",
+  "iso": "SA",
+  "event": "exports"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "06:00 AM",
+  "iso": "SA",
+  "event": "imports"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "consumer confidence"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "07:00 AM",
+  "iso": "ZA",
+  "event": "leading business cycle indicator mom"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "ppi yoy"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "ifo business climate"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "ifo current conditions"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "ifo expectations"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "09:00 AM",
+  "iso": "GB",
+  "event": "treasury gilt 2033 auction"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "09:30 AM",
+  "iso": "DE",
+  "event": "2-year schatz auction"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "2037 bond auction"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "2039 bond auction"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "2042 bond auction"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "11:00 AM",
+  "iso": "BR",
+  "event": "fgv consumer confidence"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "12:00 PM",
+  "iso": "US",
+  "event": "fed barkin speech"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "12:15 PM",
+  "iso": "US",
+  "event": "adp employment change weekly"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "wholesale sales mom prel"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "12:55 PM",
+  "iso": "US",
+  "event": "redbook yoy"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "01:00 PM",
+  "iso": "US",
+  "event": "s&p/case-shiller home price yoy"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "01:00 PM",
+  "iso": "US",
+  "event": "house price index"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "01:00 PM",
+  "iso": "US",
+  "event": "house price index mom"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "01:00 PM",
+  "iso": "US",
+  "event": "house price index yoy"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "01:00 PM",
+  "iso": "US",
+  "event": "s&p/case-shiller home price mom"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "cb consumer confidence"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "new home sales"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "new home sales mom"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "richmond fed manufacturing index"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "richmond fed manufacturing shipments index"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "richmond fed services revenues index"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "03:00 PM",
+  "iso": "MX",
+  "event": "current account"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "6-week bill auction"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "2-year note auction"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "money supply"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "08:00 PM",
+  "iso": "US",
+  "event": "fed barkin speech"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "08:30 PM",
+  "iso": "US",
+  "event": "api crude oil stock change"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "09:00 PM",
+  "iso": "KR",
+  "event": "business confidence"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "",
+  "iso": "CN",
+  "event": "national people's congress"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "",
+  "iso": "US",
+  "event": "building permits final"
+ },
+ {
+  "date": "2026-08-25",
+  "time": "",
+  "iso": "US",
+  "event": "building permits mom final"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "01:00 AM",
+  "iso": "AU",
+  "event": "westpac leading index mom"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "construction work done qoq"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "inflation rate mom"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "inflation rate yoy"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "rba trimmed mean cpi mom"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "rba trimmed mean cpi yoy"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "cpi"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "rba weighted median cpi mom"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "rba weighted median cpi yoy"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "industrial production mom"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "industrial production yoy"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "09:10 AM",
+  "iso": "IT",
+  "event": "2-year btp short term auction"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "09:30 AM",
+  "iso": "DE",
+  "event": "15-year bund auction"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "10:00 AM",
+  "iso": "GB",
+  "event": "cbi distributive trades"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba 30-year mortgage rate"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage applications"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage market index"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage refinance index"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba purchase index"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "11:30 AM",
+  "iso": "IN",
+  "event": "m3 money supply yoy"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:00 PM",
+  "iso": "BR",
+  "event": "ipca mid-month cpi mom"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:00 PM",
+  "iso": "BR",
+  "event": "ipca mid-month cpi yoy"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "core pce price index mom"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "durable goods orders mom"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "gdp growth rate qoq 2nd est"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "personal income mom"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "personal spending mom"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "corporate profits qoq prel"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "durable goods orders ex transp mom"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "gdp price index qoq 2nd est"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "pce price index mom"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "pce price index yoy"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "core pce price index yoy"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "core pce prices qoq 2nd est"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "durable goods orders ex defense mom"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "gdp sales qoq 2nd est"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "non defense goods orders ex air"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "pce prices qoq 2nd est"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "real consumer spending qoq 2nd est"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "real personal spending mom"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia crude oil stocks change"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia gasoline stocks change"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia crude oil imports change"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia cushing crude oil stocks change"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia distillate fuel production change"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia distillate stocks change"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia gasoline production change"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia heating oil stocks change"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia refinery crude runs change"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "17-week bill auction"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "03:45 PM",
+  "iso": "US",
+  "event": "fed barkin speech"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "04:00 PM",
+  "iso": "CA",
+  "event": "10-year bond auction"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "04:00 PM",
+  "iso": "RU",
+  "event": "industrial production yoy"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "2-year frn auction"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "5-year note auction"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "11:01 PM",
+  "iso": "GB",
+  "event": "car production yoy"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "foreign bond investment"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "stock investment by foreigners"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "",
+  "iso": "CN",
+  "event": "national people's congress"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "01:00 AM",
+  "iso": "KR",
+  "event": "interest rate decision"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "rba bulletin"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "building capital expenditure qoq"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "household spending mom"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "household spending yoy"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "plant machinery capital expenditure qoq"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "private capital expenditure qoq"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "01:30 AM",
+  "iso": "CN",
+  "event": "industrial profits (ytd) yoy"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "01:30 AM",
+  "iso": "JP",
+  "event": "boj himino speech"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "boj jgb purchase"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "10-year bond auction"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "6-month t-bill auction"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "06:00 AM",
+  "iso": "DE",
+  "event": "gfk consumer confidence"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "ppi mom"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "ppi yoy"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "loans to companies yoy"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "loans to households yoy"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "m3 money supply yoy"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "09:10 AM",
+  "iso": "IT",
+  "event": "6-month bot auction"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "ppi mom"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "ppi yoy"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "10:00 AM",
+  "iso": "FR",
+  "event": "unemployment benefit claims"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "10:00 AM",
+  "iso": "FR",
+  "event": "jobseekers total"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "11:30 AM",
+  "iso": "BR",
+  "event": "current account"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "11:30 AM",
+  "iso": "BR",
+  "event": "foreign direct investment"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "11:30 AM",
+  "iso": "EA",
+  "event": "ecb monetary policy meeting accounts"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "11:30 AM",
+  "iso": "TR",
+  "event": "foreign exchange reserves"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "12:00 PM",
+  "iso": "BR",
+  "event": "unemployment rate"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "balance of trade"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "unemployment rate"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "current account"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "average weekly earnings yoy"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "goods trade balance adv"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "initial jobless claims"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "retail inventories ex autos mom adv"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "wholesale inventories mom adv"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "continuing jobless claims"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "jobless claims 4-week average"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia natural gas stocks change"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "03:00 PM",
+  "iso": "US",
+  "event": "kansas fed composite index"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "03:00 PM",
+  "iso": "US",
+  "event": "kansas fed manufacturing index"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "4-week bill auction"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "8-week bill auction"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "15-year mortgage rate"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "30-year mortgage rate"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "7-year note auction"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "08:30 PM",
+  "iso": "US",
+  "event": "fed balance sheet"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "unemployment rate"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "jobs/applications ratio"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "tokyo core cpi yoy"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "tokyo cpi ex food and energy yoy"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "tokyo cpi yoy"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "",
+  "iso": "AU",
+  "event": "rba payments system board meeting"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "",
+  "iso": "CN",
+  "event": "national people's congress"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "",
+  "iso": "US",
+  "event": "jackson hole symposium"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "",
+  "iso": "RU",
+  "event": "gdp yoy"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "02:00 AM",
+  "iso": "SG",
+  "event": "bank lending"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "03:30 AM",
+  "iso": "SG",
+  "event": "export prices yoy"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "03:30 AM",
+  "iso": "SG",
+  "event": "import prices yoy"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "03:30 AM",
+  "iso": "SG",
+  "event": "ppi yoy"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "2-year jgb auction"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "3-month bill auction"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "05:00 AM",
+  "iso": "JP",
+  "event": "consumer confidence"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "05:00 AM",
+  "iso": "JP",
+  "event": "housing starts yoy"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "05:00 AM",
+  "iso": "JP",
+  "event": "construction orders yoy"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "nationwide housing prices mom"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "nationwide housing prices yoy"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "inflation rate yoy prel"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "inflation rate mom prel"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "gdp growth rate qoq final"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "gdp growth rate yoy final"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "harmonised inflation rate mom prel"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "harmonised inflation rate yoy prel"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "household consumption mom"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "inflation rate mom prel"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "inflation rate yoy prel"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "core inflation rate yoy prel"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "harmonised inflation rate mom prel"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "harmonised inflation rate yoy prel"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "retail sales mom"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "retail sales yoy"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "balance of trade final"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "economic confidence index"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "exports final"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "imports final"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "07:55 AM",
+  "iso": "DE",
+  "event": "unemployed persons"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "07:55 AM",
+  "iso": "DE",
+  "event": "unemployment change"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "07:55 AM",
+  "iso": "DE",
+  "event": "unemployment rate"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "08:00 AM",
+  "iso": "IT",
+  "event": "industrial sales mom"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "08:00 AM",
+  "iso": "IT",
+  "event": "industrial sales yoy"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "economic sentiment"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "consumer confidence final"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "consumer inflation expectations"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "industrial sentiment"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "selling price expectations"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "services sentiment"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "09:00 AM",
+  "iso": "IT",
+  "event": "business confidence"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "09:00 AM",
+  "iso": "IT",
+  "event": "consumer confidence"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "09:10 AM",
+  "iso": "IT",
+  "event": "btp auction"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "10:00 AM",
+  "iso": "ES",
+  "event": "business confidence"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "10:30 AM",
+  "iso": "IN",
+  "event": "industrial production yoy"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "10:30 AM",
+  "iso": "IN",
+  "event": "manufacturing production yoy"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "11:00 AM",
+  "iso": "BR",
+  "event": "igp-m inflation mom"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "11:30 AM",
+  "iso": "BR",
+  "event": "bank lending mom"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "11:30 AM",
+  "iso": "IN",
+  "event": "foreign exchange reserves"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "12:00 PM",
+  "iso": "BR",
+  "event": "ppi mom"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "12:00 PM",
+  "iso": "BR",
+  "event": "ppi yoy"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "12:00 PM",
+  "iso": "ZA",
+  "event": "balance of trade"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "gdp growth rate annualized"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "gdp growth rate qoq"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "gdp mom"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "gdp mom prel"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "gdp implicit price qoq"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "01:45 PM",
+  "iso": "US",
+  "event": "chicago pmi"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "non farm payrolls annual revision prel"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "michigan consumer sentiment final"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "michigan 5 year inflation expectations final"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "michigan consumer expectations final"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "michigan current conditions final"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "michigan inflation expectations final"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "03:00 PM",
+  "iso": "CA",
+  "event": "budget balance"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "baker hughes oil rig count"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "baker hughes total rigs count"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "",
+  "iso": "CN",
+  "event": "national people's congress"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "",
+  "iso": "US",
+  "event": "jackson hole symposium"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "",
+  "iso": "ZA",
+  "event": "budget balance"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "",
+  "iso": "RU",
+  "event": "m2 money supply yoy"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "",
+  "iso": "BR",
+  "event": "net payrolls"
+ },
+ {
+  "date": "2026-08-29",
+  "time": "",
+  "iso": "US",
+  "event": "jackson hole symposium"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "11:00 PM",
+  "iso": "KR",
+  "event": "industrial production mom"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "11:00 PM",
+  "iso": "KR",
+  "event": "industrial production yoy"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "11:00 PM",
+  "iso": "KR",
+  "event": "retail sales mom"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "industrial production mom prel"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "retail sales yoy"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "industrial production yoy prel"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "retail sales mom"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "",
+  "iso": "SA",
+  "event": "m3 money supply yoy"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "",
+  "iso": "SA",
+  "event": "private bank lending yoy"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "01:00 AM",
+  "iso": "AU",
+  "event": "td-mi inflation gauge mom"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "company gross profits qoq"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "business inventories qoq"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "housing credit mom"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "private sector credit mom"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "private sector credit yoy"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "01:30 AM",
+  "iso": "CN",
+  "event": "nbs manufacturing pmi"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "01:30 AM",
+  "iso": "CN",
+  "event": "nbs non manufacturing pmi"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "01:30 AM",
+  "iso": "CN",
+  "event": "nbs general pmi"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "02:30 AM",
+  "iso": "KR",
+  "event": "2-year ktb auction"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "06:00 AM",
+  "iso": "DE",
+  "event": "import prices mom"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "06:00 AM",
+  "iso": "DE",
+  "event": "import prices yoy"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "06:00 AM",
+  "iso": "ZA",
+  "event": "m3 money supply yoy"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "06:00 AM",
+  "iso": "ZA",
+  "event": "private sector credit yoy"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "gdp growth rate qoq"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "gdp growth rate yoy"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "unemployment rate"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "participation rate"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "baden wuerttemberg cpi mom"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "baden wuerttemberg cpi yoy"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "bavaria cpi mom"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "bavaria cpi yoy"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "brandenburg cpi mom"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "brandenburg cpi yoy"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "hesse cpi mom"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "hesse cpi yoy"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "north rhine westphalia cpi mom"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "north rhine westphalia cpi yoy"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "saxony cpi mom"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "saxony cpi yoy"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "08:00 AM",
+  "iso": "ES",
+  "event": "current account"
+ }
+]

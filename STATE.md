@@ -2382,3 +2382,59 @@ LD-39 - EVERY DERIVED BLOCK IS GENERATED, AND THE RENDERER COUNTS THE ROWS.
   WHY A ROW COUNT AND NOT A CONTENT CHECK: this is the F-15 lesson a third
   time. Content checks ask "is this figure right?" and cannot see a figure that
   was never published. Only counting catches an omission.
+
+F-25 - SECTION 4.0, THE WEEK-AHEAD PROJECTIONS, WENT MISSING. OPEN->FIXED.
+  Jeff: "4.1 Currency bands this is already merged with 2.0 Category tally. I
+  like that. now 4.0 - Week ahead: the week's projections is missing"
+  BOTH HALVES CORRECT. The 4.1/2.0 merge was deliberate and he endorsed it -
+  the tally and the bands are now one table, so a band can never disagree with
+  the score that produced it. But 4.0 was simply gone. I wrote a "4.5 week
+  ahead - what could void a proposal" and mistook it for the same thing. It is
+  not: 4.5 is a RISK LIST, 4.0 is a PROJECTION TABLE with a PROJECTED SCORE per
+  event, and only the second one can be graded afterwards.
+  WHY THIS ONE MATTERS MOST OF THE FOUR MISSES THIS SESSION: 4.0 is the only
+  forward-looking record the method keeps about ITSELF. F-21 - the falsification
+  of EF-4's one-directional claim - EXISTS ONLY BECAUSE r13 WROTE ITS
+  PROJECTIONS DOWN IN ADVANCE. Drop the table for one week and that week is
+  permanently ungradeable; the method stops being falsifiable.
+  WHY NO GUARD SAW IT: R-7's manifest checked h2 sections and the 2.x
+  sub-blocks. Nothing checked 4.x. Fixed - '4.0' added to REQUIRED_SUB for all
+  three edition types, verified against a fixture with the heading renamed.
+  PATTERN ACROSS F-23/F-24/F-25: every one is a MANDATORY BLOCK I dropped or
+  degraded while writing a new edition type from scratch, and every one was
+  caught by Jeff rather than by tooling. The weekend edition was the first
+  edition built without an immediate predecessor to copy, and that is exactly
+  when a checklist is load-bearing. The manifest now carries all three.
+
+# 2026-08-23 SECTION 4.0 REBUILT with real projections for 24-28 Aug.
+#   Calendar captured to data/raw/calendar/2026-08-23_0130PHT_cal_24-28aug_prep
+#   .json (F-14). 89 whitelist-relevant events next week; 4 carry a scored
+#   projection, the rest published UNSCORED WITH THE REASON rather than given a
+#   guessed number - same discipline section 3 applies to market-implied odds.
+#   THE FOUR SCORED: AUD Inflation Wed 26 (3.8% -> fcst 3.2%, projected
+#   NEUTRAL), JPY Unemployment Fri 28 (2.5% -> 2.5%, NEUTRAL), EUR Flash
+#   Inflation Fri 28 (2.9% -> fcst 3.1%, projected GOOD), CAD GDP Annualized
+#   Fri 28 (+3.4% -> fcst -0.1%, projected BAD, non-whitelist).
+#
+#   AN ARITHMETIC ERROR I MADE AND CAUGHT BY TESTING, worth recording because
+#   the correction is the finding: I first wrote that a 3.2% AU CPI print
+#   "drops inside the RBA's 2-3% ceiling for the first time" and flagged the
+#   rate leg as needing a re-run. WRONG - 3.2 is still ABOVE 3.0. Ran it
+#   through rate_model.expected() instead of reasoning about it:
+#     3.2% (consensus) -> 0.00, AUD unchanged at +2.08
+#     3.0% or below    -> -0.38, AUD +1.70   <- the real threshold
+#     below 2.0%       -> -0.75, AUD +1.33
+#   WEDNESDAY IS A THRESHOLD EVENT, NOT A MAGNITUDE EVENT. 3.2% and 3.4% are
+#   the same score; 3.0% is a different score. Published as a table.
+#   THE LESSON IS LD-39's, ONE LAYER UP: do not reason about what a model will
+#   output - RUN THE MODEL. I nearly published a projection derived from
+#   eyeballing a band boundary.
+#
+#   BIGGEST SCORED EVENT OF THE WEEK: EUR flash inflation Fri 28 15:00 PHT.
+#   EUR's +3.00 Inflation and +0.75 Rate legs BOTH rest on ">2% and rising".
+#   A print below 2.9% breaks the rising test and costs EUR up to 3.75 points -
+#   enough to drop it out of STRONG and weaken the EURCHF proposal directly.
+#   CAD GDP Fri 28: -0.1% annualized forecast against +3.4% prior. Not a
+#   whitelist row so it does not move the score, but CAD is the long leg of the
+#   #1 proposal AND already carries a superseded Spending row from Friday's
+#   retail sales miss. Two hits to CAD in one week.
