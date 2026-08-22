@@ -45,7 +45,7 @@ ROWS = [
  ("Spending","US","CB Consumer Confidence","51.0","55.2","Aug/26",">Prev","BAD"),
  ("Spending","US","Personal Spending MoM","0.3%","0.9%","Jun/26","0-0.5%","NEUTRAL"),
  ("Spending","EA","Retail Sales YoY","0.7%","1.9%","Jun/26",">0.5%","GOOD"),
- ("Spending","EA","Consumer Confidence Flash","-15.5","-15.9","Aug/26",">Prev","GOOD"),
+ ("Spending","EA","Consumer Confidence Final","-15.9","-17.6","Jul/26",">Prev","GOOD"),
  ("Spending","GB","GfK Consumer Confidence","-14","-17","Aug/26",">Prev","GOOD"),
  ("Spending","GB","Retail Sales YoY","1.6%","4.2%","Jul/26",">0.5%","GOOD"),
  ("Spending","JP","Household Spending YoY","-3.3%","-0.4%","Jun/26","<0%","BAD"),

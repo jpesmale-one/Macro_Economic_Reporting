@@ -5,7 +5,7 @@ revision: r1
 seal: PREP
 type: WEEKEND
 eyebrow: Macro Economic Reporting &middot; Weekend Prep &mdash; week of 24&ndash;28 Aug
-chip: PROPOSED <b class="up">CADJPY +5</b> &middot; EURCHF +3 &middot; <span class="dn">GBPUSD +1</span>
+chip: PROPOSED <b class="up">CADJPY +5</b> &middot; <span class="dn">EURCHF +2 &middot; GBPUSD +1</span>
 chip: WEEK AHEAD <b>AU CPI Wed</b> &middot; <span class="dn">Jackson Hole Thu&ndash;Sat</span>
 chip: SCALE <b>&plusmn;11.00</b> <span class="dn">rate = cat 6</span>
 fng_note: The index reads <b>Greed</b> while <b>four of seven components sit in Fear</b>. Junk Bond Demand at <b>95.8</b> (extreme greed) and Safe Haven Demand at <b>71.0</b> carry the headline on their own; Stock Price Strength <b>29.4</b>, Momentum <b>39.0</b> and Put/Call <b>43.4</b> all read Fear. Credit is priced for calm while equity internals are not.
@@ -306,7 +306,7 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | USD | CB Consumer Confidence | 51.0 | 55.2 | Aug/26 | >Prev | **BAD** |
 | USD | Personal Spending MoM | 0.3% | 0.9% | Jun/26 | 0-0.5% | NEUTRAL |
 | USD | Retail Sales YoY | 5.0% | 6.8% | Jul/26 | >0.5% | **GOOD** |
-| EUR | Consumer Confidence Flash | -15.5 | -15.9 | Aug/26 | >Prev | **GOOD** |
+| EUR | Consumer Confidence Final | -15.9 | -17.6 | Jul/26 | >Prev | **GOOD** |
 | EUR | Retail Sales YoY | 0.7% | 1.9% | Jun/26 | >0.5% | **GOOD** |
 | GBP | GfK Consumer Confidence | -14 | -17 | Aug/26 | >Prev | **GOOD** |
 | GBP | Retail Sales YoY | 1.6% | 4.2% | Jul/26 | >0.5% | **GOOD** |
@@ -326,7 +326,7 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | CHF | Consumer Confidence | -35 | -36 | Jul/26 | >Prev | **GOOD** |
 | CHF | Retail Sales YoY | 1.5% | 3.4% | Jun/26 | >0.5% | **GOOD** |
 
-**⚠ THREE ROWS UPDATED WITH FRIDAY'S PRINTS — AND THE SCORES DID NOT MOVE.** GBP Retail Sales YoY **4.2% → 1.6%** (ONS, 21 Aug), GfK **−17 → −14** (20 Aug), EUR Consumer Confidence **−15.9 → −15.5** (21 Aug). All three stay GOOD because none crossed a threshold — see §2.7. **CAD Retail Sales YoY cannot be updated:** StatCan's 21 Aug release carries no YoY figure, and its −0.8% July number is an **advance estimate from 56.5% of firms that StatCan says will be revised**. Full July data lands **24 Sep** *(statcan.gc.ca, primary)*.
+**⚠ TWO ROWS UPDATED WITH FRIDAY'S PRINTS — AND THE SCORES DID NOT MOVE.** GBP Retail Sales YoY **4.2% → 1.6%** (ONS primary, 21 Aug) and GfK **−17 → −14** (20 Aug). Both stay GOOD because neither crossed a threshold — see §2.7. **EUR Consumer Confidence stays at the July FINAL −15.9.** August's −15.5 is a **flash** estimate; the whitelist names the *Final*, and August's Final releases **Fri 28 Aug** — it is a §4.0 projection, not a §2 row. **CAD Retail Sales YoY cannot be updated:** StatCan's 21 Aug release carries no YoY figure and its −0.8% July number is an advance estimate from 56.5% of firms, revised **24 Sep** *(statcan.gc.ca, primary)*.
 
 ### 2.3 Trade (weight 1)
 
@@ -476,7 +476,7 @@ PHT, so PHT = UTC+8 (F-2).
 
 | When (PHT) | CCY | Indicator | Current | Forecast | **Projected** | Test applied |
 |---|---|---|---|---|---|---|
-| Tue 25 14:45 | EUR | Consumer Confidence Flash | −15.5 | — | **UNSCORED** | no consensus sourced |
+| **Fri 28 17:00** | **EUR** | **Consumer Confidence Final (Aug)** | **−15.9** *(Jul final)* | **−15.9** | **NEUTRAL** | >Prev fails on an unchanged print; **flash ran −15.5** |
 | **Tue 25 22:00** | **USD** | **CB Consumer Confidence** | **51.0** | — | **UNSCORED** | no consensus sourced; currently **BAD** |
 | **Wed 26 09:30** | **AUD** | **Inflation Rate YoY** | **3.8%** | **3.2%** | **NEUTRAL** | >2% & **falling** — unchanged at 0.00 |
 | **Wed 26 20:30** | **USD** | **Personal Spending MoM** | **0.3%** | **0.2%** | **NEUTRAL** | 0–0.5% band — unchanged |
@@ -486,13 +486,27 @@ PHT, so PHT = UTC+8 (F-2).
 | Fri 28 15:00 | EUR | Retail Sales YoY | 0.7% | — | **UNSCORED** | no consensus sourced |
 | Fri 28 15:55 | EUR | Unemployment Rate | 6.3% | — | **UNSCORED** | no consensus sourced |
 
-**Nine whitelist indicators land Mon–Fri. Five carry a scored projection**; four
+**Nine whitelist indicators land Mon–Fri. Six carry a scored projection**; three
 are published UNSCORED with the reason rather than given a guessed number — the
 same discipline §3 applies to market-implied odds.
 
-**⚠ NOT ONE PROJECTED SCORE CHANGES.** All five hold their current grade. On the
-consensus figures, **no currency's category score moves next week** and the
-bands stand as published.
+**⚠ ONE PROJECTION CHANGES A SCORE, AND IT LANDS ON A PROPOSED LEG.**
+
+**EUR Consumer Confidence Final (Aug), Fri 28 17:00.** The whitelist row is the
+**Final**, currently the July print **−15.9**, scored GOOD on `>Prev`. TE's
+forecast for the August Final is **−15.9 — unchanged**, and `>Prev` **fails on
+an unchanged print**. EUR has two Spending indicators, so each is worth 0.500:
+
+| | EUR Spending | EUR total |
+|---|---|---|
+| Now (GOOD) | +1.00 | **+6.25** |
+| Final prints −15.9 → NEUTRAL | +0.50 | **+5.75** |
+| Final prints better than −15.9 (August **flash** ran **−15.5**) | +1.00 | +6.25 unchanged |
+
+**EUR stays STRONG either way** (the band floor is +5.50), but −5.75 is 0.25
+from that floor. **EURCHF is the pair with EUR as its long leg.**
+
+The other five projections all hold their current grade.
 
 #### Off the whitelist — narrative only, never scored (F-3)
 
@@ -603,7 +617,7 @@ not guarantees and nothing here is a prediction.** Every one carries a falsifier
 | Rank | Pair | Dir | Conf | Spread | **Fri close** | Falsifier | Clear by |
 |---|---|---|---|---|---|---|---|
 | **1** | **CADJPY** | LONG | **HIGH (+5)** | **8.38** | **115.490** | close < **114.992** | 49.8 pips |
-| **2** | **EURCHF** | LONG | **MEDIUM (+3)** | **9.63** | **0.93562** | close < **0.93071** | 49.1 pips |
+| **2** | **EURCHF** | LONG | **LOW (+2)** | **9.63** | **0.93562** | close < **0.93071** | 49.1 pips |
 | **3** | **GBPUSD** | LONG | **LOW (+1)** | **3.50** | **1.36456** | close < **1.35197** | 125.9 pips |
 
 **Net exposure: long CAD · EUR · GBP, short JPY · CHF · USD.** Six currencies,
@@ -619,15 +633,15 @@ ahead** row scores what is *scheduled*, at half weight — and **only from
 whitelist indicators** (F-3). Off-list events inform the narrative and never
 score, however much they move price.
 
-| | **CADJPY — HIGH (+5)** | **EURCHF — MEDIUM (+3)** | **GBPUSD — LOW (+1)** |
+| | **CADJPY — HIGH (+5)** | **EURCHF — LOW (+2)** | **GBPUSD — LOW (+1)** |
 |---|---|---|---|
 | **§2 spread** | **+2** — 8.38 | **+2** — 9.63 | **0** — 3.50, thinnest carried |
 | **Structure** | **+2** — cleared 114.992–115.203 and held above it all Friday | **+1** — held 0.93071 support, 2 touches | **+1** — new run high 1.36758 |
 | Last bar | **+1** — +12.4 pips with the read | **+1** — +8.3 pips with the read | **+1** — +14.8 pips with the read |
 | Fresh driver | **+1** — JPY trade deficit doubled; CAD tariff relief | **+1** — SNB confirms low inflation is structural (§1) | **+1** — dollar at 3-month lows |
-| **§4.0 week ahead** | **−1** — **JPY Consumer Confidence projected GOOD** (Fri 28). A short-JPY read wants JPY weak; a GOOD JPY print opposes it | **0** — EUR's two events are UNSCORED, **and CHF has no release all week**, so neither leg can correct through data | **−1** — **Jackson Hole on the short leg** (Thu–Fri): off-list and unscorable, but it moves the price |
+| **§4.0 week ahead** | **−1** — **JPY Consumer Confidence projected GOOD** (Fri 28). A short-JPY read wants JPY weak; a GOOD JPY print opposes it | **−1** — **EUR Consumer Confidence Final projected NEUTRAL** (Fri 28), which would cut EUR +6.25 → +5.75. CHF has no release, so the short leg cannot correct either | **−1** — **Jackson Hole on the short leg** (Thu–Fri): off-list and unscorable, but it moves the price |
 | Against | — | **−2** — **CHF leg; the model was wrong on CHF all last week** | **−1** score vs hot US data |
-| **Total** | **+5 → HIGH** | **+3 → MEDIUM** | **+1 → LOW** |
+| **Total** | **+5 → HIGH** | **+2 → LOW** | **+1 → LOW** |
 
 Bands: **≥5 HIGH · 3–4 MEDIUM · ≤2 LOW** · projection terms: **+1** favoured leg
 supported · **−1** favoured leg opposed · **−1** unscorable price-moving event
@@ -651,12 +665,23 @@ is what the tally is supposed to tell you when nothing is scheduled.
   Confidence Fri 28**, projected GOOD. A strengthening yen read works against a
   short-JPY position. **CAD GDP is not a whitelist row** and does not score,
   though it is worth watching (§4.0, off-list block).
-- **EURCHF** — **CHF has no release all week**, so the −3.38 short leg cannot
-  correct through data. EUR's two events are unscored. The leg that could hurt
-  this trade is silent.
+- **EURCHF** — **downgraded to LOW (+2) on the projections.** EUR Consumer
+  Confidence Final on Fri 28 is forecast unchanged at −15.9, which fails the
+  `>Prev` test and would cut EUR from +6.25 to +5.75. CHF has no release all
+  week, so the short leg cannot correct either. **The long leg has a scheduled
+  downgrade and the short leg has no scheduled repair.**
 - **GBPUSD** — **no GBP whitelist event lands at all.** Its only week-ahead term
   is Jackson Hole on the short-USD leg: off-list, unscorable, and the single
   largest price risk in the set.
+
+**⚠ TWO OF THREE ARE NOW LOW, AND THAT IS THE HONEST READ.** LOW does not mean
+reject (LD-20) — it means know why it is the weakest of the set. All three still
+clear conviction, remain leg-disjoint, and keep their falsifiers. But only
+**CADJPY** carries HIGH confidence into next week, and the reason is not its
+fundamentals: **it is that the week ahead is unhelpful to the other two.**
+EURCHF has a scheduled downgrade on its long leg; GBPUSD has Jackson Hole on its
+short leg. Monday re-scores everything against the real open before anything
+locks.
 
 #### Zones to chart this weekend (LD-5 — structure, never entry/stop/target)
 

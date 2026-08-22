@@ -2615,3 +2615,42 @@ LD-41 - THE WHITELIST BINDS EVERY SCORED FIGURE, IN EVERY SECTION.
   STILL NOT GUARDED, stated honestly: the WINDOW. Nothing yet checks that a
   projection falls inside Mon-Fri of the current week (LD-14) - the EUR flash
   row was dated 1 Sep and only caught by hand. Queued.
+
+F-29 - I SUBSTITUTED A FLASH FOR A FINAL IN THE WHITELIST. Jeff: "Consumer
+  Confidence Flash - we need the Final not the Flash."
+  I DID THIS MYSELF, THIS SESSION, IN THE F-26 FIX. The sealed r13 whitelist
+  carries ("Spending","EA","Consumer Confidence Final","-15.9","-17.6","Jul/26").
+  While writing back Friday's prints I RENAMED THE ROW to "Consumer Confidence
+  Flash" and swapped in the August flash -15.5.
+  SO IN ONE SESSION I CORRECTED F-28 (off-list indicators scored in section 4.0,
+  including an EUR flash-for-final substitution) WHILE CREATING THE SAME ERROR
+  IN SECTION 2. Same indicator family, same flash/final confusion, opposite
+  section, and I did not notice because I was checking section 4.0.
+  WHY A FLASH IS NOT A FINAL: it is a preliminary estimate that gets revised.
+  Same class as F-27 (StatCan's advance estimate from 56.5% of firms) and F-1
+  (TE's phantom Actual). THREE FINDINGS, ONE SHAPE: a figure that LOOKS like an
+  Actual but is not the settled Actual. The phantom guard checks whether a
+  figure was RELEASED; nothing checks whether it is PROVISIONAL.
+  REVERTED. Audited the whole whitelist against the sealed r13: no other name
+  drifted, no other row carries a flash/prel/advance name, and the only two
+  other value changes (GBP GfK Aug -14, GBP Retail Sales YoY Jul 1.6%) are both
+  final prints from primary sources.
+  THE CORRECTION IMPROVED THE EDITION rather than just fixing a label:
+  EUR Consumer Confidence FINAL for August releases FRI 28 AUG 17:00 PHT, which
+  is INSIDE next week's window - so it is a section 4.0 PROJECTION, and a
+  consequential one. TE forecasts the Final UNCHANGED at -15.9, and ">Prev"
+  FAILS on an unchanged print: GOOD -> NEUTRAL, EUR Spending 1.00 -> 0.50,
+  EUR total 6.25 -> 5.75. EUR stays STRONG (floor 5.50) but by 0.25.
+  I had the flash sitting in section 2 as a scored row AND the Final listed in
+  section 4.0 as unscored - the same indicator in two places, one wrong in each.
+  KNOCK-ON: this is a projection OPPOSING EURCHF's long leg, so the LD-40 term
+  goes 0 -> -1 and EURCHF falls +3 MEDIUM -> +2 LOW. Two of the three proposals
+  are now LOW. Per LD-20 that is not a rejection - "LOW does not mean bad, it
+  means know why it is the weakest" - and all three still clear conviction and
+  stay leg-disjoint. Stated in-edition rather than buried.
+  MY "NOT ONE PROJECTED SCORE CHANGES" CLAIM, published one turn earlier, WAS
+  WRONG AS A RESULT. Corrected: one projection changes a score and it lands on
+  a proposed leg.
+  RULE ADDED: when writing a print back to score_model.py, the row NAME is part
+  of the whitelist and may not be edited. Only the value, previous, ref and
+  score may change. Renaming a row silently redefines the indicator.
