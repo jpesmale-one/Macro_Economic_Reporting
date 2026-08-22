@@ -343,7 +343,7 @@ def front_matter(md):
 REQUIRED = {
     'DAILY':   ['§0', '§1', '§2', '§3', '§4', '§5', '§6', '§7', '§8', '§9'],
     'MONDAY':  ['§0', '§1', '§2', '§3', '§4', '§5', '§6', '§7', '§8', '§9'],
-    'WEEKEND': ['§0', '§0w', '§1', '§2', '§3', '§5', '§6'],
+    'WEEKEND': ['§0', '§0L', '§1', '§2', '§3', '§4', '§5', '§6'],
 }
 # Sub-blocks that must appear within section 2 (spec 2.3) plus the F&G block.
 REQUIRED_SUB = {
@@ -396,14 +396,41 @@ def assert_news_sources(md):
 
 
 def prose_ratio(md):
-    """LD-27 advisory check - prose as a share of content lines."""
+    """LD-27 advisory check - prose blocks as a share of content units.
+
+    ADVISORY ONLY, AND A WEAK SIGNAL. Measured 2026-08-23: r13 - the edition
+    Jeff called too noisy - scores 13.0%, while the leaner weekend edition
+    scores 15.1%. The ratio does NOT detect what he objected to, which was
+    225 lines of PROCESS narrative in sections 0/0b/0c before any macro
+    figure. That is a placement problem, not a volume one. Read this as a
+    smell, never as a gate; LD-29 and LD-27's content rule are the real fix.
+
+    Measures the REPORT BODY only. Front-matter and the exec block are
+    metadata, not prose subject to LD-27, and counting them inflated the
+    first measurement by ~6pp.
+    """
+    md = EXEC_RE.sub('', FM_RE.sub('', md))
     lines = [l.rstrip() for l in md.splitlines()]
     body = [l for l in lines if l.strip()]
-    prose = [l for l in body
-             if not l.lstrip().startswith(('|', '#', '>', '<!--', '<', '- ', '* ',
+    def is_prose(l):
+        return (not l.lstrip().startswith(('|', '#', '>', '<!--', '<', '- ', '* ',
                                            '```', '---'))
-             and not re.match(r'^\d+\.\s', l.lstrip())]
-    return len(prose), len(body), (100.0 * len(prose) / max(1, len(body)))
+                and not re.match(r'^\d+\.\s', l.lstrip()))
+
+    # Count BLOCKS, not lines. Prose is hard-wrapped at ~78 chars so one
+    # paragraph spans ~4.5 lines while one table row spans 1 - counting lines
+    # measured wrapping style, not verbosity, and put a well-sourced edition at
+    # 42% against a 15% target that no edition could ever meet.
+    blocks, run = 0, False
+    for l in body:
+        if is_prose(l):
+            if not run:
+                blocks += 1; run = True
+        else:
+            run = False
+    rows = len([l for l in body if l.lstrip().startswith(('|', '- ', '* '))])
+    units = blocks + rows + len([l for l in body if l.lstrip().startswith('#')])
+    return blocks, units, (100.0 * blocks / max(1, units))
 
 
 if __name__ == '__main__':
@@ -420,7 +447,7 @@ if __name__ == '__main__':
     print('  R-7  sections   %d headings, all mandated present (%s)'
           % (nheads, fm['type']))
     print('  F-17 sources    §1 cites %d: %s' % (len(sources), ', '.join(sources)))
-    print('  LD-27 prose     %d of %d lines = %.1f%% %s'
+    print('  LD-27 prose     %d prose blocks of %d units = %.1f%% %s'
           % (pn, bn, pct, 'OK' if pct < 15 else '*** OVER 15% TARGET ***'))
 
     style = io.open(STYLE_FROM, encoding='utf-8').read()

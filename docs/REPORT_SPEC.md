@@ -557,16 +557,19 @@ exists, not new data.**
    their outcome, the projection scorecard, what the falsifiers did.
    This is the old §4.5, and the weekend is its natural home.
 
-2. **§0w — PROPOSED for the coming week.** The heart of the edition.
+2. **§4 — PROPOSED for the coming week.** The heart of the edition, and
+   it stays in **§4** where the playbook always lives — the reader should
+   not have to learn a new section number on a weekend.
    **Up to FOUR pairs** (LD-35) — publish every leg-disjoint qualifier,
-   not just three; the reader has two days to chart them.
+   not just three; the reader has two days to chart them. Marked
+   **PROPOSED**, never carried.
    Per proposed pair: **direction, the §2 score driving it, the zones
    with touch counts and dates, the falsifier level, and confidence with
    its arithmetic** — everything the reader needs to chart it. Marked
    **PROPOSED**, never carried.
 
-3. **Late Friday grades.** Events that released before Friday's seal but
-   had not posted values yet are graded here. This is **genuinely new
+3. **§0L — Late Friday grades.** Events that released before Friday's
+   seal but had not posted values yet are graded here. This is **genuinely new
    information** and the one place a weekend edition adds data.
 
 4. **§1 — Weekend news sweep.** Two days of headlines price in at once

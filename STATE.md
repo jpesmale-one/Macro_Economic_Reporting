@@ -4,17 +4,22 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-08-21 (r13, SEALED FULL; T4 RESOLVED - F-17 corrected in-edition)
-date: 2026-08-21
-data_asof: 2026-08-21 16:40 PHT (macro 06:50 + 16:37; charts 16:40)
+edition: 2026-08-23 (r1, WEEKEND PREP - NOT SEALED, by design per LD-32)
+date: 2026-08-23
+data_asof: 2026-08-21 close (all prices/scores are Friday's, republished)
+           + late-Friday prints and news swept 2026-08-23 00:54-01:20 PHT
+last_sealed: 2026-08-21 (r13, SEALED FULL) - the authority until Monday seals
 track: LEAN (no section-2 trigger has fired)
 spec_rev: 2026-08-23 - LD-27..LD-34 written in; R-1, R-7, F-19 CLOSED.
   Spec is AUTHORITATIVE again (6 cat / +/-11.00, weekly selection, section 0
   specified, weekend edition type). Renderer now enforces structure:
   `python pipelines/render_edition.py <path-to-md>`, front-matter required.
-artifact: https://claude.ai/code/artifact/eee6e597-8644-4c5d-b69b-db6879803abc
-source_of_truth: reports/2026/Q3/2026-08-21_market-sentiment.md
-prior_edition: 2026-08-20 (r11, UNSEALED) - artifact a69403a7-a636-4ca2-8b41-1006e8c62806
+source_of_truth: reports/2026/Q3/2026-08-23_market-sentiment.md (unsealed prep)
+sealed_source: reports/2026/Q3/2026-08-21_market-sentiment.md (r13, artifact
+  eee6e597-8644-4c5d-b69b-db6879803abc)
+prior_edition: 2026-08-21 (r13, SEALED FULL)
+NEXT SESSION IS MONDAY: confirm or revise the 3 proposals against the real
+  open, then LOCK the week's set (LD-29). T4 ON EF-4 IS QUEUED (F-21).
 
 # 2026-08-12 - REPO ESTABLISHED. Ways-of-working scaffold ported from
 #   TRTM_EA_Project (CLAUDE.md protocol, STATE.md manifest, rules, hooks,
@@ -2186,3 +2191,113 @@ LD-35 - THREE IS THE FLOOR, NOT THE TARGET. FOUR IS THE CEILING (Jeff).
   CONSEQUENCE FOR THE WEEKEND EDITION (LD-32): section 0w proposes up to FOUR
   pairs, not three. If the week offers four leg-disjoint qualifiers, publish
   four - the reader has two days to chart them.
+
+# 2026-08-23 - FIRST WEEKEND PREP EDITION SHIPPED (r1, NOT SEALED, LD-32).
+#   reports/2026/Q3/2026-08-23_market-sentiment.md + .html
+#   Sunday 23 Aug 01:20 PHT. Proposes 3 pairs for the week of 24-28 Aug.
+#   All figures are Friday 21 Aug's, republished for preparation, with the
+#   mandatory honesty line at the top. Nothing sealed, nothing promoted.
+
+F-21 - EF-4's "ONE-DIRECTIONAL ERROR" IS FALSIFIED. OPEN, NEEDS A T4 ON MONDAY.
+  EF-4 (sealed 2026-08-21) records the projection method as erring
+  PESSIMISTIC across three instances - BAD projected, printed GOOD.
+  The six late-Friday prints graded this session add FOUR more misses, and TWO
+  GO THE OTHER WAY:
+    too pessimistic (4): AUD Westpac, GBP Claimant, GBP GfK, EUR Cons Conf
+    TOO OPTIMISTIC (2):  GBP Retail Sales (-0.5% vs +0.7% fcst)
+                         CAD Retail Sales (-0.8% vs +1.0% fcst)
+  ALL FOUR pessimistic misses are SURVEYS. BOTH optimistic misses are RETAIL
+  SALES. The pattern is INDICATOR CLASS, not direction: the method reads
+  sentiment surveys too harshly and hard consumer spending too kindly.
+  Final week scorecard 10 correct / 4 wrong (was 10/13 at seal).
+  EF-4 is a SEALED established fact and a weekend edition can never revise one
+  (LD-32). T4 QUEUED FOR MONDAY - do not let it lapse; this is exactly the
+  "grade the method, don't patch it" case the working agreements name.
+
+F-22 - I ASKED JEFF A QUESTION STATE.md ALREADY ANSWERED. OPEN.
+  TradingView would not start. I ran tv_launch twice, checked the process table
+  and port 9222, correctly diagnosed that the app exits immediately - and then
+  ESCALATED TO JEFF with a three-option question about how to proceed without
+  it. His reply: "I gave a terminal launcher last week. is it not documented?"
+  IT WAS. F-9, CLOSED, carries the root cause I had just re-derived from
+  scratch (the msix_local_copy fallback produces a NODE LAUNCHER STUB, not the
+  app) AND the exact recipe:
+    TvMsixLaunch.exe "TradingView.Desktop_n534cwy3pjxzj!TradingView.Desktop" \
+      "--remote-debugging-port=9222"
+  It worked FIRST TRY. Third independent confirmation of the recipe.
+  SHAPE: this is F-18 again, one week on. F-18 was reading a stale doc and
+  trusting it; this is having a CURRENT doc and not reading it. Both are the
+  same root failure - I reconstruct from the environment instead of consulting
+  the repo's own record. The F-5/F-6/F-7 ladder tells me to escalate before
+  asserting an absence; it does not tell me to escalate before READING.
+  RULE: before asking Jeff about ANY tooling failure, grep STATE.md for the
+  tool name. A CLOSED finding is not archived history - it is the fix.
+
+LD-36 - THE PROSE RATIO IS A SMELL, NOT A GATE. Measured, and it does not work.
+  R-8/LD-27 set a target of prose under 15% of lines. Built the check, ran it
+  on both editions, and the result INVALIDATES THE METRIC:
+    r13 (the edition Jeff called too noisy):  13.0%
+    2026-08-23 weekend edition (leaner):      15.1%
+  The noisy edition scores BETTER. Two reasons:
+   1. counting LINES measured hard-wrap style, not verbosity - one wrapped
+      paragraph is ~4.5 lines, one table row is 1. Fixed: count BLOCKS.
+   2. even corrected, VOLUME was never the complaint. Jeff objected to 225
+      lines of PROCESS narrative in sections 0/0b/0c appearing BEFORE any
+      macro figure. That is PLACEMENT and CONTENT, which a ratio cannot see.
+  KEPT as an advisory print with the caveat written into the docstring, so no
+  future session mistakes it for a quality gate or deletes figures to hit it
+  (LD-17 forbids that anyway).
+  WHAT ACTUALLY FIXES THE NOISE: LD-29 (0b/0c abolished, section 4.5 absorbed)
+  and LD-27's per-sentence content rule. Both are structural, both enforced.
+  HONEST NOTE: I proposed the 15% target myself and it was the weakest part of
+  the LD-27 package. Measuring it was what exposed it.
+
+LD-37 - A WEEKEND EDITION'S PROPOSALS STAY IN SECTION 4.
+  The R-7 manifest initially required a section "0w" for weekend proposals -
+  my invention when specifying LD-32. The renderer REFUSED TO RENDER the first
+  real weekend edition because of it, which is the guard working correctly on
+  a spec that was wrong.
+  RESOLVED IN FAVOUR OF THE EDITION: proposals stay in SECTION 4 where the
+  playbook always lives. A reader should not have to learn a new section
+  number because it is Sunday. Section 0 carries the week that was; section 0L
+  carries the late-Friday grades.
+  Manifest and spec both corrected.
+
+# EVIDENCE FROM THE FIRST WEEKEND RUN - all guards fired correctly:
+#   TIMEZONE (F-2): VERIFIED not assumed. UTC 16:54 Sat 22 = 00:54 Sun 23 PHT.
+#   PHANTOM (F-1): PASS on all 6 late prints - all released before now, and
+#     ALL SIX DIFFER FROM FORECAST (a phantom matches forecast by
+#     construction). JPY additionally verified against the Statistics Bureau
+#     of Japan directly, not TE alone - 1.9%, highest since Dec 2025, and it
+#     surfaced a PREVIOUS REVISION 1.7% -> 1.6% that r13 did not have.
+#   F-6 LADDER: cnbc.com 403 at step 1 -> 200/117KB at step 2. Third
+#     confirmation that a step-1 403 is not a closed source.
+#   F-9 RECIPE: worked first try. Third independent confirmation.
+#   SCORE REPRODUCTION: score_model.compute(include_rate=True) reproduces r13's
+#     tally exactly - CAD +8.38 ... CHF -3.38.
+#   R-7 / F-17 GUARDS: caught a real defect each. R-7 caught the 0w mismatch
+#     (LD-37). F-17's source check is why this edition's section 1 cites 8
+#     sources where r13's cited none (F-20).
+#
+# THE FOURTH-PAIR TEST (LD-35), first time it has ever been run:
+#   With CAD/JPY, EUR/CHF, GBP/USD claimed, only AUD and NZD remain free.
+#   AUDNZD: spread 1.67 (clears the 1.00 floor), 42.0% of range - mid, no
+#   edge - and Friday closed +25.1 pips AGAINST the long-NZD direction the
+#   scores imply. LD-20 tally = 0. REJECTED, published with its reason.
+#   The answer is still three pairs, but it is now a FINDING rather than an
+#   assumption. Under the old "in practice 2-3" gloss it would never have been
+#   tested.
+#
+# MATERIAL FINDING THE SEALED EDITION DOES NOT CARRY - US/JAPAN YEN
+#   INTERVENTION. First joint yen-BUYING operation since 1998: US Treasury
+#   sold euros and bought yen alongside the BoJ on Fri 31 Jul, confirmed by
+#   Bessent on Mon 3 Aug. Japan "will not hesitate to conduct further
+#   coordinated interventions."
+#   CADJPY - the #1 proposed pair - IS A SHORT-JPY POSITION. This is a
+#   FALSIFIER CLASS, not a falsifier level: intervention jumps straight
+#   through 114.992 regardless of structure. Published in section 1 and in the
+#   week-ahead table. The fundamental case is intact; the risk profile is not
+#   what r13 showed.
+#   Found by the weekend news sweep - i.e. by the LD-30 process that F-17
+#   exists to enforce. First time the news sweep has produced a risk the
+#   scoring model structurally cannot see.
