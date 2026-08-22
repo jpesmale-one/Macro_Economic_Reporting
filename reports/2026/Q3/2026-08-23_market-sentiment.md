@@ -79,9 +79,15 @@ construction (F-1), so all six pass the guard.
 | Fri 21 07:01 | GBP | GfK Consumer Confidence | −18 | −17 | **−14** | BAD | **GOOD ✗** |
 | Fri 21 07:30 | JPY | Inflation Rate YoY | 1.6%* | 1.6% | **1.9%** | NEUTRAL | **NEUTRAL ✓** |
 | Fri 21 14:00 | GBP | Retail Sales MoM | −0.5% | +0.7% | **−0.5%** | GOOD | **BAD ✗** |
-| Fri 21 20:30 | CAD | Retail Sales MoM Prel (Jul) | −0.5% | +1.0% | **−0.8%** | GOOD | **BAD ✗** |
+| Fri 21 20:30 | CAD | Retail Sales MoM **Prel/advance** (Jul) | −0.5% | +1.0% | **−0.8%** ⚠ | GOOD | **BAD ✗** *(provisional)* |
 | Fri 21 20:30 | CAD | Retail Sales MoM Final (Jun) | +0.4% | +1.0% | **+0.6%** | — | GOOD |
 | Fri 21 22:00 | EUR | Consumer Confidence Flash | −16.3 | −15.9 | **−15.5** | BAD | **GOOD ✗** |
+
+⚠ **The CAD −0.8% is an ADVANCE ESTIMATE**, built from 56.5% of surveyed firms
+and explicitly flagged by StatCan as subject to revision; complete July data is
+released **24 September** *(www150.statcan.gc.ca, primary)*. It is graded here
+as provisional — it is **not** a settled miss, and Monday must not treat it as
+one (F-27).
 
 \* JPY previous **revised** 1.7% → 1.6%. The sealed edition used 1.7%; the
 revision does not change the NEUTRAL grade (`<2% & rising` either way).
@@ -298,10 +304,10 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | USD | CB Consumer Confidence | 51.0 | 55.2 | Aug/26 | >Prev | **BAD** |
 | USD | Personal Spending MoM | 0.3% | 0.9% | Jun/26 | 0-0.5% | NEUTRAL |
 | USD | Retail Sales YoY | 5.0% | 6.8% | Jul/26 | >0.5% | **GOOD** |
-| EUR | Consumer Confidence Final | -15.9 | -17.6 | Jul/26 | >Prev | **GOOD** |
+| EUR | Consumer Confidence Flash | -15.5 | -15.9 | Aug/26 | >Prev | **GOOD** |
 | EUR | Retail Sales YoY | 0.7% | 1.9% | Jun/26 | >0.5% | **GOOD** |
-| GBP | GfK Consumer Confidence | -17 | -23 | Jul/26 | >Prev | **GOOD** |
-| GBP | Retail Sales YoY | 4.2% | 3.5% | Jun/26 | >0.5% | **GOOD** |
+| GBP | GfK Consumer Confidence | -14 | -17 | Aug/26 | >Prev | **GOOD** |
+| GBP | Retail Sales YoY | 1.6% | 4.2% | Jul/26 | >0.5% | **GOOD** |
 | JPY | Consumer Confidence | 34.9 | 33.8 | Jul/26 | >Prev | **GOOD** |
 | JPY | Household Spending YoY | -3.3% | -0.4% | Jun/26 | <0% | **BAD** |
 | JPY | Retail Sales YoY | 0.5% | 5.0% | Jun/26 | 0-0.5% | NEUTRAL |
@@ -318,7 +324,7 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | CHF | Consumer Confidence | -35 | -36 | Jul/26 | >Prev | **GOOD** |
 | CHF | Retail Sales YoY | 1.5% | 3.4% | Jun/26 | >0.5% | **GOOD** |
 
-**⚠ TWO ROWS ARE SUPERSEDED BY FRIDAY'S PRINTS (§0L).** CAD Retail Sales MoM Prel printed **−0.8%** against +1.0% expected, and GBP Retail Sales MoM **−0.5%** against +0.7%. Both scored GOOD on data now superseded. **These are the most likely score changes on Monday** and neither is corrected here — a weekend edition republishes Friday's scores unchanged (LD-32).
+**⚠ THREE ROWS UPDATED WITH FRIDAY'S PRINTS — AND THE SCORES DID NOT MOVE.** GBP Retail Sales YoY **4.2% → 1.6%** (ONS, 21 Aug), GfK **−17 → −14** (20 Aug), EUR Consumer Confidence **−15.9 → −15.5** (21 Aug). All three stay GOOD because none crossed a threshold — see §2.7. **CAD Retail Sales YoY cannot be updated:** StatCan's 21 Aug release carries no YoY figure, and its −0.8% July number is an **advance estimate from 56.5% of firms that StatCan says will be revised**. Full July data lands **24 Sep** *(statcan.gc.ca, primary)*.
 
 ### 2.3 Trade (weight 1)
 
@@ -388,6 +394,38 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | CHF | 0.00% | 0.4% vs 0–2%, falling — deflation-leaning | **−0.38** |
 
 ---
+
+### 2.7 Why the tally did not move, though three figures did
+
+**Three Friday prints were fed into the model this session and the tally is
+unchanged.** That is a property of the scoring test, not a stale table.
+
+| Row | Was | Now | Move | Score |
+|---|---|---|---|---|
+| GBP Retail Sales YoY | 4.2% *(Jun)* | **1.6%** *(Jul)* | **−2.6pp** | GOOD → **GOOD** |
+| GBP GfK Consumer Confidence | −17 *(Jul)* | **−14** *(Aug)* | +3 | GOOD → **GOOD** |
+| EUR Consumer Confidence | −15.9 *(Jul)* | **−15.5** *(Aug)* | +0.4 | GOOD → **GOOD** |
+
+**Every threshold in §2 is BINARY, not a rate-of-change test.** GBP Retail Sales
+decelerated 2.6 percentage points and stayed GOOD because the test is `>0.5%`,
+and 1.6% clears it as surely as 4.2% did. GBP would only lose the point at
+**0.5% or below**.
+
+**This is a real limitation and it is worth stating plainly: the model cannot
+see a deceleration until it crosses a line.** A currency can weaken materially
+for weeks while its score sits still. GBP's retail sales more than halving is
+exactly that case — the *direction* is information the score discards.
+
+**Where it matters this week:** GBP is the LOW-confidence leg of the **GBPUSD**
+proposal. Its +5.75 is unchanged, but one of the two indicators behind its
+Spending point just decelerated sharply. **The score says hold; the direction
+says watch.**
+
+**CAD could not be updated at all.** StatCan's 21 Aug release publishes **no
+year-over-year figure**, and its −0.8% July number is an **advance estimate
+built from 56.5% of surveyed firms**, which StatCan states will be revised.
+Complete July data lands **24 September** *(www150.statcan.gc.ca, primary)*. The
+model keeps May/26 5.9% and is **flagged, not silently carried** — see §8.
 
 ## §3 — Interest Rates — as at Friday close, forward-looking
 
@@ -497,7 +535,48 @@ GBPUSD is the proposal most exposed to it.
 
 **STRONG:** CAD +8.38 · EUR +6.25 · GBP +5.75 · **NEUTRAL:** NZD +3.75 · USD +2.25 · AUD +2.08 · **WEAK:** JPY +0.00 · CHF −3.38
 
-### 4.2 PROPOSED — three leg-disjoint pairs
+### 4.2 All candidate pairings — the full board
+
+Grouped by type, tradable first. Minimum spread **1.00** (LD-18).
+✅ proposed · ⬜ no edge · ❌ rejected
+
+| Pair | Dir | Type | Spread | Fri close | Structure verdict |
+|---|---|---|---|---|---|
+| **CADCHF** | LONG | RISK-ON | **11.76** | 0.58286 | ❌ **widest on the board, rejected on structure** |
+| **EURCHF** | LONG | RISK-ON | **9.63** | **0.93562** | ✅ **held 0.93071 support, closed +8.3 pips** |
+| **GBPCHF** | LONG | RISK-ON | 9.13 | — | ❌ duplicates the short-CHF leg |
+| **CADJPY** | LONG | **RISK-ON** | **8.38** | **115.490** | ✅ **cleared 114.992, closed +12.4 pips** |
+| **EURJPY** | LONG | RISK-ON | 6.25 | — | ❌ duplicates short-JPY (correlated) |
+| **GBPJPY** | LONG | RISK-ON | 5.75 | — | ❌ duplicates short-JPY (correlated) |
+| **USDCHF** | LONG | SAFE | 5.63 | — | ❌ duplicates the short-CHF leg |
+| NZDCHF | LONG | RISK-ON | 7.13 | — | ⬜ NZD leg free, but CHF already claimed |
+| AUDCHF | LONG | RISK-ON | 5.46 | — | ⬜ CHF already claimed |
+| **NZDJPY** | LONG | RISK-ON | 3.75 | — | ⬜ JPY already claimed |
+| **GBPUSD** | LONG | **RISK-ON** | **3.50** | **1.36456** | ✅ **new run high 1.36758, +14.8 pips** |
+| **CHFJPY** | SHORT | SAFE | 3.38 | — | ⬜ both legs claimed |
+| **AUDJPY** | LONG | RISK-ON | 2.08 | — | ⬜ JPY already claimed |
+| **USDJPY** | LONG | SAFE | 2.25 | — | ⬜ JPY already claimed |
+| **NZDAUD** | LONG | COMM | **1.67** | 1.19929 *(AUDNZD)* | ❌ **tested — 42.0% of range, no edge (§4.4)** |
+| **NZDUSD** | LONG | COMM | 1.50 | — | ⬜ **never charted (R-3)** |
+| AUDUSD | SHORT | COMM | 0.17 | — | ⬜ below the 1.00 floor |
+| CADUSD | — | — | 6.13 | — | ⬜ non-standard symbol; **USDCAD SHORT** is the form |
+
+**RISK-OFF: NIL — and proved on the full matrix, not argued from the extremes
+(LD-18).** Haven score minus commodity score, all nine cells:
+
+| | **CAD +8.38** | **AUD +2.08** | **NZD +3.75** |
+|---|---|---|---|
+| **USD +2.25** | −6.12 | **+0.17** | −1.50 |
+| **JPY +0.00** | −8.38 | −2.08 | −3.75 |
+| **CHF −3.38** | −11.75 | −5.46 | −7.12 |
+
+**Not one cell reaches the +1.00 floor.** The best is USD−AUD at **+0.17**,
+six times below the threshold. **There is no risk-off trade this week**, and
+that is a finding: every haven scores below every commodity currency except
+one near-tie. A nil result stated on the full grid is information; a nil
+result argued from CAD and CHF alone would not be.
+
+### 4.3 PROPOSED — three leg-disjoint pairs
 
 **These are high-probability reads from fundamentals plus structure. They are
 not guarantees and nothing here is a prediction.** Every one carries a falsifier.
@@ -511,6 +590,32 @@ not guarantees and nothing here is a prediction.** Every one carries a falsifier
 **Net exposure: long CAD · EUR · GBP, short JPY · CHF · USD.** Six currencies,
 each used once — **three independent tests** (LD-19).
 
+#### Why each one scores what it scores (LD-20 — the arithmetic, so you can disagree line by line)
+
+Confidence is a **tally of independent supports, not a probability.**
+
+| | **CADJPY — HIGH (+6)** | **EURCHF — MEDIUM (+3)** | **GBPUSD — LOW (+1)** |
+|---|---|---|---|
+| Spread | **+2** — 8.38 | **+2** — 9.63 | **0** — 3.50, thinnest carried |
+| Structure | **+2** — cleared 114.992–115.203 and held above it all Friday | **+1** — held 0.93071 support, 2 touches | **+1** — new run high 1.36758 |
+| Last bar | **+1** — +12.4 pips with the read | **+1** — +8.3 pips with the read | **+1** — +14.8 pips with the read |
+| Fresh driver | **+1** — JPY trade deficit doubled; CAD tariff relief | **+1** — SNB confirms low inflation is structural (§1) | **+1** — dollar at 3-month lows |
+| Against | — | **−2** — **CHF leg; the model was wrong on CHF all last week** | **−1** score vs hot US data · **−1** Jackson Hole lands on the USD leg |
+| **Total** | **+6 → HIGH** | **+3 → MEDIUM** | **+1 → LOW** |
+
+Bands: **≥5 HIGH · 3–4 MEDIUM · ≤2 LOW**
+
+**Read the ranking as focus order, not a quality gate.** LOW does not mean bad —
+GBPUSD confirms on every technical input it has. It scores low because the
+fundamental gap is thin, its score disagrees with Thursday's hot US data, **and
+Jackson Hole lands directly on its short-USD leg this week.** Know which of the
+three you are least sure about, and why.
+
+**⚠ CADJPY's +6 does not price intervention.** The tally scores spread,
+structure, momentum and drivers. A coordinated yen-buying operation (§1) is
+none of those — it is a discrete event that the arithmetic cannot represent.
+**HIGH here means high on the evidence the model can see.**
+
 #### Zones to chart this weekend (LD-5 — structure, never entry/stop/target)
 
 | Pair | Support | Resistance | Recomputed from |
@@ -523,7 +628,7 @@ each used once — **three independent tests** (LD-19).
 matches what r13 published.** The CADJPY 114.992–115.203 zone r13 flagged as
 "cleared, now support" held all Friday — the low was 115.218, never testing it.
 
-### 4.3 REJECTED — including the fourth-pair test (LD-35)
+### 4.4 REJECTED — including the fourth-pair test (LD-35)
 
 **A fourth leg-disjoint pair was tested and does not qualify.** With CAD/JPY,
 EUR/CHF and GBP/USD claimed, only **AUD and NZD** remain free.
@@ -543,13 +648,13 @@ now that is a **finding, not an assumption.**
 on the board (CADCHF 11.76). Two weeks running, the structure filter has rejected
 the highest-spread trade the model produced.
 
-### 4.4 CORRELATED — same bet, secondary entries only
+### 4.5 CORRELATED — same bet, secondary entries only
 
 Pairs duplicating a proposed leg. **Taking one of these alongside its parent is
 one position at double size** (LD-21, EF-3). CADCHF, GBPCHF, USDCHF, CHFJPY all
 duplicate the short-CHF leg; EURJPY and GBPJPY duplicate short-JPY.
 
-### 4.5 Week ahead — what could void a proposal before Monday locks it
+### 4.6 Week ahead — what could void a proposal before Monday locks it
 
 | When (PHT) | CCY | Event | Why it matters | Voids what? |
 |---|---|---|---|---|
@@ -606,9 +711,21 @@ force gold and BTC share**, and it is why they moved together on Friday.
 | **~4,501** | The 200-day MA | *investinglive, 21 Aug — not recomputed here* |
 | **4,324.68** | Major support | Wed 19 Aug low, the week's base |
 
-**Read:** gold broke away from its 200-day MA and closed near the highs of a
-+1.85% day on the week's second-highest volume. **What would change it:** a close
-back below **4,508.995**, or a hawkish Jackson Hole.
+### Read
+
+**Gold broke away from its 200-day MA and closed near the highs of a +1.85% day
+on the week's second-highest volume** (806,154 vs 851,041 Thursday). The move is
+liquidity-driven, not haven-driven — CHF, the other classic haven, is the
+weakest currency on the board at −3.38, and JPY scores 0.00. **When gold rallies
+while both haven currencies are weak, the driver is the dollar and real yields,
+not fear.**
+
+**Falsifier:** a daily close back below **4,508.995** (Friday's low) breaks the
+breakout structure. A hawkish Jackson Hole is the event most likely to cause it.
+
+**What this means for the week's proposals:** none has a gold leg, so nothing is
+directly affected. Gold's strength is corroborating evidence for the weak-dollar
+read behind **GBPUSD LONG**, not an independent signal (§6).
 
 ---
 
@@ -660,12 +777,27 @@ the same error as carrying three JPY crosses and calling it 3-for-3 (EF-3).
 | **69,098.5** | Support — Wed breakout | Wed 19 Aug close |
 | **64,110** | Major support — pre-move base | Wed 19 Aug low |
 
-**Read:** the strongest three-day run in the series, driven by the same force as
-gold. **With risk or decoupled? WITH — via the debasement/liquidity channel,
-not the equity channel.** F&G momentum and breadth components are in Fear while
-BTC rallies, which is consistent with a liquidity-driven move rather than a
-risk-appetite one. **What would change it:** a close below **72,472.5**, or a
-hawkish Jackson Hole.
+### With risk, or decoupled? **WITH RISK — via liquidity, not equities**
+
+**The strongest three-day run in the series, driven by the same force as gold.**
+The distinction matters: BTC is trading **with** the debasement/liquidity
+channel and **against** the equity channel. F&G momentum (39.0) and breadth
+components sit in Fear while BTC rallies 20% — that is not risk appetite, it is
+liquidity.
+
+r13 called BTC **"DECOUPLED — and now decisively"**. Friday settles it: BTC
+traded to **79,470.50**, through r13's published 74,991 window high, on the same
+day and the same driver as gold's +1.85%.
+
+### Read
+
+**Falsifier:** a daily close below **72,472.5** (Friday's low) ends the run
+structure. A hawkish Jackson Hole is the most likely cause.
+
+**What this means for the week's proposals:** none has a BTC leg. BTC and gold
+moving together on one cause is **one signal, not two** — reading them as
+independent confirmation would double-count, the same error as carrying three
+JPY crosses and calling it 3-for-3 (EF-3).
 
 ---
 
@@ -698,6 +830,24 @@ charted (R-3).
 | **F-17** | Fix now enforced by the renderer's source-presence guard |
 | **F-20** | **ADDRESSED HERE** — §1 of this edition cites 8 sources; r13's §1 cited none |
 | **F-21** | **NEW — EF-4's one-directional claim is falsified.** See §0L. |
+| **F-26** | **NEW — the model held stale rows after Friday's prints.** Three fixed this session (§2.7); CAD Retail Sales YoY **cannot** be, and is flagged below. |
+| **F-27** | **NEW — I graded an ADVANCE ESTIMATE as a settled figure.** See below. |
+
+**F-26 — the tally was computed from rows Friday had already superseded.** GBP
+Retail Sales YoY, GBP GfK and EUR Consumer Confidence were graded in §0L but
+never fed back into `score_model.py`, so §2 published Jun/Jul figures while §0L
+discussed the Aug ones. **Fixed this session — and the tally still does not
+move**, because none crossed a threshold (§2.7). The bug was real; the
+conclusion it produced happened to be right.
+
+**CAD Retail Sales YoY remains at May/26 5.9% and cannot be updated.** StatCan
+publishes no YoY figure in this release. **Flagged, not silently carried.**
+
+**F-27 — §0L first graded CAD retail sales −0.8% as a settled BAD.** It is an
+**advance estimate from 56.5% of surveyed firms** which StatCan states will be
+revised; full July data lands **24 Sep**. Corrected in §0L. The distinction
+matters because an advance estimate carries a revision risk a final print does
+not, and grading one as final imports that risk into the scorecard silently.
 
 **F-21 — the projection method's error is not one-directional.** EF-4, a sealed
 established fact, records the method as erring pessimistic across three

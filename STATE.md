@@ -2438,3 +2438,74 @@ F-25 - SECTION 4.0, THE WEEK-AHEAD PROJECTIONS, WENT MISSING. OPEN->FIXED.
 #   whitelist row so it does not move the score, but CAD is the long leg of the
 #   #1 proposal AND already carries a superseded Spending row from Friday's
 #   retail sales miss. Two hits to CAD in one week.
+
+F-26 - THE TALLY WAS COMPUTED FROM ROWS FRIDAY HAD ALREADY SUPERSEDED. FIXED.
+  Jeff: "Also Friday reports are up. why we still have the same totals in the
+  Tally?" He was right to be suspicious - the model DID hold stale rows.
+  GRADED IN SECTION 0L BUT NEVER FED BACK INTO score_model.py:
+    GBP Retail Sales YoY   4.2% Jun/26 -> 1.6% Jul/26  (ONS primary, 21 Aug)
+    GBP GfK Consumer Conf  -17  Jul/26 -> -14  Aug/26  (TE, 20 Aug)
+    EUR Consumer Conf      -15.9 Jul/26 -> -15.5 Aug/26 (TE, 21 Aug)
+  Section 0L discussed the August figures while section 2 published the
+  June/July ones. Two sections of the same edition disagreeing about the same
+  indicator.
+  THE BUG WAS REAL; THE CONCLUSION IT PRODUCED HAPPENED TO BE RIGHT. After
+  updating all three, THE TALLY IS UNCHANGED - CAD +8.38 ... CHF -3.38, every
+  currency identical. None of the three crossed a threshold.
+  THAT IS THE ANSWER TO JEFF'S QUESTION AND IT IS WORTH MORE THAN THE FIX:
+  every section-2 threshold is BINARY, not a rate-of-change test. GBP retail
+  sales DECELERATED 2.6 PERCENTAGE POINTS (4.2% -> 1.6%) and stayed GOOD,
+  because the test is >0.5% and 1.6% clears it as surely as 4.2% did. GBP only
+  loses the point at 0.5% or below.
+  THE MODEL CANNOT SEE A DECELERATION UNTIL IT CROSSES A LINE. A currency can
+  weaken materially for weeks while its score sits still. Published as section
+  2.7 so the limitation is in the report, not just in this ledger - GBP is the
+  LOW-confidence leg of GBPUSD and one of its two Spending indicators just
+  halved.
+  CAD RETAIL SALES YoY CANNOT BE UPDATED AT ALL - StatCan's 21 Aug release
+  publishes NO year-over-year figure. Row stays May/26 5.9%, FLAGGED in the
+  edition rather than silently carried.
+  PROCESS FIX NEEDED (queued): grading a print in section 0L must write it back
+  to score_model.py in the same pass. Right now those are two separate manual
+  steps and nothing enforces the second.
+
+F-27 - I GRADED AN ADVANCE ESTIMATE AS A SETTLED FIGURE. CORRECTED IN-EDITION.
+  Section 0L first graded CAD Retail Sales -0.8% (Jul) as a hard BAD miss.
+  PRIMARY SOURCE SAYS OTHERWISE: www150.statcan.gc.ca/n1/daily-quotidien/260821
+  - the -0.8% is an ADVANCE ESTIMATE "calculated based on responses received
+  from 56.5% of companies surveyed", explicitly "will be revised". Complete
+  July retail data is released 24 SEPTEMBER.
+  Corrected to PROVISIONAL with the revision risk stated. Monday must not treat
+  it as a settled miss.
+  WHY IT MATTERS BEYOND THE ONE ROW: an advance estimate carries revision risk
+  that a final print does not, and grading one as final imports that risk into
+  the scorecard invisibly. This is the F-1 phantom problem in a different
+  costume - a figure that LOOKS like an Actual but is not the settled Actual.
+  The phantom guard checks whether a figure was RELEASED; it does not check
+  whether the release was PROVISIONAL. New check needed.
+  Found by going to the issuing agency rather than trusting the TE row - the
+  same escalation LD-9's guard exists to force.
+
+# 2026-08-23 FORMAT AUDIT vs r13, at Jeff's request: "can you check the format
+#   if we're missing something based on Aug 21 report?"
+#   Ran a heading-level diff of both editions. Everything in r13 and absent
+#   from the weekend edition was either (a) section 0b/0c PROCESS content that
+#   LD-29 deliberately abolished, or (b) a renamed equivalent. THREE GENUINE
+#   GAPS FOUND AND FIXED:
+#     1. 4.2 ALL CANDIDATE PAIRINGS - the full board with spreads and structure
+#        verdicts. Restored, 18 rows. WITH IT the LD-18 RISK-OFF MATRIX, which
+#        was also missing: all nine haven-minus-commodity cells published, best
+#        is USD-AUD +0.17 against a +1.00 floor, so RISK-OFF IS NIL AND PROVED
+#        ON THE FULL GRID rather than argued from the extremes.
+#     2. "WHY EACH ONE SCORES WHAT IT SCORES" - the LD-20 confidence
+#        arithmetic. LD-20 requires confidence published WITH its arithmetic so
+#        it can be disagreed with line by line; I had published bare
+#        HIGH/MEDIUM/LOW. Restored. Added a note LD-20 does not require:
+#        CADJPY's +6 DOES NOT PRICE INTERVENTION, because the tally scores
+#        spread/structure/momentum/drivers and an intervention is none of them.
+#     3. Section 5 "Read" and section 6's named sub-blocks - r13 closes both
+#        instruments with an explicit Read carrying the falsifier. Restored.
+#   NOT restored, deliberately: sections 0b/0c and their sub-headings. Those are
+#   the 225 lines of process narrative LD-29 abolished and Jeff asked to remove.
+#   Renumbering: 4.2 inserted, so PROPOSED 4.2->4.3, REJECTED 4.3->4.4,
+#   CORRELATED 4.4->4.5, week-ahead-risk 4.5->4.6. Section 4.0 unchanged.
