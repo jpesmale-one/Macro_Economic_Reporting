@@ -8,6 +8,8 @@ edition: 2026-08-21 (r13, SEALED FULL; T4 RESOLVED - F-17 corrected in-edition)
 date: 2026-08-21
 data_asof: 2026-08-21 16:40 PHT (macro 06:50 + 16:37; charts 16:40)
 track: LEAN (no section-2 trigger has fired)
+spec_rev: 2026-08-23 - LD-27..LD-31 written in; R-1 CLOSED (6 cat / +/-11.00,
+  weekly selection, section 0 specified). Spec is AUTHORITATIVE again.
 artifact: https://claude.ai/code/artifact/eee6e597-8644-4c5d-b69b-db6879803abc
 source_of_truth: reports/2026/Q3/2026-08-21_market-sentiment.md
 prior_edition: 2026-08-20 (r11, UNSEALED) - artifact a69403a7-a636-4ca2-8b41-1006e8c62806
@@ -1919,3 +1921,137 @@ LD-26 - AN UNEXPLAINED PRICE MOVE IS A RESEARCH TRIGGER, NOT A FINDING.
 F-17 STATUS: the diagnosis is CLOSED (three editions, zero news fetches, cost
   quantified, corrections applied). The FIX is still OPEN - R-9 must become
   routine, not a one-off, and the source-presence assertion is not written yet.
+
+
+# 2026-08-23 - SPEC REVISION: ANALYSIS, NOT COMMENTARY. R-8 GIVEN SHAPE BY JEFF.
+#   Jeff specified the content of every section. This is R-8 (cut the noise)
+#   turned from a line-count target into a content contract, plus R-1 (spec vs
+#   code reconciliation) closed in the same pass.
+
+LD-27 - THE PROSE RULE. ANALYSIS, NOT COMMENTARY, NEVER PROCESS (Jeff).
+  "Our goal is to fill this up with Analysis and not with the process on how
+  are we building this report."
+  Every prose sentence must carry a FIGURE/LEVEL/DATE, name a SOURCE, state a
+  FALSIFIER, or state WHAT THE DATA MEANS FOR THE BIAS. A sentence that only
+  re-describes a table row is DELETED. A sentence about how the report was
+  built goes to STATE.md.
+  THE EDITION IS THE FINDING; STATE.MD IS THE REASONING. That split is the
+  whole rule - previously both lived in the edition.
+  Target: prose under 15% of lines, measured on the .md. Figures never cut to
+  hit it (LD-17).
+  REJECTED: a pure line-count target. R-8 carried one since 2026-08-21 and the
+  edition still grew, because a line budget does not say WHICH lines. A
+  per-sentence test is checkable at write time.
+
+LD-28 - HEADERS OUTRANK BODY (Jeff). "Reduce the font size of the analysis
+  part. Currently it is more bigger than the Headers. It should be the other
+  way around. You can apply this to all sections."
+  MEASURED: h2.sec/h3.sub rendered at .68-.70rem uppercase mono while body
+  prose inherited ~1rem - BODY TEXT 40% LARGER THAN THE HEADER ABOVE IT, at
+  every level, in every edition shipped. Jeff caught it; I had rendered it
+  three times without seeing it.
+  FIX: explicit scale in render_edition.py EXTRA_CSS - h2 1.6rem/800,
+  h3 1.15rem/700, h4 1rem/700, body .92rem, blockquote .85rem, notes .82rem.
+  Verified: LD-17 token diff 83/83 p, 9/9 summary, all elements OK - pure CSS,
+  zero content change.
+
+LD-29 - SELECTION IS WEEKLY; TRACKING IS DAILY (Jeff: "yes A").
+  Q: does section 4 re-select every day, or once per week? A: ONCE.
+  Section 4 selects Monday and the set HOLDS ALL WEEK. Tue-Fri it publishes
+  bands and any CHANGE in structure only. Section 0 tracks the fixed set daily.
+  A pair leaves mid-week ONLY by its falsifier firing, is marked VOID, and is
+  NOT replaced until the next Monday.
+  SECTION 0 IS RENAMED "WEEK TO DATE PROGRESS" and answers ONE question: is
+  the market favouring the bias we published? One table row per carried pair -
+  bias, Mon open, now, move in pips, favouring YES/NO/FLAT, falsifier state -
+  then AT MOST THREE sentences.
+  Favouring is judged against BIAS DIRECTION, never profit (LD-4 holds).
+  Section 4.5 (week-that-was) DELETED, absorbed into Monday's section 0.
+  SECTIONS 0b AND 0c ABOLISHED. They carried guard results, tool failures and
+  revision history - the exact process content LD-27 bans.
+  WHY THIS IS THE BIGGEST CUT AVAILABLE: 0+0b+0c ran lines 67-291 of the r13
+  edition = 225 lines, 27% OF THE EDITION, before a single macro figure. And
+  re-deriving the same three pairs five times a week was the other half.
+  REJECTED: (b) daily re-selection. It makes section 0's question unanswerable
+  - a bias that moves daily cannot be graded against the market's response.
+  Also RECONCILES a live contradiction: LD-16 (2026-08-20) already replaced
+  the swing/intraday split, but spec section 4 still described Mon-Fri
+  intraday plus a Monday swing block. I argued FROM THAT STALE TEXT to Jeff
+  this session - told him Monday was structurally heavier because it carried
+  two blocks. It does not. Jeff corrected me. See F-18.
+
+LD-30 - NEWS: SUMMARIZE TO IMPACT, AND DO NOT LIMIT THE SOURCES (Jeff).
+  "I don't need to whole report instead Summarize it for me answering the
+  question 'How is this news going to impact the currency?'"
+  Each item: time PHT, what happened, instrument moved, source - then THE
+  IMPACT SENTENCE. Not the article.
+  SOURCES ARE A FLOOR, NOT A CEILING: investinglive.com and investing.com AT
+  MINIMUM, "but do not limit to these 2 only." Where they do not explain a
+  move, go wider - issuing agency, wires, primary release. Amends the spec's
+  original two-source list, which read as exhaustive.
+  US NEWS IS SCORED AGAINST THREE MARKETS: "For US it will not only impact
+  Forex, News especially central bank news or war also impact Gold and BTC."
+  Every US item states its read for USD, Gold AND BTC, or says FX-only.
+  This is the standing form of the R-9 fix - F-17's open half. The 19 Aug
+  Treasury buyback moved all three and was read against none of them.
+  F&G INDEX FORMAT IS FIXED (LD-25 confirmed): "We keep the Fear and Greed
+  Index. Including the format. I like this format." Do not redesign.
+
+LD-31 - GOLD AND BTC DRIVERS IN PLAIN LANGUAGE, SHOWING THE CHAIN (Jeff).
+  "make the Drivers (Fundamental) more layman. For example you can explain how
+  could the 19 Aug Treasury Buyback could potentially impact XAUUSD. Same goes
+  for the Headwind and Tailwind."
+  Do not name a driver and stop. Walk the mechanism from event to price in
+  ordinary words, one step at a time.
+  NOT: "Treasury buyback expansion, 30y -9bp, supportive."
+  BUT: "Treasury said it will buy back at least twice as many long-dated
+  bonds. More buying pushes bond prices up, which pushes yields down - the
+  30-year fell 9bp. Gold pays no interest, so when bonds pay less, holding
+  gold costs less by comparison. That, plus a dollar falling 0.8%, is why gold
+  rose."
+  Headwinds/tailwinds too: name the force, the mechanism it travels through,
+  and what would have to happen for it to stop mattering.
+  SECTION 6 MIRRORS SECTION 5 EXACTLY - "If we can mirror this to what we are
+  doing with Gold the better." BTC is not a lesser section: drivers with the
+  chain, headwinds/tailwinds, structure, levels, with-risk-or-decoupled WITH
+  THE CORRELATION STATED, falsifier.
+  Note this is NOT a dumbing-down - it is the same rigour with the mechanism
+  exposed. A driver you cannot walk in plain words is a driver you have not
+  verified. LD-26 is the precedent: hedged prose read as rigour and survived
+  review while being wrong.
+
+F-18 - I ARGUED FROM A SPEC I KNEW WAS STALE. OPEN.
+  This session, asked to publish a Saturday edition, I told Jeff Monday would
+  be "structurally heavier" because the spec gives Monday two blocks - swing
+  AND intraday. WRONG SINCE 2026-08-20: LD-16 replaced that split entirely.
+  Jeff corrected me: "by the way, we have drop the swing and intraday bias in
+  the previous editions."
+  AGGRAVATING: R-1 (reconcile the spec) was in the queue I had SUMMARIZED TO
+  HIM MINUTES EARLIER, flagged critical, naming the spec as contradicting the
+  code. I read the contradiction, reported it, then argued from the wrong side
+  of it.
+  SHAPE: this is the continuation-prompt failure (F-8) repeating one layer
+  down. A stale AUTHORITATIVE document is more dangerous than a stale note,
+  because its authority suppresses the check.
+  FIX APPLIED: R-1 closed this session, not deferred again - spec now carries
+  6 categories and the +/-11.00 scale (was 5 and +/-8.00), LD-16 weekly
+  selection (was swing/intraday), section 0 specified (was absent), and
+  LD-27..LD-31.
+  RULE: when a queue item says a document contradicts the code, that document
+  is QUARANTINED - do not cite it until reconciled.
+
+F-19 - THE RENDERER IS A ONE-SHOT SCRIPT, NOT A RENDERER. OPEN, NEW.
+  render_edition.py hardcodes the 21 Aug edition in __main__: title, masthead
+  date "Friday, 21 August 2026 - 16:40 PHT", "REVISION 13 - SEALED FULL", and
+  the carried-pair chips. Rendering Monday means EDITING THE SCRIPT.
+  RISK: the failure mode is silent and on the deliverable path - a wrong date
+  or a stale "SEALED FULL" badge on a fresh edition looks correct.
+  FIX (Monday, before rendering): lift date, revision, seal state and chips to
+  CLI args or a small front-matter block read from the .md.
+  Pairs with R-7 (section-presence manifest) - both are renderer guards.
+
+# R-1 CLOSED 2026-08-23. Spec reconciled: 6 categories and +/-11.00 (LD-23),
+#   weekly selection (LD-16/LD-29), section 0 specified, sections 1/4/5/6
+#   rewritten to LD-27..LD-31.
+# R-8 SUPERSEDED by LD-27 - the target is now a per-sentence contract, not a
+#   line count. The 15% figure survives as a check, not as the rule.
