@@ -51,9 +51,45 @@ onside, and none fired its falsifier.**
 
 | Pair | Bias | Thu close | **Fri close** | Fri move | Week | Favouring? | Falsifier | Distance |
 |---|---|---|---|---|---|---|---|---|
-| **CADJPY** | LONG | 115.366 | **115.490** | **+12.4 pips** | **+95 pips** | **YES** | close < 114.992 | **49.8 pips clear** |
+| **CADJPY** | LONG | 115.366 | **115.490** | **+12.4 pips** | **+95 pips** | **YES** | close < ~~114.992~~ **114.472** | **101.8 pips clear** |
 | **EURCHF** | LONG | 0.93479 | **0.93562** | **+8.3 pips** | +46 pips | **YES** | close < 0.93071 | **49.1 pips clear** |
 | **GBPUSD** | LONG | 1.36308 | **1.36456** | **+14.8 pips** | +42 pips | **YES** | close < 1.35197 | **125.9 pips clear** |
+
+> ### ⚠ CORRECTION — CADJPY's falsifier was not a real level
+>
+> **114.992 was published as a falsifier across three editions and no bar ever
+> printed it.** Traced to the 20 Aug edition, where it appeared as the bottom of
+> a resistance zone `114.992–115.203, 4 touches, 17–18 Aug`. The zone **top**
+> is real — 115.203 is the 17 Aug high, exact. **The bottom was fabricated:**
+> mean(114.937 close, 115.043 high) = **114.990**, published as 114.992. A
+> smoothed number, not a swing point, and the "4 touches" claim was for a price
+> nothing touched.
+>
+> **This is a P2 failure.** LD-5 requires a level be recomputed by naming the
+> bars that formed it. No bar formed this one.
+>
+> **Corrected to 114.472 — Thursday 20 Aug's low, the bar that launched the
+> run.** A real bar, **101.8 pips** below Friday's close, and outside one
+> average daily range (65 pips over the last 10 sessions) so ordinary noise
+> cannot trip it. Its breach means the entire three-day advance has been given
+> back, which is what a falsifier should mean.
+>
+> **Rejected: 115.203** (the real zone top, 29 pips away) — a pair that moved
+> +95 pips in a week would breach it on noise. **A falsifier inside one ATR is
+> not a falsifier, it is a stop** — and this report does not publish stops
+> (LD-4).
+
+> **The other two falsifiers were checked and both are real bars.** EURCHF
+> 0.93071 = Thu 20 low (and 0.93075 = Wed 19 low, a genuine 2-touch zone).
+> GBPUSD 1.35197 = Tue 18 low, exact.
+>
+> **⚠ But EURCHF's fails the ATR test.** It sits **49 pips** below Friday's
+> close against a **55-pip** average daily range — inside one ATR, so ordinary
+> noise can breach it. **No qualifying level exists in the current window**, and
+> I am **not inventing an intermediate one** — that is exactly what produced
+> 114.992. **Flagged, not patched:** the level stands as published this weekend
+> with the limitation stated, and Monday pulls a 250-bar history (LD-47) to find
+> the real level beyond 1 ATR. **Treat EURCHF's falsifier as loose until then.**
 
 **Three independent tests, three onside** — six currencies, each used once, so
 this is genuinely 3-for-3 and not one bet counted three times (LD-19, EF-3).
@@ -197,7 +233,7 @@ position.** The fundamental case for it is intact; what changes is that the pair
 now carries a **discrete event risk that no price level can warn about in
 advance.**
 
-**This is a falsifier class, not a falsifier level.** The 114.992 level still
+**This is a falsifier class, not a falsifier level.** The 114.472 level (see §0)
 stands as the structural falsifier. Intervention would jump straight through it.
 
 **Also this week:** JPY inflation printed **1.9%**, highest since Dec 2025
@@ -578,7 +614,7 @@ Grouped by type, tradable first. Minimum spread **1.00** (LD-18).
 | **CADCHF** | LONG | RISK-ON | **11.76** | 0.58286 | ❌ **widest on the board, rejected on structure** |
 | **EURCHF** | LONG | RISK-ON | **9.63** | **0.93562** | ✅ **held 0.93071 support, closed +8.3 pips** |
 | **GBPCHF** | LONG | RISK-ON | 9.13 | — | ❌ duplicates the short-CHF leg |
-| **CADJPY** | LONG | **RISK-ON** | **8.38** | **115.490** | ✅ **cleared 114.992, closed +12.4 pips** |
+| **CADJPY** | LONG | **RISK-ON** | **8.38** | **115.490** | ✅ **cleared 115.203 (17 Aug high), closed +12.4 pips** |
 | **EURJPY** | LONG | RISK-ON | 6.25 | — | ❌ duplicates short-JPY (correlated) |
 | **GBPJPY** | LONG | RISK-ON | 5.75 | — | ❌ duplicates short-JPY (correlated) |
 | **USDCHF** | LONG | SAFE | 5.63 | — | ❌ duplicates the short-CHF leg |
@@ -630,7 +666,7 @@ not guarantees and nothing here is a prediction.** Every one carries a falsifier
 
 | Rank | Pair | Dir | Conf | **Week** | Spread | **Fri close** | Falsifier | Clear by |
 |---|---|---|---|---|---|---|---|---|
-| **1** | **CADJPY** | LONG | **HIGH (+5)** | **W2** — re-proposed | **8.38** | **115.490** | close < **114.992** | 49.8 pips |
+| **1** | **CADJPY** | LONG | **HIGH (+5)** | **W2** — re-proposed | **8.38** | **115.490** | close < **114.472** | 101.8 pips |
 | **2** | **EURCHF** | LONG | **LOW (+2)** | **W2** — re-proposed | **9.63** | **0.93562** | close < **0.93071** | 49.1 pips |
 | **3** | **GBPUSD** | LONG | **LOW (+1)** | **W2** — re-proposed | **3.50** | **1.36456** | close < **1.35197** | 125.9 pips |
 
@@ -658,7 +694,7 @@ score, however much they move price.
 | | **CADJPY — HIGH (+5)** | **EURCHF — LOW (+2)** | **GBPUSD — LOW (+1)** |
 |---|---|---|---|
 | **§2 spread** | **+2** — 8.38 | **+2** — 9.63 | **0** — 3.50, thinnest carried |
-| **Structure** | **+2** — cleared 114.992–115.203 and held above it all Friday | **+1** — held 0.93071 support, 2 touches | **+1** — new run high 1.36758 |
+| **Structure** | **+2** — cleared **115.203** (17 Aug high) and held above it all Friday | **+1** — held 0.93071 support, 2 touches | **+1** — new run high 1.36758 |
 | Last bar | **+1** — +12.4 pips with the read | **+1** — +8.3 pips with the read | **+1** — +14.8 pips with the read |
 | Fresh driver | **+1** — JPY trade deficit doubled; CAD tariff relief | **+1** — SNB confirms low inflation is structural (§1) | **+1** — dollar at 3-month lows |
 | **§4.0 week ahead** | **−1** — **JPY Consumer Confidence projected GOOD** (Fri 28). A short-JPY read wants JPY weak; a GOOD JPY print opposes it | **−1** — **EUR Consumer Confidence Final projected NEUTRAL** (Fri 28), which would cut EUR +6.25 → +5.75. CHF has no release, so the short leg cannot correct either | **−1** — **Jackson Hole on the short leg** (Thu–Fri): off-list and unscorable, but it moves the price |
@@ -716,7 +752,7 @@ locks.
 #### ⚠ CADJPY forward resistance map — where price can actually go
 
 **A broken level tells you where price has been. It does not tell you where it
-is going.** CADJPY cleared 114.992–115.203 and closed 115.490 with **nothing
+is going.** CADJPY cleared **115.203** and closed 115.490 with **nothing
 mapped above it** until now. Swing pivots (2 bars each side, LD-16 method) over
 260 daily bars, clustered within 0.20:
 
@@ -755,7 +791,7 @@ no overhead."
 | **R2 116.240–116.500** | **red zone — next major** | `MzFAAz` |
 | R4 117.020–117.300 | red zone — heaviest | `1B7sus` |
 | 117.520 | dashed — 12-month high | `ojWt8J` |
-| **114.992** | **green line — the falsifier** | `tpfmhf` |
+| **114.472** | **green line — the falsifier** | `UgqvQl` |
 | S 113.852–114.352 | green zone — major support | `RVdqO5` |
 
 *`OANDA:CADJPY` daily. **Cleared first:** `Zxu0GY` and `WmQ0Wi` from the 20 Aug
@@ -763,7 +799,7 @@ edition, removed by entity ID before drawing (LD-46). Jeff's own drawings
 untouched — the chart carried only these two, both ours.*
 
 **Every level above was recomputed this session from `OANDA` daily bars and
-matches what r13 published.** The CADJPY 114.992–115.203 zone r13 flagged as
+matches what r13 published, EXCEPT the fabricated 114.992 corrected in §0.** The CADJPY zone r13 flagged as
 "cleared, now support" held all Friday — the low was 115.218, never testing it.
 
 ### 4.4 REJECTED — including the fourth-pair test (LD-35)
@@ -798,7 +834,7 @@ duplicate the short-CHF leg; EURJPY and GBPJPY duplicate short-JPY.
 |---|---|---|---|---|
 | **Wed 26 Aug** | **AUD** | **Inflation Rate YoY** | **AUD's weight-3 category, currently 0.00.** A rising print moves AUD's band. | Nothing proposed — but changes the AUDNZD reject |
 | **Thu 27 – Sat 29** | **USD** | **JACKSON HOLE** | Fed signalling with markets fully priced for +25bp Sept | **GBPUSD** — a hawkish Fed lifts the dollar directly against it |
-| Any time | **JPY** | **Intervention risk** | Japan "will not hesitate" (§1) | **CADJPY** — jumps straight through 114.992 |
+| Any time | **JPY** | **Intervention risk** | Japan "will not hesitate" (§1) | **CADJPY** — jumps straight through 114.472 |
 | Tue–Fri | CAD | Any CAD data | +8.38 already carries a superseded Spending row | **CADJPY** if CAD re-scores down |
 
 **GBPUSD is the most exposed proposal.** It is the LOW-confidence read, its

@@ -276,10 +276,12 @@
 <p><b>Final grade on the sealed week: all three carried pairs closed the week onside, and none fired its falsifier.</b></p>
 <div class="tblwrap"><table>
 <tr><th>Pair</th><th>Bias</th><th>Thu close</th><th><b>Fri close</b></th><th>Fri move</th><th>Week</th><th>Favouring?</th><th>Falsifier</th><th>Distance</th></tr>
-<tr><td><b>CADJPY</b></td><td>LONG</td><td class="num">115.366</td><td class="num"><b>115.490</b></td><td><b>+12.4 pips</b></td><td><b>+95 pips</b></td><td class="num"><b>YES</b></td><td>close &lt; 114.992</td><td><b>49.8 pips clear</b></td></tr>
+<tr><td><b>CADJPY</b></td><td>LONG</td><td class="num">115.366</td><td class="num"><b>115.490</b></td><td><b>+12.4 pips</b></td><td><b>+95 pips</b></td><td class="num"><b>YES</b></td><td>close &lt; <del>114.992</del> <b>114.472</b></td><td><b>101.8 pips clear</b></td></tr>
 <tr><td><b>EURCHF</b></td><td>LONG</td><td class="num">0.93479</td><td class="num"><b>0.93562</b></td><td><b>+8.3 pips</b></td><td>+46 pips</td><td class="num"><b>YES</b></td><td>close &lt; 0.93071</td><td><b>49.1 pips clear</b></td></tr>
 <tr><td><b>GBPUSD</b></td><td>LONG</td><td class="num">1.36308</td><td class="num"><b>1.36456</b></td><td><b>+14.8 pips</b></td><td>+42 pips</td><td class="num"><b>YES</b></td><td>close &lt; 1.35197</td><td><b>125.9 pips clear</b></td></tr>
 </table></div>
+<div class="warnbox">### ⚠ CORRECTION — CADJPY's falsifier was not a real level  <b>114.992 was published as a falsifier across three editions and no bar ever printed it.</b> Traced to the 20 Aug edition, where it appeared as the bottom of a resistance zone <code>114.992–115.203, 4 touches, 17–18 Aug</code>. The zone <b>top</b> is real — 115.203 is the 17 Aug high, exact. <b>The bottom was fabricated:</b> mean(114.937 close, 115.043 high) = <b>114.990</b>, published as 114.992. A smoothed number, not a swing point, and the "4 touches" claim was for a price nothing touched.  <b>This is a P2 failure.</b> LD-5 requires a level be recomputed by naming the bars that formed it. No bar formed this one.  <b>Corrected to 114.472 — Thursday 20 Aug's low, the bar that launched the run.</b> A real bar, <b>101.8 pips</b> below Friday's close, and outside one average daily range (65 pips over the last 10 sessions) so ordinary noise cannot trip it. Its breach means the entire three-day advance has been given back, which is what a falsifier should mean.  <b>Rejected: 115.203</b> (the real zone top, 29 pips away) — a pair that moved +95 pips in a week would breach it on noise. <b>A falsifier inside one ATR is not a falsifier, it is a stop</b> — and this report does not publish stops (LD-4).</div>
+<div class="warnbox"><b>The other two falsifiers were checked and both are real bars.</b> EURCHF 0.93071 = Thu 20 low (and 0.93075 = Wed 19 low, a genuine 2-touch zone). GBPUSD 1.35197 = Tue 18 low, exact.  <b>⚠ But EURCHF's fails the ATR test.</b> It sits <b>49 pips</b> below Friday's close against a <b>55-pip</b> average daily range — inside one ATR, so ordinary noise can breach it. <b>No qualifying level exists in the current window</b>, and I am <b>not inventing an intermediate one</b> — that is exactly what produced 114.992. <b>Flagged, not patched:</b> the level stands as published this weekend with the limitation stated, and Monday pulls a 250-bar history (LD-47) to find the real level beyond 1 ATR. <b>Treat EURCHF's falsifier as loose until then.</b></div>
 <p><b>Three independent tests, three onside</b> — six currencies, each used once, so this is genuinely 3-for-3 and not one bet counted three times (LD-19, EF-3).</p>
 <p>Friday's bars, recomputed from <code>OANDA</code> daily: CADJPY opened 115.333, ranged 115.218–115.588, closed 115.490. EURCHF opened 0.93456, low 0.93428 — <b>the low never approached 0.93071</b>. GBPUSD opened 1.36296 and made a new run high at 1.36758, closing 1.36456.</p>
 <p><b>The rejected CHF trades stayed rejected correctly.</b> CADCHF carried the widest spread on the board (11.76) and was rejected on structure; the structure filter has now earned its place two weeks running.</p>
@@ -354,7 +356,7 @@
 <tr><td><b>Forward</b></td><td>Japan <b>"will not hesitate to conduct further coordinated interventions"</b></td></tr>
 </table></div>
 <p><b>How this reaches the bias, plainly:</b> an intervention is a central bank buying its own currency directly in the market. It does not care about the interest-rate gap or the trade deficit that make JPY score 0.00 — it can move the yen hundreds of pips in minutes regardless of fundamentals. <b>CADJPY LONG is a short-JPY position.</b> The fundamental case for it is intact; what changes is that the pair now carries a <b>discrete event risk that no price level can warn about in advance.</b></p>
-<p><b>This is a falsifier class, not a falsifier level.</b> The 114.992 level still stands as the structural falsifier. Intervention would jump straight through it.</p>
+<p><b>This is a falsifier class, not a falsifier level.</b> The 114.472 level (see §0) stands as the structural falsifier. Intervention would jump straight through it.</p>
 <p><b>Also this week:</b> JPY inflation printed <b>1.9%</b>, highest since Dec 2025 (Statistics Bureau, 21 Aug). Still below the BoJ's 2% target for a sixth month, so it does not change the NEUTRAL score — but a yen carrying both rising inflation and an intervention backstop is a different short from one carrying neither.</p>
 <h3 class="sub">🇨🇭 Switzerland</h3>
 <p><b>SNB's Tschudin: "Swiss inflation is low because of low inflation expectations"</b> <em>(investinglive.com, 21 Aug 15:20 GMT)</em></p>
@@ -579,7 +581,7 @@
 <tr><td><b>CADCHF</b></td><td>LONG</td><td>RISK-ON</td><td class="num"><b>11.76</b></td><td class="num">0.58286</td><td>❌ <b>widest on the board, rejected on structure</b></td></tr>
 <tr><td><b>EURCHF</b></td><td>LONG</td><td>RISK-ON</td><td class="num"><b>9.63</b></td><td class="num"><b>0.93562</b></td><td>✅ <b>held 0.93071 support, closed +8.3 pips</b></td></tr>
 <tr><td><b>GBPCHF</b></td><td>LONG</td><td>RISK-ON</td><td class="num">9.13</td><td>—</td><td>❌ duplicates the short-CHF leg</td></tr>
-<tr><td><b>CADJPY</b></td><td>LONG</td><td><b>RISK-ON</b></td><td class="num"><b>8.38</b></td><td class="num"><b>115.490</b></td><td>✅ <b>cleared 114.992, closed +12.4 pips</b></td></tr>
+<tr><td><b>CADJPY</b></td><td>LONG</td><td><b>RISK-ON</b></td><td class="num"><b>8.38</b></td><td class="num"><b>115.490</b></td><td>✅ <b>cleared 115.203 (17 Aug high), closed +12.4 pips</b></td></tr>
 <tr><td><b>EURJPY</b></td><td>LONG</td><td>RISK-ON</td><td class="num">6.25</td><td>—</td><td>❌ duplicates short-JPY (correlated)</td></tr>
 <tr><td><b>GBPJPY</b></td><td>LONG</td><td>RISK-ON</td><td class="num">5.75</td><td>—</td><td>❌ duplicates short-JPY (correlated)</td></tr>
 <tr><td><b>USDCHF</b></td><td>LONG</td><td>SAFE</td><td class="num">5.63</td><td>—</td><td>❌ duplicates the short-CHF leg</td></tr>
@@ -609,7 +611,7 @@
 <div class="warnbox"><b>NOTHING ROLLS OVER (LD-42).</b> Last week's set ended when the week ended and is graded in §0. These three are a <b>fresh selection for 24–28 Aug</b> that re-derived the full board and won their place again — not a continuation. They are the same three names because <b>no band moved</b>: §2's scores are identical to Friday's, so the method produces the same leg-disjoint pairs.</div>
 <div class="tblwrap"><table>
 <tr><th>Rank</th><th>Pair</th><th>Dir</th><th>Conf</th><th><b>Week</b></th><th>Spread</th><th><b>Fri close</b></th><th>Falsifier</th><th>Clear by</th></tr>
-<tr><td class="num"><b>1</b></td><td><b>CADJPY</b></td><td>LONG</td><td><b>HIGH (+5)</b></td><td><b>W2</b> — re-proposed</td><td class="num"><b>8.38</b></td><td class="num"><b>115.490</b></td><td>close &lt; <b>114.992</b></td><td>49.8 pips</td></tr>
+<tr><td class="num"><b>1</b></td><td><b>CADJPY</b></td><td>LONG</td><td><b>HIGH (+5)</b></td><td><b>W2</b> — re-proposed</td><td class="num"><b>8.38</b></td><td class="num"><b>115.490</b></td><td>close &lt; <b>114.472</b></td><td>101.8 pips</td></tr>
 <tr><td class="num"><b>2</b></td><td><b>EURCHF</b></td><td>LONG</td><td><b>LOW (+2)</b></td><td><b>W2</b> — re-proposed</td><td class="num"><b>9.63</b></td><td class="num"><b>0.93562</b></td><td>close &lt; <b>0.93071</b></td><td>49.1 pips</td></tr>
 <tr><td class="num"><b>3</b></td><td><b>GBPUSD</b></td><td>LONG</td><td><b>LOW (+1)</b></td><td><b>W2</b> — re-proposed</td><td class="num"><b>3.50</b></td><td class="num"><b>1.36456</b></td><td>close &lt; <b>1.35197</b></td><td>125.9 pips</td></tr>
 </table></div>
@@ -621,7 +623,7 @@
 <div class="tblwrap"><table>
 <tr><th></th><th><b>CADJPY — HIGH (+5)</b></th><th><b>EURCHF — LOW (+2)</b></th><th><b>GBPUSD — LOW (+1)</b></th></tr>
 <tr><td><b>§2 spread</b></td><td><b>+2</b> — 8.38</td><td><b>+2</b> — 9.63</td><td><b>0</b> — 3.50, thinnest carried</td></tr>
-<tr><td><b>Structure</b></td><td><b>+2</b> — cleared 114.992–115.203 and held above it all Friday</td><td><b>+1</b> — held 0.93071 support, 2 touches</td><td><b>+1</b> — new run high 1.36758</td></tr>
+<tr><td><b>Structure</b></td><td><b>+2</b> — cleared <b>115.203</b> (17 Aug high) and held above it all Friday</td><td><b>+1</b> — held 0.93071 support, 2 touches</td><td><b>+1</b> — new run high 1.36758</td></tr>
 <tr><td>Last bar</td><td><b>+1</b> — +12.4 pips with the read</td><td><b>+1</b> — +8.3 pips with the read</td><td><b>+1</b> — +14.8 pips with the read</td></tr>
 <tr><td>Fresh driver</td><td><b>+1</b> — JPY trade deficit doubled; CAD tariff relief</td><td><b>+1</b> — SNB confirms low inflation is structural (§1)</td><td><b>+1</b> — dollar at 3-month lows</td></tr>
 <tr><td><b>§4.0 week ahead</b></td><td><b>−1</b> — <b>JPY Consumer Confidence projected GOOD</b> (Fri 28). A short-JPY read wants JPY weak; a GOOD JPY print opposes it</td><td><b>−1</b> — <b>EUR Consumer Confidence Final projected NEUTRAL</b> (Fri 28), which would cut EUR +6.25 → +5.75. CHF has no release, so the short leg cannot correct either</td><td><b>−1</b> — <b>Jackson Hole on the short leg</b> (Thu–Fri): off-list and unscorable, but it moves the price</td></tr>
@@ -643,7 +645,7 @@
 <tr><td><b>GBPUSD</b></td><td><b>1.35197–1.35712</b> · 3 touches</td><td><b>1.36758</b> Fri high</td><td>1.35197 = 18 Aug low; 1.35712 = 17 Aug high</td></tr>
 </table></div>
 <h3 class="sub" style="opacity:.85">⚠ CADJPY forward resistance map — where price can actually go</h3>
-<p><b>A broken level tells you where price has been. It does not tell you where it is going.</b> CADJPY cleared 114.992–115.203 and closed 115.490 with <b>nothing mapped above it</b> until now. Swing pivots (2 bars each side, LD-16 method) over 260 daily bars, clustered within 0.20:</p>
+<p><b>A broken level tells you where price has been. It does not tell you where it is going.</b> CADJPY cleared <b>115.203</b> and closed 115.490 with <b>nothing mapped above it</b> until now. Swing pivots (2 bars each side, LD-16 method) over 260 daily bars, clustered within 0.20:</p>
 <div class="tblwrap"><table>
 <tr><th>Level</th><th>Touches</th><th>Distance</th><th>Formed by</th></tr>
 <tr><td><b>R1 115.700–115.780</b></td><td class="num"><b>3</b></td><td><b>+22 pips</b></td><td>17, 18, 19 May highs</td></tr>
@@ -663,11 +665,11 @@
 <tr><td><b>R2 116.240–116.500</b></td><td><b>red zone — next major</b></td><td><code>MzFAAz</code></td></tr>
 <tr><td>R4 117.020–117.300</td><td>red zone — heaviest</td><td><code>1B7sus</code></td></tr>
 <tr><td class="num">117.520</td><td>dashed — 12-month high</td><td><code>ojWt8J</code></td></tr>
-<tr><td class="num"><b>114.992</b></td><td><b>green line — the falsifier</b></td><td><code>tpfmhf</code></td></tr>
+<tr><td class="num"><b>114.472</b></td><td><b>green line — the falsifier</b></td><td><code>UgqvQl</code></td></tr>
 <tr><td>S 113.852–114.352</td><td>green zone — major support</td><td><code>RVdqO5</code></td></tr>
 </table></div>
 <p><em><code>OANDA:CADJPY</code> daily. <b>Cleared first:</b> <code>Zxu0GY</code> and <code>WmQ0Wi</code> from the 20 Aug edition, removed by entity ID before drawing (LD-46). Jeff's own drawings untouched — the chart carried only these two, both ours.</em></p>
-<p><b>Every level above was recomputed this session from <code>OANDA</code> daily bars and matches what r13 published.</b> The CADJPY 114.992–115.203 zone r13 flagged as "cleared, now support" held all Friday — the low was 115.218, never testing it.</p>
+<p><b>Every level above was recomputed this session from <code>OANDA</code> daily bars and matches what r13 published, EXCEPT the fabricated 114.992 corrected in §0.</b> The CADJPY zone r13 flagged as "cleared, now support" held all Friday — the low was 115.218, never testing it.</p>
 <h3 class="sub">4.4 REJECTED — including the fourth-pair test (LD-35)</h3>
 <p><b>A fourth leg-disjoint pair was tested and does not qualify.</b> With CAD/JPY, EUR/CHF and GBP/USD claimed, only <b>AUD and NZD</b> remain free.</p>
 <div class="tblwrap"><table>
@@ -684,7 +686,7 @@
 <tr><th>When (PHT)</th><th>CCY</th><th>Event</th><th>Why it matters</th><th>Voids what?</th></tr>
 <tr><td><b>Wed 26 Aug</b></td><td class="num"><b>AUD</b></td><td><b>Inflation Rate YoY</b></td><td><b>AUD's weight-3 category, currently 0.00.</b> A rising print moves AUD's band.</td><td>Nothing proposed — but changes the AUDNZD reject</td></tr>
 <tr><td><b>Thu 27 – Sat 29</b></td><td class="num"><b>USD</b></td><td><b>JACKSON HOLE</b></td><td>Fed signalling with markets fully priced for +25bp Sept</td><td><b>GBPUSD</b> — a hawkish Fed lifts the dollar directly against it</td></tr>
-<tr><td>Any time</td><td class="num"><b>JPY</b></td><td><b>Intervention risk</b></td><td>Japan "will not hesitate" (§1)</td><td><b>CADJPY</b> — jumps straight through 114.992</td></tr>
+<tr><td>Any time</td><td class="num"><b>JPY</b></td><td><b>Intervention risk</b></td><td>Japan "will not hesitate" (§1)</td><td><b>CADJPY</b> — jumps straight through 114.472</td></tr>
 <tr><td>Tue–Fri</td><td class="num">CAD</td><td>Any CAD data</td><td>+8.38 already carries a superseded Spending row</td><td><b>CADJPY</b> if CAD re-scores down</td></tr>
 </table></div>
 <p><b>GBPUSD is the most exposed proposal.</b> It is the LOW-confidence read, its falsifier is furthest away (125.9 pips, so it will not warn early), and Jackson Hole lands directly on its short-USD leg.</p>

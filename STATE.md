@@ -2989,3 +2989,75 @@ LD-47 - LEVELS ARE MAPPED FORWARD, WITH A FIXED LOOKBACK. Closes F-32.
   BOTH CURRENTLY PUBLISH THEIR OWN FRIDAY HIGH AS RESISTANCE - both need the
   same treatment, QUEUED as R-10 for Monday since both are at all-time or
   multi-month highs where the forward map is a genuinely harder question.
+
+F-33 - A FALSIFIER THAT NO BAR EVER PRINTED. THREE EDITIONS. P2 VIOLATION.
+  Jeff: "why 114.992 is the falsifier?" - I could not answer from the bars, and
+  that is the whole finding.
+  TRACED: first appears 2026-08-20 as the BOTTOM of a resistance zone,
+  "114.992-115.203, 4 touches, 17-18 Aug". Carried into r13 and into the
+  2026-08-23 weekend edition as CADJPY's falsifier.
+  THE ZONE TOP IS REAL - 115.203 is the 17 Aug high, exact.
+  THE ZONE BOTTOM WAS FABRICATED. Checked every OHLC value in the window:
+    16 Aug close 114.937 | 17 Aug open 114.984 | 16 Aug high 115.043
+    mean(114.937, 115.043) = 114.990
+  I published 114.992. NO BAR PRINTED IT. It is a smoothed midpoint of a
+  cluster, dressed as a swing point, and the "4 touches" claim was made for a
+  price nothing touched.
+  THIS IS A DIRECT P2 FAILURE. LD-5: "a key level is recomputed by naming the
+  bars that formed it." I satisfied the FORM of that rule - I named a date
+  range - without the SUBSTANCE. Naming "17-18 Aug" is not naming a bar.
+  WHY IT SURVIVED THREE EDITIONS: every check downstream verified that the
+  falsifier had not been BREACHED, which is a question about price versus the
+  number. Nothing ever asked WHERE THE NUMBER CAME FROM. Same shape as F-15 and
+  F-23 - a content check cannot see a fabricated input, only a wrong one.
+  CORRECTED TO 114.472 - Thursday 20 Aug's LOW, the bar that launched the run.
+  A real bar; 101.8 pips below Friday's close; and OUTSIDE ONE AVERAGE DAILY
+  RANGE (mean of the last 10 daily ranges = 0.646 = 65 pips), so ordinary noise
+  cannot trip it. Its breach means the whole three-day advance is given back.
+  REJECTED 115.203, the real zone top: only 29 pips below price. A pair that
+  moved +95 pips in a week would breach it on noise.
+  THE PRINCIPLE THAT FELL OUT, and it is worth more than the fix: A FALSIFIER
+  INSIDE ONE ATR IS NOT A FALSIFIER, IT IS A STOP - and this report does not
+  publish stops (LD-4). A falsifier answers "at what price is my READ wrong",
+  which must sit beyond normal noise. A stop answers "at what price do I exit",
+  which is TRTM's business, not ours. Choosing 115.203 because it was nearer
+  would have quietly imported a money-path concept into an analysis-only
+  report.
+  Chart: removed tpfmhf, drew UgqvQl at 114.472.
+
+LD-48 - EVERY PUBLISHED LEVEL NAMES ITS BAR, AND ITS FALSIFIER CLEARS 1 ATR.
+  TWO RULES, both from F-33.
+  1. A LEVEL IS A PRICE SOME BAR ACTUALLY PRINTED. Open, high, low or close of
+     a named, dated bar. NEVER a mean, midpoint, round number or smoothed
+     cluster value. A zone is defined by the two real bars at its edges.
+     The edition names the BAR AND THE FIELD - "17 Aug high 115.203", not
+     "17-18 Aug, 4 touches". A date range is not a bar.
+     Touch counts must be verifiable: if a zone claims N touches, N bars can be
+     listed with their dates.
+  2. A FALSIFIER MUST SIT BEYOND ONE AVERAGE TRUE RANGE of the current close,
+     measured over the last 10 sessions and STATED IN THE EDITION alongside the
+     level. Inside 1 ATR it is not a falsifier, it is a stop, and stops are
+     outside scope (LD-4/LD-7).
+     Where the nearest real structure is inside 1 ATR, go to the next real
+     level out - do not invent an intermediate one. That invention is exactly
+     what produced 114.992.
+  QUEUED R-11: audit every level in the repo against rule 1. EURCHF 0.93071 and
+  GBPUSD 1.35197 were verified against bars this session and are real. The
+  2026-08-19 and 2026-08-20 editions have not been checked.
+
+# F-33 FOLLOW-UP, same session: audited the OTHER TWO falsifiers against bars.
+#   EURCHF 0.93071 = Thu 20 LOW, exact, and 0.93075 = Wed 19 low - a genuine
+#     2-touch zone. REAL.
+#   GBPUSD 1.35197 = Tue 18 LOW, exact. REAL, and 126 pips away against a
+#     61-pip average range, so it clears LD-48 rule 2 comfortably.
+#   SO 114.992 WAS THE ONLY FABRICATED ONE. Good - the defect is isolated, not
+#   systemic across the carried set.
+#   BUT EURCHF FAILS LD-48 RULE 2: 49 pips below close against a 55-pip average
+#   daily range - INSIDE ONE ATR. No qualifying real level exists in the
+#   visible window.
+#   DELIBERATELY NOT PATCHED. Inventing an intermediate level is precisely what
+#   produced 114.992 in the first place. Published with the limitation stated -
+#   "treat EURCHF's falsifier as loose" - and queued for a 250-bar pull Monday
+#   (LD-47's lookback) to find the real level beyond 1 ATR.
+#   THAT RESTRAINT IS THE POINT. The fix for a bad level is a deeper lookback,
+#   never a smoother number.
