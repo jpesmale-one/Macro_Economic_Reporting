@@ -590,9 +590,17 @@ Grouped by type, tradable first. Minimum spread **1.00** (LD-18).
 | **AUDJPY** | LONG | RISK-ON | 2.08 | — | ⬜ JPY already claimed |
 | **USDJPY** | LONG | SAFE | 2.25 | — | ⬜ JPY already claimed |
 | **NZDAUD** | LONG | COMM | **1.67** | 1.19929 *(AUDNZD)* | ❌ **tested — 42.0% of range, no edge (§4.4)** |
-| **NZDUSD** | LONG | COMM | 1.50 | — | ⬜ **never charted (R-3)** |
+| **NZDUSD** | LONG | COMM | 1.50 | **0.59790** | ⬜ **charted (R-3 closed)** — 94.6% of range, made the 15-session high Friday. **USD leg already claimed by GBPUSD** |
 | AUDUSD | SHORT | COMM | 0.17 | — | ⬜ below the 1.00 floor |
 | CADUSD | — | — | 6.13 | — | ⬜ non-standard symbol; **USDCAD SHORT** is the form |
+
+**NZDUSD charted for the first time (R-3 closed).** 15-session range
+0.58216–0.59880; Friday closed **0.59790 = 94.6% of range**, having made the
+period high 0.59880 that same session and run **+104 pips in three days** —
+the same three days DXY fell 0.90%. **It independently corroborates the dollar
+read in §5**: a commodity currency at its range high while the dollar sits at a
+three-month low. It is not carried only because **GBPUSD already claims the USD
+leg** (LD-19), not for any weakness in the setup.
 
 **RISK-OFF: NIL — and proved on the full matrix, not argued from the extremes
 (LD-18).** Haven score minus commodity score, all nine cells:
@@ -765,8 +773,21 @@ falling dollar lifts their quoted price mechanically, before demand changes.
 | | Reading | Source |
 |---|---|---|
 | **USD fundamental score** | **+2.25 · NEUTRAL** | §2.0 tally |
-| **USD price direction** | **Three-month lows**, worst week since late July | investing.com, 21 Aug |
-| **Verdict** | **⚠ DISAGREEMENT** | |
+| **USD price — DXY Friday close** | **98.839** | `TVC:DXY` daily, recomputed |
+| **DXY this week** | **99.660 → 98.839 = −0.82%** | Mon 17 open → Fri 21 close |
+| **DXY 70-session low** | **98.557**, made **Thu 20 Aug** | low of the 18 May – 21 Aug range |
+| **Verdict** | **⚠ DISAGREEMENT** | score NEUTRAL, price at a three-month low |
+
+**Recomputed, naming the bars (P2).** DXY daily: Mon 17 opened 99.660, Fri 21
+closed 98.839 — **−0.821 points, −0.82% on the week**. The 70-session range
+(18 May – 21 Aug) is 98.557–101.800, so Thursday's **98.557** is the lowest
+print in three months and Friday closed 1.24% below the period high.
+
+**The buyback day is visible in the bars.** Wed 19 Aug: opened 99.665, closed
+**98.767** — **−0.90% in one session**, the largest daily fall in the range.
+That is the Treasury buyback announcement (§1), and it independently confirms
+the "dollar −0.8%" the T4 resolution sourced from news last Friday. **Same
+event, two sources, now recomputed from price.**
 
 **The score and the price disagree, and this edition reads the price.** Gold
 and BTC respond to the dollar that *trades*, not the dollar that *scores*.
@@ -782,12 +803,11 @@ BTC 20% in three sessions**, both on dollar weakness the model cannot see. Had
 §5 and §6 been read from §2's score, the edition would have missed the largest
 move on the board.
 
-**⚠ The DXY reading could not be recomputed this session.** The TradingView MCP
-returned EURCHF bars under every symbol requested after the eighth read — chart
-state and data feed desynchronised (F-30). **The "three-month lows" figure is
-sourced from investing.com and is NOT independently recomputed**, which falls
-short of P2. Monday must verify it against DXY directly before it informs a
-carried pair.
+**F-30 RESOLVED — the reading above IS recomputed.** The TradingView MCP had
+desynchronised (chart state reporting one symbol while the data feed returned
+another), which initially blocked the DXY read. **A full restart via
+`TvMsixLaunch.exe` cleared it** and DXY returned real values on the first call.
+The dollar check above is recomputed from bars and meets P2.
 
 ### Drivers — the chain, in plain terms (LD-31)
 
@@ -852,8 +872,9 @@ read behind **GBPUSD LONG**, not an independent signal (§6).
 
 ### The dollar check (LD-45)
 
-**Same reading as §5: USD score +2.25 NEUTRAL against three-month lows —
-disagreement, and the price is read.** BTC is dollar-priced and non-yielding on
+**Same reading as §5: USD score +2.25 NEUTRAL against DXY 98.839, −0.82% on
+the week and the lowest close in three months — disagreement, and the price is
+read.** BTC is dollar-priced and non-yielding on
 the identical mechanism.
 
 **BTC carries one question Gold does not:** it can trade on the

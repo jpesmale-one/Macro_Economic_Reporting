@@ -2804,5 +2804,37 @@ F-30 - TRADINGVIEW MCP DESYNCHRONISED: CHART STATE AND DATA FEED DISAGREE. OPEN.
   investing.com and is NOT independently verified - THAT FALLS SHORT OF P2 and
   is disclosed as such in section 5. Monday must verify against DXY directly
   before that reading informs a carried pair.
-  WORKAROUND UNTESTED: a chart reload or a fresh tab (tab_new) may resync.
-  Try that first on Monday before any technical read.
+  RESOLVED SAME SESSION - JEFF'S CALL: "before we commit can we try closing TV
+  and opening it up again using the launcher I provided?" A FULL RESTART FIXES
+  IT. Killed all five TradingView processes, relaunched via TvMsixLaunch.exe,
+  CDP up in ~5s, fresh target ID, and TVC:DXY returned REAL VALUES ON THE FIRST
+  CALL (98-100 range, daily bars).
+  SO F-30 IS A WEDGED SESSION, NOT A BROKEN TOOL. Downgraded from "MCP defect"
+  to "known failure mode with a known fix".
+  RECIPE, when chart state and data feed disagree:
+    1. powershell Get-Process *TradingView* | Stop-Process -Force
+    2. TvMsixLaunch.exe "TradingView.Desktop_n534cwy3pjxzj!TradingView.Desktop"
+       "--remote-debugging-port=9222"
+    3. poll http://127.0.0.1:9222/json/version until it answers (~5s)
+  SYMPTOM TO WATCH FOR: data_get_ohlcv returning values that cannot belong to
+  the requested symbol. DXY does not trade at 0.9355. IF A PRICE LOOKS WRONG
+  FOR THE INSTRUMENT, IT IS - do not publish it, restart and re-read.
+  It appeared after 8 successful reads, so suspect it on any long charting run.
+  FOURTH INDEPENDENT CONFIRMATION of the F-9 launcher recipe.
+
+  WHAT THE RESTART BOUGHT, beyond the fix:
+  DXY RECOMPUTED, P2 NOW SATISFIED where the edition had disclosed a shortfall.
+    Mon 17 open 99.660 -> Fri 21 close 98.839 = -0.821 = -0.82% on the week
+    70-session range (18 May - 21 Aug) 98.557-101.800; Thu 20 Aug's 98.557 is
+    the lowest print in three months; Friday closed 1.24% below the period high
+    WED 19 AUG: opened 99.665, closed 98.767 = -0.90% IN ONE SESSION, the
+    largest daily fall in the range. That is the Treasury buyback day, and it
+    INDEPENDENTLY CONFIRMS FROM PRICE the "dollar -0.8%" the T4 resolution
+    sourced from news last Friday. Same event, two sources, now recomputed.
+  R-3 CLOSED - NZDUSD charted for the first time in the repo's history.
+    15-session range 0.58216-0.59880; Friday closed 0.59790 = 94.6% OF RANGE,
+    made the period high 0.59880 that session, +104 pips in three days - THE
+    SAME THREE DAYS DXY FELL 0.90%. It independently corroborates LD-45's
+    dollar read: a commodity currency at its range high against a dollar at a
+    three-month low. NOT carried only because GBPUSD already claims the USD leg
+    (LD-19), not for any weakness in the setup.

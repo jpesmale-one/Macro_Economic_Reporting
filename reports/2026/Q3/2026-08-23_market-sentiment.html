@@ -591,10 +591,11 @@
 <tr><td><b>AUDJPY</b></td><td>LONG</td><td>RISK-ON</td><td class="num">2.08</td><td>—</td><td>⬜ JPY already claimed</td></tr>
 <tr><td><b>USDJPY</b></td><td>LONG</td><td>SAFE</td><td class="num">2.25</td><td>—</td><td>⬜ JPY already claimed</td></tr>
 <tr><td><b>NZDAUD</b></td><td>LONG</td><td>COMM</td><td class="num"><b>1.67</b></td><td>1.19929 <em>(AUDNZD)</em></td><td>❌ <b>tested — 42.0% of range, no edge (§4.4)</b></td></tr>
-<tr><td><b>NZDUSD</b></td><td>LONG</td><td>COMM</td><td class="num">1.50</td><td>—</td><td>⬜ <b>never charted (R-3)</b></td></tr>
+<tr><td><b>NZDUSD</b></td><td>LONG</td><td>COMM</td><td class="num">1.50</td><td class="num"><b>0.59790</b></td><td>⬜ <b>charted (R-3 closed)</b> — 94.6% of range, made the 15-session high Friday. <b>USD leg already claimed by GBPUSD</b></td></tr>
 <tr><td>AUDUSD</td><td>SHORT</td><td>COMM</td><td class="num">0.17</td><td>—</td><td>⬜ below the 1.00 floor</td></tr>
 <tr><td>CADUSD</td><td>—</td><td>—</td><td class="num">6.13</td><td>—</td><td>⬜ non-standard symbol; <b>USDCAD SHORT</b> is the form</td></tr>
 </table></div>
+<p><b>NZDUSD charted for the first time (R-3 closed).</b> 15-session range 0.58216–0.59880; Friday closed <b>0.59790 = 94.6% of range</b>, having made the period high 0.59880 that same session and run <b>+104 pips in three days</b> — the same three days DXY fell 0.90%. <b>It independently corroborates the dollar read in §5</b>: a commodity currency at its range high while the dollar sits at a three-month low. It is not carried only because <b>GBPUSD already claims the USD leg</b> (LD-19), not for any weakness in the setup.</p>
 <p><b>RISK-OFF: NIL — and proved on the full matrix, not argued from the extremes (LD-18).</b> Haven score minus commodity score, all nine cells:</p>
 <div class="tblwrap"><table>
 <tr><th></th><th><b>CAD +8.38</b></th><th><b>AUD +2.08</b></th><th><b>NZD +3.75</b></th></tr>
@@ -669,13 +670,17 @@
 <div class="tblwrap"><table>
 <tr><th></th><th>Reading</th><th>Source</th></tr>
 <tr><td><b>USD fundamental score</b></td><td><b>+2.25 · NEUTRAL</b></td><td>§2.0 tally</td></tr>
-<tr><td><b>USD price direction</b></td><td><b>Three-month lows</b>, worst week since late July</td><td>investing.com, 21 Aug</td></tr>
-<tr><td><b>Verdict</b></td><td><b>⚠ DISAGREEMENT</b></td><td></td></tr>
+<tr><td><b>USD price — DXY Friday close</b></td><td class="num"><b>98.839</b></td><td><code>TVC:DXY</code> daily, recomputed</td></tr>
+<tr><td><b>DXY this week</b></td><td><b>99.660 → 98.839 = −0.82%</b></td><td>Mon 17 open → Fri 21 close</td></tr>
+<tr><td><b>DXY 70-session low</b></td><td><b>98.557</b>, made <b>Thu 20 Aug</b></td><td>low of the 18 May – 21 Aug range</td></tr>
+<tr><td><b>Verdict</b></td><td><b>⚠ DISAGREEMENT</b></td><td>score NEUTRAL, price at a three-month low</td></tr>
 </table></div>
+<p><b>Recomputed, naming the bars (P2).</b> DXY daily: Mon 17 opened 99.660, Fri 21 closed 98.839 — <b>−0.821 points, −0.82% on the week</b>. The 70-session range (18 May – 21 Aug) is 98.557–101.800, so Thursday's <b>98.557</b> is the lowest print in three months and Friday closed 1.24% below the period high.</p>
+<p><b>The buyback day is visible in the bars.</b> Wed 19 Aug: opened 99.665, closed <b>98.767</b> — <b>−0.90% in one session</b>, the largest daily fall in the range. That is the Treasury buyback announcement (§1), and it independently confirms the "dollar −0.8%" the T4 resolution sourced from news last Friday. <b>Same event, two sources, now recomputed from price.</b></p>
 <p><b>The score and the price disagree, and this edition reads the price.</b> Gold and BTC respond to the dollar that <em>trades</em>, not the dollar that <em>scores</em>.</p>
 <p><b>Why they differ:</b> §2's 70 rows are monthly prints — US inflation is Jul/26, industrial production Jul/26 — and a monthly series cannot show a dollar that fell through the last five sessions. <b>Price is continuous; the score lags by construction.</b></p>
 <p><b>This week is exactly the case the check exists to catch.</b> On the score alone USD is NEUTRAL and there is no signal at all — yet <b>Gold rose 1.85% Friday and BTC 20% in three sessions</b>, both on dollar weakness the model cannot see. Had §5 and §6 been read from §2's score, the edition would have missed the largest move on the board.</p>
-<p><b>⚠ The DXY reading could not be recomputed this session.</b> The TradingView MCP returned EURCHF bars under every symbol requested after the eighth read — chart state and data feed desynchronised (F-30). <b>The "three-month lows" figure is sourced from investing.com and is NOT independently recomputed</b>, which falls short of P2. Monday must verify it against DXY directly before it informs a carried pair.</p>
+<p><b>F-30 RESOLVED — the reading above IS recomputed.</b> The TradingView MCP had desynchronised (chart state reporting one symbol while the data feed returned another), which initially blocked the DXY read. <b>A full restart via <code>TvMsixLaunch.exe</code> cleared it</b> and DXY returned real values on the first call. The dollar check above is recomputed from bars and meets P2.</p>
 <h3 class="sub">Drivers — the chain, in plain terms (LD-31)</h3>
 <p><b>1. Treasury buyback expansion — the mechanism still running.</b> Treasury said on 19 August it will buy back <b>at least twice as many</b> long-dated bonds — from $2bn to $4bn per operation, <b>effective 9 September</b>. More buying pushes bond prices up, which pushes their yields down (30-year fell 9bp on the announcement). <b>Gold pays no interest</b>, so when bonds pay less, holding gold costs you less by comparison. Gold rose with falling yields, not against them.</p>
 <p><b>2. A falling dollar.</b> Gold is priced in dollars. The dollar hit <b>three-month lows</b> on its worst week since late July. When the dollar falls, the same ounce of gold costs more dollars — mechanically, before any demand changes.</p>
@@ -705,7 +710,7 @@
 <h2 class="sec">§6 — BTC (BTCUSD)</h2>
 <p><b>Friday close 77,471</b> · day range 72,472.5–79,470.5 · <b>+6.7% on the day · +20.0% in three sessions</b></p>
 <h3 class="sub">The dollar check (LD-45)</h3>
-<p><b>Same reading as §5: USD score +2.25 NEUTRAL against three-month lows — disagreement, and the price is read.</b> BTC is dollar-priced and non-yielding on the identical mechanism.</p>
+<p><b>Same reading as §5: USD score +2.25 NEUTRAL against DXY 98.839, −0.82% on the week and the lowest close in three months — disagreement, and the price is read.</b> BTC is dollar-priced and non-yielding on the identical mechanism.</p>
 <p><b>BTC carries one question Gold does not:</b> it can trade on the dollar/liquidity channel <em>or</em> on the equity risk channel, and they point different ways. <b>This week it is liquidity</b> — F&amp;G momentum 39.0 and breadth components sit in Fear while BTC rallies 20%. That is not risk appetite.</p>
 <h3 class="sub">Drivers — mirroring §5's treatment (LD-31)</h3>
 <p><b>1. The same buyback liquidity that moved gold.</b> BTC pays no interest either. The identical mechanism — Treasury buying bonds, yields falling, non-yielding assets becoming cheaper to hold — reaches BTC by the same path.</p>
