@@ -847,6 +847,18 @@ force gold and BTC share**, and it is why they moved together on Friday.
 | **~4,501** | The 200-day MA | *investinglive, 21 Aug — not recomputed here* |
 | **4,324.68** | Major support | Wed 19 Aug low, the week's base |
 
+**Drawn on the chart (LD-5 — observations of structure, never entry/stop/target):**
+
+| Level | Drawing | TV entity |
+|---|---|---|
+| 4,632.145 | red line — resistance | `vHuuCj` |
+| 4,524.34–4,541.045 | green zone — breakout shelf | `FhFWhA` |
+| **4,508.995** | **green line — the falsifier** | `iBwTqU` |
+| 4,324.68 | dashed — major base | `LjZisG` |
+
+*`OANDA:XAUUSD` daily. Chart carried no prior drawings; none of Jeff's own were
+touched. **Clear these four before the next run** (LD-16 step 6).*
+
 ### Read
 
 **Gold broke away from its 200-day MA and closed near the highs of a +1.85% day
@@ -924,6 +936,19 @@ the same error as carrying three JPY crosses and calling it 3-for-3 (EF-3).
 | **72,657 / 72,472.5** | Support — Thu close, Fri low | Thu 20 close, Fri 21 low |
 | **69,098.5** | Support — Wed breakout | Wed 19 Aug close |
 | **64,110** | Major support — pre-move base | Wed 19 Aug low |
+
+**Drawn on the chart (LD-5):**
+
+| Level | Drawing | TV entity |
+|---|---|---|
+| 79,470.5 | red line — resistance | `wZIVAm` |
+| 72,472.5–72,989.5 | green zone — support | `hEbc9H` |
+| **72,472.5** | **green line — the falsifier** | `RcG8er` |
+| 69,098.5 | dashed — breakout close | `s9wxSw` |
+| 64,110 | dashed — pre-move base | `B59wel` |
+
+*`OANDA:BTCUSD` daily. Chart carried no prior drawings; none of Jeff's own were
+touched. **Clear these five before the next run** (LD-16 step 6).*
 
 ### With risk, or decoupled? **WITH RISK — via liquidity, not equities**
 

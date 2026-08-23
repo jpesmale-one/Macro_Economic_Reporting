@@ -2838,3 +2838,31 @@ F-30 - TRADINGVIEW MCP DESYNCHRONISED: CHART STATE AND DATA FEED DISAGREE. OPEN.
     dollar read: a commodity currency at its range high against a dollar at a
     three-month low. NOT carried only because GBPUSD already claims the USD leg
     (LD-19), not for any weakness in the setup.
+
+# 2026-08-23 KEY LEVELS DRAWN for XAUUSD and BTCUSD (Jeff's request).
+#   NINE drawings, all recomputed from OANDA daily bars in this session and
+#   verified against what sections 5/6 published before drawing.
+#   XAUUSD (4): vHuuCj R 4632.145 Fri high | FhFWhA zone 4524.34-4541.045
+#     (Wed 19 + Thu 20 highs) | iBwTqU S 4508.995 Fri low = THE FALSIFIER |
+#     LjZisG S 4324.68 Wed 19 low, major base
+#   BTCUSD (5): wZIVAm R 79470.5 Fri high | hEbc9H zone 72472.5-72989.5 |
+#     RcG8er S 72472.5 Fri low = THE FALSIFIER | s9wxSw S 69098.5 Wed 19
+#     breakout close | B59wel S 64110 Wed 19 low, pre-move base
+#   CLEAR ALL NINE BEFORE THE NEXT RUN (LD-16 step 6).
+#   BOTH CHARTS CARRIED ZERO PRIOR DRAWINGS - draw_list checked first on each,
+#   count 0 both times, so none of Jeff's own drawings were touched. (AUDCAD
+#   carried seven of his on 2026-08-20; the check is not theoretical.)
+#   LD-6 verified before drawing: draw_shape is NOT in the project deny list -
+#   that list covers replay_trade, alert_*, pine_*, watchlist_*, layout_new and
+#   raw ui_*. Drawing is permitted.
+#   F-30 DISCIPLINE APPLIED: called data_get_ohlcv on each symbol BEFORE
+#   drawing and checked the values were plausible for the instrument (gold
+#   ~4500, BTC ~77000). After the restart both returned correct data. Never
+#   draw a level from a feed you have not just sanity-checked.
+#   Screenshots captured to ~/tradingview-mcp/screenshots/ - the OHLC headers
+#   independently confirm both: XAUUSD O 4519.545 H 4632.145 L 4508.995
+#   C 4602.990 +1.86%, BTCUSD O 72603 H 79470.5 L 72472.5 C 77471 +6.63%.
+#   Both match sections 5/6 exactly.
+#   SCOPE (LD-4/LD-5): these are OBSERVATIONS OF STRUCTURE. No entry, stop,
+#   target or size was drawn or implied. The falsifier lines are the level at
+#   which the published READ is wrong, not a stop.
