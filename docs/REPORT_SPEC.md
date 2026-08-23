@@ -190,8 +190,9 @@ verbatim as historical input and is never edited (LD-1).
 | Date | Indicator | Change | Why |
 |---|---|---|---|
 | 2026-08-23 | **GBP** Retail Sales YoY → **Retail Sales Ex Fuel YoY** | replaced | Jeff's call. Ex-fuel strips the volatile fuel component and reads underlying consumer demand, which is what the Spending category is for. |
+| 2026-08-24 | **USD** Manufacturing Production YoY | **added** | Jeff's call. USD Production carried ISM PMI (a survey), Industrial Production (all output incl. mining and utilities) and Durable Goods. **None was manufacturing output specifically** — the segment that leads the cycle. GBP's Production block already carries this indicator, so the convention was set. |
 
-**ALL 70 NAMED INDICATORS ARE PUBLISHED EVERY EDITION.** An indicator that
+**ALL 71 NAMED INDICATORS ARE PUBLISHED EVERY EDITION.** An indicator that
 cannot be sourced is published with score **NOT FOUND** so Jeff can verify
 it — never dropped. A silent omission is unverifiable; a flagged gap is not.
 

@@ -306,17 +306,18 @@ Commodity: CAD +8.38 › NZD +3.75 › AUD +2.08 · Risk-corr: EUR +6.25 › GBP
 data superseded by Friday's −0.8% retail sales miss (§0L). AUD's +2.08 faces its
 weight-3 Inflation category — currently **0.00** — on Wednesday.
 
-**All 70 whitelist indicators published in full** — Actual, Previous, reference period, the threshold applied and the resulting score, every one. An indicator that cannot be sourced is published as **NOT FOUND** so it can be verified, never dropped or blanked. Generated from `pipelines/score_model.py` by `pipelines/section2.py`, so the tables and the §2.0 tally cannot drift apart.
+**All 71 whitelist indicators published in full** — Actual, Previous, reference period, the threshold applied and the resulting score, every one. An indicator that cannot be sourced is published as **NOT FOUND** so it can be verified, never dropped or blanked. Generated from `pipelines/score_model.py` by `pipelines/section2.py`, so the tables and the §2.0 tally cannot drift apart.
 
 ### 2.1 Production (weight 1)
 
-**18 indicators — 15 GOOD · 1 BAD · 2 NEUTRAL**
+**19 indicators — 16 GOOD · 1 BAD · 2 NEUTRAL**
 
 | CCY | Indicator | Actual | Previous | Ref | Threshold | Score |
 |---|---|---|---|---|---|---|
 | USD | Durable Goods Ex Transp MoM | 0.6% | 1.8% | Jun/26 | >0.5% | **GOOD** |
 | USD | ISM Manufacturing PMI | 53.2 | 53.9 | Aug/26 | >50.5 | **GOOD** |
 | USD | Industrial Production YoY | 1.1% | 1.29% | Jul/26 | >0.5% | **GOOD** |
+| USD | Manufacturing Production YoY | 1.2% | 1.1% | Jul/26 | >0.5% | **GOOD** |
 | EUR | Industrial Production YoY | 0.1% | -0.1% | Jun/26 | 0-0.5% | NEUTRAL |
 | EUR | S&P Global Mfg PMI Final | 51.9 | 51.4 | Jul/26 | >50.5 | **GOOD** |
 | GBP | Industrial Production YoY | -0.2% | 1.0% | Jun/26 | <0% | **BAD** |
@@ -333,7 +334,7 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | CHF | Industrial Production YoY | 5.5% | -7.1% | Q2/26 | >0.5% | **GOOD** |
 | CHF | Procure.ch-UBS Mfg PMI | 53.2 | 54.3 | Jul/26 | >50.5 | **GOOD** |
 
-**⚠ TWO PRODUCTION ROWS WERE STALE.** CHF Industrial Production carried **−7.1% (Q1/26)** scored BAD; **Q2 released 19 Aug at +5.5%** → GOOD. USD ISM Manufacturing PMI carried **53.9 (Jul)**; **Aug printed 53.2** — GOOD either way. Both found by the full TE audit (§8, F-35).
+**⚠ USD MANUFACTURING PRODUCTION YoY ADDED (LD-53).** Jeff's amendment. **1.2% (Jul/26), previous 1.1%** — released 18 Aug, verified against the Fed's **G.17** release and TE's series calendar. GOOD. **USD Production now has four indicators, so each is worth 0.250 rather than 0.333** — the category still scores +1.00, but every USD Production row now carries less individual weight. **Two other rows were stale:** CHF Industrial Production **−7.1% (Q1) → +5.5% (Q2)**, released 19 Aug, BAD → GOOD; USD ISM Manufacturing **53.9 (Jul) → 53.2 (Aug)**, GOOD either way.
 
 ### 2.2 Spending (weight 1)
 
@@ -341,7 +342,7 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 
 | CCY | Indicator | Actual | Previous | Ref | Threshold | Score |
 |---|---|---|---|---|---|---|
-| USD | Building Permits MoM Final | +5.0% | -2.6% | Jul/26 | >0.5% | **GOOD** |
+| USD | Building Permits MoM Final | +5.0% PREL | -2.6% | Jul/26 | >0.5% | **GOOD** |
 | USD | CB Consumer Confidence | 51.0 | 55.2 | Aug/26 | >Prev | **BAD** |
 | USD | Personal Spending MoM | 0.3% | 0.9% | Jun/26 | 0-0.5% | NEUTRAL |
 | USD | Retail Sales YoY | 5.0% | 6.8% | Jul/26 | >0.5% | **GOOD** |
@@ -365,7 +366,7 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | CHF | Consumer Confidence | -35 | -36 | Jul/26 | >Prev | **GOOD** |
 | CHF | Retail Sales YoY | 1.5% | 3.4% | Jun/26 | >0.5% | **GOOD** |
 
-**⚠ GBP now uses RETAIL SALES EX FUEL (LD-51).** Jeff's amendment: ex-fuel strips the volatile fuel component and reads underlying consumer demand. **2.3% (Jul/26), previous 5.0%** — GOOD, same grade as the headline 1.6%, but a **steeper deceleration: −2.7pp against the headline's −2.2pp.** **Four other rows corrected this session:** GfK **−17 → −14**; **NZD Electronic Retail Card Spending** carried the *Retail Sales QoQ* figures, real value **3.4% YoY (Jul/26)**; **CAD Retail Sales YoY 5.9% May → 5.2% Jun**. **EUR Consumer Confidence stays at the July FINAL −15.9** — TE's −15.5 is the August *flash*, and the Final releases **Fri 28 Aug** (§4.0).
+**⚠ GBP now uses RETAIL SALES EX FUEL (LD-51).** **2.3% (Jul/26), previous 5.0%** — GOOD, same grade as the headline 1.6%, but a **steeper deceleration: −2.7pp against the headline's −2.2pp.** **Others corrected this session:** GfK **−17 → −14**; **NZD Electronic Retail Card Spending** carried the *Retail Sales QoQ* figures, real value **3.4% YoY (Jul/26)**; **CAD Retail Sales YoY 5.9% May → 5.2% Jun**. **⚠ USD Building Permits carries a PRELIMINARY figure** under a Final's name — the Final releases **Tue 25 Aug** (§4.0). **EUR Consumer Confidence stays at the July FINAL −15.9** — TE's −15.5 is the August *flash*, Final due **Fri 28 Aug**.
 
 ### 2.3 Trade (weight 1)
 
@@ -536,14 +537,13 @@ same discipline §3 applies to market-implied odds.
 
 **⚠ A SECOND PROJECTION CHANGES A SCORE — USD DURABLE GOODS EX TRANSP.**
 Wed 26 20:30 PHT. Our row carries **0.6% (Jun)** scored GOOD; **TE forecasts
-0.3% for July**, which lands in the 0–0.5% **NEUTRAL** band. USD has three
-Production indicators, so each is worth 0.333:
+0.3% for July**, which lands in the 0–0.5% **NEUTRAL** band. USD now has **four** Production indicators (LD-53), so each is worth 0.250:
 
 | Durable Goods Ex Transp prints | Score | USD total |
 |---|---|---|
-| above 0.5% | GOOD +0.333 | **+2.25** unchanged |
-| **0.3% *(consensus)*** | **NEUTRAL 0.000** | **+1.92** |
-| below 0% | BAD −0.333 | +1.58 |
+| above 0.5% | GOOD +0.250 | **+2.25** unchanged |
+| **0.3% *(consensus)*** | **NEUTRAL 0.000** | **+2.00** |
+| below 0% | BAD −0.250 | +1.75 |
 
 **USD stays NEUTRAL either way** (band floor +0.01), but this and Building
 Permits both land Wednesday and Tuesday respectively — **two of USD's scored

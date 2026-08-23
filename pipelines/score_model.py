@@ -23,6 +23,7 @@ ROWS = [
  # ---------------- PRODUCTION (w=1) ----------------
  ("Production","US","ISM Manufacturing PMI","53.2","53.9","Aug/26",">50.5","GOOD"),
  ("Production","US","Industrial Production YoY","1.1%","1.29%","Jul/26",">0.5%","GOOD"),
+ ("Production","US","Manufacturing Production YoY","1.2%","1.1%","Jul/26",">0.5%","GOOD"),
  ("Production","US","Durable Goods Ex Transp MoM","0.6%","1.8%","Jun/26",">0.5%","GOOD"),
  ("Production","EA","S&P Global Mfg PMI Final","51.9","51.4","Jul/26",">50.5","GOOD"),
  ("Production","EA","Industrial Production YoY","0.1%","-0.1%","Jun/26","0-0.5%","NEUTRAL"),

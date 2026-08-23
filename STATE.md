@@ -3441,3 +3441,45 @@ F-37 - THE WEEK-AHEAD MATCHER MISSED THREE MORE WHITELIST EVENTS, AND MY FIRST
   from the calendar. So week_ahead.py structurally cannot see Swiss events and
   any CHF row in section 4.0 is hand-sourced. QUEUED as R-14 - either the
   capture needs a wider country set or CHF needs a series-page pass.
+
+LD-53 - USD MANUFACTURING PRODUCTION YoY ADDED TO THE WHITELIST (Jeff).
+  "ANother correction for USD. lets add Manufacturing Production YoY"
+  SECOND AMENDMENT IN TWO DAYS (LD-51 was GBP ex-fuel). Both are Jeff changing
+  what the whitelist names, not fixing my transcription - worth keeping that
+  distinction visible in the amendment log.
+  WHY IT BELONGS: USD Production carried ISM PMI (a SURVEY, not output),
+  Industrial Production YoY (ALL output including mining and utilities) and
+  Durable Goods Ex Transp (a component). NONE WAS MANUFACTURING OUTPUT
+  SPECIFICALLY - the segment that leads the cycle and that the other three
+  only approximate. GBP's Production block already carries this exact
+  indicator, so the naming convention was already set.
+  VALUE: 1.2% (Jul/26), previous 1.1%. Released 18 Aug. Threshold >0.5% -> GOOD.
+  SOURCED TWICE: the Fed's G.17 release (manufacturing MoM +0.2%, total IP YoY
+  1.1% - consistent with manufacturing running marginally above total) and TE's
+  series calendar, which gave the exact YoY history.
+  A TRAP AVOIDED: TE's COUNTRY INDICATOR PAGE lists "Manufacturing Production
+  1.2 | 1.5" - and 1.5 is the FORECAST column, not the previous value. The
+  SERIES CALENDAR shows Jul actual 1.2% against Jun 1.1%. Reading the country
+  page alone would have published a fabricated previous and inverted the
+  direction - the exact shape of F-4 (EA inflation direction inverted by
+  reading a calendar row without the series page). The series page is the
+  authority for a PREVIOUS value; the country page is a current-value index.
+  SCORE IMPACT: NONE, and the reason is worth stating. USD Production goes from
+  3 indicators to 4, so each drops from 0.333 to 0.250. All four score GOOD, so
+  the category still totals +1.00 and USD stays +2.25.
+  BUT EVERY USD PRODUCTION ROW NOW CARRIES LESS INDIVIDUAL WEIGHT, and that
+  changed a projection already published: section 4.0's Durable Goods Ex Transp
+  row said a NEUTRAL print would cost USD 0.333 and take it to +1.92. With four
+  indicators it costs 0.250 and takes USD to +2.00. Corrected in-edition.
+  ADDING AN INDICATOR DILUTES THE ONES ALREADY THERE - a fifth USD Production
+  row would drop each to 0.200. That is a real property of the LD-13 model
+  (weight split evenly within a category) and should be understood before any
+  future addition, not discovered afterwards.
+  THE GUARDS HANDLED IT WITHOUT INTERVENTION, which is the first real test of
+  the LD-39/LD-50 design:
+    LD-39 read the new expectation FROM THE MODEL and immediately refused to
+      render the 70-row edition: "section 2 publishes 70 indicator rows,
+      expected 71". No edit to the guard was needed.
+    LD-50's audit matched the new row against TE's own "Manufacturing
+      Production" series with no exemption required.
+  That is what "the guard reads the model" was built for.

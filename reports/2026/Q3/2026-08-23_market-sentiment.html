@@ -389,13 +389,14 @@
 <p>Bands: <b>STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00</b></p>
 <p><b>Group standings</b> — Safe haven: USD +2.25 › JPY +0.00 › CHF −0.38 · Commodity: CAD +8.38 › NZD +3.75 › AUD +2.08 · Risk-corr: EUR +6.25 › GBP +5.75</p>
 <p><b>⚠ TWO SCORES CARRY KNOWN PRESSURE INTO MONDAY.</b> CAD's Spending +1.00 rests on data superseded by Friday's −0.8% retail sales miss (§0L). AUD's +2.08 faces its weight-3 Inflation category — currently <b>0.00</b> — on Wednesday.</p>
-<p><b>All 70 whitelist indicators published in full</b> — Actual, Previous, reference period, the threshold applied and the resulting score, every one. An indicator that cannot be sourced is published as <b>NOT FOUND</b> so it can be verified, never dropped or blanked. Generated from <code>pipelines/score_model.py</code> by <code>pipelines/section2.py</code>, so the tables and the §2.0 tally cannot drift apart.</p>
-<details class="fold"><summary>2.1 Production (weight 1)<span class="cnt">18 rows</span></summary><div class="foldbody"><p><b>18 indicators — 15 GOOD · 1 BAD · 2 NEUTRAL</b></p>
+<p><b>All 71 whitelist indicators published in full</b> — Actual, Previous, reference period, the threshold applied and the resulting score, every one. An indicator that cannot be sourced is published as <b>NOT FOUND</b> so it can be verified, never dropped or blanked. Generated from <code>pipelines/score_model.py</code> by <code>pipelines/section2.py</code>, so the tables and the §2.0 tally cannot drift apart.</p>
+<details class="fold"><summary>2.1 Production (weight 1)<span class="cnt">19 rows</span></summary><div class="foldbody"><p><b>19 indicators — 16 GOOD · 1 BAD · 2 NEUTRAL</b></p>
 <div class="tblwrap"><table>
 <tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
 <tr><td class="num">USD</td><td>Durable Goods Ex Transp MoM</td><td class="num">0.6%</td><td class="num">1.8%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">USD</td><td>ISM Manufacturing PMI</td><td class="num">53.2</td><td class="num">53.9</td><td>Aug/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">USD</td><td>Industrial Production YoY</td><td class="num">1.1%</td><td class="num">1.29%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">USD</td><td>Manufacturing Production YoY</td><td class="num">1.2%</td><td class="num">1.1%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">EUR</td><td>Industrial Production YoY</td><td class="num">0.1%</td><td class="num">-0.1%</td><td>Jun/26</td><td>0-0.5%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
 <tr><td class="num">EUR</td><td>S&amp;P Global Mfg PMI Final</td><td class="num">51.9</td><td class="num">51.4</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">GBP</td><td>Industrial Production YoY</td><td class="num">-0.2%</td><td class="num">1.0%</td><td>Jun/26</td><td>&lt;0%</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
@@ -412,11 +413,11 @@
 <tr><td class="num">CHF</td><td>Industrial Production YoY</td><td class="num">5.5%</td><td class="num">-7.1%</td><td>Q2/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Procure.ch-UBS Mfg PMI</td><td class="num">53.2</td><td class="num">54.3</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 </table></div>
-<p><b>⚠ TWO PRODUCTION ROWS WERE STALE.</b> CHF Industrial Production carried <b>−7.1% (Q1/26)</b> scored BAD; <b>Q2 released 19 Aug at +5.5%</b> → GOOD. USD ISM Manufacturing PMI carried <b>53.9 (Jul)</b>; <b>Aug printed 53.2</b> — GOOD either way. Both found by the full TE audit (§8, F-35).</p></div></details>
+<p><b>⚠ USD MANUFACTURING PRODUCTION YoY ADDED (LD-53).</b> Jeff's amendment. <b>1.2% (Jul/26), previous 1.1%</b> — released 18 Aug, verified against the Fed's <b>G.17</b> release and TE's series calendar. GOOD. <b>USD Production now has four indicators, so each is worth 0.250 rather than 0.333</b> — the category still scores +1.00, but every USD Production row now carries less individual weight. <b>Two other rows were stale:</b> CHF Industrial Production <b>−7.1% (Q1) → +5.5% (Q2)</b>, released 19 Aug, BAD → GOOD; USD ISM Manufacturing <b>53.9 (Jul) → 53.2 (Aug)</b>, GOOD either way.</p></div></details>
 <details class="fold"><summary>2.2 Spending (weight 1)<span class="cnt">23 rows</span></summary><div class="foldbody"><p><b>23 indicators — 17 GOOD · 3 BAD · 3 NEUTRAL</b></p>
 <div class="tblwrap"><table>
 <tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
-<tr><td class="num">USD</td><td>Building Permits MoM Final</td><td class="num">+5.0%</td><td class="num">-2.6%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">USD</td><td>Building Permits MoM Final</td><td>+5.0% PREL</td><td class="num">-2.6%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">USD</td><td>CB Consumer Confidence</td><td class="num">51.0</td><td class="num">55.2</td><td>Aug/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 <tr><td class="num">USD</td><td>Personal Spending MoM</td><td class="num">0.3%</td><td class="num">0.9%</td><td>Jun/26</td><td>0-0.5%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
 <tr><td class="num">USD</td><td>Retail Sales YoY</td><td class="num">5.0%</td><td class="num">6.8%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
@@ -440,7 +441,7 @@
 <tr><td class="num">CHF</td><td>Consumer Confidence</td><td class="num">-35</td><td class="num">-36</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Retail Sales YoY</td><td class="num">1.5%</td><td class="num">3.4%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 </table></div>
-<p><b>⚠ GBP now uses RETAIL SALES EX FUEL (LD-51).</b> Jeff's amendment: ex-fuel strips the volatile fuel component and reads underlying consumer demand. <b>2.3% (Jul/26), previous 5.0%</b> — GOOD, same grade as the headline 1.6%, but a <b>steeper deceleration: −2.7pp against the headline's −2.2pp.</b> <b>Four other rows corrected this session:</b> GfK <b>−17 → −14</b>; <b>NZD Electronic Retail Card Spending</b> carried the <em>Retail Sales QoQ</em> figures, real value <b>3.4% YoY (Jul/26)</b>; <b>CAD Retail Sales YoY 5.9% May → 5.2% Jun</b>. <b>EUR Consumer Confidence stays at the July FINAL −15.9</b> — TE's −15.5 is the August <em>flash</em>, and the Final releases <b>Fri 28 Aug</b> (§4.0).</p></div></details>
+<p><b>⚠ GBP now uses RETAIL SALES EX FUEL (LD-51).</b> <b>2.3% (Jul/26), previous 5.0%</b> — GOOD, same grade as the headline 1.6%, but a <b>steeper deceleration: −2.7pp against the headline's −2.2pp.</b> <b>Others corrected this session:</b> GfK <b>−17 → −14</b>; <b>NZD Electronic Retail Card Spending</b> carried the <em>Retail Sales QoQ</em> figures, real value <b>3.4% YoY (Jul/26)</b>; <b>CAD Retail Sales YoY 5.9% May → 5.2% Jun</b>. <b>⚠ USD Building Permits carries a PRELIMINARY figure</b> under a Final's name — the Final releases <b>Tue 25 Aug</b> (§4.0). <b>EUR Consumer Confidence stays at the July FINAL −15.9</b> — TE's −15.5 is the August <em>flash</em>, Final due <b>Fri 28 Aug</b>.</p></div></details>
 <details class="fold"><summary>2.3 Trade (weight 1)<span class="cnt">8 rows</span></summary><div class="foldbody"><p><b>8 indicators — 5 GOOD · 3 BAD · 0 NEUTRAL</b></p>
 <div class="tblwrap"><table>
 <tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
@@ -544,12 +545,12 @@
 <tr><td><b>Fri 28 17:00</b></td><td class="num"><b>EUR</b></td><td><b>Consumer Confidence Final (Aug)</b></td><td><b>−15.9</b> <em>(Jul final)</em></td><td class="num"><b>−15.9</b></td><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td>&gt;Prev fails on an unchanged print; <b>flash ran −15.5</b></td></tr>
 </table></div>
 <p><b>Twelve whitelist indicators land Mon–Fri. Nine carry a scored projection</b>; three are published UNSCORED with the reason rather than given a guessed number — the same discipline §3 applies to market-implied odds.</p>
-<p><b>⚠ A SECOND PROJECTION CHANGES A SCORE — USD DURABLE GOODS EX TRANSP.</b> Wed 26 20:30 PHT. Our row carries <b>0.6% (Jun)</b> scored GOOD; <b>TE forecasts 0.3% for July</b>, which lands in the 0–0.5% <b>NEUTRAL</b> band. USD has three Production indicators, so each is worth 0.333:</p>
+<p><b>⚠ A SECOND PROJECTION CHANGES A SCORE — USD DURABLE GOODS EX TRANSP.</b> Wed 26 20:30 PHT. Our row carries <b>0.6% (Jun)</b> scored GOOD; <b>TE forecasts 0.3% for July</b>, which lands in the 0–0.5% <b>NEUTRAL</b> band. USD now has <b>four</b> Production indicators (LD-53), so each is worth 0.250:</p>
 <div class="tblwrap"><table>
 <tr><th>Durable Goods Ex Transp prints</th><th>Score</th><th>USD total</th></tr>
-<tr><td>above 0.5%</td><td>GOOD +0.333</td><td><b>+2.25</b> unchanged</td></tr>
-<tr><td>**0.3% *(consensus)***</td><td><b>NEUTRAL 0.000</b></td><td class="num"><b>+1.92</b></td></tr>
-<tr><td>below 0%</td><td>BAD −0.333</td><td class="num">+1.58</td></tr>
+<tr><td>above 0.5%</td><td>GOOD +0.250</td><td><b>+2.25</b> unchanged</td></tr>
+<tr><td>**0.3% *(consensus)***</td><td><b>NEUTRAL 0.000</b></td><td class="num"><b>+2.00</b></td></tr>
+<tr><td>below 0%</td><td>BAD −0.250</td><td class="num">+1.75</td></tr>
 </table></div>
 <p><b>USD stays NEUTRAL either way</b> (band floor +0.01), but this and Building Permits both land Wednesday and Tuesday respectively — <b>two of USD's scored rows are in play in the first half of the week</b>, and USD is <b>GBPUSD's short leg</b>.</p>
 <p><b>⚠ US BUILDING PERMITS — OUR ROW HOLDS A PRELIMINARY FIGURE.</b> §2.2 carries <b>+5.0% (Jul/26)</b>, derived from the <b>preliminary</b> 1.443M released 18 Aug against June's final 1.374M. <b>The row is named "Building Permits MoM Final" and the Final does not release until Tue 25 Aug 20:00 PHT</b> — so a provisional number currently sits under a final's name, the same shape as F-27 (StatCan's advance estimate) and F-29 (the EUR flash).</p>
