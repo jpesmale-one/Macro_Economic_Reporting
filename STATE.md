@@ -2921,3 +2921,71 @@ LD-46 - DRAWING IS A BUILD STEP, EVERY REFRESH. Closes F-31.
   SCOPE UNCHANGED (LD-4/LD-5/LD-7): drawn levels are OBSERVATIONS OF
   STRUCTURE. No entry, stop, target or size. A falsifier line marks where the
   READ is wrong, not where a position would exit.
+
+F-32 - EVERY LEVEL THIS REPORT PUBLISHES IS BEHIND PRICE. NO FORWARD MAP. FIXED.
+  Jeff: "What is the next key level of CADJPY? I can only see the broken
+  resistance but you haven't mapped the next resistance level. These things are
+  crucial to anticipate where the price is going."
+  HE IS RIGHT AND IT IS A METHOD GAP, NOT A MISSING LINE. Audited every level
+  the repo has ever published: they are ALL derived from RECENT bars and all
+  sit AT OR BELOW price.
+    CADJPY: support 113.852-114.352, "cleared 114.992-115.203, now support" -
+      NOTHING above 115.490 was ever mapped
+    XAUUSD: R 4632.145 = Friday's own high. Not resistance, just the last tick.
+    BTCUSD: R 79470.5 = Friday's own high. Same.
+  A LEVEL DERIVED FROM THE CURRENT BAR IS NOT RESISTANCE - it is a record of
+  where price stopped, and it carries no information about where price meets
+  supply NEXT. LD-5 says a key level is "recomputed by naming the bars that
+  formed it", and I satisfied that literally while only ever looking backwards.
+  ROOT CAUSE: the zone method (LD-16 step 5) says "check D and H4
+  support/resistance for the shortlist" with no LOOKBACK specified, so I used
+  whatever window the last data pull happened to cover - 15 bars, sometimes 8.
+  A 15-bar window on a pair in a months-long range CANNOT SEE the ceiling that
+  actually matters. The instruction was satisfiable without ever answering the
+  question Jeff is asking.
+  FIXED FOR CADJPY, and the result is substantive: 260 daily bars, swing pivots
+  (2 bars each side), clustered within 0.20:
+    R1 115.700-115.780  3 touches   +22 pips   17-19 May
+    R2 116.240-116.500  6 touches   +75 pips   22-29 Jul + 19 Apr  <- THE ONE
+    R3 116.720-116.910  4 touches  +124 pips   20-23 Apr
+    R4 117.020-117.300  7 touches  +153 pips   8-12 Mar + 26-28 Apr <- HEAVIEST
+    117.520             1 touch    +203 pips   12-MONTH HIGH, 29 Apr
+  R2 IS THE LEVEL THAT MATTERS: five of its six touches fell in the LAST WEEK
+  OF JULY, which is where CADJPY's previous advance failed. A pair that just
+  cleared its August range meets its July ceiling 75 pips higher.
+  THIS CHANGES THE READ, not just the chart. CADJPY is HIGH confidence and 49.8
+  pips clear of its falsifier - but it is ALSO 22 pips under its first overhead
+  and 75 under the one with real history. THE TESTED RUNWAY IS ~75 PIPS, not
+  open-ended. "Cleared resistance, no overhead" was a materially different and
+  wrongly optimistic picture.
+  Chart: cleared Zxu0GY and WmQ0Wi (20 Aug, ours) by entity ID first, then drew
+  six - o5YB6D R1, MzFAAz R2, 1B7sus R4, ojWt8J 12-mo high, tpfmhf falsifier,
+  RVdqO5 support.
+
+LD-47 - LEVELS ARE MAPPED FORWARD, WITH A FIXED LOOKBACK. Closes F-32.
+  THE RULE: every instrument publishes levels BOTH SIDES of price. A level at
+  or below price answers "where has price been"; the report must also answer
+  "WHERE DOES PRICE MEET SUPPLY NEXT".
+  MINIMUM LOOKBACK: 250 daily bars (~12 months). Not "the last pull" - a fixed
+  window, stated in the edition, so the map cannot silently shrink to whatever
+  the last data call returned.
+  METHOD: swing pivots, 2 bars each side (the existing LD-16 definition,
+  applied to a proper window), clustered within 0.20 for JPY crosses / scaled
+  to the instrument. Each zone publishes TOUCH COUNT, DATES, and DISTANCE IN
+  PIPS FROM THE CURRENT CLOSE.
+  PUBLISH AT LEAST THE NEXT TWO overhead zones for a long read (or the next two
+  below for a short), plus the period extreme. Two, because the first is often
+  thin - CADJPY's R1 is three touches from a single week in May, while R2 is
+  six touches across two months.
+  THE DISTANCE FIGURE IS THE POINT: "+75 pips to R2" is what tells the reader
+  whether a read has room. A falsifier says where the read is WRONG; the
+  forward map says where it is FINISHED. Both are needed and they are not the
+  same number.
+  SCOPE UNCHANGED (LD-4/LD-5/LD-7): a forward level is an OBSERVATION OF
+  STRUCTURE, never a target. "R2 is 75 pips away with six touches" is a
+  statement about supply, not an instruction to exit there. The distinction is
+  the same one LD-7 drew and it holds.
+  APPLIES TO: every carried/proposed pair, XAUUSD and BTCUSD. XAUUSD and BTCUSD
+  BOTH CURRENTLY PUBLISH THEIR OWN FRIDAY HIGH AS RESISTANCE - both need the
+  same treatment, QUEUED as R-10 for Monday since both are at all-time or
+  multi-month highs where the forward map is a genuinely harder question.

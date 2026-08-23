@@ -709,9 +709,58 @@ locks.
 
 | Pair | Support | Resistance | Recomputed from |
 |---|---|---|---|
-| **CADJPY** | **113.852–114.352** · 5 touches | **115.588** Fri high, then open | 113.852 = 17 Aug low; 114.352 = 14 & 18 Aug lows |
+| **CADJPY** | **113.852–114.352** · 5 touches | **see the forward map below** | 113.852 = 17 Aug low; 114.352 = 14 & 18 Aug lows |
 | **EURCHF** | **0.93071–0.93126** · 2 touches | **0.93849–0.94120** unrepaired shelf | 19 Aug low 0.93075, 20 Aug low 0.93071 |
 | **GBPUSD** | **1.35197–1.35712** · 3 touches | **1.36758** Fri high | 1.35197 = 18 Aug low; 1.35712 = 17 Aug high |
+
+#### ⚠ CADJPY forward resistance map — where price can actually go
+
+**A broken level tells you where price has been. It does not tell you where it
+is going.** CADJPY cleared 114.992–115.203 and closed 115.490 with **nothing
+mapped above it** until now. Swing pivots (2 bars each side, LD-16 method) over
+260 daily bars, clustered within 0.20:
+
+| Level | Touches | Distance | Formed by |
+|---|---|---|---|
+| **R1 115.700–115.780** | **3** | **+22 pips** | 17, 18, 19 May highs |
+| **R2 116.240–116.500** | **6** | **+75 pips** | 22, 23, 27, 28, 29 Jul + 19 Apr |
+| R3 116.720–116.910 | 4 | +124 pips | 20–23 Apr |
+| **R4 117.020–117.300** | **7** | **+153 pips** | 8–12 Mar + 26–28 Apr |
+| 117.520 | 1 | +203 pips | **12-month high**, 29 Apr |
+
+**R1 is 22 pips away and thin — three touches from one week in May.** It is the
+first thing price meets, not the thing that stops it.
+
+**R2 at 116.240–116.500 is the level that matters.** Six touches, and **five of
+them fell in the last week of July** — that is where CADJPY's previous advance
+failed. A pair that just cleared its August range meets its July ceiling **75
+pips higher**.
+
+**R4 at 117.020–117.300 is the heaviest zone on the board** — seven touches
+across two separate months (March and late April). Between R2 and R4 there is
+**a full point of room** with only the thin R3 in between.
+
+**What this means for the read.** CADJPY is HIGH-confidence and 49.8 pips clear
+of its falsifier, but it is **also 22 pips under its first overhead level and 75
+under the one with real history**. The upside is not open-ended: **the tested
+runway is ~75 pips to R2**, and beyond that price would be reclaiming ground it
+lost in July. That is a materially different picture from "cleared resistance,
+no overhead."
+
+**Drawn on the chart:**
+
+| Level | Drawing | TV entity |
+|---|---|---|
+| R1 115.700–115.780 | amber zone | `o5YB6D` |
+| **R2 116.240–116.500** | **red zone — next major** | `MzFAAz` |
+| R4 117.020–117.300 | red zone — heaviest | `1B7sus` |
+| 117.520 | dashed — 12-month high | `ojWt8J` |
+| **114.992** | **green line — the falsifier** | `tpfmhf` |
+| S 113.852–114.352 | green zone — major support | `RVdqO5` |
+
+*`OANDA:CADJPY` daily. **Cleared first:** `Zxu0GY` and `WmQ0Wi` from the 20 Aug
+edition, removed by entity ID before drawing (LD-46). Jeff's own drawings
+untouched — the chart carried only these two, both ours.*
 
 **Every level above was recomputed this session from `OANDA` daily bars and
 matches what r13 published.** The CADJPY 114.992–115.203 zone r13 flagged as
