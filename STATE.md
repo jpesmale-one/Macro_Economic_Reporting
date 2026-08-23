@@ -3364,3 +3364,33 @@ LD-52 - SECTION 4.0 SORTS DATE -> TIME -> CCY. Jeff asked for "1 Date, then
 #   pure reordering.
 #   THE HEADING COUNT IN THE GUARD OUTPUT IS A CANARY. It is there for R-7, but
 #   it caught a text-manipulation bug that had nothing to do with R-7. Watch it.
+
+# 2026-08-23 - "WOULD THE NEXT SESSION REPRODUCE THIS WITHOUT THE ERRORS?"
+#   Jeff asked it before closing. I TESTED IT RATHER THAN ANSWERING FROM
+#   CONFIDENCE, and the first answer was NO.
+#   WHAT I FOUND: CLAUDE.md - the file a fresh session reads BEFORE ITS FIRST
+#   REPLY - contained ZERO references to audit_te, week_ahead, section2,
+#   render_edition, or any of LD-43/46/47/48/50. Everything built this session
+#   lived in STATE.md (3,366 lines) and REPORT_SPEC.md (902 lines), which a
+#   session reads only if it goes looking.
+#   SPLIT, measured:
+#     ENFORCED BY CODE - 17 hard-fail guards in render_edition.py covering
+#       R-7, LD-38, LD-39, LD-41, LD-46, LD-50, F-17. These survive regardless
+#       of what a session reads or remembers.
+#     DOCUMENTED ONLY - 41 locked decisions. These survive only if read.
+#   REGRESSION SUITE BUILT: pipelines/test_guards.py. Seven fixtures, each
+#   reintroducing an error THAT ACTUALLY SHIPPED, asserting the renderer
+#   refuses. All seven blocked. Exit code non-zero if any renders.
+#   TWO OF MY OWN TEST FIXTURES WERE FAULTY AND I NEARLY REPORTED THEM AS GUARD
+#   FAILURES: one wrote to the repo root because a shell variable did not
+#   expand; another failed to strip the entity IDs it was meant to remove, so
+#   the guard correctly found them. CHECKED THE FIXTURES BEFORE BLAMING THE
+#   GUARDS - a failing test is a claim about two things, and the test is the
+#   likelier defect.
+#   CLAUDE.md SECTION 0b ADDED: the pipeline table (what to generate, with
+#   what, never by hand), the three pre-edition commands, what each guard
+#   refuses, and - the part that matters most - WHAT THE GUARDS CANNOT CATCH.
+#   F-33 (a falsifier no bar printed), F-32 (every level behind price),
+#   F-27/29/36 (provisional figures under final names) all shipped past every
+#   guard and were caught by Jeff READING. A fresh session must know that
+#   green guards are not a clean edition.

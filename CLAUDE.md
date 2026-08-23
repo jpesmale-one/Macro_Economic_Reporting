@@ -86,6 +86,60 @@ ledgers, and the separation is what keeps this one lean.
 
 ---
 
+## 0b. THE PIPELINE IS THE PROTOCOL (read before building any edition)
+
+**Do not hand-write anything a generator produces.** Three findings landed
+on exactly that mistake in one session — LD-13 (the tally), LD-25/F-23 (the
+Fear & Greed chart), F-24 (section 2's 70 rows) — and each time the
+hand-written version silently degraded while the generator sat unused.
+
+| Build this | With | Never |
+|---|---|---|
+| §2.0 tally | `score_model.py` + `rate_model.py` | by hand |
+| §2.1–2.5 (all 70 rows) | `section2.py` | summarised, blanked |
+| §4.0 week ahead | `week_ahead.py` | sorted by hand (F-36) |
+| Fear & Greed | emit `<!--FNG-->` | markdown tables |
+| §4 selection | `select_pairs.py` + `confidence.py` | by eye |
+| The edition itself | `render_edition.py <path.md>` | any other way |
+
+**Before an edition, always:**
+
+```
+python pipelines/audit_te.py --fetch     # LD-50 - reconcile the whitelist
+python pipelines/test_guards.py          # 7 real regressions must all block
+python pipelines/render_edition.py <md>  # 17 guards run before a byte is written
+```
+
+**`audit_te.py` is the only thing in this repo that compares a row to the
+world.** Every other check verifies arithmetic *on* the rows — P2 recompute,
+the row-count guard, the token diff — and **all of them pass on wrong data.**
+Seven of 70 rows were wrong on 2026-08-23 and every check had been passing for
+four days (F-35).
+
+**The renderer will refuse to publish** on: a missing section (R-7), a
+hand-written generated block (LD-38), fewer than 70 whitelist rows or any
+blank cell (LD-39), an off-list indicator carrying a score (LD-41), a section
+1 with no news source (F-17), levels published but not drawn (LD-46), a stale
+or unreconciled TE capture (LD-50). **A FATAL is information, not an
+obstacle — never edit content to clear a gate.**
+
+### What the guards CANNOT catch
+
+They check an edition's **shape**, never its **judgement**. These shipped
+past every guard and were caught by Jeff reading:
+
+- **F-33** — a falsifier at 114.992 that **no bar ever printed**. It was the
+  mean of two other bars. Guards see a number; only a person sees a fiction.
+- **F-32** — every level published sat **at or below price**. "Resistance"
+  was Friday's own high. LD-47 now requires a **250-bar forward map**.
+- **F-27/F-29/F-36** — a **provisional** figure under a **final's** name,
+  three times. The phantom guard checks whether a figure was *released*,
+  never whether it was *provisional*.
+
+**Recompute every derived figure and name the bar that produced it (LD-48).**
+
+---
+
 ## 1. WHO JEFF IS (calibration, not protocol)
 
 Day trader (XAUUSD focus, same-session exits) who builds his own
