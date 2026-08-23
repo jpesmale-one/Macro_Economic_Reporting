@@ -220,6 +220,88 @@ bare "AUD: Production = Good" is not publishable.
 
 ---
 
+## 3b. THE BUILD ORDER — run this on every refresh (LD-43)
+
+Jeff's process flow, 2026-08-23. **Section 2 above is the DATA-GATHERING
+order; this is the BUILD order.** They are different documents: one says
+what to fetch, this says what to write and in what sequence.
+
+**Not a hard rule — but a deviation should be a decision, not an
+accident.** If a step is skipped, the edition says which and why.
+
+### STEP 0 — the guards, before any figure is used
+
+Non-negotiable and it comes first (F-1, F-2). §2 cannot be built on
+unverified values.
+
+1. **Timezone** — convert one already-released event and check it against
+   when it actually landed. Never assume UTC+8.
+2. **Phantom Actual** — for every TE figure, confirm the issuing agency
+   has actually released it. A phantom matches the forecast by
+   construction, so column-checking cannot see it.
+3. **Provisional check** (F-27/F-29) — is this figure FINAL, or a flash /
+   advance / preliminary estimate? A provisional figure is labelled as
+   such and never silently replaces the whitelist row.
+
+### STEP 1 — §2 Macro Economic Indicators, and the currency strength read
+
+**Fetch the calendar ONCE here** and keep the capture (F-14 — the window
+rolls; two pulls minutes apart can disagree). This single pull serves
+both §2 and §4.0.
+
+- Pull all 70 whitelist rows from the country series pages, never from
+  the calendar (F-3).
+- Regenerate §2 with `pipelines/section2.py`; regenerate the tally with
+  `score_model.py` + `rate_model.py`.
+- **Analyse currency strength** — the bands come from the tally, and §2.0
+  carries both so a band can never disagree with the score behind it.
+
+### STEP 2 — §0 Week to Date Progress
+
+**Weekend →** summarise the whole week. **Grade anything that was still
+pending at Friday's seal (LD-44)** — those late prints are the one place
+a weekend edition adds genuinely new data, and they completed the week's
+scorecard that falsified EF-4 (F-21).
+
+**Weekday →** track the locked set. Per carried pair: bias, Monday's
+open, now, move in pips, favouring YES/NO/FLAT, falsifier state.
+
+### STEP 3 — §1 News and §3 Central Banks
+
+- §1 per LD-30: summarise to **impact**, not the article. Sources are a
+  floor, not a ceiling. US items read against **USD, Gold AND BTC**.
+- §3 forward-looking: what each bank does next and what would change it.
+
+### STEP 4 — §4.0 projections, then the playbook
+
+**Publish §4.0 from the step-1 capture** — whitelist indicators only
+(LD-41). Off-list events go in the narrative block and score nothing.
+
+**4a. Weekend, or the first run after a weekend →** build the Conviction
+Playbook. Re-derive the **full board** (§4.2), apply the structure filter,
+then leg-disjointness (LD-19 — ordering is load-bearing), then confidence
+including the §4.0 projection term (LD-40). Nothing rolls over: a repeat
+is a **re-proposal**, labelled with its week count (LD-42).
+
+**4b. Weekday, set already selected →** monitor §4.0 only. **Keep the
+rest of §4 intact** — no re-derivation, no re-ranking (LD-29).
+
+> **If a weekday print changes a band (LD-43):** §2 re-scores and
+> **publishes the new band**, but **§4's selection stays locked**. A pair
+> leaves only when its falsifier fires. Where a carried leg has weakened,
+> **§0 states the tension explicitly** — "AUD moved to WEAK, the set is
+> locked until Monday" — rather than hiding it. The score is current; the
+> selection is weekly. Both are true and the edition says so.
+
+### STEP 5 — §5 Gold and §6 BTC
+
+Read last, because both take the dollar and rate picture from §2 and §3.
+Drivers in plain language showing the chain (LD-31); §6 mirrors §5.
+
+**Then the bias is formed** from all three inputs together — §2 macro,
+technical structure, and §4.0 projections (LD-40) — never from any one
+of them alone.
+
 ## 4. Report structure
 
 Seven sections. §0 was never specified and grew to 27% of the edition

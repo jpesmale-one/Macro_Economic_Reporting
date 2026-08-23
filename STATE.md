@@ -2681,3 +2681,57 @@ LD-42 - NOTHING ROLLS OVER. A REPEAT IS A RE-PROPOSAL, AND IT IS LABELLED.
   IMPLEMENTED in the 2026-08-23 edition: a W-column, an explicit "nothing rolls
   over" block above the table, and the note that last week's +95/+46/+42 pips
   are history and score nothing.
+
+LD-43 - THE BUILD ORDER. Jeff's process flow, adopted with three adjustments.
+  "This is how I think we should approach the report every time we build it.
+  its not a hard rule, I'm open to more beneficial suggestions."
+  HIS FLOW, as given: (1) refresh section 2 + analyse currency strength,
+  (2) check section 0 - weekend = summarise the week, weekday = track the
+  pairs, (3) get section 1 news + section 3 central banks, (4) get section 4.0
+  projections, then 4a weekend/first-run-after = build the playbook, 4b weekday
+  = monitor 4.0 only and keep the rest of section 4 intact, (5) read sections
+  5 and 6 to form the bias.
+  ADOPTED. It fills a real gap - the spec had a DATA-GATHERING order (section
+  2) but nothing saying what to WRITE, in what sequence, or what differs
+  between a weekday and a weekend. Written in as spec section 3b.
+  THREE ADJUSTMENTS PROPOSED AND ACCEPTED:
+   1. FETCH THE CALENDAR ONCE, at step 1, serving both section 2 and section
+      4.0. His flow touches the calendar at step 1 and again at step 4; F-14
+      says the window ROLLS, so two pulls minutes apart can disagree. Fetch
+      once, publish twice.
+   2. THE GUARDS ARE STEP 0, before step 1. His flow starts at "refresh
+      section 2", but the phantom guard (F-1) and timezone check (F-2) must run
+      BEFORE any TE figure is used or section 2 is built on unverified values.
+      Added a third guard to the same step: the PROVISIONAL check (F-27/F-29) -
+      is this figure FINAL or a flash/advance/prelim? Three findings this
+      session shared that shape.
+   3. NAMED THE WEEKDAY BAND-CHANGE CASE, which his 4b left open.
+  JEFF'S CALL on that case: PUBLISH THE CHANGE, KEEP THE PAIRS. If a weekday
+  print moves a band, section 2 re-scores and publishes the new band, but
+  section 4's selection STAYS LOCKED (LD-29). A pair leaves only when its
+  falsifier fires. Where a carried leg has weakened, SECTION 0 STATES THE
+  TENSION EXPLICITLY - "AUD moved to WEAK, the set is locked until Monday" -
+  rather than hiding it. The score is current; the selection is weekly; both
+  are true and the edition says so.
+  REJECTED: a band change re-opens selection - it breaks the weekly lock and
+  makes section 0's question unanswerable against a moving set.
+  REJECTED: only a carried leg re-opens it - a defensible middle path, but it
+  puts a conditional in the one rule that most needs to be unconditional. A
+  falsifier already covers the case where a carried pair actually breaks.
+
+LD-44 - THE WEEKEND SUMMARY GRADES PRINTS THAT LANDED AFTER FRIDAY'S SEAL.
+  Jeff's call, asked explicitly. His step 2a says "if it's the weekend we
+  summarize our whole week"; the open question was whether that summary waits
+  for prints that posted after the seal.
+  IT DOES NOT WAIT - it chases them down and grades them.
+  EVIDENCE FROM THIS WEEKEND: SIX events were still 'awaiting'/'pending' when
+  r13 sealed Friday 16:40. All six had posted by Sunday 00:54. Grading them
+  took the week's scorecard from 10-of-13 to 10-of-14 AND FALSIFIED EF-4 - two
+  of the four new misses ran opposite to the "one-directional error" a sealed
+  established fact had claimed (F-21). Waiting for Monday would have delayed
+  that by two days and graded a week already closed.
+  This is also what makes a weekend edition more than a re-dated Friday: it is
+  THE ONE PLACE a weekend edition adds genuinely new data (LD-32).
+  REJECTED: grade only what the seal saw. Cleaner boundary, but it leaves the
+  week's scorecard permanently incomplete, and the scorecard is what grades the
+  METHOD - the thing EF-4 and F-21 are about.
