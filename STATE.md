@@ -3483,3 +3483,54 @@ LD-53 - USD MANUFACTURING PRODUCTION YoY ADDED TO THE WHITELIST (Jeff).
     LD-50's audit matched the new row against TE's own "Manufacturing
       Production" series with no exemption required.
   That is what "the guard reads the model" was built for.
+
+LD-54 - REVISION DETECTION AND CADENCE STALENESS. Two gaps Jeff named:
+  "1. There are instances where the Previous Actual value get's updated, are we
+   capturing these changes?
+   2. We also need see if there are indicator if its getting stalled. Meaning
+   not being updated on a Monthly basis. Of course with exception of Quarterly
+   data"
+  ANSWER TO (1) WAS NO, AND LD-3 FLAGGED IT ON THE REPO'S FIRST DAY:
+  "Trading Economics ... its Previous column is REVISED IN PLACE and sits
+  adjacent to Actual." Nothing was ever built. audit_te.py even PARSES the
+  previous value into a variable and never compares it.
+  THREE REVISIONS WERE HIT IN THIS SESSION ALONE, all caught by reading:
+    JPY Inflation        previous 1.7% -> revised 1.6%  (Statistics Bureau)
+    NZD Balance of Trade Jun previous 577M -> -0.24B    (TE series page)
+    USD Manufacturing    the country page's "1.5" was the FORECAST, not prev
+  WHY A REVISED PREVIOUS IS DANGEROUS OUT OF PROPORTION TO ITS SIZE: it
+  silently flips a DIRECTION claim. "2.9% from 2.8%, RISING" becomes "2.9%
+  from 3.0%, FALLING" on an unchanged Actual. That is F-4 exactly - EA
+  inflation direction inverted, highest-conviction call WITHDRAWN. The Actual
+  never moved; only the comparison did.
+  MECHANICAL CAUSE OF THE BLIND SPOT: a revision is only visible by comparing
+  two points in time, and NOTHING IN THIS REPO EVER STORED THE PREVIOUS STATE.
+  Fixed with data/raw/whitelist_snapshots/ - one JSON per run.
+
+  ANSWER TO (2) WAS ALSO NO, and it is a DIFFERENT question from LD-50.
+  LD-50 checks whether WE RE-READ the source. This checks whether the SOURCE
+  STILL PRODUCES. An indicator can sit at Jun/26 through August with a
+  perfectly fresh capture, because the capture faithfully reports that nothing
+  new arrived. LD-49 turned this into a manual sort; LD-54 makes it a check.
+  THRESHOLDS: a MONTHLY series more than 2 reference months behind is stalled
+  (one month is normal reporting lag, two is the edge, three means prints are
+  being missed). A QUARTERLY series gets 5.
+  CADENCE IS INFERRED, NEVER READ OFF THE LABEL - and this is the part that
+  needed care. NZD Unemployment and NZD Inflation carry MONTH-STYLE labels
+  ("Jun/26") but are QUARTERLY by construction; LD-13 already flags NZ data as
+  "late by construction". A label-only reading misclassifies them and the check
+  would fire on two healthy series every month. KNOWN_QUARTERLY carries the
+  exceptions; the label is only the fallback.
+  SEVERITY SPLIT, deliberate: STALLED IS FATAL, REVISIONS ARE ADVISORY.
+  A stalled series is either a sourcing failure or a discontinued indicator and
+  both need a decision. A revision needs a HUMAN READ - auto-applying it would
+  repeat exactly the mistake LD-50's principle warns against ("a TE value that
+  differs is a QUESTION, not an instruction").
+  VERIFIED BOTH WAYS: ran stalled() against a simulated November 2026 and it
+  correctly flagged 67 series; simulated an in-place revision of JPY's previous
+  1.6% -> 1.5% and the gate caught it by name. Cadence classification checked
+  on the four tricky rows.
+  NOTE: my own test left the mutated value in the snapshot baseline and the
+  gate then flagged it on the next run - correct behaviour, but the baseline
+  had to be reset after restoring the model. RESET THE SNAPSHOT AFTER ANY TEST
+  THAT MUTATES score_model.py.

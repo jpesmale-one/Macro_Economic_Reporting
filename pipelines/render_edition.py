@@ -577,6 +577,54 @@ def assert_te_reconciled(etype):
     return '%.1fd capture, all rows agree' % age
 
 
+def assert_freshness():
+    """Revisions and stalled series (LD-54).
+
+    TWO THINGS LD-50 CANNOT SEE. LD-50 checks whether we RE-READ the source;
+    these check what the source SAID.
+
+    A revised PREVIOUS silently flips a DIRECTION claim - "2.9% from 2.8%,
+    rising" becomes "2.9% from 3.0%, falling" on the same Actual. That is F-4,
+    which cost a withdrawn conclusion. LD-3 flagged TE's in-place revision on
+    the repo's first day and nothing was ever built to catch it.
+
+    A STALLED series sits at an old reference period with a perfectly fresh
+    capture, because the capture faithfully reports that nothing arrived.
+
+    Revisions are ADVISORY - they must be read and triaged, not auto-applied.
+    Stalled series are FATAL: a series that stopped printing is either a
+    sourcing failure or a discontinued indicator, and both need a decision.
+    """
+    try:
+        sys.path.insert(0, os.path.join(REPO, 'pipelines'))
+        import freshness
+    except Exception:
+        return 'freshness unavailable'
+    rev, snap = freshness.revisions()
+    st = freshness.stalled()
+    if st:
+        lines = chr(10).join(
+            '  %-4s %-32s %-8s %s %d months behind (limit %d)' % r for r in st)
+        raise SystemExit(
+            'FATAL (LD-54): %d series have stopped producing prints:%s%s%s'
+            'A monthly series more than 2 reference months behind is missing '
+            'releases; a quarterly more than 5. Either the pull is failing or '
+            'the indicator is discontinued - both need a decision, not a '
+            'silent carry-forward.' % (len(st), chr(10), lines, chr(10)))
+    if rev:
+        print('  LD-54 REVISIONS  %d row(s) changed since %s - TRIAGE THESE:'
+              % (len(rev), snap))
+        for ccy, name, field, was, now in rev[:8]:
+            print('        %-4s %-30s %-9s %s -> %s'
+                  % (ccy, name[:30], field, was, now))
+        if len(rev) > 8:
+            print('        ... and %d more (python pipelines/freshness.py)'
+                  % (len(rev) - 8))
+        return '%d revision(s) flagged, no stalled series' % len(rev)
+    return 'no revisions%s, no stalled series' % (
+        '' if snap else ' (baseline not yet set)')
+
+
 def assert_news_sources(md):
     """Section 1 must cite a real news source (F-17 / LD-30)."""
     m = re.search(r'^##\s*§1\b.*?$(.*?)(?=^##\s*§)', md, re.S | re.M)
@@ -641,6 +689,7 @@ if __name__ == '__main__':
     # --- guards run BEFORE a single byte is written ---
     nheads = assert_sections(md, fm['type'])
     te_state = assert_te_reconciled(fm['type'])
+    fresh_state = assert_freshness()
     nmark = assert_markers(md)
     nrow, nexp = assert_whitelist(md)
     assert_levels_drawn(md)
@@ -653,6 +702,7 @@ if __name__ == '__main__':
     print('  LD-38 markers   %d/%d generated blocks emitted'
           % (nmark, len(REQUIRED_MARKERS)))
     print('  LD-50 TE recon  %s' % te_state)
+    print('  LD-54 freshness %s' % fresh_state)
     print('  LD-46 levels    drawn and entity ids recorded')
     if nexp:
         print('  LD-41 4.0 scores  whitelist indicators only')
