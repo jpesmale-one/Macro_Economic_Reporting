@@ -534,6 +534,49 @@ def assert_levels_drawn(md):
     return len(missing) == 0
 
 
+def assert_te_reconciled(etype):
+    """The whitelist must be reconciled against TE before an edition publishes.
+
+    F-35: seven of 70 rows were wrong, two of them from the day the model was
+    built. The 20 and 21 Aug editions re-scored the same wrong numbers and
+    EVERY CHECK PASSED - because every other check in this repo verifies
+    ARITHMETIC ON THE ROWS and never the rows themselves. This is the only
+    gate that compares a row to the world.
+
+    Fails on a stale capture (nobody ran the audit) or on an unresolved
+    difference (somebody ran it and ignored the output).
+    """
+    try:
+        sys.path.insert(0, os.path.join(REPO, 'pipelines'))
+        import audit_te
+    except Exception:
+        return 'audit unavailable'
+    age = audit_te.capture_age_days()
+    MAX_AGE = 4.0 if etype == 'WEEKEND' else 1.5
+    if age is None:
+        raise SystemExit(
+            'FATAL (LD-50/F-35): the whitelist has never been reconciled '
+            'against TradingEconomics.' + chr(10) +
+            'Run: python pipelines/audit_te.py --fetch')
+    if age > MAX_AGE:
+        raise SystemExit(
+            'FATAL (LD-50/F-35): TE capture is %.1f days old (max %.1f for a '
+            '%s edition).%sSeven of 70 rows were wrong on 2026-08-23 because '
+            'nothing re-read the source for four days.%sRun: python '
+            'pipelines/audit_te.py --fetch' % (age, MAX_AGE, etype, chr(10), chr(10)))
+    bad = audit_te.stale_rows()
+    if bad:
+        lines = chr(10).join(
+            '  %-4s %-32s ours %-11s (%s)  TE %-11s (%s)' % r for r in bad)
+        raise SystemExit(
+            'FATAL (LD-50/F-35): %d whitelist row(s) disagree with TE:%s%s%s'
+            'Triage each: a newer print means UPDATE score_model.py; a '
+            'different presentation means add it to audit_te.KNOWN_DIFFERENT '
+            'WITH A REASON. Never edit a row just to clear this gate.'
+            % (len(bad), chr(10), lines, chr(10)))
+    return '%.1fd capture, all rows agree' % age
+
+
 def assert_news_sources(md):
     """Section 1 must cite a real news source (F-17 / LD-30)."""
     m = re.search(r'^##\s*§1\b.*?$(.*?)(?=^##\s*§)', md, re.S | re.M)
@@ -597,6 +640,7 @@ if __name__ == '__main__':
 
     # --- guards run BEFORE a single byte is written ---
     nheads = assert_sections(md, fm['type'])
+    te_state = assert_te_reconciled(fm['type'])
     nmark = assert_markers(md)
     nrow, nexp = assert_whitelist(md)
     assert_levels_drawn(md)
@@ -608,6 +652,7 @@ if __name__ == '__main__':
           % (nheads, fm['type']))
     print('  LD-38 markers   %d/%d generated blocks emitted'
           % (nmark, len(REQUIRED_MARKERS)))
+    print('  LD-50 TE recon  %s' % te_state)
     print('  LD-46 levels    drawn and entity ids recorded')
     if nexp:
         print('  LD-41 4.0 scores  whitelist indicators only')

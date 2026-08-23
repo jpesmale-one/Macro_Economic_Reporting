@@ -3208,3 +3208,57 @@ F-35 - FULL WHITELIST AUDIT vs TE. SEVEN OF 70 ROWS WERE WRONG. Jeff: "can you
 #   Only CHF moved. Bands unchanged - CHF still WEAK, but by 0.38 not 3.38.
 #   PROPOSALS AFTER THE AUDIT: CADJPY HIGH (+5), EURCHF LOW (+1, was MEDIUM +3),
 #   GBPUSD LOW (+1). TWO OF THREE ARE NOW LOW AND THE TOP PAIR LEADS BY FOUR.
+
+LD-50 - THE RENDERER REFUSES TO PUBLISH AGAINST AN UNRECONCILED WHITELIST.
+  Jeff: "How did we missed it? also how do we make sure this does not happen
+  again?"
+  HOW WE MISSED IT - the answer is structural and it is worth stating exactly:
+  EVERY CHECK IN THIS REPO VERIFIES ARITHMETIC ON THE ROWS. NOTHING EVER
+  VERIFIED THE ROWS.
+    P2 recompute       - does the tally sum from the rows?
+    score_model        - does each category average correctly?
+    LD-39 row guard    - are all 70 rows PRESENT, no blanks?
+    LD-17 token diff   - did rendering lose content?
+  ALL FOUR PASS ON WRONG DATA. They are closed loops: the rows are the input
+  and every test asks whether what happens downstream is sound. A row saying
+  CHF Industrial Production was -7.1% in Q1 is ARITHMETICALLY PERFECT right up
+  until you compare it to the world.
+  Confirmed from git: score_model.py was written once (0f67bf0, 19 Aug) and
+  touched three times since, EACH TIME TO FIX ONE SPECIFIC ROW, never to
+  reconcile the set. The 20 and 21 Aug editions re-scored it without re-reading
+  a single value. FOUR DAYS OF A REFRESH LOOP THAT NEVER REFRESHED THE DATA IT
+  IS NAMED FOR.
+  SAME SHAPE AS F-15 (vanished section), F-23 (F&G downgrade), F-33 (fabricated
+  falsifier): a content check cannot see a WRONG input, only an INCONSISTENT
+  one.
+
+  THE FIX - a gate, not a habit. pipelines/audit_te.py restructured into an
+  importable module; render_edition.py's assert_te_reconciled() refuses to
+  publish on either failure mode:
+    1. STALE CAPTURE - nobody ran the audit. Max age 1.5 days for a daily
+       edition, 4.0 for a weekend one.
+    2. UNRESOLVED DIFFERENCE - somebody ran it and ignored the output.
+  Verified against both: backdated the capture 10 days (blocked), and
+  reintroduced the stale CHF Balance of Trade row (blocked, named).
+
+  A BUG IN MY OWN FIRST VERSION OF THE GATE, worth recording because it is the
+  same class of error: KNOWN_DIFFERENT exempts rows whose PRESENTATION differs
+  from TE's (we carry "-$73.26B", TE carries -73.26). My first version made
+  those rows exempt from ALL checking - so the stale CHF Balance of Trade row,
+  which is on that list for units, SAILED THROUGH THE GATE. A units exemption
+  was hiding a month-old figure.
+  FIXED: the REFERENCE PERIOD is now checked for EVERY row including exempt
+  ones. Only the VALUE comparison is exempt. An exemption may excuse HOW a
+  number is written, never HOW OLD it is.
+  SECOND EXEMPTION LIST, deliberately separate and deliberately short:
+  KNOWN_SERIES_GAP, for rows where TE's page shows a DIFFERENT SERIES than the
+  whitelist names. Currently one entry - EUR Consumer Confidence, where TE
+  lists the monthly FLASH and the whitelist names the FINAL. That row must NOT
+  be auto-updated; doing so re-commits F-29. Kept apart from KNOWN_DIFFERENT
+  because it exempts the stronger check.
+
+  THE PRINCIPLE, and it now sits in the module docstring: A TE VALUE THAT
+  DIFFERS IS A QUESTION, NOT AN INSTRUCTION. Newer print -> update. Different
+  presentation -> add to KNOWN_DIFFERENT WITH A REASON. Never edit a row to
+  clear the gate.
+  R-13 CLOSED - the audit is no longer a script someone has to remember.
