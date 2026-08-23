@@ -3262,3 +3262,36 @@ LD-50 - THE RENDERER REFUSES TO PUBLISH AGAINST AN UNRECONCILED WHITELIST.
   presentation -> add to KNOWN_DIFFERENT WITH A REASON. Never edit a row to
   clear the gate.
   R-13 CLOSED - the audit is no longer a script someone has to remember.
+
+LD-51 - GBP SPENDING USES RETAIL SALES EX FUEL, NOT THE HEADLINE (Jeff).
+  "Correction on GBP Retail Sales YoY. It should be the Retail Sales ex Fuel
+  YoY that we need to get."
+  CHECKED THE SOURCE FIRST: Idea_dump/Macro_economic_indicators.txt line 121
+  says "Retail Sales YoY" for GB. SO THIS IS AN AMENDMENT, NOT A TRANSCRIPTION
+  ERROR - worth stating plainly, because the last four corrections were my
+  mistakes and this one is not. The model faithfully carried what the source
+  named; Jeff is changing what the source names.
+  THE CHANGE: GBP Spending now uses Retail Sales Ex Fuel YoY. TE's UK page
+  carries both series - headline 1.6% (prev 3.8%) and ex-fuel 2.3% (prev 5.0%),
+  both Jul/26.
+  WHY IT IS THE BETTER INDICATOR: fuel is the most volatile component of retail
+  spending and moves on oil prices rather than consumer demand. The Spending
+  category exists to read demand. Independently corroborated by the ONS release
+  I verified earlier this session, which reported core annual growth at 2.3%.
+  SCORE IMPACT: NONE. 2.3% clears >0.5% exactly as 1.6% did, so GBP stays
+  +5.75 and every band is unchanged.
+  BUT THE DIRECTION IS WORSE THAN THE HEADLINE SHOWED: ex-fuel decelerated
+  -2.7pp (5.0 -> 2.3) against the headline's -2.2pp (3.8 -> 1.6). The
+  underlying demand picture is softer than the headline, which is exactly the
+  kind of thing the amendment exists to surface. GBP is the LOW-confidence leg
+  of GBPUSD and this is one of its two Spending indicators.
+  WHERE THE AMENDMENT IS RECORDED: docs/REPORT_SPEC.md now carries a WHITELIST
+  AMENDMENTS table. Idea_dump/ is committed VERBATIM as historical input and is
+  never edited (LD-1) - so an amendment lives in the spec, which supersedes the
+  draft wherever they differ. Any future session reading the draft and finding
+  "Retail Sales YoY" must check that table.
+  AUDIT INTERACTION, and it worked without intervention: audit_te.py's name
+  normaliser strips ' yoy', so "Retail Sales Ex Fuel YoY" resolves to TE's
+  "Retail Sales Ex Fuel" row automatically. NO EXEMPTION NEEDED - the LD-50
+  gate now reconciles the new indicator against the correct TE series with no
+  further edit. That is the check working as designed on its first amendment.

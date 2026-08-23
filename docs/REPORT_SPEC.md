@@ -183,6 +183,14 @@ A currency with one indicator in a category stakes the full weight on it;
 one with three spreads the risk. That is a real property of data coverage
 and is left visible, not smoothed.
 
+**WHITELIST AMENDMENTS (LD-51).** The list is a closed set (F-3), but Jeff
+may amend it. An amendment is recorded HERE — `Idea_dump/` is committed
+verbatim as historical input and is never edited (LD-1).
+
+| Date | Indicator | Change | Why |
+|---|---|---|---|
+| 2026-08-23 | **GBP** Retail Sales YoY → **Retail Sales Ex Fuel YoY** | replaced | Jeff's call. Ex-fuel strips the volatile fuel component and reads underlying consumer demand, which is what the Spending category is for. |
+
 **ALL 70 NAMED INDICATORS ARE PUBLISHED EVERY EDITION.** An indicator that
 cannot be sourced is published with score **NOT FOUND** so Jeff can verify
 it — never dropped. A silent omission is unverifiable; a flagged gap is not.

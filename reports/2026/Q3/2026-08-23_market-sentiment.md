@@ -348,7 +348,7 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | EUR | Consumer Confidence Final | -15.9 | -17.6 | Jul/26 | >Prev | **GOOD** |
 | EUR | Retail Sales YoY | 0.7% | 1.9% | Jun/26 | >0.5% | **GOOD** |
 | GBP | GfK Consumer Confidence | -14 | -17 | Aug/26 | >Prev | **GOOD** |
-| GBP | Retail Sales YoY | 1.6% | 4.2% | Jul/26 | >0.5% | **GOOD** |
+| GBP | Retail Sales Ex Fuel YoY | 2.3% | 5.0% | Jul/26 | >0.5% | **GOOD** |
 | JPY | Consumer Confidence | 34.9 | 33.8 | Jul/26 | >Prev | **GOOD** |
 | JPY | Household Spending YoY | -3.3% | -0.4% | Jun/26 | <0% | **BAD** |
 | JPY | Retail Sales YoY | 0.5% | 5.0% | Jun/26 | 0-0.5% | NEUTRAL |
@@ -365,7 +365,7 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | CHF | Consumer Confidence | -35 | -36 | Jul/26 | >Prev | **GOOD** |
 | CHF | Retail Sales YoY | 1.5% | 3.4% | Jun/26 | >0.5% | **GOOD** |
 
-**⚠ FOUR ROWS CORRECTED THIS SESSION.** GBP Retail Sales YoY **4.2% → 1.6%** (ONS, 21 Aug) and GfK **−17 → −14**, both still GOOD (§2.7). **NZD Electronic Retail Card Spending** carried the *Retail Sales QoQ* figures; real value **3.4% YoY (Jul/26)** *(Stats NZ 17 Aug)*. **CAD Retail Sales YoY 5.9% May → 5.2% Jun**, GOOD either way. **EUR Consumer Confidence stays at the July FINAL −15.9** — TE's −15.5 is the August *flash*; the whitelist names the Final, due **Fri 28 Aug** (§4.0).
+**⚠ GBP now uses RETAIL SALES EX FUEL (LD-51).** Jeff's amendment: ex-fuel strips the volatile fuel component and reads underlying consumer demand. **2.3% (Jul/26), previous 5.0%** — GOOD, same grade as the headline 1.6%, but a **steeper deceleration: −2.7pp against the headline's −2.2pp.** **Four other rows corrected this session:** GfK **−17 → −14**; **NZD Electronic Retail Card Spending** carried the *Retail Sales QoQ* figures, real value **3.4% YoY (Jul/26)**; **CAD Retail Sales YoY 5.9% May → 5.2% Jun**. **EUR Consumer Confidence stays at the July FINAL −15.9** — TE's −15.5 is the August *flash*, and the Final releases **Fri 28 Aug** (§4.0).
 
 ### 2.3 Trade (weight 1)
 
@@ -450,9 +450,9 @@ unchanged.** That is a property of the scoring test, not a stale table.
 | EUR Consumer Confidence | −15.9 *(Jul)* | **−15.5** *(Aug)* | +0.4 | GOOD → **GOOD** |
 
 **Every threshold in §2 is BINARY, not a rate-of-change test.** GBP Retail Sales
-decelerated 2.6 percentage points and stayed GOOD because the test is `>0.5%`,
-and 1.6% clears it as surely as 4.2% did. GBP would only lose the point at
-**0.5% or below**.
+Ex Fuel decelerated **2.7 percentage points (5.0% → 2.3%)** and stayed GOOD
+because the test is `>0.5%`, and 2.3% clears it as surely as 5.0% did. GBP
+would only lose the point at **0.5% or below** — a further 1.8pp fall.
 
 **This is a real limitation and it is worth stating plainly: the model cannot
 see a deceleration until it crosses a line.** A currency can weaken materially
