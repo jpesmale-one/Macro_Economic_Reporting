@@ -519,6 +519,7 @@ PHT, so PHT = UTC+8 (F-2).
 |---|---|---|---|---|---|---|
 | **Fri 28 17:00** | **EUR** | **Consumer Confidence Final (Aug)** | **−15.9** *(Jul final)* | **−15.9** | **NEUTRAL** | >Prev fails on an unchanged print; **flash ran −15.5** |
 | **Tue 25 22:00** | **USD** | **CB Consumer Confidence** | **51.0** | — | **UNSCORED** | no consensus sourced; currently **BAD** |
+| **Tue 25 20:00** | **USD** | **Building Permits MoM Final (Jul)** | **+5.0%** ⚠ | **1.443M** *(confirms prel)* | **GOOD** | >0.5% — **our row currently holds the PRELIMINARY**; see below |
 | **Wed 26 09:30** | **AUD** | **Inflation Rate YoY** | **3.8%** | **3.2%** | **NEUTRAL** | >2% & **falling** — unchanged at 0.00 |
 | **Wed 26 20:30** | **USD** | **Personal Spending MoM** | **0.3%** | **0.2%** | **NEUTRAL** | 0–0.5% band — unchanged |
 | **Thu 27 09:30** | **AUD** | **Household Spending YoY** | **6.0%** | **4.4%** | **GOOD** | >0.5% — holds, though decelerating 1.6pp |
@@ -528,9 +529,21 @@ PHT, so PHT = UTC+8 (F-2).
 | Fri 28 15:00 | EUR | Retail Sales YoY | 0.7% | — | **UNSCORED** | no consensus sourced |
 | Fri 28 15:55 | EUR | Unemployment Rate | 6.3% | — | **UNSCORED** | no consensus sourced |
 
-**Ten whitelist indicators land Mon–Fri. Seven carry a scored projection**; three
+**Eleven whitelist indicators land Mon–Fri. Eight carry a scored projection**; three
 are published UNSCORED with the reason rather than given a guessed number — the
 same discipline §3 applies to market-implied odds.
+
+**⚠ US BUILDING PERMITS — OUR ROW HOLDS A PRELIMINARY FIGURE.** §2.2 carries
+**+5.0% (Jul/26)**, derived from the **preliminary** 1.443M released 18 Aug
+against June's final 1.374M. **The row is named "Building Permits MoM Final"
+and the Final does not release until Tue 25 Aug 20:00 PHT** — so a provisional
+number currently sits under a final's name, the same shape as F-27 (StatCan's
+advance estimate) and F-29 (the EUR flash).
+
+TE forecasts the Final to **confirm at 1.443M**, which holds MoM at +5.02% and
+keeps the GOOD. **The break-even is 1.3809M** — a downward revision below that
+takes MoM under +0.5% and costs USD the point. **Tuesday resolves it either
+way**, and Monday's edition should treat the current row as provisional.
 
 **⚠ ONE PROJECTION CHANGES A SCORE, AND IT LANDS ON A PROPOSED LEG.**
 

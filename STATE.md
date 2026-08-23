@@ -3295,3 +3295,42 @@ LD-51 - GBP SPENDING USES RETAIL SALES EX FUEL, NOT THE HEADLINE (Jeff).
   "Retail Sales Ex Fuel" row automatically. NO EXEMPTION NEEDED - the LD-50
   gate now reconciles the new indicator against the correct TE series with no
   further edit. That is the check working as designed on its first amendment.
+
+F-36 - A WHITELIST EVENT WITH NO TIME FELL OUT OF MY SORT. Jeff: "Theres an
+  update for USD Building Permits on Tuesday can you check?"
+  HE IS RIGHT. US Building Permits MoM Final IS a whitelist row, it lands
+  TUE 25 AUG 20:00 PHT, and section 4.0 did not carry it.
+  THE CAUSE: the TE calendar capture has an EMPTY TIME FIELD for that event.
+  My hand-written extraction converted date+time to a PHT datetime and sorted
+  on it - so every blank-time row returned None and SILENTLY FELL OUT OF THE
+  SORT. Exactly one event lost, and nothing anywhere said a row had been
+  discarded.
+  SHAPE: F-15 one layer down. A content check cannot see a MISSING row, and an
+  extraction that drops silently produces a table that looks complete. Section
+  4.0 said "ten whitelist indicators land Mon-Fri" with total confidence, and
+  the number was wrong.
+  FIX: pipelines/week_ahead.py. It NEVER DROPS AN EVENT - untimed rows go into
+  a separate list the caller must publish, and the summary line reports
+  "N timed, M untimed" so a silent loss becomes a visible one. Verified against
+  the same capture: 11 events, 10 timed, 1 untimed - the Building Permits row,
+  now surfaced loudly.
+  SECOND FINDING FROM THE SAME CHECK, and it is the more consequential one:
+  OUR BUILDING PERMITS ROW HOLDS A PRELIMINARY FIGURE UNDER A FINAL'S NAME.
+  score_model carries "Building Permits MoM Final" at +5.0% (Jul/26). That
+  +5.0% is derived from the PRELIMINARY 1.443M released 18 Aug against June's
+  final 1.374M: (1.443-1.374)/1.374 = +5.02%. THE FINAL DOES NOT RELEASE UNTIL
+  TUE 25 AUG 20:00 PHT.
+  THAT IS THE THIRD INSTANCE OF ONE PATTERN - F-27 (StatCan advance estimate
+  from 56.5%% of firms), F-29 (EUR flash for final), F-36 (permits prel for
+  final). A PROVISIONAL FIGURE WEARING A FINAL'S NAME. The phantom guard (F-1)
+  checks whether a figure was RELEASED; nothing checks whether the release was
+  PROVISIONAL, and I have now hit that gap three times in one session.
+  Row flagged "+5.0% PREL" until Tuesday resolves it.
+  TE forecasts the Final to CONFIRM at 1.443M, holding MoM at +5.02% and the
+  GOOD. BREAK-EVEN IS 1.3809M - a downward revision below that takes MoM under
+  +0.5% and costs USD the point. Published in section 4.0 with the arithmetic.
+  ALSO CONFIRMED, not changed: USD Non Farm Payrolls Fri 28 is the ANNUAL
+  REVISION PREL, not the monthly print. It revises history and produces no new
+  monthly Actual, so it stays out of the scored projections. The extractor
+  flags it because a fuzzy match sees "payrolls"; the TRIAGE STAYS MANUAL,
+  which is LD-50's principle applied to the calendar rather than to TE values.
