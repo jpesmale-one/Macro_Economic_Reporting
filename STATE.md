@@ -2735,3 +2735,74 @@ LD-44 - THE WEEKEND SUMMARY GRADES PRINTS THAT LANDED AFTER FRIDAY'S SEAL.
   REJECTED: grade only what the seal saw. Cleaner boundary, but it leaves the
   week's scorecard permanently incomplete, and the scorecard is what grades the
   METHOD - the thing EF-4 and F-21 are about.
+
+LD-45 - THE DOLLAR CHECK. WHY SECTIONS 5 AND 6 EXIST (Jeff).
+  "Gold and BTC are assets we want to monitor continuously the core logic is
+  simple, If USD is weak then Gold and/or BTC is strong we we may want to take
+  that opportunity."
+  THIS IS A PURPOSE STATEMENT THE SPEC DID NOT HAVE. Sections 5 and 6 were
+  described as instrument reads with NO STATED RELATIONSHIP to the USD score -
+  they sat beside the currency model rather than connected to it. Jeff's
+  sentence supplies the connection and it is the right one.
+  THE MECHANISM, and it is why they belong together: both are DOLLAR-PRICED and
+  NON-YIELDING. A falling dollar lifts the quoted price mechanically before
+  demand changes; falling yields cut the cost of holding something that pays no
+  interest. ONE FORCE, TWO INSTRUMENTS - so they are ONE SIGNAL, NOT TWO.
+  Reading BTC's strength as independent confirmation of Gold's double-counts
+  the driver. That is EF-3's error in a different dimension.
+  ALSO CONFIRMED, and worth recording because I had it wrong: sections 5/6 do
+  NOT feed the section 4 pair selection. Jeff: "correct". They are a separate,
+  continuously-monitored output. The pair bias comes from section 2 + structure
+  + section 4.0 (LD-40); the Gold/BTC read is its own thing.
+
+  THE HARD PART - DEFINING "USD WEAK". Tested it against this week's data
+  before writing the rule, and the test failed in an instructive way:
+    USD fundamental score: +2.25 NEUTRAL
+    USD price:             THREE-MONTH LOWS, worst week since late July
+    Gold Friday +1.85% | BTC +6.7% Friday, +20.0% over three sessions
+  THE SCORE AND THE PRICE DISAGREE. On the score alone USD is not weak and
+  THERE IS NO SIGNAL AT ALL - yet the two largest moves on the board were both
+  driven by dollar weakness the model cannot see.
+  JEFF'S CALL, asked explicitly: BOTH, AND NAME THE DISAGREEMENT.
+    - every section 5 and 6 OPENS with the dollar check: USD score AND USD
+      price direction, side by side
+    - agreement is the strong case, say so
+    - DISAGREEMENT IS A PUBLISHED FINDING, not a footnote. State it, then READ
+      THE PRICE - Gold and BTC respond to the dollar that TRADES, not the
+      dollar that SCORES - and say WHY they differ.
+  WHY THEY DIFFER, and it is structural not incidental: section 2's 70 rows are
+  MONTHLY PRINTS. US inflation is Jul/26, industrial production Jul/26. A
+  monthly series cannot show a dollar that fell through the last five sessions.
+  PRICE IS CONTINUOUS; THE SCORE LAGS BY CONSTRUCTION. This is the same
+  limitation as F-26's threshold insensitivity, in the time dimension rather
+  than the magnitude one.
+  REJECTED: score only - consistent with how every currency is judged, but it
+  would have called USD NEUTRAL this week and missed the entire move.
+  REJECTED: price only - responsive, but it disconnects sections 5/6 from the
+  section 2 apparatus and the read could no longer say WHY the dollar is weak.
+  NOTE the edition ALREADY carried the observation - section 1 said "the score
+  does not capture how weak the dollar leg has been" - but buried in a table
+  cell with nothing acting on it. Jeff's framing turns a passing remark into
+  the operating logic.
+
+F-30 - TRADINGVIEW MCP DESYNCHRONISED: CHART STATE AND DATA FEED DISAGREE. OPEN.
+  After eight successful single-symbol reads this session (CADJPY, EURCHF,
+  GBPUSD, XAUUSD, BTCUSD, AUDNZD, plus timeframe changes), data_get_ohlcv and
+  quote_get began returning EURCHF 15-MINUTE BARS REGARDLESS OF THE SYMBOL SET.
+  EVIDENCE: chart_set_symbol TVC:DXY -> success; chart_get_state reports
+  symbol TVC:DXY resolution 1D; data_get_ohlcv returns bars at 0.9355 with
+  15-minute timestamps. DXY DOES NOT TRADE AT 0.9355 - that is EURCHF, the
+  symbol loaded several reads earlier. Repeated with OANDA:EURUSD: same stale
+  bars. quote_get with an explicit symbol argument: same.
+  ESCALATED BEFORE CALLING IT: four symbols, two timeframes, chart_get_state to
+  confirm the chart itself had switched, tv_health_check to confirm CDP was
+  still connected (it was, api_available true).
+  NOT a fetch-header problem, NOT F-7 (batch_run), NOT F-9 (launch). The chart
+  switches; the data feed does not follow.
+  CONSEQUENCE, stated in-edition: the DXY reading for LD-45's dollar check
+  COULD NOT BE RECOMPUTED. The "three-month lows" figure is sourced from
+  investing.com and is NOT independently verified - THAT FALLS SHORT OF P2 and
+  is disclosed as such in section 5. Monday must verify against DXY directly
+  before that reading informs a carried pair.
+  WORKAROUND UNTESTED: a chart reload or a fresh tab (tab_new) may resync.
+  Try that first on Monday before any technical read.

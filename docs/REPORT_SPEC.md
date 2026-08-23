@@ -575,6 +575,40 @@ order (LD-4).
 
 ### §5 — Gold (XAUUSD)
 
+**WHY THESE TWO SECTIONS EXIST (LD-45).** Gold and BTC are **monitored
+continuously**, not selected weekly like the §4 pairs. The core logic is
+simple and it is the reason they earn their own sections:
+
+> **If the dollar is weak, Gold and/or BTC are strong — and that is an
+> opportunity worth naming.**
+
+Both are **dollar-priced and non-yielding**. A falling dollar lifts their
+quoted price mechanically, before demand changes at all, and falling
+yields cut the cost of holding an asset that pays no interest. One force,
+two instruments. **They are therefore ONE signal, not two** — reading
+BTC's strength as independent confirmation of Gold's double-counts the
+same driver (EF-3's error in a different dimension).
+
+**EVERY §5 AND §6 OPENS WITH THE DOLLAR CHECK**, both readings side by
+side:
+
+| | Source |
+|---|---|
+| **USD fundamental score** | §2's tally and band |
+| **USD price direction** | DXY / the USD pairs, from TradingView |
+
+- **Agreement** — score weak *and* price falling — is the strong case.
+  Say so.
+- **Disagreement is a PUBLISHED FINDING, not a footnote.** State it
+  plainly, then **read the price**, because Gold and BTC respond to the
+  dollar that *trades*, not the dollar that *scores*. Say why they differ:
+  §2's 70 rows are monthly prints and lag; price is continuous.
+
+**Measured 2026-08-23:** USD scored **+2.25 NEUTRAL** while trading at
+**three-month lows**, and Gold rose 1.85% with BTC up 20% in three
+sessions. **The score alone would have produced no signal at all.** That
+is the case this check exists to catch.
+
 **Drivers — written in PLAIN LANGUAGE, showing the CHAIN (LD-31).**
 Do not name a driver and stop. Walk the mechanism from the event to the
 gold price in ordinary words, one step at a time.
@@ -602,7 +636,13 @@ Where CHF/JPY haven behaviour diverges from Gold, say so.
 ### §6 — BTC (BTCUSD)
 
 **Mirror §5 exactly (LD-31)** — same structure, same plain-language
-standard, same depth. BTC is not a lesser section.
+standard, same depth, **including the dollar check (LD-45)**. BTC is not
+a lesser section.
+
+**BTC carries one extra question Gold does not:** it can trade on the
+dollar/liquidity channel *or* on the equity risk channel, and the two
+point different ways. State which is driving it, with the evidence — a
+decoupling claim needs the correlation stated, never asserted.
 
 - **Drivers with the chain spelled out:** liquidity conditions, dollar
   direction, risk appetite, NAS100 correlation, flows. Where the same

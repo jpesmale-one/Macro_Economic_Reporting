@@ -754,6 +754,41 @@ Hole lands directly on its short-USD leg.
 
 **Friday close 4,602.99** · day range 4,508.995–4,632.145 · **+1.85% on the day**
 
+### ⚠ The dollar check — the reason §5 and §6 exist (LD-45)
+
+**Gold and BTC are monitored continuously, not selected weekly. The core
+logic: if the dollar is weak, Gold and/or BTC are strong — and that is an
+opportunity worth naming.** Both are dollar-priced and non-yielding, so a
+falling dollar lifts their quoted price mechanically, before demand changes.
+**One force, two instruments — therefore ONE signal, not two.**
+
+| | Reading | Source |
+|---|---|---|
+| **USD fundamental score** | **+2.25 · NEUTRAL** | §2.0 tally |
+| **USD price direction** | **Three-month lows**, worst week since late July | investing.com, 21 Aug |
+| **Verdict** | **⚠ DISAGREEMENT** | |
+
+**The score and the price disagree, and this edition reads the price.** Gold
+and BTC respond to the dollar that *trades*, not the dollar that *scores*.
+
+**Why they differ:** §2's 70 rows are monthly prints — US inflation is Jul/26,
+industrial production Jul/26 — and a monthly series cannot show a dollar that
+fell through the last five sessions. **Price is continuous; the score lags by
+construction.**
+
+**This week is exactly the case the check exists to catch.** On the score alone
+USD is NEUTRAL and there is no signal at all — yet **Gold rose 1.85% Friday and
+BTC 20% in three sessions**, both on dollar weakness the model cannot see. Had
+§5 and §6 been read from §2's score, the edition would have missed the largest
+move on the board.
+
+**⚠ The DXY reading could not be recomputed this session.** The TradingView MCP
+returned EURCHF bars under every symbol requested after the eighth read — chart
+state and data feed desynchronised (F-30). **The "three-month lows" figure is
+sourced from investing.com and is NOT independently recomputed**, which falls
+short of P2. Monday must verify it against DXY directly before it informs a
+carried pair.
+
 ### Drivers — the chain, in plain terms (LD-31)
 
 **1. Treasury buyback expansion — the mechanism still running.**
@@ -814,6 +849,17 @@ read behind **GBPUSD LONG**, not an independent signal (§6).
 
 **Friday close 77,471** · day range 72,472.5–79,470.5 · **+6.7% on the day ·
 +20.0% in three sessions**
+
+### The dollar check (LD-45)
+
+**Same reading as §5: USD score +2.25 NEUTRAL against three-month lows —
+disagreement, and the price is read.** BTC is dollar-priced and non-yielding on
+the identical mechanism.
+
+**BTC carries one question Gold does not:** it can trade on the
+dollar/liquidity channel *or* on the equity risk channel, and they point
+different ways. **This week it is liquidity** — F&G momentum 39.0 and breadth
+components sit in Fear while BTC rallies 20%. That is not risk appetite.
 
 ### Drivers — mirroring §5's treatment (LD-31)
 
