@@ -18,7 +18,7 @@ check) applied to a data pipeline.
 
 DATA + FILTERING ONLY. This module does not fetch; feed it a capture.
 """
-import json, io, os, sys, datetime
+import json, io, os, re, sys, datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -26,6 +26,64 @@ sys.path.insert(0, HERE)
 CCY = {'US': 'USD', 'EA': 'EUR', 'DE': 'EUR', 'FR': 'EUR', 'IT': 'EUR',
        'ES': 'EUR', 'GB': 'GBP', 'JP': 'JPY', 'AU': 'AUD', 'NZ': 'NZD',
        'CA': 'CAD', 'CH': 'CHF'}
+
+
+
+# Words that carry no identifying weight - TE and the whitelist disagree on
+# them freely ("Durable Goods Orders Ex Transp MoM" vs "Durable Goods Ex
+# Transp MoM").
+_NOISE = {'orders', 'rate', 'index', 'the', 'of', 'a'}
+
+# F-37: a looser matcher creates FALSE POSITIVES, which is its own failure.
+# Each entry: an event substring that must NOT be treated as the whitelist row.
+_NOT = (
+    ('Balance of Trade', 'goods trade balance'),   # advance GOODS-only, not the
+                                                   # full balance of trade
+    ('Inflation Rate YoY Final', 'prel'),          # FR/ES national prel prints
+                                                   # are not the EA Final
+)
+
+# National releases that must never satisfy a EUR-aggregate whitelist row.
+_NATIONAL = {'DE', 'FR', 'IT', 'ES'}
+
+
+def match(ev, names, iso=None):
+    """Return the whitelist name this calendar event IS, or None.
+
+    F-36 used substring matching, which fails when the extra word sits in the
+    MIDDLE: "durable goods ORDERS ex transp mom" against "durable goods ex
+    transp mom". Token-set matching handles that - every meaningful word of
+    the whitelist name must appear in the event.
+
+    F-37: token matching alone is too loose. It matched "goods trade balance
+    adv" to Balance of Trade, and French/Spanish preliminary CPI to the EA
+    Inflation Rate Final. The _NOT list and the national-release rule are the
+    stricter half, and BOTH halves are needed.
+    """
+    for name in names:
+        n = name.lower()
+        if ev == n:
+            return name
+        blocked = False
+        for wl_name, bad in _NOT:
+            if name == wl_name and bad in ev:
+                blocked = True
+                break
+        if blocked:
+            continue
+        # AN EA-AGGREGATE ROW IS NEVER SATISFIED BY A NATIONAL PRINT.
+        # The whitelist names euro-area figures; DE/FR/IT/ES releases are
+        # inputs to them, not the thing itself. My first fix scoped this to
+        # 'inflation' only and immediately produced a second false positive -
+        # French unemployment BENEFIT CLAIMS matched EUR Unemployment Rate.
+        # There is no EA-aggregate unemployment print this week at all.
+        if iso in _NATIONAL:
+            continue
+        want = set(re.findall(r'[a-z]+', n)) - _NOISE
+        have = set(re.findall(r'[a-z]+', ev)) - _NOISE
+        if want and want <= have:
+            return name
+    return None
 
 
 def pht(date, t):
@@ -64,12 +122,7 @@ def whitelist_events(capture_path, start, end):
         if not ccy:
             continue
         ev = (e.get('event') or '').lower()
-        hit = None
-        for name in wl.get(ccy, []):
-            n = name.lower()
-            if ev == n or (len(ev) > 6 and (ev in n or n in ev)):
-                hit = name
-                break
+        hit = match(ev, wl.get(ccy, []), e.get('iso'))
         if not hit:
             continue
         key = (ccy, hit)

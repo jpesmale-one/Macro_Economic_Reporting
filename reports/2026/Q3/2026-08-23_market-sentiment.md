@@ -520,6 +520,7 @@ PHT, so PHT = UTC+8 (F-2).
 | **Tue 25 20:00** | **USD** | **Building Permits MoM Final (Jul)** | **+5.0%** ⚠ | **1.443M** *(confirms prel)* | **GOOD** | >0.5% — **our row currently holds the PRELIMINARY**; see below |
 | **Tue 25 22:00** | **USD** | **CB Consumer Confidence** | **51.0** | — | **UNSCORED** | no consensus sourced; currently **BAD** |
 | **Wed 26 09:30** | **AUD** | **Inflation Rate YoY** | **3.8%** | **3.2%** | **NEUTRAL** | >2% & **falling** — unchanged at 0.00 |
+| **Wed 26 20:30** | **USD** | **Durable Goods Ex Transp MoM** | **0.6%** | **0.3%** | **⚠ NEUTRAL** | 0–0.5% band — **GOOD → NEUTRAL, costs USD 0.33** |
 | **Wed 26 20:30** | **USD** | **Personal Spending MoM** | **0.3%** | **0.2%** | **NEUTRAL** | 0–0.5% band — unchanged |
 | **Thu 27 09:30** | **AUD** | **Household Spending YoY** | **6.0%** | **4.4%** | **GOOD** | >0.5% — holds, though decelerating 1.6pp |
 | **Thu 27 14:30** | **CHF** | **Non Farm Payrolls (Q2)** | **5.537M** | **5.55M** | **GOOD** | >Cons — **the only CHF release all week**, found in this session's audit |
@@ -529,9 +530,25 @@ PHT, so PHT = UTC+8 (F-2).
 | Fri 28 15:55 | EUR | Unemployment Rate | 6.3% | — | **UNSCORED** | no consensus sourced |
 | **Fri 28 17:00** | **EUR** | **Consumer Confidence Final (Aug)** | **−15.9** *(Jul final)* | **−15.9** | **NEUTRAL** | >Prev fails on an unchanged print; **flash ran −15.5** |
 
-**Eleven whitelist indicators land Mon–Fri. Eight carry a scored projection**; three
+**Twelve whitelist indicators land Mon–Fri. Nine carry a scored projection**; three
 are published UNSCORED with the reason rather than given a guessed number — the
 same discipline §3 applies to market-implied odds.
+
+**⚠ A SECOND PROJECTION CHANGES A SCORE — USD DURABLE GOODS EX TRANSP.**
+Wed 26 20:30 PHT. Our row carries **0.6% (Jun)** scored GOOD; **TE forecasts
+0.3% for July**, which lands in the 0–0.5% **NEUTRAL** band. USD has three
+Production indicators, so each is worth 0.333:
+
+| Durable Goods Ex Transp prints | Score | USD total |
+|---|---|---|
+| above 0.5% | GOOD +0.333 | **+2.25** unchanged |
+| **0.3% *(consensus)*** | **NEUTRAL 0.000** | **+1.92** |
+| below 0% | BAD −0.333 | +1.58 |
+
+**USD stays NEUTRAL either way** (band floor +0.01), but this and Building
+Permits both land Wednesday and Tuesday respectively — **two of USD's scored
+rows are in play in the first half of the week**, and USD is **GBPUSD's short
+leg**.
 
 **⚠ US BUILDING PERMITS — OUR ROW HOLDS A PRELIMINARY FIGURE.** §2.2 carries
 **+5.0% (Jul/26)**, derived from the **preliminary** 1.443M released 18 Aug

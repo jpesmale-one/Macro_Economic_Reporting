@@ -3394,3 +3394,50 @@ LD-52 - SECTION 4.0 SORTS DATE -> TIME -> CCY. Jeff asked for "1 Date, then
 #   F-27/29/36 (provisional figures under final names) all shipped past every
 #   guard and were caught by Jeff READING. A fresh session must know that
 #   green guards are not a clean edition.
+
+F-37 - THE WEEK-AHEAD MATCHER MISSED THREE MORE WHITELIST EVENTS, AND MY FIRST
+  TWO FIXES EACH INTRODUCED A FALSE POSITIVE. Jeff: "USD Durable Goods Ex
+  Transp MoM - can you check the next schedule of this?"
+  IT LANDS WED 26 AUG 20:30 PHT and section 4.0 did not carry it. That is the
+  SECOND event Jeff has caught in section 4.0 in two questions (F-36 was
+  Building Permits), which is itself the finding: the extractor was wrong in
+  more than one way and I fixed only the way he happened to name first.
+  CAUSE: substring matching. The calendar says "durable goods ORDERS ex transp
+  mom", the whitelist says "Durable Goods Ex Transp MoM". Neither string
+  contains the other because THE EXTRA WORD IS IN THE MIDDLE. F-36's fix
+  handled untimed rows; it did nothing about this.
+  TOKEN-SET MATCHING finds it - every meaningful whitelist word must appear in
+  the event, noise words ('orders', 'rate', 'index') discounted. It surfaced
+  THREE candidates the substring matcher missed.
+  BUT ONLY ONE OF THE THREE WAS REAL, and that is the important half:
+    USD Durable Goods Ex Transp MoM  - GENUINE, Wed 26 20:30 PHT
+    USD Balance of Trade             - FALSE. Matched "goods trade balance
+                                       adv", an ADVANCE GOODS-ONLY estimate,
+                                       not the full balance of trade.
+    EUR Inflation Rate YoY Final     - FALSE. Matched FRENCH and SPANISH
+                                       PRELIMINARY CPI. A national prel is not
+                                       the EA aggregate Final.
+  A LOOSER MATCHER IS ITS OWN FAILURE MODE. Added a negative filter (_NOT) and
+  a rule that an EA-aggregate row is never satisfied by a DE/FR/IT/ES release.
+  THEN MY FIX PRODUCED A THIRD FALSE POSITIVE, caught only because I re-read
+  the output instead of trusting it: I scoped the national-release rule to
+  'inflation' only, and FRENCH UNEMPLOYMENT BENEFIT CLAIMS immediately matched
+  EUR Unemployment Rate, moving it from Fri 15:55 to Thu 18:00. There is no
+  EA-aggregate unemployment print this week at all. Widened the rule to ALL
+  EA rows.
+  TWO FIXES, TWO NEW FALSE POSITIVES, BOTH CAUGHT BY CHECKING THE OUTPUT
+  AGAINST THE RAW CALENDAR. A matcher change is not verified by "it now finds
+  the thing I was looking for" - it is verified by re-reading everything it
+  finds.
+  SCORE IMPACT OF THE REAL ONE: our row carries 0.6%% (Jun) scored GOOD; TE
+  forecasts 0.3%% for July, which lands in the 0-0.5%% NEUTRAL band. USD has
+  three Production indicators so each is worth 0.333: USD 2.25 -> 1.92 if the
+  consensus prints. Band unchanged (NEUTRAL either way). USD IS GBPUSD'S SHORT
+  LEG, and with Building Permits Tuesday this puts TWO USD scored rows in play
+  in the first half of the week.
+  THIRD GAP FOUND WHILE VERIFYING, recorded not fixed: THE CALENDAR CAPTURE
+  CONTAINS NO CHF ROWS AT ALL for this window. The Swiss Non Farm Payrolls Q2
+  date (Thu 27 Aug) came from the TE SERIES PAGE during the F-34 audit, not
+  from the calendar. So week_ahead.py structurally cannot see Swiss events and
+  any CHF row in section 4.0 is hand-sourced. QUEUED as R-14 - either the
+  capture needs a wider country set or CHF needs a series-page pass.
