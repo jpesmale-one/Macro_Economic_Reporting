@@ -21,7 +21,7 @@ W = {"Production":1, "Spending":1, "Trade":1, "Employment":2, "Inflation":3}
 # (category, ccy, indicator, actual, prev, ref, rule, score)  score in GOOD/BAD/NEUTRAL/MISSING
 ROWS = [
  # ---------------- PRODUCTION (w=1) ----------------
- ("Production","US","ISM Manufacturing PMI","53.9","53.9","Jul/26",">50.5","GOOD"),
+ ("Production","US","ISM Manufacturing PMI","53.2","53.9","Aug/26",">50.5","GOOD"),
  ("Production","US","Industrial Production YoY","1.1%","1.29%","Jul/26",">0.5%","GOOD"),
  ("Production","US","Durable Goods Ex Transp MoM","0.6%","1.8%","Jun/26",">0.5%","GOOD"),
  ("Production","EA","S&P Global Mfg PMI Final","51.9","51.4","Jul/26",">50.5","GOOD"),
@@ -59,7 +59,7 @@ ROWS = [
  ("Spending","NZ","Electronic Retail Card Spending YoY","3.4%","1.3%","Jul/26",">0.5%","GOOD"),
  ("Spending","NZ","ANZ Business Confidence","56.1","36.6","Jul/26",">Prev","GOOD"),
  ("Spending","NZ","ANZ Roy Morgan Consumer Conf","99.3","91.3","Jul/26",">Prev","GOOD"),
- ("Spending","CA","Retail Sales YoY","5.9%","3.6%","May/26",">0.5%","GOOD"),
+ ("Spending","CA","Retail Sales YoY","5.2%","5.9%","Jun/26",">0.5%","GOOD"),
  ("Spending","CA","Building Permits MoM","+18.5%","-3.0%","Jun/26",">0.5%","GOOD"),
  ("Spending","CH","Consumer Confidence","-35","-36","Jul/26",">Prev","GOOD"),
  ("Spending","CH","Retail Sales YoY","1.5%","3.4%","Jun/26",">0.5%","GOOD"),
@@ -69,9 +69,9 @@ ROWS = [
  ("Trade","GB","Balance of Trade","GBP-5,537M","GBP-3,464M","Jun/26","<Prev","BAD"),
  ("Trade","JP","Balance of Trade","JPY-634.5B","JPY-409.9B","Jul/26","<Prev","BAD"),
  ("Trade","AU","Balance of Trade","A$1,929M","A$-2,367M","Jun/26",">Prev","GOOD"),
- ("Trade","NZ","Balance of Trade","NZ$23M","NZ$577M","Jun/26","<Prev","BAD"),
+ ("Trade","NZ","Balance of Trade","NZ$-1.95B","NZ$0.02B","Jul/26","<Prev","BAD"),
  ("Trade","CA","Balance of Trade","C$3,860M","C$3,700M","Jun/26",">Prev","GOOD"),
- ("Trade","CH","Balance of Trade","CHF3,800M","CHF5,530M","Jun/26","<Prev","BAD"),
+ ("Trade","CH","Balance of Trade","CHF8.1B","CHF3.8B","Jul/26",">Prev","GOOD"),
  # ---------------- EMPLOYMENT (w=2) ----------------
  ("Employment","US","Non Farm Payrolls","-23K","20K","Jul/26",">Cons","BAD"),
  ("Employment","US","Unemployment Rate","4.1%","4.2%","Jul/26","<Prev","GOOD"),

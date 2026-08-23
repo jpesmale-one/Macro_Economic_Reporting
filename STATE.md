@@ -3156,3 +3156,55 @@ LD-49 - EVERY EDITION SORTS THE WHITELIST BY REFERENCE PERIOD AND EXPLAINS THE
   GUARD NOT YET WRITTEN: the check is currently a procedure, like F-1's phantom
   guard. Automating it means teaching the renderer the release cadence of each
   indicator. QUEUED as R-12.
+
+F-35 - FULL WHITELIST AUDIT vs TE. SEVEN OF 70 ROWS WERE WRONG. Jeff: "can you
+  double check our indicator Results against TE? make sure we don't have cases
+  like this."
+  METHOD, and it is reusable: fetched all 8 TE COUNTRY INDICATOR PAGES
+  (tradingeconomics.com/<country>/indicators) - one page per country carries
+  every series with its current value and reference period, so 8 fetches cover
+  70 rows instead of 70 fetches. Parsed each table, fuzzy-matched indicator
+  names against score_model.ROWS, compared values numerically.
+  RESULT: 47 matched cleanly, 11 unmatched on name, 12 flagged.
+  OF THE 12: SEVEN were unit-scaling artifacts and NOT errors - TE publishes
+  Balance of Trade in billions where we carry "-$73.26B", Employment Change in
+  persons (-15827) where we carry "-15.8K", and some rows we carry as YoY% that
+  TE lists as a LEVEL (Machine Tool Orders, Building Permits). Same figure,
+  different presentation.
+  FIVE WERE REAL, plus the two already fixed earlier this session = 7 total:
+    CHF Balance of Trade   3.8B Jun -> 8.1B Jul, released 20 Aug   BAD -> GOOD
+    CHF Industrial Prod    -7.1% Q1 -> +5.5% Q2, released 19 Aug   BAD -> GOOD
+    NZD Card Spending      wrong series entirely -> 3.4% Jul       GOOD, same
+    NZD Balance of Trade   23M Jun -> -1.95B Jul                   BAD, same
+    CAD Retail Sales YoY   5.9% May -> 5.2% Jun                    GOOD, same
+    USD ISM Manufacturing  53.9 Jul -> 53.2 Aug                    GOOD, same
+    CHF Non Farm Payrolls  +0.5% (no such series) -> 5.537M        GOOD, same
+  THE TWO CHF ROWS COMPOUND, AND CHF IS EURCHF'S SHORT LEG:
+    CHF -3.38 -> -0.38, a THREE POINT move on one currency
+    EURCHF spread 9.63 -> 6.62, crossing the LD-20 band (>=8.00 gives +2;
+      4.00-7.99 gives +1)
+    EURCHF confidence MEDIUM (+3) -> LOW (+1), now TIED WITH GBPUSD as the
+      weakest read in the set
+    AND CHF IS NOW BARELY WEAK: -0.38 against a 0.00 band boundary. The short
+    leg of the #2 proposal is ONE PRINT from turning NEUTRAL, and the entire
+    trade rests on CHF being weak.
+  DELIBERATELY NOT CHANGED: EUR Consumer Confidence. TE's country page shows
+  -15.5 (Aug) but that is the FLASH; the whitelist names the FINAL, which
+  releases Fri 28 Aug. Changing it would have re-committed F-29 while fixing
+  F-35. THE AUDIT MUST NOT BE APPLIED MECHANICALLY - a TE value that differs is
+  a QUESTION, not an instruction.
+  WHAT THIS SAYS ABOUT THE METHOD: the whitelist has been hand-maintained since
+  2026-08-19 and NEVER SYSTEMATICALLY RECONCILED. Two of the seven were wrong
+  from the day the model was built; five went stale as newer prints landed and
+  nobody re-read the source. The daily edition re-scored the SAME WRONG NUMBERS
+  every run and every downstream check passed, because every check verifies
+  ARITHMETIC ON THE ROWS, never the ROWS THEMSELVES.
+  Audit script kept at scratchpad/audit_te.py - QUEUED as R-13 to move into
+  pipelines/ and run every edition.
+
+# 2026-08-23 TALLY AFTER THE FULL AUDIT:
+#   CAD +8.38 | EUR +6.25 | GBP +5.75 | NZD +3.75 | USD +2.25 | AUD +2.08
+#   JPY +0.00 | CHF -0.38
+#   Only CHF moved. Bands unchanged - CHF still WEAK, but by 0.38 not 3.38.
+#   PROPOSALS AFTER THE AUDIT: CADJPY HIGH (+5), EURCHF LOW (+1, was MEDIUM +3),
+#   GBPUSD LOW (+1). TWO OF THREE ARE NOW LOW AND THE TOP PAIR LEADS BY FOUR.
