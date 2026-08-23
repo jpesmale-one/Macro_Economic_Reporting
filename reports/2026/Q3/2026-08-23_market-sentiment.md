@@ -517,9 +517,8 @@ PHT, so PHT = UTC+8 (F-2).
 
 | When (PHT) | CCY | Indicator | Current | Forecast | **Projected** | Test applied |
 |---|---|---|---|---|---|---|
-| **Fri 28 17:00** | **EUR** | **Consumer Confidence Final (Aug)** | **−15.9** *(Jul final)* | **−15.9** | **NEUTRAL** | >Prev fails on an unchanged print; **flash ran −15.5** |
-| **Tue 25 22:00** | **USD** | **CB Consumer Confidence** | **51.0** | — | **UNSCORED** | no consensus sourced; currently **BAD** |
 | **Tue 25 20:00** | **USD** | **Building Permits MoM Final (Jul)** | **+5.0%** ⚠ | **1.443M** *(confirms prel)* | **GOOD** | >0.5% — **our row currently holds the PRELIMINARY**; see below |
+| **Tue 25 22:00** | **USD** | **CB Consumer Confidence** | **51.0** | — | **UNSCORED** | no consensus sourced; currently **BAD** |
 | **Wed 26 09:30** | **AUD** | **Inflation Rate YoY** | **3.8%** | **3.2%** | **NEUTRAL** | >2% & **falling** — unchanged at 0.00 |
 | **Wed 26 20:30** | **USD** | **Personal Spending MoM** | **0.3%** | **0.2%** | **NEUTRAL** | 0–0.5% band — unchanged |
 | **Thu 27 09:30** | **AUD** | **Household Spending YoY** | **6.0%** | **4.4%** | **GOOD** | >0.5% — holds, though decelerating 1.6pp |
@@ -528,6 +527,7 @@ PHT, so PHT = UTC+8 (F-2).
 | **Fri 28 13:00** | **JPY** | **Consumer Confidence** | **34.9** | **35.0** | **GOOD** | >Prev — holds |
 | Fri 28 15:00 | EUR | Retail Sales YoY | 0.7% | — | **UNSCORED** | no consensus sourced |
 | Fri 28 15:55 | EUR | Unemployment Rate | 6.3% | — | **UNSCORED** | no consensus sourced |
+| **Fri 28 17:00** | **EUR** | **Consumer Confidence Final (Aug)** | **−15.9** *(Jul final)* | **−15.9** | **NEUTRAL** | >Prev fails on an unchanged print; **flash ran −15.5** |
 
 **Eleven whitelist indicators land Mon–Fri. Eight carry a scored projection**; three
 are published UNSCORED with the reason rather than given a guessed number — the

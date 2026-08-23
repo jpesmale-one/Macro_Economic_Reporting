@@ -284,6 +284,10 @@ open, now, move in pips, favouring YES/NO/FLAT, falsifier state.
 
 **Publish §4.0 from the step-1 capture** — whitelist indicators only
 (LD-41). Off-list events go in the narrative block and score nothing.
+**Sort DATE → TIME → CCY (LD-52)** — chronological, because that is the
+order the week is lived. Generate with `pipelines/week_ahead.py`, which
+also reports any event the capture carries with **no time**, so an
+untimed row can never fall out of a sort (F-36).
 
 **4a. Weekend, or the first run after a weekend →** build the Conviction
 Playbook. Re-derive the **full board** (§4.2), apply the structure filter,

@@ -3334,3 +3334,33 @@ F-36 - A WHITELIST EVENT WITH NO TIME FELL OUT OF MY SORT. Jeff: "Theres an
   monthly Actual, so it stays out of the scored projections. The extractor
   flags it because a fuzzy match sees "payrolls"; the TRIAGE STAYS MANUAL,
   which is LD-50's principle applied to the calendar rather than to TE values.
+
+LD-52 - SECTION 4.0 SORTS DATE -> TIME -> CCY. Jeff asked for "1 Date, then
+  CCY"; I built it, showed him what it does, and he chose chronological.
+  THE TABLE WAS GENUINELY DISORDERED - Fri 28 EUR sat at the TOP, above the two
+  Tue 25 rows, which were themselves inverted (22:00 before 20:00). Cause: I
+  inserted rows by hand at four different points this session and never
+  re-sorted.
+  BUILT DATE->CCY AS ASKED, then surfaced its cost rather than silently
+  choosing: grouping by currency inside a day breaks the day's sequence -
+  Friday's JPY 07:30 and 13:00 printed AFTER the EUR 15:00-17:00 block.
+  JEFF'S CALL: DATE -> TIME -> CCY. Strictly chronological, "because that is
+  how the trading week is lived - you read down the list as events hit the
+  tape." Currencies no longer group, and scanning "everything that moves AUD"
+  takes a second pass; that trade was made knowingly.
+  REJECTED: CCY -> date -> time. Best for "what does my AUD leg face", but the
+  week stops reading as a sequence and a Monday reader cannot see what is
+  coming next.
+  Sort order written into pipelines/week_ahead.py so it is generated, not
+  hand-maintained (the LD-39 principle: if a block is derived, generate it).
+
+# A BUG I MADE AND CAUGHT IN THE SAME BREATH, worth one line: my first sort
+#   implementation walked forward from the table header until a non-'| ' line,
+#   but started the scan too early and CONSUMED THE TRAILING PROSE - it ate the
+#   "other five projections" line and the "#### Off the whitelist" HEADING.
+#   Caught because the render heading count dropped 53 -> 52 and I checked the
+#   diff instead of trusting the output. Restored from git, redone with the
+#   table boundary computed explicitly. Diff is now 3 insertions / 3 deletions,
+#   pure reordering.
+#   THE HEADING COUNT IN THE GUARD OUTPUT IS A CANARY. It is there for R-7, but
+#   it caught a text-manipulation bug that had nothing to do with R-7. Watch it.

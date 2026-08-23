@@ -80,8 +80,12 @@ def whitelist_events(capture_path, start, end):
         rec = (p, ccy, hit, e.get('event'), e['date'])
         (timed if p else no_time).append(rec)
 
-    timed.sort(key=lambda r: r[0])
-    no_time.sort(key=lambda r: r[4])
+    # LD-52: DATE -> TIME -> CCY. Chronological, because that is the order a
+    # trading week is lived: you read down the list as events hit the tape.
+    # Grouping by currency instead would break the day's sequence - Friday's
+    # JPY 07:30 would print after EUR 17:00.
+    timed.sort(key=lambda r: (r[0], r[1]))
+    no_time.sort(key=lambda r: (r[4], r[1]))
     return timed, no_time
 
 
