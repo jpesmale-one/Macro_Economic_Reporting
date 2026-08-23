@@ -3098,3 +3098,61 @@ LD-48 - EVERY PUBLISHED LEVEL NAMES ITS BAR, AND ITS FALSIFIER CLEARS 1 ATR.
 #   published reads were all "cleared resistance, room above" and NOT ONE OF
 #   THEM HAD MORE THAN 75 PIPS OF TESTED RUNWAY. CADJPY 75 to R2, EURCHF 51 to
 #   its 12-month high, GBPUSD 8 to R1. F-32 was not a CADJPY problem.
+
+F-34 - THREE WHITELIST ROWS CARRIED DATA THAT BELONGS TO ANOTHER SERIES OR TO A
+  SUPERSEDED QUARTER. Jeff: "NZD Electronic Retail Card Spending YoY 0.9% 0.9%
+  Q1/26 - Can you check this? this is not the same with TE."
+  HE IS RIGHT, AND CHECKING IT SURFACED TWO MORE.
+  (1) NZD ELECTRONIC RETAIL CARD SPENDING YoY. Model carried 0.9% / 0.9% /
+      Q1/26. THOSE ARE THE RETAIL SALES QoQ FIGURES - TE's 2026-05-21 row,
+      "Retail Sales QoQ Q1, actual 0.9%, previous 0.9%". A DIFFERENT INDICATOR
+      entirely, published under this one's name.
+      REAL FIGURE: 3.4% YoY (Jul/26), previous 1.3%, released 17 Aug by Stats
+      NZ, corroborated by fx.co. Score unchanged GOOD (>0.5%), figure wrong.
+      Two independent sources before writing it back.
+  (2) CHF INDUSTRIAL PRODUCTION YoY - THE SERIOUS ONE. Model carried -7.1%
+      (Mar/26) scored BAD. TE's series page shows Q2 RELEASED 19 AUGUST AT
+      +5.5%. A released figure FOUR DAYS BEFORE THIS EDITION, sitting unread,
+      AND THE SIGN IS INVERTED. Corrected to GOOD.
+      IMPACT: CHF Production -0.500 -> +0.500, a full point. CHF -3.38 -> -2.38.
+      CHF IS EURCHF's SHORT LEG - the #2 proposal. EURCHF spread 9.63 -> 8.62.
+      Spread still clears 8.00 so the +2 confidence term holds, but the
+      published spread was overstated by a full point all weekend.
+  (3) CHF NON FARM PAYROLLS. Model carried act=+0.5% prev=+0.2%. TE shows
+      5.537M vs 5.544M. THOSE PERCENTAGES BELONG TO NO PUBLISHED SERIES - the
+      indicator is a level in millions. GOOD stands (it beat consensus 5.4M)
+      but note employment actually FELL versus the prior quarter, which the
+      fabricated percentages hid.
+  AND IT CORRECTED A SECTION 4.0 CLAIM: I had written "CHF has no release all
+  week", which fed EURCHF's projection term. WRONG - Swiss Non Farm Payrolls Q2
+  RELEASES THU 27 AUG. Found only because the audit read the TE calendar rows
+  for this indicator. Section 4.0 now carries it: ten whitelist events next
+  week, not nine.
+  ROOT CAUSE, SHARED BY ALL THREE: these rows were hand-transcribed into
+  score_model.ROWS and NOTHING EVER RE-READ THE SOURCE. The whitelist is
+  refreshed by ME, by hand, and a row only gets corrected if someone looks at
+  it. Two of the three had been wrong since the model was built on 2026-08-19.
+  THE REF-PERIOD COLUMN WAS THE TELL AND I NEVER USED IT. Sorting all 70 rows
+  by reference period took one command and surfaced all three immediately:
+  67 of 70 rows are Jun/Jul/Aug 2026; the three outliers were Q1/26, Mar/26 and
+  May/26. A staleness sort is a 10-second check that has never once been run.
+
+LD-49 - EVERY EDITION SORTS THE WHITELIST BY REFERENCE PERIOD AND EXPLAINS THE
+  OUTLIERS. Closes the detection half of F-34.
+  THE CHECK: sort all 70 rows by ref period, oldest first. Any row more than
+  ONE PERIOD older than its category's median is either
+    (a) LEGITIMATELY LAGGING - a quarterly series between prints, e.g. CHF Non
+        Farm Payrolls Q1/26 with Q2 due 27 Aug, or NZ employment/inflation
+        which LD-13 already flags as quarterly by construction - and the
+        edition SAYS SO and names the next release date; or
+    (b) STALE - a newer print exists and was missed. FETCH IT.
+  There is no third case. A row cannot sit in "old and unexplained".
+  WHY A SORT RATHER THAN A DATE THRESHOLD: reference periods are irregular
+  across indicators (monthly, quarterly, weekly) so an absolute cutoff would
+  fire constantly on legitimate quarterlies. The comparison that works is
+  against the category's own median.
+  This is cheap - one command - and it has caught, on its first run, a
+  sign-inverted CHF row that moved a proposal's spread by a full point.
+  GUARD NOT YET WRITTEN: the check is currently a procedure, like F-1's phantom
+  guard. Automating it means teaching the renderer the release cadence of each
+  indicator. QUEUED as R-12.

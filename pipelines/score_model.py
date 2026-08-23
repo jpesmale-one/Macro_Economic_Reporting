@@ -38,7 +38,7 @@ ROWS = [
  ("Production","NZ","Global Dairy Trade Price Index","2.3%","0.1%","Aug/26",">0.5%","GOOD"),
  ("Production","CA","S&P Global Mfg PMI","53.5","53.0","Jul/26",">50.5","GOOD"),
  ("Production","CH","Procure.ch-UBS Mfg PMI","53.2","54.3","Jul/26",">50.5","GOOD"),
- ("Production","CH","Industrial Production YoY","-7.1%","-0.4%","Mar/26","<0%","BAD"),
+ ("Production","CH","Industrial Production YoY","5.5%","-7.1%","Q2/26",">0.5%","GOOD"),
  # ---------------- SPENDING (w=1) ----------------
  ("Spending","US","Building Permits MoM Final","+5.0%","-2.6%","Jul/26",">0.5%","GOOD"),
  ("Spending","US","Retail Sales YoY","5.0%","6.8%","Jul/26",">0.5%","GOOD"),
@@ -56,7 +56,7 @@ ROWS = [
  ("Spending","AU","Westpac Consumer Conf Change","88.9","83.9","Aug/26",">Prev","GOOD"),
  ("Spending","AU","NAB Business Confidence","-6","-6","Jul/26",">Prev","NEUTRAL"),
  ("Spending","NZ","Building Permits MoM","-3.6%","-4.9%","Jun/26","<0%","BAD"),
- ("Spending","NZ","Electronic Retail Card Spending YoY","0.9%","0.9%","Q1/26",">0.5%","GOOD"),
+ ("Spending","NZ","Electronic Retail Card Spending YoY","3.4%","1.3%","Jul/26",">0.5%","GOOD"),
  ("Spending","NZ","ANZ Business Confidence","56.1","36.6","Jul/26",">Prev","GOOD"),
  ("Spending","NZ","ANZ Roy Morgan Consumer Conf","99.3","91.3","Jul/26",">Prev","GOOD"),
  ("Spending","CA","Retail Sales YoY","5.9%","3.6%","May/26",">0.5%","GOOD"),
@@ -84,7 +84,7 @@ ROWS = [
  ("Employment","NZ","Unemployment Rate","5.6%","5.4%","Jun/26",">Prev","BAD"),
  ("Employment","CA","Unemployment Rate","6.4%","6.5%","Jul/26","<Prev","GOOD"),
  ("Employment","CA","Employment Change","75.1K","18.2K","Jul/26",">Prev, FT-weighted","GOOD"),
- ("Employment","CH","Non Farm Payrolls","+0.5%","+0.2%","Q1/26",">Cons","GOOD"),
+ ("Employment","CH","Non Farm Payrolls","5.537M","5.544M","Q1/26",">Cons 5.4M","GOOD"),
  ("Employment","CH","Unemployment Rate","3.0%","2.9%","Jul/26",">Prev","BAD"),
  # ---------------- INFLATION (w=3) ----------------
  ("Inflation","US","Inflation Rate YoY","3.4%","3.5%","Jul/26",">2% & falling","NEUTRAL"),

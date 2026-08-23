@@ -248,7 +248,7 @@ neither.
 **SNB's Tschudin: "Swiss inflation is low because of low inflation
 expectations"** *(investinglive.com, 21 Aug 15:20 GMT)*
 
-**Read — CHF:** confirms the −3.38 WEAK band from the SNB's own mouth. CHF
+**Read — CHF:** confirms the −2.38 WEAK band from the SNB's own mouth. CHF
 inflation is 0.4% and falling, the only deflation-leaning currency in the set,
 and the central bank is signalling it sees this as structural rather than
 temporary. **Supports EURCHF LONG.** No CHF release lands next week, so the
@@ -295,11 +295,11 @@ this session and reproduces r13 exactly.
 | NEUTRAL | USD | +2.25 | Safe haven | +1.00 · +0.25 · +1.00 · +0.00 · +0.00 · **+0.00** |
 | NEUTRAL | AUD | +2.08 | Commodity | +1.00 · +0.75 · +1.00 · −0.67 · +0.00 · **+0.00** |
 | **WEAK** | **JPY** | **+0.00** | Safe haven | +1.00 · +0.00 · −1.00 · +0.00 · +0.00 · **+0.00** |
-| **WEAK** | **CHF** | **−3.38** | Safe haven | +0.00 · +1.00 · −1.00 · +0.00 · −3.00 · **−0.38** |
+| **WEAK** | **CHF** | **−2.38** | Safe haven | **+1.00** · +1.00 · −1.00 · +0.00 · −3.00 · **−0.38** |
 
 Bands: **STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00**
 
-**Group standings** — Safe haven: USD +2.25 › JPY +0.00 › CHF −3.38 ·
+**Group standings** — Safe haven: USD +2.25 › JPY +0.00 › CHF −2.38 ·
 Commodity: CAD +8.38 › NZD +3.75 › AUD +2.08 · Risk-corr: EUR +6.25 › GBP +5.75
 
 **⚠ TWO SCORES CARRY KNOWN PRESSURE INTO MONDAY.** CAD's Spending +1.00 rests on
@@ -310,7 +310,7 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 
 ### 2.1 Production (weight 1)
 
-**18 indicators — 14 GOOD · 2 BAD · 2 NEUTRAL**
+**18 indicators — 15 GOOD · 1 BAD · 2 NEUTRAL**
 
 | CCY | Indicator | Actual | Previous | Ref | Threshold | Score |
 |---|---|---|---|---|---|---|
@@ -330,8 +330,10 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | NZD | Business NZ PMI | 54.3 | 60.1 | Jul/26 | >50.5 | **GOOD** |
 | NZD | Global Dairy Trade Price Index | 2.3% | 0.1% | Aug/26 | >0.5% | **GOOD** |
 | CAD | S&P Global Mfg PMI | 53.5 | 53.0 | Jul/26 | >50.5 | **GOOD** |
-| CHF | Industrial Production YoY | -7.1% | -0.4% | Mar/26 | <0% | **BAD** |
+| CHF | Industrial Production YoY | 5.5% | -7.1% | Q2/26 | >0.5% | **GOOD** |
 | CHF | Procure.ch-UBS Mfg PMI | 53.2 | 54.3 | Jul/26 | >50.5 | **GOOD** |
+
+**⚠ CHF Industrial Production was stale by two quarters and had the wrong sign.** The model carried **−7.1% (Q1/26)** scored BAD. **Q2 released 19 Aug at +5.5%** *(tradingeconomics.com series page)* — a released figure four days before this edition, sitting unread. Corrected to **GOOD**, which moves CHF **−3.38 → −2.38**.
 
 ### 2.2 Spending (weight 1)
 
@@ -357,13 +359,13 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | NZD | ANZ Business Confidence | 56.1 | 36.6 | Jul/26 | >Prev | **GOOD** |
 | NZD | ANZ Roy Morgan Consumer Conf | 99.3 | 91.3 | Jul/26 | >Prev | **GOOD** |
 | NZD | Building Permits MoM | -3.6% | -4.9% | Jun/26 | <0% | **BAD** |
-| NZD | Electronic Retail Card Spending YoY | 0.9% | 0.9% | Q1/26 | >0.5% | **GOOD** |
+| NZD | Electronic Retail Card Spending YoY | 3.4% | 1.3% | Jul/26 | >0.5% | **GOOD** |
 | CAD | Building Permits MoM | +18.5% | -3.0% | Jun/26 | >0.5% | **GOOD** |
 | CAD | Retail Sales YoY | 5.9% | 3.6% | May/26 | >0.5% | **GOOD** |
 | CHF | Consumer Confidence | -35 | -36 | Jul/26 | >Prev | **GOOD** |
 | CHF | Retail Sales YoY | 1.5% | 3.4% | Jun/26 | >0.5% | **GOOD** |
 
-**⚠ TWO ROWS UPDATED WITH FRIDAY'S PRINTS — AND THE SCORES DID NOT MOVE.** GBP Retail Sales YoY **4.2% → 1.6%** (ONS primary, 21 Aug) and GfK **−17 → −14** (20 Aug). Both stay GOOD because neither crossed a threshold — see §2.7. **EUR Consumer Confidence stays at the July FINAL −15.9.** August's −15.5 is a **flash** estimate; the whitelist names the *Final*, and August's Final releases **Fri 28 Aug** — it is a §4.0 projection, not a §2 row. **CAD Retail Sales YoY cannot be updated:** StatCan's 21 Aug release carries no YoY figure and its −0.8% July number is an advance estimate from 56.5% of firms, revised **24 Sep** *(statcan.gc.ca, primary)*.
+**⚠ THREE ROWS UPDATED WITH FRIDAY'S PRINTS — AND THE SCORES DID NOT MOVE.** GBP Retail Sales YoY **4.2% → 1.6%** (ONS primary, 21 Aug), GfK **−17 → −14**. Both stay GOOD; see §2.7. **NZD Electronic Retail Card Spending corrected:** the model carried **0.9% / 0.9% / Q1-26**, which is the *Retail Sales QoQ* series, not this indicator. Real figure **3.4% YoY (Jul/26), prev 1.3%** *(Stats NZ 17 Aug, corroborated by fx.co)*. Score unchanged GOOD. **EUR Consumer Confidence stays at the July FINAL −15.9** — August's −15.5 is a flash; the Final releases Fri 28 Aug (§4.0). **CAD Retail Sales YoY cannot be updated:** StatCan's 21 Aug release carries no YoY figure and its −0.8% is an advance estimate from 56.5% of firms, revised **24 Sep**.
 
 ### 2.3 Trade (weight 1)
 
@@ -397,10 +399,10 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | NZD | Unemployment Rate | 5.6% | 5.4% | Jun/26 | >Prev | **BAD** |
 | CAD | Employment Change | 75.1K | 18.2K | Jul/26 | >Prev, FT-weighted | **GOOD** |
 | CAD | Unemployment Rate | 6.4% | 6.5% | Jul/26 | <Prev | **GOOD** |
-| CHF | Non Farm Payrolls | +0.5% | +0.2% | Q1/26 | >Cons | **GOOD** |
+| CHF | Non Farm Payrolls | 5.537M | 5.544M | Q1/26 | >Cons 5.4M | **GOOD** |
 | CHF | Unemployment Rate | 3.0% | 2.9% | Jul/26 | >Prev | **BAD** |
 
-**AUD's employment deteriorated on both counts** — Employment Change −15.8K against +76.3K prior, unemployment 4.5% from 4.4%. That is the −0.67 dragging AUD to +2.08 and out of the STRONG band.
+**AUD's employment deteriorated on both counts** — Employment Change −15.8K against +76.3K prior, unemployment 4.5% from 4.4%. That is the −0.67 dragging AUD to +2.08. **CHF Non Farm Payrolls corrected** to the real TE figures (5.537M vs 5.544M prior) — the model carried +0.5%/+0.2%, which belong to no published series. It beat consensus 5.4M so GOOD stands, but note employment **fell** versus the prior quarter. **Q2 releases Thu 27 Aug.**
 
 ### 2.5 Inflation (weight 3)
 
@@ -518,12 +520,13 @@ PHT, so PHT = UTC+8 (F-2).
 | **Wed 26 09:30** | **AUD** | **Inflation Rate YoY** | **3.8%** | **3.2%** | **NEUTRAL** | >2% & **falling** — unchanged at 0.00 |
 | **Wed 26 20:30** | **USD** | **Personal Spending MoM** | **0.3%** | **0.2%** | **NEUTRAL** | 0–0.5% band — unchanged |
 | **Thu 27 09:30** | **AUD** | **Household Spending YoY** | **6.0%** | **4.4%** | **GOOD** | >0.5% — holds, though decelerating 1.6pp |
+| **Thu 27 14:30** | **CHF** | **Non Farm Payrolls (Q2)** | **5.537M** | **5.55M** | **GOOD** | >Cons — **the only CHF release all week**, found in this session's audit |
 | **Fri 28 07:30** | **JPY** | **Unemployment Rate** | **2.5%** | **2.5%** | **NEUTRAL** | unchanged vs previous |
 | **Fri 28 13:00** | **JPY** | **Consumer Confidence** | **34.9** | **35.0** | **GOOD** | >Prev — holds |
 | Fri 28 15:00 | EUR | Retail Sales YoY | 0.7% | — | **UNSCORED** | no consensus sourced |
 | Fri 28 15:55 | EUR | Unemployment Rate | 6.3% | — | **UNSCORED** | no consensus sourced |
 
-**Nine whitelist indicators land Mon–Fri. Six carry a scored projection**; three
+**Ten whitelist indicators land Mon–Fri. Seven carry a scored projection**; three
 are published UNSCORED with the reason rather than given a guessed number — the
 same discipline §3 applies to market-implied odds.
 
@@ -603,7 +606,7 @@ GBPUSD is the proposal most exposed to it.
 
 **Merged into §2.0** — the tally and the bands are one table now, so a band can never disagree with the score that produced it.
 
-**STRONG:** CAD +8.38 · EUR +6.25 · GBP +5.75 · **NEUTRAL:** NZD +3.75 · USD +2.25 · AUD +2.08 · **WEAK:** JPY +0.00 · CHF −3.38
+**STRONG:** CAD +8.38 · EUR +6.25 · GBP +5.75 · **NEUTRAL:** NZD +3.75 · USD +2.25 · AUD +2.08 · **WEAK:** JPY +0.00 · CHF −2.38
 
 ### 4.2 All candidate pairings — the full board
 
@@ -613,7 +616,7 @@ Grouped by type, tradable first. Minimum spread **1.00** (LD-18).
 | Pair | Dir | Type | Spread | Fri close | Structure verdict |
 |---|---|---|---|---|---|
 | **CADCHF** | LONG | RISK-ON | **11.76** | 0.58286 | ❌ **widest on the board, rejected on structure** |
-| **EURCHF** | LONG | RISK-ON | **9.63** | **0.93562** | ✅ **held 0.93071 support, closed +8.3 pips** |
+| **EURCHF** | LONG | RISK-ON | **8.62** | **0.93562** | ✅ **held 0.93071 support, closed +8.3 pips** |
 | **GBPCHF** | LONG | RISK-ON | 9.13 | — | ❌ duplicates the short-CHF leg |
 | **CADJPY** | LONG | **RISK-ON** | **8.38** | **115.490** | ✅ **cleared 115.203 (17 Aug high), closed +12.4 pips** |
 | **EURJPY** | LONG | RISK-ON | 6.25 | — | ❌ duplicates short-JPY (correlated) |
@@ -623,7 +626,7 @@ Grouped by type, tradable first. Minimum spread **1.00** (LD-18).
 | AUDCHF | LONG | RISK-ON | 5.46 | — | ⬜ CHF already claimed |
 | **NZDJPY** | LONG | RISK-ON | 3.75 | — | ⬜ JPY already claimed |
 | **GBPUSD** | LONG | **RISK-ON** | **3.50** | **1.36456** | ✅ **new run high 1.36758, +14.8 pips** |
-| **CHFJPY** | SHORT | SAFE | 3.38 | — | ⬜ both legs claimed |
+| **CHFJPY** | SHORT | SAFE | 2.38 | — | ⬜ both legs claimed |
 | **AUDJPY** | LONG | RISK-ON | 2.08 | — | ⬜ JPY already claimed |
 | **USDJPY** | LONG | SAFE | 2.25 | — | ⬜ JPY already claimed |
 | **NZDAUD** | LONG | COMM | **1.67** | 1.19929 *(AUDNZD)* | ❌ **tested — 42.0% of range, no edge (§4.4)** |
@@ -646,7 +649,7 @@ leg** (LD-19), not for any weakness in the setup.
 |---|---|---|---|
 | **USD +2.25** | −6.12 | **+0.17** | −1.50 |
 | **JPY +0.00** | −8.38 | −2.08 | −3.75 |
-| **CHF −3.38** | −11.75 | −5.46 | −7.12 |
+| **CHF −2.38** | −11.75 | −5.46 | −7.12 |
 
 **Not one cell reaches the +1.00 floor.** The best is USD−AUD at **+0.17**,
 six times below the threshold. **There is no risk-off trade this week**, and
@@ -668,7 +671,7 @@ not guarantees and nothing here is a prediction.** Every one carries a falsifier
 | Rank | Pair | Dir | Conf | **Week** | Spread | **Fri close** | Falsifier | Clear by |
 |---|---|---|---|---|---|---|---|---|
 | **1** | **CADJPY** | LONG | **HIGH (+5)** | **W2** — re-proposed | **8.38** | **115.490** | close < **114.472** | 101.8 pips |
-| **2** | **EURCHF** | LONG | **LOW (+2)** | **W2** — re-proposed | **9.63** | **0.93562** | close < **0.92796** | 76.6 pips |
+| **2** | **EURCHF** | LONG | **LOW (+2)** | **W2** — re-proposed | **8.62** | **0.93562** | close < **0.92796** | 76.6 pips |
 | **3** | **GBPUSD** | LONG | **LOW (+1)** | **W2** — re-proposed | **3.50** | **1.36456** | close < **1.35197** | 125.9 pips |
 
 **W2 = second consecutive week proposed.** Last week's result (§0: +95, +46 and
@@ -694,7 +697,7 @@ score, however much they move price.
 
 | | **CADJPY — HIGH (+5)** | **EURCHF — LOW (+2)** | **GBPUSD — LOW (+1)** |
 |---|---|---|---|
-| **§2 spread** | **+2** — 8.38 | **+2** — 9.63 | **0** — 3.50, thinnest carried |
+| **§2 spread** | **+2** — 8.38 | **+2** — 8.62 | **0** — 3.50, thinnest carried |
 | **Structure** | **+2** — cleared **115.203** (17 Aug high) and held above it all Friday | **+1** — held 0.93071 support, 2 touches | **+1** — new run high 1.36758 |
 | Last bar | **+1** — +12.4 pips with the read | **+1** — +8.3 pips with the read | **+1** — +14.8 pips with the read |
 | Fresh driver | **+1** — JPY trade deficit doubled; CAD tariff relief | **+1** — SNB confirms low inflation is structural (§1) | **+1** — dollar at 3-month lows |
@@ -724,11 +727,13 @@ is what the tally is supposed to tell you when nothing is scheduled.
   Confidence Fri 28**, projected GOOD. A strengthening yen read works against a
   short-JPY position. **CAD GDP is not a whitelist row** and does not score,
   though it is worth watching (§4.0, off-list block).
-- **EURCHF** — **downgraded to LOW (+2) on the projections.** EUR Consumer
-  Confidence Final on Fri 28 is forecast unchanged at −15.9, which fails the
-  `>Prev` test and would cut EUR from +6.25 to +5.75. CHF has no release all
-  week, so the short leg cannot correct either. **The long leg has a scheduled
-  downgrade and the short leg has no scheduled repair.**
+- **EURCHF** — **downgraded to LOW (+2) on the projections, and BOTH legs now
+  have scheduled risk.** EUR Consumer Confidence Final on Fri 28 is forecast
+  unchanged at −15.9, failing `>Prev` and cutting EUR +6.25 → +5.75. **And CHF
+  is no longer silent:** this session's audit found **Swiss Non Farm Payrolls
+  Q2 releasing Thu 27**, projected GOOD — a strengthening short leg. The
+  earlier claim that "CHF has no release all week" was wrong and came from the
+  same stale-row problem as §2.1.
 - **GBPUSD** — **no GBP whitelist event lands at all.** Its only week-ahead term
   is Jackson Hole on the short-USD leg: off-list, unscorable, and the single
   largest price risk in the set.
@@ -978,7 +983,7 @@ touched. **Clear these four before the next run** (LD-16 step 6).*
 **Gold broke away from its 200-day MA and closed near the highs of a +1.85% day
 on the week's second-highest volume** (806,154 vs 851,041 Thursday). The move is
 liquidity-driven, not haven-driven — CHF, the other classic haven, is the
-weakest currency on the board at −3.38, and JPY scores 0.00. **When gold rallies
+weakest currency on the board at −2.38, and JPY scores 0.00. **When gold rallies
 while both haven currencies are weak, the driver is the dollar and real yields,
 not fear.**
 
