@@ -3061,3 +3061,40 @@ LD-48 - EVERY PUBLISHED LEVEL NAMES ITS BAR, AND ITS FALSIFIER CLEARS 1 ATR.
 #   (LD-47's lookback) to find the real level beyond 1 ATR.
 #   THAT RESTRAINT IS THE POINT. The fix for a bad level is a deeper lookback,
 #   never a smoother number.
+
+# 2026-08-23 EURCHF + GBPUSD REDRAWN to LD-47 (forward map) and LD-48 (real
+#   bars, falsifier beyond 1 ATR). Seven drawings; clear before the next run.
+#
+#   EURCHF - THE LOOSE FALSIFIER IS RESOLVED, and the 250-bar pull is what did
+#   it. 0.93071 sat 49 pips out against a 55-pip average range - inside 1 ATR.
+#   The deeper history produced a GENUINE CLUSTER: lows 0.92814 (22 Jul),
+#   0.92796 (26 Jul), 0.92802 (30 Jul) - THREE LOWS WITHIN 1.8 PIPS, 75 pips
+#   below close, comfortably beyond 1 ATR. Falsifier moved to 0.92796.
+#   0.93071-0.93075 stays published as STRUCTURE (a real 2-touch zone) but is
+#   no longer the falsifier. THIS VINDICATES THE RESTRAINT IN F-33: I refused
+#   to invent an intermediate level and queued a deeper lookback instead, and
+#   the deeper lookback found a better level than any invention would have.
+#   Forward: R1 0.93632-0.93724 (4 touches, +7 pips), R2 0.94074-0.94120
+#   (4 touches 13-18 Aug, +51 pips) which is BOTH the unrepaired shelf AND the
+#   12-MONTH HIGH. The pair is wedged - 75 pips of downside room to its
+#   falsifier, 51 pips of upside to a ceiling it has never closed above.
+#   Entities: szEShq falsifier, DytRC5 structure, WaTETh R1, 2A8FXJ R2.
+#
+#   GBPUSD - THE EXISTING FALSIFIER HOLDS AND IS STRONGER THAN PUBLISHED.
+#   1.35197 is the 18 Aug low, exact, 126 pips out, well beyond the 61-pip
+#   average range. AND it is not a single low: 1.35197/1.35236/1.35311 are
+#   three lows (16, 17, 18 Aug) - a 3-touch zone, which r13 published as a
+#   single number. Upgraded to a zone.
+#   Forward: R1 1.36536-1.36598 - 3 touches spanning 30 Apr, 10 May AND 19 Aug,
+#   so a level with real history - AND PRICE CLOSED 8 PIPS UNDER IT. Above
+#   that, NOTHING until 1.38700, the 250-bar high, 224 PIPS AWAY.
+#   THAT IS THE MOST CONSEQUENTIAL FORWARD READ IN THE SET: GBPUSD is the
+#   LOW-confidence pair, but clearing R1 opens the widest runway of the three
+#   while failing it caps the read within 8 pips. Jackson Hole lands on its
+#   short-USD leg the same week (section 4.0).
+#   Entities: Jm4jEO falsifier zone, WcMSmp R1, vyCIt1 250-bar high.
+#
+#   PATTERN ACROSS ALL THREE PAIRS, now that every one has a forward map: the
+#   published reads were all "cleared resistance, room above" and NOT ONE OF
+#   THEM HAD MORE THAN 75 PIPS OF TESTED RUNWAY. CADJPY 75 to R2, EURCHF 51 to
+#   its 12-month high, GBPUSD 8 to R1. F-32 was not a CADJPY problem.

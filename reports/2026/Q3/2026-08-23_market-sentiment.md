@@ -52,7 +52,7 @@ onside, and none fired its falsifier.**
 | Pair | Bias | Thu close | **Fri close** | Fri move | Week | Favouring? | Falsifier | Distance |
 |---|---|---|---|---|---|---|---|---|
 | **CADJPY** | LONG | 115.366 | **115.490** | **+12.4 pips** | **+95 pips** | **YES** | close < ~~114.992~~ **114.472** | **101.8 pips clear** |
-| **EURCHF** | LONG | 0.93479 | **0.93562** | **+8.3 pips** | +46 pips | **YES** | close < 0.93071 | **49.1 pips clear** |
+| **EURCHF** | LONG | 0.93479 | **0.93562** | **+8.3 pips** | +46 pips | **YES** | close < ~~0.93071~~ **0.92796** | **76.6 pips clear** |
 | **GBPUSD** | LONG | 1.36308 | **1.36456** | **+14.8 pips** | +42 pips | **YES** | close < 1.35197 | **125.9 pips clear** |
 
 > ### ⚠ CORRECTION — CADJPY's falsifier was not a real level
@@ -83,13 +83,14 @@ onside, and none fired its falsifier.**
 > 0.93071 = Thu 20 low (and 0.93075 = Wed 19 low, a genuine 2-touch zone).
 > GBPUSD 1.35197 = Tue 18 low, exact.
 >
-> **⚠ But EURCHF's fails the ATR test.** It sits **49 pips** below Friday's
-> close against a **55-pip** average daily range — inside one ATR, so ordinary
-> noise can breach it. **No qualifying level exists in the current window**, and
-> I am **not inventing an intermediate one** — that is exactly what produced
-> 114.992. **Flagged, not patched:** the level stands as published this weekend
-> with the limitation stated, and Monday pulls a 250-bar history (LD-47) to find
-> the real level beyond 1 ATR. **Treat EURCHF's falsifier as loose until then.**
+> **⚠ EURCHF's failed the ATR test and is now RESOLVED.** 0.93071 sits 49 pips
+> below close against a 55-pip average range — inside one ATR, so noise could
+> breach it. The 250-bar pull (LD-47) found the real level: **0.92796–0.92814,
+> three lows within 1.8 pips of each other (22, 26, 30 Jul), 75 pips out and
+> clearly beyond 1 ATR.** A genuine cluster, not an invented number.
+>
+> **EURCHF's falsifier is now 0.92796.** 0.93071–0.93075 remains published as
+> **structure** — a real 2-touch zone — but it is not the falsifier.
 
 **Three independent tests, three onside** — six currencies, each used once, so
 this is genuinely 3-for-3 and not one bet counted three times (LD-19, EF-3).
@@ -667,7 +668,7 @@ not guarantees and nothing here is a prediction.** Every one carries a falsifier
 | Rank | Pair | Dir | Conf | **Week** | Spread | **Fri close** | Falsifier | Clear by |
 |---|---|---|---|---|---|---|---|---|
 | **1** | **CADJPY** | LONG | **HIGH (+5)** | **W2** — re-proposed | **8.38** | **115.490** | close < **114.472** | 101.8 pips |
-| **2** | **EURCHF** | LONG | **LOW (+2)** | **W2** — re-proposed | **9.63** | **0.93562** | close < **0.93071** | 49.1 pips |
+| **2** | **EURCHF** | LONG | **LOW (+2)** | **W2** — re-proposed | **9.63** | **0.93562** | close < **0.92796** | 76.6 pips |
 | **3** | **GBPUSD** | LONG | **LOW (+1)** | **W2** — re-proposed | **3.50** | **1.36456** | close < **1.35197** | 125.9 pips |
 
 **W2 = second consecutive week proposed.** Last week's result (§0: +95, +46 and
@@ -746,8 +747,8 @@ locks.
 | Pair | Support | Resistance | Recomputed from |
 |---|---|---|---|
 | **CADJPY** | **113.852–114.352** · 5 touches | **see the forward map below** | 113.852 = 17 Aug low; 114.352 = 14 & 18 Aug lows |
-| **EURCHF** | **0.93071–0.93126** · 2 touches | **0.93849–0.94120** unrepaired shelf | 19 Aug low 0.93075, 20 Aug low 0.93071 |
-| **GBPUSD** | **1.35197–1.35712** · 3 touches | **1.36758** Fri high | 1.35197 = 18 Aug low; 1.35712 = 17 Aug high |
+| **EURCHF** | **falsifier 0.92796–0.92814** · 3 lows 22/26/30 Jul · **structure** 0.93071–0.93075 · 2 lows 19/20 Aug | **R1 0.93632–0.93724** · 4 touches · **+7 pips** · **R2 0.94074–0.94120** · 4 touches · **+51 pips**, the unrepaired shelf **and** the 12-month high | all from named daily bars |
+| **GBPUSD** | **falsifier 1.35197–1.35311** · 3 lows 16/17/18 Aug · **126 pips** | **R1 1.36536–1.36598** · 3 touches 30 Apr, 10 May, 19 Aug · **+8 pips** · then **1.38700**, the 250-bar high, **+224 pips** | all from named daily bars |
 
 #### ⚠ CADJPY forward resistance map — where price can actually go
 
@@ -797,6 +798,34 @@ no overhead."
 *`OANDA:CADJPY` daily. **Cleared first:** `Zxu0GY` and `WmQ0Wi` from the 20 Aug
 edition, removed by entity ID before drawing (LD-46). Jeff's own drawings
 untouched — the chart carried only these two, both ours.*
+
+#### EURCHF and GBPUSD — forward maps and drawings
+
+**EURCHF.** Price 0.93562, wedged between a falsifier zone 75 pips below and
+its 12-month high 51 pips above. **R2 0.94074–0.94120 is both the unrepaired
+shelf and the 250-bar high** — 4 touches, 13–18 Aug, and it is where the 19 Aug
+collapse began. **The upside runway is 51 pips to a ceiling the pair has never
+closed above.** That is a materially tighter picture than "no overhead".
+
+**GBPUSD.** Price 1.36456 sits **8 pips under R1 1.36536–1.36598** — three
+touches spanning 30 Apr, 10 May and 19 Aug, so a level with real history. Above
+it there is **nothing until 1.38700, the 250-bar high, 224 pips away.** Clearing
+R1 opens the widest runway in the carried set; failing it caps the read almost
+immediately.
+
+| Instrument | Level | Drawing | TV entity |
+|---|---|---|---|
+| EURCHF | **falsifier 0.92796–0.92814** | green zone | `szEShq` |
+| EURCHF | structure 0.93071–0.93075 | amber zone | `DytRC5` |
+| EURCHF | R1 0.93632–0.93724 | amber zone | `WaTETh` |
+| EURCHF | **R2 0.94074–0.94120** | red zone | `2A8FXJ` |
+| GBPUSD | **falsifier 1.35197–1.35311** | green zone | `Jm4jEO` |
+| GBPUSD | **R1 1.36536–1.36598** | red zone | `WcMSmp` |
+| GBPUSD | 1.38700 250-bar high | dashed | `vyCIt1` |
+
+*Both `OANDA` daily. EURCHF's chart carried no drawings (r13's `l7UNac`/`1k2MtZ`
+cleared on the MCP restart); GBPUSD's carried none. **Clear all seven before the
+next run** (LD-46).*
 
 **Every level above was recomputed this session from `OANDA` daily bars and
 matches what r13 published, EXCEPT the fabricated 114.992 corrected in §0.** The CADJPY zone r13 flagged as
