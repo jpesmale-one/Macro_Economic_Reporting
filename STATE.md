@@ -2866,3 +2866,58 @@ F-30 - TRADINGVIEW MCP DESYNCHRONISED: CHART STATE AND DATA FEED DISAGREE. OPEN.
 #   SCOPE (LD-4/LD-5): these are OBSERVATIONS OF STRUCTURE. No entry, stop,
 #   target or size was drawn or implied. The falsifier lines are the level at
 #   which the published READ is wrong, not a stop.
+
+F-31 - THE SPEC KEPT HALF OF THE ORIGINAL DRAWING INSTRUCTION. OPEN->FIXED.
+  Jeff: "let's add that to the routine from now on. I remember I added that to
+  the initial request of this report. Let's keep those levels updated every
+  refresh."
+  HE REMEMBERED CORRECTLY. Idea_dump/Project_Plan.txt LINE 10, committed
+  verbatim as input on 2026-08-19 and never edited:
+    "Use the OANDA exchange then plot Key levels for entries and targets.
+     UPDATE THESE LEVELS AS WE REFRESH THE REPORT. Don't let any outdated
+     level/s stale and clear the chart as necessary when updating."
+  TWO REQUIREMENTS: (1) PLOT every refresh, (2) CLEAR the stale.
+  Spec section 6 "Chart hygiene" carried requirement 2 in full - supersede,
+  remove, only our own drawings, say what changed. IT NEVER CARRIED
+  REQUIREMENT 1. The section is even titled "Chart hygiene", which frames the
+  whole thing as cleanup of a drawing step that was never itself mandated.
+  CONSEQUENCE: drawing happened AD HOC - when Jeff asked, or when a pair was
+  selected - not every refresh. The 2026-08-23 edition published nine levels
+  across sections 5 and 6 in tables with NOTHING ON THE CHART until Jeff asked
+  directly. A level in a table and not on the chart is HALF-DELIVERED: the
+  reader re-plots by hand what the report already computed.
+  ROOT CAUSE, and it is the F-3/F-18 shape again: I read a source document,
+  extracted part of an instruction, and the part I dropped left no trace. Line
+  10 has two clauses joined by a full stop; the spec section quotes ONLY THE
+  SECOND SENTENCE. Nothing in the repo recorded that a clause had been lost.
+  A DEFENSIBLE PART, kept: line 10 says "entries and targets". LD-7 reshaped
+  that to structure-only and Jeff REAFFIRMED it (he declined to loosen LD-4).
+  So the DRAWING requirement survived LD-7 and the ENTRY/TARGET framing did
+  not - the spec now says exactly that, so the reshaping is not mistaken for
+  the drop.
+
+LD-46 - DRAWING IS A BUILD STEP, EVERY REFRESH. Closes F-31.
+  Spec section 6 rewritten and retitled from "Chart hygiene" to "DRAWING IS A
+  STEP, NOT AN EXTRA", carrying BOTH clauses of line 10 with the original
+  quoted in full.
+  MANDATORY EVERY EDITION: XAUUSD and BTCUSD (resistance, support, THE
+  FALSIFIER, major base) plus each carried or proposed pair (zones with touch
+  counts, the falsifier). THE FALSIFIER IS ALWAYS DRAWN AND ALWAYS
+  DISTINGUISHABLE - it is the one level whose breach voids the published read.
+  Added as STEP 6 of the LD-43 build order, so the WHEN is specified and not
+  just the WHAT.
+  TWO PRE-FLIGHT CHECKS written in, both learned this session:
+    1. draw_list first - COUNT WHAT IS ALREADY THERE. Jeff's own drawings are
+       his (LD-5); AUDCAD carried SEVEN of them on 2026-08-20.
+    2. Sanity-check the feed before drawing - pull bars and confirm the values
+       are plausible for the instrument. F-30 returned EURCHF prices under a
+       DXY label. NEVER DRAW A LEVEL FROM A FEED YOU HAVE NOT JUST CHECKED.
+  Every edition RECORDS ITS ENTITY IDS so the next run clears exactly what it
+  owns and nothing else.
+  GUARD: assert_levels_drawn() refuses to render unless sections 5 AND 6 each
+  name at least one TV entity id. Verified against a fixture with the
+  drawn-levels blocks stripped - the pre-LD-46 state of every prior edition -
+  and it fired on both sections.
+  SCOPE UNCHANGED (LD-4/LD-5/LD-7): drawn levels are OBSERVATIONS OF
+  STRUCTURE. No entry, stop, target or size. A falsifier line marks where the
+  READ is wrong, not where a position would exit.

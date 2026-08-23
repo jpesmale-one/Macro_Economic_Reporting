@@ -296,11 +296,23 @@ rest of §4 intact** — no re-derivation, no re-ranking (LD-29).
 ### STEP 5 — §5 Gold and §6 BTC
 
 Read last, because both take the dollar and rate picture from §2 and §3.
-Drivers in plain language showing the chain (LD-31); §6 mirrors §5.
+Each **opens with the dollar check** (LD-45): USD score and USD price
+side by side, disagreement named. Drivers in plain language showing the
+chain (LD-31); §6 mirrors §5.
 
 **Then the bias is formed** from all three inputs together — §2 macro,
 technical structure, and §4.0 projections (LD-40) — never from any one
 of them alone.
+
+### STEP 6 — DRAW THE LEVELS, EVERY REFRESH (LD-46)
+
+**Not optional and not the reader's job.** Clear what the prior edition
+drew — by its recorded entity IDs, nothing else — then draw the levels
+this edition publishes: **XAUUSD, BTCUSD, and each carried or proposed
+pair**, the falsifier always distinguishable.
+
+Record the new entity IDs in the edition so the next run can clear
+exactly what it owns. Full procedure in §6.
 
 ## 4. Report structure
 
@@ -748,16 +760,57 @@ appear in §4.
 
 ---
 
-## 6. Chart hygiene (draft requirement, LD-5/LD-6 bound)
+## 6. Chart hygiene — DRAWING IS A STEP, NOT AN EXTRA (LD-46)
 
-The draft is explicit: *"Don't let any outdated level/s stale and clear the
-chart as necessary when updating."*
+**Idea_dump/Project_Plan.txt line 10, from the original request:**
+*"Use the OANDA exchange then plot Key levels for entries and targets.
+**Update these levels as we refresh the report.** Don't let any outdated
+level/s stale and clear the chart as necessary when updating."*
+
+**Two requirements. The spec carried only the second one until 2026-08-23,**
+so drawing happened ad hoc instead of every refresh (F-31).
+
+### 6.1 Plot every refresh — mandatory
+
+**Every edition draws the levels it publishes.** A level that appears in a
+§4/§5/§6 table and not on the chart is half-delivered: the reader has to
+re-plot by hand what the report already computed.
+
+**What gets drawn, every refresh:**
+
+| Instrument | When | What |
+|---|---|---|
+| **XAUUSD** | every edition | resistance, support, **the falsifier**, major base |
+| **BTCUSD** | every edition | resistance, support, **the falsifier**, major base |
+| **Each carried/proposed pair** | on selection, then when structure changes | zones with touch counts, **the falsifier** |
+
+**The falsifier is always drawn and always distinguishable** — it is the one
+level whose breach voids the published read.
+
+**Scope (LD-4, LD-5, LD-7).** The draft says "entries and targets"; LD-7
+reshaped that and the reshaping stands. **Drawn levels are OBSERVATIONS OF
+STRUCTURE — never an entry, stop, target or size.** A falsifier line marks
+where the *read* is wrong, not where a position would exit. The drawing
+requirement survived LD-7; the entry/target framing did not.
+
+**Before drawing, always:**
+1. `draw_list` on the symbol — **count what is already there.**
+2. Sanity-check the feed: pull bars and confirm the values are plausible
+   for the instrument (F-30 — a desynced MCP returns another symbol's
+   prices under the right label). **Never draw a level from a feed you have
+   not just checked.**
+
+### 6.2 Clear the stale — mandatory
 
 - Levels drawn on a refresh **supersede** the prior session's.
 - Stale levels are **removed**, not left to accumulate.
 - Removal uses `draw_remove_one` / `draw_clear` — and **only for levels
-  this report drew**. Jeff's own drawings, indicators, and layouts are his;
-  the MCP drives his live chart, not a scratchpad (LD-5).
+  this report drew**, by the entity IDs the prior edition recorded. Jeff's
+  own drawings, indicators and layouts are his; the MCP drives his live
+  chart, not a scratchpad (LD-5). AUDCAD carried **seven** of his drawings
+  on 2026-08-20 — the check is not theoretical.
+- **Every edition records the entity IDs it created**, so the next run can
+  clear exactly what it owns and nothing else.
 - Say what was cleared and what was drawn.
 
 ---

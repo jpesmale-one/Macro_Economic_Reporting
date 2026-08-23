@@ -500,6 +500,40 @@ def assert_no_offlist_scores(md):
     return len([l for l in blk.splitlines() if l.startswith('| ')])
 
 
+def assert_levels_drawn(md):
+    """Sections 5 and 6 must record drawn levels with their TV entity IDs.
+
+    Project_Plan.txt line 10, the ORIGINAL request: "plot Key levels ...
+    Update these levels as we refresh the report." The spec carried the
+    clearing half of that instruction but never the plotting half, so
+    drawing happened ad hoc instead of every refresh (F-31).
+
+    A level published in a table and not on the chart is half-delivered -
+    the reader re-plots by hand what the report already computed. This
+    checks that each of section 5 and section 6 names at least one TV
+    entity id, which is only present when levels were actually drawn and
+    recorded for the next run to clear.
+    """
+    import re as _re
+    missing = []
+    for sec, nxt in (('## \u00a75 ', '## \u00a76 '), ('## \u00a76 ', '## \u00a77 ')):
+        try:
+            blk = md[md.index(sec):md.index(nxt)]
+        except ValueError:
+            continue
+        # entity ids are 6 alphanumeric chars in backticks, e.g. `vHuuCj`
+        if not _re.search(r'`[A-Za-z0-9]{6}`', blk):
+            missing.append(sec.strip())
+    if missing:
+        raise SystemExit(
+            'FATAL (LD-46/F-31): no drawn levels recorded in: %s%s'
+            'Every refresh DRAWS the levels it publishes and records the TV '
+            'entity ids, so the next run can clear exactly what it owns. '
+            'A level in a table but not on the chart is half-delivered.'
+            % (', '.join(missing), chr(10)))
+    return len(missing) == 0
+
+
 def assert_news_sources(md):
     """Section 1 must cite a real news source (F-17 / LD-30)."""
     m = re.search(r'^##\s*§1\b.*?$(.*?)(?=^##\s*§)', md, re.S | re.M)
@@ -565,6 +599,7 @@ if __name__ == '__main__':
     nheads = assert_sections(md, fm['type'])
     nmark = assert_markers(md)
     nrow, nexp = assert_whitelist(md)
+    assert_levels_drawn(md)
     assert_no_offlist_scores(md)
     sources = assert_news_sources(md)
     pn, bn, pct = prose_ratio(md)
@@ -573,6 +608,7 @@ if __name__ == '__main__':
           % (nheads, fm['type']))
     print('  LD-38 markers   %d/%d generated blocks emitted'
           % (nmark, len(REQUIRED_MARKERS)))
+    print('  LD-46 levels    drawn and entity ids recorded')
     if nexp:
         print('  LD-41 4.0 scores  whitelist indicators only')
         print('  LD-39 whitelist %d/%d indicator rows, no blanks'
