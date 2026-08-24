@@ -585,13 +585,24 @@ an independent test**. The carried count is the scorecard's denominator —
 N carried must mean N independent tests of the model. Reporting a shared
 leg as a separate test overstated the 2026-08-20 evidence **4×** (EF-3).
 
-**§4.5 CORRELATED is a POSITIONING list, not a warning list (LD-60).**
+**§4.5 CORRELATED is a POSITIONING list, not a warning list (LD-60),
+and it covers EVERY carried pair — not just the top one.** A parent is
+extended when it is extended; which one that happens to be changes week
+to week, so all of them get a family.
 It answers one question: *if a carried pair has already run, which
 sibling offers the better entry on the same call?* Each correlated pair
 publishes **live price, range position, distance to its next resistance,
 and distance to support** — the parent's figures alongside, so they can
 be compared. The double-size warning (LD-21) stays, but a list of names
 with no prices cannot answer the question it exists for.
+
+**Every alternative names what it costs.** A sibling with more room
+is not a free switch — it trades one problem for another, and the
+edition says which. Run any candidate through
+`select_pairs.exposure()` against the carried set before recommending
+it: on 2026-08-24 USDCHF was the least extended short-CHF expression by
+a wide margin, and adding it would have left **USD net flat** while
+**doubling CHF**, both at once.
 
 **Report the counter-intuitive case when it occurs.** Range position and
 distance-to-resistance are different measures and can point opposite

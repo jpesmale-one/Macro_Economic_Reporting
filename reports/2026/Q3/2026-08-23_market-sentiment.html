@@ -718,18 +718,44 @@
 <p><b>CHF crosses remain rejected on structure</b> despite carrying the widest spreads on the board (CADCHF 11.76). Two weeks running, the structure filter has rejected the highest-spread trade the model produced.</p>
 <h3 class="sub">4.5 CORRELATED — the same bet on a better chart (LD-60)</h3>
 <p><b>Not a warning list — a positioning list.</b> These are the same currency call as a proposed pair, on a different chart. <b>Taking one alongside its parent is one position at double size</b> (LD-21, EF-3) — but when the parent has already run into resistance, a sibling sitting lower in its range may offer the entry the parent no longer does.</p>
-<h3 class="sub" style="opacity:.85">CADJPY's siblings — short JPY, three charts</h3>
-<p>Live prices, Monday 24 Aug. Range position over 45 daily bars; resistance from swing pivots.</p>
+<p>Live prices Monday 24 Aug; range over 45 daily bars; support is a named recent bar low. <b>Scope unchanged (LD-4): these are observations of position, never entries.</b></p>
+<h3 class="sub" style="opacity:.85">1 · CADJPY family — SHORT JPY</h3>
 <div class="tblwrap"><table>
-<tr><th>Pair</th><th>Live</th><th>Range pos</th><th>To next resistance</th><th>To support</th><th>Read</th></tr>
-<tr><td><b>CADJPY</b> <em>(parent, HIGH +5)</em></td><td class="num"><b>115.514</b></td><td class="num"><b>97.8%</b></td><td><b>+19 pips</b> → R1 115.700–115.780</td><td>104 pips</td><td><b>extended — at the top of its range</b></td></tr>
-<tr><td><b>EURJPY</b></td><td class="num"><b>185.608</b></td><td class="num"><b>76.9%</b></td><td>+6 pips → 185.664–185.768</td><td><b>168 pips</b></td><td>mid-range, but <b>capped immediately</b></td></tr>
-<tr><td><b>GBPJPY</b></td><td class="num"><b>216.856</b></td><td class="num"><b>72.5%</b></td><td>+5 pips → 216.906–216.996</td><td><b>204 pips</b></td><td><b>lowest in range</b>, also capped</td></tr>
+<tr><th>Pair</th><th>Live</th><th>Range pos</th><th>To 45-bar high</th><th>To support</th></tr>
+<tr><td><b>CADJPY</b> <em>(parent, HIGH +5)</em></td><td class="num">115.514</td><td class="num"><b>97.8%</b></td><td><b>7 pips</b></td><td>104 pips</td></tr>
+<tr><td><b>EURJPY</b></td><td class="num">185.608</td><td class="num"><b>76.9%</b></td><td><b>187 pips</b></td><td>168 pips</td></tr>
+<tr><td><b>GBPJPY</b></td><td class="num">216.856</td><td class="num"><b>72.5%</b></td><td><b>276 pips</b></td><td><b>204 pips</b></td></tr>
 </table></div>
-<p><b>⚠ The answer is counter-intuitive and worth stating plainly: CADJPY has the MOST room of the three, not the least.</b> Its R1 is 19 pips away; both siblings sit within 6 pips of overhead resistance. Being high in the range and being close to resistance are <b>different things</b>, and here they point opposite ways.</p>
-<p><b>So which chart depends on which problem you have:</b></p>
-<ul><li><b>Waiting for a pullback?</b> <b>GBPJPY</b> is lowest in its range (72.5%) and sits <b>204 pips above support</b> — the most room to fall into before the read is threatened. A retracement there is a normal breather, not a broken thesis.</li><li><b>Want room to run?</b> <b>CADJPY, the parent, still has it</b> — 19 pips to R1 against 5–6 for the siblings. The extension is in its <em>range position</em>, not in its distance to supply.</li><li><b>Neither sibling is a better long right now.</b> Both are within 6 pips of a multi-touch shelf. <b>That is information: the whole short-JPY complex is pressing resistance simultaneously</b>, which is what a correlated cluster looks like when it moves together.</li></ul>
-<p><b>Short-CHF siblings</b> — CADCHF, GBPCHF, USDCHF, CHFJPY all duplicate EURCHF's short-CHF leg. <b>Not charted this session</b>; EURCHF is LOW (+1) and its own falsifier is the open question (§0), so a sibling read would inherit that weakness rather than escape it.</p>
+<p><b>The parent is the extended one here and the siblings are not close.</b> CADJPY sits 7 pips under its own 45-bar high; EURJPY has <b>187 pips</b> of prior range above it and GBPJPY <b>276</b>. <b>GBPJPY is the alternative</b> — lowest in range, furthest from its high, and 204 pips above support.</p>
+<h3 class="sub" style="opacity:.85">2 · EURCHF family — SHORT CHF</h3>
+<div class="tblwrap"><table>
+<tr><th>Pair</th><th>Live</th><th>Range pos</th><th>To 45-bar high</th><th>To support</th></tr>
+<tr><td><b>EURCHF</b> <em>(parent, LOW +1)</em></td><td class="num">0.93562</td><td class="num">72.8%</td><td>56 pips</td><td>77 pips</td></tr>
+<tr><td>CADCHF</td><td class="num">0.58022</td><td class="num">70.8%</td><td>62 pips</td><td><b>32 pips</b></td></tr>
+<tr><td>GBPCHF</td><td class="num">1.09212</td><td class="num">74.1%</td><td>91 pips</td><td>78 pips</td></tr>
+<tr><td><b>USDCHF</b> <em>(LONG USDCHF = short CHF)</em></td><td class="num">0.80032</td><td class="num"><b>20.8%</b></td><td><b>204 pips</b></td><td>53 pips</td></tr>
+</table></div>
+<p><b>⚠ USDCHF is the outlier and it needs its caveat stated.</b> At <b>20.8% of range</b> with <b>204 pips</b> to its high it is by far the least extended expression of short-CHF. <b>But it is a long-USD trade, and it collides twice.</b> Run through <code>select_pairs.exposure()</code> against the carried set:</p>
+<div class="tblwrap"><table>
+<tr><th>Adding USDCHF LONG</th><th>Result</th></tr>
+<tr><td class="num"><b>USD</b></td><td>short ×1 (GBPUSD) + long ×1 (USDCHF) → <b>net FLAT</b></td></tr>
+<tr><td class="num"><b>CHF</b></td><td>short ×2 (EURCHF + USDCHF) → <b>double size on one leg</b></td></tr>
+</table></div>
+<p><b>Both problems at once</b> — the USD exposure cancels while the CHF exposure doubles. It is the better chart <b>only if neither GBPUSD nor EURCHF is taken</b>, which is to say only if it replaces them rather than joins them.</p>
+<p><b>CADCHF is the one to avoid:</b> 32 pips above support, the tightest in the set, and it was rejected on structure two weeks running.</p>
+<h3 class="sub" style="opacity:.85">3 · GBPUSD family — LONG GBP / SHORT USD</h3>
+<div class="tblwrap"><table>
+<tr><th>Pair</th><th>Live</th><th>Range pos</th><th>To 45-bar high</th><th>To support</th></tr>
+<tr><td><b>GBPUSD</b> <em>(parent, LOW +1)</em></td><td class="num">1.36456</td><td class="num"><b>94.4%</b></td><td>30 pips</td><td>126 pips</td></tr>
+<tr><td>EURUSD</td><td class="num">1.16804</td><td class="num"><b>91.9%</b></td><td>31 pips</td><td>114 pips</td></tr>
+<tr><td>AUDUSD</td><td class="num">0.71676</td><td class="num"><b>96.0%</b></td><td><b>13 pips</b></td><td>101 pips</td></tr>
+<tr><td><b>GBPCAD</b> <em>(long GBP, no USD leg)</em></td><td class="num">1.88226</td><td class="num"><b>34.3%</b></td><td><b>221 pips</b></td><td>80 pips</td></tr>
+</table></div>
+<p><b>Every short-USD expression is extended together</b> — GBPUSD 94.4%, EURUSD 91.9%, AUDUSD 96.0%. <b>That is the dollar-weakness read showing up on every chart at once (§5)</b>, and it means switching between them buys nothing.</p>
+<p><b>GBPCAD is the genuine alternative</b> at <b>34.3% of range</b> with 221 pips of room — because it expresses the <b>GBP</b> leg without the USD leg. <b>It is not the same trade</b>: it swaps a weak dollar for a strong CAD (+8.38, the top of the board), which is a materially harder counterparty.</p>
+<h3 class="sub" style="opacity:.85">What this says across all three</h3>
+<p><b>Two families are pressing resistance simultaneously</b> — short-JPY at the parent, and the entire short-USD complex. <b>A correlated cluster moving together is the concentration risk EF-3 measured, seen from the entry side.</b></p>
+<p><b>Every genuine alternative found here trades one problem for another:</b> GBPJPY has room but is the weakest leg of the JPY complex on structure; USDCHF has the most room but collides with GBPUSD's USD leg; GBPCAD has room but faces the strongest currency on the board. <b>None is a free switch, and the report should not imply one exists.</b></p>
 <h3 class="sub">4.6 Week ahead — what could void a proposal before Monday locks it</h3>
 <div class="tblwrap"><table>
 <tr><th>When (PHT)</th><th>CCY</th><th>Event</th><th>Why it matters</th><th>Voids what?</th></tr>

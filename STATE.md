@@ -3869,3 +3869,37 @@ LD-60 - SECTION 4.5 IS A POSITIONING LIST, NOT A WARNING LIST (Jeff).
   omitted: EURCHF is LOW (+1) and its own falsifier is the open question, so a
   sibling read would inherit that weakness rather than escape it. Charting them
   would imply a quality the parent does not have.
+
+# LD-60 EXTENDED 2026-08-24 - section 4.5 covers ALL THREE parents, not one.
+#   Jeff: "not only for CADJPY. I also want to see for alternatives for your
+#   Top 3 (CADJPY, EURCHF, and GBPUSD)". Correct - one parent covered is not
+#   the feature. A parent is extended WHEN IT IS EXTENDED and which one that
+#   is changes week to week.
+#   ALSO RETIRES MY OWN EXCUSE: I had declined to chart the short-CHF siblings
+#   on the grounds that EURCHF is LOW (+1) so a sibling "would inherit that
+#   weakness". That reasoning does not survive being asked directly - the
+#   parent's conviction is a separate question from where its siblings sit.
+#
+#   ELEVEN PAIRS CHARTED LIVE, three families:
+#   SHORT JPY   CADJPY 97.8%  7p to high | EURJPY 76.9% 187p | GBPJPY 72.5% 276p
+#   SHORT CHF   EURCHF 72.8% 56p | CADCHF 70.8% 62p | GBPCHF 74.1% 91p
+#               USDCHF 20.8% 204p  <-- least extended in the whole report
+#   LONG GBP /  GBPUSD 94.4% 30p | EURUSD 91.9% 31p | AUDUSD 96.0% 13p
+#   SHORT USD   GBPCAD 34.3% 221p  <-- the only one with real room
+#
+#   THREE FINDINGS THE COMPARISON PRODUCED:
+#   1. THE ENTIRE SHORT-USD COMPLEX IS EXTENDED TOGETHER - 94.4/91.9/96.0.
+#      That is the dollar-weakness read (LD-45) showing up on every chart at
+#      once, and it means switching between them buys NOTHING.
+#   2. USDCHF COLLIDES TWICE, and I verified it with select_pairs.exposure()
+#      rather than asserting it: adding USDCHF LONG leaves USD SHORT x1 +
+#      LONG x1 = NET FLAT, while CHF goes to SHORT x2 = DOUBLE SIZE. My first
+#      draft claimed only the USD cancellation; the model found both.
+#   3. NO ALTERNATIVE IS FREE. GBPJPY has room but is the weakest JPY leg on
+#      structure; USDCHF has the most room but collides on two currencies;
+#      GBPCAD has room but swaps a weak dollar for CAD +8.38, the strongest
+#      currency on the board. THE REPORT MUST NOT IMPLY A FREE SWITCH EXISTS -
+#      each alternative names what it costs.
+#   SPEC UPDATED: 4.5 covers every carried pair, and any candidate is run
+#   through select_pairs.exposure() against the carried set before it is
+#   offered.
