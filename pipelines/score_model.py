@@ -66,12 +66,12 @@ ROWS = [
  ("Spending","CH","Retail Sales YoY","1.5%","3.4%","Jun/26",">0.5%","GOOD"),
  # ---------------- TRADE (w=1) ----------------
  ("Trade","US","Balance of Trade","-$73.26B","-$77.65B","Jun/26",">Prev","GOOD"),
- ("Trade","EA","Balance of Trade","EUR8,600M","EUR-9,000M","Jun/26",">Prev","GOOD"),
- ("Trade","GB","Balance of Trade","GBP-5,537M","GBP-3,464M","Jun/26","<Prev","BAD"),
+ ("Trade","EA","Balance of Trade","EUR8.60B","EUR-9.00B","Jun/26",">Prev","GOOD"),
+ ("Trade","GB","Balance of Trade","GBP-5.54B","GBP-3.46B","Jun/26","<Prev","BAD"),
  ("Trade","JP","Balance of Trade","JPY-634.5B","JPY-409.9B","Jul/26","<Prev","BAD"),
- ("Trade","AU","Balance of Trade","A$1,929M","A$-2,367M","Jun/26",">Prev","GOOD"),
+ ("Trade","AU","Balance of Trade","A$1.93B","A$-2.37B","Jun/26",">Prev","GOOD"),
  ("Trade","NZ","Balance of Trade","NZ$-1.95B","NZ$0.02B","Jul/26","<Prev","BAD"),
- ("Trade","CA","Balance of Trade","C$3,860M","C$3,700M","Jun/26",">Prev","GOOD"),
+ ("Trade","CA","Balance of Trade","C$3.86B","C$3.70B","Jun/26",">Prev","GOOD"),
  ("Trade","CH","Balance of Trade","CHF8.1B","CHF3.8B","Jul/26",">Prev","GOOD"),
  # ---------------- EMPLOYMENT (w=2) ----------------
  ("Employment","US","Non Farm Payrolls","-23K","20K","Jul/26",">Cons","BAD"),

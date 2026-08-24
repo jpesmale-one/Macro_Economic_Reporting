@@ -334,8 +334,6 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | CHF | Industrial Production YoY | 5.5% | -7.1% | Q2/26 | >0.5% | **GOOD** |
 | CHF | Procure.ch-UBS Mfg PMI | 53.2 | 54.3 | Jul/26 | >50.5 | **GOOD** |
 
-**⚠ USD MANUFACTURING PRODUCTION YoY ADDED (LD-53).** Jeff's amendment. **1.2% (Jul/26), previous 1.1%** — released 18 Aug, verified against the Fed's **G.17** release and TE's series calendar. GOOD. **USD Production now has four indicators, so each is worth 0.250 rather than 0.333** — the category still scores +1.00, but every USD Production row now carries less individual weight. **Two other rows were stale:** CHF Industrial Production **−7.1% (Q1) → +5.5% (Q2)**, released 19 Aug, BAD → GOOD; USD ISM Manufacturing **53.9 (Jul) → 53.2 (Aug)**, GOOD either way.
-
 ### 2.2 Spending (weight 1)
 
 **23 indicators — 17 GOOD · 3 BAD · 3 NEUTRAL**
@@ -366,8 +364,6 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | CHF | Consumer Confidence | -35 | -36 | Jul/26 | >Prev | **GOOD** |
 | CHF | Retail Sales YoY | 1.5% | 3.4% | Jun/26 | >0.5% | **GOOD** |
 
-**⚠ GBP now uses RETAIL SALES EX FUEL (LD-51).** **2.3% (Jul/26), previous 5.0%** — GOOD, same grade as the headline 1.6%, but a **steeper deceleration: −2.7pp against the headline's −2.2pp.** **Others corrected this session:** GfK **−17 → −14**; **NZD Electronic Retail Card Spending** carried the *Retail Sales QoQ* figures, real value **3.4% YoY (Jul/26)**; **CAD Retail Sales YoY 5.9% May → 5.2% Jun**. **⚠ USD Building Permits carries a PRELIMINARY figure** under a Final's name — the Final releases **Tue 25 Aug** (§4.0). **EUR Consumer Confidence stays at the July FINAL −15.9** — TE's −15.5 is the August *flash*, Final due **Fri 28 Aug**.
-
 ### 2.3 Trade (weight 1)
 
 **8 indicators — 5 GOOD · 3 BAD · 0 NEUTRAL**
@@ -375,15 +371,15 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | CCY | Indicator | Actual | Previous | Ref | Threshold | Score |
 |---|---|---|---|---|---|---|
 | USD | Balance of Trade | -$73.26B | -$77.65B | Jun/26 | >Prev | **GOOD** |
-| EUR | Balance of Trade | EUR8,600M | EUR-9,000M | Jun/26 | >Prev | **GOOD** |
-| GBP | Balance of Trade | GBP-5,537M | GBP-3,464M | Jun/26 | <Prev | **BAD** |
+| EUR | Balance of Trade | EUR8.60B | EUR-9.00B | Jun/26 | >Prev | **GOOD** |
+| GBP | Balance of Trade | GBP-5.54B | GBP-3.46B | Jun/26 | <Prev | **BAD** |
 | JPY | Balance of Trade | JPY-634.5B | JPY-409.9B | Jul/26 | <Prev | **BAD** |
-| AUD | Balance of Trade | A$1,929M | A$-2,367M | Jun/26 | >Prev | **GOOD** |
+| AUD | Balance of Trade | A$1.93B | A$-2.37B | Jun/26 | >Prev | **GOOD** |
 | NZD | Balance of Trade | NZ$-1.95B | NZ$0.02B | Jul/26 | <Prev | **BAD** |
-| CAD | Balance of Trade | C$3,860M | C$3,700M | Jun/26 | >Prev | **GOOD** |
+| CAD | Balance of Trade | C$3.86B | C$3.70B | Jun/26 | >Prev | **GOOD** |
 | CHF | Balance of Trade | CHF8.1B | CHF3.8B | Jul/26 | >Prev | **GOOD** |
 
-**⚠ BOTH BALANCE-OF-TRADE ROWS WERE A MONTH STALE, AND ONE FLIPPED GRADE.** Released **20 Aug**, three days before this edition. **CHF: CHF8.1B vs 3.8B prior — a RISE, so BAD → GOOD.** That is +1.00 on CHF. NZD: **−1.95B vs 0.02B** — still a fall, still BAD, figure corrected.
+**All Balance of Trade rows are published in BILLIONS (LD-55).** The category previously mixed millions and billions across eight rows — `A$1,929M` beside `NZ$-1.95B` — a **1000× scale difference with no visual cue**. All eight now read in billions. **⚠ Both CHF and NZD were a month stale and CHF flipped grade:** released **20 Aug**, three days before this edition. **CHF A$8.1B vs 3.8B prior — a RISE, so BAD → GOOD**, worth +1.00 on CHF. NZD −1.95B vs 0.02B — still a fall, still BAD.
 
 ### 2.4 Employment (weight 2)
 
@@ -405,8 +401,6 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | CHF | Non Farm Payrolls | 5.537M | 5.544M | Q1/26 | >Cons 5.4M | **GOOD** |
 | CHF | Unemployment Rate | 3.0% | 2.9% | Jul/26 | >Prev | **BAD** |
 
-**AUD's employment deteriorated on both counts** — Employment Change −15.8K against +76.3K prior, unemployment 4.5% from 4.4%. **CHF Non Farm Payrolls** corrected to the real TE figures (5.537M vs 5.544M) — the model carried +0.5%/+0.2%, which belong to no published series. **Q2 releases Thu 27 Aug.**
-
 ### 2.5 Inflation (weight 3)
 
 **8 indicators — 4 GOOD · 1 BAD · 3 NEUTRAL**
@@ -421,8 +415,6 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | NZD | Inflation Rate YoY | 4.1% | 3.1% | Jun/26 | >2% & rising | **GOOD** |
 | CAD | Inflation Rate YoY | 3.0% | 2.8% | Jul/26 | >2% & rising | **GOOD** |
 | CHF | Inflation Rate YoY | 0.4% | 0.5% | Jul/26 | <2% & falling | **BAD** |
-
-**JPY's 1.9% is the week's move** (Statistics Bureau, 21 Aug — highest since Dec 2025, previous revised 1.7% → 1.6%). Still below the BoJ's 2% target, so it stays NEUTRAL — but a yen with rising inflation **and** an intervention backstop (§1) is a different short from one carrying neither.
 
 ### 2.6 Interest Rate (weight 3) — scored on inflation vs each bank's own mandate
 

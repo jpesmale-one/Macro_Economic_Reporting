@@ -6,8 +6,8 @@
   "score": "GOOD"
  },
  "AU|Balance of Trade": {
-  "actual": "A$1,929M",
-  "previous": "A$-2,367M",
+  "actual": "A$1.93B",
+  "previous": "A$-2.37B",
   "ref": "Jun/26",
   "score": "GOOD"
  },
@@ -60,8 +60,8 @@
   "score": "GOOD"
  },
  "CA|Balance of Trade": {
-  "actual": "C$3,860M",
-  "previous": "C$3,700M",
+  "actual": "C$3.86B",
+  "previous": "C$3.70B",
   "ref": "Jun/26",
   "score": "GOOD"
  },
@@ -150,8 +150,8 @@
   "score": "BAD"
  },
  "EA|Balance of Trade": {
-  "actual": "EUR8,600M",
-  "previous": "EUR-9,000M",
+  "actual": "EUR8.60B",
+  "previous": "EUR-9.00B",
   "ref": "Jun/26",
   "score": "GOOD"
  },
@@ -192,8 +192,8 @@
   "score": "NEUTRAL"
  },
  "GB|Balance of Trade": {
-  "actual": "GBP-5,537M",
-  "previous": "GBP-3,464M",
+  "actual": "GBP-5.54B",
+  "previous": "GBP-3.46B",
   "ref": "Jun/26",
   "score": "BAD"
  },

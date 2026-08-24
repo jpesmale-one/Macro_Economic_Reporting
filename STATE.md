@@ -3612,3 +3612,43 @@ F-38 - THE WESTPAC ROW READ THE INDEX, NOT THE CHANGE - AND 11 OF 71 ROWS WERE
   A .pyc CAUGHT ME MID-VERIFICATION: the audit kept reporting the old value
   after score_model.py was corrected. rm -rf pipelines/__pycache__ before
   trusting any audit result that follows a model edit.
+
+LD-55 - EVERY BALANCE-OF-TRADE ROW IS PUBLISHED IN BILLIONS. Jeff: "AUD Balance
+  of Trade A$1,929M A$-2,367M - Can you check again? I think this is in
+  Billions not Millions"
+  THE ROW WAS CORRECT AS PUBLISHED, and I verified it three ways rather than
+  just asserting it:
+    TE's own unit column says AUD MILLION, value 1929.
+    ARITHMETIC: TE exports 47,696M minus imports 45,768M = 1,928M against the
+      published 1,929M. Reconciles.
+    ABS via secondary reporting: "a trade surplus of AUD 1.93 BILLION in June
+      2026, recovering from a downwardly revised AUD 2.37 billion deficit",
+      exports A$47.70bn, imports A$45.77bn. Every figure matches.
+    MAGNITUDE SANITY: Australia exports ~A$48 BILLION a month. A surplus of
+      A$1.9bn is ~4% of exports - plausible. A$1,929 BILLION would be 40x the
+      entire monthly export value.
+  SO "A$1,929M" = A$1.929 billion and is right.
+  BUT THE INSTINCT WAS SOUND AND POINTED AT A REAL DEFECT. Audited the whole
+  Trade category and found EIGHT ROWS IN FOUR DIFFERENT NOTATIONS:
+    -$73.26B | EUR8,600M | GBP-5,537M | JPY-634.5B | A$1,929M | NZ$-1.95B |
+    C$3,860M | CHF8.1B
+  A 1000x SCALE DIFFERENCE SITTING SIDE BY SIDE WITH NO VISUAL CUE. Reading
+  "A$1,929M" next to "NZ$-1.95B" and wondering which is bigger is a REASONABLE
+  REACTION TO A BADLY FORMATTED TABLE, not a misreading.
+  AND THE INCONSISTENCY IS MINE: three of the mixed rows (NZ$-1.95B, CHF8.1B,
+  JPY-634.5B) are ones I CHANGED THIS SESSION while fixing F-35, and I wrote
+  them in billions while leaving the other five in millions. I created the
+  inconsistency four hours before Jeff tripped over it.
+  DECISION: all eight in BILLIONS to 2dp. Billions is the readable scale for
+  every currency in the set - no row needs more than 3 significant figures and
+  none is smaller than 0.02B.
+  SCORE IMPACT: NONE. Presentation only; every grade and the whole tally are
+  unchanged.
+  AUDIT INTERACTION, and it behaved correctly at every step: the four converted
+  rows immediately FLAGGED against TE's millions, I added them to
+  KNOWN_DIFFERENT WITH REASONS rather than silencing them, and LD-54 flagged
+  all four as changed rows for triage - correctly identifying a NOTATION change
+  rather than a value change. That is the advisory design working as intended.
+  LESSON: WHEN CORRECTING ONE ROW, MATCH THE NOTATION OF THE CATEGORY. A fix
+  that is locally right and globally inconsistent creates a NEW defect while
+  closing an old one.
