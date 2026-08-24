@@ -430,9 +430,20 @@ def assert_whitelist(md):
         sec = md[md.index('### 2.1'):md.index('### 2.6')]
     except ValueError:
         raise SystemExit('FATAL (LD-39): cannot locate section 2.1-2.5.')
-    rows = [l for l in sec.splitlines()
-            if l.startswith('| ') and not l.startswith('|---')
-            and 'CCY | Indicator' not in l]
+    # Count only REAL indicator rows. A row is one if its first cell is a
+    # known currency code - explanatory tables inside a section note are not
+    # indicator rows. Before this, an LD-57 note containing three markdown
+    # tables pushed the count to 82/71: the guard still passed on >=, but the
+    # number was meaningless and an UNDER-count could equally have hidden a
+    # dropped row.
+    codes = set(score_model.LABEL.values())
+    rows = []
+    for l in sec.splitlines():
+        if not l.startswith('| ') or l.startswith('|---'):
+            continue
+        first = l.strip('|').split('|')[0].strip().replace('*', '')
+        if first in codes:
+            rows.append(l)
     if len(rows) < expected:
         raise SystemExit(
             'FATAL (LD-39/F-24): section 2 publishes %d indicator rows, '

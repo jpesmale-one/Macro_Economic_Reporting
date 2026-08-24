@@ -3740,3 +3740,17 @@ LD-57 - FULL TIME EMPLOYMENT CHANGE, NEW SCORING RULE (Jeff, 2026-08-24).
   CAD CARRIES THE SAME RULE BUT CANNOT RUN IT - June's FT/PT split is not
   sourced (R-15). The row says so rather than guessing. July headline +75.1K,
   FT +38.6K, PT +36.6K (Statistics Canada, 7 Aug).
+
+# LD-39 COUNT TIGHTENED, 2026-08-24, found while applying LD-57.
+#   The guard reported "82/71 indicator rows" and PASSED, because it counts on
+#   >= and 82 >= 71. The count was meaningless: my LD-57 explanatory note added
+#   THREE MARKDOWN TABLES inside section 2.4 and every row of them was counted
+#   as an indicator.
+#   THE PASS WAS LUCK. An explanatory table inflates; nothing stopped a future
+#   note from being written such that a genuinely DROPPED indicator row was
+#   masked by explanatory rows elsewhere in the section.
+#   FIX: a row counts only if its FIRST CELL IS A KNOWN CURRENCY CODE. Now
+#   reports 71/71 exactly.
+#   LESSON: A GUARD THAT PASSES ON THE WRONG NUMBER IS NOT PASSING. I read
+#   "82/71 ... no blanks" as green three times before noticing 82 was absurd.
+#   Watch the numbers a guard prints, not just its verdict.
