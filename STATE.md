@@ -4060,3 +4060,32 @@ LD-64 - MARKET PRICING FEEDS THE PROPOSED-PAIR READ. Jeff's point 3.
   NOT folded into the LD-20 tally this morning - the tally uses structure and
   last-bar terms and the current bar is three hours old in thin Asian
   liquidity. Stated per pair instead. r2 folds it in after London.
+
+F-41 - I MARKED A LIVE EVENT "UNSCORED - no TE calendar row this week" AFTER
+  CHECKING ONE WRONG PAGE. Jeff: "USD CB Consumer Confidence - Can you check
+  again? because in TE there is at 10PM PHT"
+  HE IS RIGHT AND OUR OWN CAPTURE ALREADY HAD IT: data/raw/calendar/
+  2026-08-23_0130PHT_cal_24-28aug_prep.json carries "cb consumer confidence",
+  2026-08-25 02:00 PM UTC = TUE 25 22:00 PHT. Exactly the 10PM he named.
+  HOW I GOT IT WRONG: I fetched /united-states/consumer-confidence to read the
+  consensus. THAT PAGE IS MICHIGAN SENTIMENT - TE routes the slug to a
+  different series entirely, and it returned Michigan rows. I read "no CB rows
+  here" and wrote "no TE calendar row THIS WEEK".
+  TWO SEPARATE ERRORS COMPOUNDED:
+   1. A WRONG-PAGE lookup - the same shape as F-38 (Westpac index vs change)
+      and F-40 (permits level vs MoM). THE THIRD TIME a TE page has served a
+      DIFFERENT SERIES than the whitelist names, and the third time I did not
+      check the page was the right one before trusting its absence.
+   2. AN ABSENCE ASSERTED FROM ONE FAILED ATTEMPT. That is F-5/F-6/F-7, the
+      finding STATE.md calls "the most important lesson in the repo", and I
+      committed it on a section whose own capture contained the answer. I did
+      not even check the artifact I had already downloaded.
+  SOURCED PROPERLY, two independent calendars: current actual 90.8 (Jul, rel.
+  28 Jul against 92.2 prior); consensus 90.8 (investing.com) to 91.2
+  (myfxbook). LD-63: previous sits INSIDE the range -> NEUTRAL.
+  NO READ CHANGES - USD was already net 0 FLAT and gains a second NEUTRAL.
+  KNOWN_SERIES_GAP entry added so the next session does not repeat the lookup.
+  RULE, and it is the one I keep relearning: BEFORE WRITING THAT SOMETHING DOES
+  NOT EXIST, CHECK THE ARTIFACT YOU ALREADY HAVE. The calendar capture is
+  fetched every edition precisely so the schedule question can be answered
+  without a network call.

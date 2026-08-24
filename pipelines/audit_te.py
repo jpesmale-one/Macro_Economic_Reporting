@@ -73,6 +73,11 @@ KNOWN_SERIES_GAP = {
     ('NZ', 'Electronic Retail Card Spending YoY'): 'aliased to TE retail sales '
         'yoy as the nearest series; the card-spending series is not on the '
         'country page. Value sourced from Stats NZ directly (F-34).',
+    ('US', 'CB Consumer Confidence'):
+        'TE routes /united-states/consumer-confidence to MICHIGAN SENTIMENT, a '
+        'different series. CB Consumer Confidence is not on the country page - '
+        'sourced from the calendar capture plus investing.com/myfxbook (F-41). '
+        'Checking the TE page alone returns the wrong indicator.',
     ('US', 'Building Permits MoM Final'):
         'TE lists the LEVEL (1443, Jul) and the Jul MoM PREL; the whitelist '
         'names the MoM FINAL, whose current value is the JUN Final -2.6%. '

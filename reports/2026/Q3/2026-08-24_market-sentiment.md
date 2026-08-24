@@ -360,7 +360,7 @@ calendar; none is derived.**
 | When (PHT) | CCY | Indicator | Current actual | Cons / Fcst | **Market prices** |
 |---|---|---|---|---|---|
 | **Tue 25 20:00** | **USD** | Building Permits MoM Final | **−2.6%** *(Jun Final)* | **5.0%** | **GOOD** |
-| Tue 25 22:00 | USD | CB Consumer Confidence | — | — | **UNSCORED** — no TE calendar row this week |
+| Tue 25 22:00 | USD | CB Consumer Confidence | **90.8** *(Jul, rel. 28 Jul)* | **90.8–91.2** | **NEUTRAL** |
 | **Wed 26 09:30** | **AUD** | Inflation Rate YoY | **3.8%** | **3.2%** | **BAD** |
 | **Wed 26 20:30** | **USD** | Durable Goods Ex Transp MoM | **0.6%** | **0.3–0.5%** | **BAD** |
 | Wed 26 20:30 | USD | Personal Spending MoM | 0.3% | 0.2–0.3% | **NEUTRAL** |
@@ -387,13 +387,30 @@ reading TE's MoM series, then labelled a preliminary as the current value.
 **The new rule removes this error class** — it needs three sourced numbers and
 derives none.
 
+#### ⚠ CORRECTION — CB Consumer Confidence was wrongly marked UNSCORED
+
+**Jeff: it releases Tue 25 at 10PM PHT, and it does.** Our own calendar capture
+carries it — `cb consumer confidence`, 14:00 UTC = **22:00 PHT**.
+
+**I checked the wrong TE page.** `/united-states/consumer-confidence` is the
+**Michigan Sentiment** series; CB Consumer Confidence is a separate indicator
+TE does not surface there. I then reported "no TE calendar row this week" from
+that single failed lookup — **an absence asserted from one attempt**, which is
+the F-5/F-6/F-7 error the repo exists to prevent.
+
+**Sourced from two independent calendars:** current actual **90.8** (Jul,
+released 28 Jul against 92.2 prior); consensus **90.8** *(investing.com)* to
+**91.2** *(myfxbook)*. Previous sits **inside** that range → **NEUTRAL**.
+
+**No read changes** — USD was already net 0 FLAT and gains a second NEUTRAL.
+
 #### What the market is pricing, by currency
 
 | CCY | GOOD | BAD | NEUTRAL | Net | Read |
 |---|---|---|---|---|---|
 | **AUD** | 0 | **2** | 0 | **−2** | **DETERIORATING** |
 | **EUR** | 0 | **1** | 0 | **−1** | **DETERIORATING** |
-| **USD** | 1 | 1 | 1 | **0** | FLAT |
+| **USD** | 1 | 1 | **2** | **0** | FLAT |
 | **CHF** | **1** | 0 | 0 | **+1** | **IMPROVING** |
 | **JPY** | **1** | 0 | 1 | **+1** | **IMPROVING** |
 | CAD · GBP · NZD | — | — | — | — | **no scheduled whitelist event** |

@@ -495,7 +495,7 @@
 <div class="tblwrap"><table>
 <tr><th>When (PHT)</th><th>CCY</th><th>Indicator</th><th>Current actual</th><th>Cons / Fcst</th><th><b>Market prices</b></th></tr>
 <tr><td><b>Tue 25 20:00</b></td><td class="num"><b>USD</b></td><td>Building Permits MoM Final</td><td><b>−2.6%</b> <em>(Jun Final)</em></td><td class="num"><b>5.0%</b></td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td>Tue 25 22:00</td><td class="num">USD</td><td>CB Consumer Confidence</td><td>—</td><td>—</td><td><b>UNSCORED</b> — no TE calendar row this week</td></tr>
+<tr><td>Tue 25 22:00</td><td class="num">USD</td><td>CB Consumer Confidence</td><td><b>90.8</b> <em>(Jul, rel. 28 Jul)</em></td><td><b>90.8–91.2</b></td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
 <tr><td><b>Wed 26 09:30</b></td><td class="num"><b>AUD</b></td><td>Inflation Rate YoY</td><td class="num"><b>3.8%</b></td><td class="num"><b>3.2%</b></td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 <tr><td><b>Wed 26 20:30</b></td><td class="num"><b>USD</b></td><td>Durable Goods Ex Transp MoM</td><td class="num"><b>0.6%</b></td><td><b>0.3–0.5%</b></td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 <tr><td>Wed 26 20:30</td><td class="num">USD</td><td>Personal Spending MoM</td><td class="num">0.3%</td><td>0.2–0.3%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
@@ -514,12 +514,17 @@
 <tr><td class="num"><b>5.0%</b></td><td>Consensus/Forecast for Tue 25</td><td>what the market expects</td></tr>
 </table></div>
 <p><b>I had derived +5.0% from the level series</b> (1.443M vs 1.374M) instead of reading TE's MoM series, then labelled a preliminary as the current value. <b>The new rule removes this error class</b> — it needs three sourced numbers and derives none.</p>
+<h3 class="sub" style="opacity:.85">⚠ CORRECTION — CB Consumer Confidence was wrongly marked UNSCORED</h3>
+<p><b>Jeff: it releases Tue 25 at 10PM PHT, and it does.</b> Our own calendar capture carries it — <code>cb consumer confidence</code>, 14:00 UTC = <b>22:00 PHT</b>.</p>
+<p><b>I checked the wrong TE page.</b> <code>/united-states/consumer-confidence</code> is the <b>Michigan Sentiment</b> series; CB Consumer Confidence is a separate indicator TE does not surface there. I then reported "no TE calendar row this week" from that single failed lookup — <b>an absence asserted from one attempt</b>, which is the F-5/F-6/F-7 error the repo exists to prevent.</p>
+<p><b>Sourced from two independent calendars:</b> current actual <b>90.8</b> (Jul, released 28 Jul against 92.2 prior); consensus <b>90.8</b> <em>(investing.com)</em> to <b>91.2</b> <em>(myfxbook)</em>. Previous sits <b>inside</b> that range → <b>NEUTRAL</b>.</p>
+<p><b>No read changes</b> — USD was already net 0 FLAT and gains a second NEUTRAL.</p>
 <h3 class="sub" style="opacity:.85">What the market is pricing, by currency</h3>
 <div class="tblwrap"><table>
 <tr><th>CCY</th><th>GOOD</th><th>BAD</th><th>NEUTRAL</th><th>Net</th><th>Read</th></tr>
 <tr><td class="num"><b>AUD</b></td><td class="num">0</td><td class="num"><b>2</b></td><td class="num">0</td><td class="num"><b>−2</b></td><td><b>DETERIORATING</b></td></tr>
 <tr><td class="num"><b>EUR</b></td><td class="num">0</td><td class="num"><b>1</b></td><td class="num">0</td><td class="num"><b>−1</b></td><td><b>DETERIORATING</b></td></tr>
-<tr><td class="num"><b>USD</b></td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num"><b>0</b></td><td>FLAT</td></tr>
+<tr><td class="num"><b>USD</b></td><td class="num">1</td><td class="num">1</td><td class="num"><b>2</b></td><td class="num"><b>0</b></td><td>FLAT</td></tr>
 <tr><td class="num"><b>CHF</b></td><td class="num"><b>1</b></td><td class="num">0</td><td class="num">0</td><td class="num"><b>+1</b></td><td><b>IMPROVING</b></td></tr>
 <tr><td class="num"><b>JPY</b></td><td class="num"><b>1</b></td><td class="num">0</td><td class="num">1</td><td class="num"><b>+1</b></td><td><b>IMPROVING</b></td></tr>
 <tr><td>CAD · GBP · NZD</td><td>—</td><td>—</td><td>—</td><td>—</td><td><b>no scheduled whitelist event</b></td></tr>
