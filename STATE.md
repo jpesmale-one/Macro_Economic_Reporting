@@ -4,7 +4,7 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-08-24 (r2, MONDAY, UNSEALED - WEEK LOCKED, 4 pairs all +1 LOW)
+edition: 2026-08-24 (r3, MONDAY, UNSEALED - WEEK LOCKED; CAD catalyst found)
 date: 2026-08-24
 data_asof: 2026-08-24 16:24 PHT (London liquidity; macro = Friday's, no
            whitelist release today, verified via week_ahead.py)
@@ -4129,3 +4129,52 @@ F-41 - I MARKED A LIVE EVENT "UNSCORED - no TE calendar row this week" AFTER
 #   fib retracement, ten rectangles. ALL LEFT UNTOUCHED (LD-5); three added
 #   (lfG6O1 falsifier, ohCxYC cap, ogHyr8 low). THIRD time the draw_list check
 #   before drawing has protected his work.
+
+F-42 - THE CAD CATALYST WAS ON THE FRONT PAGE OF A MANDATED SOURCE AND MY r1
+  SWEEP MISSED IT. Jeff: "can you check the catalyst why CAD is weak today?"
+  FOUND IN ONE QUERY: "The Canadian dollar falls across the board as trade
+  talks collapse and US 50% tariffs take effect" - investinglive.com, posted
+  ~2 hours before I looked.
+  THE EVENT: US-Canada trade talks COLLAPSED late Friday in Washington after
+  three days. No deal by the midnight deadline, so 50% US TARIFFS TOOK EFFECT
+  on ~$20bn of Canadian goods, about 5% of everything Canada ships to the US.
+  Carney: "a miscalculation", dollar-for-dollar retaliation from 8 September on
+  US steel, dairy and electronics.
+  CORROBORATED ACROSS SIX OUTLETS - Bloomberg, CNN, NPR, Al Jazeera, NBC,
+  Global News. Primary captured to data/raw/news/.
+  THE TIMELINE MAPS ONTO THE PRICE EXACTLY:
+    Fri late   talks collapse            USDCAD 1.37669 at the close
+    weekend    midnight deadline, tariffs live
+    Mon open   1.38156   the gap, +48.7 pips
+    Mon London 1.38410   +25.4 more, on the retaliation headline
+  AND IT ANSWERS r2's OTHER QUESTION - WHY THE GAP EXTENDED RATHER THAN FADED.
+  A weekend gap on positioning noise mean-reverts when liquidity arrives. A gap
+  on a LIVE POLICY EVENT STILL DEVELOPING does not: London had the tariff news
+  AND the retaliation announcement and pushed the same way again.
+  HOW I MISSED IT AT r1: my sweep asked investinglive.com for weekend headlines
+  about "Canada" and got nothing back, and I STOPPED THERE. The story was
+  running under a TRADE-WAR framing, not a currency one. I then published "no
+  Saturday or Sunday news moved JPY or CAD" and, at r2, "no sourced cause".
+  THAT IS TWO EDITIONS ASSERTING AN ABSENCE FROM ONE QUERY - F-5/F-6/F-7 again,
+  and the SECOND TIME TODAY (F-41 was the same shape three hours earlier).
+  LD-26 EXISTS FOR EXACTLY THIS and I invoked it correctly at r2 - "a research
+  trigger, not a finding" - which is why the gap was flagged rather than
+  explained away. The discipline held; the search did not.
+  WHAT THE SEARCH SHOULD HAVE BEEN: not "Canada news" but "what moved USDCAD".
+  A CURRENCY MOVE IS NOT ALWAYS FILED UNDER THE CURRENCY.
+
+# 2026-08-24 r3 - CONSEQUENCE FOR THE LOCKED SET, stated but NOT acted on.
+#   CAD scores +8.38, the STRONGEST on the board, and is the long leg of
+#   CADJPY - the pair that fell +5 -> +1 at r2.
+#   CAD NOW CARRIES FOUR NEGATIVES AND THE SCORE SEES NONE OF THEM:
+#     1. superseded Spending row (advance-estimate retail sales -0.8%)
+#     2. GDP -0.1% forecast Fri 28 - OFF-LIST, scores nothing
+#     3. weekend gap that extended through London - price, not macro
+#     4. 50% US TARIFFS LIVE - not a whitelist indicator, scores nothing
+#   A TRADE WAR IS NOT ONE OF THE 71 NAMED INDICATORS. The model structurally
+#   cannot see it. That is LD-45's dollar-check logic at its sharpest applied
+#   to a currency: THE SCORE IS MONTHLY MACRO, THE PRICE IS A LIVE TRADE WAR.
+#   THE SET STAYS LOCKED. LD-29 is explicit - a pair leaves by its falsifier
+#   firing, not by conviction. CADJPY's falsifier is 58 pips away, the tightest
+#   of the four, and it is now the most likely to void this week. Published as
+#   such rather than quietly dropped.

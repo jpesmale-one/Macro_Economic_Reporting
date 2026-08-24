@@ -1,12 +1,12 @@
 <!--edition
 date: 2026-08-24
-title: Monday, 24 August 2026 &middot; r2 16:24 PHT (London)
-revision: r2
+title: Monday, 24 August 2026 &middot; r3 16:40 PHT &mdash; CAD catalyst found
+revision: r3
 seal: UNSEALED
 type: MONDAY
 eyebrow: Macro Economic Reporting &middot; Monday &mdash; week of 24&ndash;28 Aug
 chip: LOCKED <b>4 pairs, all +1 LOW</b> &middot; no rank this week
-chip: GAP <b class="dn">CADJPY &minus;38.8 pips</b> &middot; CAD-side
+chip: <b class="dn">CAD: 50% US TARIFFS LIVE</b> &middot; talks collapsed Fri
 chip: <b class="dn">CADJPY +5 &rarr; +1</b> &middot; lower low on 2x volume
 fng_note: Carried from Friday's capture &mdash; the CNN endpoint updates once daily and Monday's reading is not yet posted. The index reads <b>Greed 55.2</b> while <b>four of seven components sit in Fear</b>.
 fng_spread: Spread top-to-bottom bar: <b>95.8 &minus; 29.4 = 66.4</b>. Junk Bond Demand alone carries the headline.
@@ -129,12 +129,71 @@ a **discrete event risk**, not a trend, and the trend runs the other way.
 That framing was incomplete.** The threat is real but episodic; the underlying
 flow favours the position. Both belong in the read.
 
+### 🇨🇦 Canada — THE CAD CATALYST IS FOUND: 50% US TARIFFS ARE LIVE
+
+**⚠ This resolves r2's open research trigger.** The CAD weakness was never
+unexplained — it was on the front page of a mandated source.
+
+**US–Canada trade talks collapsed late Friday in Washington after three days.
+With no deal by the midnight deadline, 50% US tariffs took effect on roughly
+$20bn of Canadian goods — about 5% of everything Canada ships to the US.**
+Carney called it *"a miscalculation"* and announced **dollar-for-dollar
+retaliation from 8 September** on US steel, dairy and electronics.
+
+*Sources: investinglive.com (captured to
+`data/raw/news/2026-08-24_investinglive_canada_tariffs.html`), corroborated by
+Bloomberg, CNN, NPR, Al Jazeera, NBC and Global News.*
+
+#### The timeline maps onto the price action exactly
+
+| When | Event | USDCAD |
+|---|---|---|
+| **Fri 21, late** | Talks collapse in Washington | — |
+| Fri 21 close | *before the market could price it* | **1.37669** |
+| **Sat/Sun** | Midnight deadline passes, **tariffs go live** | — |
+| **Mon 24 open** | The weekend gap | **1.38156** — **+48.7 pips** |
+| **Mon 24 London** | Carney's retaliation announcement | **1.38410** — **+25.4 more** |
+
+**This is why the gap did not fade.** A weekend gap on positioning noise
+mean-reverts when liquidity arrives. **A gap on a live policy event that is
+still developing does not** — London had both the tariff news *and* the
+retaliation headline, and pushed the same direction again.
+
+#### ⚠ CAD now carries four negatives, and the score sees none of them
+
+| | Item | Does it score? |
+|---|---|---|
+| 1 | Retail sales −0.8% (Fri) — an **advance estimate**, revised 24 Sep | supersedes a GOOD row, **not yet corrected** |
+| 2 | GDP Growth Annualized **−0.1%** forecast, Fri 28 | **no** — off-list (F-3) |
+| 3 | Weekend gap, **extended** through London | **no** — price, not macro |
+| 4 | **50% US tariffs live on ~$20bn of exports** | **no** — not a whitelist indicator |
+
+**CAD scores +8.38, the strongest on the board, and none of the above touches
+it.** A trade war is not one of the 71 named indicators, so the model
+structurally cannot see it.
+
+**This is LD-45's dollar-check logic at its sharpest, applied to CAD: the score
+is monthly macro, the price is a live trade war.** The +8.38 remains defensible
+on the published data and is being overtaken by events.
+
+**For the locked set:** **CADJPY's long leg is the currency under tariff.** The
+pair fell +5 → +1 today and its falsifier sits **58 pips away**, the tightest of
+the four. **The set stays locked — a falsifier fires or it does not (LD-29) —
+but this is now the pair most likely to void this week**, and the reason is a
+policy shock rather than anything in §2.
+
 ### Weekend sweep — what did NOT happen
 
-**No Saturday or Sunday news moved JPY or CAD.** Checked **investinglive.com**
-and **investing.com** plus a wider search (LD-30 — sources are a floor, not a
-ceiling); the only JPY item was a Friday technical note on **investinglive.com**
-citing the 200-day MA at 158.31. **The CAD gap has
+**⚠ CORRECTED at r3.** This section previously read *"no Saturday or Sunday
+news moved JPY or CAD"*. **That was wrong on CAD** — the trade-talks collapse
+happened Friday night and the tariffs went live over the weekend. **My morning
+sweep asked investinglive.com for weekend headlines about "Canada" and got
+nothing, and I stopped there.** The story was published under a trade-war
+framing, and the r1 sweep did not look past the first query.
+
+**On JPY the finding stands:** no weekend news moved the yen — checked
+**investinglive.com** and **investing.com** (LD-30) plus a wider search — and
+USDJPY at 158.884 confirms it. **The CAD gap has
 no sourced weekend cause** — flagged as unexplained, which per LD-26 makes it a
 **research trigger for r2**, not a finding.
 
@@ -903,7 +962,8 @@ split remains unsourced (R-15). BTCUSD still lacks a forward map (R-10).
 **r2 DONE at 16:24 PHT:** structure re-read on London liquidity · confidence
 re-tallied (all four +1) · **week LOCKED, four pairs** · AUDNZD added and drawn.
 
-**Still open, carried to Tuesday:** the **CAD weakness has no sourced cause** —
-it extended through London rather than fading, and remains a research trigger
-(LD-26), not a finding. **Tue 25 resolves two USD rows** — Building Permits
+**CLOSED at r3:** the CAD weakness **has a sourced cause** — US–Canada trade
+talks collapsed Friday and **50% tariffs on ~$20bn went live over the weekend**
+(§1). Corroborated across six outlets and captured. **It was on the front page
+of a mandated source and r1's sweep missed it.** **Tue 25 resolves two USD rows** — Building Permits
 Final 20:00 and CB Consumer Confidence 22:00.
