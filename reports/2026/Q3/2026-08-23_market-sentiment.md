@@ -260,7 +260,7 @@ score cannot correct through data.
 |---|---|---|
 | **Trump removes 26.4% beef tariffs** | investinglive, 21 Aug 14:59 | **CAD positive** — trade-war de-escalation. USDCAD hit a new low back to May. |
 | **Lula–Trump call on beef tariffs** | investinglive, 21 Aug 16:22 | Same theme, broader tariff de-escalation |
-| **AUDUSD biggest mover, highest since early June** | investinglive, 21 Aug | **AUD stronger than its +2.08 NEUTRAL band suggests.** Watch against AU CPI Wed. |
+| **AUDUSD biggest mover, highest since early June** | investinglive, 21 Aug | **AUD stronger than its +2.75 NEUTRAL band suggests.** Watch against AU CPI Wed. |
 | **AUD and NZD led FX gains Friday** | investinglive, 21 Aug 16:52 | Commodity bloc bid as the dollar fell |
 
 **Caution on CAD:** the tariff news is USD-side as much as CAD-side, the same
@@ -303,7 +303,7 @@ Bands: **STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00**
 Commodity: CAD +8.38 › NZD +3.75 › AUD +2.75 · Risk-corr: EUR +6.25 › GBP +5.75
 
 **⚠ TWO SCORES CARRY KNOWN PRESSURE INTO MONDAY.** CAD's Spending +1.00 rests on
-data superseded by Friday's −0.8% retail sales miss (§0L). AUD's +2.08 faces its
+data superseded by Friday's −0.8% retail sales miss (§0L). AUD's +2.75 faces its
 weight-3 Inflation category — currently **0.00** — on Wednesday.
 
 **All 71 whitelist indicators published in full** — Actual, Previous, reference period, the threshold applied and the resulting score, every one. An indicator that cannot be sourced is published as **NOT FOUND** so it can be verified, never dropped or blanked. Generated from `pipelines/score_model.py` by `pipelines/section2.py`, so the tables and the §2.0 tally cannot drift apart.
@@ -614,20 +614,20 @@ indicators, so none scores and none enters the confidence tally.**
 sharp fall from 3.8%, and the instinct is to read a big move as a big signal.
 It is not — the test is *direction against target*, and >2%-and-falling is
 NEUTRAL whether the print is 3.8% or 3.2%. **AUD's Inflation category stays
-0.00 and its +2.08 band is unchanged.**
+0.00 and its +2.75 band is unchanged.**
 
 **The rate leg is unchanged at the consensus, and the threshold is 3.0%.**
 Run against `rate_model.py` rather than assumed: at **3.2% AUD stays 0.00**
 ("above 2–3% ceiling but falling") because 3.2 is still above the RBA's 3.0%
 ceiling. The score only turns **negative at a print of 3.0% or below** — CPI
-inside the band while falling scores **−0.38**, which would take AUD from +2.08
-to **+1.70**. Below 2.0% it falls to −0.75.
+inside the band while falling scores **−0.38**, which would take AUD from +2.75
+to **+2.38**. Below 2.0% it falls to −0.75.
 
 | AU CPI prints | Rate score | AUD total | State |
 |---|---|---|---|
-| 3.2% *(consensus)* | **0.00** | **+2.08** | above ceiling, falling — unchanged |
-| **3.0% or below** | **−0.38** | **+1.70** | inside 2–3% band, falling |
-| below 2.0% | −0.75 | +1.33 | below floor, falling |
+| 3.2% *(consensus)* | **0.00** | **+2.75** | above ceiling, falling — unchanged |
+| **3.0% or below** | **−0.38** | **+2.38** | inside 2–3% band, falling |
+| below 2.0% | −0.75 | +2.00 | below floor, falling |
 
 **So Wednesday is a threshold event, not a magnitude event.** A 3.2% print and
 a 3.4% print are the same score; 3.0% is a different score. That distinction is
@@ -674,7 +674,7 @@ Grouped by type, tradable first. Minimum spread **1.00** (LD-18).
 | **NZDJPY** | LONG | RISK-ON | 3.75 | — | ⬜ JPY already claimed |
 | **GBPUSD** | LONG | **RISK-ON** | **3.50** | **1.36456** | ✅ **new run high 1.36758, +14.8 pips** |
 | **CHFJPY** | SHORT | SAFE | 2.38 | — | ⬜ both legs claimed |
-| **AUDJPY** | LONG | RISK-ON | 2.08 | — | ⬜ JPY already claimed |
+| **AUDJPY** | LONG | RISK-ON | 2.75 | — | ⬜ JPY already claimed |
 | **USDJPY** | LONG | SAFE | 2.25 | — | ⬜ JPY already claimed |
 | **NZDAUD** | LONG | COMM | **1.00** | 1.19929 *(AUDNZD)* | ❌ **tested — 42.0% of range, no edge (§4.4)** |
 | **NZDUSD** | LONG | COMM | 1.50 | **0.59790** | ⬜ **charted (R-3 closed)** — 94.6% of range, made the 15-session high Friday. **USD leg already claimed by GBPUSD** |
