@@ -62,10 +62,38 @@ KNOWN_DIFFERENT = {
 # KNOWN_DIFFERENT because this exempts the REFERENCE-PERIOD check, which is the
 # stronger exemption and must stay short.
 KNOWN_SERIES_GAP = {
+    ('EA', 'S&P Global Mfg PMI Final'): 'TE lists the monthly FLASH first; '
+        'the whitelist names the FINAL (F-29 rule)',
+    ('GB', 'S&P Global Mfg PMI Final'): 'TE lists the FLASH; whitelist = FINAL',
+    ('JP', 'S&P Global Mfg PMI Final'): 'TE lists the FLASH; whitelist = FINAL',
+    ('AU', 'S&P Global Mfg PMI Final'): 'TE lists the FLASH; whitelist = FINAL',
+    ('NZ', 'Electronic Retail Card Spending YoY'): 'aliased to TE retail sales '
+        'yoy as the nearest series; the card-spending series is not on the '
+        'country page. Value sourced from Stats NZ directly (F-34).',
     ('EA', 'Consumer Confidence Final'):
         'TE lists the monthly FLASH; the whitelist names the FINAL, which '
         'releases later in the month. Updating this row to TE would '
         're-commit F-29 (a flash published as a final).',
+}
+
+
+
+# F-38: rows whose whitelist name does not fuzzy-match TE's own series name.
+# WITHOUT AN ALIAS A ROW IS NEVER CHECKED AT ALL - 11 of 71 rows (15%) were
+# silently unaudited while the tool reported "all rows agree with TE".
+# Map whitelist name -> the exact TE series key.
+TE_ALIAS = {
+    ('AU', 'Westpac Consumer Conf Change'): 'consumer confidence mom',
+    ('AU', 'ANZ-Indeed Job Ads MoM'): 'job advertisements',
+    ('US', 'Durable Goods Ex Transp MoM'): 'durable goods orders ex transportation',
+    ('EA', 'S&P Global Mfg PMI Final'): 'manufacturing pmi',
+    ('GB', 'S&P Global Mfg PMI Final'): 'manufacturing pmi',
+    ('JP', 'S&P Global Mfg PMI Final'): 'manufacturing pmi',
+    ('AU', 'S&P Global Mfg PMI Final'): 'manufacturing pmi',
+    ('CA', 'S&P Global Mfg PMI'): 'manufacturing pmi',
+    ('CH', 'Procure.ch-UBS Mfg PMI'): 'manufacturing pmi',
+    ('NZ', 'Business NZ PMI'): 'manufacturing pmi',
+    ('NZ', 'Electronic Retail Card Spending YoY'): 'retail sales yoy',
 }
 
 
@@ -115,8 +143,14 @@ def parse(path):
                     ref = c
                     break
             nums = [c for c in cells[1:] if re.match(r'^-?[\d.,]+%?$', c)]
+            unit = ''
+            for c in cells:
+                if c.lower() in ('percent', 'points', 'index points'):
+                    unit = c.lower()
+                    break
             if nums:
-                out[cells[0].lower()] = (nums[0], nums[1] if len(nums) > 1 else '', ref)
+                out[cells[0].lower()] = (nums[0], nums[1] if len(nums) > 1 else '',
+                                         ref, unit)
     return out
 
 
@@ -161,7 +195,7 @@ def stale_rows():
     Returns [(ccy, indicator, ours, our_ref, te_value, te_ref)].
     """
     import score_model as sm
-    out = []
+    out, unmatched = [], []
     cache = {}
     for r in sm.ROWS:
         cat, iso, name, act, prev, ref, thr, score = r
@@ -172,15 +206,25 @@ def stale_rows():
         te = cache[iso]
         if not te:
             continue
-        key = name.lower() if name.lower() in te else None
+        key = TE_ALIAS.get((iso, name))
+        if key and key not in te:
+            key = None
+        if not key:
+            key = name.lower() if name.lower() in te else None
         if not key:
             cand = difflib.get_close_matches(_norm(name), [_norm(k) for k in te],
                                              n=1, cutoff=0.86)
             if cand:
                 key = next((k for k in te if _norm(k) == cand[0]), None)
         if not key:
+            # F-38: AN UNMATCHED ROW IS NOT A PASSING ROW. Until 2026-08-24
+            # these were skipped silently and the audit still printed "all
+            # comparable rows agree with TE" - 11 of 71 rows (15% of the
+            # whitelist) were never checked at all, including the Westpac row
+            # that was reading the wrong series the whole time.
+            unmatched.append((sm.LABEL[iso], name, act, ref, '-', 'NO TE MATCH'))
             continue
-        tl, tp, tref = te[key]
+        tl, tp, tref, tunit = te[key]
 
         # REFERENCE PERIOD IS CHECKED FOR EVERY ROW, INCLUDING EXEMPT ONES.
         # A units exemption must never hide a stale figure - on 2026-08-23 the
@@ -191,12 +235,24 @@ def stale_rows():
             out.append((sm.LABEL[iso], name, act, ref, tl,
                         tref + ' NEWER'))
             continue
+        # F-38 UNIT CONSISTENCY. An indicator whose NAME says it measures a
+        # CHANGE (a rate, in percent) must not carry a TE row published in
+        # POINTS - that is an INDEX, a different series. The audit compared
+        # values and both 88.9 (the index) and 6.0 (the change) are REAL TE
+        # numbers, so a value comparison can never see this. TE publishes the
+        # unit and we never used it.
+        wants_pct = bool(re.search(r'change|mom|yoy|qoq|rate',
+                                   name, re.I))
+        if wants_pct and tunit == 'points':
+            out.append((sm.LABEL[iso], name, act, ref, tl,
+                        tunit + ' WRONG SERIES'))
+            continue
         if exempt_value:
             continue
         a, t = _num(act), _num(tl)
         if a is not None and t is not None and abs(a - t) >= 0.06:
             out.append((sm.LABEL[iso], name, act, ref, tl, tref))
-    return out
+    return out, unmatched
 
 
 if __name__ == '__main__':
@@ -209,7 +265,7 @@ if __name__ == '__main__':
     print('WHITELIST RECONCILIATION vs TradingEconomics')
     print('capture age: %s' % ('never fetched' if age is None else '%.1f days' % age))
     print('=' * 76)
-    bad = stale_rows()
+    bad, unmatched = stale_rows()
     if not bad:
         print('\nAll comparable rows agree with TE.')
     else:
@@ -221,4 +277,13 @@ if __name__ == '__main__':
         print('\nA TE value that differs is a QUESTION, not an instruction.')
         print('Newer print -> update. Different presentation -> add to')
         print('KNOWN_DIFFERENT with a reason. Never edit a row to silence this.')
-    print('\n%d rows exempt as known presentation differences.' % len(KNOWN_DIFFERENT))
+    if unmatched:
+        print('\n*** %d ROW(S) COULD NOT BE MATCHED TO ANY TE SERIES ***'
+              % len(unmatched))
+        print('These are NOT verified - the audit cannot see them at all,')
+        print('and until 2026-08-24 it still reported "all rows agree".')
+        print('Add a TE_ALIAS entry so they get checked.\n')
+        for ccy, name, act, ref, _, _ in unmatched:
+            print('   %-4s %-36s ours %-10s (%s)' % (ccy, name[:36], act, ref))
+    print('\n%d exempt on presentation, %d on series definition, %d UNMATCHED.'
+          % (len(KNOWN_DIFFERENT), len(KNOWN_SERIES_GAP), len(unmatched)))

@@ -564,7 +564,18 @@ def assert_te_reconciled(etype):
             '%s edition).%sSeven of 70 rows were wrong on 2026-08-23 because '
             'nothing re-read the source for four days.%sRun: python '
             'pipelines/audit_te.py --fetch' % (age, MAX_AGE, etype, chr(10), chr(10)))
-    bad = audit_te.stale_rows()
+    bad, unmatched = audit_te.stale_rows()
+    if unmatched:
+        # F-38: an unmatched row is NOT a passing row - the audit cannot see
+        # it at all. 11 of 71 were silently unaudited while the tool printed
+        # "all rows agree with TE".
+        lines = chr(10).join('  %-4s %-34s ours %s (%s)' % (r[0], r[1], r[2], r[3])
+                             for r in unmatched)
+        raise SystemExit(
+            'FATAL (LD-50/F-38): %d whitelist row(s) match NO TE series, so '
+            'they are unverified:%s%s%sAdd a TE_ALIAS entry in audit_te.py '
+            'mapping each to its TE series key.'
+            % (len(unmatched), chr(10), lines, chr(10)))
     if bad:
         lines = chr(10).join(
             '  %-4s %-32s ours %-11s (%s)  TE %-11s (%s)' % r for r in bad)

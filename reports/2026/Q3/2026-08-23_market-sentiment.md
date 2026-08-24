@@ -356,7 +356,7 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | AUD | Building Permits YoY Final | 8.9% | 5.5% | Jun/26 | >0.5% | **GOOD** |
 | AUD | Household Spending YoY | 6.0% | - | Jun/26 | >0.5% | **GOOD** |
 | AUD | NAB Business Confidence | -6 | -6 | Jul/26 | >Prev | NEUTRAL |
-| AUD | Westpac Consumer Conf Change | 88.9 | 83.9 | Aug/26 | >Prev | **GOOD** |
+| AUD | Westpac Consumer Conf Change | 6.0% | 4.1% | Aug/26 | >Prev | **GOOD** |
 | NZD | ANZ Business Confidence | 56.1 | 36.6 | Jul/26 | >Prev | **GOOD** |
 | NZD | ANZ Roy Morgan Consumer Conf | 99.3 | 91.3 | Jul/26 | >Prev | **GOOD** |
 | NZD | Building Permits MoM | -3.6% | -4.9% | Jun/26 | <0% | **BAD** |

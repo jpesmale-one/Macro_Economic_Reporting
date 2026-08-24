@@ -3561,3 +3561,54 @@ LD-54 - REVISION DETECTION AND CADENCE STALENESS. Two gaps Jeff named:
 #   has protected Jeff's own work (AUDCAD carried seven on 2026-08-20).
 #   R-10 HALF CLOSED - BTCUSD still publishes its own Friday high as
 #   resistance and needs the same treatment.
+
+F-38 - THE WESTPAC ROW READ THE INDEX, NOT THE CHANGE - AND 11 OF 71 ROWS WERE
+  NEVER AUDITED AT ALL. Jeff: "Westpac Consumer Conf Change - In TE this is in
+  percentage. I think what we are fetching is the index not the change."
+  HE IS RIGHT ON BOTH COUNTS AND THE SECOND ONE IS BIGGER.
+  THE ROW: named "Westpac Consumer Conf Change", carried 88.9 / 83.9. Those are
+  TE's "Consumer Confidence" - THE INDEX, in POINTS. The CHANGE series is
+  "Consumer Confidence MoM": 6.0% / 4.1%, in PERCENT. TE's own calendar names
+  ours "Westpac Consumer Confidence INDEX".
+  Idea_dump line 98 asks for "Westpac Consumer Confidence CHANGE" - so the
+  whitelist name was right and I FETCHED THE WRONG SERIES. My error, not an
+  amendment. FOURTH wrong-series error this session (NZD card spending, CHF
+  payrolls, CHF industrial production, this).
+  SCORE UNCHANGED - 6.0 > 4.1 GOOD, same as 88.9 > 83.9. But the two series can
+  DIVERGE: a change falling +6% -> +2% is still POSITIVE (confidence rising)
+  yet reads BAD on >Prev, while the index would read GOOD. Same month, opposite
+  grades.
+
+  WHY THE AUDIT NEVER CAUGHT IT, and this is the finding that matters:
+  I tested it - the audit PASSES WITH EITHER VALUE. Both 88.9 and 6.0 are REAL
+  TE NUMBERS from real TE rows, so a value comparison structurally cannot see
+  the difference. The audit checks WHETHER THE NUMBER EXISTS AT TE, never
+  WHETHER IT CAME FROM THE SERIES THE WHITELIST NAMED.
+  THEN THE REAL PROBLEM: the row did not match ANY TE series. _norm reduces
+  "Westpac Consumer Conf Change" to "westpac consumer conf" against TE's
+  "consumer confidence" - below the 0.86 fuzzy cutoff, SO IT WAS SKIPPED.
+  AUDITED THE SKIPS: 11 OF 71 ROWS - 15% OF THE WHITELIST - MATCHED NOTHING
+  AND WERE NEVER CHECKED, while the tool printed "ALL COMPARABLE ROWS AGREE
+  WITH TE" all session. The word "comparable" was doing enormous silent work.
+  Every PMI row, both AU sentiment rows, NZD card spending, USD durable goods.
+  I HAVE BEEN REPORTING THAT AUDIT AS CLEAN TO JEFF REPEATEDLY.
+
+  THREE FIXES:
+   1. TE_ALIAS - explicit whitelist-name -> TE-series-key map for the 11.
+      Unmatched is now ZERO.
+   2. UNMATCHED IS REPORTED, NOT SKIPPED, and is FATAL in the renderer. An
+      unmatched row is not a passing row.
+   3. UNIT CONSISTENCY - an indicator whose name says CHANGE/MoM/YoY/rate must
+      not map to a TE row published in POINTS. TE publishes the unit column and
+      we never used it.
+  ALIASING SURFACED FIVE MORE ISSUES IMMEDIATELY, all triaged not auto-applied:
+  four S&P Global Mfg PMI rows have AUGUST FLASH prints at TE while the
+  whitelist names the FINAL - the F-29 rule says do not update, so they went to
+  KNOWN_SERIES_GAP with reasons. NZD card spending has no country-page series
+  at all and is sourced from Stats NZ directly.
+  VERIFIED: reintroducing 88.9 under the Change name is now BLOCKED BY NAME
+  (LD-50/F-35), and LD-54 independently flagged it as a revision - two guards
+  catching it from different angles. All 7 regression fixtures still block.
+  A .pyc CAUGHT ME MID-VERIFICATION: the audit kept reporting the old value
+  after score_model.py was corrected. rm -rf pipelines/__pycache__ before
+  trusting any audit result that follows a model edit.

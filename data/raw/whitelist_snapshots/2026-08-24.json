@@ -54,8 +54,8 @@
   "score": "BAD"
  },
  "AU|Westpac Consumer Conf Change": {
-  "actual": "88.9",
-  "previous": "83.9",
+  "actual": "6.0%",
+  "previous": "4.1%",
   "ref": "Aug/26",
   "score": "GOOD"
  },
@@ -265,7 +265,7 @@
  },
  "JP|Inflation Rate YoY": {
   "actual": "1.9%",
-  "previous": "1.5%",
+  "previous": "1.6%",
   "ref": "Jul/26",
   "score": "NEUTRAL"
  },
