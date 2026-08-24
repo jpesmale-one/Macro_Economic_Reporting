@@ -4,10 +4,10 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-08-24 (r1, MONDAY, UNSEALED - section 4 NOT LOCKED, r2 pending)
+edition: 2026-08-24 (r2, MONDAY, UNSEALED - WEEK LOCKED, 4 pairs all +1 LOW)
 date: 2026-08-24
-data_asof: 2026-08-24 10:55 PHT (live Asian-session prices; macro = Friday's,
-           no whitelist release today, verified via week_ahead.py)
+data_asof: 2026-08-24 16:24 PHT (London liquidity; macro = Friday's, no
+           whitelist release today, verified via week_ahead.py)
 last_sealed: 2026-08-21 (r13, SEALED FULL) - the authority until Monday seals
 track: LEAN (no section-2 trigger has fired)
 spec_rev: 2026-08-23 - LD-27..LD-34 written in; R-1, R-7, F-19 CLOSED.
@@ -4089,3 +4089,43 @@ F-41 - I MARKED A LIVE EVENT "UNSCORED - no TE calendar row this week" AFTER
   NOT EXIST, CHECK THE ARTIFACT YOU ALREADY HAVE. The calendar capture is
   fetched every edition precisely so the schedule question can be answered
   without a network call.
+
+# 2026-08-24 r2 - THE WEEK IS LOCKED. FOUR PAIRS, ALL +1 LOW, NO RANK.
+#   Re-read 16:24 PHT, 85 minutes into London, on roughly double r1's volume.
+#   THE WAIT WAS JUSTIFIED AND THIS IS THE EVIDENCE FOR IT:
+#     CADJPY  r1 +5 HIGH -> r2 +1 LOW. Structure term flipped +2 -> -1 because
+#             it made a LOWER LOW (114.862) than Friday's low (115.218) on
+#             double the volume. LOCKING AT 10:55 WOULD HAVE FIXED THE WEEK
+#             AROUND A TOP-RANKED PAIR THAT WAS ALREADY BREAKING.
+#     EURCHF  +1 -> +1 unchanged, recovered to FAVOURING
+#     GBPUSD  +2 -> +1, gave up its morning gain, trading AT its day low
+#   TWO OF THREE FLIPPED DIRECTION between r1 and r2. Only CADJPY was against
+#   the read all session.
+#   THE CAD GAP EXTENDED RATHER THAN FADED: USDCAD 1.37669 Fri -> 1.38156 open
+#   -> 1.38410 London. A further 25.4 pips of CAD weakness. Still NO SOURCED
+#   CAUSE - carried to Tuesday as a research trigger (LD-26), not written up.
+#
+#   JEFF'S CALL ON THE LOCK: ADD AUDNZD, LOCK FOUR. All four score +1 and all
+#   four are leg-disjoint - ALL EIGHT CURRENCIES USED EXACTLY ONCE, the LD-35
+#   ceiling. Rejected: locking three and flagging the flat set (leaves the 4th
+#   slot empty when a qualifier exists); dropping CADJPY (its falsifier never
+#   fired - that would be exiting on conviction rather than on the level).
+#   AUDNZD QUALIFIES ONLY BECAUSE AUD MOVED. LD-57 took AUD +2.08 -> +2.75,
+#   which NARROWED NZD-AUD to exactly 1.00 - the LD-18 floor, cleared by 0.00.
+#   Stated plainly in-edition as the thinnest spread ever carried here.
+#   WHAT EARNS IT THE SLOT is not spread but FORWARD PRICING: section 4.0 has
+#   AUD at -2 DETERIORATING (Inflation Wed, Household Spending Thu both BAD),
+#   so a short-AUD read is the only position on the board the market's own
+#   pricing supports. Its +1 is built differently from the other three.
+#   FALSIFIER 1.20724 - Wed 19 high, a real bar, 65 pips out against a 56-pip
+#   ATR, and it sits ABOVE price because the read is SHORT.
+#
+#   THE FINDING OF r2: A FOUR-PAIR SET WITH NO RANK. All four at +1. When the
+#   ranking carries no information, THE UNIFORMITY IS the information - nothing
+#   on this board is a standout call this week. r1 published CADJPY as a HIGH
+#   conviction top call six hours ago; that is now a level +1 among four.
+#
+#   AUDNZD'S CHART CARRIED TWELVE OF JEFF'S OWN DRAWINGS - two trend lines, a
+#   fib retracement, ten rectangles. ALL LEFT UNTOUCHED (LD-5); three added
+#   (lfG6O1 falsifier, ohCxYC cap, ogHyr8 low). THIRD time the draw_list check
+#   before drawing has protected his work.

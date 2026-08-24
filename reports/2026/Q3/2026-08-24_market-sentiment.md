@@ -1,13 +1,13 @@
 <!--edition
 date: 2026-08-24
-title: Monday, 24 August 2026 &middot; 10:55 PHT
-revision: r1
+title: Monday, 24 August 2026 &middot; r2 16:24 PHT (London)
+revision: r2
 seal: UNSEALED
 type: MONDAY
 eyebrow: Macro Economic Reporting &middot; Monday &mdash; week of 24&ndash;28 Aug
-chip: PROPOSED-PENDING <b class="up">CADJPY +5</b> &middot; EURCHF +1 &middot; GBPUSD +2
+chip: LOCKED <b>4 pairs, all +1 LOW</b> &middot; no rank this week
 chip: GAP <b class="dn">CADJPY &minus;38.8 pips</b> &middot; CAD-side
-chip: LOCK <b>after London</b> &middot; ~15:00 PHT
+chip: <b class="dn">CADJPY +5 &rarr; +1</b> &middot; lower low on 2x volume
 fng_note: Carried from Friday's capture &mdash; the CNN endpoint updates once daily and Monday's reading is not yet posted. The index reads <b>Greed 55.2</b> while <b>four of seven components sit in Fear</b>.
 fng_spread: Spread top-to-bottom bar: <b>95.8 &minus; 29.4 = 66.4</b>. Junk Bond Demand alone carries the headline.
 -->
@@ -15,7 +15,7 @@ fng_spread: Spread top-to-bottom bar: <b>95.8 &minus; 29.4 = 66.4</b>. Junk Bond
 <!--exec
 CADJPY GAPPED 38.8 PIPS AGAINST THE #1 PROPOSAL over the weekend, and the gap is a CAD-side move, not a JPY event. USDJPY is flat at 158.884; USDCAD gapped UP 48.7 pips. CAD weakened.
 
-THE SET IS NOT LOCKED YET. It is 10:55 PHT &mdash; three hours into the thinnest session of the week, London opens in four. Section 4 is PROPOSED-PENDING and locks after London, on real liquidity.
+THE WEEK IS NOW LOCKED at r2, 16:24 PHT on London liquidity. FOUR pairs, ALL AT +1 LOW &mdash; the set has no rank. CADJPY fell from +5 HIGH to +1 LOW because it made a lower low than Friday on double the volume, which is exactly what waiting for London was meant to catch.
 
 NO WHITELIST INDICATOR RELEASES TODAY, so section 2 carries Friday's scores unchanged. That is verified, not assumed.
 
@@ -24,16 +24,18 @@ CAD NOW CARRIES THREE NEGATIVES IN ONE WEEK against a +8.38 that has not moved: 
 
 # Monday 24 August 2026 &mdash; the week of 24&ndash;28 Aug
 
-> ## ⚠ SECTION 4 IS NOT LOCKED. IT LOCKS AFTER LONDON.
+> ## ✅ r2 — THE WEEK IS LOCKED, ON LONDON LIQUIDITY
 >
-> Monday's §4 fixes the week's set (LD-29), but this edition publishes at
-> **10:55 PHT** — three hours into the **Asian session**, the thinnest liquidity
-> of the week. London opens ~15:00 PHT; the daily bar closes in 21 hours.
+> **r1 published at 10:55 PHT** on a three-hour Asian bar and deliberately did
+> **not** lock. **r2 re-read structure at 16:24 PHT**, 85 minutes into London,
+> on roughly double the volume — and the wait was justified.
 >
-> **Structure formed in thin Asian liquidity breaks more readily**, and locking
-> a week on a three-hour bar is the case for waiting. §4 is published
-> **PROPOSED-PENDING** with live prices and the gap read; **r2 re-reads
-> structure after London and locks.**
+> **CADJPY fell from HIGH (+5) to LOW (+1).** Its structure term flipped +2 →
+> −1: it made a **lower low than Friday**, and the CAD leg extended its weekend
+> weakness through London rather than recovering. **Locking at 10:55 would have
+> fixed the week around a top-ranked pair that was already breaking.**
+>
+> **Four pairs locked, all at +1.** The set has no rank this week.
 
 ---
 
@@ -41,14 +43,20 @@ CAD NOW CARRIES THREE NEGATIVES IN ONE WEEK against a +8.38 that has not moved: 
 
 **The week is one bar old and it opened against the top proposal.**
 
-| Pair | Bias | Fri close | **Mon open** | Gap | Now (10:55) | Favouring? | Falsifier | Clear by |
+| Pair | Bias | Fri close | **Mon open** | Gap | **Now (16:24)** | Favouring? | Falsifier | Clear by |
 |---|---|---|---|---|---|---|---|---|
-| **CADJPY** | LONG | 115.490 | **115.102** | **−38.8 pips** | **115.199** | **NO** | close < 114.472 | **73 pips** |
-| **EURCHF** | LONG | 0.93562 | 0.93614 | +5.2 pips | **0.93472** | **FLAT** | close < 0.92796 | **68 pips** |
-| **GBPUSD** | LONG | 1.36456 | 1.36339 | −11.7 pips | **1.36502** | **YES** | close < 1.35197 | **131 pips** |
+| **CADJPY** | LONG | 115.490 | **115.102** | **−38.8 pips** | **115.050** | **NO** | close < 114.472 | **58 pips** |
+| **EURCHF** | LONG | 0.93562 | 0.93614 | +5.2 pips | **0.93597** | **YES** | close < 0.92796 | **80 pips** |
+| **GBPUSD** | LONG | 1.36456 | 1.36339 | −11.7 pips | **1.36266** | **NO** | close < 1.35197 | **107 pips** |
+| **AUDNZD** | **SHORT** | — | — | *added r2* | **1.20071** | **—** | close > **1.20724** | **65 pips** |
 
-**No falsifier is near.** The closest is EURCHF at 68 pips, and all three sit
-well beyond one ATR of their levels.
+**No falsifier is near.** The closest is **CADJPY at 58 pips** — it has lost 15
+pips since r1 and is now the tightest of the four, having been the widest this
+morning. All four sit beyond one ATR of their levels.
+
+**Two of three flipped direction between r1 and r2.** EURCHF recovered to
+FAVOURING; GBPUSD gave up its morning gain and is now trading **at its day
+low**. **Only CADJPY has been consistently against the read all session.**
 
 ### The gap is CAD-side, not a JPY event — and that matters
 
@@ -441,43 +449,69 @@ priced to strengthen is carrying a headwind the realised tally cannot see.
 | Wed 26 09:30 | AUD RBA Trimmed Mean CPI | The RBA's preferred core measure; not whitelisted |
 | Fri 28 07:30 | JPY Tokyo CPI | Leads national CPI ~3 weeks; not whitelisted |
 
-### 4.3 PROPOSED-PENDING — three leg-disjoint pairs
+### 4.3 LOCKED — four leg-disjoint pairs (r2, London liquidity)
+
+> **THE WEEK IS LOCKED.** Re-read at **16:24 PHT**, 85 minutes into London,
+> on volume that has doubled since r1. This set holds until Friday; a pair
+> leaves only by its falsifier firing and is not replaced (LD-29).
 
 | Rank | Pair | Dir | Conf | Week | Spread | **Now** | Falsifier | Clear by |
 |---|---|---|---|---|---|---|---|---|
-| **1** | **CADJPY** | LONG | **HIGH (+5)** | **W2** | **8.38** | **115.199** | close < **114.472** | 73 pips |
-| **2** | **EURCHF** | LONG | **LOW (+1)** | **W2** | **6.62** | **0.93472** | close < **0.92796** | 68 pips |
-| **3** | **GBPUSD** | LONG | **LOW (+2)** | **W2** | **4.00** | **1.36502** | close < **1.35197** | 131 pips |
+| 1 | **CADJPY** | LONG | **LOW (+1)** | **W2** | **8.38** | **115.050** | close < **114.472** | 58 pips |
+| 2 | **EURCHF** | LONG | **LOW (+1)** | **W2** | **6.62** | **0.93597** | close < **0.92796** | 80 pips |
+| 3 | **GBPUSD** | LONG | **LOW (+1)** | **W2** | **4.00** | **1.36266** | close < **1.35197** | 107 pips |
+| 4 | **AUDNZD** | **SHORT** | **LOW (+1)** | **W1 — new** | **1.00** | **1.20071** | close > **1.20724** | 65 pips |
 
-**Net exposure: long CAD · EUR · GBP, short JPY · CHF · USD.** Six currencies,
-each used once — three independent tests (LD-19).
+**Net exposure: long CAD · EUR · GBP · NZD, short JPY · CHF · USD · AUD.**
+**All eight currencies used exactly once** — the LD-35 ceiling, and four
+genuinely independent tests of the model.
 
-**⚠ Why the confidence numbers are NOT restated as a fresh tally.** The LD-20
-arithmetic uses structure and last-closed-bar terms, and **the current bar is
-three hours old in the thinnest session of the week.** Re-scoring conviction on
-it would produce a number that looks precise and is not. **r2 re-tallies after
-London.** The figures above are Friday's, carried explicitly.
+#### ⚠ THE SET HAS NO RANK THIS WEEK, AND THAT IS THE FINDING
 
-**⚠ MARKET-PRICING TERM (LD-64).** §4.0 now reads what the market is pricing
-for each leg, and **every pair has a leg priced against it**. That is a
-headwind the realised tally cannot see, so it is stated per pair below rather
-than folded into a number on a three-hour bar.
+**All four score +1.** r1 published CADJPY at HIGH (+5) on Friday's figures;
+re-tallied on London liquidity it is **+1, level with everything else**.
 
-**What has changed since Friday, stated without re-scoring:**
+| | r1 (Friday's figures) | **r2 (London)** | What moved |
+|---|---|---|---|
+| **CADJPY** | **+5 HIGH** | **+1 LOW** | **structure +2 → −1** |
+| EURCHF | +1 LOW | +1 LOW | unchanged |
+| GBPUSD | +2 LOW | +1 LOW | spread +1, against −1 |
+| AUDNZD | — | +1 LOW | new entry |
 
-- **CADJPY** — gapped 38.8 pips against the read on a **CAD-side** move (§0).
-  Still 73 pips clear of its falsifier. The **carry-trade finding (§1) is
-  supportive** of the short-JPY leg. **But §4.0 prices JPY +1 IMPROVING this
-  week** — the short leg is expected to strengthen. **CAD has no scheduled
-  event at all**, so the leg that gapped gets no data to correct it.
-- **EURCHF** — flat over the weekend, and **§4.0 prices BOTH legs against it**:
-  EUR −1 DETERIORATING, CHF +1 IMPROVING. **The worst-positioned of the three
-  on forward pricing**, and it is already the joint-weakest on realised
-  evidence (+1).
-- **GBPUSD** — the only pair **favouring** this morning, **and the only one
-  §4.0 is not pricing against** (GBP no event, USD net flat). **Jackson Hole
-  Thu–Fri is the offsetting risk and it scores nothing.**
+**CADJPY's collapse is structural, not noise.** It made a **lower low (114.862)
+than Friday's low (115.218)** on **double the volume**, and the CAD leg extended
+its weakness through London — USDCAD 1.37669 → **1.38410**, a further 25.4 pips
+after the weekend gap. **The gap did not fade; it extended.**
 
+**When a four-pair set has no rank, the ranking is not the information — the
+uniformity is.** Nothing on this board is a standout call this week.
+
+#### AUDNZD — the fourth pair, added at r2
+
+**It qualifies now because AUD moved.** LD-57 re-graded AUD's Employment
+Change to NEUTRAL, taking AUD +2.08 → **+2.75** — which *narrowed* the
+NZD−AUD spread to exactly **1.00**, the LD-18 floor.
+
+**It clears the floor by 0.00.** Stated plainly rather than rounded past: this
+is the thinnest spread ever carried in this repo.
+
+**What earns it the fourth slot:** §4.0 prices **AUD −2 DETERIORATING** — two
+BAD projections this week (Inflation Wed, Household Spending Thu) — and a
+short-AUD read is the only position on the board the market's own pricing
+supports. **Its +1 is built on forward pricing where the others are built on
+spread.**
+
+| Level | Type | Formed by |
+|---|---|---|
+| **1.21024** | Structural cap | 13 Aug high, the 45-bar high (+95 pips) |
+| **1.20724** | **THE FALSIFIER** | **Wed 19 Aug high** — 65 pips, beyond the 56-pip ATR |
+| 1.20071 | Live | Mon 24 Aug |
+| **1.19136** | 45-bar low | the direction of the read (−94 pips) |
+
+*`OANDA:AUDNZD` daily. Drawn: `lfG6O1` falsifier · `ohCxYC` cap · `ogHyr8` low.
+**This chart carried TWELVE of Jeff's own drawings** — two trend lines, a fib
+retracement and ten rectangles. **All left untouched** (LD-5); only the three
+above were added.*
 
 ### 4.4 REJECTED — including the fourth-pair test (LD-35)
 
@@ -864,8 +898,12 @@ split remains unsourced (R-15). BTCUSD still lacks a forward map (R-10).
 |---|---|
 | **P1 SOURCED** | **PASS** — every figure carries source and as-of |
 | **P2 RECOMPUTED** | **PASS** — gaps, distances and spreads recomputed from named bars |
-| **Seal** | **UNSEALED.** Monday is a LIGHT-seal day (LD-12), but this edition is **incomplete by design** — §4 locks in r2 |
+| **Seal** | **UNSEALED, r2 COMPLETE.** §4 is locked. Monday is a LIGHT-seal day (LD-12); the seal awaits Jeff's acknowledgement (P3) |
 
-**r2 today (~15:00 PHT), after London opens:** re-read structure on real
-liquidity · re-tally confidence (LD-20) · **LOCK the week's set** · research the
-CAD gap · redraw levels and clear this run's entities (LD-46).
+**r2 DONE at 16:24 PHT:** structure re-read on London liquidity · confidence
+re-tallied (all four +1) · **week LOCKED, four pairs** · AUDNZD added and drawn.
+
+**Still open, carried to Tuesday:** the **CAD weakness has no sourced cause** —
+it extended through London rather than fading, and remains a research trigger
+(LD-26), not a finding. **Tue 25 resolves two USD rows** — Building Permits
+Final 20:00 and CB Consumer Confidence 22:00.
