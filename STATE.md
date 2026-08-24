@@ -3996,3 +3996,67 @@ LD-62 - SECTION 4.1 CURRENCY BANDS IS DELETED. Jeff: "4.1 Currency bands - This
   15.0% - UNDER THE TARGET for the first time since the rule was written. Not
   because anything was cut for the ratio, but because a duplicated block was
   removed. That is what LD-27 was actually asking for.
+
+F-40 - SECTION 4.0'S BUILDING PERMITS ROW CONFLATED THREE DIFFERENT NUMBERS.
+  Jeff: "Can you verify the numbers? it is not matching. USD Building Permits
+  MoM Final the Current value is -2.6 (JUN) and the Forecasted value is
+  (Consensus and Forecast Range) 5%."
+  HE IS EXACTLY RIGHT. Our row read "+5.0% PREL" as the actual against "-2.6%"
+  as previous. TE's MoM series calendar:
+    Jun Final  -2.6%  (prev -0.9%)   <- THE CURRENT ACTUAL
+    Jul PREL   +5.0%  released 18 Aug <- a preliminary, not a Final
+    Jul Final  due Tue 25, consensus 5%, forecast 5.0%
+  So -2.6% IS the current value and +5.0% is a PREL, and I had labelled them
+  the other way round.
+  WORSE: I DERIVED THE +5.0% FROM THE LEVEL SERIES (1.443M vs 1.374M) instead
+  of reading TE's MoM series, which exists. A derived figure presented as a
+  sourced one - LD-48's rule for price levels, violated on a macro row.
+  FOURTH INSTANCE of a provisional wearing a final's name (F-27 StatCan
+  advance, F-29 EUR flash, F-36 permits prel flagged but not corrected, F-40
+  the same row actually corrected).
+  score_model CORRECTED to the Jun Final: -2.6% vs -0.9% -> BAD (was GOOD).
+  USD +2.25 -> +1.75. USD stays NEUTRAL, drops to 6th below AUD.
+  KNOCK-ON: GBPUSD spread 3.50 -> 4.00, which CROSSES the LD-20 band boundary
+  (1.00-3.99 gives 0, 4.00-7.99 gives +1). GBPUSD confidence +1 -> +2. Still
+  LOW, but it lands on the pair section 4.0 independently calls the only clean
+  one - two different methods pointing the same way.
+  LD-50 CAUGHT THE AMBIGUITY DURING THE FIX: TE's country page shows the LEVEL
+  (1443, Jul) against our MoM FINAL (Jun). Different series - resolved with a
+  KNOWN_SERIES_GAP entry stating why, NOT by editing the row to clear the gate.
+  LD-54 flagged all four changed fields for triage. Both guards behaved.
+
+LD-63 - SECTION 4.0 READS MARKET POSITIONING, NOT A FORECAST SCORE (Jeff).
+  "regardless of Category the scoring would be: Consensus and Forecast Range >
+  Previous (Current Actual) is Good, < is Bad, Previous within the range is
+  Neutral. With this we can foresee the behavior of that currency when the
+  market is pricing this week."
+  THE QUESTION CHANGED, and that is the substance of it. The old 4.0 asked
+  "what GRADE will the model record if consensus prints?" - which needed each
+  indicator's own threshold and its own PREL/FINAL handling, and is exactly
+  where F-40 came from. The new 4.0 asks "IS THE MARKET PRICING THIS CURRENCY
+  TO IMPROVE OR DETERIORATE?" - one test, category-independent, three sourced
+  numbers, none derived.
+  THE RANGE IS [CONSENSUS, FORECAST]. Jeff's call when I raised that TE mostly
+  publishes a single consensus: "we take the consensus and the Forecast value
+  and make it as a range". Verified - TE's calendar carries BOTH as separate
+  columns (col5 consensus, col6 forecast). Better than either option I offered,
+  because it uses two numbers the source already publishes instead of inventing
+  a tolerance band.
+  Implemented as week_ahead.market_pricing(). All eight branches verified
+  including the point-range case where consensus == forecast.
+
+LD-64 - MARKET PRICING FEEDS THE PROPOSED-PAIR READ. Jeff's point 3.
+  FIRST RUN INVERTS THE RANKING:
+    AUD -2 DETERIORATING | EUR -1 | USD 0 FLAT | CHF +1 IMPROVING | JPY +1
+    CAD, GBP, NZD - no scheduled whitelist event at all
+    CADJPY  long CAD no event  | short JPY +1 IMPROVING  -> short leg priced
+            to STRENGTHEN, against the read
+    EURCHF  long EUR -1        | short CHF +1            -> BOTH legs against
+    GBPUSD  long GBP no event  | short USD flat          -> the ONLY pair the
+            market is not pricing against
+  ON REALISED EVIDENCE CADJPY LEADS BY FOUR. ON WHAT THE MARKET IS PRICING,
+  GBPUSD IS THE ONLY CLEAN ONE. Different questions, and the edition publishes
+  BOTH rather than blending them into one number.
+  NOT folded into the LD-20 tally this morning - the tally uses structure and
+  last-bar terms and the current bar is three hours old in thin Asian
+  liquidity. Stated per pair instead. r2 folds it in after London.

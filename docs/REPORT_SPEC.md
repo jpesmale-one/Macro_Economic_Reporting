@@ -288,6 +288,26 @@ open, now, move in pips, favouring YES/NO/FLAT, falsifier state.
 
 ### STEP 4 — §4.0 projections, then the playbook
 
+**§4.0 READS MARKET POSITIONING, NOT A FORECAST SCORE (LD-63).** One
+test for every whitelist indicator, **regardless of category**:
+
+| Consensus/Forecast range vs the CURRENT ACTUAL | Reads |
+|---|---|
+| range entirely **above** the current actual | **GOOD** — market prices improvement |
+| range entirely **below** | **BAD** — market prices deterioration |
+| current actual **inside** the range | **NEUTRAL** |
+
+The range is **[Consensus, Forecast]** — TE publishes both columns and
+the pair is the band. **Three sourced numbers, none derived**; that is
+what removes the F-40 error class, where a Jul PREL, a Jun FINAL and a
+consensus were conflated into one row.
+
+**The CURRENT ACTUAL is the last released FINAL**, never a preliminary.
+
+**§4.0 feeds §4.3's confidence (LD-64).** A pair whose short leg is
+priced to strengthen carries a headwind the realised tally cannot see,
+and the edition states it per pair.
+
 **Publish §4.0 from the step-1 capture** — whitelist indicators only
 (LD-41). Off-list events go in the narrative block and score nothing.
 **Sort DATE → TIME → CCY (LD-52)** — chronological, because that is the

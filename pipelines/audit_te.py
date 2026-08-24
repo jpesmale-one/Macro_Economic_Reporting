@@ -57,7 +57,6 @@ KNOWN_DIFFERENT = {
     ('CA', 'Balance of Trade'): 'LD-55 - we carry bn, TE carries millions',
     ('CH', 'Non Farm Payrolls'): 'we carry millions, TE carries thousands',
     ('JP', 'Machine Tool Orders YoY'): 'we carry YoY%, TE lists the level',
-    ('US', 'Building Permits MoM Final'): 'we carry MoM%, TE lists the level',
     ('AU', 'Building Permits YoY Final'): 'we carry YoY%, TE lists the level',
 }
 
@@ -74,6 +73,11 @@ KNOWN_SERIES_GAP = {
     ('NZ', 'Electronic Retail Card Spending YoY'): 'aliased to TE retail sales '
         'yoy as the nearest series; the card-spending series is not on the '
         'country page. Value sourced from Stats NZ directly (F-34).',
+    ('US', 'Building Permits MoM Final'):
+        'TE lists the LEVEL (1443, Jul) and the Jul MoM PREL; the whitelist '
+        'names the MoM FINAL, whose current value is the JUN Final -2.6%. '
+        'The Jul Final releases Tue 25 Aug. Updating this row to TE would '
+        're-commit F-40 (a preliminary published as a final).',
     ('EA', 'Consumer Confidence Final'):
         'TE lists the monthly FLASH; the whitelist names the FINAL, which '
         'releases later in the month. Updating this row to TE would '

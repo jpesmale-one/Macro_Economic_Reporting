@@ -86,6 +86,46 @@ def match(ev, names, iso=None):
     return None
 
 
+# LD-63 - SECTION 4.0 SCORING: IS THE MARKET PRICING THIS CURRENCY TO IMPROVE?
+# Jeff's rule, 2026-08-24. CATEGORY-INDEPENDENT - one test for every indicator,
+# regardless of which category it sits in or what threshold section 2 uses.
+#
+#   consensus/forecast RANGE entirely ABOVE the current actual -> GOOD
+#   range entirely BELOW the current actual                    -> BAD
+#   current actual INSIDE the range                            -> NEUTRAL
+#
+# THE RANGE IS [consensus, forecast] - TE publishes BOTH as separate columns
+# and Jeff's call is to treat the pair as the band. Where they are equal the
+# range is a point and only exact equality reads NEUTRAL.
+#
+# WHY THIS IS A DIFFERENT QUESTION FROM SECTION 2. Section 2 asks "is this
+# print good for the currency" against the indicator's own threshold. Section
+# 4.0 now asks "IS THE MARKET PRICING AN IMPROVEMENT OR A DETERIORATION THIS
+# WEEK" - a forward read on positioning, not a grade on a release. It feeds the
+# proposed-pair selection (LD-64).
+#
+# It also removes the error class that produced this rule: the old 4.0 needed
+# each indicator's own threshold and its own PREL/FINAL distinction, and the
+# Building Permits row conflated a Jul PREL actual, a Jun FINAL previous and a
+# consensus into one line. ONE TEST, THREE SOURCED NUMBERS, NO DERIVATION.
+def market_pricing(previous, consensus, forecast=None):
+    """Grade what the market is pricing. Returns GOOD/NEUTRAL/BAD or None.
+
+    previous  - the CURRENT ACTUAL (the last released Final for that series)
+    consensus - TE consensus column
+    forecast  - TE forecast column; defaults to consensus when absent
+    """
+    if previous is None or consensus is None:
+        return None
+    hi = consensus if forecast is None else max(consensus, forecast)
+    lo = consensus if forecast is None else min(consensus, forecast)
+    if previous < lo:
+        return 'GOOD'
+    if previous > hi:
+        return 'BAD'
+    return 'NEUTRAL'
+
+
 def pht(date, t):
     """TE calendar times are UTC. PHT = UTC+8 (F-2: verify every run)."""
     t = (t or '').strip()

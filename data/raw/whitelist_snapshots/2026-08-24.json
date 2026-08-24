@@ -360,10 +360,10 @@
   "score": "GOOD"
  },
  "US|Building Permits MoM Final": {
-  "actual": "+5.0% PREL",
-  "previous": "-2.6%",
-  "ref": "Jul/26",
-  "score": "GOOD"
+  "actual": "-2.6%",
+  "previous": "-0.9%",
+  "ref": "Jun/26",
+  "score": "BAD"
  },
  "US|CB Consumer Confidence": {
   "actual": "51.0",

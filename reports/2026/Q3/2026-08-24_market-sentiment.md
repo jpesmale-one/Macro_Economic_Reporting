@@ -5,7 +5,7 @@ revision: r1
 seal: UNSEALED
 type: MONDAY
 eyebrow: Macro Economic Reporting &middot; Monday &mdash; week of 24&ndash;28 Aug
-chip: PROPOSED-PENDING <b class="up">CADJPY +5</b> &middot; EURCHF +1 &middot; GBPUSD +1
+chip: PROPOSED-PENDING <b class="up">CADJPY +5</b> &middot; EURCHF +1 &middot; GBPUSD +2
 chip: GAP <b class="dn">CADJPY &minus;38.8 pips</b> &middot; CAD-side
 chip: LOCK <b>after London</b> &middot; ~15:00 PHT
 fng_note: Carried from Friday's capture &mdash; the CNN endpoint updates once daily and Monday's reading is not yet posted. The index reads <b>Greed 55.2</b> while <b>four of seven components sit in Fear</b>.
@@ -149,13 +149,13 @@ this session and reproduces r13 exactly.
 | **STRONG** | **GBP** | **+5.75** | Risk-corr | +0.00 · +1.00 · −1.00 · +2.00 · +3.00 · **+0.75** |
 | NEUTRAL | NZD | **+3.75** | Commodity | +1.00 · +0.50 · −1.00 · −2.00 · +3.00 · **+2.25** |
 | NEUTRAL | AUD | **+2.75** | Commodity | +1.00 · +0.75 · +1.00 · +0.00 · +0.00 · **+0.00** |
-| NEUTRAL | USD | **+2.25** | Safe haven | +1.00 · +0.25 · +1.00 · +0.00 · +0.00 · **+0.00** |
+| NEUTRAL | USD | **+1.75** | Safe haven | +1.00 · −0.25 · +1.00 · +0.00 · +0.00 · **+0.00** |
 | **WEAK** | **JPY** | **+0.00** | Safe haven | +1.00 · +0.00 · −1.00 · +0.00 · +0.00 · **+0.00** |
 | **WEAK** | **CHF** | **−0.38** | Safe haven | +1.00 · +1.00 · +1.00 · +0.00 · −3.00 · **−0.38** |
 
 Bands: **STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00**
 
-**Group standings** — Safe haven: USD +2.25 › JPY +0.00 › CHF −0.38 · Commodity: CAD +8.38 › NZD +3.75 › AUD +2.75 · Risk-corr: EUR +6.25 › GBP +5.75
+**Group standings** — Safe haven: USD +1.75 › JPY +0.00 › CHF −0.38 · Commodity: CAD +8.38 › NZD +3.75 › AUD +2.75 · Risk-corr: EUR +6.25 › GBP +5.75
 
 **⚠ TWO SCORES CARRY KNOWN PRESSURE INTO MONDAY.** CAD's Spending +1.00 rests on
 data superseded by Friday's −0.8% retail sales miss (§0L). AUD's +2.75 faces its
@@ -191,11 +191,11 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 
 ### 2.2 Spending (weight 1)
 
-**23 indicators — 17 GOOD · 3 BAD · 3 NEUTRAL**
+**23 indicators — 16 GOOD · 4 BAD · 3 NEUTRAL**
 
 | CCY | Indicator | Actual | Previous | Ref | Threshold | Score |
 |---|---|---|---|---|---|---|
-| USD | Building Permits MoM Final | +5.0% PREL | -2.6% | Jul/26 | >0.5% | **GOOD** |
+| USD | Building Permits MoM Final | -2.6% | -0.9% | Jun/26 | >0.5% | **BAD** |
 | USD | CB Consumer Confidence | 51.0 | 55.2 | Aug/26 | >Prev | **BAD** |
 | USD | Personal Spending MoM | 0.3% | 0.9% | Jun/26 | 0-0.5% | NEUTRAL |
 | USD | Retail Sales YoY | 5.0% | 6.8% | Jul/26 | >0.5% | **GOOD** |
@@ -218,6 +218,8 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | CAD | Retail Sales YoY | 5.2% | 5.9% | Jun/26 | >0.5% | **GOOD** |
 | CHF | Consumer Confidence | -35 | -36 | Jul/26 | >Prev | **GOOD** |
 | CHF | Retail Sales YoY | 1.5% | 3.4% | Jun/26 | >0.5% | **GOOD** |
+
+**⚠ USD Building Permits corrected (F-40).** The row carried **+5.0% PREL** against **−2.6%** — but −2.6% *is* the current actual (Jun Final) and +5.0% is the **Jul preliminary**, not a Final. Corrected to the **Jun Final −2.6% vs −0.9% prior → BAD**. **USD +1.75 → +1.75.** GBP Retail Sales Ex Fuel **2.3%** (LD-51); GfK **−14**; NZD card spending **3.4%**; CAD Retail Sales YoY **5.2%**. **EUR Consumer Confidence stays at the July FINAL −15.9** — the August Final releases Fri 28.
 
 ### 2.3 Trade (weight 1)
 
@@ -253,23 +255,6 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | CAD | Unemployment Rate | 6.4% | 6.5% | Jul/26 | <Prev | **GOOD** |
 | CHF | Non Farm Payrolls | 5.537M | 5.544M | Q1/26 | >Cons 5.4M | **GOOD** |
 | CHF | Unemployment Rate | 3.0% | 2.9% | Jul/26 | >Prev | **BAD** |
-
-**⚠ TWO EMPLOYMENT RULES CHANGED THIS SESSION (LD-57, LD-58), both Jeff's calls.**
-
-**GBP Claimant Count Change is now scored against ZERO, not against the prior month (LD-58).** The series measures the *change* in benefit claimants, so **negative = fewer claimants = improving**. `>0` BAD · `<0` GOOD · `=0` NEUTRAL. The old `<Prev` test read backwards in two cases: claimants falling **2K** after falling 11K scored **BAD**, and claimants **rising 5K** after rising 20K scored **GOOD**. July −11K is GOOD either way, so no score moves.
-
-**Full Time Employment (LD-57)** — `>0 and ≥prev` GOOD · `>0 and <prev` NEUTRAL · `<0 and ≤prev` BAD · `<0 and >prev` NEUTRAL · `=0` NEUTRAL. Full time still carries the most weight.
-
-**AUD July re-graded, verified against the ABS** — headline −15.8K, full time **+16.3K**, part time **−32.2K**:
-
-| Leg | Reading | Was | **Now** |
-|---|---|---|---|
-| Headline `>0` | −15.8K | BAD | BAD |
-| **Full Time** *(heaviest)* | +16.3K vs +29.3K | BAD | **NEUTRAL** |
-| Part Time `<Prev` | −32.2K vs +47.0K | GOOD | GOOD |
-| **Composite** | | **BAD** | **NEUTRAL** |
-
-**AUD moves +2.08 → +2.75**, passing USD into 5th. Band unchanged, and **no carried pair has an AUD leg**. **CAD** carries LD-57 but cannot run it — June's FT/PT split is not sourced (July: FT **+38.6K**, PT **+36.6K**, *Statistics Canada 7 Aug*).
 
 ### 2.5 Inflation (weight 3)
 
@@ -357,48 +342,84 @@ model keeps May/26 5.9% and is **flagged, not silently carried** — see §8.
 > Nothing rolls over from last week — these are **re-proposals** that must win
 > their place again (LD-42).
 
-### 4.0 — Week ahead: projections for 24–28 Aug
+### 4.0 — Week ahead: what the market is pricing (LD-63)
 
-**A projection is a forecast of a SCORE, never a score.** Whitelist indicators
-only (LD-41); off-list events inform the read and score nothing (F-3).
-Sorted **date → time → CCY** (LD-52). Generated by `pipelines/week_ahead.py`.
+**This section no longer forecasts a score. It reads POSITIONING.** One test,
+applied to every whitelist indicator regardless of category:
 
-**Twelve whitelist indicators land Mon–Fri. Nine carry a scored projection.**
+| Consensus/Forecast range vs the CURRENT ACTUAL | Reads |
+|---|---|
+| range entirely **above** the current actual | **GOOD** — market prices an improvement |
+| range entirely **below** | **BAD** — market prices a deterioration |
+| current actual **inside** the range | **NEUTRAL** — no directional call |
 
-| When (PHT) | CCY | Indicator | Current | Forecast | **Projected** | Test applied |
-|---|---|---|---|---|---|---|
-| **Tue 25 20:00** | **USD** | **Building Permits MoM Final (Jul)** | **+5.0%** ⚠ | **1.443M** *(confirms prel)* | **GOOD** | >0.5% — our row holds the **PRELIMINARY** |
-| Tue 25 22:00 | USD | CB Consumer Confidence | 51.0 | — | **UNSCORED** | no consensus sourced; currently **BAD** |
-| **Wed 26 09:30** | **AUD** | **Inflation Rate YoY** | **3.8%** | **3.2%** | **NEUTRAL** | >2% & **falling** — unchanged at 0.00 |
-| **Wed 26 20:30** | **USD** | **Durable Goods Ex Transp MoM** | **0.6%** | **0.3%** | **⚠ NEUTRAL** | 0–0.5% band — **GOOD → NEUTRAL** |
-| Wed 26 20:30 | USD | Personal Spending MoM | 0.3% | 0.2% | **NEUTRAL** | 0–0.5% band — unchanged |
-| **Thu 27 09:30** | **AUD** | **Household Spending YoY** | **6.0%** | **4.4%** | **GOOD** | >0.5% — holds, decelerating 1.6pp |
-| **Thu 27 14:30** | **CHF** | **Non Farm Payrolls (Q2)** | **5.537M** | **5.55M** | **GOOD** | >Cons — **the only CHF release all week** |
-| **Fri 28 07:30** | **JPY** | **Unemployment Rate** | **2.5%** | **2.5%** | **NEUTRAL** | unchanged vs previous |
-| **Fri 28 13:00** | **JPY** | **Consumer Confidence** | **34.9** | **35.0** | **GOOD** | >Prev — holds |
-| Fri 28 15:00 | EUR | Retail Sales YoY | 0.7% | — | **UNSCORED** | no consensus sourced |
-| Fri 28 15:55 | EUR | Unemployment Rate | 6.3% | — | **UNSCORED** | no consensus sourced |
-| **Fri 28 17:00** | **EUR** | **Consumer Confidence Final (Aug)** | **−15.9** | **−15.9** | **NEUTRAL** | >Prev **fails** on an unchanged print |
+**The range is [Consensus, Forecast]** — TE publishes both as separate columns
+and the pair is the band. **Every figure below is read off the TE series
+calendar; none is derived.**
 
-**⚠ TWO PROJECTIONS CHANGE A SCORE, AND BOTH LAND ON A PROPOSED LEG.**
+| When (PHT) | CCY | Indicator | Current actual | Cons / Fcst | **Market prices** |
+|---|---|---|---|---|---|
+| **Tue 25 20:00** | **USD** | Building Permits MoM Final | **−2.6%** *(Jun Final)* | **5.0%** | **GOOD** |
+| Tue 25 22:00 | USD | CB Consumer Confidence | — | — | **UNSCORED** — no TE calendar row this week |
+| **Wed 26 09:30** | **AUD** | Inflation Rate YoY | **3.8%** | **3.2%** | **BAD** |
+| **Wed 26 20:30** | **USD** | Durable Goods Ex Transp MoM | **0.6%** | **0.3–0.5%** | **BAD** |
+| Wed 26 20:30 | USD | Personal Spending MoM | 0.3% | 0.2–0.3% | **NEUTRAL** |
+| **Thu 27 09:30** | **AUD** | Household Spending YoY | **6.0%** | **4.4%** | **BAD** |
+| **Thu 27 14:30** | **CHF** | Non Farm Payrolls (Q2) | **5.537M** | **5.55M** | **GOOD** |
+| Fri 28 07:30 | JPY | Unemployment Rate | 2.5% | 2.5% | **NEUTRAL** |
+| **Fri 28 13:00** | **JPY** | Consumer Confidence | **34.9** | **35.0** | **GOOD** |
+| **Fri 28 17:00** | **EUR** | Consumer Confidence Final | **−15.9** *(Jul Final)* | **−16.3** | **BAD** |
 
-**EUR Consumer Confidence Final, Fri 28** — forecast unchanged at −15.9, and
-`>Prev` fails on an unchanged print. EUR has two Spending indicators at 0.500
-each: **GOOD → NEUTRAL cuts EUR +6.25 → +5.75.** EUR stays STRONG (floor
-+5.50) but by 0.25. **That is EURCHF's long leg.**
+#### ⚠ CORRECTION — the previous 4.0 published wrong figures
 
-**USD Durable Goods Ex Transp, Wed 26** — forecast 0.3% lands in the 0–0.5%
-NEUTRAL band. USD has four Production indicators at 0.250 each: **GOOD →
-NEUTRAL cuts USD +2.25 → +2.00.** **That is GBPUSD's short leg — and a weaker
-USD helps that pair.**
+**Jeff caught this: our Building Permits row conflated three different
+numbers.** It showed `+5.0% PREL` as the current value against `−2.6%` as
+previous. In fact:
 
-The other seven projections hold their current grade.
+| | Value | What it is |
+|---|---|---|
+| **−2.6%** | Jun Final | **the current actual** — the last *Final* print |
+| **+5.0%** | Jul **Prel**, released 18 Aug | a preliminary, not the current Final |
+| **5.0%** | Consensus/Forecast for Tue 25 | what the market expects |
+
+**I had derived +5.0% from the level series** (1.443M vs 1.374M) instead of
+reading TE's MoM series, then labelled a preliminary as the current value.
+**The new rule removes this error class** — it needs three sourced numbers and
+derives none.
+
+#### What the market is pricing, by currency
+
+| CCY | GOOD | BAD | NEUTRAL | Net | Read |
+|---|---|---|---|---|---|
+| **AUD** | 0 | **2** | 0 | **−2** | **DETERIORATING** |
+| **EUR** | 0 | **1** | 0 | **−1** | **DETERIORATING** |
+| **USD** | 1 | 1 | 1 | **0** | FLAT |
+| **CHF** | **1** | 0 | 0 | **+1** | **IMPROVING** |
+| **JPY** | **1** | 0 | 1 | **+1** | **IMPROVING** |
+| CAD · GBP · NZD | — | — | — | — | **no scheduled whitelist event** |
+
+#### ⚠ This inverts the ranking, and it is the point of the section
+
+**Every proposed pair has a leg the market is pricing against it:**
+
+| Pair | Long leg | Short leg | Verdict |
+|---|---|---|---|
+| **CADJPY** | CAD — no event | **JPY +1 IMPROVING** | short leg priced to **strengthen** — against the read |
+| **EURCHF** | **EUR −1 DETERIORATING** | **CHF +1 IMPROVING** | **both legs against.** Worst of the three |
+| **GBPUSD** | GBP — no event | USD **flat** | **the only pair the market is not pricing against** |
+
+**On realised evidence CADJPY leads by four points. On what the market is
+pricing this week, GBPUSD is the only clean one.** Those are different
+questions and the edition publishes both rather than blending them.
+
+**This feeds §4.3's confidence directly (LD-64).** A pair whose short leg is
+priced to strengthen is carrying a headwind the realised tally cannot see.
 
 #### Off the whitelist — narrative only, never scored (F-3)
 
 | When (PHT) | What | Why it is here |
 |---|---|---|
-| **Thu 27 – Fri 28** | **JACKSON HOLE** | A speech, schedule-only (LD-3). Markets fully priced +25bp Sept. **Moves USD, Gold and BTC; scores nothing.** |
+| **Thu 27 – Fri 28** | **JACKSON HOLE** | A speech, schedule-only (LD-3). **Moves USD, Gold and BTC; scores nothing.** |
 | **Fri 28 20:30** | **CAD GDP Growth Annualized (Q2)** | Forecast **−0.1%** vs +3.4% prior. Not whitelisted — **but CAD is the long leg of the #1 proposal and already carries a weekend gap (§0)** |
 | Wed 26 09:30 | AUD RBA Trimmed Mean CPI | The RBA's preferred core measure; not whitelisted |
 | Fri 28 07:30 | JPY Tokyo CPI | Leads national CPI ~3 weeks; not whitelisted |
@@ -409,7 +430,7 @@ The other seven projections hold their current grade.
 |---|---|---|---|---|---|---|---|---|
 | **1** | **CADJPY** | LONG | **HIGH (+5)** | **W2** | **8.38** | **115.199** | close < **114.472** | 73 pips |
 | **2** | **EURCHF** | LONG | **LOW (+1)** | **W2** | **6.62** | **0.93472** | close < **0.92796** | 68 pips |
-| **3** | **GBPUSD** | LONG | **LOW (+1)** | **W2** | **3.50** | **1.36502** | close < **1.35197** | 131 pips |
+| **3** | **GBPUSD** | LONG | **LOW (+2)** | **W2** | **4.00** | **1.36502** | close < **1.35197** | 131 pips |
 
 **Net exposure: long CAD · EUR · GBP, short JPY · CHF · USD.** Six currencies,
 each used once — three independent tests (LD-19).
@@ -420,18 +441,25 @@ three hours old in the thinnest session of the week.** Re-scoring conviction on
 it would produce a number that looks precise and is not. **r2 re-tallies after
 London.** The figures above are Friday's, carried explicitly.
 
+**⚠ MARKET-PRICING TERM (LD-64).** §4.0 now reads what the market is pricing
+for each leg, and **every pair has a leg priced against it**. That is a
+headwind the realised tally cannot see, so it is stated per pair below rather
+than folded into a number on a three-hour bar.
+
 **What has changed since Friday, stated without re-scoring:**
 
 - **CADJPY** — gapped 38.8 pips against the read on a **CAD-side** move (§0).
   Still 73 pips clear of its falsifier. The **carry-trade finding (§1) is
-  supportive** of the short-JPY leg. **The CAD leg is the question, not JPY.**
-- **EURCHF** — flat over the weekend, but **its long leg has a scheduled
-  downgrade Friday** (EUR Consumer Confidence Final, §4.0) and CHF's only
-  release of the week is **projected GOOD**, strengthening the short leg.
-  **Both legs move against it this week.**
-- **GBPUSD** — the only pair **favouring** this morning, and its short-USD leg
-  has a **projected downgrade Wednesday** that helps it. **Jackson Hole
-  Thu–Fri is the offsetting risk.**
+  supportive** of the short-JPY leg. **But §4.0 prices JPY +1 IMPROVING this
+  week** — the short leg is expected to strengthen. **CAD has no scheduled
+  event at all**, so the leg that gapped gets no data to correct it.
+- **EURCHF** — flat over the weekend, and **§4.0 prices BOTH legs against it**:
+  EUR −1 DETERIORATING, CHF +1 IMPROVING. **The worst-positioned of the three
+  on forward pricing**, and it is already the joint-weakest on realised
+  evidence (+1).
+- **GBPUSD** — the only pair **favouring** this morning, **and the only one
+  §4.0 is not pricing against** (GBP no event, USD net flat). **Jackson Hole
+  Thu–Fri is the offsetting risk and it scores nothing.**
 
 
 ### 4.4 REJECTED — including the fourth-pair test (LD-35)
