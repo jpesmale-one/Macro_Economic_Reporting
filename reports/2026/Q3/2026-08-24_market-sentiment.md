@@ -182,6 +182,46 @@ the four. **The set stays locked — a falsifier fires or it does not (LD-29) �
 but this is now the pair most likely to void this week**, and the reason is a
 policy shock rather than anything in §2.
 
+### 🇪🇺🇬🇧🇨🇭 Euro, sterling, franc — one story, and it is the dollar
+
+**⚠ Added at r3 after §1 shipped covering only Japan (F-43).** §0 flagged
+EURCHF and GBPUSD as moving this morning; §1 said nothing about either.
+
+**All three are dollar-driven, not domestic stories.** *(investing.com,
+fxstreet.com, capitalstreetfx.com)*
+
+| CCY | What is happening | Read |
+|---|---|---|
+| **EUR** | EURUSD near a **three-month high** on faded Fed hike expectations. *"Not a euro story"* — a repricing of the Fed | EUR strength is **borrowed from dollar weakness**, not earned |
+| **GBP** | Near multi-month highs on the same dollar weakness plus UK resilience. **Capped** by a cooling labour market and a BoE expected to hold 3.75% through September | supports GBPUSD LONG, but the driver is the short leg |
+| **CHF** | The SNB *"appears comfortable with CHF weakness"*, and demand for the franc as a **carry-funding currency** keeps growing | **supports EURCHF LONG** — a funding currency is a sold currency |
+
+**Why this matters to the locked set:** **three of our four pairs are long a
+currency whose strength is really dollar weakness.** EUR, GBP and — via the
+carry channel — CHF's softness all trace to the same Fed repricing. **They are
+less independent than the leg-disjointness test implies**, which is EF-3's
+concentration risk arriving through a channel the disjointness rule does not
+measure.
+
+### 🇺🇸 United States — R-5 CLOSED: the Fed Chair is Kevin Warsh
+
+**Open since 19 August, now confirmed.** *(investing.com, corroborated by
+capitalstreetfx.com and litefinance.org)*
+
+**Kevin Warsh has been Federal Reserve Chair since 22 May 2026**, and delivers
+**his first Jackson Hole keynote on Friday 28 August**. That confirms the 29 Jul
+minutes reading which had Warsh in the Chair's voting position — previously
+recorded as *unverified, needs a second source*.
+
+**Why the speech carries unusual weight:** **Warsh has stripped forward guidance
+from the Fed's communication.** A set-piece speech from this Chair therefore
+carries information a comparable speech under his predecessor would not have —
+there is no standing guidance for it to merely reiterate.
+
+**For the locked set:** Jackson Hole lands on **GBPUSD's short-USD leg**, and it
+**scores nothing** (LD-3 — a speech is schedule-only). §4.0 prices USD net
+**flat**; this is the risk that pricing cannot see.
+
 ### Weekend sweep — what did NOT happen
 
 **⚠ CORRECTED at r3.** This section previously read *"no Saturday or Sunday

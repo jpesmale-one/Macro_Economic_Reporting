@@ -434,6 +434,21 @@ limited to them** (LD-30). Where those two do not explain a move, go
 wider — the issuing agency, the wire services, the primary release. An
 unexplained price move is a research trigger, not a finding (LD-26).
 
+**§1 MUST COVER EVERY CURRENCY THE EDITION SAYS MOVED (LD-65).** A
+currency flagged in §0 with a gap, an unexplained move, or a NO in the
+favouring column **needs its catalyst looked for**. LD-30 says how to
+write a news item; this says which ones are required.
+
+**Not all eight every edition** — that forces empty headings on a quiet
+day and LD-27 bans filler. The trigger is what the edition **itself**
+identifies as moving.
+
+**Search by the MOVE, not by the country.** On 2026-08-24 §0 diagnosed
+a CAD gap, §1 covered Japan — the leg just ruled *out* — and the
+catalyst was a 50% tariff regime going live. The morning sweep asked for
+"Canada" headlines and the story was filed under trade war. **A currency
+move is not always filed under the currency.**
+
 **Summarize to IMPACT, never reproduce the article.** Each item answers
 one question: **"how does this move the currency?"** Record time (PHT),
 what happened, the instrument it moves, and the source — then the impact

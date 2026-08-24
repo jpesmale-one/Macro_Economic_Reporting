@@ -4178,3 +4178,61 @@ F-42 - THE CAD CATALYST WAS ON THE FRONT PAGE OF A MANDATED SOURCE AND MY r1
 #   firing, not by conviction. CADJPY's falsifier is 58 pips away, the tightest
 #   of the four, and it is now the most likely to void this week. Published as
 #   such rather than quietly dropped.
+
+F-43 / LD-65 - SECTION 1 HAD NO REQUIRED SCOPE, SO IT SHIPPED WITH ONE ITEM
+  WHILE THE MARKET PRICED A TRADE WAR. Jeff: "This kind of news should be in
+  our section 1. Earlier this morning we only have 1 for Japan but the CAD is
+  already pricing the move and we have no Idea why."
+  A SHARPER CRITICISM THAN THE ONE I WROTE UP AS F-42. I recorded that as a
+  SEARCH failure - wrong query, one attempt. This is worse: THE SECTION WAS
+  EMPTY OF THE THING IT EXISTS FOR.
+  WHAT r1 ACTUALLY DID, and it is worse read back:
+    SECTION 0 diagnosed the gap to the CAD leg EXPLICITLY - isolated USDCAD's
+      48.7-pip move, ruled OUT a JPY intervention event, wrote "CAD weakened".
+    SECTION 1 then covered JAPAN - THE LEG I HAD JUST RULED OUT - and said
+      NOTHING about Canada, the leg I had just ruled IN.
+  THE REPORT IDENTIFIED THE CURRENCY IN QUESTION AND THEN DID NOT GO LOOKING
+  FOR ITS NEWS. Not a search bug; a missing requirement.
+  ROOT CAUSE: LD-30 specifies HOW to write a news item and NEVER SAYS WHICH
+  CURRENCIES NEED ONE. Section 1 could ship with a single item and pass every
+  guard, which is exactly what happened. F-17's guard checks section 1 cites a
+  SOURCE, not that it COVERS anything.
+  LD-65: section 1 must carry news for every currency the edition ITSELF flags
+  as moving in section 0 - a gap, an unexplained move, or a NO in the favouring
+  column. NOT all eight every edition: that forces empty headings on a quiet
+  day and LD-27 bans filler. The trigger is the report's own diagnosis.
+  GUARD: assert_news_coverage() parses section 0's tracking table, collects
+  every currency in a row that moved, and refuses to render if section 1 does
+  not mention one. Verified against a fixture reproducing r1 exactly - section
+  1 with only the Japan item - and it named CHF, EUR and GBP as missing.
+  IT IMMEDIATELY FOUND MORE THAN CAD. Run against the live edition it flagged
+  EUR, GBP and CHF as also uncovered. Jeff asked about one gap; the rule
+  exposed three more.
+  SEARCH BY THE MOVE, NOT BY THE COUNTRY - written into the spec. The morning
+  sweep asked investinglive.com for "Canada" headlines and got nothing because
+  the story was filed under TRADE WAR.
+
+# 2026-08-24 r3 - WHAT THE NEW SECTION 1 COVERAGE FOUND:
+#   EUR/GBP/CHF ARE ONE STORY AND IT IS THE DOLLAR. EURUSD near a three-month
+#   high on faded Fed hike expectations - investing.com calls it explicitly
+#   "not a euro story". GBP near multi-month highs on the same dollar weakness,
+#   capped by a cooling labour market and a BoE expected to hold 3.75%. CHF:
+#   the SNB "appears comfortable with CHF weakness" and demand for the franc as
+#   a CARRY-FUNDING currency keeps growing - which SUPPORTS EURCHF LONG, since
+#   a funding currency is a sold currency.
+#   THE CONSEQUENCE FOR THE LOCKED SET IS THE FINDING: THREE OF OUR FOUR PAIRS
+#   ARE LONG A CURRENCY WHOSE STRENGTH IS REALLY DOLLAR WEAKNESS. EUR, GBP and
+#   CHF's softness all trace to the same Fed repricing. THEY ARE LESS
+#   INDEPENDENT THAN LEG-DISJOINTNESS IMPLIES - EF-3's concentration risk
+#   arriving through a channel the disjointness rule does not measure.
+#
+# R-5 CLOSED - THE FED CHAIR IS KEVIN WARSH, in office since 22 MAY 2026, first
+#   Jackson Hole keynote FRI 28 AUG. Open since 2026-08-19 as "never asserted;
+#   needs a second source before any edition names a Chair". Confirmed by
+#   investing.com, corroborated by capitalstreetfx and litefinance, and it
+#   matches the 29 Jul minutes which had Warsh in the Chair's voting position.
+#   WHY THE SPEECH CARRIES UNUSUAL WEIGHT: Warsh has STRIPPED FORWARD GUIDANCE
+#   from Fed communication, so a set-piece speech from this Chair carries
+#   information a comparable speech under his predecessor would not - there is
+#   no standing guidance for it to merely restate. It lands on GBPUSD's short
+#   leg and scores NOTHING (LD-3).

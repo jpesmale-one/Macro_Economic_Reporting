@@ -683,6 +683,67 @@ def assert_tally_sorted(md):
     return len(scores)
 
 
+def assert_news_coverage(md):
+    """Section 1 must carry news for every currency section 0 says MOVED.
+
+    F-43, 2026-08-24. Jeff: "This kind of news should be in our section 1.
+    Earlier this morning we only have 1 for Japan but the CAD is already
+    pricing the move and we have no Idea why."
+
+    THE FAILURE WAS NOT A BAD SEARCH - it was that section 1 HAD NO REQUIRED
+    SCOPE. r1's section 0 diagnosed the gap to the CAD leg explicitly, ruled
+    OUT a JPY event, and named USDCAD's 48.7-pip move. Section 1 then covered
+    JAPAN - the leg just ruled out - and said nothing about Canada, the leg
+    just ruled in. One news item shipped while the market priced a trade war,
+    and every guard passed, because nothing required section 1 to cover
+    anything at all.
+
+    LD-30 says HOW to write a news item. It never said WHICH currencies need
+    one. This is that rule.
+
+    TRIGGER: a currency named in section 0's tracking table with a non-trivial
+    gap, or flagged as NO / unexplained, must appear in section 1. Requiring
+    all eight every edition would force six empty headings on a quiet day and
+    LD-27 bans filler - so the trigger is what the edition ITSELF says moved.
+    """
+    try:
+        s0 = md[md.index('## \u00a70 '):md.index('## \u00a71 ')]
+        s1 = md[md.index('## \u00a71 '):md.index('## \u00a72 ')]
+    except ValueError:
+        return 0
+    codes = ('USD', 'EUR', 'GBP', 'JPY', 'AUD', 'NZD', 'CAD', 'CHF')
+    need = set()
+    for line in s0.splitlines():
+        if not line.startswith('| ') or line.startswith('|---'):
+            continue
+        cells = [c.strip().replace('*', '') for c in line.strip('|').split('|')]
+        if len(cells) < 3:
+            continue
+        pair = cells[0]
+        if not any(pair.startswith(c) for c in codes):
+            continue
+        # a row that moved: flagged NO/unexplained, or carrying a pip gap
+        row = line.upper()
+        moved = ('| NO |' in row or 'UNEXPLAINED' in row
+                 or re.search(r'[-\u2212+]\d+\.\d+ PIPS', row))
+        if moved:
+            for c in codes:
+                if c in pair:
+                    need.add(c)
+    if not need:
+        return 0
+    missing = sorted(c for c in need if c not in s1)
+    if missing:
+        raise SystemExit(
+            'FATAL (LD-65/F-43): \u00a70 says %s moved, but \u00a71 carries no '
+            'news for %s.%sA currency the edition itself flags as moving needs '
+            'its catalyst looked for. On 2026-08-24 \u00a70 diagnosed a CAD gap '
+            'and \u00a71 covered Japan - the leg just ruled OUT - while 50%% '
+            'tariffs were live.' % (', '.join(sorted(need)),
+                                    ', '.join(missing), chr(10)))
+    return len(need)
+
+
 def assert_news_sources(md):
     """Section 1 must cite a real news source (F-17 / LD-30)."""
     m = re.search(r'^##\s*§1\b.*?$(.*?)(?=^##\s*§)', md, re.S | re.M)
@@ -753,6 +814,7 @@ if __name__ == '__main__':
     ntal = assert_tally_sorted(md)
     assert_levels_drawn(md)
     assert_no_offlist_scores(md)
+    ncov = assert_news_coverage(md)
     sources = assert_news_sources(md)
     pn, bn, pct = prose_ratio(md)
     print('guards:')
@@ -768,6 +830,7 @@ if __name__ == '__main__':
         print('  LD-41 4.0 scores  whitelist indicators only')
         print('  LD-39 whitelist %d/%d indicator rows, no blanks'
               % (nrow, nexp))
+    print('  LD-65 news cov  %d moved currency(ies) covered' % ncov)
     print('  F-17 sources    §1 cites %d: %s' % (len(sources), ', '.join(sources)))
     print('  LD-27 prose     %d prose blocks of %d units = %.1f%% %s'
           % (pn, bn, pct, 'OK' if pct < 15 else '*** OVER 15% TARGET ***'))
