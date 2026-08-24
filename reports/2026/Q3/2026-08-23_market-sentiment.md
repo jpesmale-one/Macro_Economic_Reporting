@@ -248,7 +248,7 @@ neither.
 **SNB's Tschudin: "Swiss inflation is low because of low inflation
 expectations"** *(investinglive.com, 21 Aug 15:20 GMT)*
 
-**Read — CHF:** confirms the −2.38 WEAK band from the SNB's own mouth. CHF
+**Read — CHF:** confirms the −0.38 WEAK band from the SNB's own mouth. CHF
 inflation is 0.4% and falling, the only deflation-leaning currency in the set,
 and the central bank is signalling it sees this as structural rather than
 temporary. **Supports EURCHF LONG.** No CHF release lands next week, so the
