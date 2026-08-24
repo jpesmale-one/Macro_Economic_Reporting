@@ -990,9 +990,33 @@ force gold and BTC share**, and it is why they moved together on Friday.
 
 ### Levels — recomputed, naming the bars
 
+#### ⚠ Forward resistance map (LD-47) — 250-bar lookback
+
+**4,632.145 was Friday's own high, not resistance.** Mapped properly from 250
+daily bars, swing pivots (2 bars each side), clustered within 45 points:
+
+| Level | Touches | Distance | Formed by |
+|---|---|---|---|
+| **R1 4,660.59** | **1** | **+25 pts** | 30 Apr high — **thin, single touch** |
+| **R2 4,764.90–4,800.80** | **3** | **+130 pts** | 1 Apr, 6 May, 11 May highs |
+| R3 4,858.22–4,891.54 | 2 | +223 pts | 7 Apr, 16 Apr highs |
+
+**The context matters more than the levels.** Gold peaked **5,238.775 on 6
+March**, crashed to **3,959.08 by 24 June — a 24.4% decline** — and has
+recovered **17.1%** off that low. **Price is climbing back through the wreckage
+of that fall**, so every level above is **old support that broke**, now acting
+as resistance. That is different from a market making new highs into clear air.
+
+**R1 is 25 points away and thin** — one touch from a single day in April. **R2
+at 4,764.90–4,800.80 is the real test**: three touches spanning April and May,
+and the shelf price failed at on the way down.
+
+**⚠ Monday's bar is open and gold is already trading 4,635.31**, above Friday's
+close and above Friday's high. **The runway to R1 is 25 points; to R2, 130.**
+
 | Level | Type | Formed by |
 |---|---|---|
-| **4,632.145** | Resistance — the high | Fri 21 Aug high |
+| **4,632.145** | Friday's high — **cleared Monday** | Fri 21 Aug high |
 | **4,524.34 / 4,541.045** | Support — prior breakout | Wed 19 high, Thu 20 high |
 | **4,508.995** | Support — Friday's low | Fri 21 Aug low |
 | **~4,501** | The 200-day MA | *investinglive, 21 Aug — not recomputed here* |
@@ -1002,10 +1026,17 @@ force gold and BTC share**, and it is why they moved together on Friday.
 
 | Level | Drawing | TV entity |
 |---|---|---|
-| 4,632.145 | red line — resistance | `vHuuCj` |
-| 4,524.34–4,541.045 | green zone — breakout shelf | `FhFWhA` |
-| **4,508.995** | **green line — the falsifier** | `iBwTqU` |
-| 4,324.68 | dashed — major base | `LjZisG` |
+| R1 4,660.59 | amber — first overhead | `ktvK7r` |
+| **R2 4,764.90–4,800.80** | **red zone — next major** | `1CzEFF` |
+| R3 4,858.22–4,891.54 | red zone | `MmsD3B` |
+| **4,508.995** | **green line — the falsifier** | `PyWqzK` |
+| 4,324.68 | dashed — major base | `IHrDWA` |
+
+*Falsifier verified against LD-48: 4,508.995 is Friday's low, a real bar, **126
+points** below price against a **111-point** 5-bar mean range — beyond 1 ATR.
+**Cleared first:** `vHuuCj`, `iBwTqU`, `FhFWhA`, `LjZisG` from the weekend
+edition. **Two drawings on this chart are Jeff's own (`wbVoTI`, `8M24eO`) and
+were left untouched** (LD-5).*
 
 *`OANDA:XAUUSD` daily. Chart carried no prior drawings; none of Jeff's own were
 touched. **Clear these four before the next run** (LD-16 step 6).*

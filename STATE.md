@@ -3534,3 +3534,30 @@ LD-54 - REVISION DETECTION AND CADENCE STALENESS. Two gaps Jeff named:
   gate then flagged it on the next run - correct behaviour, but the baseline
   had to be reset after restoring the model. RESET THE SNAPSHOT AFTER ANY TEST
   THAT MUTATES score_model.py.
+
+# 2026-08-24 GOLD FORWARD MAP (LD-47 applied to XAUUSD, closing half of R-10).
+#   Jeff: "What is our next levvel for Gold?" - the same gap F-32 found on
+#   CADJPY. Section 5 published 4632.145 as "resistance" and that is FRIDAY'S
+#   OWN HIGH. R-10 had this queued; Jeff got there first.
+#   MAPPED, 250 daily bars, swing pivots, clustered within 45 pts:
+#     R1 4660.59              1 touch   +25 pts   30 Apr - THIN
+#     R2 4764.90-4800.80      3 touches +130 pts  1 Apr, 6 May, 11 May
+#     R3 4858.22-4891.54      2 touches +223 pts  7 Apr, 16 Apr
+#   THE CONTEXT IS THE FINDING, not the levels. Gold peaked 5238.775 on 6 Mar,
+#   crashed to 3959.08 by 24 Jun (-24.4%), and has recovered 17.1% off that
+#   low. PRICE IS CLIMBING BACK THROUGH THE WRECKAGE OF THAT DECLINE - every
+#   level above is BROKEN SUPPORT now acting as resistance. That is a
+#   materially different situation from a market making new highs into clear
+#   air, and section 5 read as the latter.
+#   MONDAY'S BAR IS OPEN: gold trading 4635.31, already above Friday's HIGH.
+#   Runway 25 pts to R1, 130 to R2.
+#   FALSIFIER 4508.995 HOLDS under LD-48: Friday's low, a real bar, 126 pts out
+#   against a 111-pt 5-bar mean range - beyond 1 ATR.
+#   CHART: cleared our four (vHuuCj, iBwTqU, FhFWhA, LjZisG), drew five
+#   (ktvK7r R1, 1CzEFF R2, MmsD3B R3, PyWqzK falsifier, IHrDWA base).
+#   TWO DRAWINGS ON THIS CHART WERE NOT OURS - wbVoTI and 8M24eO, absent from
+#   our entity records. LEFT UNTOUCHED per LD-5. The draw_list check before
+#   clearing is exactly why LD-46 mandates it, and this is the second time it
+#   has protected Jeff's own work (AUDCAD carried seven on 2026-08-20).
+#   R-10 HALF CLOSED - BTCUSD still publishes its own Friday high as
+#   resistance and needs the same treatment.
