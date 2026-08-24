@@ -4,10 +4,10 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-08-24 (r3, MONDAY, UNSEALED - WEEK LOCKED; CAD catalyst found)
-date: 2026-08-24
-data_asof: 2026-08-24 16:24 PHT (London liquidity; macro = Friday's, no
-           whitelist release today, verified via week_ahead.py)
+edition: 2026-08-25 (r1, TUESDAY, UNSEALED - tracking day, set stays LOCKED)
+date: 2026-08-25
+data_asof: 2026-08-25 06:38 PHT (Monday's daily bar CLOSED; macro = Friday's,
+           both USD releases still ahead, verified via week_ahead.py)
 last_sealed: 2026-08-21 (r13, SEALED FULL) - the authority until Monday seals
 track: LEAN (no section-2 trigger has fired)
 handover: docs/HANDOVER_2026-08-24_fine_tuning.md - READ THIS FIRST, it is
@@ -4251,3 +4251,52 @@ F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT TO
   SO THE INTERVENTION IS SUPPORTIVE of a short-JPY position, not hostile to it.
   The threat is EPISODIC, not a trend, and the trend runs the other way.
   Sunday published the risk without the flow. BOTH BELONG IN THE READ.
+
+# 2026-08-25 r1 - TUESDAY, TRACKING DAY. Set stays LOCKED (LD-29).
+#   Published 06:38 PHT - a deliberate window: MONDAY'S DAILY BAR HAS CLOSED,
+#   so the grade is on a completed session rather than a partial one, and Tokyo
+#   has not opened. Monday's r1 was built on a 3-hour Asian bar and had to be
+#   revised twice; this one starts from a closed bar.
+#   MONDAY GRADED, 2 OF 4 FAVOURING:
+#     CADJPY  115.490 -> 114.920  -57.0 pips  NO
+#     EURCHF  0.93562 -> 0.93604   +4.2 pips  YES
+#     GBPUSD  1.36456 -> 1.36306  -15.0 pips  NO
+#     AUDNZD  1.20071 -> 1.19986   -8.5 pips  YES (short read)
+#   CADJPY CAME WITHIN 34 PIPS OF ITS FALSIFIER at Monday's low of 114.810
+#   against 114.472. That is INSIDE HALF AN AVERAGE DAILY RANGE (3-bar mean 60
+#   pips). Distance to falsifier: 58 at the lock -> 47 on the close -> 34 at
+#   the low. IT HAS NOT FIRED and LD-29 is explicit that a pair leaves by its
+#   falsifier and not by conviction, SO THE SET STAYS LOCKED. But it is now
+#   within one ordinary session of voiding, which it was not at the lock.
+#   THE CAUSE IS UNCHANGED AND STILL RUNNING - 50% tariffs live, retaliation
+#   due 8 Sep, and CAD's +8.38 still sees none of it.
+#
+#   SECTION 1 - THE DOLLAR IS AT ITS LOWEST SINCE MAY on the SAME Treasury
+#   buyback mechanism as 19 Aug, NOW DOUBLED. investinglive.com, Eamonn
+#   Sheridan, ~06:00 PHT, HSBC cited: falling real yields, narrower rate gap
+#   with the euro. THIS IS A CONCENTRATION WARNING for the locked set - three
+#   of four pairs are long a currency whose strength is really dollar weakness
+#   (EUR, GBP directly, CHF via carry). If the dollar reverses on Jackson Hole,
+#   THREE POSITIONS TURN TOGETHER.
+#
+# F-44 - TWO JPY READS IN TENSION AND THE EDITION PUBLISHES BOTH.
+#   F-39 (Monday): the intervention TURBO CHARGED the carry trade, the
+#   incentive to fund in yen is intact -> SUPPORTIVE of short-JPY.
+#   This morning: an ex-board member expects SEPTEMBER AND JANUARY HIKES, and
+#   warns a hold could reignite a yen selloff -> HOSTILE to short-JPY.
+#   BOTH ARE REAL AND THEY POINT OPPOSITE WAYS. USDJPY at 158.884 says the
+#   carry side is currently winning. STATED AS A TENSION RATHER THAN RESOLVED -
+#   resolving it would mean picking one on no evidence.
+#   EVIDENCE DISCIPLINE APPLIED: the ex-board-member ARTICLE COULD NOT BE
+#   RETRIEVED - 404 on the URL, absent from /forex. The headline was seen on
+#   the homepage listing. PUBLISHED AS A HEADLINE WITH ITS PROVENANCE, NOT AS A
+#   QUOTE, and the individual is NOT named because I could not source the name.
+#   Verified BoJ context from Bloomberg/CNBC instead: rate 1%, highest since
+#   1995, 31 Jul hold left September in play, next meeting 18 Sep.
+#
+# A BUILD BUG WORTH RECORDING: my first assembly ran the section-2 string
+#   through a shell heredoc and BACKTICKS IN THE MARKDOWN WERE EXECUTED -
+#   `pipelines/week_ahead.py` ran as a command. Also section2.build() emits
+#   2.1-2.5 ONLY; 2.6 Interest Rate comes from rate_model and must be carried,
+#   and R-7 caught its absence immediately. FIX: assemble editions from a FILE,
+#   never from a heredoc containing markdown.
