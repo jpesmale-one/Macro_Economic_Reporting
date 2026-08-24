@@ -4,10 +4,10 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-08-23 (r1, WEEKEND PREP - NOT SEALED, by design per LD-32)
-date: 2026-08-23
-data_asof: 2026-08-21 close (all prices/scores are Friday's, republished)
-           + late-Friday prints and news swept 2026-08-23 00:54-01:20 PHT
+edition: 2026-08-24 (r1, MONDAY, UNSEALED - section 4 NOT LOCKED, r2 pending)
+date: 2026-08-24
+data_asof: 2026-08-24 10:55 PHT (live Asian-session prices; macro = Friday's,
+           no whitelist release today, verified via week_ahead.py)
 last_sealed: 2026-08-21 (r13, SEALED FULL) - the authority until Monday seals
 track: LEAN (no section-2 trigger has fired)
 spec_rev: 2026-08-23 - LD-27..LD-34 written in; R-1, R-7, F-19 CLOSED.
@@ -3903,3 +3903,48 @@ LD-60 - SECTION 4.5 IS A POSITIONING LIST, NOT A WARNING LIST (Jeff).
 #   SPEC UPDATED: 4.5 covers every carried pair, and any candidate is run
 #   through select_pairs.exposure() against the carried set before it is
 #   offered.
+
+# 2026-08-24 - MONDAY EDITION r1 BUILT, SECTION 4 DELIBERATELY NOT LOCKED.
+#   FIRST PUSH OF THE SESSION LANDED FIRST: 3a742ac..bf648e5, 56 commits, zero
+#   unpushed. My running count had drifted to 64 - I had been INCREMENTING per
+#   commit instead of re-deriving it, which is F-8's mistake in miniature. The
+#   real number came from `git log --oneline origin/main..HEAD | wc -l`.
+#   NEVER CARRY A COUNT IN YOUR HEAD WHEN THE REPO CAN ANSWER.
+#
+#   JEFF'S CALL ON LOCK TIMING: build now, lock after London. Published 10:55
+#   PHT - three hours into Asian, London ~15:00, daily bar 21h from closing.
+#   Section 4 is PROPOSED-PENDING. r2 re-reads structure on real liquidity and
+#   locks. Rejected: locking now (a week decided on a 3-hour thin bar) and
+#   waiting entirely (the gap read is only useful in this window).
+#
+#   THE FINDING OF THE MORNING - CADJPY GAPPED 38.8 PIPS AGAINST THE #1
+#   PROPOSAL, AND IT IS A CAD-SIDE MOVE:
+#     USDJPY 158.982 -> open 159.002, now 158.884   JPY FLAT
+#     USDCAD 1.37669 -> open 1.38156, now 1.37926   CAD WEAKENED 48.7 pips
+#     CADJPY 115.490 -> open 115.102, now 115.199
+#   NOT THE INTERVENTION RISK section 1 flagged - USDJPY at 158.884 is nowhere
+#   near the ~164 that triggered the 31 Jul operation. Diagnosing WHICH LEG
+#   moved took three symbol reads and changed the entire read.
+#   CAD NOW CARRIES THREE NEGATIVES against an unmoved +8.38: superseded
+#   Spending row, GDP -0.1% forecast Friday, and this gap. THE SCORE IS LAGGING
+#   THE PRICE - LD-45's dollar-check logic applied to a currency.
+#
+#   F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT
+#   TO CADJPY. INCOMPLETE. This morning's sweep found cnbc.com 20 Aug: Japanese
+#   investors net bought OVER 5 TRILLION YEN of foreign assets in the two weeks
+#   to 15 Aug, using the stronger yen to fund NEW non-yen positions. Jesper Koll
+#   (Monex): intervention "TURBO CHARGED" carry trades without removing the
+#   incentive. Yen gains faded; USDJPY back to 158.884 from ~155.
+#   SO THE INTERVENTION IS SUPPORTIVE of a short-JPY position, not hostile to
+#   it. The threat is EPISODIC, not a trend, and the trend runs the other way.
+#   Sunday published the risk without the flow. Both belong.
+#
+#   CARRIED FORWARD DELIBERATELY, each stated in-edition: sections 2 and 3
+#   unchanged (ZERO whitelist releases today - verified with week_ahead.py, not
+#   assumed); F&G from Friday's capture (CNN posts once daily); confidence
+#   figures NOT re-tallied, because the LD-20 arithmetic uses structure and
+#   last-bar terms and the current bar is 3 hours old in the thinnest session
+#   of the week. RE-SCORING ON IT WOULD PRODUCE A NUMBER THAT LOOKS PRECISE
+#   AND IS NOT.
+#   THE CAD GAP HAS NO SOURCED CAUSE. Flagged as a research trigger for r2 per
+#   LD-26 rather than written up as a finding.
