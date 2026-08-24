@@ -293,14 +293,14 @@ this session and reproduces r13 exactly.
 | **STRONG** | **GBP** | **+5.75** | Risk-corr | +0.00 · +1.00 · −1.00 · +2.00 · +3.00 · **+0.75** |
 | NEUTRAL | NZD | +3.75 | Commodity | +1.00 · +0.50 · −1.00 · −2.00 · +3.00 · **+2.25** |
 | NEUTRAL | USD | +2.25 | Safe haven | +1.00 · +0.25 · +1.00 · +0.00 · +0.00 · **+0.00** |
-| NEUTRAL | AUD | +2.08 | Commodity | +1.00 · +0.75 · +1.00 · −0.67 · +0.00 · **+0.00** |
+| NEUTRAL | **AUD** | **+2.75** | Commodity | +1.00 · +0.75 · +1.00 · **+0.00** · +0.00 · **+0.00** |
 | **WEAK** | **JPY** | **+0.00** | Safe haven | +1.00 · +0.00 · −1.00 · +0.00 · +0.00 · **+0.00** |
 | **WEAK** | **CHF** | **−0.38** | Safe haven | **+1.00** · +1.00 · **+1.00** · +0.00 · −3.00 · **−0.38** |
 
 Bands: **STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00**
 
 **Group standings** — Safe haven: USD +2.25 › JPY +0.00 › CHF −0.38 ·
-Commodity: CAD +8.38 › NZD +3.75 › AUD +2.08 · Risk-corr: EUR +6.25 › GBP +5.75
+Commodity: CAD +8.38 › NZD +3.75 › AUD +2.75 · Risk-corr: EUR +6.25 › GBP +5.75
 
 **⚠ TWO SCORES CARRY KNOWN PRESSURE INTO MONDAY.** CAD's Spending +1.00 rests on
 data superseded by Friday's −0.8% retail sales miss (§0L). AUD's +2.08 faces its
@@ -381,7 +381,7 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 
 ### 2.4 Employment (weight 2)
 
-**13 indicators — 6 GOOD · 5 BAD · 2 NEUTRAL**
+**13 indicators — 6 GOOD · 4 BAD · 3 NEUTRAL**
 
 | CCY | Indicator | Actual | Previous | Ref | Threshold | Score |
 |---|---|---|---|---|---|---|
@@ -391,27 +391,38 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | GBP | Claimant Count Change | -11K | -6.4K | Jul/26 | <Prev | **GOOD** |
 | JPY | Unemployment Rate | 2.5% | 2.5% | Jun/26 | unchanged | NEUTRAL |
 | AUD | ANZ-Indeed Job Ads MoM | +0.8% | -0.1% | Jul/26 | >0.5% | **GOOD** |
-| AUD | Employment Change | -15.8K (FT +16.3K, PT -32.2K) | 76.3K (FT +29.3K, PT +47.0K) | Jul/26 | hdl>0 BAD; FT>prev BAD; PT<prev GOOD | **BAD** |
+| AUD | Employment Change | -15.8K (FT +16.3K, PT -32.2K) | 76.3K (FT +29.3K, PT +47.0K) | Jul/26 | hdl BAD; FT NEUTRAL (LD-57); PT GOOD | NEUTRAL |
 | AUD | Unemployment Rate | 4.5% | 4.4% | Jul/26 | >Prev | **BAD** |
 | NZD | Unemployment Rate | 5.6% | 5.4% | Jun/26 | >Prev | **BAD** |
-| CAD | Employment Change | 75.1K (FT +38.6K, PT +36.6K) | 18.2K | Jul/26 | hdl>0 GOOD; FT split for Jun NOT SOURCED | **GOOD** |
+| CAD | Employment Change | 75.1K (FT +38.6K, PT +36.6K) | 18.2K | Jul/26 | hdl>0 GOOD; FT (LD-57) needs Jun split NOT SOURCED | **GOOD** |
 | CAD | Unemployment Rate | 6.4% | 6.5% | Jul/26 | <Prev | **GOOD** |
 | CHF | Non Farm Payrolls | 5.537M | 5.544M | Q1/26 | >Cons 5.4M | **GOOD** |
 | CHF | Unemployment Rate | 3.0% | 2.9% | Jul/26 | >Prev | **BAD** |
 
-**⚠ HOW EMPLOYMENT CHANGE IS SCORED (LD-56).** The whitelist source specifies a **three-part composite**, not a single test: *"Actual > 0 is Good **but gives more weight to Full Time Employment**"* — headline `>0`, Full Time `>Prev`, Part Time `<Prev`. **The published threshold said only `<Prev`**, which reads as "−15.8K vs 76.3K, fell, therefore BAD" and makes the full-time gain look ignored. It was not — it simply lost its own test.
+**⚠ FULL TIME EMPLOYMENT IS SCORED ON A NEW RULE (LD-57), Jeff's call.** The old test was a bare `>Prev`, which graded a **positive** full-time month BAD for merely growing more slowly than the month before. Decelerating growth is not contraction and the model should not call it that. The rule now:
 
-**AUD July, verified against the ABS:** headline **−15.8K**, full time **+16.3K**, part time **−32.2K**.
-
-| Test | Reading | Grade |
+| Full Time Chg | vs Previous | Grade |
 |---|---|---|
-| Headline `>0` | −15.8K | **BAD** |
-| **Full Time `>Prev`** *(weighted heaviest)* | 16.3K vs 29.3K | **BAD** |
-| Part Time `<Prev` | −32.2K vs +47.0K | GOOD |
+| **> 0** | ≥ previous | **GOOD** |
+| **> 0** | < previous | **NEUTRAL** — growth, but slowing |
+| **< 0** | ≤ previous | **BAD** |
+| **< 0** | > previous | **NEUTRAL** — contraction, but easing |
+| **= 0** | any | NEUTRAL |
 
-**Two BAD including the heaviest test → BAD.** Full-time employment **did** rise, but by *less than the month before*, and the source's test is against the prior month, not against zero. **The grade was right; the published rule was not.** Both AUD and CAD rows now show the composite and their FT/PT splits.
+**Full time still carries the most weight** of the three legs.
 
-**CAD July** headline +75.1K, full time **+38.6K**, part time **+36.6K** *(Statistics Canada, 7 Aug)*. **June's FT/PT split is not sourced**, so the full-time test cannot be run on it — flagged, not guessed.
+**AUD July re-graded, verified against the ABS** — headline −15.8K, full time **+16.3K**, part time **−32.2K**:
+
+| Leg | Reading | Was | **Now** |
+|---|---|---|---|
+| Headline `>0` | −15.8K | BAD | BAD |
+| **Full Time** *(heaviest)* | +16.3K vs +29.3K | BAD | **NEUTRAL** |
+| Part Time `<Prev` | −32.2K vs +47.0K | GOOD | GOOD |
+| **Composite** | | **BAD** | **NEUTRAL** |
+
+**AUD moves +2.08 → +2.75**, passing USD into 5th. **Band unchanged (NEUTRAL), and no carried pair has an AUD leg** — CADJPY, EURCHF and GBPUSD are untouched. The AUDNZD reject stands and is weaker still (spread 1.67 → 1.00).
+
+**CAD carries the same rule but cannot run it** — June's FT/PT split is not sourced, so the full-time leg is un-runnable and flagged rather than guessed. July: headline +75.1K, FT **+38.6K**, PT **+36.6K** *(Statistics Canada, 7 Aug)*.
 
 ### 2.5 Inflation (weight 3)
 
@@ -642,7 +653,7 @@ GBPUSD is the proposal most exposed to it.
 
 **Merged into §2.0** — the tally and the bands are one table now, so a band can never disagree with the score that produced it.
 
-**STRONG:** CAD +8.38 · EUR +6.25 · GBP +5.75 · **NEUTRAL:** NZD +3.75 · USD +2.25 · AUD +2.08 · **WEAK:** JPY +0.00 · CHF −0.38
+**STRONG:** CAD +8.38 · EUR +6.25 · GBP +5.75 · **NEUTRAL:** NZD +3.75 · USD +2.25 · AUD +2.75 · **WEAK:** JPY +0.00 · CHF −0.38
 
 ### 4.2 All candidate pairings — the full board
 
@@ -665,7 +676,7 @@ Grouped by type, tradable first. Minimum spread **1.00** (LD-18).
 | **CHFJPY** | SHORT | SAFE | 2.38 | — | ⬜ both legs claimed |
 | **AUDJPY** | LONG | RISK-ON | 2.08 | — | ⬜ JPY already claimed |
 | **USDJPY** | LONG | SAFE | 2.25 | — | ⬜ JPY already claimed |
-| **NZDAUD** | LONG | COMM | **1.67** | 1.19929 *(AUDNZD)* | ❌ **tested — 42.0% of range, no edge (§4.4)** |
+| **NZDAUD** | LONG | COMM | **1.00** | 1.19929 *(AUDNZD)* | ❌ **tested — 42.0% of range, no edge (§4.4)** |
 | **NZDUSD** | LONG | COMM | 1.50 | **0.59790** | ⬜ **charted (R-3 closed)** — 94.6% of range, made the 15-session high Friday. **USD leg already claimed by GBPUSD** |
 | AUDUSD | SHORT | COMM | 0.17 | — | ⬜ below the 1.00 floor |
 | CADUSD | — | — | 6.13 | — | ⬜ non-standard symbol; **USDCAD SHORT** is the form |
@@ -681,14 +692,13 @@ leg** (LD-19), not for any weakness in the setup.
 **RISK-OFF: NIL — and proved on the full matrix, not argued from the extremes
 (LD-18).** Haven score minus commodity score, all nine cells:
 
-| | **CAD +8.38** | **AUD +2.08** | **NZD +3.75** |
+| | **CAD +8.38** | **AUD +2.75** | **NZD +3.75** |
 |---|---|---|---|
-| **USD +2.25** | −6.12 | **+0.17** | −1.50 |
-| **JPY +0.00** | −8.38 | −2.08 | −3.75 |
+| **USD +2.25** | −6.12 | **−0.50** | −1.50 |
+| **JPY +0.00** | −8.38 | **−2.75** | −3.75 |
 | **CHF −0.38** | −11.75 | −5.46 | −7.12 |
 
-**Not one cell reaches the +1.00 floor.** The best is USD−AUD at **+0.17**,
-six times below the threshold. **There is no risk-off trade this week**, and
+**Not one cell reaches the +1.00 floor.** The best is **USD−NZD at −1.50**; USD−AUD, previously the closest cell at +0.17, is now **−0.50**. **There is no risk-off trade this week**, and
 that is a finding: every haven scores below every commodity currency except
 one near-tie. A nil result stated on the full grid is information; a nil
 result argued from CAD and CHF alone would not be.
@@ -879,7 +889,7 @@ EUR/CHF and GBP/USD claimed, only **AUD and NZD** remain free.
 
 | Candidate | Spread | Structure | Last bar | Tally | Verdict |
 |---|---|---|---|---|---|
-| **AUDNZD** *(short = long NZD)* | 1.67 | **42.0% of range** — mid, no edge | **closed +25.1 pips AGAINST** | **0** | **REJECTED — LOW, and price disagrees** |
+| **AUDNZD** *(short = long NZD)* | 1.00 | **42.0% of range** — mid, no edge | **closed +25.1 pips AGAINST** | **0** | **REJECTED — LOW, and price disagrees** |
 
 Range 1.19136–1.21024 over 16 sessions; Friday closed 1.19929.
 (1.19929−1.19136)/(1.21024−1.19136) = **42.0%**.

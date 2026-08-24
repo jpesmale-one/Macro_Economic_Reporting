@@ -80,11 +80,11 @@ ROWS = [
  ("Employment","GB","Claimant Count Change","-11K","-6.4K","Jul/26","<Prev","GOOD"),
  ("Employment","JP","Unemployment Rate","2.5%","2.5%","Jun/26","unchanged","NEUTRAL"),
  ("Employment","AU","ANZ-Indeed Job Ads MoM","+0.8%","-0.1%","Jul/26",">0.5%","GOOD"),
- ("Employment","AU","Employment Change","-15.8K (FT +16.3K, PT -32.2K)","76.3K (FT +29.3K, PT +47.0K)","Jul/26","hdl>0 BAD; FT>prev BAD; PT<prev GOOD","BAD"),
+ ("Employment","AU","Employment Change","-15.8K (FT +16.3K, PT -32.2K)","76.3K (FT +29.3K, PT +47.0K)","Jul/26","hdl BAD; FT NEUTRAL (LD-57); PT GOOD","NEUTRAL"),
  ("Employment","AU","Unemployment Rate","4.5%","4.4%","Jul/26",">Prev","BAD"),
  ("Employment","NZ","Unemployment Rate","5.6%","5.4%","Jun/26",">Prev","BAD"),
  ("Employment","CA","Unemployment Rate","6.4%","6.5%","Jul/26","<Prev","GOOD"),
- ("Employment","CA","Employment Change","75.1K (FT +38.6K, PT +36.6K)","18.2K","Jul/26","hdl>0 GOOD; FT split for Jun NOT SOURCED","GOOD"),
+ ("Employment","CA","Employment Change","75.1K (FT +38.6K, PT +36.6K)","18.2K","Jul/26","hdl>0 GOOD; FT (LD-57) needs Jun split NOT SOURCED","GOOD"),
  ("Employment","CH","Non Farm Payrolls","5.537M","5.544M","Q1/26",">Cons 5.4M","GOOD"),
  ("Employment","CH","Unemployment Rate","3.0%","2.9%","Jul/26",">Prev","BAD"),
  # ---------------- INFLATION (w=3) ----------------
@@ -100,6 +100,37 @@ ROWS = [
 
 CCYS = ["US","EA","GB","JP","AU","NZ","CA","CH"]
 LABEL = {"US":"USD","EA":"EUR","GB":"GBP","JP":"JPY","AU":"AUD","NZ":"NZD","CA":"CAD","CH":"CHF"}
+
+# LD-57 - FULL TIME EMPLOYMENT CHANGE, Jeff's rule, 2026-08-24.
+# Applies to AUD and CAD, the two currencies whose Employment Change the
+# whitelist source scores as a composite "with more weight to Full Time".
+#
+# WHY IT CHANGED: the previous test was a bare "Actual > Previous", which
+# graded a POSITIVE full-time month BAD merely for growing more slowly than
+# the month before (+16.3K after +29.3K -> BAD). Jeff: full-time growth that
+# decelerates is not the same as full-time contraction, and the model should
+# not call it that.
+#
+#   a) Actual > 0 and Actual >= Previous -> GOOD     growth, holding or better
+#   b) Actual > 0 and Actual <  Previous -> NEUTRAL  growth, but slowing
+#   c) Actual < 0 and Actual <= Previous -> BAD      contraction, no better
+#   d) Actual < 0 and Actual >  Previous -> NEUTRAL  contraction, but easing
+#   e) Actual = 0                        -> NEUTRAL  (Jeff's call - zero is
+#      neither growth nor contraction, and every >Prev test in the whitelist
+#      source already reads "No change is Neutral")
+#
+# FULL TIME STILL CARRIES MORE WEIGHT than the headline or part-time legs -
+# that is unchanged from the source and from LD-56.
+def full_time_grade(actual, previous):
+    """Grade a Full Time Employment Change print. Returns GOOD/NEUTRAL/BAD."""
+    if actual is None or previous is None:
+        return None                      # un-runnable; publish as NOT SOURCED
+    if actual == 0:
+        return "NEUTRAL"
+    if actual > 0:
+        return "GOOD" if actual >= previous else "NEUTRAL"
+    return "BAD" if actual <= previous else "NEUTRAL"
+
 
 def compute(include_rate=True):
     """Five scored categories plus Interest Rate (LD-23, weight 3) when

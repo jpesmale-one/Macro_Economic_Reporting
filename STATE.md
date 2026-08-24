@@ -3695,3 +3695,48 @@ LD-56 - EMPLOYMENT CHANGE IS A THREE-PART COMPOSITE AND THE REPORT PUBLISHED
   EVERY COMPONENT AND EVERY SUB-GRADE. A single threshold string that
   summarises a multi-part rule is not a threshold, it is a claim the reader
   cannot check - and P2 exists precisely so figures can be checked.
+
+LD-57 - FULL TIME EMPLOYMENT CHANGE, NEW SCORING RULE (Jeff, 2026-08-24).
+  "let's change the scoring of Full Time Employment. Apply this to both AUD and
+   CAD
+     a) Actual > 0 and Actual >= Previous is Good
+     b) Actual > 0 and Actual < Previous is Neutral
+     c) Actual < 0 and Actual <= Previous is Bad
+     d) Actual < 0 and Actual > Previous is Neutral
+   We still give more wight to Full Time Employee"
+  WHY IT CHANGED: the old test was a bare "Actual > Previous", which graded a
+  POSITIVE full-time month BAD merely for growing more slowly than the month
+  before - AU July +16.3K after +29.3K scored BAD. DECELERATING GROWTH IS NOT
+  CONTRACTION and the model should not call it that. This is the rule LD-56
+  exposed by publishing.
+  IMPLEMENTED AS A FUNCTION, not hand-graded: score_model.full_time_grade().
+  The LD-39 principle - if a block is derived from data, generate it - applies
+  to a GRADING RULE just as much as to a table. All eight branches verified.
+  ONE GAP IN THE FOUR CLAUSES, raised before applying: Actual = 0 EXACTLY is
+  covered by neither ">0" nor "<0". A flat month happens.
+  JEFF'S CALL: NEUTRAL. Consistent with the whitelist source, where every
+  ">Prev" test already reads "No change is Neutral".
+  REJECTED: reading ">0" as ">=0" so a flat month falls into the growth branch.
+  It would let a flat month after a NEGATIVE month score GOOD, which overstates
+  a stalled labour market.
+
+  AUD RE-GRADED, and this MOVES A LIVE SCORE:
+    headline  >0        -15.8K            -> BAD
+    FULL TIME (LD-57)   +16.3K vs +29.3K  -> NEUTRAL  (was BAD)
+    part time <Prev     -32.2K vs +47.0K  -> GOOD
+    composite BAD -> NEUTRAL.  AUD +2.08 -> +2.75, passing USD into 5th.
+  HOW THE COMPOSITE RESOLVES IS MY INFERENCE AND I STATED IT AS SUCH. The
+  source says full time carries MORE weight but never says how much. Three
+  readings: full-time-decisive -> NEUTRAL; majority-of-three (BAD and GOOD
+  cancel) -> NEUTRAL; any-BAD-is-BAD -> BAD. THE FIRST TWO AGREE AND THE THIRD
+  CONTRADICTS "more weight to full time" - it would let the headline override
+  the heaviest leg. Took NEUTRAL.
+  IMPACT CHECKED BEFORE APPLYING, not after:
+    NO CARRIED PAIR HAS AN AUD LEG - CADJPY, EURCHF, GBPUSD all untouched.
+    AUD band unchanged (NEUTRAL, +0.01..+5.49).
+    AUDNZD reject stands and is WEAKER - spread 1.67 -> 1.00.
+    RISK-OFF MATRIX MOVED: USD-AUD was the closest cell to qualifying at +0.17;
+    it is now -0.50. Risk-off remains NIL and is now further from firing.
+  CAD CARRIES THE SAME RULE BUT CANNOT RUN IT - June's FT/PT split is not
+  sourced (R-15). The row says so rather than guessing. July headline +75.1K,
+  FT +38.6K, PT +36.6K (Statistics Canada, 7 Aug).

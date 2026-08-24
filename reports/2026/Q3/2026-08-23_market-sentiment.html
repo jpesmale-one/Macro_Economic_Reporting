@@ -382,12 +382,12 @@
 <tr><td><b>STRONG</b></td><td class="num"><b>GBP</b></td><td class="num"><b>+5.75</b></td><td>Risk-corr</td><td>+0.00 · +1.00 · −1.00 · +2.00 · +3.00 · <b>+0.75</b></td></tr>
 <tr><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td class="num">NZD</td><td class="num">+3.75</td><td>Commodity</td><td>+1.00 · +0.50 · −1.00 · −2.00 · +3.00 · <b>+2.25</b></td></tr>
 <tr><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td class="num">USD</td><td class="num">+2.25</td><td>Safe haven</td><td>+1.00 · +0.25 · +1.00 · +0.00 · +0.00 · <b>+0.00</b></td></tr>
-<tr><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td class="num">AUD</td><td class="num">+2.08</td><td>Commodity</td><td>+1.00 · +0.75 · +1.00 · −0.67 · +0.00 · <b>+0.00</b></td></tr>
+<tr><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td class="num"><b>AUD</b></td><td class="num"><b>+2.75</b></td><td>Commodity</td><td>+1.00 · +0.75 · +1.00 · <b>+0.00</b> · +0.00 · <b>+0.00</b></td></tr>
 <tr><td><b>WEAK</b></td><td class="num"><b>JPY</b></td><td class="num"><b>+0.00</b></td><td>Safe haven</td><td>+1.00 · +0.00 · −1.00 · +0.00 · +0.00 · <b>+0.00</b></td></tr>
 <tr><td><b>WEAK</b></td><td class="num"><b>CHF</b></td><td class="num"><b>−0.38</b></td><td>Safe haven</td><td><b>+1.00</b> · +1.00 · <b>+1.00</b> · +0.00 · −3.00 · <b>−0.38</b></td></tr>
 </table></div>
 <p>Bands: <b>STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00</b></p>
-<p><b>Group standings</b> — Safe haven: USD +2.25 › JPY +0.00 › CHF −0.38 · Commodity: CAD +8.38 › NZD +3.75 › AUD +2.08 · Risk-corr: EUR +6.25 › GBP +5.75</p>
+<p><b>Group standings</b> — Safe haven: USD +2.25 › JPY +0.00 › CHF −0.38 · Commodity: CAD +8.38 › NZD +3.75 › AUD +2.75 · Risk-corr: EUR +6.25 › GBP +5.75</p>
 <p><b>⚠ TWO SCORES CARRY KNOWN PRESSURE INTO MONDAY.</b> CAD's Spending +1.00 rests on data superseded by Friday's −0.8% retail sales miss (§0L). AUD's +2.08 faces its weight-3 Inflation category — currently <b>0.00</b> — on Wednesday.</p>
 <p><b>All 71 whitelist indicators published in full</b> — Actual, Previous, reference period, the threshold applied and the resulting score, every one. An indicator that cannot be sourced is published as <b>NOT FOUND</b> so it can be verified, never dropped or blanked. Generated from <code>pipelines/score_model.py</code> by <code>pipelines/section2.py</code>, so the tables and the §2.0 tally cannot drift apart.</p>
 <details class="fold"><summary>2.1 Production (weight 1)<span class="cnt">19 rows</span></summary><div class="foldbody"><p><b>19 indicators — 16 GOOD · 1 BAD · 2 NEUTRAL</b></p>
@@ -452,7 +452,7 @@
 <tr><td class="num">CAD</td><td>Balance of Trade</td><td>C$3.86B</td><td>C$3.70B</td><td>Jun/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Balance of Trade</td><td>CHF8.1B</td><td>CHF3.8B</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 </table></div></div></details>
-<details class="fold"><summary>2.4 Employment (weight 2)<span class="cnt">16 rows</span></summary><div class="foldbody"><p><b>13 indicators — 6 GOOD · 5 BAD · 2 NEUTRAL</b></p>
+<details class="fold"><summary>2.4 Employment (weight 2)<span class="cnt">22 rows</span></summary><div class="foldbody"><p><b>13 indicators — 6 GOOD · 4 BAD · 3 NEUTRAL</b></p>
 <div class="tblwrap"><table>
 <tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
 <tr><td class="num">USD</td><td>Non Farm Payrolls</td><td class="num">-23K</td><td class="num">20K</td><td>Jul/26</td><td>&gt;Cons</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
@@ -461,24 +461,34 @@
 <tr><td class="num">GBP</td><td>Claimant Count Change</td><td class="num">-11K</td><td class="num">-6.4K</td><td>Jul/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">JPY</td><td>Unemployment Rate</td><td class="num">2.5%</td><td class="num">2.5%</td><td>Jun/26</td><td>unchanged</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
 <tr><td class="num">AUD</td><td>ANZ-Indeed Job Ads MoM</td><td class="num">+0.8%</td><td class="num">-0.1%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">AUD</td><td>Employment Change</td><td>-15.8K (FT +16.3K, PT -32.2K)</td><td>76.3K (FT +29.3K, PT +47.0K)</td><td>Jul/26</td><td>hdl&gt;0 BAD; FT&gt;prev BAD; PT&lt;prev GOOD</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td class="num">AUD</td><td>Employment Change</td><td>-15.8K (FT +16.3K, PT -32.2K)</td><td>76.3K (FT +29.3K, PT +47.0K)</td><td>Jul/26</td><td>hdl BAD; FT NEUTRAL (LD-57); PT GOOD</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
 <tr><td class="num">AUD</td><td>Unemployment Rate</td><td class="num">4.5%</td><td class="num">4.4%</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 <tr><td class="num">NZD</td><td>Unemployment Rate</td><td class="num">5.6%</td><td class="num">5.4%</td><td>Jun/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
-<tr><td class="num">CAD</td><td>Employment Change</td><td>75.1K (FT +38.6K, PT +36.6K)</td><td class="num">18.2K</td><td>Jul/26</td><td>hdl&gt;0 GOOD; FT split for Jun NOT SOURCED</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CAD</td><td>Employment Change</td><td>75.1K (FT +38.6K, PT +36.6K)</td><td class="num">18.2K</td><td>Jul/26</td><td>hdl&gt;0 GOOD; FT (LD-57) needs Jun split NOT SOURCED</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CAD</td><td>Unemployment Rate</td><td class="num">6.4%</td><td class="num">6.5%</td><td>Jul/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Non Farm Payrolls</td><td class="num">5.537M</td><td class="num">5.544M</td><td>Q1/26</td><td>&gt;Cons 5.4M</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Unemployment Rate</td><td class="num">3.0%</td><td class="num">2.9%</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 </table></div>
-<p><b>⚠ HOW EMPLOYMENT CHANGE IS SCORED (LD-56).</b> The whitelist source specifies a <b>three-part composite</b>, not a single test: <em>"Actual &gt; 0 is Good <b>but gives more weight to Full Time Employment</b>"</em> — headline <code>&gt;0</code>, Full Time <code>&gt;Prev</code>, Part Time <code>&lt;Prev</code>. <b>The published threshold said only <code>&lt;Prev</code></b>, which reads as "−15.8K vs 76.3K, fell, therefore BAD" and makes the full-time gain look ignored. It was not — it simply lost its own test.</p>
-<p><b>AUD July, verified against the ABS:</b> headline <b>−15.8K</b>, full time <b>+16.3K</b>, part time <b>−32.2K</b>.</p>
+<p><b>⚠ FULL TIME EMPLOYMENT IS SCORED ON A NEW RULE (LD-57), Jeff's call.</b> The old test was a bare <code>&gt;Prev</code>, which graded a <b>positive</b> full-time month BAD for merely growing more slowly than the month before. Decelerating growth is not contraction and the model should not call it that. The rule now:</p>
 <div class="tblwrap"><table>
-<tr><th>Test</th><th>Reading</th><th>Grade</th></tr>
-<tr><td>Headline <code>&gt;0</code></td><td class="num">−15.8K</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
-<tr><td><b>Full Time <code>&gt;Prev</code></b> <em>(weighted heaviest)</em></td><td>16.3K vs 29.3K</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
-<tr><td>Part Time <code>&lt;Prev</code></td><td>−32.2K vs +47.0K</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><th>Full Time Chg</th><th>vs Previous</th><th>Grade</th></tr>
+<tr><td><b>&gt; 0</b></td><td>≥ previous</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td><b>&gt; 0</b></td><td>&lt; previous</td><td><b>NEUTRAL</b> — growth, but slowing</td></tr>
+<tr><td><b>&lt; 0</b></td><td>≤ previous</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td><b>&lt; 0</b></td><td>&gt; previous</td><td><b>NEUTRAL</b> — contraction, but easing</td></tr>
+<tr><td><b>= 0</b></td><td>any</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
 </table></div>
-<p><b>Two BAD including the heaviest test → BAD.</b> Full-time employment <b>did</b> rise, but by <em>less than the month before</em>, and the source's test is against the prior month, not against zero. <b>The grade was right; the published rule was not.</b> Both AUD and CAD rows now show the composite and their FT/PT splits.</p>
-<p><b>CAD July</b> headline +75.1K, full time <b>+38.6K</b>, part time <b>+36.6K</b> <em>(Statistics Canada, 7 Aug)</em>. <b>June's FT/PT split is not sourced</b>, so the full-time test cannot be run on it — flagged, not guessed.</p></div></details>
+<p><b>Full time still carries the most weight</b> of the three legs.</p>
+<p><b>AUD July re-graded, verified against the ABS</b> — headline −15.8K, full time <b>+16.3K</b>, part time <b>−32.2K</b>:</p>
+<div class="tblwrap"><table>
+<tr><th>Leg</th><th>Reading</th><th>Was</th><th><b>Now</b></th></tr>
+<tr><td>Headline <code>&gt;0</code></td><td class="num">−15.8K</td><td class="num"><span class="pill p-bad">BAD</span></td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td><b>Full Time</b> <em>(heaviest)</em></td><td>+16.3K vs +29.3K</td><td class="num"><span class="pill p-bad">BAD</span></td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
+<tr><td>Part Time <code>&lt;Prev</code></td><td>−32.2K vs +47.0K</td><td class="num"><span class="pill p-good">GOOD</span></td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td><b>Composite</b></td><td></td><td class="num"><span class="pill p-bad">BAD</span></td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
+</table></div>
+<p><b>AUD moves +2.08 → +2.75</b>, passing USD into 5th. <b>Band unchanged (NEUTRAL), and no carried pair has an AUD leg</b> — CADJPY, EURCHF and GBPUSD are untouched. The AUDNZD reject stands and is weaker still (spread 1.67 → 1.00).</p>
+<p><b>CAD carries the same rule but cannot run it</b> — June's FT/PT split is not sourced, so the full-time leg is un-runnable and flagged rather than guessed. July: headline +75.1K, FT <b>+38.6K</b>, PT <b>+36.6K</b> <em>(Statistics Canada, 7 Aug)</em>.</p></div></details>
 <details class="fold"><summary>2.5 Inflation (weight 3)<span class="cnt">8 rows</span></summary><div class="foldbody"><p><b>8 indicators — 4 GOOD · 1 BAD · 3 NEUTRAL</b></p>
 <div class="tblwrap"><table>
 <tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
@@ -595,7 +605,7 @@
 <p><b>Jackson Hole is unscorable and still the most important event.</b> Per LD-3 a speech is schedule-only — it scores nothing. It moves <b>USD, Gold and BTC</b>, and GBPUSD is the proposal most exposed to it.</p>
 <h3 class="sub">4.1 Currency bands — as at Friday close</h3>
 <p><b>Merged into §2.0</b> — the tally and the bands are one table now, so a band can never disagree with the score that produced it.</p>
-<p><b>STRONG:</b> CAD +8.38 · EUR +6.25 · GBP +5.75 · <b>NEUTRAL:</b> NZD +3.75 · USD +2.25 · AUD +2.08 · <b>WEAK:</b> JPY +0.00 · CHF −0.38</p>
+<p><b>STRONG:</b> CAD +8.38 · EUR +6.25 · GBP +5.75 · <b>NEUTRAL:</b> NZD +3.75 · USD +2.25 · AUD +2.75 · <b>WEAK:</b> JPY +0.00 · CHF −0.38</p>
 <details class="fold"><summary>4.2 All candidate pairings — the full board<span class="cnt">21 rows</span></summary><div class="foldbody"><p>Grouped by type, tradable first. Minimum spread <b>1.00</b> (LD-18). ✅ proposed · ⬜ no edge · ❌ rejected</p>
 <div class="tblwrap"><table>
 <tr><th>Pair</th><th>Dir</th><th>Type</th><th>Spread</th><th>Fri close</th><th>Structure verdict</th></tr>
@@ -613,7 +623,7 @@
 <tr><td><b>CHFJPY</b></td><td>SHORT</td><td>SAFE</td><td class="num">2.38</td><td>—</td><td>⬜ both legs claimed</td></tr>
 <tr><td><b>AUDJPY</b></td><td>LONG</td><td>RISK-ON</td><td class="num">2.08</td><td>—</td><td>⬜ JPY already claimed</td></tr>
 <tr><td><b>USDJPY</b></td><td>LONG</td><td>SAFE</td><td class="num">2.25</td><td>—</td><td>⬜ JPY already claimed</td></tr>
-<tr><td><b>NZDAUD</b></td><td>LONG</td><td>COMM</td><td class="num"><b>1.67</b></td><td>1.19929 <em>(AUDNZD)</em></td><td>❌ <b>tested — 42.0% of range, no edge (§4.4)</b></td></tr>
+<tr><td><b>NZDAUD</b></td><td>LONG</td><td>COMM</td><td class="num"><b>1.00</b></td><td>1.19929 <em>(AUDNZD)</em></td><td>❌ <b>tested — 42.0% of range, no edge (§4.4)</b></td></tr>
 <tr><td><b>NZDUSD</b></td><td>LONG</td><td>COMM</td><td class="num">1.50</td><td class="num"><b>0.59790</b></td><td>⬜ <b>charted (R-3 closed)</b> — 94.6% of range, made the 15-session high Friday. <b>USD leg already claimed by GBPUSD</b></td></tr>
 <tr><td>AUDUSD</td><td>SHORT</td><td>COMM</td><td class="num">0.17</td><td>—</td><td>⬜ below the 1.00 floor</td></tr>
 <tr><td>CADUSD</td><td>—</td><td>—</td><td class="num">6.13</td><td>—</td><td>⬜ non-standard symbol; <b>USDCAD SHORT</b> is the form</td></tr>
@@ -621,12 +631,12 @@
 <p><b>NZDUSD charted for the first time (R-3 closed).</b> 15-session range 0.58216–0.59880; Friday closed <b>0.59790 = 94.6% of range</b>, having made the period high 0.59880 that same session and run <b>+104 pips in three days</b> — the same three days DXY fell 0.90%. <b>It independently corroborates the dollar read in §5</b>: a commodity currency at its range high while the dollar sits at a three-month low. It is not carried only because <b>GBPUSD already claims the USD leg</b> (LD-19), not for any weakness in the setup.</p>
 <p><b>RISK-OFF: NIL — and proved on the full matrix, not argued from the extremes (LD-18).</b> Haven score minus commodity score, all nine cells:</p>
 <div class="tblwrap"><table>
-<tr><th></th><th><b>CAD +8.38</b></th><th><b>AUD +2.08</b></th><th><b>NZD +3.75</b></th></tr>
-<tr><td><b>USD +2.25</b></td><td class="num">−6.12</td><td class="num"><b>+0.17</b></td><td class="num">−1.50</td></tr>
-<tr><td><b>JPY +0.00</b></td><td class="num">−8.38</td><td class="num">−2.08</td><td class="num">−3.75</td></tr>
+<tr><th></th><th><b>CAD +8.38</b></th><th><b>AUD +2.75</b></th><th><b>NZD +3.75</b></th></tr>
+<tr><td><b>USD +2.25</b></td><td class="num">−6.12</td><td class="num"><b>−0.50</b></td><td class="num">−1.50</td></tr>
+<tr><td><b>JPY +0.00</b></td><td class="num">−8.38</td><td class="num"><b>−2.75</b></td><td class="num">−3.75</td></tr>
 <tr><td><b>CHF −0.38</b></td><td class="num">−11.75</td><td class="num">−5.46</td><td class="num">−7.12</td></tr>
 </table></div>
-<p><b>Not one cell reaches the +1.00 floor.</b> The best is USD−AUD at <b>+0.17</b>, six times below the threshold. <b>There is no risk-off trade this week</b>, and that is a finding: every haven scores below every commodity currency except one near-tie. A nil result stated on the full grid is information; a nil result argued from CAD and CHF alone would not be.</p></div></details>
+<p><b>Not one cell reaches the +1.00 floor.</b> The best is <b>USD−NZD at −1.50</b>; USD−AUD, previously the closest cell at +0.17, is now <b>−0.50</b>. <b>There is no risk-off trade this week</b>, and that is a finding: every haven scores below every commodity currency except one near-tie. A nil result stated on the full grid is information; a nil result argued from CAD and CHF alone would not be.</p></div></details>
 <h3 class="sub">4.3 PROPOSED — three leg-disjoint pairs</h3>
 <p><b>These are high-probability reads from fundamentals plus structure. They are not guarantees and nothing here is a prediction.</b> Every one carries a falsifier.</p>
 <div class="warnbox"><b>NOTHING ROLLS OVER (LD-42).</b> Last week's set ended when the week ended and is graded in §0. These three are a <b>fresh selection for 24–28 Aug</b> that re-derived the full board and won their place again — not a continuation. They are the same three names because <b>no band moved</b>: §2's scores are identical to Friday's, so the method produces the same leg-disjoint pairs.</div>
@@ -709,7 +719,7 @@
 <p><b>A fourth leg-disjoint pair was tested and does not qualify.</b> With CAD/JPY, EUR/CHF and GBP/USD claimed, only <b>AUD and NZD</b> remain free.</p>
 <div class="tblwrap"><table>
 <tr><th>Candidate</th><th>Spread</th><th>Structure</th><th>Last bar</th><th>Tally</th><th>Verdict</th></tr>
-<tr><td><b>AUDNZD</b> <em>(short = long NZD)</em></td><td class="num">1.67</td><td><b>42.0% of range</b> — mid, no edge</td><td><b>closed +25.1 pips AGAINST</b></td><td class="num"><b>0</b></td><td><b>REJECTED — LOW, and price disagrees</b></td></tr>
+<tr><td><b>AUDNZD</b> <em>(short = long NZD)</em></td><td class="num">1.00</td><td><b>42.0% of range</b> — mid, no edge</td><td><b>closed +25.1 pips AGAINST</b></td><td class="num"><b>0</b></td><td><b>REJECTED — LOW, and price disagrees</b></td></tr>
 </table></div>
 <p>Range 1.19136–1.21024 over 16 sessions; Friday closed 1.19929. (1.19929−1.19136)/(1.21024−1.19136) = <b>42.0%</b>.</p>
 <p><b>Why this row matters:</b> it was tested only because LD-35 requires carrying every qualifier rather than stopping at three. The answer is still three — but now that is a <b>finding, not an assumption.</b></p>
