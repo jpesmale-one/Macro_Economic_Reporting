@@ -3792,3 +3792,39 @@ LD-58 - CLAIMANT COUNT CHANGE IS SCORED AGAINST ZERO (Jeff, 2026-08-24).
   judgement about what the Spending category is trying to read. LD-57 answered
   that question for full-time employment by introducing a NEUTRAL band; the
   same treatment may or may not suit Westpac.
+
+LD-59 - STICK TO THE THRESHOLDS. DO NOT PROPOSE RULE CHANGES BY ANALOGY.
+  Jeff, closing R-16: "Claimant count is a Employment category while Consumer
+  confidence is in Spending. they are 2 different indicator. So they have 2
+  different reading. Just stick to our Thresholds and let me correct things if
+  I saw a need for it"
+  R-16 IS CLOSED. Westpac Consumer Conf Change stays on ">Prev" as the
+  whitelist source specifies. No change.
+  WHAT I GOT WRONG: I noticed LD-58's shape (a change series scored against its
+  prior change) and swept the whitelist for "the same defect". THAT FRAMING WAS
+  THE ERROR. I treated two indicators as instances of one pattern because their
+  ARITHMETIC looked alike, when they sit in DIFFERENT CATEGORIES ANSWERING
+  DIFFERENT QUESTIONS.
+  Claimant Count is EMPLOYMENT - a flow of people, where the sign has direct
+  meaning about the labour market. Westpac is SPENDING - the momentum of a
+  sentiment index, where "rising more slowly" is a legitimate signal in its own
+  right. THE CATEGORY IS PART OF THE INDICATOR'S DEFINITION, not a filing
+  label. A rule that is right for one is not automatically right for the other,
+  and shape-matching across categories is not evidence.
+  I did stop short of changing it and flagged it instead, which was right. But
+  raising it at all framed a settled threshold as an open defect, and that puts
+  pressure on Jeff to re-litigate his own specification.
+  THE STANDING RULE FROM HERE:
+    THRESHOLDS ARE JEFF'S SPECIFICATION. Apply them as written.
+    DO NOT propose a rule change because a DIFFERENT indicator's rule changed.
+    DO report a threshold that is INTERNALLY BROKEN - one that cannot be
+      computed, contradicts itself, or is applied to the wrong series (F-38 was
+      a wrong SERIES, not a wrong threshold, and was right to raise).
+    DO report a figure that does not match its source.
+    Jeff corrects a threshold when he sees a need. That is his call and the
+    default is NO CHANGE.
+  THIS ALSO RETIRES A HABIT VISIBLE ACROSS THIS SESSION: after each fix I have
+  been sweeping for "the same class" of error. That is right for MECHANICAL
+  defects - a stale row, an unmatched audit key, a fabricated level - because
+  those are objectively wrong wherever they appear. It is WRONG for
+  SPECIFICATION, where "similar" is a judgement Jeff owns.
