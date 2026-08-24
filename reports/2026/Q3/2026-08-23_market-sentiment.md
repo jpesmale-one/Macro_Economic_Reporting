@@ -894,11 +894,47 @@ now that is a **finding, not an assumption.**
 on the board (CADCHF 11.76). Two weeks running, the structure filter has rejected
 the highest-spread trade the model produced.
 
-### 4.5 CORRELATED — same bet, secondary entries only
+### 4.5 CORRELATED — the same bet on a better chart (LD-60)
 
-Pairs duplicating a proposed leg. **Taking one of these alongside its parent is
-one position at double size** (LD-21, EF-3). CADCHF, GBPCHF, USDCHF, CHFJPY all
-duplicate the short-CHF leg; EURJPY and GBPJPY duplicate short-JPY.
+**Not a warning list — a positioning list.** These are the same currency call
+as a proposed pair, on a different chart. **Taking one alongside its parent is
+one position at double size** (LD-21, EF-3) — but when the parent has already
+run into resistance, a sibling sitting lower in its range may offer the entry
+the parent no longer does.
+
+#### CADJPY's siblings — short JPY, three charts
+
+Live prices, Monday 24 Aug. Range position over 45 daily bars; resistance from
+swing pivots.
+
+| Pair | Live | Range pos | To next resistance | To support | Read |
+|---|---|---|---|---|---|
+| **CADJPY** *(parent, HIGH +5)* | **115.514** | **97.8%** | **+19 pips** → R1 115.700–115.780 | 104 pips | **extended — at the top of its range** |
+| **EURJPY** | **185.608** | **76.9%** | +6 pips → 185.664–185.768 | **168 pips** | mid-range, but **capped immediately** |
+| **GBPJPY** | **216.856** | **72.5%** | +5 pips → 216.906–216.996 | **204 pips** | **lowest in range**, also capped |
+
+**⚠ The answer is counter-intuitive and worth stating plainly: CADJPY has the
+MOST room of the three, not the least.** Its R1 is 19 pips away; both siblings
+sit within 6 pips of overhead resistance. Being high in the range and being
+close to resistance are **different things**, and here they point opposite ways.
+
+**So which chart depends on which problem you have:**
+
+- **Waiting for a pullback?** **GBPJPY** is lowest in its range (72.5%) and sits
+  **204 pips above support** — the most room to fall into before the read is
+  threatened. A retracement there is a normal breather, not a broken thesis.
+- **Want room to run?** **CADJPY, the parent, still has it** — 19 pips to R1
+  against 5–6 for the siblings. The extension is in its *range position*, not
+  in its distance to supply.
+- **Neither sibling is a better long right now.** Both are within 6 pips of a
+  multi-touch shelf. **That is information: the whole short-JPY complex is
+  pressing resistance simultaneously**, which is what a correlated cluster
+  looks like when it moves together.
+
+**Short-CHF siblings** — CADCHF, GBPCHF, USDCHF, CHFJPY all duplicate EURCHF's
+short-CHF leg. **Not charted this session**; EURCHF is LOW (+1) and its own
+falsifier is the open question (§0), so a sibling read would inherit that
+weakness rather than escape it.
 
 ### 4.6 Week ahead — what could void a proposal before Monday locks it
 

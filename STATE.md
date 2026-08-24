@@ -3828,3 +3828,44 @@ LD-59 - STICK TO THE THRESHOLDS. DO NOT PROPOSE RULE CHANGES BY ANALOGY.
   defects - a stale row, an unmatched audit key, a fabricated level - because
   those are objectively wrong wherever they appear. It is WRONG for
   SPECIFICATION, where "similar" is a judgement Jeff owns.
+
+LD-60 - SECTION 4.5 IS A POSITIONING LIST, NOT A WARNING LIST (Jeff).
+  "in 4.3 PROPOSED You have your ratings and I also mentioned about avoiding
+  correlated pairs. Now I want you to add a correlated pair suggestion. for
+  Example you choose CADJPY with the highest conviction If CADJPY already flies
+  at the resistance we may wait longer for it to do a pull back. So I want to
+  know what other correlated pair we can take a look at with almost the same
+  conviction"
+  LD-21 ALREADY ANTICIPATED THIS AND SECTION 4.5 NEVER DELIVERED IT. LD-21,
+  2026-08-21, in Jeff's own words: correlated pairs are "useful when a carried
+  pair has already run and the entry looks extended". Section 4.5 was built as
+  a list of NAMES with the double-size warning and NOTHING ELSE - no prices, no
+  structure, no way to tell which sibling has room. It warned about a risk
+  instead of answering the question it exists for.
+  NOW PUBLISHES per correlated pair: live price, range position, distance to
+  next resistance, distance to support - with the PARENT'S FIGURES ALONGSIDE so
+  they can be compared. The LD-21 double-size warning stays.
+
+  THE FIRST RUN PRODUCED A COUNTER-INTUITIVE RESULT AND IT IS THE POINT OF THE
+  SECTION. Short-JPY complex, live Monday 24 Aug:
+    CADJPY (parent) 115.514  97.8% of range  +19 pips to R1  104 to support
+    EURJPY          185.608  76.9%           + 6 pips        168 to support
+    GBPJPY          216.856  72.5%           + 5 pips        204 to support
+  CADJPY HAS THE MOST ROOM OF THE THREE, NOT THE LEAST. Jeff's premise - "if
+  CADJPY already flies at the resistance" - is right about its RANGE POSITION
+  and wrong about its DISTANCE TO SUPPLY, and those are different measures that
+  here point OPPOSITE WAYS.
+  THE ANSWER THEREFORE SPLITS BY WHICH PROBLEM YOU HAVE:
+    waiting for a pullback -> GBPJPY, lowest in range and 204 pips above
+      support, the most room to fall into before the read is threatened
+    want room to run -> the PARENT still has it, 19 pips vs 5-6
+    neither sibling is a better long right now - both are within 6 pips of a
+      multi-touch shelf
+  AND THAT LAST LINE IS ITSELF A FINDING: THE WHOLE SHORT-JPY COMPLEX IS
+  PRESSING RESISTANCE SIMULTANEOUSLY. That is what a correlated cluster looks
+  like when it moves together, and it is exactly the EF-3 concentration risk
+  seen from the entry side rather than the scorecard side.
+  SHORT-CHF SIBLINGS NOT CHARTED, stated in-edition rather than silently
+  omitted: EURCHF is LOW (+1) and its own falsifier is the open question, so a
+  sibling read would inherit that weakness rather than escape it. Charting them
+  would imply a quality the parent does not have.

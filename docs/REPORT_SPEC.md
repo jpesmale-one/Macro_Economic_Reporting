@@ -585,6 +585,20 @@ an independent test**. The carried count is the scorecard's denominator —
 N carried must mean N independent tests of the model. Reporting a shared
 leg as a separate test overstated the 2026-08-20 evidence **4×** (EF-3).
 
+**§4.5 CORRELATED is a POSITIONING list, not a warning list (LD-60).**
+It answers one question: *if a carried pair has already run, which
+sibling offers the better entry on the same call?* Each correlated pair
+publishes **live price, range position, distance to its next resistance,
+and distance to support** — the parent's figures alongside, so they can
+be compared. The double-size warning (LD-21) stays, but a list of names
+with no prices cannot answer the question it exists for.
+
+**Report the counter-intuitive case when it occurs.** Range position and
+distance-to-resistance are different measures and can point opposite
+ways: on 2026-08-24 CADJPY sat at 97.8% of range yet had **19 pips** to
+resistance while both siblings had **5–6**. The parent was the least
+extended by the measure that matters.
+
 **Sub-sections:** 4.0 week-ahead projections · 4.1 currency bands ·
 4.2 candidate pairings · 4.3 CARRIED with confidence and zones ·
 4.3b CORRELATED as secondary entries (LD-21) · 4.4 REJECTED with reasons.
