@@ -147,16 +147,15 @@ this session and reproduces r13 exactly.
 | **STRONG** | **CAD** | **+8.38** | Commodity | +1.00 · +1.00 · +1.00 · +2.00 · +3.00 · **+0.38** |
 | **STRONG** | **EUR** | **+6.25** | Risk-corr | +0.50 · +1.00 · +1.00 · +0.00 · +3.00 · **+0.75** |
 | **STRONG** | **GBP** | **+5.75** | Risk-corr | +0.00 · +1.00 · −1.00 · +2.00 · +3.00 · **+0.75** |
-| NEUTRAL | NZD | +3.75 | Commodity | +1.00 · +0.50 · −1.00 · −2.00 · +3.00 · **+2.25** |
-| NEUTRAL | USD | +2.25 | Safe haven | +1.00 · +0.25 · +1.00 · +0.00 · +0.00 · **+0.00** |
-| NEUTRAL | **AUD** | **+2.75** | Commodity | +1.00 · +0.75 · +1.00 · **+0.00** · +0.00 · **+0.00** |
+| NEUTRAL | NZD | **+3.75** | Commodity | +1.00 · +0.50 · −1.00 · −2.00 · +3.00 · **+2.25** |
+| NEUTRAL | AUD | **+2.75** | Commodity | +1.00 · +0.75 · +1.00 · +0.00 · +0.00 · **+0.00** |
+| NEUTRAL | USD | **+2.25** | Safe haven | +1.00 · +0.25 · +1.00 · +0.00 · +0.00 · **+0.00** |
 | **WEAK** | **JPY** | **+0.00** | Safe haven | +1.00 · +0.00 · −1.00 · +0.00 · +0.00 · **+0.00** |
-| **WEAK** | **CHF** | **−0.38** | Safe haven | **+1.00** · +1.00 · **+1.00** · +0.00 · −3.00 · **−0.38** |
+| **WEAK** | **CHF** | **−0.38** | Safe haven | +1.00 · +1.00 · +1.00 · +0.00 · −3.00 · **−0.38** |
 
 Bands: **STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00**
 
-**Group standings** — Safe haven: USD +2.25 › JPY +0.00 › CHF −0.38 ·
-Commodity: CAD +8.38 › NZD +3.75 › AUD +2.75 · Risk-corr: EUR +6.25 › GBP +5.75
+**Group standings** — Safe haven: USD +2.25 › JPY +0.00 › CHF −0.38 · Commodity: CAD +8.38 › NZD +3.75 › AUD +2.75 · Risk-corr: EUR +6.25 › GBP +5.75
 
 **⚠ TWO SCORES CARRY KNOWN PRESSURE INTO MONDAY.** CAD's Spending +1.00 rests on
 data superseded by Friday's −0.8% retail sales miss (§0L). AUD's +2.75 faces its

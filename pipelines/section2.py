@@ -47,6 +47,67 @@ def _score_cell(v):
     return '**%s**' % v if v in BOLD else v
 
 
+# LD-61 - SECTION 2.0, THE CATEGORY TALLY, IS GENERATED AND SORTED BY SCORE.
+#
+# It was hand-maintained until 2026-08-24 - the ONE table in section 2 that
+# section2.py did not build, and the one that sets the BANDS every other
+# section reads. Jeff found USD +2.25 listed above AUD +2.75: LD-57 moved AUD
+# from +2.08 and I patched the cell in place without re-sorting.
+#
+# That is F-24's lesson still open in the highest-consequence table. A hand-
+# maintained derived block drifts, and this one drifts SILENTLY because a
+# mis-sorted table still contains every correct number.
+GROUPS = {'US': 'Safe haven', 'JP': 'Safe haven', 'CH': 'Safe haven',
+          'CA': 'Commodity', 'AU': 'Commodity', 'NZ': 'Commodity',
+          'EA': 'Risk-corr', 'GB': 'Risk-corr'}
+
+# Bands cut on the SCALE (+/-11.00 since LD-23), never on rank - a rank split
+# would force three "weak" currencies in a week when all eight are positive.
+BAND_STRONG, BAND_WEAK = 5.50, 0.00
+
+
+def band(score):
+    if score >= BAND_STRONG:
+        return 'STRONG'
+    return 'WEAK' if score <= BAND_WEAK else 'NEUTRAL'
+
+
+def tally_table():
+    """Section 2.0, sorted by score descending. Returns (markdown, totals)."""
+    cs, tot = sm.compute(include_rate=True)
+    order = ['Production', 'Spending', 'Trade', 'Employment', 'Inflation', 'Rate']
+    out = ['| Band | CCY | **Score** | Group | Prod · Spend · Trade · Empl · Infl · **Rate** |',
+           '|---|---|---|---|---|']
+    for iso, total in sorted(tot.items(), key=lambda kv: -kv[1]):
+        ccy = sm.LABEL[iso]
+        b = band(total)
+        cells = []
+        for cat in order:
+            v = cs.get((cat, iso), (0.0,))[0]
+            t = ('**%+.2f**' % v) if cat == 'Rate' else ('%+.2f' % v)
+            cells.append(t.replace('-', '−'))
+        em = '**' if b in ('STRONG', 'WEAK') else ''
+        out.append('| %s%s%s | %s%s%s | **%s** | %s | %s |'
+                   % (em, b, em, em, ccy, em,
+                      ('%+.2f' % total).replace('-', '−'),
+                      GROUPS[iso], ' · '.join(cells)))
+    return '\n'.join(out), tot
+
+
+def standings():
+    """Group standings line, each group sorted by score."""
+    cs, tot = sm.compute(include_rate=True)
+    by = {}
+    for iso, v in tot.items():
+        by.setdefault(GROUPS[iso], []).append((v, sm.LABEL[iso]))
+    parts = []
+    for g in ('Safe haven', 'Commodity', 'Risk-corr'):
+        rows = sorted(by[g], reverse=True)
+        parts.append('%s: %s' % (g, ' › '.join(
+            '%s %s' % (c, ('%+.2f' % v).replace('-', '−')) for v, c in rows)))
+    return ' · '.join(parts)
+
+
 def category_table(cat):
     """One markdown table for a category: every row, no blanks."""
     rows = [r for r in sm.ROWS if r[0] == cat]

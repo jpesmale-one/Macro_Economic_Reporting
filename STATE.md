@@ -3949,3 +3949,26 @@ LD-60 - SECTION 4.5 IS A POSITIONING LIST, NOT A WARNING LIST (Jeff).
 #   AND IS NOT.
 #   THE CAD GAP HAS NO SOURCED CAUSE. Flagged as a research trigger for r2 per
 #   LD-26 rather than written up as a finding.
+
+LD-61 - SECTION 2.0 IS GENERATED AND SORTED BY SCORE. Jeff: "2.0 Category tally
+  - let's keep it sorted by Score"
+  HE FOUND USD +2.25 LISTED ABOVE AUD +2.75. Cause: LD-57 moved AUD from +2.08
+  to +2.75 and I PATCHED THE CELL IN PLACE without re-sorting the table.
+  THE BIGGER FINDING BEHIND IT: SECTION 2.0 WAS NEVER GENERATED. section2.py
+  builds 2.1-2.5 and stops. The tally - THE ONE TABLE THAT SETS THE BANDS every
+  other section reads - has been hand-maintained since the model was built.
+  That is F-24's lesson still open in the highest-consequence table in the
+  report, and I closed F-24 without noticing 2.0 sat outside the fix.
+  WHY IT DRIFTS SILENTLY, which is what makes it dangerous: A MIS-SORTED TALLY
+  CONTAINS EVERY CORRECT NUMBER. No content check can see it. P2 passes, the
+  row count passes, the TE reconciliation passes - all of them verify VALUES
+  and none verifies ORDER.
+  FIXED: section2.tally_table() and standings(), both sorted by score
+  descending, both emitting the typographic minus used elsewhere in the
+  edition. Bands cut on the SCALE (LD-23), never on rank.
+  GUARD: assert_tally_sorted() in render_edition.py refuses to render if any
+  row's score exceeds the row above it. Verified against a fixture reproducing
+  the exact defect - USD swapped above AUD - and it names both currencies and
+  both scores in the error.
+  Applied to the 2026-08-24 edition; order is now CAD 8.38, EUR 6.25, GBP 5.75,
+  NZD 3.75, AUD 2.75, USD 2.25, JPY 0.00, CHF -0.38.

@@ -183,6 +183,11 @@ A currency with one indicator in a category stakes the full weight on it;
 one with three spreads the risk. That is a real property of data coverage
 and is left visible, not smoothed.
 
+**§2.0 IS GENERATED AND SORTED BY SCORE, DESCENDING (LD-61).** Build
+it with `section2.tally_table()`; never patch a cell in place. It sets
+the BANDS every other section reads, and a mis-sorted tally drifts
+**silently** because every number in it is still correct.
+
 **WHITELIST AMENDMENTS (LD-51).** The list is a closed set (F-3), but Jeff
 may amend it. An amendment is recorded HERE — `Idea_dump/` is committed
 verbatim as historical input and is never edited (LD-1).

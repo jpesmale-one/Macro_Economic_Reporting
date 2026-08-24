@@ -647,6 +647,42 @@ def assert_freshness():
         '' if snap else ' (baseline not yet set)')
 
 
+def assert_tally_sorted(md):
+    """Section 2.0 must be sorted by score, descending (LD-61).
+
+    Jeff found USD +2.25 listed above AUD +2.75 on 2026-08-24. LD-57 had moved
+    AUD from +2.08 and the cell was patched in place without re-sorting.
+
+    A MIS-SORTED TALLY DRIFTS SILENTLY because every number in it is still
+    correct - no content check can see it, only an ordering check. And this is
+    the table that sets the BANDS every other section reads.
+    """
+    try:
+        blk = md[md.index('### 2.0'):md.index('### 2.1')]
+    except ValueError:
+        return 0
+    scores = []
+    for line in blk.splitlines():
+        if not line.startswith('| ') or line.startswith('|---'):
+            continue
+        cells = [c.strip().replace('*', '') for c in line.strip('|').split('|')]
+        if len(cells) < 3 or cells[0] == 'Band':
+            continue
+        m = re.match(r'([+−-]?[\d.]+)$', cells[2].replace('−', '-'))
+        if m:
+            scores.append((cells[1], float(m.group(1))))
+    if len(scores) < 2:
+        return len(scores)
+    for a, b in zip(scores, scores[1:]):
+        if b[1] > a[1]:
+            raise SystemExit(
+                'FATAL (LD-61): section 2.0 is not sorted by score - %s %+.2f '
+                'is listed above %s %+.2f.%sRegenerate it with '
+                'section2.tally_table(); never patch a cell in place.'
+                % (a[0], a[1], b[0], b[1], chr(10)))
+    return len(scores)
+
+
 def assert_news_sources(md):
     """Section 1 must cite a real news source (F-17 / LD-30)."""
     m = re.search(r'^##\s*§1\b.*?$(.*?)(?=^##\s*§)', md, re.S | re.M)
@@ -714,6 +750,7 @@ if __name__ == '__main__':
     fresh_state = assert_freshness()
     nmark = assert_markers(md)
     nrow, nexp = assert_whitelist(md)
+    ntal = assert_tally_sorted(md)
     assert_levels_drawn(md)
     assert_no_offlist_scores(md)
     sources = assert_news_sources(md)
@@ -726,6 +763,7 @@ if __name__ == '__main__':
     print('  LD-50 TE recon  %s' % te_state)
     print('  LD-54 freshness %s' % fresh_state)
     print('  LD-46 levels    drawn and entity ids recorded')
+    print('  LD-61 tally     %d rows, sorted by score' % ntal)
     if nexp:
         print('  LD-41 4.0 scores  whitelist indicators only')
         print('  LD-39 whitelist %d/%d indicator rows, no blanks'
