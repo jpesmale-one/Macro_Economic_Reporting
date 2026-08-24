@@ -86,6 +86,18 @@ ledgers, and the separation is what keeps this one lean.
 
 ---
 
+## 0a. READ THE NEWEST HANDOVER FIRST
+
+**`docs/HANDOVER_2026-08-24_fine_tuning.md`** — thirteen decisions and six
+findings from the fine-tuning session, written as *what changes what you do*
+rather than as a log. STATE.md is 4,250 lines; the handover is the part that
+governs the next edition.
+
+**It goes stale the moment a newer handover lands.** `ls -t docs/HANDOVER_*`
+and read the top one.
+
+---
+
 ## 0b. THE PIPELINE IS THE PROTOCOL (read before building any edition)
 
 **Do not hand-write anything a generator produces.** Three findings landed
@@ -100,14 +112,18 @@ hand-written version silently degraded while the generator sat unused.
 | §4.0 week ahead | `week_ahead.py` | sorted by hand (F-36) |
 | Fear & Greed | emit `<!--FNG-->` | markdown tables |
 | §4 selection | `select_pairs.py` + `confidence.py` | by eye |
+| **§2.0 tally** | **`section2.tally_table()`** — sorted by score (LD-61) | **patched in place** |
+| **Grading rules** | `full_time_grade()` · `claimant_grade()` · `market_pricing()` | applied by hand |
 | The edition itself | `render_edition.py <path.md>` | any other way |
 
 **Before an edition, always:**
 
 ```
 python pipelines/audit_te.py --fetch     # LD-50 - reconcile the whitelist
+python pipelines/freshness.py            # LD-54 - revisions + stalled series
 python pipelines/test_guards.py          # 7 real regressions must all block
-python pipelines/render_edition.py <md>  # 17 guards run before a byte is written
+python pipelines/week_ahead.py           # §4.0 events, DATE -> TIME -> CCY
+python pipelines/render_edition.py <md>  # 11 guards run before a byte is written
 ```
 
 **`audit_te.py` is the only thing in this repo that compares a row to the

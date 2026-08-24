@@ -10,6 +10,9 @@ data_asof: 2026-08-24 16:24 PHT (London liquidity; macro = Friday's, no
            whitelist release today, verified via week_ahead.py)
 last_sealed: 2026-08-21 (r13, SEALED FULL) - the authority until Monday seals
 track: LEAN (no section-2 trigger has fired)
+handover: docs/HANDOVER_2026-08-24_fine_tuning.md - READ THIS FIRST, it is
+  what governs the next edition. STATE.md is the ledger; the handover is the
+  briefing.
 spec_rev: 2026-08-23 - LD-27..LD-34 written in; R-1, R-7, F-19 CLOSED.
   Spec is AUTHORITATIVE again (6 cat / +/-11.00, weekly selection, section 0
   specified, weekend edition type). Renderer now enforces structure:
@@ -3930,8 +3933,7 @@ LD-60 - SECTION 4.5 IS A POSITIONING LIST, NOT A WARNING LIST (Jeff).
 #   Spending row, GDP -0.1% forecast Friday, and this gap. THE SCORE IS LAGGING
 #   THE PRICE - LD-45's dollar-check logic applied to a currency.
 #
-#   F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT
-#   TO CADJPY. INCOMPLETE. This morning's sweep found cnbc.com 20 Aug: Japanese
+#   (F-39 recorded below as a top-level finding) This morning's sweep found cnbc.com 20 Aug: Japanese
 #   investors net bought OVER 5 TRILLION YEN of foreign assets in the two weeks
 #   to 15 Aug, using the stronger yen to fund NEW non-yen positions. Jesper Koll
 #   (Monex): intervention "TURBO CHARGED" carry trades without removing the
@@ -4179,7 +4181,9 @@ F-42 - THE CAD CATALYST WAS ON THE FRONT PAGE OF A MANDATED SOURCE AND MY r1
 #   of the four, and it is now the most likely to void this week. Published as
 #   such rather than quietly dropped.
 
-F-43 / LD-65 - SECTION 1 HAD NO REQUIRED SCOPE, SO IT SHIPPED WITH ONE ITEM
+LD-65 - SECTION 1 MUST COVER EVERY CURRENCY THE EDITION SAYS MOVED. See F-43.
+
+F-43 - SECTION 1 HAD NO REQUIRED SCOPE, SO IT SHIPPED WITH ONE ITEM
   WHILE THE MARKET PRICED A TRADE WAR. Jeff: "This kind of news should be in
   our section 1. Earlier this morning we only have 1 for Japan but the CAD is
   already pricing the move and we have no Idea why."
@@ -4236,3 +4240,14 @@ F-43 / LD-65 - SECTION 1 HAD NO REQUIRED SCOPE, SO IT SHIPPED WITH ONE ITEM
 #   information a comparable speech under his predecessor would not - there is
 #   no standing guidance for it to merely restate. It lands on GBPUSD's short
 #   leg and scores NOTHING (LD-3).
+
+F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT TO
+  CADJPY. INCOMPLETE, corrected in the 2026-08-24 edition.
+  The 20 Aug CNBC piece found in Monday's sweep: Japanese investors net bought
+  OVER 5 TRILLION YEN of foreign assets in the two weeks to 15 Aug, using the
+  stronger yen to fund NEW non-yen positions. Jesper Koll (Monex): intervention
+  "TURBO CHARGED" carry trades without removing the incentive. Yen gains faded;
+  USDJPY back to 158.884 from ~155.
+  SO THE INTERVENTION IS SUPPORTIVE of a short-JPY position, not hostile to it.
+  The threat is EPISODIC, not a trend, and the trend runs the other way.
+  Sunday published the risk without the flow. BOTH BELONG IN THE READ.
