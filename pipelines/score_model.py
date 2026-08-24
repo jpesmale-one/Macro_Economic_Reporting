@@ -80,11 +80,11 @@ ROWS = [
  ("Employment","GB","Claimant Count Change","-11K","-6.4K","Jul/26","<Prev","GOOD"),
  ("Employment","JP","Unemployment Rate","2.5%","2.5%","Jun/26","unchanged","NEUTRAL"),
  ("Employment","AU","ANZ-Indeed Job Ads MoM","+0.8%","-0.1%","Jul/26",">0.5%","GOOD"),
- ("Employment","AU","Employment Change","-15.8K","76.3K","Jul/26","<Prev, FT +16.3K vs 29.3K","BAD"),
+ ("Employment","AU","Employment Change","-15.8K (FT +16.3K, PT -32.2K)","76.3K (FT +29.3K, PT +47.0K)","Jul/26","hdl>0 BAD; FT>prev BAD; PT<prev GOOD","BAD"),
  ("Employment","AU","Unemployment Rate","4.5%","4.4%","Jul/26",">Prev","BAD"),
  ("Employment","NZ","Unemployment Rate","5.6%","5.4%","Jun/26",">Prev","BAD"),
  ("Employment","CA","Unemployment Rate","6.4%","6.5%","Jul/26","<Prev","GOOD"),
- ("Employment","CA","Employment Change","75.1K","18.2K","Jul/26",">Prev, FT-weighted","GOOD"),
+ ("Employment","CA","Employment Change","75.1K (FT +38.6K, PT +36.6K)","18.2K","Jul/26","hdl>0 GOOD; FT split for Jun NOT SOURCED","GOOD"),
  ("Employment","CH","Non Farm Payrolls","5.537M","5.544M","Q1/26",">Cons 5.4M","GOOD"),
  ("Employment","CH","Unemployment Rate","3.0%","2.9%","Jul/26",">Prev","BAD"),
  # ---------------- INFLATION (w=3) ----------------

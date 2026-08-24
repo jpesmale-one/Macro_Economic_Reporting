@@ -3652,3 +3652,46 @@ LD-55 - EVERY BALANCE-OF-TRADE ROW IS PUBLISHED IN BILLIONS. Jeff: "AUD Balance
   LESSON: WHEN CORRECTING ONE ROW, MATCH THE NOTATION OF THE CATEGORY. A fix
   that is locally right and globally inconsistent creates a NEW defect while
   closing an old one.
+
+LD-56 - EMPLOYMENT CHANGE IS A THREE-PART COMPOSITE AND THE REPORT PUBLISHED
+  ONE TEST. Jeff: "AUD Employment Change - Although we have -15.8K but the Full
+  Time increased by 16K why is it still bad?"
+  HE READ THE ROW EXACTLY AS PUBLISHED AND GOT A REASONABLE QUESTION, which is
+  the definition of a reporting defect rather than a reader error.
+  THE SOURCE RULE, Idea_dump lines 175-179, for BOTH AU and CA:
+    "Employment Change - Actual > 0 is Good BUT GIVES MORE WEIGHT TO FULL TIME
+     EMPLOYMENT
+       Full Time Employment Chg: Actual > Previous is Good, < Previous is Bad
+       Part Time Employment Chg: Actual < Previous is Good, > Previous is Bad"
+  THREE TESTS. THE MODEL PUBLISHED "<Prev" - ONE TEST, AND NOT ONE THE SOURCE
+  STATES. Read literally, "<Prev" says "-15.8K vs 76.3K, it fell, BAD", which
+  makes the full-time gain look ignored. It was not ignored - it LOST ITS OWN
+  TEST, and the report never showed that test.
+  VERIFIED AGAINST THE ABS (not TE - LD-3 says the agency is the value
+  authority): July 2026 employment -15,800; FULL TIME +16,300; PART TIME
+  -32,200. My derived PT figure of -32.1K was right to rounding, but I sourced
+  it properly before scoring on it.
+  APPLYING THE ACTUAL RULE:
+    headline  >0        -15.8K              -> BAD
+    FULL TIME >Prev     16.3K vs 29.3K      -> BAD   <-- weighted heaviest
+    part time <Prev     -32.2K vs +47.0K    -> GOOD
+    two BAD including the heaviest -> BAD
+  SO THE GRADE WAS CORRECT AND THE PUBLISHED RULE WAS WRONG. AUD stays +2.08,
+  the tally is unchanged, and nothing downstream moves. What changes is that
+  the row now shows its components and the composite test.
+  THE SUBSTANTIVE POINT JEFF'S QUESTION SURFACES: full-time employment DID
+  rise. It failed because the source tests it against the PRIOR MONTH, not
+  against zero - +16.3K after +29.3K is a decelerating gain. That is a
+  defensible rule (momentum, not level) but it is INVISIBLE unless published,
+  and a reader seeing "+16.3K" beside "BAD" will rightly ask why.
+  CAD CARRIES THE IDENTICAL SOURCE RULE and had the same defect - ">Prev,
+  FT-weighted" states no composite either. Fixed: July headline +75.1K, FT
+  +38.6K, PT +36.6K (Statistics Canada, 7 Aug).
+  DELIBERATELY NOT GUESSED: June's CAD FT/PT split could not be sourced - the
+  TE series page returned no calendar rows and I did not derive it. The row
+  says "FT split for Jun NOT SOURCED" so the full-time test is visibly
+  un-runnable rather than silently skipped. QUEUED as R-15.
+  RULE THAT GENERALISES: WHERE A SOURCE SPECIFIES A COMPOSITE TEST, PUBLISH
+  EVERY COMPONENT AND EVERY SUB-GRADE. A single threshold string that
+  summarises a multi-part rule is not a threshold, it is a claim the reader
+  cannot check - and P2 exists precisely so figures can be checked.

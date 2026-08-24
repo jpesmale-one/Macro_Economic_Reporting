@@ -18,8 +18,8 @@
   "score": "GOOD"
  },
  "AU|Employment Change": {
-  "actual": "-15.8K",
-  "previous": "76.3K",
+  "actual": "-15.8K (FT +16.3K, PT -32.2K)",
+  "previous": "76.3K (FT +29.3K, PT +47.0K)",
   "ref": "Jul/26",
   "score": "BAD"
  },
@@ -72,7 +72,7 @@
   "score": "GOOD"
  },
  "CA|Employment Change": {
-  "actual": "75.1K",
+  "actual": "75.1K (FT +38.6K, PT +36.6K)",
   "previous": "18.2K",
   "ref": "Jul/26",
   "score": "GOOD"

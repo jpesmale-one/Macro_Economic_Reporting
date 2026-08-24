@@ -451,9 +451,8 @@
 <tr><td class="num">NZD</td><td>Balance of Trade</td><td>NZ$-1.95B</td><td>NZ$0.02B</td><td>Jul/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 <tr><td class="num">CAD</td><td>Balance of Trade</td><td>C$3.86B</td><td>C$3.70B</td><td>Jun/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Balance of Trade</td><td>CHF8.1B</td><td>CHF3.8B</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-</table></div>
-<p><b>All Balance of Trade rows are published in BILLIONS (LD-55).</b> The category previously mixed millions and billions across eight rows — <code>A$1,929M</code> beside <code>NZ$-1.95B</code> — a <b>1000× scale difference with no visual cue</b>. All eight now read in billions. <b>⚠ Both CHF and NZD were a month stale and CHF flipped grade:</b> released <b>20 Aug</b>, three days before this edition. <b>CHF A$8.1B vs 3.8B prior — a RISE, so BAD → GOOD</b>, worth +1.00 on CHF. NZD −1.95B vs 0.02B — still a fall, still BAD.</p></div></details>
-<details class="fold"><summary>2.4 Employment (weight 2)<span class="cnt">13 rows</span></summary><div class="foldbody"><p><b>13 indicators — 6 GOOD · 5 BAD · 2 NEUTRAL</b></p>
+</table></div></div></details>
+<details class="fold"><summary>2.4 Employment (weight 2)<span class="cnt">16 rows</span></summary><div class="foldbody"><p><b>13 indicators — 6 GOOD · 5 BAD · 2 NEUTRAL</b></p>
 <div class="tblwrap"><table>
 <tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
 <tr><td class="num">USD</td><td>Non Farm Payrolls</td><td class="num">-23K</td><td class="num">20K</td><td>Jul/26</td><td>&gt;Cons</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
@@ -462,14 +461,24 @@
 <tr><td class="num">GBP</td><td>Claimant Count Change</td><td class="num">-11K</td><td class="num">-6.4K</td><td>Jul/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">JPY</td><td>Unemployment Rate</td><td class="num">2.5%</td><td class="num">2.5%</td><td>Jun/26</td><td>unchanged</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
 <tr><td class="num">AUD</td><td>ANZ-Indeed Job Ads MoM</td><td class="num">+0.8%</td><td class="num">-0.1%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td class="num">AUD</td><td>Employment Change</td><td class="num">-15.8K</td><td class="num">76.3K</td><td>Jul/26</td><td>&lt;Prev, FT +16.3K vs 29.3K</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td class="num">AUD</td><td>Employment Change</td><td>-15.8K (FT +16.3K, PT -32.2K)</td><td>76.3K (FT +29.3K, PT +47.0K)</td><td>Jul/26</td><td>hdl&gt;0 BAD; FT&gt;prev BAD; PT&lt;prev GOOD</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 <tr><td class="num">AUD</td><td>Unemployment Rate</td><td class="num">4.5%</td><td class="num">4.4%</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 <tr><td class="num">NZD</td><td>Unemployment Rate</td><td class="num">5.6%</td><td class="num">5.4%</td><td>Jun/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
-<tr><td class="num">CAD</td><td>Employment Change</td><td class="num">75.1K</td><td class="num">18.2K</td><td>Jul/26</td><td>&gt;Prev, FT-weighted</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CAD</td><td>Employment Change</td><td>75.1K (FT +38.6K, PT +36.6K)</td><td class="num">18.2K</td><td>Jul/26</td><td>hdl&gt;0 GOOD; FT split for Jun NOT SOURCED</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CAD</td><td>Unemployment Rate</td><td class="num">6.4%</td><td class="num">6.5%</td><td>Jul/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Non Farm Payrolls</td><td class="num">5.537M</td><td class="num">5.544M</td><td>Q1/26</td><td>&gt;Cons 5.4M</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Unemployment Rate</td><td class="num">3.0%</td><td class="num">2.9%</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
-</table></div></div></details>
+</table></div>
+<p><b>⚠ HOW EMPLOYMENT CHANGE IS SCORED (LD-56).</b> The whitelist source specifies a <b>three-part composite</b>, not a single test: <em>"Actual &gt; 0 is Good <b>but gives more weight to Full Time Employment</b>"</em> — headline <code>&gt;0</code>, Full Time <code>&gt;Prev</code>, Part Time <code>&lt;Prev</code>. <b>The published threshold said only <code>&lt;Prev</code></b>, which reads as "−15.8K vs 76.3K, fell, therefore BAD" and makes the full-time gain look ignored. It was not — it simply lost its own test.</p>
+<p><b>AUD July, verified against the ABS:</b> headline <b>−15.8K</b>, full time <b>+16.3K</b>, part time <b>−32.2K</b>.</p>
+<div class="tblwrap"><table>
+<tr><th>Test</th><th>Reading</th><th>Grade</th></tr>
+<tr><td>Headline <code>&gt;0</code></td><td class="num">−15.8K</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td><b>Full Time <code>&gt;Prev</code></b> <em>(weighted heaviest)</em></td><td>16.3K vs 29.3K</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td>Part Time <code>&lt;Prev</code></td><td>−32.2K vs +47.0K</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+</table></div>
+<p><b>Two BAD including the heaviest test → BAD.</b> Full-time employment <b>did</b> rise, but by <em>less than the month before</em>, and the source's test is against the prior month, not against zero. <b>The grade was right; the published rule was not.</b> Both AUD and CAD rows now show the composite and their FT/PT splits.</p>
+<p><b>CAD July</b> headline +75.1K, full time <b>+38.6K</b>, part time <b>+36.6K</b> <em>(Statistics Canada, 7 Aug)</em>. <b>June's FT/PT split is not sourced</b>, so the full-time test cannot be run on it — flagged, not guessed.</p></div></details>
 <details class="fold"><summary>2.5 Inflation (weight 3)<span class="cnt">8 rows</span></summary><div class="foldbody"><p><b>8 indicators — 4 GOOD · 1 BAD · 3 NEUTRAL</b></p>
 <div class="tblwrap"><table>
 <tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>

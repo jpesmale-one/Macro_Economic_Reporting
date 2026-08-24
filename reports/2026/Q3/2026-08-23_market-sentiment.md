@@ -379,8 +379,6 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | CAD | Balance of Trade | C$3.86B | C$3.70B | Jun/26 | >Prev | **GOOD** |
 | CHF | Balance of Trade | CHF8.1B | CHF3.8B | Jul/26 | >Prev | **GOOD** |
 
-**All Balance of Trade rows are published in BILLIONS (LD-55).** The category previously mixed millions and billions across eight rows — `A$1,929M` beside `NZ$-1.95B` — a **1000× scale difference with no visual cue**. All eight now read in billions. **⚠ Both CHF and NZD were a month stale and CHF flipped grade:** released **20 Aug**, three days before this edition. **CHF A$8.1B vs 3.8B prior — a RISE, so BAD → GOOD**, worth +1.00 on CHF. NZD −1.95B vs 0.02B — still a fall, still BAD.
-
 ### 2.4 Employment (weight 2)
 
 **13 indicators — 6 GOOD · 5 BAD · 2 NEUTRAL**
@@ -393,13 +391,27 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | GBP | Claimant Count Change | -11K | -6.4K | Jul/26 | <Prev | **GOOD** |
 | JPY | Unemployment Rate | 2.5% | 2.5% | Jun/26 | unchanged | NEUTRAL |
 | AUD | ANZ-Indeed Job Ads MoM | +0.8% | -0.1% | Jul/26 | >0.5% | **GOOD** |
-| AUD | Employment Change | -15.8K | 76.3K | Jul/26 | <Prev, FT +16.3K vs 29.3K | **BAD** |
+| AUD | Employment Change | -15.8K (FT +16.3K, PT -32.2K) | 76.3K (FT +29.3K, PT +47.0K) | Jul/26 | hdl>0 BAD; FT>prev BAD; PT<prev GOOD | **BAD** |
 | AUD | Unemployment Rate | 4.5% | 4.4% | Jul/26 | >Prev | **BAD** |
 | NZD | Unemployment Rate | 5.6% | 5.4% | Jun/26 | >Prev | **BAD** |
-| CAD | Employment Change | 75.1K | 18.2K | Jul/26 | >Prev, FT-weighted | **GOOD** |
+| CAD | Employment Change | 75.1K (FT +38.6K, PT +36.6K) | 18.2K | Jul/26 | hdl>0 GOOD; FT split for Jun NOT SOURCED | **GOOD** |
 | CAD | Unemployment Rate | 6.4% | 6.5% | Jul/26 | <Prev | **GOOD** |
 | CHF | Non Farm Payrolls | 5.537M | 5.544M | Q1/26 | >Cons 5.4M | **GOOD** |
 | CHF | Unemployment Rate | 3.0% | 2.9% | Jul/26 | >Prev | **BAD** |
+
+**⚠ HOW EMPLOYMENT CHANGE IS SCORED (LD-56).** The whitelist source specifies a **three-part composite**, not a single test: *"Actual > 0 is Good **but gives more weight to Full Time Employment**"* — headline `>0`, Full Time `>Prev`, Part Time `<Prev`. **The published threshold said only `<Prev`**, which reads as "−15.8K vs 76.3K, fell, therefore BAD" and makes the full-time gain look ignored. It was not — it simply lost its own test.
+
+**AUD July, verified against the ABS:** headline **−15.8K**, full time **+16.3K**, part time **−32.2K**.
+
+| Test | Reading | Grade |
+|---|---|---|
+| Headline `>0` | −15.8K | **BAD** |
+| **Full Time `>Prev`** *(weighted heaviest)* | 16.3K vs 29.3K | **BAD** |
+| Part Time `<Prev` | −32.2K vs +47.0K | GOOD |
+
+**Two BAD including the heaviest test → BAD.** Full-time employment **did** rise, but by *less than the month before*, and the source's test is against the prior month, not against zero. **The grade was right; the published rule was not.** Both AUD and CAD rows now show the composite and their FT/PT splits.
+
+**CAD July** headline +75.1K, full time **+38.6K**, part time **+36.6K** *(Statistics Canada, 7 Aug)*. **June's FT/PT split is not sourced**, so the full-time test cannot be run on it — flagged, not guessed.
 
 ### 2.5 Inflation (weight 3)
 
