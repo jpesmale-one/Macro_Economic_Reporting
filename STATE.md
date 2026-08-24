@@ -3972,3 +3972,27 @@ LD-61 - SECTION 2.0 IS GENERATED AND SORTED BY SCORE. Jeff: "2.0 Category tally
   both scores in the error.
   Applied to the 2026-08-24 edition; order is now CAD 8.38, EUR 6.25, GBP 5.75,
   NZD 3.75, AUD 2.75, USD 2.25, JPY 0.00, CHF -0.38.
+
+LD-62 - SECTION 4.1 CURRENCY BANDS IS DELETED. Jeff: "4.1 Currency bands - This
+  is already merged let's remove this now in the report"
+  It had been reduced to a pointer ("Merged into section 2.0") plus a restated
+  one-line copy of the bands. A SECOND COPY OF A DERIVED TABLE IS A THING THAT
+  CAN DISAGREE WITH ITS SOURCE - and it did, until LD-61 generated 2.0 an hour
+  ago: 4.1's hand-written line and 2.0's hand-written table were two
+  independent transcriptions of the same numbers.
+  ONE TABLE, ONE PLACE. The bands live in section 2.0, generated from the tally
+  that produces them.
+  CHECKED BEFORE REMOVING: the only real reference was the spec's sub-section
+  list. Every other "4.1" in the repo is a coincidental 4.1% VALUE (US
+  unemployment, NZ inflation, AU Westpac previous, GBPCHF range position). A
+  grep for a section number will hit numeric data - read the matches.
+  NUMBERING GAP KEPT, JEFF'S CALL: 4.0 -> 4.3 -> 4.4 -> 4.5. The numbers are
+  STABLE IDENTIFIERS - "section 4.3 PROPOSED" means the same block in every
+  edition and in every STATE.md entry written so far. Renumbering would
+  silently re-point every past reference; a gap costs nothing.
+  REJECTED: closing the gap to 4.1/4.2/4.3. Tidier on the page, but "see 4.3"
+  in an existing finding would then resolve to CORRELATED rather than PROPOSED.
+  SIDE EFFECT WORTH NOTING: with 4.1 gone the edition prints LD-27 prose at
+  15.0% - UNDER THE TARGET for the first time since the rule was written. Not
+  because anything was cut for the ratio, but because a duplicated block was
+  removed. That is what LD-27 was actually asking for.

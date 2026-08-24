@@ -615,7 +615,12 @@ ways: on 2026-08-24 CADJPY sat at 97.8% of range yet had **19 pips** to
 resistance while both siblings had **5–6**. The parent was the least
 extended by the measure that matters.
 
-**Sub-sections:** 4.0 week-ahead projections · 4.1 currency bands ·
+**§4.1 CURRENCY BANDS IS DELETED (LD-62).** The bands live in **§2.0**,
+which generates them from the tally that produces them. A second copy in
+§4 was a duplicate that could disagree with its source — and did, until
+LD-61 generated §2.0. **One table, one place.**
+
+**Sub-sections:** 4.0 week-ahead projections ·
 4.2 candidate pairings · 4.3 CARRIED with confidence and zones ·
 4.3b CORRELATED as secondary entries (LD-21) · 4.4 REJECTED with reasons.
 

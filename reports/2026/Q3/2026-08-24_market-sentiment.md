@@ -403,11 +403,6 @@ The other seven projections hold their current grade.
 | Wed 26 09:30 | AUD RBA Trimmed Mean CPI | The RBA's preferred core measure; not whitelisted |
 | Fri 28 07:30 | JPY Tokyo CPI | Leads national CPI ~3 weeks; not whitelisted |
 
-### 4.1 Currency bands — as at 10:55 PHT
-
-Merged into §2.0. **STRONG:** CAD +8.38 · EUR +6.25 · GBP +5.75 ·
-**NEUTRAL:** NZD +3.75 · AUD +2.75 · USD +2.25 · **WEAK:** JPY +0.00 · CHF −0.38
-
 ### 4.3 PROPOSED-PENDING — three leg-disjoint pairs
 
 | Rank | Pair | Dir | Conf | Week | Spread | **Now** | Falsifier | Clear by |
