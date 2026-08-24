@@ -77,7 +77,7 @@ ROWS = [
  ("Employment","US","Non Farm Payrolls","-23K","20K","Jul/26",">Cons","BAD"),
  ("Employment","US","Unemployment Rate","4.1%","4.2%","Jul/26","<Prev","GOOD"),
  ("Employment","EA","Unemployment Rate","6.3%","6.3%","Jun/26","unchanged","NEUTRAL"),
- ("Employment","GB","Claimant Count Change","-11K","-6.4K","Jul/26","<Prev","GOOD"),
+ ("Employment","GB","Claimant Count Change","-11K","-6.4K","Jul/26","<0 (LD-58)","GOOD"),
  ("Employment","JP","Unemployment Rate","2.5%","2.5%","Jun/26","unchanged","NEUTRAL"),
  ("Employment","AU","ANZ-Indeed Job Ads MoM","+0.8%","-0.1%","Jul/26",">0.5%","GOOD"),
  ("Employment","AU","Employment Change","-15.8K (FT +16.3K, PT -32.2K)","76.3K (FT +29.3K, PT +47.0K)","Jul/26","hdl BAD; FT NEUTRAL (LD-57); PT GOOD","NEUTRAL"),
@@ -130,6 +130,31 @@ def full_time_grade(actual, previous):
     if actual > 0:
         return "GOOD" if actual >= previous else "NEUTRAL"
     return "BAD" if actual <= previous else "NEUTRAL"
+
+
+# LD-58 - CLAIMANT COUNT CHANGE, Jeff's rule, 2026-08-24. GBP only.
+#
+# The series measures the CHANGE in people claiming unemployment benefit, so
+# NEGATIVE means fewer claimants and an IMPROVING labour market. The sign is
+# the signal; the prior month is not.
+#
+#   Actual > 0 -> BAD      more claimants
+#   Actual < 0 -> GOOD     fewer claimants
+#   Actual = 0 -> NEUTRAL  no change
+#
+# WHY IT CHANGED: the previous test was "Actual < Previous", which produced
+# two backwards readings. Claimants falling 2K after falling 11K scored BAD -
+# the labour market improved and the model called it bad. Claimants RISING 5K
+# after rising 20K scored GOOD - the market deteriorated and the model called
+# it good. A change series has to be read against ZERO, not against its own
+# prior change.
+def claimant_grade(actual):
+    """Grade a Claimant Count Change print. Returns GOOD/NEUTRAL/BAD."""
+    if actual is None:
+        return None
+    if actual == 0:
+        return "NEUTRAL"
+    return "GOOD" if actual < 0 else "BAD"
 
 
 def compute(include_rate=True):

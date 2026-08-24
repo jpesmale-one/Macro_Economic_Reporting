@@ -3754,3 +3754,41 @@ LD-57 - FULL TIME EMPLOYMENT CHANGE, NEW SCORING RULE (Jeff, 2026-08-24).
 #   LESSON: A GUARD THAT PASSES ON THE WRONG NUMBER IS NOT PASSING. I read
 #   "82/71 ... no blanks" as green three times before noticing 82 was absurd.
 #   Watch the numbers a guard prints, not just its verdict.
+
+LD-58 - CLAIMANT COUNT CHANGE IS SCORED AGAINST ZERO (Jeff, 2026-08-24).
+  "GBP Claimant Count Change - Let's change the rule to this
+     1) Actual > 0 is Bad
+     2) Actual < 0 is Good
+     3) Actual = 0 is Neutral"
+  WHAT THE SERIES MEASURES: the CHANGE in people claiming unemployment benefit.
+  NEGATIVE = FEWER CLAIMANTS = IMPROVING labour market. The SIGN is the signal;
+  the prior month is not.
+  THE OLD RULE (<Prev, straight from the whitelist source line 191) READ
+  BACKWARDS IN TWO CASES:
+    claimants FALLING 2K after falling 11K   -> old BAD,  new GOOD
+    claimants RISING 5K after rising 20K     -> old GOOD, new BAD
+  In both the labour market moved one way and the model said the other. A
+  CHANGE SERIES MUST BE READ AGAINST ZERO, NOT AGAINST ITS OWN PRIOR CHANGE -
+  that comparison measures acceleration, which is a different question from
+  direction.
+  NO SCORE MOVES: July -11K is GOOD under both rules. GBP stays +5.75.
+  Implemented as score_model.claimant_grade(), like LD-57 - a grading rule is
+  derived logic and gets generated, not hand-applied (LD-39 principle).
+  All five branches verified including the zero case.
+
+  SWEPT THE WHITELIST FOR THE SAME DEFECT and found ONE more candidate:
+  AUD Westpac Consumer Conf Change, scored ">Prev". Same shape - confidence
+  RISING 2% after rising 6% would score BAD, confidence FALLING 1% after
+  falling 5% would score GOOD.
+  DELIBERATELY NOT CHANGED. Jeff specified the Claimant rule explicitly and
+  said nothing about Westpac; the whitelist source says ">Previous" for it.
+  Amending a rule he did not ask about would substitute my judgement for his
+  specification - the exact thing F-3 exists to prevent. FLAGGED FOR HIS CALL.
+  QUEUED as R-16.
+  NOTE THE ASYMMETRY THAT MAKES IT A REAL QUESTION AND NOT AN OBVIOUS FIX:
+  Claimant Count is a FLOW where the sign has direct meaning (fewer claimants
+  is unambiguously better). Westpac is the MoM % change of an INDEX, and
+  whether "confidence rose more slowly" should score neutral or bad is a
+  judgement about what the Spending category is trying to read. LD-57 answered
+  that question for full-time employment by introducing a NEUTRAL band; the
+  same treatment may or may not suit Westpac.

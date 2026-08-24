@@ -388,7 +388,7 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | USD | Non Farm Payrolls | -23K | 20K | Jul/26 | >Cons | **BAD** |
 | USD | Unemployment Rate | 4.1% | 4.2% | Jul/26 | <Prev | **GOOD** |
 | EUR | Unemployment Rate | 6.3% | 6.3% | Jun/26 | unchanged | NEUTRAL |
-| GBP | Claimant Count Change | -11K | -6.4K | Jul/26 | <Prev | **GOOD** |
+| GBP | Claimant Count Change | -11K | -6.4K | Jul/26 | <0 (LD-58) | **GOOD** |
 | JPY | Unemployment Rate | 2.5% | 2.5% | Jun/26 | unchanged | NEUTRAL |
 | AUD | ANZ-Indeed Job Ads MoM | +0.8% | -0.1% | Jul/26 | >0.5% | **GOOD** |
 | AUD | Employment Change | -15.8K (FT +16.3K, PT -32.2K) | 76.3K (FT +29.3K, PT +47.0K) | Jul/26 | hdl BAD; FT NEUTRAL (LD-57); PT GOOD | NEUTRAL |
@@ -399,17 +399,11 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | CHF | Non Farm Payrolls | 5.537M | 5.544M | Q1/26 | >Cons 5.4M | **GOOD** |
 | CHF | Unemployment Rate | 3.0% | 2.9% | Jul/26 | >Prev | **BAD** |
 
-**⚠ FULL TIME EMPLOYMENT IS SCORED ON A NEW RULE (LD-57), Jeff's call.** The old test was a bare `>Prev`, which graded a **positive** full-time month BAD for merely growing more slowly than the month before. Decelerating growth is not contraction and the model should not call it that. The rule now:
+**⚠ TWO EMPLOYMENT RULES CHANGED THIS SESSION (LD-57, LD-58), both Jeff's calls.**
 
-| Full Time Chg | vs Previous | Grade |
-|---|---|---|
-| **> 0** | ≥ previous | **GOOD** |
-| **> 0** | < previous | **NEUTRAL** — growth, but slowing |
-| **< 0** | ≤ previous | **BAD** |
-| **< 0** | > previous | **NEUTRAL** — contraction, but easing |
-| **= 0** | any | NEUTRAL |
+**GBP Claimant Count Change is now scored against ZERO, not against the prior month (LD-58).** The series measures the *change* in benefit claimants, so **negative = fewer claimants = improving**. `>0` BAD · `<0` GOOD · `=0` NEUTRAL. The old `<Prev` test read backwards in two cases: claimants falling **2K** after falling 11K scored **BAD**, and claimants **rising 5K** after rising 20K scored **GOOD**. July −11K is GOOD either way, so no score moves.
 
-**Full time still carries the most weight** of the three legs.
+**Full Time Employment (LD-57)** — `>0 and ≥prev` GOOD · `>0 and <prev` NEUTRAL · `<0 and ≤prev` BAD · `<0 and >prev` NEUTRAL · `=0` NEUTRAL. Full time still carries the most weight.
 
 **AUD July re-graded, verified against the ABS** — headline −15.8K, full time **+16.3K**, part time **−32.2K**:
 
@@ -420,9 +414,7 @@ weight-3 Inflation category — currently **0.00** — on Wednesday.
 | Part Time `<Prev` | −32.2K vs +47.0K | GOOD | GOOD |
 | **Composite** | | **BAD** | **NEUTRAL** |
 
-**AUD moves +2.08 → +2.75**, passing USD into 5th. **Band unchanged (NEUTRAL), and no carried pair has an AUD leg** — CADJPY, EURCHF and GBPUSD are untouched. The AUDNZD reject stands and is weaker still (spread 1.67 → 1.00).
-
-**CAD carries the same rule but cannot run it** — June's FT/PT split is not sourced, so the full-time leg is un-runnable and flagged rather than guessed. July: headline +75.1K, FT **+38.6K**, PT **+36.6K** *(Statistics Canada, 7 Aug)*.
+**AUD moves +2.08 → +2.75**, passing USD into 5th. Band unchanged, and **no carried pair has an AUD leg**. **CAD** carries LD-57 but cannot run it — June's FT/PT split is not sourced (July: FT **+38.6K**, PT **+36.6K**, *Statistics Canada 7 Aug*).
 
 ### 2.5 Inflation (weight 3)
 

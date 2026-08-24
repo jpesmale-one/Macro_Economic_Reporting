@@ -452,13 +452,13 @@
 <tr><td class="num">CAD</td><td>Balance of Trade</td><td>C$3.86B</td><td>C$3.70B</td><td>Jun/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Balance of Trade</td><td>CHF8.1B</td><td>CHF3.8B</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 </table></div></div></details>
-<details class="fold"><summary>2.4 Employment (weight 2)<span class="cnt">22 rows</span></summary><div class="foldbody"><p><b>13 indicators — 6 GOOD · 4 BAD · 3 NEUTRAL</b></p>
+<details class="fold"><summary>2.4 Employment (weight 2)<span class="cnt">17 rows</span></summary><div class="foldbody"><p><b>13 indicators — 6 GOOD · 4 BAD · 3 NEUTRAL</b></p>
 <div class="tblwrap"><table>
 <tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
 <tr><td class="num">USD</td><td>Non Farm Payrolls</td><td class="num">-23K</td><td class="num">20K</td><td>Jul/26</td><td>&gt;Cons</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 <tr><td class="num">USD</td><td>Unemployment Rate</td><td class="num">4.1%</td><td class="num">4.2%</td><td>Jul/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">EUR</td><td>Unemployment Rate</td><td class="num">6.3%</td><td class="num">6.3%</td><td>Jun/26</td><td>unchanged</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
-<tr><td class="num">GBP</td><td>Claimant Count Change</td><td class="num">-11K</td><td class="num">-6.4K</td><td>Jul/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">GBP</td><td>Claimant Count Change</td><td class="num">-11K</td><td class="num">-6.4K</td><td>Jul/26</td><td>&lt;0 (LD-58)</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">JPY</td><td>Unemployment Rate</td><td class="num">2.5%</td><td class="num">2.5%</td><td>Jun/26</td><td>unchanged</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
 <tr><td class="num">AUD</td><td>ANZ-Indeed Job Ads MoM</td><td class="num">+0.8%</td><td class="num">-0.1%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">AUD</td><td>Employment Change</td><td>-15.8K (FT +16.3K, PT -32.2K)</td><td>76.3K (FT +29.3K, PT +47.0K)</td><td>Jul/26</td><td>hdl BAD; FT NEUTRAL (LD-57); PT GOOD</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
@@ -469,16 +469,9 @@
 <tr><td class="num">CHF</td><td>Non Farm Payrolls</td><td class="num">5.537M</td><td class="num">5.544M</td><td>Q1/26</td><td>&gt;Cons 5.4M</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td class="num">CHF</td><td>Unemployment Rate</td><td class="num">3.0%</td><td class="num">2.9%</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
 </table></div>
-<p><b>⚠ FULL TIME EMPLOYMENT IS SCORED ON A NEW RULE (LD-57), Jeff's call.</b> The old test was a bare <code>&gt;Prev</code>, which graded a <b>positive</b> full-time month BAD for merely growing more slowly than the month before. Decelerating growth is not contraction and the model should not call it that. The rule now:</p>
-<div class="tblwrap"><table>
-<tr><th>Full Time Chg</th><th>vs Previous</th><th>Grade</th></tr>
-<tr><td><b>&gt; 0</b></td><td>≥ previous</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
-<tr><td><b>&gt; 0</b></td><td>&lt; previous</td><td><b>NEUTRAL</b> — growth, but slowing</td></tr>
-<tr><td><b>&lt; 0</b></td><td>≤ previous</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
-<tr><td><b>&lt; 0</b></td><td>&gt; previous</td><td><b>NEUTRAL</b> — contraction, but easing</td></tr>
-<tr><td><b>= 0</b></td><td>any</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
-</table></div>
-<p><b>Full time still carries the most weight</b> of the three legs.</p>
+<p><b>⚠ TWO EMPLOYMENT RULES CHANGED THIS SESSION (LD-57, LD-58), both Jeff's calls.</b></p>
+<p><b>GBP Claimant Count Change is now scored against ZERO, not against the prior month (LD-58).</b> The series measures the <em>change</em> in benefit claimants, so <b>negative = fewer claimants = improving</b>. <code>&gt;0</code> BAD · <code>&lt;0</code> GOOD · <code>=0</code> NEUTRAL. The old <code>&lt;Prev</code> test read backwards in two cases: claimants falling <b>2K</b> after falling 11K scored <b>BAD</b>, and claimants <b>rising 5K</b> after rising 20K scored <b>GOOD</b>. July −11K is GOOD either way, so no score moves.</p>
+<p><b>Full Time Employment (LD-57)</b> — <code>&gt;0 and ≥prev</code> GOOD · <code>&gt;0 and &lt;prev</code> NEUTRAL · <code>&lt;0 and ≤prev</code> BAD · <code>&lt;0 and &gt;prev</code> NEUTRAL · <code>=0</code> NEUTRAL. Full time still carries the most weight.</p>
 <p><b>AUD July re-graded, verified against the ABS</b> — headline −15.8K, full time <b>+16.3K</b>, part time <b>−32.2K</b>:</p>
 <div class="tblwrap"><table>
 <tr><th>Leg</th><th>Reading</th><th>Was</th><th><b>Now</b></th></tr>
@@ -487,8 +480,7 @@
 <tr><td>Part Time <code>&lt;Prev</code></td><td>−32.2K vs +47.0K</td><td class="num"><span class="pill p-good">GOOD</span></td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
 <tr><td><b>Composite</b></td><td></td><td class="num"><span class="pill p-bad">BAD</span></td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
 </table></div>
-<p><b>AUD moves +2.08 → +2.75</b>, passing USD into 5th. <b>Band unchanged (NEUTRAL), and no carried pair has an AUD leg</b> — CADJPY, EURCHF and GBPUSD are untouched. The AUDNZD reject stands and is weaker still (spread 1.67 → 1.00).</p>
-<p><b>CAD carries the same rule but cannot run it</b> — June's FT/PT split is not sourced, so the full-time leg is un-runnable and flagged rather than guessed. July: headline +75.1K, FT <b>+38.6K</b>, PT <b>+36.6K</b> <em>(Statistics Canada, 7 Aug)</em>.</p></div></details>
+<p><b>AUD moves +2.08 → +2.75</b>, passing USD into 5th. Band unchanged, and <b>no carried pair has an AUD leg</b>. <b>CAD</b> carries LD-57 but cannot run it — June's FT/PT split is not sourced (July: FT <b>+38.6K</b>, PT <b>+36.6K</b>, <em>Statistics Canada 7 Aug</em>).</p></div></details>
 <details class="fold"><summary>2.5 Inflation (weight 3)<span class="cnt">8 rows</span></summary><div class="foldbody"><p><b>8 indicators — 4 GOOD · 1 BAD · 3 NEUTRAL</b></p>
 <div class="tblwrap"><table>
 <tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
