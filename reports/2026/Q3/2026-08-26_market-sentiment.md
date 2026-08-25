@@ -8,8 +8,8 @@ eyebrow: Macro Economic Reporting &middot; Wednesday &mdash; week of 24&ndash;28
 chip: TRACKING <b>2 of 4 favouring</b> &middot; set LOCKED
 chip: <b class="dn">2 USD rows corrected</b> &middot; USD +1.75 &rarr; +2.25
 chip: TODAY <b>AU CPI 09:30</b> &middot; 2 USD prints 20:30
-fng_note: Carried from Friday's capture &mdash; the CNN endpoint posts once daily and has not updated since. The index reads <b>Greed 55.2</b> while <b>four of seven components sit in Fear</b>.
-fng_spread: Spread top-to-bottom bar: <b>95.8 &minus; 29.4 = 66.4</b>. Junk Bond Demand alone carries the headline.
+fng_note: <b>Re-fetched this morning</b> (F-51) &mdash; the three previous editions ran on a <b>21 Aug</b> reading while stating the endpoint had not updated. It had, every business day. The index is <b>Greed 58.80</b>, stamped 25 Aug, and <b>only two of seven components sit in Fear</b> &mdash; not four.
+fng_spread: Spread top-to-bottom bar: <b>88.40 &minus; 27.00 = 61.40</b>. <b>Put/Call Options flipped Fear &rarr; Greed, 43.40 &rarr; 72.80</b> &mdash; that single component moved the index. Junk Bond Demand <b>fell 7.40 while the headline ROSE</b>, so it no longer carries the reading on its own.
 -->
 
 <!--exec-->
@@ -92,6 +92,32 @@ the most interesting thing in the report.**
 ### 📊 Sentiment — CNN Fear &amp; Greed Index
 
 <!--FNG-->
+
+**⚠ This block was stale in the three previous editions (F-51).** They
+published **Greed 55.2** from a **21 Aug** capture, and said *"the CNN endpoint
+posts once daily and has not updated since."* **The endpoint had updated every
+business day** — Fri 21 **54.51**, Mon 24 **56.09**, Tue 25 **58.80** — and the
+history proving it was inside our own payload. **We stopped fetching; the note
+blamed the source.**
+
+**What the fresh read changes:**
+
+| | Published (stale) | **Actual (25 Aug)** |
+|---|---|---|
+| Headline | Greed **55.2** | **Greed 58.80** |
+| Components in Fear | **four** of seven | **two** of seven |
+| Spread | 95.8 − 29.4 = **66.4** | 88.40 − 27.00 = **61.40** |
+| Driver | *"Junk Bond Demand alone carries the headline"* | **false now** — it **fell 7.40** while the index **rose** |
+
+**Put/Call Options did the work: 43.40 → 72.80, Fear → Greed.** Hedging demand
+gave way to call buying in four sessions. **The index is better supported than
+the old narrative claimed** — breadth improved underneath while the
+extreme-greed component came off its high.
+
+**Read for our set:** risk appetite firming is **mildly supportive of GBPUSD
+LONG and EURCHF LONG** (both long the risk-correlated leg) and **mildly hostile
+to CADJPY's short-JPY leg** only insofar as it argues against a haven bid.
+**Not scored** — sentiment is context, never a whitelist input (F-3).
 
 ### 🇯🇵 Japan — the BoJ story hardened overnight, and F-44 now resolves
 
@@ -845,7 +871,7 @@ release schedule**. **LD-3 held in all three: the calendar gave the schedule,
 the agency gave the value** — and in each case the agency and the calendar
 disagreed.
 
-**Not done, stated plainly:** §5/§6 levels **not re-charted** (R-10 still open
+**Fear & Greed re-fetched this run** after Jeff flagged it — the previous capture was 5 days old (F-51). **Not done, stated plainly:** §5/§6 levels **not re-charted** (R-10 still open
 for BTCUSD's forward map). **CAD's June FT/PT split remains unsourced** (R-15).
 **The calendar capture still contains no CHF rows** (R-14) — and this edition
 shows the cost: a CHF event appeared in §4.0 for a week TE has no such event in.
@@ -865,7 +891,9 @@ shows the cost: a CHF event appeared in §4.0 for a week TE has no such event in
 | **F-48** | **NEW — §4.0 reached outside the current week.** Jeff's catch. Below |
 | **F-49** | **NEW — national prints were satisfying euro-area rows.** Below |
 | **F-50** | **NEW — the NFP slot on Friday is the benchmark revision.** Below |
+| **F-51** | **NEW — the Fear & Greed block was 5 days stale and the edition blamed the source.** Below |
 | **R-16** | **NEW GUARD** — a score quoted outside §2.0 must match the tally |
+| **R-17** | **NEW GUARD** — the F&G capture must be current for the edition date |
 | ~~F-36~~ | **CLOSED by F-45** — there was never a 25 Aug Final to wait for |
 
 **F-45 — the exemption was built on a false premise.** `audit_te.py` claimed
@@ -909,6 +937,20 @@ the check now runs first.
 2026 establishment data, **not the monthly payrolls print**. Our capture
 labelled it "non farm payrolls" and the matcher believed the label. **BLS puts
 August payrolls on Fri 4 Sep 20:30 PHT — next week's window.** Added to `_NOT`.
+
+**F-51 — the sentiment block went stale and the note blamed the endpoint.**
+Jeff: *"our Fear and Greed sentiment seems to be stalled can you check?"* It
+was. Three editions ran on a **21 Aug** reading while publishing *"the CNN
+endpoint posts once daily and has not updated since."* **The endpoint published
+every business day** — and the series proving it sat inside the payload we
+already had. **We stopped fetching after 23 Aug; the carry-forward note asserted
+an outage that never happened.** Re-fetched: **58.80**, two of seven in Fear
+rather than four, and the "Junk Bond Demand alone carries it" claim is now
+false. **R-17 fails the render when the capture is more than 3 days behind the
+edition date** — verified against the stale file.
+
+**A stale block that DISCLOSES the carry is honest; one that MISDIAGNOSES why
+is worse than silence**, because it tells the reader not to go looking.
 
 **The pattern across F-45, F-49 and F-50: three different rows where a
 CALENDAR LABEL was trusted over the ISSUING AGENCY.** LD-3 exists precisely for

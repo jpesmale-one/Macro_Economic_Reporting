@@ -683,6 +683,54 @@ def assert_tally_sorted(md):
     return len(scores)
 
 
+def assert_fng_fresh(fm):
+    """The F&G capture must be current for the edition date (R-17/F-51).
+
+    2026-08-26. Three editions ran on a 21 Aug reading while telling the
+    reader 'the CNN endpoint posts once daily and HAS NOT UPDATED SINCE'.
+    The historical series inside our own payload showed the endpoint had
+    published every business day - Fri 21 54.51, Mon 24 56.09, Tue 25
+    58.80. THE SOURCE WAS FINE; WE STOPPED FETCHING, and the carry-forward
+    note asserted an outage that never happened.
+
+    Cost: headline 3.6 points low, 'four of seven components in Fear' when
+    two were, and 'Junk Bond Demand alone carries the headline' when that
+    component had FALLEN 7.4 while the index rose.
+
+    LD-54 catches this for score_model rows. The F&G block is not a
+    score_model row, so nothing looked at it.
+    """
+    import glob, json, datetime as _dt
+    caps = sorted(glob.glob(os.path.join(REPO, 'data/raw/fng/*.json')))
+    if not caps:
+        return 'no capture'
+    d = json.load(io.open(caps[-1], encoding='utf-8'))
+    fg = d.get('fear_and_greed', {})
+    ts = str(fg.get('timestamp', ''))[:10]
+    ed = fm.get('date', '')
+    if not ts or not ed:
+        return 'undated'
+    try:
+        gap = (_dt.date.fromisoformat(ed)
+               - _dt.date.fromisoformat(ts)).days
+    except ValueError:
+        return 'unparseable'
+    # The reading is stamped the prior close, so 1 day is normal;
+    # 3 spans a weekend. Beyond that the block is stale.
+    if gap > 3:
+        raise SystemExit(
+            'FATAL (R-17/F-51): the Fear & Greed capture is stamped %s but '
+            'this edition is dated %s - %d days.%sRe-fetch before publishing:%s'
+            '  curl -sL -A "Mozilla/5.0" -H "Referer: https://edition.cnn.com/markets/fear-and-greed" %s'
+            '    "https://production.dataviz.cnn.io/index/fearandgreed/graphdata" %s'
+            '    -o data/raw/fng/$(date +%%Y-%%m-%%d)_capture.json%s'
+            'On 2026-08-26 three editions ran on a 21 Aug reading while claiming'
+            ' the endpoint had not updated. It had - every business day.'
+            % (ts, ed, gap, chr(10), chr(10), chr(92) + chr(10),
+               chr(92) + chr(10), chr(10)))
+    return '%s, %dd old' % (ts, gap)
+
+
 def assert_scores_consistent(md):
     """Any currency score quoted OUTSIDE 2.0 must equal the 2.0 tally (R-16).
 
@@ -865,6 +913,7 @@ if __name__ == '__main__':
     ntal = assert_tally_sorted(md)
     assert_levels_drawn(md)
     assert_no_offlist_scores(md)
+    fng_state = assert_fng_fresh(fm)
     nsc = assert_scores_consistent(md)
     ncov = assert_news_coverage(md)
     sources = assert_news_sources(md)
@@ -882,6 +931,7 @@ if __name__ == '__main__':
         print('  LD-41 4.0 scores  whitelist indicators only')
         print('  LD-39 whitelist %d/%d indicator rows, no blanks'
               % (nrow, nexp))
+    print('  R-17 F&G fresh  %s' % fng_state)
     print('  R-16 scores     %d currency scores agree with §2.0' % nsc)
     print('  LD-65 news cov  %d moved currency(ies) covered' % ncov)
     print('  F-17 sources    §1 cites %d: %s' % (len(sources), ', '.join(sources)))
