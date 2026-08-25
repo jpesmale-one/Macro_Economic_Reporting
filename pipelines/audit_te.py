@@ -46,6 +46,15 @@ SLUG = {'US': 'united-states', 'EA': 'euro-area', 'GB': 'united-kingdom',
 # Rows where OUR presentation legitimately differs from TE's. Each needs a
 # reason - this list is not a way to silence a mismatch (F-35).
 KNOWN_DIFFERENT = {
+    ('US', 'Building Permits MoM Final'):
+        'we carry MoM %, TE carries the LEVEL (1443 SAAR). Both are the '
+        'JULY figure from the SAME Census release of 18 Aug 2026 - Census '
+        'publishes ONE monthly New Residential Construction report per '
+        'month (next: 17 Sep), so there is no separate prelim/final pair '
+        'for a given month. F-45: the previous exemption asserted a 25 Aug '
+        'Final that the agency calendar does not have, and that false '
+        'premise kept the row a month stale at -2.6%% BAD when the '
+        'published July figure was +5.0%% GOOD.',
     ('US', 'Balance of Trade'): 'we carry $bn, TE carries the bare number',
     ('JP', 'Balance of Trade'): 'we carry JPY bn, TE rounds',
     ('NZ', 'Balance of Trade'): 'we carry NZ$ bn, TE carries millions',
@@ -76,13 +85,12 @@ KNOWN_SERIES_GAP = {
     ('US', 'CB Consumer Confidence'):
         'TE routes /united-states/consumer-confidence to MICHIGAN SENTIMENT, a '
         'different series. CB Consumer Confidence is not on the country page - '
-        'sourced from the calendar capture plus investing.com/myfxbook (F-41). '
-        'Checking the TE page alone returns the wrong indicator.',
-    ('US', 'Building Permits MoM Final'):
-        'TE lists the LEVEL (1443, Jul) and the Jul MoM PREL; the whitelist '
-        'names the MoM FINAL, whose current value is the JUN Final -2.6%. '
-        'The Jul Final releases Tue 25 Aug. Updating this row to TE would '
-        're-commit F-40 (a preliminary published as a final).',
+        'sourced from THE CONFERENCE BOARD DIRECTLY (F-46). Aug/26 = 89.4 vs '
+        '90.2 Jul. NOTE: this row previously held 51.0/55.2, which are '
+        'MICHIGAN SENTIMENT values - we substituted the very series this note '
+        'warns about. Michigan runs ~50-60, CB runs ~85-95: A CB READING '
+        'BELOW 70 IS A WRONG-SERIES TELL. Source the Conference Board, not a '
+        'calendar mirror.',
     ('EA', 'Consumer Confidence Final'):
         'TE lists the monthly FLASH; the whitelist names the FINAL, which '
         'releases later in the month. Updating this row to TE would '

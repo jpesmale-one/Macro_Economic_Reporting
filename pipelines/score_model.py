@@ -41,9 +41,9 @@ ROWS = [
  ("Production","CH","Procure.ch-UBS Mfg PMI","53.2","54.3","Jul/26",">50.5","GOOD"),
  ("Production","CH","Industrial Production YoY","5.5%","-7.1%","Q2/26",">0.5%","GOOD"),
  # ---------------- SPENDING (w=1) ----------------
- ("Spending","US","Building Permits MoM Final","-2.6%","-0.9%","Jun/26",">0.5%","BAD"),
+ ("Spending","US","Building Permits MoM Final","5.0%","-2.6%","Jul/26",">0.5%","GOOD"),
  ("Spending","US","Retail Sales YoY","5.0%","6.8%","Jul/26",">0.5%","GOOD"),
- ("Spending","US","CB Consumer Confidence","51.0","55.2","Aug/26",">Prev","BAD"),
+ ("Spending","US","CB Consumer Confidence","89.4","90.2","Aug/26",">Prev","BAD"),
  ("Spending","US","Personal Spending MoM","0.3%","0.9%","Jun/26","0-0.5%","NEUTRAL"),
  ("Spending","EA","Retail Sales YoY","0.7%","1.9%","Jun/26",">0.5%","GOOD"),
  ("Spending","EA","Consumer Confidence Final","-15.9","-17.6","Jul/26",">Prev","GOOD"),

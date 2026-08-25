@@ -19,6 +19,7 @@ check) applied to a data pipeline.
 DATA + FILTERING ONLY. This module does not fetch; feed it a capture.
 """
 import json, io, os, re, sys, datetime
+import datetime as dt
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -41,6 +42,15 @@ _NOT = (
                                                    # full balance of trade
     ('Inflation Rate YoY Final', 'prel'),          # FR/ES national prel prints
                                                    # are not the EA Final
+    ('Non Farm Payrolls', 'revision'),            # F-50: the PRELIMINARY
+                                                   # BENCHMARK REVISION (Fri
+                                                   # 28 Aug 22:00 PHT, to Mar
+                                                   # 2026 data) is NOT the
+                                                   # monthly payrolls print.
+                                                   # August payrolls land Fri
+                                                   # 4 Sep 20:30 PHT - NEXT
+                                                   # WEEK's window (LD-66).
+    ('Non Farm Payrolls', 'benchmark'),
 )
 
 # National releases that must never satisfy a EUR-aggregate whitelist row.
@@ -60,6 +70,16 @@ def match(ev, names, iso=None):
     Inflation Rate Final. The _NOT list and the national-release rule are the
     stricter half, and BOTH halves are needed.
     """
+    # F-49: THIS CHECK MUST COME FIRST. The exact-match shortcut below
+    # used to run before it, so a national print whose name EXACTLY
+    # equals the whitelist name skipped the guard entirely - Spain's
+    # 'retail sales yoy' became EUR Retail Sales YoY and Germany's
+    # 'unemployment rate' became EUR Unemployment Rate, both published
+    # in the 2026-08-25 edition under Fri 28. TE puts the real EA
+    # prints on 4 Sep and 1 Sep - NEXT WEEK AND THE WEEK AFTER.
+    if iso in _NATIONAL:
+        return None
+
     for name in names:
         n = name.lower()
         if ev == n:
@@ -77,7 +97,7 @@ def match(ev, names, iso=None):
         # 'inflation' only and immediately produced a second false positive -
         # French unemployment BENEFIT CLAIMS matched EUR Unemployment Rate.
         # There is no EA-aggregate unemployment print this week at all.
-        if iso in _NATIONAL:
+        if iso in _NATIONAL:      # redundant since F-49, kept deliberately
             continue
         want = set(re.findall(r'[a-z]+', n)) - _NOISE
         have = set(re.findall(r'[a-z]+', ev)) - _NOISE
@@ -108,6 +128,34 @@ def match(ev, names, iso=None):
 # each indicator's own threshold and its own PREL/FINAL distinction, and the
 # Building Permits row conflated a Jul PREL actual, a Jun FINAL previous and a
 # consensus into one line. ONE TEST, THREE SOURCED NUMBERS, NO DERIVATION.
+def current_window(now=None):
+    """The Mon-Fri window 4.0 must cover, rolling on SUNDAY (LD-66).
+
+    Mon-Fri  -> this week's Mon..Fri (the week in progress).
+    Sat      -> still this week (the week just ended is still the
+                locked set's week).
+    SUNDAY   -> ROLLS to the coming Mon..Fri. This is the WEEKEND PREP
+                edition's window.
+
+    F-48, 2026-08-26: the window used to be a hardcoded default
+    ('2026-08-24'..'2026-08-28'), so 4.0 kept publishing one week's
+    dates while the calendar moved on. Events from LATER weeks were
+    listed under this week and showed up with no consensus - TE has
+    none yet for an event that far out - which read as a sourcing
+    defect when it was really a WINDOW defect.
+    """
+    if now is None:
+        now = (dt.datetime.now(dt.timezone.utc)
+               .astimezone(dt.timezone(dt.timedelta(hours=8))))
+    d = now.date()
+    wd = d.weekday()          # Mon=0 .. Sun=6
+    if wd == 6:               # Sunday - roll forward
+        mon = d + dt.timedelta(days=1)
+    else:
+        mon = d - dt.timedelta(days=wd)
+    return mon.isoformat(), (mon + dt.timedelta(days=4)).isoformat()
+
+
 def market_pricing(previous, consensus, forecast=None):
     """Grade what the market is pricing. Returns GOOD/NEUTRAL/BAD or None.
 
@@ -184,8 +232,9 @@ def whitelist_events(capture_path, start, end):
 
 if __name__ == '__main__':
     cap = sys.argv[1] if len(sys.argv) > 1 else None
-    start = sys.argv[2] if len(sys.argv) > 2 else '2026-08-24'
-    end = sys.argv[3] if len(sys.argv) > 3 else '2026-08-28'
+    _ws, _we = current_window()
+    start = sys.argv[2] if len(sys.argv) > 2 else _ws
+    end = sys.argv[3] if len(sys.argv) > 3 else _we
     if not cap:
         import glob
         caps = sorted(glob.glob(os.path.join(
@@ -195,7 +244,7 @@ if __name__ == '__main__':
         raise SystemExit('no calendar capture found')
     timed, no_time = whitelist_events(cap, start, end)
     print('capture: %s' % os.path.basename(cap))
-    print('window : %s .. %s (PHT)' % (start, end))
+    print('window : %s .. %s (PHT)   [LD-66 current week]' % (start, end))
     print()
     print('%-16s %-5s %s' % ('WHEN (PHT)', 'CCY', 'WHITELIST INDICATOR'))
     for p, ccy, name, raw, d in timed:

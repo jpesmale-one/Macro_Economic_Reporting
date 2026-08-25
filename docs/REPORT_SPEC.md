@@ -971,3 +971,36 @@ while destroying the citation trail.
 - **P-4** — ForexFactory access method (schedule role only, LD-3).
 - **F-1** — stays **OPEN**. The phantom-Actual guard is a procedure I run,
   not tooling. It closes only on an automated schedule-vs-now check.
+
+---
+
+### LD-66 — §4.0's window is THIS WEEK ONLY, and it rolls on Sunday
+
+**§4.0 lists the whitelist events of the CURRENT Monday–Friday and nothing else.**
+On **Sunday** the window rolls forward to the coming Mon–Fri: on **Sun 30 Aug**
+§4.0 becomes **31 Aug – 4 Sep**.
+
+**Why this is a rule and not a preference (F-48, 2026-08-26).** The 25 Aug
+edition listed **EUR Retail Sales** and **EUR Unemployment** under Fri 28 Aug.
+TE puts them on **4 Sep** and **1 Sep**. Both published as *UNSCORED — no
+consensus*, and the missing consensus was read as a sourcing problem.
+
+**It was not. TE had no consensus because the events were not in that week.**
+Consensus firms up as a release approaches; an event two weeks out has none
+yet. **Reaching past the current week manufactures exactly the empty cells
+that then look like a data-quality defect.**
+
+| Symptom | Wrong reading | **Right reading** |
+|---|---|---|
+| Row has no consensus | "source it from somewhere else" | **"is this event even in this week?"** |
+| Row has no consensus AND no forecast | mark UNSCORED, publish | **WINDOW ERROR — investigate before publishing** |
+
+**A row with neither consensus nor forecast in the current window is a window
+error to investigate, never a row to mark UNSCORED and ship.**
+
+**Corollary — the weekly cadence.** We monitor news **week by week**, not
+open-endedly forward. The lookahead beyond Friday belongs in the WEEKEND PREP
+edition, which is where the next week is scoped.
+
+---
+

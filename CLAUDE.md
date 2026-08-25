@@ -121,10 +121,25 @@ hand-written version silently degraded while the generator sat unused.
 ```
 python pipelines/audit_te.py --fetch     # LD-50 - reconcile the whitelist
 python pipelines/freshness.py            # LD-54 - revisions + stalled series
-python pipelines/test_guards.py          # 7 real regressions must all block
+python pipelines/test_guards.py          # 8 real regressions must all block
 python pipelines/week_ahead.py           # §4.0 events, DATE -> TIME -> CCY
-python pipelines/render_edition.py <md>  # 11 guards run before a byte is written
+python pipelines/render_edition.py <md>  # 12 guards run before a byte is written
 ```
+
+**Starting TradingView (F-9 - the recipe, not just the file name).** The
+MCP's own `tv_launch` FAILS on this machine: it falls back to a local MSIX
+copy (`msix_local_copy: true`), the process exits immediately, and nothing
+ever listens on 9222. Launch it through the AUMID instead:
+
+```
+C:/Users/jpesm/Documents/GitHub/tradingview-mcp/scripts/TvMsixLaunch.exe \
+  "TradingView.Desktop_n534cwy3pjxzj!TradingView.Desktop" --remote-debugging-port=9222
+```
+
+Get the AUMID with `Get-StartApps | ? {$_.Name -like '*TradingView*'}` if
+it ever changes. Then `tv_health_check` - CDP comes up in about a second.
+**2026-08-26: `tv_launch` was tried twice and died twice before this was
+found; the handover had recorded F-9 as CLOSED without the command.**
 
 **`audit_te.py` is the only thing in this repo that compares a row to the
 world.** Every other check verifies arithmetic *on* the rows — P2 recompute,
@@ -136,7 +151,8 @@ four days (F-35).
 hand-written generated block (LD-38), fewer than 70 whitelist rows or any
 blank cell (LD-39), an off-list indicator carrying a score (LD-41), a section
 1 with no news source (F-17), levels published but not drawn (LD-46), a stale
-or unreconciled TE capture (LD-50). **A FATAL is information, not an
+or unreconciled TE capture (LD-50), **a currency score quoted outside
+§2.0 that contradicts the tally (R-16/F-46)**. **A FATAL is information, not an
 obstacle — never edit content to clear a gate.**
 
 ### What the guards CANNOT catch

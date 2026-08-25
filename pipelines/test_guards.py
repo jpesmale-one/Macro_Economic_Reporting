@@ -85,6 +85,15 @@ def fixtures(md):
                     '| **Fri 28 20:30** | **CAD** | **GDP Growth Annualized** '
                     '| **3.4%** | **-0.1%** | **BAD** | contraction |\n'
                     '| **Wed 26 09:30** | **AUD** | **Inflation Rate YoY**', 1)))
+    # F-46: one edition published two different USD scores - +1.75 in
+    # section 2.0 and +2.25 in sections 5 and 6, both citing 2.0 as source.
+    # Sections 5/6 were CARRIED from Sunday and the carry took the score
+    # with it. A stale level is disclosed; a stale score contradicts
+    # section 2 silently.
+    out.append(('stale_carried_score',
+                'F-46 score quoted outside 2.0 contradicts the tally',
+                md.replace('USD fundamental score** | **+2.25',
+                           'USD fundamental score** | **+9.99', 1)))
     return out
 
 

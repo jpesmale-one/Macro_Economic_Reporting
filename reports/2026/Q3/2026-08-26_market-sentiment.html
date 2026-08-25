@@ -1,0 +1,735 @@
+<title>Market Sentiment 2026-08-26</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --bg:#EEF1F5; --surface:#FFFFFF; --surface2:#F5F8FA; --border:#D3DDE7;
+    --text:#26323F; --muted:#6C8095; --strong:#0C1926;
+    --bull:#00875F; --bear:#C62B3C; --warn:#A96B00; --info:#1F6FB8; --violet:#6D4FC4;
+    --bull-bg:rgba(0,135,95,.10); --bear-bg:rgba(198,43,60,.10);
+    --warn-bg:rgba(169,107,0,.10); --info-bg:rgba(31,111,184,.10); --violet-bg:rgba(109,79,196,.10);
+    --mono:'JetBrains Mono',ui-monospace,'SF Mono',Consolas,monospace;
+    --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0E1117; --surface:#161C24; --surface2:#1C2430; --border:#243040;
+      --text:#CDD6E0; --muted:#5E6E80; --strong:#E8F0F8;
+      --bull:#00C896; --bear:#F0485A; --warn:#F5A623; --info:#4BA3F0; --violet:#A78BFA;
+      --bull-bg:rgba(0,200,150,.10); --bear-bg:rgba(240,72,90,.10);
+      --warn-bg:rgba(245,166,35,.10); --info-bg:rgba(75,163,240,.10); --violet-bg:rgba(167,139,250,.12);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0E1117; --surface:#161C24; --surface2:#1C2430; --border:#243040;
+    --text:#CDD6E0; --muted:#5E6E80; --strong:#E8F0F8;
+    --bull:#00C896; --bear:#F0485A; --warn:#F5A623; --info:#4BA3F0; --violet:#A78BFA;
+    --bull-bg:rgba(0,200,150,.10); --bear-bg:rgba(240,72,90,.10);
+    --warn-bg:rgba(245,166,35,.10); --info-bg:rgba(75,163,240,.10); --violet-bg:rgba(167,139,250,.12);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:15px}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;padding-bottom:56px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+  .tzbar{font-family:var(--mono);font-size:.66rem;letter-spacing:.09em;color:var(--info);
+    text-align:center;padding:7px 12px;background:var(--info-bg);border-bottom:1px solid var(--border)}
+
+  .masthead{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 0}
+  .mh{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap}
+  .eyebrow{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .mdate{font-family:var(--mono);font-size:1.1rem;font-weight:700;color:var(--strong);letter-spacing:.02em}
+  .chips{margin-left:auto;display:flex;gap:15px;flex-wrap:wrap;font-family:var(--mono);
+    font-size:.76rem;font-variant-numeric:tabular-nums;color:var(--muted)}
+  .chips b{color:var(--strong);font-weight:600}
+  .dn{color:var(--bear)}.up{color:var(--bull)}
+
+  .draft{display:inline-block;font-family:var(--mono);font-size:.6rem;font-weight:700;
+    letter-spacing:.1em;padding:3px 8px;border-radius:3px;background:var(--warn-bg);
+    color:var(--warn);border:1px solid var(--warn);margin-top:6px}
+
+  h2.sec{font-family:var(--mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:7px;
+    margin:32px 0 15px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;font-weight:600}
+  h2.sec em{font-style:normal;color:var(--info);font-size:.9em;letter-spacing:.05em}
+  h3.sub{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--strong);margin:20px 0 9px;font-weight:700;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+
+  .corr{background:var(--surface);border:1px solid var(--bear);border-left:4px solid var(--bear);
+    border-radius:4px;overflow:hidden;margin-top:22px}
+  .corr-hd{background:var(--bear-bg);padding:12px 18px;font-family:var(--mono);font-size:.78rem;
+    font-weight:700;color:var(--bear);letter-spacing:.05em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .corr-b{padding:6px 18px 14px}
+  .citem{padding:11px 0;border-bottom:1px solid var(--border);font-size:.85rem;line-height:1.5}
+  .citem:last-child{border-bottom:none}
+  .ctag{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.08em;
+    color:var(--bear);background:var(--bear-bg);padding:2px 7px;border-radius:3px;margin-right:8px}
+
+  .tblwrap{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:4px}
+  table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.75rem;
+    font-variant-numeric:tabular-nums;min-width:640px}
+  thead tr{background:var(--surface2);border-bottom:1px solid var(--border)}
+  th{padding:8px 10px;text-align:left;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;white-space:nowrap}
+  td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  .ccy{font-weight:700;color:var(--strong)}
+  .num{font-weight:600;color:var(--strong)}
+  .sched{color:var(--muted);font-size:.7rem;white-space:nowrap}
+  .phantom td{background:var(--warn-bg)}
+  .phantom .num{color:var(--warn);font-style:italic}
+  .note{color:var(--muted);font-size:.72rem;line-height:1.4;font-family:var(--sans)}
+
+  .pill{display:inline-block;font-family:var(--mono);font-size:.57rem;font-weight:700;
+    letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;border-radius:3px;white-space:nowrap}
+  .p-good{background:var(--bull-bg);color:var(--bull)}
+  .p-bad{background:var(--bear-bg);color:var(--bear)}
+  .p-neut{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+  .p-warn{background:var(--warn-bg);color:var(--warn)}
+  .p-info{background:var(--info-bg);color:var(--info)}
+  .p-vio{background:var(--violet-bg);color:var(--violet)}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:820px){.grid2{grid-template-columns:1fr}}
+
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+  .card-hd{padding:10px 15px;border-bottom:1px solid var(--border);background:var(--surface2);
+    font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+    font-weight:700;color:var(--strong);display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .card-b{padding:14px 15px;font-size:.85rem}
+  .card-b p{margin-bottom:9px;max-width:72ch}
+  .card-b p:last-child{margin-bottom:0}
+
+  .readbox{background:var(--surface2);border-left:3px solid var(--info);padding:9px 13px;
+    margin-top:11px;font-size:.82rem;line-height:1.5}
+  .readbox b{color:var(--info);font-family:var(--mono);font-size:.62rem;letter-spacing:.09em;
+    text-transform:uppercase;display:block;margin-bottom:3px}
+
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:.83rem;margin-top:4px}
+  .kv dt{font-family:var(--mono);font-size:.61rem;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);padding-top:3px;white-space:nowrap}
+
+  .rrow{display:grid;grid-template-columns:26px 52px 1fr;gap:11px;padding:10px 0;
+    border-bottom:1px solid var(--border);align-items:start}
+  .rrow:last-child{border-bottom:none}
+  .rn{font-family:var(--mono);font-size:.8rem;font-weight:700;color:var(--muted);text-align:right}
+  .rc{font-family:var(--mono);font-size:.9rem;font-weight:700;color:var(--strong)}
+  .rtxt{font-size:.83rem;line-height:1.45}
+  .rtxt strong{color:var(--strong);font-weight:600}
+
+  .lvl{display:flex;justify-content:space-between;gap:12px;padding:6px 0;
+    border-bottom:1px dashed var(--border);font-family:var(--mono);font-size:.78rem;
+    font-variant-numeric:tabular-nums}
+  .lvl:last-child{border-bottom:none}
+  .lvl-p{font-weight:700;color:var(--strong)}
+  .lvl-t{color:var(--muted);font-size:.69rem;text-align:right}
+
+  .fals{background:var(--violet-bg);border-left:3px solid var(--violet);padding:9px 13px;
+    margin-top:11px;font-size:.81rem;line-height:1.5}
+  .fals b{color:var(--violet);font-family:var(--mono);font-size:.62rem;letter-spacing:.09em;
+    text-transform:uppercase;display:block;margin-bottom:3px}
+  .warnbox{background:var(--warn-bg);border-left:3px solid var(--warn);padding:9px 13px;
+    margin-top:11px;font-size:.81rem;line-height:1.5}
+  .warnbox b{color:var(--warn)}
+  .gapbox{background:var(--bear-bg);border-left:3px solid var(--bear);padding:9px 13px;
+    margin-top:11px;font-size:.81rem;line-height:1.5}
+  .gapbox b{color:var(--bear)}
+
+  .newsrow{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:10px 0;
+    border-bottom:1px solid var(--border);font-size:.85rem;align-items:start}
+  .newsrow:last-child{border-bottom:none}
+  .newstime{font-family:var(--mono);font-size:.7rem;color:var(--info);font-weight:600;white-space:nowrap}
+
+  ol.broke{list-style:none;counter-reset:b;display:flex;flex-direction:column;gap:10px}
+  ol.broke li{counter-increment:b;padding-left:30px;position:relative;font-size:.84rem;line-height:1.5;max-width:76ch}
+  ol.broke li::before{content:counter(b);position:absolute;left:0;top:1px;font-family:var(--mono);
+    font-size:.62rem;font-weight:700;color:var(--bear);background:var(--bear-bg);
+    width:20px;height:20px;border-radius:3px;display:grid;place-items:center}
+
+  .gate{display:grid;grid-template-columns:auto auto 1fr;gap:9px 14px;align-items:baseline;font-size:.84rem}
+  .gate-k{font-family:var(--mono);font-size:.65rem;letter-spacing:.08em;color:var(--muted);white-space:nowrap}
+
+
+  .fng-head{display:flex;align-items:center;gap:26px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--border)}
+  .fng-big{font-family:var(--mono);font-size:2.6rem;font-weight:700;color:var(--strong);line-height:1;
+    font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:12px}
+  .fng-lab{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .fng-hist{display:flex;gap:20px;flex-wrap:wrap;margin-left:auto}
+  .fng-h{font-family:var(--mono);font-size:.72rem;display:flex;flex-direction:column;gap:2px;font-variant-numeric:tabular-nums}
+  .fng-h span{color:var(--muted);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase}
+  .fng-h b{color:var(--strong);font-size:.9rem}
+  .fng-h i{font-style:normal;font-size:.68rem}
+  .fng-h i.up{color:var(--bull)}.fng-h i.dn{color:var(--bear)}.fng-h i.flat{color:var(--muted)}
+  .fng-bars{display:flex;flex-direction:column;gap:7px;margin-top:14px}
+  .fng-row{display:grid;grid-template-columns:170px 1fr 46px auto;gap:11px;align-items:center;
+    font-family:var(--mono);font-size:.76rem;font-variant-numeric:tabular-nums}
+  .fng-n{color:var(--text);font-size:.74rem}
+  .fng-track{height:9px;background:var(--surface2);border-radius:2px;overflow:hidden;border:1px solid var(--border)}
+  .fng-fill{display:block;height:100%;border-radius:1px}
+  .fng-fill.x-eg{background:var(--bear)}
+  .fng-fill.x-g{background:var(--bull)}
+  .fng-fill.x-n{background:var(--muted)}
+  .fng-fill.x-f{background:var(--warn)}
+  .fng-v{font-weight:700;color:var(--strong);text-align:right}
+  @media(max-width:640px){.fng-row{grid-template-columns:1fr 46px;}.fng-track{grid-column:1/-1}}
+  .wt-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .wt-pill{font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.06em;
+    padding:4px 10px;border-radius:3px;border:1px solid var(--border)}
+  .wt-3{background:var(--violet-bg);color:var(--violet);border-color:var(--violet)}
+  .wt-2{background:var(--info-bg);color:var(--info);border-color:var(--info)}
+  .wt-1{background:var(--surface2);color:var(--muted)}
+  table.rates td{padding:11px 11px;vertical-align:top}
+  table.rates td.exp{font-family:var(--sans);font-size:.8rem;line-height:1.5;color:var(--text);min-width:300px}
+  table.rates td.ccy{font-size:.9rem}
+  .vote{font-size:.65rem;color:var(--muted);font-family:var(--mono)}
+  .bias{display:inline-block;font-family:var(--mono);font-size:.6rem;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:3px;white-space:nowrap}
+  .b-decide{background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn)}
+  .b-hike{background:var(--bear-bg);color:var(--bear);border:1px solid var(--bear)}
+  .b-reprice{background:var(--warn-bg);color:var(--warn)}
+  .b-trap{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+  .b-floor{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+  .b-tighten{background:var(--bear-bg);color:var(--bear)}
+  .b-split{background:var(--violet-bg);color:var(--violet);border:1px solid var(--violet)}
+  footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--border);
+    font-family:var(--mono);font-size:.65rem;color:var(--muted);
+    display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+</style>
+<style>
+  details.fold{background:var(--surface);border:1px solid var(--border);
+    border-radius:4px;margin:14px 0;overflow:hidden}
+  details.fold>summary{cursor:pointer;list-style:none;padding:10px 15px;
+    background:var(--surface2);font-family:var(--mono);font-size:.68rem;
+    letter-spacing:.11em;text-transform:uppercase;font-weight:700;
+    color:var(--strong);display:flex;align-items:center;gap:10px;
+    user-select:none;transition:background .12s}
+  details.fold>summary:hover{background:var(--border)}
+  details.fold>summary::-webkit-details-marker{display:none}
+  details.fold>summary::before{content:'▸';color:var(--info);font-size:.85rem;
+    transition:transform .15s;display:inline-block}
+  details.fold[open]>summary::before{transform:rotate(90deg)}
+  details.fold>summary .cnt{margin-left:auto;font-size:.6rem;letter-spacing:.08em;
+    color:var(--muted);font-weight:600;text-transform:none}
+  details.fold>summary:focus-visible{outline:2px solid var(--info);outline-offset:-2px}
+  .foldbody{padding:4px 15px 14px}
+  .foldbody .tblwrap{border:none;border-radius:0}
+  @media print{details.fold[open],details.fold{display:block}
+    details.fold>summary::before{display:none}
+    details.fold:not([open])>.foldbody{display:block}}
+  @media (prefers-reduced-motion:reduce){
+    details.fold>summary::before{transition:none}}
+
+  /* LD-28 TYPOGRAPHY - headers outrank body.
+     Before this block h2.sec/h3.sub inherited .68-.7rem uppercase mono
+     while body prose ran ~1rem: body text 40% LARGER than the header
+     above it, inverted at every level. Explicit scale, largest first. */
+  h2.sec{font-size:1.6rem;font-weight:800;line-height:1.25;
+    letter-spacing:-.01em;text-transform:none;font-family:inherit;
+    margin:34px 0 12px;padding-bottom:7px;
+    border-bottom:2px solid var(--border);color:var(--strong)}
+  h3.sub{font-size:1.15rem;font-weight:700;line-height:1.3;
+    text-transform:none;font-family:inherit;letter-spacing:0;
+    margin:22px 0 8px;color:var(--strong)}
+  h4{font-size:1rem;font-weight:700;margin:16px 0 6px;color:var(--strong)}
+  /* body sits BELOW the headers, and analysis notes sit below body */
+  p,li,td,th{font-size:.92rem;line-height:1.6}
+  blockquote{font-size:.85rem;line-height:1.55;opacity:.9;
+    border-left:3px solid var(--border);margin:12px 0;padding:2px 0 2px 14px}
+  blockquote p{font-size:inherit}
+  .note,em.note{font-size:.82rem;opacity:.85}
+
+  del{opacity:.62;text-decoration-color:var(--bear)}
+  .exec{background:var(--surface);border:1px solid var(--info);
+    border-left:4px solid var(--info);border-radius:4px;margin:20px 0;overflow:hidden}
+  .exec-hd{background:var(--info-bg);padding:11px 18px;font-family:var(--mono);
+    font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--info)}
+  .exec-b{padding:14px 18px}
+  .exec-b p{margin-bottom:9px;max-width:78ch;font-size:.88rem}
+  .exec-b p:last-child{margin-bottom:0}
+</style>
+
+<div class="tzbar">ALL TIMES PHILIPPINE STANDARD TIME (UTC+8) &middot; TE CALENDAR IS UTC &rarr; PHT = UTC + 8h &middot; RE-VERIFIED THIS RUN</div>
+<div class="masthead"><div class="wrap mh">
+  <div>
+    <div class="eyebrow">Macro Economic Reporting &middot; Macro Economic Reporting &middot; Wednesday &mdash; week of 24&ndash;28 Aug</div>
+    <div class="mdate">Wednesday, 26 August 2026 &middot; 06:23 PHT</div>
+    <div class="draft">R1 &middot; UNSEALED</div>
+  </div>
+  <div class="chips">
+    <span>TRACKING <b>2 of 4 favouring</b> &middot; set LOCKED</span>
+    <span><b class="dn">2 USD rows corrected</b> &middot; USD +1.75 &rarr; +2.25</span>
+    <span>TODAY <b>AU CPI 09:30</b> &middot; 2 USD prints 20:30</span>
+  </div>
+</div></div>
+<div class="wrap">
+<p><b>TWO USD ROWS WERE WRONG AND ONE HAD BEEN WRONG FOR DAYS.</b> Building Permits carried <b>June's −2.6% graded BAD</b> while the published <b>July figure is +5.0%, GOOD</b> — Census Bureau, released 18 Aug. CB Consumer Confidence carried <b>51.0/55.2, which are MICHIGAN SENTIMENT's numbers</b>, not the Conference Board's <b>89.4 vs 90.2</b>. Both corrected from the issuing agency and both now reconcile with TE. <b>USD moves +1.75 → +2.25.</b></p>
+<p><b>THE 25 AUG EDITION ALSO CONTRADICTED ITSELF:</b> §2.0 said USD <b>+1.75</b> while §5 and §6 both said <b>+2.25</b>, each citing §2.0 as the source. <b>A new guard (R-16) now fails the render on any score quoted outside §2.0 that disagrees with the tally</b> — and it fires on yesterday's file.</p>
+<p><b>STILL 2 OF 4 FAVOURING, BUT THE COMPOSITION ROTATED COMPLETELY.</b> GBPUSD and AUDNZD now favour; CADJPY and EURCHF do not. Yesterday it was the other pair. <b>No falsifier has fired and the set stays LOCKED.</b></p>
+<p><b>§4.0 WAS REACHING OUTSIDE THIS WEEK.</b> Jeff caught it: rows with no consensus were not a sourcing problem — <b>they were next week's and the week after's events</b>, listed under this week. Behind that sat two more defects: <b>Spain's retail sales and Germany's unemployment were being published as euro-area rows</b>, and <b>Friday's "NFP" slot is the benchmark revision, not the monthly print</b>. §4.0 drops from 12 events to 9, <b>every one with a TE consensus</b>.</p>
+<h2 class="sec">§0 — Week to Date Progress</h2>
+<p><b>Day 3 of five. The set was locked Sunday for 24–28 Aug and has not been touched since</b> (LD-29: a pair leaves by its falsifier, not by conviction). Every figure below is a <b>closed daily bar</b>.</p>
+<div class="tblwrap"><table>
+<tr><th>Pair</th><th>Bias</th><th>Lock ref</th><th>Mon close</th><th><b>Tue close</b></th><th>Tue move</th><th>Favouring?</th><th>Falsifier</th><th>Clear by</th></tr>
+<tr><td><b>CADJPY</b></td><td>LONG</td><td class="num">115.490</td><td class="num">114.920</td><td class="num"><b>115.028</b></td><td><b>+10.8 pips</b></td><td><b>NO</b></td><td>close &lt; <b>114.472</b></td><td><b>56 pips</b></td></tr>
+<tr><td><b>EURCHF</b></td><td>LONG</td><td class="num">0.93562</td><td class="num">0.93604</td><td class="num"><b>0.93562</b></td><td>−4.2 pips</td><td><b>NO</b></td><td>close &lt; <b>0.92796</b></td><td>77 pips</td></tr>
+<tr><td><b>GBPUSD</b></td><td>LONG</td><td class="num">1.36456</td><td class="num">1.36306</td><td class="num"><b>1.36488</b></td><td><b>+18.2 pips</b></td><td class="num"><b>YES</b></td><td>close &lt; <b>1.35197</b></td><td>129 pips</td></tr>
+<tr><td><b>AUDNZD</b></td><td><b>SHORT</b></td><td class="num">1.20071</td><td class="num">1.19986</td><td class="num"><b>1.19853</b></td><td><b>−13.3 pips</b></td><td class="num"><b>YES</b></td><td>close &gt; <b>1.20724</b></td><td>87 pips</td></tr>
+</table></div>
+<p><b>2 of 4 favouring — the same count as Monday and Tuesday, and a completely different two.</b> GBPUSD and AUDNZD came good; CADJPY and EURCHF went the other way. <b>A stable headline count concealing a full rotation underneath is worth more than the count itself.</b></p>
+<h3 class="sub">EURCHF closed at exactly its lock reference</h3>
+<p><b>0.93562 on Tuesday's close against a 0.93562 lock — to five decimals.</b> Not a rounding artifact: the lock was Friday's close and Tuesday landed on it. The pair is <b>flat on the week</b>, and the strict <code>&gt;</code> test therefore reads <b>NO</b>.</p>
+<p><b>It is neither working nor broken.</b> Reporting it as "not favouring" is accurate but overstates the case; <b>it has simply not moved</b>, and it sits 77 pips from a falsifier it has never approached.</p>
+<h3 class="sub">⚠ Correction to yesterday's r2 — CAD's slide stalled</h3>
+<p><b>r2 published, at 16:31 PHT, that USDCAD had made "a new high at 1.38616" and that "CAD is weaker still."</b> The intraday high was real. <b>The close was not.</b></p>
+<div class="tblwrap"><table>
+<tr><th>Cross</th><th>Mon close</th><th>Tue <b>intraday</b></th><th><b>Tue close</b></th><th>What it means</th></tr>
+<tr><td><b>USDCAD</b></td><td class="num">1.38450</td><td><b>1.38616</b> high</td><td class="num"><b>1.38412</b></td><td><b>CAD ended STRONGER than Monday</b></td></tr>
+<tr><td><b>USDJPY</b></td><td class="num">159.104</td><td>159.493 high</td><td class="num"><b>159.204</b></td><td>JPY a touch weaker</td></tr>
+</table></div>
+<p><b>So the r2 diagnostic was wrong on the close.</b> CADJPY's +10.8 pips came partly from the CAD leg recovering, not purely from a falling yen. <b>An intraday extreme is not a session's verdict</b>, and r2 drew a structural conclusion from one. The lesson is recorded as <b>F-47</b>.</p>
+<p><b>What survives from r2:</b> CAD's <em>weekly</em> position is still poor — the tariff regime is live, and CAD remains the highest-scoring currency on the board (+8.38) with the weakest price action. <b>That tension is unresolved and it is the most interesting thing in the report.</b></p>
+<h2 class="sec">§1 — Headline Alerts, News &amp; Current Events</h2>
+<h3 class="sub">📊 Sentiment — CNN Fear &amp;amp; Greed Index</h3>
+<div class="fng-head">
+<div class="fng-big">55.17 <span class="fng-lab">GREED</span></div>
+<div class="fng-hist">
+<div class="fng-h"><span class="fng-lab">PREV CLOSE</span><b>52.49</b><span class="up">+2.69</span></div>
+<div class="fng-h"><span class="fng-lab">1 WEEK AGO</span><b>63.97</b><span class="dn">-8.80</span></div>
+<div class="fng-h"><span class="fng-lab">1 MONTH AGO</span><b>43.37</b><span class="up">+11.80</span></div>
+<div class="fng-h"><span class="fng-lab">1 YEAR AGO</span><b>52.60</b><span class="up">+2.57</span></div>
+</div></div>
+<div class="fng-bars">
+<div class="fng-row"><span class="fng-n">Junk Bond Demand</span><span class="fng-track"><i class="fng-fill" style="width:95.8%;background:var(--bear)"></i></span><span class="fng-v">95.8</span><span class="pill p-bad">extreme greed</span></div>
+<div class="fng-row"><span class="fng-n">Safe Haven Demand</span><span class="fng-track"><i class="fng-fill" style="width:71.0%;background:var(--bull)"></i></span><span class="fng-v">71.0</span><span class="pill p-good">greed</span></div>
+<div class="fng-row"><span class="fng-n">Stock Price Breadth</span><span class="fng-track"><i class="fng-fill" style="width:57.6%;background:var(--bull)"></i></span><span class="fng-v">57.6</span><span class="pill p-good">greed</span></div>
+<div class="fng-row"><span class="fng-n">Market Volatility (VIX)</span><span class="fng-track"><i class="fng-fill" style="width:50.0%;background:var(--muted)"></i></span><span class="fng-v">50.0</span><span class="pill p-neut">neutral</span></div>
+<div class="fng-row"><span class="fng-n">Put / Call Options</span><span class="fng-track"><i class="fng-fill" style="width:43.4%;background:var(--warn)"></i></span><span class="fng-v">43.4</span><span class="pill p-warn">fear</span></div>
+<div class="fng-row"><span class="fng-n">Market Momentum S&P 500</span><span class="fng-track"><i class="fng-fill" style="width:39.0%;background:var(--warn)"></i></span><span class="fng-v">39.0</span><span class="pill p-warn">fear</span></div>
+<div class="fng-row"><span class="fng-n">Stock Price Strength</span><span class="fng-track"><i class="fng-fill" style="width:29.4%;background:var(--warn)"></i></span><span class="fng-v">29.4</span><span class="pill p-warn">fear</span></div>
+</div>
+<div class="readbox"><b>Recompute (P2)</b>(95.8 + 71.0 + 57.6 + 50.0 + 43.4 + 39.0 + 29.4) &divide; 7 = <b>55.1714</b> &mdash; published <b>55.1714</b>, difference <b>0.0000</b>. <b>Matches exactly.</b> CNN uses a <b>simple average</b> of the seven, not a weighted one, so the components fully explain the headline.</div>
+<div class="warnbox"><b>The headline hides the story.</b> &ldquo;Greed 55&rdquo; is the average of a market that is <em>not</em> neutral internally. The spread between highest and lowest component is <b>66.4 points</b>: <b>Junk Bond Demand 95.8 (extreme greed)</b> against <b>Stock Price Strength 29.4 (fear)</b>. Spread top-to-bottom bar: <b>95.8 &minus; 29.4 = 66.4</b>. Junk Bond Demand alone carries the headline.</div>
+<div class="readbox"><b>Cross-check</b>Carried from Friday's capture &mdash; the CNN endpoint posts once daily and has not updated since. The index reads <b>Greed 55.2</b> while <b>four of seven components sit in Fear</b>.</div>
+<h3 class="sub">🇯🇵 Japan — the BoJ story hardened overnight, and F-44 now resolves</h3>
+<p><b>A reuters.com poll has 57% of economists expecting a BoJ hike to 1.25% in September, up from 5% in July</b> <em>(investinglive.com, ~15 min before capture)</em>. Nearly two-thirds see at least 1.5% by March 2027. Separately, <b>reuters.com reports the BoJ is eyeing a September hike and a faster pace of tightening</b>, and <b>BoJ underlying inflation stayed above 2%</b> <em>(bloomberg.com, 25 Aug)</em>.</p>
+<p><b>This is a 52-point swing in expectations in five weeks.</b> It is no longer one ex-board member's opinion — the finding that opened as F-44 on Monday.</p>
+<div class="tblwrap"><table>
+<tr><th></th><th>Monday's F-44</th><th><b>Today</b></th></tr>
+<tr><td>Evidence</td><td>one ex-board member, <b>article unretrievable</b></td><td><b>Reuters poll, 57% · Reuters sources · BoJ inflation gauge</b></td></tr>
+<tr><td>Carry side</td><td>F-39: intervention <em>turbo charged</em> the carry trade</td><td>still true, but <b>being priced against</b></td></tr>
+<tr><td>Verdict</td><td><b>published as an unresolved tension</b></td><td><b>resolves toward the HIKE side</b></td></tr>
+</table></div>
+<p><b>⚠ This cuts against three of four legs.</b> CADJPY is long a pair whose short leg is a yen the market increasingly expects policy to support. <b>USDJPY at 159.204 says carry is still winning — but now against a hardening consensus.</b> Intervention is meanwhile called "ineffective," with fiscal policy blamed for yen weakness <em>(investinglive.com)</em>.</p>
+<h3 class="sub">🇪🇺 Europe — the ECB is ready to hike in September</h3>
+<p><b>ECB policymakers are ready to raise rates at the 10 September meeting</b>, taking the deposit rate to <b>2.5%</b>, with <b>little appetite to signal more after that</b> <em>(reuters.com sources via investinglive.com and tradingview.com; bloomberg.com, 23 Jul)</em>. <b>The driver is the Iran war's effect on energy prices.</b></p>
+<p><b>Read for EURCHF:</b> EUR-positive against a franc whose own central bank is not tightening. <b>The rate leg of the EURCHF thesis strengthened overnight</b> — and this is the one macro item that would have argued for the pair yesterday, when it went nowhere.</p>
+<p><b>⚠ Not scored.</b> This is policy expectation, not a whitelist indicator. <b>EUR's +6.25 does not move on it</b> (F-3), and §2.6 scores each bank against its own mandate, not against market pricing.</p>
+<h3 class="sub">🇦🇺 Australia — CPI lands in three hours</h3>
+<p><b>July CPI is due 11:30 AEST = 09:30 PHT</b>, ~3 hours after this edition. Expectations <em>(investinglive.com preview)</em>: <b>headline easing to 3.2–3.3% from 3.8%</b>, trimmed mean to <b>~3.5% from 3.6%</b>, which would keep <b>a September hold in play</b>.</p>
+<p><b>This is the test set up in yesterday's §1.</b> Tuesday's RBA story had the board debating a <em>preemptive hike</em>; §4.0 prices AUD at <b>−2 DETERIORATING</b>. A print at 3.2% supports the easing case; a hot one supports the hike debate.</p>
+<p><b>⚠ Not scored, and the ABS page is not usable yet.</b> The ABS "latest release" URL currently serves <b>September 2025</b> — a stale cache, not today's print. The AUD Inflation row keeps its current value and <b>§4.0 keeps this as a PENDING catalyst.</b> LD-3: the calendar is the schedule authority; the ABS is the value authority, and it has not published.</p>
+<h3 class="sub">🇺🇸 US dollar — the "lowest since May" claim needs a caveat</h3>
+<p><b>DXY closed Tuesday at 98.902, up from Friday's 98.839 and Monday's 98.983 intraday range.</b> Yesterday's §1 led with the dollar at its <em>lowest since May</em> on doubled Treasury buybacks.</p>
+<p><b>That was about a spot level, and the index has since ticked up.</b> The buyback mechanism is unchanged and the structural story stands, <b>but the dollar is not making new lows today</b> and the edition should not imply it is.</p>
+<h3 class="sub">🇨🇦 Canada and 🇨🇭 Switzerland — nothing found, and one of those is a gap</h3>
+<p><b>No CAD headline for a second session.</b> The tariff regime is live and unchanged; <b>no fresh development</b> in the sweep.</p>
+<p><b>No CHF headline either — and R-14 means we would struggle to see one.</b> The calendar capture contains <b>no CHF rows at all</b>, so Swiss events are hand-sourced. <b>This is a known blind spot on a currency we are actively long against.</b></p>
+<h3 class="sub">🛢 Oil — Iran/US developments, and they reach two of our currencies</h3>
+<p><b>Iran–US geopolitical developments are moving oil</b> <em>(investinglive.com, 2–3 hours before capture)</em>, alongside inventory data.</p>
+<p><b>Two legs touch this and they point opposite ways:</b></p>
+<ul><li><b>CAD</b> is a petro-currency — firmer oil is CAD-supportive, which would work <em>for</em> CADJPY LONG.</li><li><b>EUR</b> — the same energy channel is precisely what the ECB cited for September. <b>Oil strength is EUR-hawkish</b>, which works <em>for</em> EURCHF LONG.</li></ul>
+<p><b>Not scored</b> (F-3), but it is the single macro driver reaching the most legs this week.</p>
+<h3 class="sub">Not found this morning</h3>
+<p><b>No Jackson Hole or Warsh commentary yet</b> — the symposium runs <b>Thu 27 – Sat 29</b>, with Warsh's first keynote as Chair on <b>Fri 28</b> (R-5). <b>No NZD, GBP or gold-specific headline.</b> Checked investinglive.com plus targeted searches on the ECB and BoJ stories (LD-30). <b>Two sources cited below the threshold F-17 requires; the sweep found less than yesterday.</b></p>
+<h2 class="sec">§2 — Macro Economic Indicators</h2>
+<div class="warnbox"><b>Two USD rows corrected this morning.</b> Building Permits held JUNE's −2.6% (BAD) while the published JULY figure is <b>+5.0% (GOOD)</b> — sourced from the <b>Census Bureau</b> release of 18 Aug. CB Consumer Confidence held <b>51.0/55.2, which are MICHIGAN SENTIMENT's numbers</b>; the Conference Board's August is <b>89.4 vs 90.2</b>. Both reconcile with TE. <b>USD moves +1.75 → +2.25</b> (F-45, F-46).</div>
+<h3 class="sub">2.0 Category tally — weighted, six categories, scale ±11.00</h3>
+<div class="tblwrap"><table>
+<tr><th>Band</th><th>CCY</th><th><b>Score</b></th><th>Group</th><th>Prod · Spend · Trade · Empl · Infl · <b>Rate</b></th></tr>
+<tr><td><b>STRONG</b></td><td class="num"><b>CAD</b></td><td class="num"><b>+8.38</b></td><td>Commodity</td><td>+1.00 · +1.00 · +1.00 · +2.00 · +3.00 · <b>+0.38</b></td></tr>
+<tr><td><b>STRONG</b></td><td class="num"><b>EUR</b></td><td class="num"><b>+6.25</b></td><td>Risk-corr</td><td>+0.50 · +1.00 · +1.00 · +0.00 · +3.00 · <b>+0.75</b></td></tr>
+<tr><td><b>STRONG</b></td><td class="num"><b>GBP</b></td><td class="num"><b>+5.75</b></td><td>Risk-corr</td><td>+0.00 · +1.00 · −1.00 · +2.00 · +3.00 · <b>+0.75</b></td></tr>
+<tr><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td class="num">NZD</td><td class="num"><b>+3.75</b></td><td>Commodity</td><td>+1.00 · +0.50 · −1.00 · −2.00 · +3.00 · <b>+2.25</b></td></tr>
+<tr><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td class="num">AUD</td><td class="num"><b>+2.75</b></td><td>Commodity</td><td>+1.00 · +0.75 · +1.00 · +0.00 · +0.00 · <b>+0.00</b></td></tr>
+<tr><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td class="num">USD</td><td class="num"><b>+2.25</b></td><td>Safe haven</td><td>+1.00 · +0.25 · +1.00 · +0.00 · +0.00 · <b>+0.00</b></td></tr>
+<tr><td><b>WEAK</b></td><td class="num"><b>JPY</b></td><td class="num"><b>+0.00</b></td><td>Safe haven</td><td>+1.00 · +0.00 · −1.00 · +0.00 · +0.00 · <b>+0.00</b></td></tr>
+<tr><td><b>WEAK</b></td><td class="num"><b>CHF</b></td><td class="num"><b>−0.38</b></td><td>Safe haven</td><td>+1.00 · +1.00 · +1.00 · +0.00 · −3.00 · <b>−0.38</b></td></tr>
+</table></div>
+<p>Bands: <b>STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00</b></p>
+<p><b>Group standings</b> — Safe haven: USD +2.25 › JPY +0.00 › CHF −0.38 · Commodity: CAD +8.38 › NZD +3.75 › AUD +2.75 · Risk-corr: EUR +6.25 › GBP +5.75</p>
+<p><b>All 71 whitelist indicators published in full</b>, generated from <code>score_model.py</code> by <code>section2.py</code> so the tables and the tally cannot drift.</p>
+<details class="fold"><summary>2.1 Production (weight 1)<span class="cnt">19 rows</span></summary><div class="foldbody"><p><b>19 indicators — 16 GOOD · 1 BAD · 2 NEUTRAL</b></p>
+<div class="tblwrap"><table>
+<tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
+<tr><td class="num">USD</td><td>Durable Goods Ex Transp MoM</td><td class="num">0.6%</td><td class="num">1.8%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">USD</td><td>ISM Manufacturing PMI</td><td class="num">53.2</td><td class="num">53.9</td><td>Aug/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">USD</td><td>Industrial Production YoY</td><td class="num">1.1%</td><td class="num">1.29%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">USD</td><td>Manufacturing Production YoY</td><td class="num">1.2%</td><td class="num">1.1%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">EUR</td><td>Industrial Production YoY</td><td class="num">0.1%</td><td class="num">-0.1%</td><td>Jun/26</td><td>0-0.5%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
+<tr><td class="num">EUR</td><td>S&amp;P Global Mfg PMI Final</td><td class="num">51.9</td><td class="num">51.4</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">GBP</td><td>Industrial Production YoY</td><td class="num">-0.2%</td><td class="num">1.0%</td><td>Jun/26</td><td>&lt;0%</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td class="num">GBP</td><td>Manufacturing Production YoY</td><td class="num">0.5%</td><td class="num">2.0%</td><td>Jun/26</td><td>0-0.5%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
+<tr><td class="num">GBP</td><td>S&amp;P Global Mfg PMI Final</td><td class="num">51.9</td><td class="num">52.5</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">JPY</td><td>Industrial Production YoY Final</td><td class="num">4.9%</td><td class="num">-2.1%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">JPY</td><td>Machine Tool Orders YoY</td><td class="num">50.4%</td><td class="num">52.8%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">JPY</td><td>Machinery Orders YoY</td><td class="num">16.9%</td><td class="num">-1.9%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">JPY</td><td>S&amp;P Global Mfg PMI Final</td><td class="num">54.5</td><td class="num">54.8</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">AUD</td><td>S&amp;P Global Mfg PMI Final</td><td class="num">52.0</td><td class="num">51.5</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">NZD</td><td>Business NZ PMI</td><td class="num">54.3</td><td class="num">60.1</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">NZD</td><td>Global Dairy Trade Price Index</td><td class="num">2.3%</td><td class="num">0.1%</td><td>Aug/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CAD</td><td>S&amp;P Global Mfg PMI</td><td class="num">53.5</td><td class="num">53.0</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CHF</td><td>Industrial Production YoY</td><td class="num">5.5%</td><td class="num">-7.1%</td><td>Q2/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CHF</td><td>Procure.ch-UBS Mfg PMI</td><td class="num">53.2</td><td class="num">54.3</td><td>Jul/26</td><td>&gt;50.5</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+</table></div></div></details>
+<details class="fold"><summary>2.2 Spending (weight 1)<span class="cnt">23 rows</span></summary><div class="foldbody"><p><b>23 indicators — 17 GOOD · 3 BAD · 3 NEUTRAL</b></p>
+<div class="tblwrap"><table>
+<tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
+<tr><td class="num">USD</td><td>Building Permits MoM Final</td><td class="num">5.0%</td><td class="num">-2.6%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">USD</td><td>CB Consumer Confidence</td><td class="num">89.4</td><td class="num">90.2</td><td>Aug/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td class="num">USD</td><td>Personal Spending MoM</td><td class="num">0.3%</td><td class="num">0.9%</td><td>Jun/26</td><td>0-0.5%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
+<tr><td class="num">USD</td><td>Retail Sales YoY</td><td class="num">5.0%</td><td class="num">6.8%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">EUR</td><td>Consumer Confidence Final</td><td class="num">-15.9</td><td class="num">-17.6</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">EUR</td><td>Retail Sales YoY</td><td class="num">0.7%</td><td class="num">1.9%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">GBP</td><td>GfK Consumer Confidence</td><td class="num">-14</td><td class="num">-17</td><td>Aug/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">GBP</td><td>Retail Sales Ex Fuel YoY</td><td class="num">2.3%</td><td class="num">5.0%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">JPY</td><td>Consumer Confidence</td><td class="num">34.9</td><td class="num">33.8</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">JPY</td><td>Household Spending YoY</td><td class="num">-3.3%</td><td class="num">-0.4%</td><td>Jun/26</td><td>&lt;0%</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td class="num">JPY</td><td>Retail Sales YoY</td><td class="num">0.5%</td><td class="num">5.0%</td><td>Jun/26</td><td>0-0.5%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
+<tr><td class="num">AUD</td><td>Building Permits YoY Final</td><td class="num">8.9%</td><td class="num">5.5%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">AUD</td><td>Household Spending YoY</td><td class="num">6.0%</td><td>-</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">AUD</td><td>NAB Business Confidence</td><td class="num">-6</td><td class="num">-6</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
+<tr><td class="num">AUD</td><td>Westpac Consumer Conf Change</td><td class="num">6.0%</td><td class="num">4.1%</td><td>Aug/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">NZD</td><td>ANZ Business Confidence</td><td class="num">56.1</td><td class="num">36.6</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">NZD</td><td>ANZ Roy Morgan Consumer Conf</td><td class="num">99.3</td><td class="num">91.3</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">NZD</td><td>Building Permits MoM</td><td class="num">-3.6%</td><td class="num">-4.9%</td><td>Jun/26</td><td>&lt;0%</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td class="num">NZD</td><td>Electronic Retail Card Spending YoY</td><td class="num">3.4%</td><td class="num">1.3%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CAD</td><td>Building Permits MoM</td><td class="num">+18.5%</td><td class="num">-3.0%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CAD</td><td>Retail Sales YoY</td><td class="num">5.2%</td><td class="num">5.9%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CHF</td><td>Consumer Confidence</td><td class="num">-35</td><td class="num">-36</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CHF</td><td>Retail Sales YoY</td><td class="num">1.5%</td><td class="num">3.4%</td><td>Jun/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+</table></div></div></details>
+<details class="fold"><summary>2.3 Trade (weight 1)<span class="cnt">8 rows</span></summary><div class="foldbody"><p><b>8 indicators — 5 GOOD · 3 BAD · 0 NEUTRAL</b></p>
+<div class="tblwrap"><table>
+<tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
+<tr><td class="num">USD</td><td>Balance of Trade</td><td>-$73.26B</td><td>-$77.65B</td><td>Jun/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">EUR</td><td>Balance of Trade</td><td>EUR8.60B</td><td>EUR-9.00B</td><td>Jun/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">GBP</td><td>Balance of Trade</td><td>GBP-5.54B</td><td>GBP-3.46B</td><td>Jun/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td class="num">JPY</td><td>Balance of Trade</td><td>JPY-634.5B</td><td>JPY-409.9B</td><td>Jul/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td class="num">AUD</td><td>Balance of Trade</td><td>A$1.93B</td><td>A$-2.37B</td><td>Jun/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">NZD</td><td>Balance of Trade</td><td>NZ$-1.95B</td><td>NZ$0.02B</td><td>Jul/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td class="num">CAD</td><td>Balance of Trade</td><td>C$3.86B</td><td>C$3.70B</td><td>Jun/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CHF</td><td>Balance of Trade</td><td>CHF8.1B</td><td>CHF3.8B</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+</table></div></div></details>
+<details class="fold"><summary>2.4 Employment (weight 2)<span class="cnt">13 rows</span></summary><div class="foldbody"><p><b>13 indicators — 6 GOOD · 4 BAD · 3 NEUTRAL</b></p>
+<div class="tblwrap"><table>
+<tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
+<tr><td class="num">USD</td><td>Non Farm Payrolls</td><td class="num">-23K</td><td class="num">20K</td><td>Jul/26</td><td>&gt;Cons</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td class="num">USD</td><td>Unemployment Rate</td><td class="num">4.1%</td><td class="num">4.2%</td><td>Jul/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">EUR</td><td>Unemployment Rate</td><td class="num">6.3%</td><td class="num">6.3%</td><td>Jun/26</td><td>unchanged</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
+<tr><td class="num">GBP</td><td>Claimant Count Change</td><td class="num">-11K</td><td class="num">-6.4K</td><td>Jul/26</td><td>&lt;0 (LD-58)</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">JPY</td><td>Unemployment Rate</td><td class="num">2.5%</td><td class="num">2.5%</td><td>Jun/26</td><td>unchanged</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
+<tr><td class="num">AUD</td><td>ANZ-Indeed Job Ads MoM</td><td class="num">+0.8%</td><td class="num">-0.1%</td><td>Jul/26</td><td>&gt;0.5%</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">AUD</td><td>Employment Change</td><td>-15.8K (FT +16.3K, PT -32.2K)</td><td>76.3K (FT +29.3K, PT +47.0K)</td><td>Jul/26</td><td>hdl BAD; FT NEUTRAL (LD-57); PT GOOD</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
+<tr><td class="num">AUD</td><td>Unemployment Rate</td><td class="num">4.5%</td><td class="num">4.4%</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td class="num">NZD</td><td>Unemployment Rate</td><td class="num">5.6%</td><td class="num">5.4%</td><td>Jun/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+<tr><td class="num">CAD</td><td>Employment Change</td><td>75.1K (FT +38.6K, PT +36.6K)</td><td class="num">18.2K</td><td>Jul/26</td><td>hdl&gt;0 GOOD; FT (LD-57) needs Jun split NOT SOURCED</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CAD</td><td>Unemployment Rate</td><td class="num">6.4%</td><td class="num">6.5%</td><td>Jul/26</td><td>&lt;Prev</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CHF</td><td>Non Farm Payrolls</td><td class="num">5.537M</td><td class="num">5.544M</td><td>Q1/26</td><td>&gt;Cons 5.4M</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CHF</td><td>Unemployment Rate</td><td class="num">3.0%</td><td class="num">2.9%</td><td>Jul/26</td><td>&gt;Prev</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+</table></div></div></details>
+<details class="fold"><summary>2.5 Inflation (weight 3)<span class="cnt">8 rows</span></summary><div class="foldbody"><p><b>8 indicators — 4 GOOD · 1 BAD · 3 NEUTRAL</b></p>
+<div class="tblwrap"><table>
+<tr><th>CCY</th><th>Indicator</th><th>Actual</th><th>Previous</th><th>Ref</th><th>Threshold</th><th>Score</th></tr>
+<tr><td class="num">USD</td><td>Inflation Rate YoY</td><td class="num">3.4%</td><td class="num">3.5%</td><td>Jul/26</td><td>&gt;2% &amp; falling</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
+<tr><td class="num">EUR</td><td>Inflation Rate YoY Final</td><td class="num">2.9%</td><td class="num">2.8%</td><td>Jul/26</td><td>&gt;2% &amp; rising</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">GBP</td><td>Inflation Rate YoY</td><td class="num">2.9%</td><td class="num">2.6%</td><td>Jul/26</td><td>&gt;2% &amp; rising</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">JPY</td><td>Inflation Rate YoY</td><td class="num">1.9%</td><td class="num">1.6%</td><td>Jul/26</td><td>&lt;2% &amp; rising</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
+<tr><td class="num">AUD</td><td>Inflation Rate YoY</td><td class="num">3.8%</td><td class="num">4.0%</td><td>Jun/26</td><td>&gt;2% &amp; falling</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td></tr>
+<tr><td class="num">NZD</td><td>Inflation Rate YoY</td><td class="num">4.1%</td><td class="num">3.1%</td><td>Jun/26</td><td>&gt;2% &amp; rising</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CAD</td><td>Inflation Rate YoY</td><td class="num">3.0%</td><td class="num">2.8%</td><td>Jul/26</td><td>&gt;2% &amp; rising</td><td class="num"><span class="pill p-good">GOOD</span></td></tr>
+<tr><td class="num">CHF</td><td>Inflation Rate YoY</td><td class="num">0.4%</td><td class="num">0.5%</td><td>Jul/26</td><td>&lt;2% &amp; falling</td><td class="num"><span class="pill p-bad">BAD</span></td></tr>
+</table></div></div></details>
+<details class="fold"><summary>2.6 Interest Rate (weight 3) — scored on inflation vs each bank's own mandate<span class="cnt">8 rows</span></summary><div class="foldbody"><div class="tblwrap"><table>
+<tr><th>CCY</th><th>Rate</th><th>Inflation vs mandate</th><th>Score</th></tr>
+<tr><td class="num">NZD</td><td class="num">2.50%</td><td>4.1% vs 1–3% ceiling, <b>rising</b> — actively hiking</td><td class="num"><b>+2.25</b></td></tr>
+<tr><td class="num">EUR</td><td class="num">2.40%</td><td>2.9% vs 2%, rising</td><td class="num"><b>+0.75</b></td></tr>
+<tr><td class="num">GBP</td><td class="num">3.75%</td><td>2.9% vs 2%, rising, 3/9 hike votes</td><td class="num"><b>+0.75</b></td></tr>
+<tr><td class="num">CAD</td><td class="num">2.25%</td><td>3.0% vs 2%, rising, but held since April</td><td class="num"><b>+0.38</b></td></tr>
+<tr><td class="num">USD</td><td>3.50–3.75%</td><td>3.4% vs 2%, <b>falling</b></td><td class="num"><b>0.00</b></td></tr>
+<tr><td class="num">AUD</td><td class="num">4.35%</td><td>3.8% vs 2–3%, <b>falling</b></td><td class="num"><b>0.00</b></td></tr>
+<tr><td class="num">JPY</td><td class="num">1.00%</td><td>1.9% vs 2%, below target</td><td class="num"><b>0.00</b></td></tr>
+<tr><td class="num">CHF</td><td class="num">0.00%</td><td>0.4% vs 0–2%, falling — deflation-leaning</td><td class="num"><b>−0.38</b></td></tr>
+</table></div></div></details>
+<h3 class="sub">2.7 Why the tally did not move, though three figures did</h3>
+<p><b>Three Friday prints were fed into the model this session and the tally is unchanged.</b> That is a property of the scoring test, not a stale table.</p>
+<div class="tblwrap"><table>
+<tr><th>Row</th><th>Was</th><th>Now</th><th>Move</th><th>Score</th></tr>
+<tr><td>GBP Retail Sales YoY</td><td>4.2% <em>(Jun)</em></td><td><b>1.6%</b> <em>(Jul)</em></td><td><b>−2.6pp</b></td><td>GOOD → <b>GOOD</b></td></tr>
+<tr><td>GBP GfK Consumer Confidence</td><td>−17 <em>(Jul)</em></td><td><b>−14</b> <em>(Aug)</em></td><td class="num">+3</td><td>GOOD → <b>GOOD</b></td></tr>
+<tr><td>EUR Consumer Confidence</td><td>−15.9 <em>(Jul)</em></td><td><b>−15.5</b> <em>(Aug)</em></td><td class="num">+0.4</td><td>GOOD → <b>GOOD</b></td></tr>
+</table></div>
+<p><b>Every threshold in §2 is BINARY, not a rate-of-change test.</b> GBP Retail Sales Ex Fuel decelerated <b>2.7 percentage points (5.0% → 2.3%)</b> and stayed GOOD because the test is <code>&gt;0.5%</code>, and 2.3% clears it as surely as 5.0% did. GBP would only lose the point at <b>0.5% or below</b> — a further 1.8pp fall.</p>
+<p><b>This is a real limitation and it is worth stating plainly: the model cannot see a deceleration until it crosses a line.</b> A currency can weaken materially for weeks while its score sits still. GBP's retail sales more than halving is exactly that case — the <em>direction</em> is information the score discards.</p>
+<p><b>Where it matters this week:</b> GBP is the LOW-confidence leg of the <b>GBPUSD</b> proposal. Its +5.75 is unchanged, but one of the two indicators behind its Spending point just decelerated sharply. <b>The score says hold; the direction says watch.</b></p>
+<p><b>CAD could not be updated at all.</b> StatCan's 21 Aug release publishes <b>no year-over-year figure</b>, and its −0.8% July number is an <b>advance estimate built from 56.5% of surveyed firms</b>, which StatCan states will be revised. Complete July data lands <b>24 September</b> <em>(www150.statcan.gc.ca, primary)</em>. The model keeps May/26 5.9% and is <b>flagged, not silently carried</b> — see §8.</p>
+<h2 class="sec">§3 — Interest Rates — as at Friday close, forward-looking</h2>
+<p><b>No policy decision has occurred since r11.</b> Republished in full (LD-22).</p>
+<div class="tblwrap"><table>
+<tr><th>CCY / Rate</th><th>Last decision</th><th>Bias</th><th>Next meeting (PHT)</th><th>Expectation</th></tr>
+<tr><td><b>USD 3.50–3.75%</b></td><td>HELD 29 Jul, <b>9–3</b> — Hammack, Kashkari, Logan dissent for +25bp <em>(federalreserve.gov, primary)</em></td><td><b>HIKE RISK</b></td><td><b>15–16 Sep</b></td><td>Three hawkish dissents; market <b>fully priced for +25bp by September</b> against a Desk survey seeing no move until a 2028 cut. <b>Jackson Hole 27–29 Aug is the next signal.</b></td></tr>
+<tr><td><b>NZD 2.50%</b></td><td><b>HIKED +25bp</b> 8 Jul <em>(TE)</em></td><td><b>TIGHTENING</b></td><td><b>2 Sep</b></td><td>Only currency in an active hiking cycle. TE forecasts 2.75%. Inflation 4.1% and rising does the work; employment (−2.00) is the counterweight.</td></tr>
+<tr><td><b>GBP 3.75%</b></td><td>HELD 30 Jul, <b>Vote Hike 3/9</b> (was 2/9), Cut 0/9 <em>(TE)</em></td><td class="num"><span class="pill p-warn">SPLIT</span></td><td><b>17 Sep</b></td><td>Hawkish drift with CPI 2.9% and rising. <b>No cut votes at all.</b></td></tr>
+<tr><td><b>EUR 2.40%</b></td><td>HELD 23 Jul <em>(TE)</em></td><td><b>CPI DECIDES</b></td><td><b>10 Sep</b></td><td>Inflation finalised 2.9%, above target and rising. <b>Meeting Accounts still not retrieved</b> — open item.</td></tr>
+<tr><td><b>CAD 2.25%</b></td><td>HELD 15 Jul <em>(bankofcanada.ca, primary)</em></td><td><b>FLOORED</b></td><td><b>2 Sep</b></td><td>Held since April. Highest fundamental score against the lowest G10 policy rate ex-JPY/CHF — the divergence is the interesting part.</td></tr>
+<tr><td><b>AUD 4.35%</b></td><td>HELD 11 Aug <em>(TE)</em></td><td><b>CPI DECIDES</b></td><td><b>29 Sep</b></td><td>Highest policy rate in the set. Inflation 3.8% and falling caps hike risk; employment just deteriorated. <b>AU inflation Wed 26 Aug is the weight-3 category, currently 0.00.</b></td></tr>
+<tr><td><b>JPY 1.00%</b></td><td>HELD 31 Jul; hiked to 1% 16 Jun <em>(TE)</em></td><td><b>REPRICING</b></td><td><b>18 Sep</b></td><td>Out of ZIRP and hiking. Inflation now <b>1.9%</b>, closer to target than the sealed edition showed. <b>Plus an intervention backstop (§1).</b></td></tr>
+<tr><td><b>CHF 0.00%</b></td><td>HELD 18 Jun <em>(TE)</em></td><td><b>TRAPPED</b></td><td><b>24 Sep</b></td><td>At zero, inflation 0.4% and falling, SNB calling it expectations-driven (§1). <b>No CHF release next week</b> — the score cannot correct.</td></tr>
+</table></div>
+<h2 class="sec">§4 — Conviction Playbook — LOCKED for 24–28 Aug</h2>
+<h3 class="sub">4.0 — Week ahead: what the market is pricing (LD-63)</h3>
+<p>One test, every whitelist indicator, category-independent: the <b>[Consensus, Forecast]</b> range against the <b>current actual</b> (the last released Final). Above → GOOD, below → BAD, actual inside → NEUTRAL. Sorted date → time → CCY (LD-52).</p>
+<p><b>Window: Mon 24 – Fri 28 Aug (LD-66).</b> §4.0 covers <b>this week only</b> and rolls on Sunday. <b>Every figure below carries a TE consensus or forecast — nothing is UNSCORED this week.</b></p>
+<div class="tblwrap"><table>
+<tr><th>When (PHT)</th><th>CCY</th><th>Indicator</th><th>Current actual</th><th>Cons / Fcst</th><th><b>Market prices</b></th><th>Status</th></tr>
+<tr><td>Tue 25</td><td class="num">USD</td><td>Building Permits MoM Final <em>(Jul)</em></td><td>−2.6% <em>(Jun)</em></td><td class="num">5.0%</td><td class="num"><span class="pill p-good">GOOD</span></td><td><b>RELEASED · +5.0%</b></td></tr>
+<tr><td>Tue 25 22:00</td><td class="num">USD</td><td>CB Consumer Confidence <em>(Aug)</em></td><td>90.2 <em>(Jul ®)</em></td><td>90.2 / 90.9</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td><b>RELEASED · 89.4</b></td></tr>
+<tr><td><b>Wed 26 09:30</b></td><td class="num"><b>AUD</b></td><td><b>Inflation Rate YoY</b></td><td class="num"><b>3.8%</b></td><td><b>3.3% / 3.2%</b></td><td class="num"><span class="pill p-bad">BAD</span></td><td><b>TODAY · 3 hrs</b></td></tr>
+<tr><td>Wed 26 20:30</td><td class="num">USD</td><td>Personal Spending MoM</td><td class="num">0.3%</td><td>0.1% / 0.3%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td><b>TODAY</b></td></tr>
+<tr><td>Wed 26 20:30</td><td class="num">USD</td><td>Durable Goods Ex Transp MoM</td><td class="num">0.6%</td><td>0.6% / 0.3%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td><b>TODAY</b></td></tr>
+<tr><td><b>Thu 27 09:30</b></td><td class="num"><b>AUD</b></td><td><b>Household Spending YoY</b></td><td class="num"><b>6.0%</b></td><td>— / <b>4.4%</b></td><td class="num"><span class="pill p-bad">BAD</span></td><td>ahead</td></tr>
+<tr><td>Fri 28 07:30</td><td class="num">JPY</td><td>Unemployment Rate</td><td class="num">2.5%</td><td>2.5% / 2.5%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td>ahead</td></tr>
+<tr><td><b>Fri 28 13:00</b></td><td class="num"><b>JPY</b></td><td><b>Consumer Confidence</b></td><td class="num"><b>34.9</b></td><td>— / <b>35</b></td><td class="num"><span class="pill p-good">GOOD</span></td><td>ahead</td></tr>
+<tr><td><b>Fri 28 17:00</b></td><td class="num"><b>EUR</b></td><td><b>Consumer Confidence Final</b> <em>(Aug)</em></td><td class="num"><b>−15.9</b></td><td><b>−15.5 / −15.5</b></td><td class="num"><span class="pill p-good">GOOD</span></td><td>ahead</td></tr>
+</table></div>
+<p><b>Net by currency: AUD −2 · EUR +1 · JPY +1 · USD 0.</b></p>
+<h3 class="sub" style="opacity:.85">What changed in this table today, and why it matters</h3>
+<p><b>Three rows that were in yesterday's §4.0 are gone, and one number moved.</b></p>
+<div class="tblwrap"><table>
+<tr><th>Row</th><th>Yesterday</th><th><b>Today</b></th><th>Why</th></tr>
+<tr><td>EUR Retail Sales YoY</td><td>Fri 28, UNSCORED</td><td><b>REMOVED</b></td><td>TE puts it on <b>4 Sep</b> — next week (LD-66). Our capture had <b>Spain's</b> print (F-49)</td></tr>
+<tr><td>EUR Unemployment Rate</td><td>Fri 28, UNSCORED</td><td><b>REMOVED</b></td><td>TE puts it on <b>1 Sep</b>. Our capture had <b>Germany's</b> (F-49)</td></tr>
+<tr><td>CHF Non Farm Payrolls Q2</td><td>Thu 27, GOOD</td><td><b>REMOVED</b></td><td><b>Not in TE's calendar at all.</b> R-14 — we carry no CHF rows, so it was hand-placed</td></tr>
+<tr><td>USD Non Farm Payrolls</td><td>Fri 28 22:00</td><td><b>REMOVED</b></td><td>That slot is the <b>preliminary BENCHMARK REVISION</b> to March data, not the monthly print. <b>August payrolls land Fri 4 Sep</b> (BLS) — <b>F-50</b></td></tr>
+<tr><td>USD CB Consumer Confidence</td><td>actual <b>90.8</b></td><td><b>90.2 ®</b></td><td>90.8 matched neither the Conference Board nor Michigan. <b>F-46</b></td></tr>
+</table></div>
+<p><b>The two rows that had no consensus were the two that were not in this week.</b> That is the whole diagnosis — consensus firms up as a release approaches, so an event two weeks out has none yet. <b>A missing consensus is a WINDOW question before it is a sourcing question</b> (LD-66).</p>
+<h3 class="sub" style="opacity:.85">The AUD test lands in three hours</h3>
+<p><b>AUD is priced −2 — both catalysts expected to deteriorate.</b> Inflation is seen easing <b>3.8% → 3.2–3.3%</b>, Household Spending <b>6.0% → 4.4%</b>.</p>
+<p><b>This runs straight into Tuesday's RBA story</b>, where the board was reported <b>debating a preemptive hike</b>. <b>A 3.2% print supports the easing case and the short; a hot print supports the hike debate and works against it.</b> AUDNZD is currently <b>favouring</b> at 1.19853 — the read is working, and today decides whether it keeps working for the right reason.</p>
+<h3 class="sub" style="opacity:.85">JPY is priced +1, and that is a problem for CADJPY</h3>
+<p><b>Consumer Confidence is expected to improve (34.9 → 35) and unemployment to hold.</b> Combined with §1's hardening BoJ hike consensus — <b>57% now expect September</b> — <b>the yen's fundamental case is strengthening on both the data and the policy leg.</b></p>
+<p><b>CADJPY is LONG a pair whose short leg is a currency the market is increasingly pricing to firm.</b> It is the only pair in the set where §4.0's pricing, §1's news and §2's tally all point the same unhelpful way. <b>It has not fired its falsifier and stays locked</b> (LD-29), but it is the weakest of the four on forward-looking grounds.</p>
+<h3 class="sub">4.3 LOCKED — four leg-disjoint pairs (unchanged from Monday r2)</h3>
+<div class="tblwrap"><table>
+<tr><th>Rank</th><th>Pair</th><th>Dir</th><th>Conf</th><th>Week</th><th>Spread</th><th><b>Now</b></th><th>Falsifier</th><th>Clear by</th></tr>
+<tr><td class="num">1</td><td><b>CADJPY</b></td><td>LONG</td><td>LOW (+1)</td><td>W2</td><td class="num">8.38</td><td class="num"><b>114.942</b></td><td>close &lt; <b>114.472</b></td><td><b>47 pips</b></td></tr>
+<tr><td class="num">2</td><td><b>EURCHF</b></td><td>LONG</td><td>LOW (+1)</td><td>W2</td><td class="num">6.62</td><td class="num"><b>0.93600</b></td><td>close &lt; <b>0.92796</b></td><td>80 pips</td></tr>
+<tr><td class="num">3</td><td><b>GBPUSD</b></td><td>LONG</td><td>LOW (+1)</td><td>W2</td><td class="num">4.00</td><td class="num"><b>1.36331</b></td><td>close &lt; <b>1.35197</b></td><td>113 pips</td></tr>
+<tr><td class="num">4</td><td><b>AUDNZD</b></td><td><b>SHORT</b></td><td>LOW (+1)</td><td>W1</td><td class="num">1.00</td><td class="num"><b>1.19960</b></td><td>close &gt; <b>1.20724</b></td><td>76 pips</td></tr>
+</table></div>
+<p><b>Net exposure: long CAD · EUR · GBP · NZD, short JPY · CHF · USD · AUD.</b> All eight currencies used once.</p>
+<p><b>Confidence is NOT re-tallied today.</b> The set is locked; the LD-20 arithmetic re-runs at the next selection, not daily. <b>What changed is distance, not conviction</b> — and CADJPY's distance halved.</p>
+<h3 class="sub">4.4 REJECTED — including the fourth-pair test (LD-35)</h3>
+<p><b>A fourth leg-disjoint pair was tested and does not qualify.</b> With CAD/JPY, EUR/CHF and GBP/USD claimed, only <b>AUD and NZD</b> remain free.</p>
+<div class="tblwrap"><table>
+<tr><th>Candidate</th><th>Spread</th><th>Structure</th><th>Last bar</th><th>Tally</th><th>Verdict</th></tr>
+<tr><td><b>AUDNZD</b> <em>(short = long NZD)</em></td><td class="num">1.00</td><td><b>42.0% of range</b> — mid, no edge</td><td><b>closed +25.1 pips AGAINST</b></td><td class="num"><b>0</b></td><td><b>REJECTED — LOW, and price disagrees</b></td></tr>
+</table></div>
+<p>Range 1.19136–1.21024 over 16 sessions; Friday closed 1.19929. (1.19929−1.19136)/(1.21024−1.19136) = <b>42.0%</b>.</p>
+<p><b>Why this row matters:</b> it was tested only because LD-35 requires carrying every qualifier rather than stopping at three. The answer is still three — but now that is a <b>finding, not an assumption.</b></p>
+<p><b>CHF crosses remain rejected on structure</b> despite carrying the widest spreads on the board (CADCHF 11.76). Two weeks running, the structure filter has rejected the highest-spread trade the model produced.</p>
+<h3 class="sub">4.5 CORRELATED — the same bet on a better chart (LD-60)</h3>
+<p><b>Not a warning list — a positioning list.</b> These are the same currency call as a proposed pair, on a different chart. <b>Taking one alongside its parent is one position at double size</b> (LD-21, EF-3) — but when the parent has already run into resistance, a sibling sitting lower in its range may offer the entry the parent no longer does.</p>
+<p>Live prices Monday 24 Aug; range over 45 daily bars; support is a named recent bar low. <b>Scope unchanged (LD-4): these are observations of position, never entries.</b></p>
+<h3 class="sub" style="opacity:.85">1 · CADJPY family — SHORT JPY</h3>
+<div class="tblwrap"><table>
+<tr><th>Pair</th><th>Live</th><th>Range pos</th><th>To 45-bar high</th><th>To support</th></tr>
+<tr><td><b>CADJPY</b> <em>(parent, HIGH +5)</em></td><td class="num">115.514</td><td class="num"><b>97.8%</b></td><td><b>7 pips</b></td><td>104 pips</td></tr>
+<tr><td><b>EURJPY</b></td><td class="num">185.608</td><td class="num"><b>76.9%</b></td><td><b>187 pips</b></td><td>168 pips</td></tr>
+<tr><td><b>GBPJPY</b></td><td class="num">216.856</td><td class="num"><b>72.5%</b></td><td><b>276 pips</b></td><td><b>204 pips</b></td></tr>
+</table></div>
+<p><b>The parent is the extended one here and the siblings are not close.</b> CADJPY sits 7 pips under its own 45-bar high; EURJPY has <b>187 pips</b> of prior range above it and GBPJPY <b>276</b>. <b>GBPJPY is the alternative</b> — lowest in range, furthest from its high, and 204 pips above support.</p>
+<h3 class="sub" style="opacity:.85">2 · EURCHF family — SHORT CHF</h3>
+<div class="tblwrap"><table>
+<tr><th>Pair</th><th>Live</th><th>Range pos</th><th>To 45-bar high</th><th>To support</th></tr>
+<tr><td><b>EURCHF</b> <em>(parent, LOW +1)</em></td><td class="num">0.93562</td><td class="num">72.8%</td><td>56 pips</td><td>77 pips</td></tr>
+<tr><td>CADCHF</td><td class="num">0.58022</td><td class="num">70.8%</td><td>62 pips</td><td><b>32 pips</b></td></tr>
+<tr><td>GBPCHF</td><td class="num">1.09212</td><td class="num">74.1%</td><td>91 pips</td><td>78 pips</td></tr>
+<tr><td><b>USDCHF</b> <em>(LONG USDCHF = short CHF)</em></td><td class="num">0.80032</td><td class="num"><b>20.8%</b></td><td><b>204 pips</b></td><td>53 pips</td></tr>
+</table></div>
+<p><b>⚠ USDCHF is the outlier and it needs its caveat stated.</b> At <b>20.8% of range</b> with <b>204 pips</b> to its high it is by far the least extended expression of short-CHF. <b>But it is a long-USD trade, and it collides twice.</b> Run through <code>select_pairs.exposure()</code> against the carried set:</p>
+<div class="tblwrap"><table>
+<tr><th>Adding USDCHF LONG</th><th>Result</th></tr>
+<tr><td class="num"><b>USD</b></td><td>short ×1 (GBPUSD) + long ×1 (USDCHF) → <b>net FLAT</b></td></tr>
+<tr><td class="num"><b>CHF</b></td><td>short ×2 (EURCHF + USDCHF) → <b>double size on one leg</b></td></tr>
+</table></div>
+<p><b>Both problems at once</b> — the USD exposure cancels while the CHF exposure doubles. It is the better chart <b>only if neither GBPUSD nor EURCHF is taken</b>, which is to say only if it replaces them rather than joins them.</p>
+<p><b>CADCHF is the one to avoid:</b> 32 pips above support, the tightest in the set, and it was rejected on structure two weeks running.</p>
+<h3 class="sub" style="opacity:.85">3 · GBPUSD family — LONG GBP / SHORT USD</h3>
+<div class="tblwrap"><table>
+<tr><th>Pair</th><th>Live</th><th>Range pos</th><th>To 45-bar high</th><th>To support</th></tr>
+<tr><td><b>GBPUSD</b> <em>(parent, LOW +1)</em></td><td class="num">1.36456</td><td class="num"><b>94.4%</b></td><td>30 pips</td><td>126 pips</td></tr>
+<tr><td>EURUSD</td><td class="num">1.16804</td><td class="num"><b>91.9%</b></td><td>31 pips</td><td>114 pips</td></tr>
+<tr><td>AUDUSD</td><td class="num">0.71676</td><td class="num"><b>96.0%</b></td><td><b>13 pips</b></td><td>101 pips</td></tr>
+<tr><td><b>GBPCAD</b> <em>(long GBP, no USD leg)</em></td><td class="num">1.88226</td><td class="num"><b>34.3%</b></td><td><b>221 pips</b></td><td>80 pips</td></tr>
+</table></div>
+<p><b>Every short-USD expression is extended together</b> — GBPUSD 94.4%, EURUSD 91.9%, AUDUSD 96.0%. <b>That is the dollar-weakness read showing up on every chart at once (§5)</b>, and it means switching between them buys nothing.</p>
+<p><b>GBPCAD is the genuine alternative</b> at <b>34.3% of range</b> with 221 pips of room — because it expresses the <b>GBP</b> leg without the USD leg. <b>It is not the same trade</b>: it swaps a weak dollar for a strong CAD (+8.38, the top of the board), which is a materially harder counterparty.</p>
+<h3 class="sub" style="opacity:.85">What this says across all three</h3>
+<p><b>Two families are pressing resistance simultaneously</b> — short-JPY at the parent, and the entire short-USD complex. <b>A correlated cluster moving together is the concentration risk EF-3 measured, seen from the entry side.</b></p>
+<p><b>Every genuine alternative found here trades one problem for another:</b> GBPJPY has room but is the weakest leg of the JPY complex on structure; USDCHF has the most room but collides with GBPUSD's USD leg; GBPCAD has room but faces the strongest currency on the board. <b>None is a free switch, and the report should not imply one exists.</b></p>
+<h2 class="sec">§5 — Gold (XAUUSD)</h2>
+<div class="warnbox"><b>Levels carried from Sunday; prices re-read this morning.</b> Gold closed Tuesday at <b>4659.06</b> after touching <b>4697.11</b> — the high of the move. <b>DXY closed 98.902, UP from Friday's 98.839</b>, so yesterday's "dollar at its lowest since May" framing no longer describes today (§1). <b>Not re-charted this run; R-10 and a fresh read are queued for the next full edition.</b></div>
+<div class="warnbox"><b>Levels and drivers carried from Sunday.</b> The dollar is at its <b>lowest since May</b> on doubled Treasury buybacks (§1) — the same falling-real-yield channel this section describes, now extended. <b>Not re-charted this run; R-10 and a fresh read are queued for the next full edition.</b></div>
+<div class="warnbox"><b>Levels carried from Sunday; drivers unchanged.</b> Gold traded <b>4,635.31</b> in the Asian session, above Friday's high — the forward map (R1 4,660.59 at +25 pts) is <b>25 points from being tested</b>.</div>
+<p><b>Friday close 4,602.99</b> · day range 4,508.995–4,632.145 · <b>+1.85% on the day</b></p>
+<h3 class="sub">⚠ The dollar check — the reason §5 and §6 exist (LD-45)</h3>
+<p><b>Gold and BTC are monitored continuously, not selected weekly. The core logic: if the dollar is weak, Gold and/or BTC are strong — and that is an opportunity worth naming.</b> Both are dollar-priced and non-yielding, so a falling dollar lifts their quoted price mechanically, before demand changes. <b>One force, two instruments — therefore ONE signal, not two.</b></p>
+<div class="tblwrap"><table>
+<tr><th></th><th>Reading</th><th>Source</th></tr>
+<tr><td><b>USD fundamental score</b></td><td><b>+2.25 · NEUTRAL</b></td><td>§2.0 tally</td></tr>
+<tr><td><b>USD price — DXY Friday close</b></td><td class="num"><b>98.839</b></td><td><code>TVC:DXY</code> daily, recomputed</td></tr>
+<tr><td><b>DXY this week</b></td><td><b>99.660 → 98.839 = −0.82%</b></td><td>Mon 17 open → Fri 21 close</td></tr>
+<tr><td><b>DXY 70-session low</b></td><td><b>98.557</b>, made <b>Thu 20 Aug</b></td><td>low of the 18 May – 21 Aug range</td></tr>
+<tr><td><b>Verdict</b></td><td><b>⚠ DISAGREEMENT</b></td><td>score NEUTRAL, price at a three-month low</td></tr>
+</table></div>
+<p><b>Recomputed, naming the bars (P2).</b> DXY daily: Mon 17 opened 99.660, Fri 21 closed 98.839 — <b>−0.821 points, −0.82% on the week</b>. The 70-session range (18 May – 21 Aug) is 98.557–101.800, so Thursday's <b>98.557</b> is the lowest print in three months and Friday closed 1.24% below the period high.</p>
+<p><b>The buyback day is visible in the bars.</b> Wed 19 Aug: opened 99.665, closed <b>98.767</b> — <b>−0.90% in one session</b>, the largest daily fall in the range. That is the Treasury buyback announcement (§1), and it independently confirms the "dollar −0.8%" the T4 resolution sourced from news last Friday. <b>Same event, two sources, now recomputed from price.</b></p>
+<p><b>The score and the price disagree, and this edition reads the price.</b> Gold and BTC respond to the dollar that <em>trades</em>, not the dollar that <em>scores</em>.</p>
+<p><b>Why they differ:</b> §2's 70 rows are monthly prints — US inflation is Jul/26, industrial production Jul/26 — and a monthly series cannot show a dollar that fell through the last five sessions. <b>Price is continuous; the score lags by construction.</b></p>
+<p><b>This week is exactly the case the check exists to catch.</b> On the score alone USD is NEUTRAL and there is no signal at all — yet <b>Gold rose 1.85% Friday and BTC 20% in three sessions</b>, both on dollar weakness the model cannot see. Had §5 and §6 been read from §2's score, the edition would have missed the largest move on the board.</p>
+<p><b>F-30 RESOLVED — the reading above IS recomputed.</b> The TradingView MCP had desynchronised (chart state reporting one symbol while the data feed returned another), which initially blocked the DXY read. <b>A full restart via <code>TvMsixLaunch.exe</code> cleared it</b> and DXY returned real values on the first call. The dollar check above is recomputed from bars and meets P2.</p>
+<h3 class="sub">Drivers — the chain, in plain terms (LD-31)</h3>
+<p><b>1. Treasury buyback expansion — the mechanism still running.</b> Treasury said on 19 August it will buy back <b>at least twice as many</b> long-dated bonds — from $2bn to $4bn per operation, <b>effective 9 September</b>. More buying pushes bond prices up, which pushes their yields down (30-year fell 9bp on the announcement). <b>Gold pays no interest</b>, so when bonds pay less, holding gold costs you less by comparison. Gold rose with falling yields, not against them.</p>
+<p><b>2. A falling dollar.</b> Gold is priced in dollars. The dollar hit <b>three-month lows</b> on its worst week since late July. When the dollar falls, the same ounce of gold costs more dollars — mechanically, before any demand changes.</p>
+<p><b>3. Debasement demand.</b> When a government expands operations that support its own bond market, some buyers read it as the currency being managed rather than left to the market, and move to assets no government can print. <b>This is the force gold and BTC share</b>, and it is why they moved together on Friday.</p>
+<h3 class="sub">Tailwinds and headwinds</h3>
+<div class="tblwrap"><table>
+<tr><th></th><th>Force</th><th>How it reaches the gold price</th><th>What would stop it</th></tr>
+<tr><td><b>Tailwind</b></td><td>Buyback effective <b>9 Sep</b></td><td>Yields fall → non-yielding gold costs less to hold</td><td>Treasury walking back the size</td></tr>
+<tr><td><b>Tailwind</b></td><td>Dollar at 3-month lows</td><td>Fewer dollars buy the same ounce</td><td>A hawkish Jackson Hole reversing the dollar</td></tr>
+<tr><td><b>Tailwind</b></td><td>Debasement bid</td><td>Buyers rotate into assets with no issuer</td><td>Confidence returning to the bond market</td></tr>
+<tr><td><b>⚠ Headwind</b></td><td><b>Jackson Hole 27–29 Aug</b></td><td>A hawkish Fed lifts real yields → gold costs more to hold</td><td>A dovish or neutral tone</td></tr>
+<tr><td><b>⚠ Headwind</b></td><td>Position after +1.85%</td><td>Fast moves invite profit-taking</td><td>Continuation through 4,632</td></tr>
+</table></div>
+<h3 class="sub">Levels — recomputed, naming the bars</h3>
+<h3 class="sub" style="opacity:.85">⚠ Forward resistance map (LD-47) — 250-bar lookback</h3>
+<p><b>4,632.145 was Friday's own high, not resistance.</b> Mapped properly from 250 daily bars, swing pivots (2 bars each side), clustered within 45 points:</p>
+<div class="tblwrap"><table>
+<tr><th>Level</th><th>Touches</th><th>Distance</th><th>Formed by</th></tr>
+<tr><td><b>R1 4,660.59</b></td><td class="num"><b>1</b></td><td><b>+25 pts</b></td><td>30 Apr high — <b>thin, single touch</b></td></tr>
+<tr><td><b>R2 4,764.90–4,800.80</b></td><td class="num"><b>3</b></td><td><b>+130 pts</b></td><td>1 Apr, 6 May, 11 May highs</td></tr>
+<tr><td>R3 4,858.22–4,891.54</td><td class="num">2</td><td>+223 pts</td><td>7 Apr, 16 Apr highs</td></tr>
+</table></div>
+<p><b>The context matters more than the levels.</b> Gold peaked <b>5,238.775 on 6 March</b>, crashed to <b>3,959.08 by 24 June — a 24.4% decline</b> — and has recovered <b>17.1%</b> off that low. <b>Price is climbing back through the wreckage of that fall</b>, so every level above is <b>old support that broke</b>, now acting as resistance. That is different from a market making new highs into clear air.</p>
+<p><b>R1 is 25 points away and thin</b> — one touch from a single day in April. <b>R2 at 4,764.90–4,800.80 is the real test</b>: three touches spanning April and May, and the shelf price failed at on the way down.</p>
+<p><b>⚠ Monday's bar is open and gold is already trading 4,635.31</b>, above Friday's close and above Friday's high. <b>The runway to R1 is 25 points; to R2, 130.</b></p>
+<div class="tblwrap"><table>
+<tr><th>Level</th><th>Type</th><th>Formed by</th></tr>
+<tr><td class="num"><b>4,632.145</b></td><td>Friday's high — <b>cleared Monday</b></td><td>Fri 21 Aug high</td></tr>
+<tr><td><b>4,524.34 / 4,541.045</b></td><td>Support — prior breakout</td><td>Wed 19 high, Thu 20 high</td></tr>
+<tr><td class="num"><b>4,508.995</b></td><td>Support — Friday's low</td><td>Fri 21 Aug low</td></tr>
+<tr><td><b>~4,501</b></td><td>The 200-day MA</td><td><em>investinglive, 21 Aug — not recomputed here</em></td></tr>
+<tr><td class="num"><b>4,324.68</b></td><td>Major support</td><td>Wed 19 Aug low, the week's base</td></tr>
+</table></div>
+<p><b>Drawn on the chart (LD-5 — observations of structure, never entry/stop/target):</b></p>
+<div class="tblwrap"><table>
+<tr><th>Level</th><th>Drawing</th><th>TV entity</th></tr>
+<tr><td>R1 4,660.59</td><td>amber — first overhead</td><td><code>ktvK7r</code></td></tr>
+<tr><td><b>R2 4,764.90–4,800.80</b></td><td><b>red zone — next major</b></td><td><code>1CzEFF</code></td></tr>
+<tr><td>R3 4,858.22–4,891.54</td><td>red zone</td><td><code>MmsD3B</code></td></tr>
+<tr><td class="num"><b>4,508.995</b></td><td><b>green line — the falsifier</b></td><td><code>PyWqzK</code></td></tr>
+<tr><td class="num">4,324.68</td><td>dashed — major base</td><td><code>IHrDWA</code></td></tr>
+</table></div>
+<p><em>Falsifier verified against LD-48: 4,508.995 is Friday's low, a real bar, <b>126 points</b> below price against a <b>111-point</b> 5-bar mean range — beyond 1 ATR. <b>Cleared first:</b> <code>vHuuCj</code>, <code>iBwTqU</code>, <code>FhFWhA</code>, <code>LjZisG</code> from the weekend edition. <b>Two drawings on this chart are Jeff's own (<code>wbVoTI</code>, <code>8M24eO</code>) and were left untouched</b> (LD-5).</em></p>
+<p><em><code>OANDA:XAUUSD</code> daily. Chart carried no prior drawings; none of Jeff's own were touched. <b>Clear these four before the next run</b> (LD-16 step 6).</em></p>
+<h3 class="sub">Read</h3>
+<p><b>Gold broke away from its 200-day MA and closed near the highs of a +1.85% day on the week's second-highest volume</b> (806,154 vs 851,041 Thursday). The move is liquidity-driven, not haven-driven — CHF, the other classic haven, is the weakest currency on the board at −0.38, and JPY scores 0.00. <b>When gold rallies while both haven currencies are weak, the driver is the dollar and real yields, not fear.</b></p>
+<p><b>Falsifier:</b> a daily close back below <b>4,508.995</b> (Friday's low) breaks the breakout structure. A hawkish Jackson Hole is the event most likely to cause it.</p>
+<p><b>What this means for the week's proposals:</b> none has a gold leg, so nothing is directly affected. Gold's strength is corroborating evidence for the weak-dollar read behind <b>GBPUSD LONG</b>, not an independent signal (§6).</p>
+<h2 class="sec">§6 — BTC (BTCUSD)</h2>
+<p><b>Friday close 77,471</b> · day range 72,472.5–79,470.5 · <b>+6.7% on the day · +20.0% in three sessions</b></p>
+<h3 class="sub">The dollar check (LD-45)</h3>
+<p><b>Same reading as §5: USD score +2.25 NEUTRAL against DXY 98.839, −0.82% on the week and the lowest close in three months — disagreement, and the price is read.</b> BTC is dollar-priced and non-yielding on the identical mechanism.</p>
+<p><b>BTC carries one question Gold does not:</b> it can trade on the dollar/liquidity channel <em>or</em> on the equity risk channel, and they point different ways. <b>This week it is liquidity</b> — F&amp;G momentum 39.0 and breadth components sit in Fear while BTC rallies 20%. That is not risk appetite.</p>
+<h3 class="sub">Drivers — mirroring §5's treatment (LD-31)</h3>
+<p><b>1. The same buyback liquidity that moved gold.</b> BTC pays no interest either. The identical mechanism — Treasury buying bonds, yields falling, non-yielding assets becoming cheaper to hold — reaches BTC by the same path.</p>
+<p><b>2. The debasement trade.</b> This is the driver BTC and gold genuinely share. <b>Friday: gold +1.85%, BTC +6.7%, same session, same cause.</b></p>
+<p><b>3. Dollar weakness.</b> Also dollar-priced; a falling dollar lifts the quoted price before any change in demand.</p>
+<h3 class="sub">⚠ BTC IS NOT DECOUPLED — and Friday settles it</h3>
+<p>The sealed edition called BTC <b>"DECOUPLED — and now decisively"</b> and published a window high of <b>74,991</b>. The T4 resolution already corrected that reading. <b>Friday's bar closes the argument: BTC traded to 79,470.50, well through the published window high, on the same day and the same driver as gold's +1.85%.</b></p>
+<p>Two assets moving together on one cause are <b>one signal, not two</b>. Reading BTC's strength as independent confirmation of gold's would be double-counting — the same error as carrying three JPY crosses and calling it 3-for-3 (EF-3).</p>
+<h3 class="sub">Tailwinds and headwinds</h3>
+<div class="tblwrap"><table>
+<tr><th></th><th>Force</th><th>How it reaches the BTC price</th><th>What would stop it</th></tr>
+<tr><td><b>Tailwind</b></td><td>Buyback liquidity, effective 9 Sep</td><td>Yields fall → non-yielding assets cheaper to hold</td><td>Treasury reversing</td></tr>
+<tr><td><b>Tailwind</b></td><td>Debasement rotation</td><td>Buyers move to assets with no issuer</td><td>Bond-market confidence returning</td></tr>
+<tr><td><b>⚠ Headwind</b></td><td><b>+20% in three sessions</b></td><td>Moves this fast unwind fast</td><td>Consolidation above 72,657</td></tr>
+<tr><td><b>⚠ Headwind</b></td><td>Jackson Hole</td><td>Hawkish Fed → higher real yields → risk-off</td><td>Dovish tone</td></tr>
+<tr><td><b>⚠ Headwind</b></td><td>F&amp;G internals weak (§1)</td><td>4 of 7 components Fear</td><td>Breadth and momentum recovering</td></tr>
+</table></div>
+<h3 class="sub">Levels — recomputed, naming the bars</h3>
+<div class="tblwrap"><table>
+<tr><th>Level</th><th>Type</th><th>Formed by</th></tr>
+<tr><td class="num"><b>79,470.5</b></td><td>Resistance — the high</td><td>Fri 21 Aug high</td></tr>
+<tr><td class="num"><b>77,471</b></td><td>Friday's close</td><td>Fri 21 Aug close</td></tr>
+<tr><td><b>72,657 / 72,472.5</b></td><td>Support — Thu close, Fri low</td><td>Thu 20 close, Fri 21 low</td></tr>
+<tr><td class="num"><b>69,098.5</b></td><td>Support — Wed breakout</td><td>Wed 19 Aug close</td></tr>
+<tr><td class="num"><b>64,110</b></td><td>Major support — pre-move base</td><td>Wed 19 Aug low</td></tr>
+</table></div>
+<p><b>Drawn on the chart (LD-5):</b></p>
+<div class="tblwrap"><table>
+<tr><th>Level</th><th>Drawing</th><th>TV entity</th></tr>
+<tr><td class="num">79,470.5</td><td>red line — resistance</td><td><code>wZIVAm</code></td></tr>
+<tr><td>72,472.5–72,989.5</td><td>green zone — support</td><td><code>hEbc9H</code></td></tr>
+<tr><td class="num"><b>72,472.5</b></td><td><b>green line — the falsifier</b></td><td><code>RcG8er</code></td></tr>
+<tr><td class="num">69,098.5</td><td>dashed — breakout close</td><td><code>s9wxSw</code></td></tr>
+<tr><td class="num">64,110</td><td>dashed — pre-move base</td><td><code>B59wel</code></td></tr>
+</table></div>
+<p><em><code>OANDA:BTCUSD</code> daily. Chart carried no prior drawings; none of Jeff's own were touched. <b>Clear these five before the next run</b> (LD-16 step 6).</em></p>
+<h3 class="sub">With risk, or decoupled? <b>WITH RISK — via liquidity, not equities</b></h3>
+<p><b>The strongest three-day run in the series, driven by the same force as gold.</b> The distinction matters: BTC is trading <b>with</b> the debasement/liquidity channel and <b>against</b> the equity channel. F&amp;G momentum (39.0) and breadth components sit in Fear while BTC rallies 20% — that is not risk appetite, it is liquidity.</p>
+<p>r13 called BTC <b>"DECOUPLED — and now decisively"</b>. Friday settles it: BTC traded to <b>79,470.50</b>, through r13's published 74,991 window high, on the same day and the same driver as gold's +1.85%.</p>
+<h3 class="sub">Read</h3>
+<p><b>Falsifier:</b> a daily close below <b>72,472.5</b> (Friday's low) ends the run structure. A hawkish Jackson Hole is the most likely cause.</p>
+<p><b>What this means for the week's proposals:</b> none has a BTC leg. BTC and gold moving together on one cause is <b>one signal, not two</b> — reading them as independent confirmation would double-count, the same error as carrying three JPY crosses and calling it 3-for-3 (EF-3).</p>
+<details class="fold"><summary>§7 — Method notes<span class="cnt">6 rows</span></summary><div class="foldbody"><p><b>Guards run before any figure was used (LD-43 step 0):</b></p>
+<div class="tblwrap"><table>
+<tr><th>Guard</th><th>Result</th></tr>
+<tr><td><b>Timezone (F-2)</b></td><td><b>VERIFIED</b> — UTC 22:23 Tue 25 = <b>06:23 Wed 26 PHT</b>. PHT = UTC+8, computed, not read off the shell</td></tr>
+<tr><td><b>TE reconciliation (LD-50)</b></td><td><b>Fresh fetch this morning</b> — all 8 country pages 200, <b>all 71 rows agree, 0 unmatched</b></td></tr>
+<tr><td><b>Revisions / stalled (LD-54)</b></td><td><b>6 changes, all mine</b> — the two USD corrections below. No series stalled</td></tr>
+<tr><td><b>Whitelist releases so far today</b></td><td><b>ZERO</b> — AU CPI is 3 hrs out, the two USD prints 14 hrs</td></tr>
+<tr><td><b>Bar status</b></td><td>Tuesday's daily bar <b>CLOSED</b>. Wednesday's bar is minutes old on thin volume</td></tr>
+<tr><td><b>§4.0 window (LD-66)</b></td><td><b>Derived, not hardcoded</b> — 24–28 Aug, rolls Sunday</td></tr>
+</table></div>
+<p><b>Sourcing this run.</b> Building Permits came from the <b>Census Bureau PDF</b> (text-extracted, not a mirror); CB Consumer Confidence from the <b>Conference Board</b>, corroborated by TE and three outlets; the NFP question from the <b>BLS release schedule</b>. <b>LD-3 held in all three: the calendar gave the schedule, the agency gave the value</b> — and in each case the agency and the calendar disagreed.</p>
+<p><b>Not done, stated plainly:</b> §5/§6 levels <b>not re-charted</b> (R-10 still open for BTCUSD's forward map). <b>CAD's June FT/PT split remains unsourced</b> (R-15). <b>The calendar capture still contains no CHF rows</b> (R-14) — and this edition shows the cost: a CHF event appeared in §4.0 for a week TE has no such event in. <b>AU CPI is unscored</b> because the ABS "latest release" page serves <b>September 2025</b>; the row waits for the real print.</p></div></details>
+<details class="fold"><summary>§8 — Findings<span class="cnt">9 rows</span></summary><div class="foldbody"><div class="tblwrap"><table>
+<tr><th>ID</th><th>Status</th></tr>
+<tr><td><b>F-44</b></td><td><b>RESOLVES</b> — the BoJ hike story is now a 57% Reuters consensus, not one ex-member's view. See §1</td></tr>
+<tr><td><b>F-45</b></td><td><b>NEW — Building Permits: the "Final" we waited for does not exist.</b> Below</td></tr>
+<tr><td><b>F-46</b></td><td><b>NEW — one edition published two different USD scores.</b> Below</td></tr>
+<tr><td><b>F-47</b></td><td><b>NEW — r2 drew a structural conclusion from an intraday extreme.</b> See §0</td></tr>
+<tr><td><b>F-48</b></td><td><b>NEW — §4.0 reached outside the current week.</b> Jeff's catch. Below</td></tr>
+<tr><td><b>F-49</b></td><td><b>NEW — national prints were satisfying euro-area rows.</b> Below</td></tr>
+<tr><td><b>F-50</b></td><td><b>NEW — the NFP slot on Friday is the benchmark revision.</b> Below</td></tr>
+<tr><td><b>R-16</b></td><td><b>NEW GUARD</b> — a score quoted outside §2.0 must match the tally</td></tr>
+<tr><td><del>F-36</del></td><td><b>CLOSED by F-45</b> — there was never a 25 Aug Final to wait for</td></tr>
+</table></div>
+<p><b>F-45 — the exemption was built on a false premise.</b> <code>audit_te.py</code> claimed <em>"the Jul Final releases Tue 25 Aug"</em> and dismissed TE's 1443 as <em>"the LEVEL"</em>. <b>Census publishes ONE monthly release; July's came out 18 Aug and the next is 17 Sep.</b> There is no prelim/final pair for a given month. F-40's protection — never publish a preliminary under a Final's name — <b>was applied to a distinction that does not exist for this series, and the exemption then suppressed the audit that would have caught the stale month.</b> The row sat at June's −2.6% BAD while the published July figure was +5.0% GOOD. <b>This is F-40's exact inverse: refusing a real figure because we had mislabelled it.</b></p>
+<p><b>F-46 — §2.0 said USD +1.75, §5 and §6 both said +2.25, all citing §2.0.</b> §5/§6 were carried from Sunday and flagged "not re-charted" — <b>but the carry took a SCORE with it, not just levels and prose. A stale level is disclosed; a stale score contradicts §2 silently.</b> No guard compared a number quoted elsewhere against the tally that produced it. <b>R-16 now does, and it fires on the 25 Aug edition.</b></p>
+<p><b>F-48 — §4.0's window, and the right way to read a missing consensus.</b> Jeff: <em>"once we reached Sunday say August 30 we should now be looking August 31 to September 4 upcoming indicators in TE. The reason why we can't find a consensus/forecast is because they are not in this Week's line up."</em></p>
+<p><b>He was right, and I had the diagnosis backwards.</b> I read seven rows with no consensus as a <em>provenance</em> defect and was about to build calendar-scraping infrastructure for it. <b>The real cause: §4.0 was listing events from later weeks, and TE has no consensus for an event that far out because consensus firms up as a release approaches.</b> The window was a <b>hardcoded date pair</b> that would have gone stale next Monday regardless. <b>LD-66</b> now derives it and <b>rolls on Sunday</b>.</p>
+<p><b>F-49 — Spain's retail sales and Germany's unemployment were published as euro-area events.</b> Chasing F-48 exposed it: our capture contains <b>no EA retail-sales or unemployment rows at all</b>. <code>match()</code> has a <code>_NATIONAL</code> guard for exactly this — <b>but an exact-match shortcut ran BEFORE it</b>, so a national print whose name equals the whitelist name skipped the guard entirely. Fixed; the check now runs first.</p>
+<p><b>F-50 — Friday 22:00 PHT is the preliminary BENCHMARK REVISION</b>, to March 2026 establishment data, <b>not the monthly payrolls print</b>. Our capture labelled it "non farm payrolls" and the matcher believed the label. <b>BLS puts August payrolls on Fri 4 Sep 20:30 PHT — next week's window.</b> Added to <code>_NOT</code>.</p>
+<p><b>The pattern across F-45, F-49 and F-50: three different rows where a CALENDAR LABEL was trusted over the ISSUING AGENCY.</b> LD-3 exists precisely for this and was written after the last such case. <b>The rule was right; the enforcement had gaps in three separate places.</b></p></div></details>
+<h2 class="sec">§9 — Publish state — UNSEALED, r1</h2>
+<div class="tblwrap"><table>
+<tr><th>Gate</th><th>State</th></tr>
+<tr><td><b>P1 SOURCED</b></td><td><b>PASS</b> — every figure carries source and as-of; three came from issuing agencies today</td></tr>
+<tr><td><b>P2 RECOMPUTED</b></td><td><b>PASS</b> — every move and distance recomputed from named closed bars</td></tr>
+<tr><td><b>Seal</b></td><td><b>UNSEALED.</b> Wednesday is a LIGHT-seal day (LD-12); the seal awaits Jeff's acknowledgement (P3)</td></tr>
+</table></div>
+<p><b>Next:</b> <b>AU Inflation 09:30 PHT</b> — three hours out, and the test of §4.0's AUD −2 against the RBA hike debate. Then <b>two USD prints at 20:30</b>. A London refresh re-grades §0 and resolves the AUD row.</p>
+</div>

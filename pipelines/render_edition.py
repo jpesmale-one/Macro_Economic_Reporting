@@ -683,6 +683,57 @@ def assert_tally_sorted(md):
     return len(scores)
 
 
+def assert_scores_consistent(md):
+    """Any currency score quoted OUTSIDE 2.0 must equal the 2.0 tally (R-16).
+
+    F-46, 2026-08-26. The 25 Aug edition published USD +1.75 in 2.0 and
+    USD +2.25 in BOTH 5 and 6 - each citing "2.0 tally" as its source.
+    Sections 5/6 were carried from Sunday and flagged "not re-charted", but
+    the carry included a SCORE, not just levels and prose.
+
+    A STALE LEVEL IS DISCLOSED; A STALE SCORE CONTRADICTS 2 SILENTLY. No
+    existing guard compared a number quoted elsewhere against the tally that
+    produced it, so one edition shipped two different values for one currency.
+    """
+    try:
+        blk = md[md.index('### 2.0'):md.index('### 2.1')]
+    except ValueError:
+        return 0
+    tally = {}
+    for line in blk.splitlines():
+        if not line.startswith('| ') or line.startswith('|---'):
+            continue
+        cells = [c.strip().replace('*', '') for c in line.strip('|').split('|')]
+        if len(cells) < 3 or cells[0] == 'Band':
+            continue
+        m = re.match(r'([+−-]?[\d.]+)$', cells[2].replace('−', '-'))
+        if m and re.match(r'^[A-Z]{3}$', cells[1]):
+            tally[cells[1]] = float(m.group(1))
+    if not tally:
+        return 0
+
+    body = md[md.index('### 2.1'):]
+    pat = re.compile(r'\b(USD|EUR|GBP|JPY|CHF|CAD|AUD|NZD)\b'
+                     r'[^|\n]{0,40}?score[^|\n]{0,20}?'
+                     r'([+−-]\s?\d+\.\d\d)')
+    bad = []
+    for m in pat.finditer(body):
+        ccy = m.group(1)
+        val = float(m.group(2).replace('−', '-').replace(' ', ''))
+        if ccy in tally and abs(val - tally[ccy]) > 0.005:
+            bad.append((ccy, val, tally[ccy], m.group(0).strip()))
+    if bad:
+        ccy, val, want, ctx = bad[0]
+        raise SystemExit(
+            'FATAL (R-16/F-46): %s is quoted as %+.2f outside section 2.0, but '
+            'the 2.0 tally says %+.2f.%s  "%s"%sOn 2026-08-25 sections 5 and 6 '
+            'carried a STALE USD score from Sunday while citing 2.0 as the '
+            'source. Re-derive the score wherever it is quoted; carrying a '
+            'section forward must never carry its numbers.'
+            % (ccy, val, want, chr(10), ctx, chr(10)))
+    return len(tally)
+
+
 def assert_news_coverage(md):
     """Section 1 must carry news for every currency section 0 says MOVED.
 
@@ -814,6 +865,7 @@ if __name__ == '__main__':
     ntal = assert_tally_sorted(md)
     assert_levels_drawn(md)
     assert_no_offlist_scores(md)
+    nsc = assert_scores_consistent(md)
     ncov = assert_news_coverage(md)
     sources = assert_news_sources(md)
     pn, bn, pct = prose_ratio(md)
@@ -830,6 +882,7 @@ if __name__ == '__main__':
         print('  LD-41 4.0 scores  whitelist indicators only')
         print('  LD-39 whitelist %d/%d indicator rows, no blanks'
               % (nrow, nexp))
+    print('  R-16 scores     %d currency scores agree with §2.0' % nsc)
     print('  LD-65 news cov  %d moved currency(ies) covered' % ncov)
     print('  F-17 sources    §1 cites %d: %s' % (len(sources), ', '.join(sources)))
     print('  LD-27 prose     %d prose blocks of %d units = %.1f%% %s'
