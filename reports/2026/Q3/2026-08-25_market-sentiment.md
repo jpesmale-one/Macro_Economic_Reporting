@@ -1,12 +1,12 @@
 <!--edition
 date: 2026-08-25
-title: Tuesday, 25 August 2026 &middot; 06:38 PHT
-revision: r1
+title: Tuesday, 25 August 2026 &middot; r2 16:31 PHT (London)
+revision: r2
 seal: UNSEALED
 type: DAILY
 eyebrow: Macro Economic Reporting &middot; Tuesday &mdash; week of 24&ndash;28 Aug
 chip: TRACKING <b>2 of 4 favouring</b> &middot; set LOCKED
-chip: <b class="dn">CADJPY 34 pips from its falsifier</b> at Monday's low
+chip: <b class="up">CADJPY recovered</b> &middot; higher low, 54 pips clear
 chip: TODAY <b>2 USD releases</b> &middot; 20:00 &amp; 22:00 PHT
 fng_note: Carried from Friday's capture &mdash; the CNN endpoint posts once daily and has not updated since. The index reads <b>Greed 55.2</b> while <b>four of seven components sit in Fear</b>.
 fng_spread: Spread top-to-bottom bar: <b>95.8 &minus; 29.4 = 66.4</b>. Junk Bond Demand alone carries the headline.
@@ -15,7 +15,7 @@ fng_spread: Spread top-to-bottom bar: <b>95.8 &minus; 29.4 = 66.4</b>. Junk Bond
 <!--exec
 MONDAY IS GRADED ON A CLOSED BAR: 2 of 4 favouring. EURCHF and AUDNZD held; CADJPY and GBPUSD did not.
 
-CADJPY CAME WITHIN 34 PIPS OF ITS FALSIFIER at Monday's low of 114.810 &mdash; inside half an average daily range. It has not fired and the set stays locked, but this is the pair to watch today.
+CADJPY CAME WITHIN 34 PIPS OF ITS FALSIFIER at Monday's low. It has since RECOVERED &mdash; today's low of 114.869 is a HIGHER LOW and it sits 54 pips clear. But the recovery is a JPY-LEG move: CAD is WEAKER STILL, with USDCAD at a new high of 1.38616.
 
 THE DOLLAR IS AT ITS LOWEST SINCE MAY, on the SAME Treasury buyback mechanism that moved it on 19 August &mdash; now doubled and extended. That is the driver behind three of our four long legs.
 
@@ -39,32 +39,51 @@ TWO USD WHITELIST RELEASES LAND TODAY, both on GBPUSD's short leg: Building Perm
 
 **Monday closed. 2 of 4 favouring.**
 
-| Pair | Bias | Lock ref | **Mon close** | Mon move | Now (06:38) | Favouring? | Falsifier | Clear by |
+| Pair | Bias | Lock ref | Mon close | Mon move | **Now (16:31)** | Favouring? | Falsifier | Clear by |
 |---|---|---|---|---|---|---|---|---|
-| **CADJPY** | LONG | 115.490 | **114.920** | **−57.0 pips** | 114.942 | **NO** | close < **114.472** | **47 pips** |
-| **EURCHF** | LONG | 0.93562 | **0.93604** | **+4.2 pips** | 0.93600 | **YES** | close < **0.92796** | 80 pips |
-| **GBPUSD** | LONG | 1.36456 | **1.36306** | **−15.0 pips** | 1.36331 | **NO** | close < **1.35197** | 113 pips |
-| **AUDNZD** | **SHORT** | 1.20071 | **1.19986** | **−8.5 pips** | 1.19960 | **YES** | close > **1.20724** | 76 pips |
+| **CADJPY** | LONG | 115.490 | **114.920** | −57.0 pips | **115.010** | **NO** | close < **114.472** | **54 pips** |
+| **EURCHF** | LONG | 0.93562 | **0.93604** | +4.2 pips | **0.93722** | **YES** | close < **0.92796** | **93 pips** |
+| **GBPUSD** | LONG | 1.36456 | **1.36306** | −15.0 pips | **1.36336** | **NO** | close < **1.35197** | 114 pips |
+| **AUDNZD** | **SHORT** | 1.20071 | **1.19986** | −8.5 pips | **1.20028** | **NO** | close > **1.20724** | 70 pips |
 
-### ⚠ CADJPY came within 34 pips of its falsifier
+### CADJPY recovered — but the recovery is a JPY-leg move
 
-**Monday's low was 114.810 against a falsifier at 114.472.** That is the closest
-any pair has come this week, and it is **inside half an average daily range**
-(3-bar mean: 60 pips).
+**Monday's low was 114.810, 34 pips from the falsifier. Today's low is
+114.869 — a HIGHER LOW**, and the pair sits **54 pips clear** at 115.010.
 
-| | Distance to falsifier |
-|---|---|
-| At the lock (r2, Mon 16:24) | 58 pips |
-| Monday's close | **47 pips** |
-| **Monday's low** | **34 pips** ← closest it has been |
+**But look at which leg did it:**
 
-**It has not fired.** LD-29 is explicit — a pair leaves by its falsifier, not by
-conviction — so **the set stays locked**. But CADJPY is now within one ordinary
-session of voiding, which it was not when the week was locked.
+| Cross | Mon close | **Now (16:31)** | Reading |
+|---|---|---|---|
+| **USDCAD** | 1.38450 | **1.38616** | **CAD WEAKER STILL — a new high** |
+| **USDJPY** | 159.104 | **159.415** | **JPY weaker, and by more** |
+| CADJPY | 114.920 | **115.010** | rose because the **short leg fell faster** |
 
-**The cause is unchanged and still running:** 50% US tariffs on ~$20bn of
-Canadian goods went live over the weekend, with Carney's dollar-for-dollar
-retaliation due 8 September (§1). **CAD's +8.38 score still sees none of it.**
+**CADJPY is up for the right direction and the wrong reason.** The long leg —
+CAD — is still deteriorating; the pair recovered only because the yen fell
+further. **A position that improves because its short leg weakened faster than
+its long leg is not the same as the read working**, and the edition should not
+present it as one.
+
+**The tariff story is not developing today** — no Canada headline this session
+— **yet USDCAD still made a new high.** The selling is continuation, not fresh
+news.
+
+### ⚠ AUDNZD flipped to NO on its second day
+
+It rose **6.8 pips against a short read** and is now **4.3 pips the wrong side
+of its lock reference**. Two AUD-side causes, both today:
+
+- **The PBOC set the yuan midpoint at its weakest in six months**, which
+  softened AUD *(investinglive.com, ~09:30 PHT)* — that pressure is
+  AUD-negative and should have *helped* the short.
+- **The RBA held 4.35% in August with the board debating a preemptive hike**
+  *(investinglive.com, ~09:30 PHT)*. **A hike debate is AUD-positive** and is
+  the more likely driver of the move against us.
+
+**§4.0 still prices AUD at −2 DETERIORATING** on Wednesday's Inflation and
+Thursday's Household Spending. **The hike debate and the projected
+deterioration point opposite ways**, and Wednesday's CPI is the test.
 
 ### The two that held
 
@@ -147,21 +166,79 @@ Americas wrap carries continuing threats rather than de-escalation.
 falsifier margin halved. **This remains the clearest case in the report of a
 score the model cannot update:** a trade war is not one of the 71 indicators.
 
-### 🇪🇺🇬🇧🇨🇭 Euro, sterling, franc — unchanged from Monday
+### 🇬🇧🇨🇭 Sterling and franc — still no domestic catalyst
 
-**No new domestic catalyst on any of the three.** Their moves remain
-dollar-driven (see the USD item above). **EURUSD's strength is a Fed repricing,
-not a euro story**; sterling is capped by a cooling labour market and a BoE
+**No new domestic catalyst on either.** Their moves remain dollar-driven (see
+the USD item above). Sterling is capped by a cooling labour market and a BoE
 expected to hold 3.75%; **CHF softness is carry-funding demand**, which supports
 EURCHF LONG.
+
+**⚠ The euro is no longer in this group** — it got three data points this
+session, below. **Monday's "unchanged" framing no longer holds for EUR.**
+
+### 🇪🇺 Europe — three data points, net positive, none of them scored
+
+**All three are off-list (F-3) — narrative only, never a score.** German and
+French national releases do not satisfy a euro-area whitelist row.
+
+| When (PHT) | Release | Result | Read |
+|---|---|---|---|
+| ~13:30 | **German Q2 GDP Final** | **+0.3%** vs +0.2% prelim | **revised UP** |
+| ~16:00 | **German Ifo Business Climate** | **88.8** vs 87.2 forecast | **beat** |
+| ~14:30 | France consumer confidence | 86 vs 87 expected | miss |
+
+**Net EUR-positive, and EURCHF is the pair that moved** — up 12.2 pips since
+r1 to **0.93722**, a new high for the move and now **93 pips clear** of its
+falsifier. **It is the only pair favouring on its own leg rather than on the
+other side's weakness.**
+
+**⚠ None of this changes EUR's +6.25 score.** The whitelist names euro-area
+aggregates; these are national prints. **The move is real and the score cannot
+see it** — the same gap as CAD's, in the opposite direction.
+
+### 🇯🇵 Japan — a JGB demand measure, and the yen fell anyway
+
+**Japan's Finance Minister is examining tax incentives to boost retail investor
+demand for JGBs** *(investinglive.com, ~10:30 PHT)*.
+
+**Read:** a measure to deepen domestic demand for government bonds. **USDJPY
+rose to 159.415** through the session regardless — **the yen is weaker today**,
+which supports every short-JPY leg and is what lifted CADJPY.
+
+**This sits with F-44's tension, and today the carry side won again.** The
+BoJ-hike expectation from this morning has not moved the price.
+
+### 🇦🇺🇳🇿 Australia and New Zealand — two AUD stories pointing opposite ways
+
+**AUDNZD moved against its short read today** (§0), and the catalysts are both
+AUD-side. **Neither is a whitelist indicator — narrative only (F-3).**
+
+| When (PHT) | Item | Direction for AUD |
+|---|---|---|
+| ~09:30 | **PBOC set the yuan midpoint WEAKEST IN SIX MONTHS**, and AUD softened in reaction | **NEGATIVE** — should have helped the short |
+| ~09:30 | **RBA held 4.35% in August, board DEBATING A PREEMPTIVE HIKE** | **POSITIVE** — works against the short |
+
+*Source: investinglive.com, both ~7 hours before capture.*
+
+**The hike debate is the more likely driver**, because the pair rose despite the
+yuan pressure that should have pushed it the other way.
+
+**This cuts against §4.0, which prices AUD at −2 DETERIORATING** on Wednesday's
+Inflation and Thursday's Household Spending. **A board debating a preemptive
+hike and a projected deterioration cannot both be right.** **Wednesday 09:30 AU
+Inflation is the test** — a hot print supports the hike debate and the short
+stays wrong; a soft one resolves it our way.
+
+**No NZD-domestic news this session.** NZD's next whitelist event is Thursday's
+ANZ Business Confidence; the AUDNZD move today is an AUD move.
 
 ### Not found this morning
 
 **No Jackson Hole or Warsh commentary yet** — the symposium runs **Thu 27 –
 Sat 29**, with Warsh's first keynote as Chair on **Fri 28** (R-5, closed
-Monday). **No AUD or NZD news**; AUD's catalysts are scheduled rather than
-current (Inflation Wed, Household Spending Thu). Checked investinglive.com and
-investing.com plus a wider search (LD-30).
+Monday). **No NZD-domestic headline. No Canada headline this session** — the tariff story is not
+developing further today, though USDCAD made a new high anyway. Checked
+investinglive.com and investing.com plus a wider search (LD-30).
 
 ---
 
@@ -842,8 +919,12 @@ resolved**, because resolving it would mean picking one on no evidence.
 |---|---|
 | **P1 SOURCED** | **PASS** — every figure carries source and as-of |
 | **P2 RECOMPUTED** | **PASS** — every move and distance recomputed from named closed bars |
-| **Seal** | **UNSEALED.** Tuesday is a LIGHT-seal day (LD-12); the seal awaits Jeff's acknowledgement (P3) |
+| **Seal** | **UNSEALED, r2.** Tuesday is a LIGHT-seal day (LD-12); the seal awaits Jeff's acknowledgement (P3) |
 
-**Next:** the two USD releases at **20:00** and **22:00 PHT**. If the day is
-re-run after them, §0 re-grades and §4.0's USD rows resolve. **CADJPY is the
-pair to watch** — 47 pips from its falsifier on the close, 34 at Monday's low.
+**r2 refreshed at 16:31 PHT**, 91 minutes into London. Both USD releases are
+**still ahead** — this is a structure refresh, not a data refresh, and §2 is
+unchanged.
+
+**Next:** Building Permits Final **20:00 PHT** (resolves F-36) and CB Consumer
+Confidence **22:00 PHT**, both on GBPUSD's short leg. **Then Wednesday's AU
+Inflation 09:30** — the test of §4.0's AUD −2 against the RBA hike debate.
