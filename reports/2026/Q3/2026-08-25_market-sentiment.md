@@ -879,18 +879,21 @@ JPY crosses and calling it 3-for-3 (EF-3).
 
 | Guard | Result |
 |---|---|
-| **Timezone (F-2)** | **VERIFIED** — UTC 22:38 Mon 24 = **06:38 Tue 25 PHT**. PHT = UTC+8 |
+| **Timezone (F-2)** | **VERIFIED at r2** — UTC 08:31 Tue 25 = **16:31 Tue 25 PHT**. PHT = UTC+8 |
 | **TE reconciliation (LD-50)** | Fresh capture, **all 71 rows agree**, 0 unmatched |
 | **Revisions / stalled (LD-54)** | **No row changed; no series stalled** |
-| **Whitelist releases so far today** | **ZERO** — both USD events are still ahead |
-| **Bar status** | Monday's daily bar **CLOSED** — today's grade is a completed session |
+| **Whitelist releases so far today** | **ZERO** — both USD events are **still ahead** (20:00, 22:00 PHT), re-checked at r2 |
+| **Bar status** | Monday's daily bar **CLOSED**. **r2 prices are LIVE intraday bars**, 91 min into London — they can still move |
+| **r2 scope** | **STRUCTURE refresh, not a data refresh.** §2, §3 and the tally are **unchanged and verified so**, not assumed |
 
-**Not done, stated plainly:** §5/§6 levels **not re-charted** this run, carried
-from Sunday with the dollar update noted. **BTCUSD still lacks a forward map**
+**Not done, stated plainly:** §5/§6 levels **not re-charted at r1 or r2**,
+carried from Sunday with the dollar update noted. **BTCUSD still lacks a forward map**
 (R-10). The BoJ ex-board-member article **could not be retrieved** and is
 published as a headline with its provenance, not as a quote. **CAD's June FT/PT
 split remains unsourced** (R-15). **The calendar capture still contains no CHF
-rows** (R-14) — Thursday's Swiss payrolls date is hand-sourced.
+rows** (R-14) — Thursday's Swiss payrolls date is hand-sourced. **Today's three
+European releases were NOT scored** and are narrative only: they are German and
+French national prints, and the whitelist names euro-area aggregates (F-3).
 
 ---
 
@@ -913,7 +916,7 @@ resolved**, because resolving it would mean picking one on no evidence.
 
 ---
 
-## §9 — Publish state — UNSEALED, r1
+## §9 — Publish state — UNSEALED, r2
 
 | Gate | State |
 |---|---|
