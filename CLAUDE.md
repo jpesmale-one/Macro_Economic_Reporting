@@ -114,6 +114,7 @@ hand-written version silently degraded while the generator sat unused.
 | §4 selection | `select_pairs.py` + `confidence.py` | by eye |
 | **§2.0 tally** | **`section2.tally_table()`** — sorted by score (LD-61) | **patched in place** |
 | **Grading rules** | `full_time_grade()` · `claimant_grade()` · `market_pricing()` | applied by hand |
+| **§4.6 direction × surprise** | **`directional.py`** (LD-68) | **never fed into the tally** |
 | The edition itself | `render_edition.py <path.md>` | any other way |
 
 **Before an edition, always:**

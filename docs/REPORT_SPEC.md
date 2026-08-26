@@ -974,6 +974,41 @@ while destroying the citation trail.
 
 ---
 
+### LD-68 — direction × surprise: where the price is going
+
+**Jeff, 2026-08-26:** *"my goal for this report is to somehow sense where the
+price is going based on cobining our Macro indicators results and upcoming news"*
+
+**§2 and §4.0 answer different questions. Price follows the second one.**
+
+| | Question | AU CPI, 26 Aug |
+|---|---|---|
+| **§2** | which way is the data **moving** vs a fixed threshold | 3.8 → 3.5, cooling → **NEUTRAL**, tally unchanged |
+| **§4.0** | how does it compare to **what was priced** | 3.5 vs 3.3/3.2 → **HOTTER** |
+
+**The data cooled while beating expectations. AUDNZD +54 pips and held.**
+**Price followed the SURPRISE, not the DIRECTION.**
+
+| Direction | Surprise | Reading |
+|---|---|---|
+| supportive | hotter | **ALIGNED BID** — cleanest |
+| supportive | colder | TENSION |
+| weakening/neutral | hotter | TENSION — *AUD on 26 Aug* |
+| weakening | colder | **ALIGNED OFFER** — cleanest |
+
+**ALIGNED = the move is most likely to run. TENSION = the market must choose**
+**which engine to trade**, and on 26 Aug it chose the surprise.
+
+Computed by `pipelines/directional.py`; published as **§4.6**.
+
+**⚠ IT DOES NOT FEED THE TALLY OR THE SELECTION.** It is a reading aid that
+states a **LEAN, never a forecast**, and **every output carries its sample size.**
+As at 2026-08-26 that sample is **n = 1** — the mechanism is standard FX, but
+our own evidence is one observation. **Score every future release against it
+and publish the record whether it confirms or not.**
+
+---
+
 ### LD-67 — look at the WHOLE edition, not just the moving parts
 
 **Jeff, 2026-08-26:** *"Everytime we build a new edition we should be looking

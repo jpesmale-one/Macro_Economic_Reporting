@@ -677,6 +677,76 @@ USDCHF has the most room but collides with GBPUSD's USD leg; GBPCAD has room
 but faces the strongest currency on the board. **None is a free switch, and
 the report should not imply one exists.**
 
+### 4.6 — Where the price is going: direction × surprise (LD-68)
+
+**Today showed the mechanism cleanly, so it gets its own section.** §2 and
+§4.0 answer **different questions**, and price follows the second one:
+
+| | Question it answers | AU CPI today |
+|---|---|---|
+| **§2** | Which way is the data **moving**, against a fixed threshold? | 3.8% → **3.5%** — cooling. `>2% & falling` → **NEUTRAL**, tally unchanged |
+| **§4.0** | How does the print compare to **what was priced**? | 3.5% vs **3.3% cons / 3.2% fcst** — **HOTTER than priced** |
+
+**The data cooled (AUD-negative in direction) while beating expectations
+(AUD-positive as a surprise). AUDNZD went 1.19853 → 1.20398 and HELD.**
+
+**Price followed the SURPRISE, not the DIRECTION.** Both engines were right
+about their own question; **neither predicted the price on its own.** What
+predicted it was the gap between them.
+
+#### The four states
+
+| Direction (§2) | Surprise (§4.0 outcome) | Reading |
+|---|---|---|
+| supportive | **hotter** than priced | **ALIGNED BID** — both point up, cleanest setup |
+| supportive | colder | **TENSION** — trend up, market wanted more |
+| weakening / neutral | **hotter** | **TENSION** — *today's AUD* |
+| weakening | colder | **ALIGNED OFFER** — both point down, cleanest setup |
+
+**ALIGNED states are where a move is most likely to run.** **TENSION states are
+where the market must choose which engine to trade** — and today it chose the
+surprise.
+
+#### What each remaining event would mean
+
+**This is the forward read: not a forecast of the number, but of what the
+price should do given either outcome.**
+
+| When (PHT) | CCY | Indicator | §2 | Priced | **If HOTTER** | **If COLDER** |
+|---|---|---|---|---|---|---|
+| **Wed 26 20:30** | USD | Personal Spending MoM | NEUTRAL | 0.1–0.3% | TENSION, USD bid | TENSION, USD offered |
+| **Wed 26 20:30** | **USD** | **Durable Goods Ex Transp** | **GOOD** | 0.3–0.6% | **ALIGNED BID** | TENSION |
+| **Thu 27 09:30** | **AUD** | **Household Spending YoY** | **GOOD** | 4.4% | **⚠ ALIGNED BID** | TENSION |
+| Fri 28 07:30 | JPY | Unemployment Rate | NEUTRAL | 2.5% | TENSION | TENSION |
+| **Fri 28 13:00** | **JPY** | **Consumer Confidence** | **GOOD** | 35.0 | **ALIGNED BID** | TENSION |
+| **Fri 28 17:00** | **EUR** | **Consumer Confidence Final** | **GOOD** | −15.5 | **ALIGNED BID** | TENSION |
+
+**⚠ Tomorrow's AU Household Spending is the one that matters most to the
+locked set.** §2 already grades it **GOOD**, so a beat is **ALIGNED BID** —
+the cleanest AUD-positive state there is, **compounding today against AUDNZD
+SHORT**, which sits 34 pips from its falsifier. **A miss gives us TENSION and
+the short survives on the direction leg.**
+
+**Two of Friday's three point the same way for EURCHF LONG:** a JPY Consumer
+Confidence beat is JPY-supportive (**hostile to CADJPY's short leg**), while an
+EUR Consumer Confidence beat is **ALIGNED BID for EUR** (**supportive of
+EURCHF**).
+
+#### ⚠ The honest caveat: this rests on ONE observation
+
+**Sample size is n = 1.** The mechanism is standard — markets price
+expectations and then trade the deviation — but **our own evidence for it is
+today's AU CPI alone.**
+
+The other candidates this week could not test it: **Building Permits was
+corrected five days late** (F-45), so no clean before/after exists; **CB
+Consumer Confidence** moved DXY only **−8 pips**, too small to read.
+
+**This section states a LEAN, never a forecast**, and it does not feed the §2
+tally or the §4.3 selection. **It is a reading aid, and it stays one until the
+sample is bigger.** Each future release will be scored against it, and **the
+record will be published whether it confirms or not.**
+
 ## §5 — Gold (XAUUSD)
 
 > **Levels carried from Sunday; prices re-read this morning.** Gold closed Tuesday at **4659.06** after touching **4697.11** — the high of the move. **DXY closed 98.902, UP from Friday's 98.839**, so yesterday's "dollar at its lowest since May" framing no longer describes today (§1). **Not re-charted this run; R-10 and a fresh read are queued for the next full edition.**
