@@ -204,22 +204,31 @@ it went nowhere.
 +6.25 does not move on it** (F-3), and §2.6 scores each bank against its own
 mandate, not against market pricing.
 
-### 🇦🇺 Australia — CPI lands in three hours
+### 🇦🇺 Australia — CPI landed, and it beat expectations while cooling
 
-**July CPI is due 11:30 AEST = 09:30 PHT**, ~3 hours after this edition.
-Expectations *(investinglive.com preview)*: **headline easing to 3.2–3.3% from
-3.8%**, trimmed mean to **~3.5% from 3.6%**, which would keep **a September hold
-in play**.
+**July CPI, ABS, released 11:30 AEST = 09:30 PHT today:**
 
-**This is the test set up in yesterday's §1.** Tuesday's RBA story had the board
-debating a *preemptive hike*; §4.0 prices AUD at **−2 DETERIORATING**. A print
-at 3.2% supports the easing case; a hot one supports the hike debate.
+| Measure | Jun/26 | **Jul/26** | Expected | Result |
+|---|---|---|---|---|
+| **Headline YoY** | 3.8% | **3.5%** | 3.2–3.3% | **MISS — hotter than priced** |
+| **Trimmed mean YoY** | 3.6% | **3.6%** | ~3.5% | **did not ease at all** |
+| Monthly | — | +1.0% | — | — |
 
-**⚠ Not scored, and the ABS page is not usable yet.** The ABS "latest release"
-URL currently serves **September 2025** — a stale cache, not today's print. The
-AUD Inflation row keeps its current value and **§4.0 keeps this as a PENDING
-catalyst.** LD-3: the calendar is the schedule authority; the ABS is the value
-authority, and it has not published.
+*Source: abs.gov.au media release, 26 Aug 2026. TE reconciles at 3.5%.*
+
+**The test set up in yesterday's §1 resolved for the hike debate.** Tuesday's
+RBA story had the board **debating a preemptive hike**; §4.0 priced AUD at
+**−2 DETERIORATING**. **The print undercut that pricing** — inflation cooled,
+but by less than expected, and **the RBA's preferred gauge did not move at
+all.**
+
+**AUDNZD went 1.19853 → 1.20398 and held.** See **§4.6** for why the price
+followed the surprise rather than the direction.
+
+**⚠ Sourcing note worth keeping.** The ABS *"latest release"* statistics page
+**still serves September 2025** even after publication. **The media release
+carried today's figure when the data page did not** — that is the working ABS
+path, and it is now recorded in §7.
 
 ### 🇺🇸 US dollar — the "lowest since May" claim needs a caveat
 
@@ -409,31 +418,35 @@ Bands: **STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00**
 
 ---
 
-### 2.7 Why the tally did not move, though three figures did
+### 2.7 What the score cannot see — binary thresholds
 
-**Three Friday prints were fed into the model this session and the tally is
-unchanged.** That is a property of the scoring test, not a stale table.
+**Every threshold in §2 is BINARY, not a rate-of-change test.** A figure can
+move a long way and the grade will not budge until it crosses a line. **This is
+a permanent property of the model, and today produced a textbook case.**
 
-| Row | Was | Now | Move | Score |
-|---|---|---|---|---|
-| GBP Retail Sales YoY | 4.2% *(Jun)* | **1.6%** *(Jul)* | **−2.6pp** | GOOD → **GOOD** |
-| GBP GfK Consumer Confidence | −17 *(Jul)* | **−14** *(Aug)* | +3 | GOOD → **GOOD** |
-| EUR Consumer Confidence | −15.9 *(Jul)* | **−15.5** *(Aug)* | +0.4 | GOOD → **GOOD** |
+| Row | Was | **Now** | Move | Threshold | Score |
+|---|---|---|---|---|---|
+| **AUD Inflation Rate YoY** | 3.8% *(Jun)* | **3.5%** *(Jul)* | **−0.3pp** | `>2% & falling` | NEUTRAL → **NEUTRAL** |
+| GBP Retail Sales Ex Fuel | 5.0% | **2.3%** | **−2.7pp** | `>0.5%` | GOOD → **GOOD** |
+| GBP GfK Consumer Confidence | −17 | **−14** | +3 | `>Prev` | GOOD → **GOOD** |
 
-**Every threshold in §2 is BINARY, not a rate-of-change test.** GBP Retail Sales
-Ex Fuel decelerated **2.7 percentage points (5.0% → 2.3%)** and stayed GOOD
-because the test is `>0.5%`, and 2.3% clears it as surely as 5.0% did. GBP
-would only lose the point at **0.5% or below** — a further 1.8pp fall.
+**AU inflation fell 0.3pp and AUD's score did not move**, because 3.8% and 3.5%
+both satisfy *above 2% and falling*. **GBP retail sales more than halved** and
+stayed GOOD, because 2.3% clears `>0.5%` as surely as 5.0% did — GBP would only
+lose that point at **0.5% or below**, a further 1.8pp fall.
 
-**This is a real limitation and it is worth stating plainly: the model cannot
-see a deceleration until it crosses a line.** A currency can weaken materially
-for weeks while its score sits still. GBP's retail sales more than halving is
-exactly that case — the *direction* is information the score discards.
+**A currency can weaken — or firm — materially for weeks while its score sits
+still. The direction is information the score discards.**
 
-**Where it matters this week:** GBP is the LOW-confidence leg of the **GBPUSD**
-proposal. Its +5.75 is unchanged, but one of the two indicators behind its
-Spending point just decelerated sharply. **The score says hold; the direction
-says watch.**
+**This is precisely why §4.6 exists.** The tally answers *which side of the line
+is the data on*; it is **deliberately slow**, and that is what makes it a
+sentiment baseline rather than a signal. **§4.6 supplies the other half** —
+where the print landed against what was priced — and **today the two
+disagreed**: the tally did not move and the price moved 54 pips.
+
+**Where it matters this week:** GBP is the LOW-confidence leg of **GBPUSD**, and
+one of the two indicators behind its Spending point has decelerated sharply
+while the score held. **The score says hold; the direction says watch.**
 
 **CAD could not be updated at all.** StatCan's 21 Aug release publishes **no
 year-over-year figure**, and its −0.8% July number is an **advance estimate
@@ -441,9 +454,9 @@ built from 56.5% of surveyed firms**, which StatCan states will be revised.
 Complete July data lands **24 September** *(www150.statcan.gc.ca, primary)*. The
 model keeps May/26 5.9% and is **flagged, not silently carried** — see §8.
 
-## §3 — Interest Rates — as at Friday close, forward-looking
+## §3 — Interest Rates — forward-looking
 
-**No policy decision has occurred since r11.** Republished in full (LD-22).
+**No policy decision has occurred this week** — the next is **NZD on 2 Sep**, then CAD the same day. Republished in full (LD-22). **Rates verified unchanged this run**; the commentary is carried.
 
 | CCY / Rate | Last decision | Bias | Next meeting (PHT) | Expectation |
 |---|---|---|---|---|
@@ -1006,10 +1019,10 @@ JPY crosses and calling it 3-for-3 (EF-3).
 
 | Guard | Result |
 |---|---|
-| **Timezone (F-2)** | **VERIFIED** — UTC 22:23 Tue 25 = **06:23 Wed 26 PHT**. PHT = UTC+8, computed, not read off the shell |
+| **Timezone (F-2)** | **VERIFIED at r2** — UTC 02:08 Wed 26 = **10:08 Wed 26 PHT**. PHT = UTC+8, computed, not read off the shell |
 | **TE reconciliation (LD-50)** | **Fresh fetch this morning** — all 8 country pages 200, **all 71 rows agree, 0 unmatched** |
 | **Revisions / stalled (LD-54)** | **6 changes, all mine** — the two USD corrections below. No series stalled |
-| **Whitelist releases so far today** | **ZERO** — AU CPI is 3 hrs out, the two USD prints 14 hrs |
+| **Whitelist releases so far today** | **ONE** — **AU Inflation 3.5%** (09:30, sourced from the ABS media release). The two USD prints are still ahead, 20:30 |
 | **Bar status** | Tuesday's daily bar **CLOSED**. Wednesday's bar is minutes old on thin volume |
 | **§4.0 window (LD-66)** | **Derived, not hardcoded** — 24–28 Aug, rolls Sunday |
 
@@ -1045,6 +1058,8 @@ shows the cost: a CHF event appeared in §4.0 for a week TE has no such event in
 | **F-53** | **NEW — §4.5 used a 5-day high as a 45-bar high and inverted a ranking.** Below |
 | **R-16** | **NEW GUARD** — a score quoted outside §2.0 must match the tally |
 | **R-18** | **NEW GUARD** — every section must agree with every other (LD-67) |
+| **F-54** | **NEW — §2.7 and §1 were still previewing a released event.** Below |
+| **R-19** | **NEW GUARD** — no section may count down to an event §4.0 marks RELEASED |
 | **R-17** | **NEW GUARD** — the F&G capture must be current for the edition date |
 | ~~F-36~~ | **CLOSED by F-45** — there was never a 25 Aug Final to wait for |
 
@@ -1089,6 +1104,25 @@ the check now runs first.
 2026 establishment data, **not the monthly payrolls print**. Our capture
 labelled it "non farm payrolls" and the matcher believed the label. **BLS puts
 August payrolls on Fri 4 Sep 20:30 PHT — next week's window.** Added to `_NOT`.
+
+**F-54 — a section can go stale in its TENSE, not just its numbers.** Jeff, on
+§2.7: *"This is also stale is this still relevant?"* It was not. It said
+*"three Friday prints were fed into the model this session"* — that session was
+**Sunday**, three editions ago — and its headline premise, *"why the tally did
+not move"*, **had since been falsified by USD +1.75 → +2.25 this morning.**
+
+**Reading for it found two more:** §1 still said **"CPI lands in three hours"**
+for a release that had landed, and §7's guard table reported **"ZERO whitelist
+releases so far today"** after one had printed.
+
+**§2.7 was rewritten rather than deleted, because its CONTENT is permanent:**
+every §2 threshold is **binary, not a rate-of-change test**, and **today is the
+textbook case** — AU inflation fell 0.3pp and the grade did not move. **That
+limitation is exactly why §4.6 exists.**
+
+**R-18 compares sections on prices and status. R-19 catches the TENSE
+mismatch** — §4.0 marking an event RELEASED while earlier prose counts down to
+it. Verified against the reconstructed defect.
 
 **LD-67 — look at the WHOLE edition, not just the moving parts.** Jeff:
 *"Everytime we build a new edition we should be looking if every parts of the

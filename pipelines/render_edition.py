@@ -125,6 +125,8 @@ def cell(c):
 
 
 FNG_MARKER = '<!--FNG-->'
+_NAME = {'AUD': 'Australia', 'NZD': 'New Zealand', 'USD': 'US', 'EUR': 'Europe',
+         'GBP': 'UK', 'JPY': 'Japan', 'CAD': 'Canada', 'CHF': 'Switzerland'}
 
 # Front-matter of the edition being rendered; set in __main__ before render().
 FM = {}
@@ -683,6 +685,63 @@ def assert_tally_sorted(md):
     return len(scores)
 
 
+def assert_no_stale_preview(md, fm):
+    """No section may preview an event 4.0 marks RELEASED (R-19).
+
+    Jeff, 2026-08-26, on 2.7: "This is also stale is this still
+    relevant?" It was not - 2.7 said "three Friday prints were fed in
+    THIS SESSION" three sessions after the fact, and its premise ("the
+    tally did not move") had since been falsified by USD +1.75 -> +2.25.
+
+    The same read found 1 still saying "CPI lands in three hours" for a
+    release that had landed, and 7 reporting "ZERO whitelist releases so
+    far today" after one had printed.
+
+    R-18 compares sections to each other on PRICES and STATUS. This
+    catches the TENSE mismatch: 4.0 says RELEASED while prose still
+    counts down to it.
+    """
+    released = set()
+    try:
+        blk = md[md.index('### 4.0'):md.index('### 4.3')]
+    except ValueError:
+        return 'no 4.0'
+    for line in blk.split(chr(10)):
+        if not line.startswith('|') or 'RELEASED' not in line.upper():
+            continue
+        cells = [c.strip().replace('*', '')
+                 for c in line.strip().strip('|').split('|')]
+        for c in cells:
+            if re.fullmatch(r'[A-Z]{3}', c):
+                released.add(c)
+                break
+    if not released:
+        return 'nothing released yet'
+
+    body = md[:md.index('### 4.0')]
+    AHEAD = re.compile(
+        r'(lands? in [a-z0-9 ]{1,12}(hours?|hrs)|is due |hours? out|hrs out|ahead of this edition|after this edition|awaiting|not yet released)',
+        re.I)
+    hits = []
+    for para in body.split(chr(10) + chr(10)):
+        m = AHEAD.search(para)
+        if not m:
+            continue
+        for ccy in released:
+            if ccy in para or _NAME.get(ccy, ccy) in para:
+                hits.append((ccy, m.group(0).strip(), para[:90]))
+                break
+    if hits:
+        ccy, phrase, ctx = hits[0]
+        raise SystemExit(
+            'FATAL (R-19): §4.0 marks a %s event RELEASED, but earlier prose '
+            'still previews it as upcoming ("%s").%s  %s...%s'
+            'A released event must be reported, never counted down to. On '
+            '2026-08-26 §1 said "CPI lands in three hours" after it had landed.'
+            % (ccy, phrase, chr(10), ctx.replace(chr(10), ' '), chr(10)))
+    return '%d released, no stale preview' % len(released)
+
+
 def assert_whole_edition(md):
     """Every section must agree with every other (R-18/LD-67).
 
@@ -945,6 +1004,7 @@ if __name__ == '__main__':
     ntal = assert_tally_sorted(md)
     assert_levels_drawn(md)
     assert_no_offlist_scores(md)
+    preview_state = assert_no_stale_preview(md, fm)
     whole_state = assert_whole_edition(md)
     fng_state = assert_fng_fresh(fm)
     nsc = assert_scores_consistent(md)
@@ -965,6 +1025,7 @@ if __name__ == '__main__':
         print('  LD-39 whitelist %d/%d indicator rows, no blanks'
               % (nrow, nexp))
     print('  R-18 whole ed   %s' % whole_state)
+    print('  R-19 tense      %s' % preview_state)
     print('  R-17 F&G fresh  %s' % fng_state)
     print('  R-16 scores     %d currency scores agree with §2.0' % nsc)
     print('  LD-65 news cov  %d moved currency(ies) covered' % ncov)
