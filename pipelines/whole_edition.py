@@ -29,8 +29,17 @@ CCY = r'(?:USD|EUR|GBP|JPY|CHF|CAD|AUD|NZD)'
 PAIR = re.compile(r'\b(' + CCY + CCY + r')\b')
 NUM = re.compile(r'^\d+\.\d{3,5}$')
 
-# Column headers that mean "the current price". Only these are compared.
-PRICE_COL = re.compile(r'tue close|current|now$|live', re.I)
+# Column headers that mean "the price as of THIS edition". Only these are
+# compared against each other.
+#
+# The day name is matched generically - hardcoding "tue close" meant that on
+# 2026-08-27 the guard compared section 0's PRIOR-day column against 4.5's
+# CURRENT-day column and reported three false contradictions. A column naming
+# an EARLIER session is legitimate history and must not be compared to a
+# current one; only the newest day-labelled column in the edition counts.
+PRICE_COL = re.compile(
+    r'(mon|tue|wed|thu|fri) close|current|now$|live', re.I)
+DAYS = ['mon', 'tue', 'wed', 'thu', 'fri']
 
 
 def sections(md):
@@ -110,11 +119,28 @@ def sweep(md):
                                 for v, ks in sorted(vals.items())))))
 
     # ---- 3. the CURRENT PRICE must agree across sections ----
-    # Only columns whose HEADER says it is a current price are compared.
+    # Only columns whose HEADER says it is a current price are compared, and
+    # only for the LATEST session the edition names. A "Tue close" column
+    # sitting beside a "Wed close" column is history, not a contradiction.
+    latest = -1
+    for head, body in secs:
+        for hdr, _rows in _tables(body):
+            for h in hdr:
+                m = re.search(r'(mon|tue|wed|thu|fri) close', h, re.I)
+                if m:
+                    latest = max(latest, DAYS.index(m.group(1).lower()))
+
     price = {}
     for head, body in secs:
         for hdr, rows in _tables(body):
-            idx = [i for i, h in enumerate(hdr) if PRICE_COL.search(h)]
+            idx = []
+            for i, h in enumerate(hdr):
+                if not PRICE_COL.search(h):
+                    continue
+                m = re.search(r'(mon|tue|wed|thu|fri) close', h, re.I)
+                if m and latest >= 0 and DAYS.index(m.group(1).lower()) < latest:
+                    continue          # an earlier session - history, skip
+                idx.append(i)
             if not idx:
                 continue
             for r in rows:
