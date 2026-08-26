@@ -497,6 +497,7 @@
 <h3 class="sub">4.0 — Week ahead: what the market is pricing (LD-63)</h3>
 <p>One test, every whitelist indicator, category-independent: the <b>[Consensus, Forecast]</b> range against the <b>current actual</b>. Above → GOOD, below → BAD, actual inside → NEUTRAL. Sorted date → time → CCY (LD-52).</p>
 <p><b>Window: Mon 24 – Fri 28 Aug (LD-66)</b> — this week only, rolls Sunday. <b>Every row carries a TE consensus or forecast; nothing is UNSCORED.</b></p>
+<p><b>⚠ The CHF row below was HAND-SOURCED after Jeff asked why it was missing (F-57).</b> Our calendar capture contains <b>no Swiss rows of any kind</b> — nor any New Zealand rows. <b>Both are legs of locked pairs.</b> See §8.</p>
 <div class="tblwrap"><table>
 <tr><th>When (PHT)</th><th>CCY</th><th>Indicator</th><th>Current actual</th><th>Cons / Fcst</th><th><b>Market priced</b></th><th>Status</th></tr>
 <tr><td>Tue 25</td><td class="num">USD</td><td>Building Permits MoM Final <em>(Jul)</em></td><td>−2.6% <em>(Jun)</em></td><td class="num">5.0%</td><td class="num"><span class="pill p-good">GOOD</span></td><td><b>RELEASED · +5.0%</b></td></tr>
@@ -505,6 +506,7 @@
 <tr><td><b>Wed 26 20:30</b></td><td class="num"><b>USD</b></td><td><b>Durable Goods Ex Transp MoM</b></td><td>0.6% <em>(Jun)</em></td><td>0.3–0.6%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td><b>RELEASED · +0.4% — in line, but crossed the threshold</b></td></tr>
 <tr><td>Wed 26 20:30</td><td class="num">USD</td><td>Personal Spending MoM</td><td>0.3% <em>(Jun)</em></td><td>0.1–0.3%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td><b>RELEASED · +0.2% — in line</b></td></tr>
 <tr><td><b>Thu 27 09:30</b></td><td class="num"><b>AUD</b></td><td><b>Household Spending YoY</b></td><td class="num"><b>6.0%</b></td><td>— / <b>4.4%</b></td><td class="num"><span class="pill p-bad">BAD</span></td><td><b>TODAY · 3 hrs</b></td></tr>
+<tr><td><b>Thu 27</b></td><td class="num"><b>CHF</b></td><td><b>Non Farm Payrolls</b> <em>(Q2)</em></td><td><b>5.537M</b> <em>(Q1)</em></td><td>— / <b>5.55M</b></td><td class="num"><span class="pill p-good">GOOD</span></td><td><b>TODAY · hand-sourced (F-57)</b></td></tr>
 <tr><td>Fri 28 07:30</td><td class="num">JPY</td><td>Unemployment Rate</td><td class="num">2.5%</td><td>2.5% / 2.5%</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td>ahead</td></tr>
 <tr><td><b>Fri 28 13:00</b></td><td class="num"><b>JPY</b></td><td><b>Consumer Confidence</b></td><td class="num"><b>34.9</b></td><td>— / <b>35</b></td><td class="num"><span class="pill p-good">GOOD</span></td><td>ahead</td></tr>
 <tr><td><b>Fri 28 17:00</b></td><td class="num"><b>EUR</b></td><td><b>Consumer Confidence Final</b> <em>(Aug)</em></td><td class="num"><b>−15.9</b></td><td><b>−15.5 / −15.5</b></td><td class="num"><span class="pill p-good">GOOD</span></td><td>ahead</td></tr>
@@ -534,13 +536,15 @@
 <div class="tblwrap"><table>
 <tr><th>When (PHT)</th><th>CCY</th><th>Indicator</th><th>§2</th><th>Priced</th><th><b>If HOTTER</b></th><th><b>If COLDER</b></th></tr>
 <tr><td><b>Thu 27 09:30</b></td><td class="num"><b>AUD</b></td><td><b>Household Spending YoY</b></td><td class="num"><span class="pill p-good">GOOD</span></td><td class="num">4.4%</td><td><b>⚠ ALIGNED BID</b></td><td>TENSION</td></tr>
+<tr><td><b>Thu 27</b></td><td class="num"><b>CHF</b></td><td><b>Non Farm Payrolls</b> <em>(Q2)</em></td><td class="num"><span class="pill p-good">GOOD</span></td><td class="num">5.55M</td><td><b>⚠ ALIGNED BID</b></td><td>TENSION</td></tr>
 <tr><td>Fri 28 07:30</td><td class="num">JPY</td><td>Unemployment Rate</td><td class="num"><span class="pill p-neut">NEUTRAL</span></td><td class="num">2.5%</td><td>TENSION</td><td>TENSION</td></tr>
 <tr><td><b>Fri 28 13:00</b></td><td class="num"><b>JPY</b></td><td><b>Consumer Confidence</b></td><td class="num"><span class="pill p-good">GOOD</span></td><td class="num">35.0</td><td><b>ALIGNED BID</b></td><td>TENSION</td></tr>
 <tr><td><b>Fri 28 17:00</b></td><td class="num"><b>EUR</b></td><td><b>Consumer Confidence Final</b></td><td class="num"><span class="pill p-good">GOOD</span></td><td class="num">−15.5</td><td><b>ALIGNED BID</b></td><td>TENSION</td></tr>
 </table></div>
 <p><b>⚠ Today's AU Household Spending is the sharpest event of the week for the locked set.</b> <b>AUDNZD sits 4.2 pips from its falsifier on a close basis.</b> §2 already grades this indicator <b>GOOD</b>, so <b>a beat is ALIGNED BID — the cleanest AUD-positive state there is</b>, arriving at a pair that has already wicked through its trigger once.</p>
 <p><b>A miss gives TENSION</b>, and the short survives on the direction leg.</p>
-<p><b>Friday's JPY Consumer Confidence is the second risk</b>: a beat is <b>ALIGNED BID for JPY</b>, directly hostile to <b>CADJPY's short leg</b>, which is itself 34 pips from its falsifier. <b>Warsh speaks the same day.</b></p>
+<p><b>⚠ CHF payrolls land TODAY and they cut against our one working pair.</b> The market prices Swiss payrolls to <b>improve</b> (5.537M → 5.55M forecast) and §2 already grades the row <b>GOOD</b> — so <b>a beat is ALIGNED BID for CHF</b>, which is <b>hostile to EURCHF LONG</b>. EURCHF closed <b>0.93840</b>, is the week's only favouring pair, and sits <b>28 pips from its 45-bar high</b> (§4.5). <b>The one thing working has a same-day catalyst pointing the wrong way, and until this morning it was not on the board at all.</b></p>
+<p><b>Friday's JPY Consumer Confidence is the third risk</b>: a beat is <b>ALIGNED BID for JPY</b>, directly hostile to <b>CADJPY's short leg</b>, which is itself 34 pips from its falsifier. <b>Warsh speaks the same day.</b></p>
 <h3 class="sub">4.3 LOCKED — four leg-disjoint pairs (selection unchanged; prices refreshed)</h3>
 <div class="tblwrap"><table>
 <tr><th>Rank</th><th>Pair</th><th>Dir</th><th>Conf</th><th>Week</th><th>Spread</th><th><b>Wed close</b></th><th>Falsifier</th><th>Clear by</th></tr>
@@ -733,8 +737,10 @@
 </table></div>
 <p><b>Sourcing this run.</b> Durable Goods from the <b>Census advance report PDF</b> (text-extracted; <em>"Excluding transportation, new orders increased 0.4 percent"</em>, released 08:30 EDT 26 Aug); Personal Spending from <b>BEA</b>; the PCE story from fxstreet with the figures stated. <b>LD-3 held: the calendar gave the schedule, the agency gave the value.</b></p>
 <p><b>Not done, stated plainly:</b> §5/§6 levels <b>not re-charted</b> — prices refreshed per LD-67, levels carried from Sunday. <b>BTCUSD still lacks a forward map</b> (R-10). <b>CAD's June FT/PT split remains unsourced</b> (R-15). <b>No CHF calendar rows</b> (R-14). <b>PCE is off-list and stays off-list</b> — adding it is a whitelist amendment, which is Jeff's call, not a mid-week fix (F-3).</p></div></details>
-<details class="fold"><summary>§8 — Findings<span class="cnt">6 rows</span></summary><div class="foldbody"><div class="tblwrap"><table>
+<details class="fold"><summary>§8 — Findings<span class="cnt">10 rows</span></summary><div class="foldbody"><div class="tblwrap"><table>
 <tr><th>ID</th><th>Status</th></tr>
+<tr><td><b>F-57</b></td><td><b>NEW — CHF and NZD have NO calendar coverage AT ALL. Jeff caught it.</b> Below</td></tr>
+<tr><td><b>R-20</b></td><td><b>NEW GUARD</b> — <code>week_ahead.py</code> now fails loud on a currency with zero rows</td></tr>
 <tr><td><b>F-55</b></td><td><b>NEW — the tally fell while the dollar rallied, and both were correct.</b> Below</td></tr>
 <tr><td><b>F-56</b></td><td><b>NEW — AUDNZD breached its falsifier intraday and survived on the close rule.</b> Below</td></tr>
 <tr><td><b>LD-68</b></td><td><b>n = 2, both confirming.</b> See §4.6</td></tr>
@@ -742,6 +748,18 @@
 <tr><td><b>R-10</b></td><td>OPEN — BTCUSD forward map</td></tr>
 <tr><td><b>R-15</b></td><td>OPEN — CAD June FT/PT split unsourced</td></tr>
 </table></div>
+<p><b>F-57 — two whitelisted currencies were invisible to §4.0, and both are legs of locked pairs.</b> Jeff: <em>"CHF NFP is going to be out today, why is it not in our radar 4.0"</em></p>
+<p><b>Because our calendar capture contains no Swiss rows at all</b> — not "no payrolls row", <b>no Switzerland whatsoever</b>. The capture holds 22 countries and <b>CH is not one of them. Neither is NZ.</b> TE's global calendar page does not carry them either; <b>the country pages do</b>, and that is where today's event was hand-sourced from.</p>
+<div class="tblwrap"><table>
+<tr><th></th><th>Coverage</th><th>Exposure</th></tr>
+<tr><td class="num"><b>CHF</b></td><td><b>0 rows</b></td><td><b>short CHF</b> via EURCHF LONG</td></tr>
+<tr><td class="num"><b>NZD</b></td><td><b>0 rows</b></td><td><b>long NZD</b> via AUDNZD SHORT</td></tr>
+</table></div>
+<p><b>Both legs of two locked pairs sit on currencies §4.0 could not see.</b></p>
+<p><b><code>week_ahead.py</code> was never lying.</b> It reported <code>TOTAL WHITELIST EVENTS</code> and that count was correct <b>for the data it was given</b>. Nothing asked the harder question — <b>is every whitelisted currency represented at all?</b></p>
+<p><b>R-14 recorded this on 21 Aug and it stayed open for six days</b> while §4.0 published a "complete" week ahead each morning. <b>An open finding in §8 is a note; a guard is a stop.</b> <code>coverage_gaps()</code> now prints a loud block naming any currency with <b>zero</b> rows, and it found NZD as well — a second blind spot nobody had noticed.</p>
+<p><b>What it cost this week:</b> <b>CHF Non Farm Payrolls Q2 releases TODAY</b>, previous <b>5.537M</b>, forecast <b>5.55M</b>. LD-63 prices it <b>GOOD</b>; §2 grades the row <b>GOOD</b>; so §4.6 reads a beat as <b>ALIGNED BID for CHF</b> — <b>directly hostile to EURCHF LONG, the only pair favouring all week.</b> <b>NZD cost nothing this week</b> — its next event is Mon 31 Aug, next week's window.</p>
+<p><b>Deliberately not done:</b> the capture is <b>not</b> rebuilt mid-edition. Today's CHF row is hand-sourced and <b>labelled as such in §4.0</b>. <b>Wiring the country calendars into the capture is a pipeline change and it belongs in the weekend edition</b>, not in a live Thursday build.</p>
 <p><b>F-55 — §2 said USD weakened on the day the dollar was bought.</b> Durable Goods ex-transport printed <b>+0.4%</b> against <b>+0.6%</b>, crossing the <code>&gt;0.5%</code> threshold, so the score went GOOD → BAD and <b>USD fell +2.25 → +1.75</b>. Meanwhile <b>DXY rose to 99.133</b> and <b>GBPUSD lost 51.8 pips</b> on a <b>PCE beat (0.2% vs 0.1%, annual 3.7% vs 3.6%)</b> — an indicator <b>not on the whitelist</b>.</p>
 <p><b>Both readings are correct about their own question.</b> The tally measures whether named indicators sit the right side of fixed lines; <b>the market trades surprise in whatever series it cares about that day.</b> A 0.2pp move across a threshold changed our score; a bigger surprise in an unlisted series moved every dollar pair on the board and changed nothing.</p>
 <p><b>This is not an argument for adding PCE.</b> It is the reason <b>§4.6 exists</b>, and it is the second confirmation of LD-68 in two days. <b>The whitelist is a closed set by design (F-3) and amending it is Jeff's call.</b></p>

@@ -128,6 +128,28 @@ def match(ev, names, iso=None):
 # each indicator's own threshold and its own PREL/FINAL distinction, and the
 # Building Permits row conflated a Jul PREL actual, a Jun FINAL previous and a
 # consensus into one line. ONE TEST, THREE SOURCED NUMBERS, NO DERIVATION.
+def coverage_gaps(capture_path):
+    """Whitelisted currencies with NO calendar rows at all (R-20/F-57).
+
+    Returns the sorted list of currency codes that appear in the
+    whitelist but have ZERO rows of ANY kind in the capture.
+
+    This is deliberately blunt. It does not ask whether a currency has
+    an event THIS WEEK - a quiet week is normal. It asks whether the
+    capture can see that country AT ALL. Zero rows across a whole
+    capture is a feed defect, never a quiet calendar.
+    """
+    import score_model as sm
+    data = json.load(io.open(capture_path, encoding='utf-8'))
+    seen = set()
+    for e in data:
+        c = CCY.get(e.get('iso'))
+        if c:
+            seen.add(c)
+    want = set(sm.LABEL[r[1]] for r in sm.ROWS)
+    return sorted(want - seen)
+
+
 def current_window(now=None):
     """The Mon-Fri window 4.0 must cover, rolling on SUNDAY (LD-66).
 
@@ -258,3 +280,12 @@ if __name__ == '__main__':
     print()
     print('TOTAL WHITELIST EVENTS: %d  (%d timed, %d untimed)'
           % (len(timed) + len(no_time), len(timed), len(no_time)))
+
+    gaps = coverage_gaps(cap)
+    if gaps:
+        print()
+        print('*** COVERAGE GAP (R-20): %s HAVE NO CALENDAR ROWS AT ALL ***'
+              % ', '.join(gaps))
+        print('    Not "no event this week" - the capture cannot see these')
+        print('    countries at all. Any event they have is INVISIBLE to 4.0.')
+        print('    Hand-source them and say so in the edition.')

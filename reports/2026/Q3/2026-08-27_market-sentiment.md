@@ -390,6 +390,10 @@ below → BAD, actual inside → NEUTRAL. Sorted date → time → CCY (LD-52).
 **Window: Mon 24 – Fri 28 Aug (LD-66)** — this week only, rolls Sunday.
 **Every row carries a TE consensus or forecast; nothing is UNSCORED.**
 
+**⚠ The CHF row below was HAND-SOURCED after Jeff asked why it was missing (F-57).**
+Our calendar capture contains **no Swiss rows of any kind** — nor any New Zealand
+rows. **Both are legs of locked pairs.** See §8.
+
 | When (PHT) | CCY | Indicator | Current actual | Cons / Fcst | **Market priced** | Status |
 |---|---|---|---|---|---|---|
 | Tue 25 | USD | Building Permits MoM Final *(Jul)* | −2.6% *(Jun)* | 5.0% | **GOOD** | **RELEASED · +5.0%** |
@@ -398,6 +402,7 @@ below → BAD, actual inside → NEUTRAL. Sorted date → time → CCY (LD-52).
 | **Wed 26 20:30** | **USD** | **Durable Goods Ex Transp MoM** | 0.6% *(Jun)* | 0.3–0.6% | **NEUTRAL** | **RELEASED · +0.4% — in line, but crossed the threshold** |
 | Wed 26 20:30 | USD | Personal Spending MoM | 0.3% *(Jun)* | 0.1–0.3% | **NEUTRAL** | **RELEASED · +0.2% — in line** |
 | **Thu 27 09:30** | **AUD** | **Household Spending YoY** | **6.0%** | — / **4.4%** | **BAD** | **TODAY · 3 hrs** |
+| **Thu 27** | **CHF** | **Non Farm Payrolls** *(Q2)* | **5.537M** *(Q1)* | — / **5.55M** | **GOOD** | **TODAY · hand-sourced (F-57)** |
 | Fri 28 07:30 | JPY | Unemployment Rate | 2.5% | 2.5% / 2.5% | **NEUTRAL** | ahead |
 | **Fri 28 13:00** | **JPY** | **Consumer Confidence** | **34.9** | — / **35** | **GOOD** | ahead |
 | **Fri 28 17:00** | **EUR** | **Consumer Confidence Final** *(Aug)* | **−15.9** | **−15.5 / −15.5** | **GOOD** | ahead |
@@ -448,6 +453,7 @@ null, recorded rather than dropped. **The record is published either way.**
 | When (PHT) | CCY | Indicator | §2 | Priced | **If HOTTER** | **If COLDER** |
 |---|---|---|---|---|---|---|
 | **Thu 27 09:30** | **AUD** | **Household Spending YoY** | **GOOD** | 4.4% | **⚠ ALIGNED BID** | TENSION |
+| **Thu 27** | **CHF** | **Non Farm Payrolls** *(Q2)* | **GOOD** | 5.55M | **⚠ ALIGNED BID** | TENSION |
 | Fri 28 07:30 | JPY | Unemployment Rate | NEUTRAL | 2.5% | TENSION | TENSION |
 | **Fri 28 13:00** | **JPY** | **Consumer Confidence** | **GOOD** | 35.0 | **ALIGNED BID** | TENSION |
 | **Fri 28 17:00** | **EUR** | **Consumer Confidence Final** | **GOOD** | −15.5 | **ALIGNED BID** | TENSION |
@@ -460,7 +466,15 @@ wicked through its trigger once.
 
 **A miss gives TENSION**, and the short survives on the direction leg.
 
-**Friday's JPY Consumer Confidence is the second risk**: a beat is **ALIGNED
+**⚠ CHF payrolls land TODAY and they cut against our one working pair.** The
+market prices Swiss payrolls to **improve** (5.537M → 5.55M forecast) and §2
+already grades the row **GOOD** — so **a beat is ALIGNED BID for CHF**, which is
+**hostile to EURCHF LONG**. EURCHF closed **0.93840**, is the week's only
+favouring pair, and sits **28 pips from its 45-bar high** (§4.5). **The one
+thing working has a same-day catalyst pointing the wrong way, and until this
+morning it was not on the board at all.**
+
+**Friday's JPY Consumer Confidence is the third risk**: a beat is **ALIGNED
 BID for JPY**, directly hostile to **CADJPY's short leg**, which is itself 34
 pips from its falsifier. **Warsh speaks the same day.**
 
@@ -892,12 +906,52 @@ amendment, which is Jeff's call, not a mid-week fix (F-3).
 
 | ID | Status |
 |---|---|
+| **F-57** | **NEW — CHF and NZD have NO calendar coverage AT ALL. Jeff caught it.** Below |
+| **R-20** | **NEW GUARD** — `week_ahead.py` now fails loud on a currency with zero rows |
 | **F-55** | **NEW — the tally fell while the dollar rallied, and both were correct.** Below |
 | **F-56** | **NEW — AUDNZD breached its falsifier intraday and survived on the close rule.** Below |
 | **LD-68** | **n = 2, both confirming.** See §4.6 |
 | **R-14** | OPEN — no CHF calendar rows |
 | **R-10** | OPEN — BTCUSD forward map |
 | **R-15** | OPEN — CAD June FT/PT split unsourced |
+
+**F-57 — two whitelisted currencies were invisible to §4.0, and both are
+legs of locked pairs.** Jeff: *"CHF NFP is going to be out today, why is it not
+in our radar 4.0"*
+
+**Because our calendar capture contains no Swiss rows at all** — not "no
+payrolls row", **no Switzerland whatsoever**. The capture holds 22 countries and
+**CH is not one of them. Neither is NZ.** TE's global calendar page does not
+carry them either; **the country pages do**, and that is where today's event was
+hand-sourced from.
+
+| | Coverage | Exposure |
+|---|---|---|
+| **CHF** | **0 rows** | **short CHF** via EURCHF LONG |
+| **NZD** | **0 rows** | **long NZD** via AUDNZD SHORT |
+
+**Both legs of two locked pairs sit on currencies §4.0 could not see.**
+
+**`week_ahead.py` was never lying.** It reported `TOTAL WHITELIST EVENTS` and
+that count was correct **for the data it was given**. Nothing asked the harder
+question — **is every whitelisted currency represented at all?**
+
+**R-14 recorded this on 21 Aug and it stayed open for six days** while §4.0
+published a "complete" week ahead each morning. **An open finding in §8 is a
+note; a guard is a stop.** `coverage_gaps()` now prints a loud block naming any
+currency with **zero** rows, and it found NZD as well — a second blind spot
+nobody had noticed.
+
+**What it cost this week:** **CHF Non Farm Payrolls Q2 releases TODAY**,
+previous **5.537M**, forecast **5.55M**. LD-63 prices it **GOOD**; §2 grades
+the row **GOOD**; so §4.6 reads a beat as **ALIGNED BID for CHF** —
+**directly hostile to EURCHF LONG, the only pair favouring all week.** **NZD
+cost nothing this week** — its next event is Mon 31 Aug, next week's window.
+
+**Deliberately not done:** the capture is **not** rebuilt mid-edition. Today's
+CHF row is hand-sourced and **labelled as such in §4.0**. **Wiring the
+country calendars into the capture is a pipeline change and it belongs in the
+weekend edition**, not in a live Thursday build.
 
 **F-55 — §2 said USD weakened on the day the dollar was bought.** Durable Goods
 ex-transport printed **+0.4%** against **+0.6%**, crossing the `>0.5%`
