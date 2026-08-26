@@ -480,14 +480,14 @@ not fired its falsifier and stays locked** (LD-29), but it is the weakest of
 the four on forward-looking grounds.
 
 
-### 4.3 LOCKED — four leg-disjoint pairs (unchanged from Monday r2)
+### 4.3 LOCKED — four leg-disjoint pairs (selection unchanged; prices refreshed)
 
-| Rank | Pair | Dir | Conf | Week | Spread | **Now** | Falsifier | Clear by |
+| Rank | Pair | Dir | Conf | Week | Spread | **Tue close** | Falsifier | Clear by |
 |---|---|---|---|---|---|---|---|---|
-| 1 | **CADJPY** | LONG | LOW (+1) | W2 | 8.38 | **114.942** | close < **114.472** | **47 pips** |
-| 2 | **EURCHF** | LONG | LOW (+1) | W2 | 6.62 | **0.93600** | close < **0.92796** | 80 pips |
-| 3 | **GBPUSD** | LONG | LOW (+1) | W2 | 4.00 | **1.36331** | close < **1.35197** | 113 pips |
-| 4 | **AUDNZD** | **SHORT** | LOW (+1) | W1 | 1.00 | **1.19960** | close > **1.20724** | 76 pips |
+| 1 | **CADJPY** | LONG | LOW (+1) | W2 | 8.38 | **115.028** | close < **114.472** | **56 pips** |
+| 2 | **EURCHF** | LONG | LOW (+1) | W2 | 6.62 | **0.93562** | close < **0.92796** | 77 pips |
+| 3 | **GBPUSD** | LONG | LOW (+1) | W2 | 4.00 | **1.36488** | close < **1.35197** | 129 pips |
+| 4 | **AUDNZD** | **SHORT** | LOW (+1) | W1 | 1.00 | **1.19853** | close > **1.20724** | 87 pips |
 
 **Net exposure: long CAD · EUR · GBP · NZD, short JPY · CHF · USD · AUD.** All
 eight currencies used once.
@@ -502,16 +502,26 @@ conviction** — and CADJPY's distance halved.
 **A fourth leg-disjoint pair was tested and does not qualify.** With CAD/JPY,
 EUR/CHF and GBP/USD claimed, only **AUD and NZD** remain free.
 
-| Candidate | Spread | Structure | Last bar | Tally | Verdict |
-|---|---|---|---|---|---|
-| **AUDNZD** *(short = long NZD)* | 1.00 | **42.0% of range** — mid, no edge | **closed +25.1 pips AGAINST** | **0** | **REJECTED — LOW, and price disagrees** |
+**⚠ This section said AUDNZD was REJECTED for three editions. It is not —
+it is pair 4 (F-52).**
+
+The rejection below was written **Sunday**, when AUDNZD was the fourth
+candidate and failed. **Jeff then added it and locked four.** The section was
+carried unchanged ever since, so the edition simultaneously **locked** a pair
+in §4.3 and **rejected** it in §4.4.
+
+| Candidate | Spread | Structure at selection | Verdict then | **Status now** |
+|---|---|---|---|---|
+| **AUDNZD** *(short = long NZD)* | 1.00 | 42.0% of range — mid, no edge | REJECTED — LOW | **LOCKED as pair 4 by Jeff's call** |
 
 Range 1.19136–1.21024 over 16 sessions; Friday closed 1.19929.
 (1.19929−1.19136)/(1.21024−1.19136) = **42.0%**.
 
-**Why this row matters:** it was tested only because LD-35 requires carrying
-every qualifier rather than stopping at three. The answer is still three — but
-now that is a **finding, not an assumption.**
+**The original reasoning stands as history and it is worth keeping:** the model
+rejected this pair on structure, Jeff overrode it, and **it is now one of the
+two pairs favouring** (−13.3 pips Tuesday, 87 clear of its falsifier). **The
+override is currently ahead of the model.** That is recorded, not smoothed
+over.
 
 **CHF crosses remain rejected on structure** despite carrying the widest spreads
 on the board (CADCHF 11.76). Two weeks running, the structure filter has rejected
@@ -525,35 +535,50 @@ one position at double size** (LD-21, EF-3) — but when the parent has already
 run into resistance, a sibling sitting lower in its range may offer the entry
 the parent no longer does.
 
-Live prices Monday 24 Aug; range over 45 daily bars; support is a named recent
-bar low. **Scope unchanged (LD-4): these are observations of position, never
-entries.**
+**Prices are Tuesday's closes, re-read this run; range positions RECOMPUTED
+from 46 daily bars (1 Jul – 26 Aug).** Support is a named recent bar low.
+**Scope unchanged (LD-4): these are observations of position, never entries.**
+
+**⚠ The carried version of this table was wrong, not merely stale (F-53).** It
+had CADJPY at *97.8% of range, 7 pips from its 45-bar high* — but 7 pips above
+115.514 is the **20 Aug bar high**, not the 45-bar high of **116.482**. **A
+short-window high was used as if it were the long-window high**, and that
+single substitution **inverted the family ranking**.
 
 #### 1 · CADJPY family — SHORT JPY
 
-| Pair | Live | Range pos | To 45-bar high | To support |
+| Pair | **Tue close** | 45-bar range | **Range pos** | To 45-bar high |
 |---|---|---|---|---|
-| **CADJPY** *(parent, HIGH +5)* | 115.514 | **97.8%** | **7 pips** | 104 pips |
-| **EURJPY** | 185.608 | **76.9%** | **187 pips** | 168 pips |
-| **GBPJPY** | 216.856 | **72.5%** | **276 pips** | **204 pips** |
+| **CADJPY** *(parent, LOW +1)* | **115.028** | 110.832–116.482 | **74.3%** | **145 pips** |
+| **EURJPY** | 185.859 | 179.369–187.478 | **80.0%** | 162 pips |
+| **GBPJPY** | 217.290 | 209.575–219.614 | **76.9%** | **232 pips** |
 
-**The parent is the extended one here and the siblings are not close.** CADJPY
-sits 7 pips under its own 45-bar high; EURJPY has **187 pips** of prior range
-above it and GBPJPY **276**. **GBPJPY is the alternative** — lowest in range,
-furthest from its high, and 204 pips above support.
+**Corrected reading: CADJPY is the LEAST extended of the three, not the most.**
+At **74.3%** it sits below EURJPY (80.0%) and GBPJPY (76.9%), with **145 pips**
+of prior range above it.
+
+**The carried version said the opposite** — CADJPY pinned at 97.8% and GBPJPY
+the roomy alternative. **On recomputed numbers the parent is the roomiest
+expression of short-JPY on a range basis**, and GBPJPY's advantage is only its
+absolute distance to the high (232 pips), which reflects a wider range rather
+than a better position.
+
+**This does not change the locked set** (LD-29 — pairs leave by falsifier). It
+changes what the section was telling you about where the parent sits.
 
 #### 2 · EURCHF family — SHORT CHF
 
-| Pair | Live | Range pos | To 45-bar high | To support |
+| Pair | **Tue close** | 45-bar range | **Range pos** | To 45-bar high |
 |---|---|---|---|---|
-| **EURCHF** *(parent, LOW +1)* | 0.93562 | 72.8% | 56 pips | 77 pips |
-| CADCHF | 0.58022 | 70.8% | 62 pips | **32 pips** |
-| GBPCHF | 1.09212 | 74.1% | 91 pips | 78 pips |
-| **USDCHF** *(LONG USDCHF = short CHF)* | 0.80032 | **20.8%** | **204 pips** | 53 pips |
+| **EURCHF** *(parent, LOW +1)* | **0.93562** | 0.91776–0.94120 | **76.2%** | 56 pips |
+| CADCHF | 0.57906 | — | — | *not re-ranged this run* |
+| GBPCHF | 1.09382 | — | — | *not re-ranged this run* |
+| **USDCHF** *(LONG USDCHF = short CHF)* | **0.80142** | 0.79498–0.82070 | **25.0%** | **193 pips** |
 
-**⚠ USDCHF is the outlier and it needs its caveat stated.** At **20.8% of
-range** with **204 pips** to its high it is by far the least extended
-expression of short-CHF. **But it is a long-USD trade, and it collides
+**⚠ USDCHF is the outlier and it needs its caveat stated.** At **25.0% of
+range** with **193 pips** to its high it is by far the least extended
+expression of short-CHF — **the conclusion survives the recompute even though
+the figures moved** (carried: 20.8% / 204 pips). **But it is a long-USD trade, and it collides
 twice.** Run through `select_pairs.exposure()` against the carried set:
 
 | Adding USDCHF LONG | Result |
@@ -570,12 +595,14 @@ and it was rejected on structure two weeks running.
 
 #### 3 · GBPUSD family — LONG GBP / SHORT USD
 
+**Parent price refreshed to Tuesday's close; the window here was already correct** — 45-bar high **1.36758**, verified. **F-53 affected the CADJPY family only.** Siblings carry Monday's prices and are marked so.
+
 | Pair | Live | Range pos | To 45-bar high | To support |
 |---|---|---|---|---|
-| **GBPUSD** *(parent, LOW +1)* | 1.36456 | **94.4%** | 30 pips | 126 pips |
-| EURUSD | 1.16804 | **91.9%** | 31 pips | 114 pips |
-| AUDUSD | 0.71676 | **96.0%** | **13 pips** | 101 pips |
-| **GBPCAD** *(long GBP, no USD leg)* | 1.88226 | **34.3%** | **221 pips** | 80 pips |
+| **GBPUSD** *(parent, LOW +1)* | **1.36488** | **95.0%** | **27 pips** | 129 pips |
+| EURUSD *(Mon 24)* | 1.16804 | **91.9%** | 31 pips | 114 pips |
+| AUDUSD *(Mon 24)* | 0.71676 | **96.0%** | **13 pips** | 101 pips |
+| **GBPCAD** *(long GBP, no USD leg; Mon 24)* | 1.88226 | **34.3%** | **221 pips** | 80 pips |
 
 **Every short-USD expression is extended together** — GBPUSD 94.4%, EURUSD
 91.9%, AUDUSD 96.0%. **That is the dollar-weakness read showing up on every
@@ -892,7 +919,10 @@ shows the cost: a CHF event appeared in §4.0 for a week TE has no such event in
 | **F-49** | **NEW — national prints were satisfying euro-area rows.** Below |
 | **F-50** | **NEW — the NFP slot on Friday is the benchmark revision.** Below |
 | **F-51** | **NEW — the Fear & Greed block was 5 days stale and the edition blamed the source.** Below |
+| **F-52** | **NEW — §4.4 called a LOCKED pair REJECTED for three editions.** Below |
+| **F-53** | **NEW — §4.5 used a 5-day high as a 45-bar high and inverted a ranking.** Below |
 | **R-16** | **NEW GUARD** — a score quoted outside §2.0 must match the tally |
+| **R-18** | **NEW GUARD** — every section must agree with every other (LD-67) |
 | **R-17** | **NEW GUARD** — the F&G capture must be current for the edition date |
 | ~~F-36~~ | **CLOSED by F-45** — there was never a 25 Aug Final to wait for |
 
@@ -937,6 +967,42 @@ the check now runs first.
 2026 establishment data, **not the monthly payrolls print**. Our capture
 labelled it "non farm payrolls" and the matcher believed the label. **BLS puts
 August payrolls on Fri 4 Sep 20:30 PHT — next week's window.** Added to `_NOT`.
+
+**LD-67 — look at the WHOLE edition, not just the moving parts.** Jeff:
+*"Everytime we build a new edition we should be looking if every parts of the
+report have moved. we should be looking at it wholistically and not just look
+at the moving parts."*
+
+**An audit of this edition found 7 of 14 sections were CARRIED and only 4
+re-derived from source.** Every guard we had checks a section against **itself**
+or against **its source**. **Nothing compared sections to each other**, so a
+carried section could contradict a re-derived one indefinitely.
+
+**F-52 — §4.4 said AUDNZD was REJECTED while §4.3 had it LOCKED as pair 4.**
+The rejection was written **Sunday**, when AUDNZD failed the fourth-pair test.
+Jeff then said *"Add AUDNZD, lock four"* and it became pair 4. **§4.4 was never
+rewritten and carried the contradiction for three editions.** §4.3's prices
+were Tuesday r1's, two revisions stale. **The model rejected this pair and the
+override is currently ahead of it** — AUDNZD is one of the two favouring.
+
+**F-53 — §4.5's CADJPY row used the wrong window, and it inverted the
+ranking.** It read *97.8% of range, 7 pips from its 45-bar high*. **Seven pips
+above 115.514 is the 20 Aug bar high; the 45-bar high is 116.482.** Recomputed
+from 46 daily bars, CADJPY sits at **74.3%** with **145 pips** above it — the
+**LEAST** extended of its family, where the section called it the **most**.
+**The GBPUSD family's window was correct all along**, so this was one row, not
+a systemic error. **The CHF family's conclusion survived the recompute** even
+though its figures moved (USDCHF 20.8% → 25.0%, still the least extended
+short-CHF expression).
+
+**R-18 now runs the sweep before publication** and fails on a pair that is
+LOCKED and REJECTED at once, a falsifier that differs between sections, or a
+current price that disagrees across tables. **It reports 4 problems on the
+25 Aug edition and 0 on this one.**
+
+**Jeff's rule for carried sections: refresh the prices, keep the analysis.**
+Selection logic stays locked mid-week (LD-29); **the numbers under it do not
+get to go stale.**
 
 **F-51 — the sentiment block went stale and the note blamed the endpoint.**
 Jeff: *"our Fear and Greed sentiment seems to be stalled can you check?"* It

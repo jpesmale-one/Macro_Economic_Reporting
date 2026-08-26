@@ -683,6 +683,38 @@ def assert_tally_sorted(md):
     return len(scores)
 
 
+def assert_whole_edition(md):
+    """Every section must agree with every other (R-18/LD-67).
+
+    Jeff, 2026-08-26: "Everytime we build a new edition we should be
+    looking if every parts of the report have moved. we should be looking
+    at it wholistically and not just look at the moving parts"
+
+    Four defects that day lived in sections nobody re-read: a carried
+    score contradicting the tally (F-46), a 5-day-stale sentiment block
+    that blamed its source (F-51), 4.4 calling a LOCKED pair REJECTED for
+    three editions (F-52), and 4.5 using a 5-day high as a 45-bar high,
+    which INVERTED a family ranking (F-53).
+
+    Every other guard checks a section against ITSELF or against source.
+    This checks sections against EACH OTHER, which is the only way a
+    carried-forward contradiction becomes visible.
+    """
+    sys.path.insert(0, os.path.join(REPO, 'pipelines'))
+    from whole_edition import sweep
+    probs = sweep(md)
+    if probs:
+        lines = ['  %-16s %s' % (k, m) for k, m in probs]
+        raise SystemExit(
+            'FATAL (R-18/LD-67): %d cross-section contradiction(s):%s%s%s'
+            'A section carried forward must still AGREE with the sections '
+            'that were re-derived. Refresh the prices in every carried '
+            'table (Jeff: refresh prices, keep analysis) and re-check any '
+            'status that changed since it was written.'
+            % (len(probs), chr(10), chr(10).join(lines), chr(10)))
+    return 'no cross-section contradictions'
+
+
 def assert_fng_fresh(fm):
     """The F&G capture must be current for the edition date (R-17/F-51).
 
@@ -913,6 +945,7 @@ if __name__ == '__main__':
     ntal = assert_tally_sorted(md)
     assert_levels_drawn(md)
     assert_no_offlist_scores(md)
+    whole_state = assert_whole_edition(md)
     fng_state = assert_fng_fresh(fm)
     nsc = assert_scores_consistent(md)
     ncov = assert_news_coverage(md)
@@ -931,6 +964,7 @@ if __name__ == '__main__':
         print('  LD-41 4.0 scores  whitelist indicators only')
         print('  LD-39 whitelist %d/%d indicator rows, no blanks'
               % (nrow, nexp))
+    print('  R-18 whole ed   %s' % whole_state)
     print('  R-17 F&G fresh  %s' % fng_state)
     print('  R-16 scores     %d currency scores agree with §2.0' % nsc)
     print('  LD-65 news cov  %d moved currency(ies) covered' % ncov)

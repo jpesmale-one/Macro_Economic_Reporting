@@ -123,7 +123,8 @@ python pipelines/audit_te.py --fetch     # LD-50 - reconcile the whitelist
 python pipelines/freshness.py            # LD-54 - revisions + stalled series
 python pipelines/test_guards.py          # 8 real regressions must all block
 python pipelines/week_ahead.py           # §4.0 events, DATE -> TIME -> CCY
-python pipelines/render_edition.py <md>  # 12 guards run before a byte is written
+python pipelines/whole_edition.py <md>   # LD-67 - every section vs every other
+python pipelines/render_edition.py <md>  # 14 guards run before a byte is written
 ```
 
 **Starting TradingView (F-9 - the recipe, not just the file name).** The
@@ -152,7 +153,7 @@ hand-written generated block (LD-38), fewer than 70 whitelist rows or any
 blank cell (LD-39), an off-list indicator carrying a score (LD-41), a section
 1 with no news source (F-17), levels published but not drawn (LD-46), a stale
 or unreconciled TE capture (LD-50), **a currency score quoted outside
-§2.0 that contradicts the tally (R-16/F-46)**. **A FATAL is information, not an
+§2.0 that contradicts the tally (R-16/F-46)**, **a stale Fear & Greed capture (R-17/F-51)**, **any cross-section contradiction (R-18/LD-67)**. **A FATAL is information, not an
 obstacle — never edit content to clear a gate.**
 
 ### What the guards CANNOT catch

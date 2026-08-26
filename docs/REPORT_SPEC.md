@@ -974,6 +974,42 @@ while destroying the citation trail.
 
 ---
 
+### LD-67 — look at the WHOLE edition, not just the moving parts
+
+**Jeff, 2026-08-26:** *"Everytime we build a new edition we should be looking
+if every parts of the report have moved. we should be looking at it wholistically
+and not just look at the moving parts."*
+
+**Every edition, audit EVERY section — including the ones you expect to be
+static.** On 26 Aug, **7 of 14 sections were carried and only 4 re-derived**, and
+three of that day's four defects were in carried sections.
+
+| Section | What must be re-derived EVERY run | What may carry |
+|---|---|---|
+| §0 | all prices, moves, distances | — |
+| §1 | news sweep, **F&G capture** (R-17) | — |
+| §2 | all 71 rows via `audit_te.py --fetch` | — |
+| §2.6/§3 | **the rate figures if a bank has met** | policy commentary |
+| §4.0 | events + consensus, **current week only** (LD-66) | — |
+| §4.3 | **prices, distances** | the SELECTION (LD-29) |
+| §4.4/§4.5 | **prices, range positions** | the ranking logic |
+| §5/§6 | **prices, and any SCORE quoted** (R-16) | drawn levels, drivers |
+
+**THE RULE FOR A CARRIED SECTION: REFRESH THE PRICES, KEEP THE ANALYSIS.**
+Selection logic stays locked mid-week; the numbers under it never do.
+
+**A carried section can go WRONG, not merely stale.** §4.4 called a LOCKED pair
+REJECTED for three editions (F-52). §4.5 used a 5-day high as a 45-bar high and
+**inverted a family ranking** (F-53). Neither was visible to any guard, because
+**every guard checked a section against itself or its source — none compared
+sections to each other.**
+
+**`pipelines/whole_edition.py` (R-18) now does**, and fails the render on:
+a pair both LOCKED and REJECTED, a falsifier that differs between sections,
+or a current price that disagrees across tables.
+
+---
+
 ### LD-66 — §4.0's window is THIS WEEK ONLY, and it rolls on Sunday
 
 **§4.0 lists the whitelist events of the CURRENT Monday–Friday and nothing else.**
