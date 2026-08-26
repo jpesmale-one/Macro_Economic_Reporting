@@ -1,13 +1,13 @@
 <!--edition
 date: 2026-08-26
-title: Wednesday, 26 August 2026 &middot; 06:23 PHT
-revision: r1
+title: Wednesday, 26 August 2026 &middot; r2 10:08 PHT (post AU CPI)
+revision: r2
 seal: UNSEALED
 type: DAILY
 eyebrow: Macro Economic Reporting &middot; Wednesday &mdash; week of 24&ndash;28 Aug
-chip: TRACKING <b>2 of 4 favouring</b> &middot; set LOCKED
+chip: TRACKING <b class="dn">1 of 4 favouring</b> &middot; set LOCKED
 chip: <b class="dn">2 USD rows corrected</b> &middot; USD +1.75 &rarr; +2.25
-chip: TODAY <b>AU CPI 09:30</b> &middot; 2 USD prints 20:30
+chip: <b class="dn">AU CPI 3.5%</b> &middot; hotter than priced &middot; 2 USD prints 20:30
 fng_note: <b>Re-fetched this morning</b> (F-51) &mdash; the three previous editions ran on a <b>21 Aug</b> reading while stating the endpoint had not updated. It had, every business day. The index is <b>Greed 58.80</b>, stamped 25 Aug, and <b>only two of seven components sit in Fear</b> &mdash; not four.
 fng_spread: Spread top-to-bottom bar: <b>88.40 &minus; 27.00 = 61.40</b>. <b>Put/Call Options flipped Fear &rarr; Greed, 43.40 &rarr; 72.80</b> &mdash; that single component moved the index. Junk Bond Demand <b>fell 7.40 while the headline ROSE</b>, so it no longer carries the reading on its own.
 -->
@@ -26,9 +26,17 @@ reconcile with TE. **USD moves +1.75 → +2.25.**
 (R-16) now fails the render on any score quoted outside §2.0 that disagrees
 with the tally** — and it fires on yesterday's file.
 
-**STILL 2 OF 4 FAVOURING, BUT THE COMPOSITION ROTATED COMPLETELY.** GBPUSD and
-AUDNZD now favour; CADJPY and EURCHF do not. Yesterday it was the other pair.
-**No falsifier has fired and the set stays LOCKED.**
+**AU CPI LANDED AT 3.5% — HOTTER THAN THE 3.2–3.3% PRICED — AND IT WENT
+AGAINST US.** §4.0 priced AUD to deteriorate on this print. Inflation fell, but
+**less than expected**, and the **trimmed mean did not ease at all** (3.6%,
+unchanged). **AUDNZD spiked 53.6 pips to 1.20389** and flipped from favouring
+to not. **Tuesday's RBA hike debate now has a data leg under it.**
+
+**THE COUNT IS DOWN TO 1 OF 4 FAVOURING** — only EURCHF. **Two pairs sit inside
+35 pips of their falsifiers**: AUDNZD **34** (was 87 on Tuesday's close) and
+CADJPY **31** (was 56). **Neither has fired** — a falsifier needs a CLOSE
+(LD-48) — **and the set stays LOCKED** (LD-29). But this is the tightest the
+week has been.
 
 **§4.0 WAS REACHING OUTSIDE THIS WEEK.** Jeff caught it: rows with no consensus
 were not a sourcing problem — **they were next week's and the week after's
@@ -43,17 +51,56 @@ print**. §4.0 drops from 12 events to 9, **every one with a TE consensus**.
 touched since** (LD-29: a pair leaves by its falsifier, not by conviction).
 Every figure below is a **closed daily bar**.
 
-| Pair | Bias | Lock ref | Mon close | **Tue close** | Tue move | Favouring? | Falsifier | Clear by |
+| Pair | Bias | Lock ref | Tue close | **Now (10:08)** | Since Tue | Favouring? | Falsifier | Clear by |
 |---|---|---|---|---|---|---|---|---|
-| **CADJPY** | LONG | 115.490 | 114.920 | **115.028** | **+10.8 pips** | **NO** | close < **114.472** | **56 pips** |
-| **EURCHF** | LONG | 0.93562 | 0.93604 | **0.93562** | −4.2 pips | **NO** | close < **0.92796** | 77 pips |
-| **GBPUSD** | LONG | 1.36456 | 1.36306 | **1.36488** | **+18.2 pips** | **YES** | close < **1.35197** | 129 pips |
-| **AUDNZD** | **SHORT** | 1.20071 | 1.19986 | **1.19853** | **−13.3 pips** | **YES** | close > **1.20724** | 87 pips |
+| **CADJPY** | LONG | 115.490 | 115.028 | **114.784** | **−24.4 pips** | **NO** | close < **114.472** | **⚠ 31 pips** |
+| **EURCHF** | LONG | 0.93562 | 0.93562 | **0.93589** | +2.7 pips | **YES** | close < **0.92796** | 79 pips |
+| **GBPUSD** | LONG | 1.36456 | 1.36488 | **1.36451** | −3.7 pips | **NO** | close < **1.35197** | 125 pips |
+| **AUDNZD** | **SHORT** | 1.20071 | 1.19853 | **1.20389** | **+53.6 pips** | **NO** | close > **1.20724** | **⚠ 34 pips** |
 
-**2 of 4 favouring — the same count as Monday and Tuesday, and a completely
-different two.** GBPUSD and AUDNZD came good; CADJPY and EURCHF went the other
-way. **A stable headline count concealing a full rotation underneath is worth
-more than the count itself.**
+**⚠ These are LIVE Wednesday bars, still forming.** Tuesday's closes are the
+last graded session. **A falsifier fires on a CLOSE, never on an intraday
+print** (LD-48) — AUDNZD's high of **1.20520** came within **20 pips** and did
+not fire.
+
+**1 of 4 favouring, down from 2 — and the pair that broke is the one the CPI
+hit.** Tuesday closed 2 of 4 with GBPUSD and AUDNZD favouring; **AUDNZD flipped
+on the print** and GBPUSD drifted 3.7 pips under its lock on thin volume.
+
+### ⚠ The AU CPI went against us, and the trimmed mean is the sharper half
+
+**ABS, released 11:30 AEST (09:30 PHT) today:**
+
+| Measure | Jun/26 | **Jul/26** | Priced | Read |
+|---|---|---|---|---|
+| **Headline CPI YoY** | 3.8% | **3.5%** | 3.3% cons / 3.2% fcst | **fell, but LESS than priced** |
+| **Trimmed mean YoY** | 3.6% | **3.6%** | ~3.5% | **did not ease AT ALL** |
+| Monthly | — | +1.0% | — | — |
+
+*Source: abs.gov.au media release, 26 Aug 2026. TE reconciles.*
+
+**§4.0 priced this BAD** — both consensus and forecast sat below the 3.8%
+actual, so the market expected AUD to deteriorate. **3.5% is above the entire
+priced range**, which makes it **AUD-POSITIVE relative to expectations** and
+**hostile to a short-AUD position.**
+
+**The trimmed mean matters more than the headline here.** It is the RBA's
+preferred gauge, and it **did not move**. Tuesday's story had the board
+**debating a preemptive hike**; today's print gives that debate a data leg.
+**The tension flagged in yesterday's §1 has resolved — against our short.**
+
+**AUDNZD reacted immediately:** 1.19853 → **1.20389**, high **1.20520**. It is
+now **31.8 pips the wrong side of its lock** and **34 pips from its
+falsifier**, from 87 on Tuesday's close. **It has not fired and stays locked.**
+
+### ⚠ CADJPY is 31 pips from its falsifier, on no news
+
+**114.784, down 24.4 pips from Tuesday's close, with no CAD or JPY catalyst
+this session.** This is the closest it has been all week — Monday's low of
+114.810 was 34 pips away, and the pair now sits **below that low**.
+
+**Nothing in §1 explains it.** Thin pre-London volume is the likely mechanic,
+**which is a reason to distrust the move, not to dismiss the level.**
 
 ### EURCHF closed at exactly its lock reference
 
@@ -220,7 +267,7 @@ threshold F-17 requires; the sweep found less than yesterday.**
 
 ## §2 — Macro Economic Indicators
 
-> **Two USD rows corrected this morning.** Building Permits held JUNE's −2.6% (BAD) while the published JULY figure is **+5.0% (GOOD)** — sourced from the **Census Bureau** release of 18 Aug. CB Consumer Confidence held **51.0/55.2, which are MICHIGAN SENTIMENT's numbers**; the Conference Board's August is **89.4 vs 90.2**. Both reconcile with TE. **USD moves +1.75 → +2.25** (F-45, F-46).
+> **AU Inflation updated to Jul/26 3.5% (prev 3.8%) — the tally does NOT move.** The threshold is `>2% & falling`; 3.8% and 3.5% both satisfy it, so the grade stays **NEUTRAL** and **AUD stays +2.75**. **The print matters to §4.0 and §0, not to §2** — worth stating plainly rather than manufacturing a change. **Two USD rows corrected this morning.** Building Permits held JUNE's −2.6% (BAD) while the published JULY figure is **+5.0% (GOOD)** — sourced from the **Census Bureau** release of 18 Aug. CB Consumer Confidence held **51.0/55.2, which are MICHIGAN SENTIMENT's numbers**; the Conference Board's August is **89.4 vs 90.2**. Both reconcile with TE. **USD moves +1.75 → +2.25** (F-45, F-46).
 
 ### 2.0 Category tally — weighted, six categories, scale ±11.00
 
@@ -237,7 +284,7 @@ threshold F-17 requires; the sweep found less than yesterday.**
 
 Bands: **STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00**
 
-**Group standings** — Safe haven: USD +2.25 › JPY +0.00 › CHF −0.38 · Commodity: CAD +8.38 › NZD +3.75 › AUD +2.75 · Risk-corr: EUR +6.25 › GBP +5.75
+**Group standings** — Safe haven: USD +2.25 › JPY +0.00 › CHF −0.38 › JPY +0.00 › CHF −0.38 · Commodity: CAD +8.38 › NZD +3.75 › AUD +2.75 · Risk-corr: EUR +6.25 › GBP +5.75
 
 **All 71 whitelist indicators published in full**, generated from `score_model.py` by `section2.py` so the tables and the tally cannot drift.
 
@@ -342,7 +389,7 @@ Bands: **STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00**
 | EUR | Inflation Rate YoY Final | 2.9% | 2.8% | Jul/26 | >2% & rising | **GOOD** |
 | GBP | Inflation Rate YoY | 2.9% | 2.6% | Jul/26 | >2% & rising | **GOOD** |
 | JPY | Inflation Rate YoY | 1.9% | 1.6% | Jul/26 | <2% & rising | NEUTRAL |
-| AUD | Inflation Rate YoY | 3.8% | 4.0% | Jun/26 | >2% & falling | NEUTRAL |
+| AUD | Inflation Rate YoY | 3.5% | 3.8% | Jul/26 | >2% & falling | NEUTRAL |
 | NZD | Inflation Rate YoY | 4.1% | 3.1% | Jun/26 | >2% & rising | **GOOD** |
 | CAD | Inflation Rate YoY | 3.0% | 2.8% | Jul/26 | >2% & rising | **GOOD** |
 | CHF | Inflation Rate YoY | 0.4% | 0.5% | Jul/26 | <2% & falling | **BAD** |
@@ -428,7 +475,7 @@ nothing is UNSCORED this week.**
 |---|---|---|---|---|---|---|
 | Tue 25 | USD | Building Permits MoM Final *(Jul)* | −2.6% *(Jun)* | 5.0% | **GOOD** | **RELEASED · +5.0%** |
 | Tue 25 22:00 | USD | CB Consumer Confidence *(Aug)* | 90.2 *(Jul ®)* | 90.2 / 90.9 | **NEUTRAL** | **RELEASED · 89.4** |
-| **Wed 26 09:30** | **AUD** | **Inflation Rate YoY** | **3.8%** | **3.3% / 3.2%** | **BAD** | **TODAY · 3 hrs** |
+| **Wed 26 09:30** | **AUD** | **Inflation Rate YoY** | 3.8% *(Jun)* | 3.3% / 3.2% | **BAD** | **RELEASED · 3.5% — MISSED, AUD-positive** |
 | Wed 26 20:30 | USD | Personal Spending MoM | 0.3% | 0.1% / 0.3% | **NEUTRAL** | **TODAY** |
 | Wed 26 20:30 | USD | Durable Goods Ex Transp MoM | 0.6% | 0.6% / 0.3% | **NEUTRAL** | **TODAY** |
 | **Thu 27 09:30** | **AUD** | **Household Spending YoY** | **6.0%** | — / **4.4%** | **BAD** | ahead |
@@ -436,7 +483,7 @@ nothing is UNSCORED this week.**
 | **Fri 28 13:00** | **JPY** | **Consumer Confidence** | **34.9** | — / **35** | **GOOD** | ahead |
 | **Fri 28 17:00** | **EUR** | **Consumer Confidence Final** *(Aug)* | **−15.9** | **−15.5 / −15.5** | **GOOD** | ahead |
 
-**Net by currency: AUD −2 · EUR +1 · JPY +1 · USD 0.**
+**Net by currency: AUD −2 · EUR +1 · JPY +1 · USD 0** — *pricing as at the lock. **AUD's first leg has since resolved AGAINST the pricing.***
 
 #### What changed in this table today, and why it matters
 
@@ -455,16 +502,21 @@ That is the whole diagnosis — consensus firms up as a release approaches, so a
 event two weeks out has none yet. **A missing consensus is a WINDOW question
 before it is a sourcing question** (LD-66).
 
-#### The AUD test lands in three hours
+#### The AUD test landed, and it went the other way
 
-**AUD is priced −2 — both catalysts expected to deteriorate.** Inflation is
-seen easing **3.8% → 3.2–3.3%**, Household Spending **6.0% → 4.4%**.
+**Priced −2; the first of the two catalysts MISSED.** Inflation was seen easing
+to **3.2–3.3%** and printed **3.5%** — above the whole priced range. **The
+trimmed mean, the RBA's preferred gauge, did not ease at all** (3.6%,
+unchanged).
 
-**This runs straight into Tuesday's RBA story**, where the board was reported
-**debating a preemptive hike**. **A 3.2% print supports the easing case and the
-short; a hot print supports the hike debate and works against it.** AUDNZD is
-currently **favouring** at 1.19853 — the read is working, and today decides
-whether it keeps working for the right reason.
+**Yesterday's question was whether the easing case or the hike debate would
+win. The data sided with the hike debate.** AUDNZD went **1.19853 → 1.20389**
+and **flipped from favouring to not**, now 34 pips from its falsifier.
+
+**One catalyst remains: Household Spending YoY tomorrow, priced 6.0% → 4.4%.**
+If that also comes in above its forecast, the −2 pricing is wrong on both legs
+and the short's premise is gone. **If it undershoots, today reads as noise
+around a still-easing trend.** The set stays locked either way (LD-29).
 
 #### JPY is priced +1, and that is a problem for CADJPY
 
@@ -482,12 +534,12 @@ the four on forward-looking grounds.
 
 ### 4.3 LOCKED — four leg-disjoint pairs (selection unchanged; prices refreshed)
 
-| Rank | Pair | Dir | Conf | Week | Spread | **Tue close** | Falsifier | Clear by |
+| Rank | Pair | Dir | Conf | Week | Spread | **Now (10:08)** | Falsifier | Clear by |
 |---|---|---|---|---|---|---|---|---|
-| 1 | **CADJPY** | LONG | LOW (+1) | W2 | 8.38 | **115.028** | close < **114.472** | **56 pips** |
-| 2 | **EURCHF** | LONG | LOW (+1) | W2 | 6.62 | **0.93562** | close < **0.92796** | 77 pips |
-| 3 | **GBPUSD** | LONG | LOW (+1) | W2 | 4.00 | **1.36488** | close < **1.35197** | 129 pips |
-| 4 | **AUDNZD** | **SHORT** | LOW (+1) | W1 | 1.00 | **1.19853** | close > **1.20724** | 87 pips |
+| 1 | **CADJPY** | LONG | LOW (+1) | W2 | 8.38 | **114.784** | close < **114.472** | **⚠ 31 pips** |
+| 2 | **EURCHF** | LONG | LOW (+1) | W2 | 6.62 | **0.93589** | close < **0.92796** | 79 pips |
+| 3 | **GBPUSD** | LONG | LOW (+1) | W2 | 4.00 | **1.36451** | close < **1.35197** | 125 pips |
+| 4 | **AUDNZD** | **SHORT** | LOW (+1) | W1 | 1.00 | **1.20389** | close > **1.20724** | **⚠ 34 pips** |
 
 **Net exposure: long CAD · EUR · GBP · NZD, short JPY · CHF · USD · AUD.** All
 eight currencies used once.
@@ -1025,14 +1077,20 @@ enforcement had gaps in three separate places.**
 
 ---
 
-## §9 — Publish state — UNSEALED, r1
+## §9 — Publish state — UNSEALED, r2
 
 | Gate | State |
 |---|---|
 | **P1 SOURCED** | **PASS** — every figure carries source and as-of; three came from issuing agencies today |
 | **P2 RECOMPUTED** | **PASS** — every move and distance recomputed from named closed bars |
-| **Seal** | **UNSEALED.** Wednesday is a LIGHT-seal day (LD-12); the seal awaits Jeff's acknowledgement (P3) |
+| **Seal** | **UNSEALED, r2.** Wednesday is a LIGHT-seal day (LD-12); the seal awaits Jeff's acknowledgement (P3) |
 
-**Next:** **AU Inflation 09:30 PHT** — three hours out, and the test of §4.0's
-AUD −2 against the RBA hike debate. Then **two USD prints at 20:30**. A London
-refresh re-grades §0 and resolves the AUD row.
+**r2 built at 10:08 PHT**, 38 minutes after the ABS release. §2 rows, the
+tally, §0, §4.0 and §4.3 all re-derived; the whole-edition sweep (R-18)
+reports no contradictions.
+
+**Next:** **two USD prints at 20:30 PHT** — Personal Spending and Durable
+Goods, both priced NEUTRAL, both on GBPUSD's short leg. Then **AU Household
+Spending 09:30 tomorrow**, the second half of the AUD −2 pricing and the test
+of whether today was noise or trend. **CADJPY at 31 pips and AUDNZD at 34 are
+the two to watch into the close.**

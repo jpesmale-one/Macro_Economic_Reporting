@@ -92,7 +92,7 @@ ROWS = [
  ("Inflation","EA","Inflation Rate YoY Final","2.9%","2.8%","Jul/26",">2% & rising","GOOD"),
  ("Inflation","GB","Inflation Rate YoY","2.9%","2.6%","Jul/26",">2% & rising","GOOD"),
  ("Inflation","JP","Inflation Rate YoY","1.9%","1.6%","Jul/26","<2% & rising","NEUTRAL"),
- ("Inflation","AU","Inflation Rate YoY","3.8%","4.0%","Jun/26",">2% & falling","NEUTRAL"),
+ ("Inflation","AU","Inflation Rate YoY","3.5%","3.8%","Jul/26",">2% & falling","NEUTRAL"),
  ("Inflation","NZ","Inflation Rate YoY","4.1%","3.1%","Jun/26",">2% & rising","GOOD"),
  ("Inflation","CA","Inflation Rate YoY","3.0%","2.8%","Jul/26",">2% & rising","GOOD"),
  ("Inflation","CH","Inflation Rate YoY","0.4%","0.5%","Jul/26","<2% & falling","BAD"),
