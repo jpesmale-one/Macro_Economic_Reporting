@@ -377,7 +377,16 @@ NEWS_HOSTS = ('investinglive.com', 'investing.com', 'reuters.com', 'bloomberg.co
               'treasury.gov', 'federalreserve.gov', 'ecb.europa.eu',
               'bankofengland.co.uk', 'rba.gov.au', 'boj.or.jp', 'snb.ch',
               'bankofcanada.ca', 'rbnz.govt.nz', 'apnews.com', 'ft.com',
-              'cnbc.com', 'wsj.com', 'marketwatch.com', 'forexlive.com')
+              'cnbc.com', 'wsj.com', 'marketwatch.com', 'forexlive.com',
+              # STATISTICAL AGENCIES. Added 2026-08-28: the list carried
+              # central banks and wires but not the issuing agencies, which
+              # LD-3 ranks ABOVE both. An edition sourcing the ABS and the
+              # Swiss FSO directly scored "1 source" while a day citing three
+              # wires scored 3 - exactly backwards.
+              'abs.gov.au', 'bls.gov', 'bea.gov', 'census.gov',
+              'statcan.gc.ca', 'ons.gov.uk', 'bfs.admin.ch', 'stats.govt.nz',
+              'destatis.de', 'insee.fr', 'stat.go.jp', 'conference-board.org',
+              'roymorgan.com', 'lenews.ch', 'fxstreet.com')
 
 
 def assert_sections(md, etype):

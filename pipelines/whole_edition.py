@@ -79,6 +79,28 @@ def _tables(body):
         yield hdr, rows
 
 
+def _subsection_order(md):
+    """Subsections must appear in numerical order (R-21/F-60).
+
+    2026-08-27 shipped with 4.6 sitting BETWEEN 4.0 and 4.3, because it was
+    inserted with a find-and-insert that anchored on the wrong heading. No
+    guard noticed: R-7 counts headings and checks the mandated ones exist,
+    but nothing checked their ORDER.
+
+    It also broke the NEXT day's build - slicing "4.3 up to 4.6" produced a
+    NEGATIVE range and an empty section.
+    """
+    nums, bad = [], []
+    for line in md.split(chr(10)):
+        m = re.match(r'^### ([0-9]+)\.([0-9]+)\b', line)
+        if m:
+            nums.append((int(m.group(1)), int(m.group(2)), line.strip()))
+    for a, b in zip(nums, nums[1:]):
+        if a[0] == b[0] and b[1] < a[1]:
+            bad.append((a[2], b[2]))
+    return bad
+
+
 def sweep(md):
     secs = sections(md)
     problems = []
@@ -156,6 +178,9 @@ def sweep(md):
             problems.append(('PRICE DRIFT', '%s: %s' % (
                 pair, '; '.join('%s in %s' % (v, ks[0].split('\u2014')[0].strip()[:20])
                                 for v, ks in sorted(vals.items())))))
+    for a, b in _subsection_order(md):
+        problems.append(('OUT OF ORDER',
+                         '%s is followed by %s' % (a[:44], b[:44])))
     return problems
 
 

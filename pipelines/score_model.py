@@ -52,7 +52,7 @@ ROWS = [
  ("Spending","JP","Household Spending YoY","-3.3%","-0.4%","Jun/26","<0%","BAD"),
  ("Spending","JP","Consumer Confidence","34.9","33.8","Jul/26",">Prev","GOOD"),
  ("Spending","JP","Retail Sales YoY","0.5%","5.0%","Jun/26","0-0.5%","NEUTRAL"),
- ("Spending","AU","Household Spending YoY","6.0%","-","Jun/26",">0.5%","GOOD"),
+ ("Spending","AU","Household Spending YoY","7.0%","6.0%","Jul/26",">0.5%","GOOD"),
  ("Spending","AU","Building Permits YoY Final","8.9%","5.5%","Jun/26",">0.5%","GOOD"),
  ("Spending","AU","Westpac Consumer Conf Change","6.0%","4.1%","Aug/26",">Prev","GOOD"),
  ("Spending","AU","NAB Business Confidence","-6","-6","Jul/26",">Prev","NEUTRAL"),
@@ -85,7 +85,7 @@ ROWS = [
  ("Employment","NZ","Unemployment Rate","5.6%","5.4%","Jun/26",">Prev","BAD"),
  ("Employment","CA","Unemployment Rate","6.4%","6.5%","Jul/26","<Prev","GOOD"),
  ("Employment","CA","Employment Change","75.1K (FT +38.6K, PT +36.6K)","18.2K","Jul/26","hdl>0 GOOD; FT (LD-57) needs Jun split NOT SOURCED","GOOD"),
- ("Employment","CH","Non Farm Payrolls","5.537M","5.544M","Q1/26",">Cons 5.4M","GOOD"),
+ ("Employment","CH","Non Farm Payrolls","5.698M","5.537M","Q2/26",">Cons 5.4M","GOOD"),
  ("Employment","CH","Unemployment Rate","3.0%","2.9%","Jul/26",">Prev","BAD"),
  # ---------------- INFLATION (w=3) ----------------
  ("Inflation","US","Inflation Rate YoY","3.4%","3.5%","Jul/26",">2% & falling","NEUTRAL"),
