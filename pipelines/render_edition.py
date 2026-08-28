@@ -716,7 +716,13 @@ def assert_no_stale_preview(md, fm):
     except ValueError:
         return 'no 4.0'
     for line in blk.split(chr(10)):
-        if not line.startswith('|') or 'RELEASED' not in line.upper():
+        up = line.upper()
+        # A settled edition reports OUTCOMES, not the word RELEASED
+        # (2026-08-29). Anchoring on one literal made the guard a
+        # no-op that whole edition.
+        if not line.startswith('|') or not any(
+                k in up for k in ('RELEASED', 'BEAT', 'MISS',
+                                  'IN LINE', 'AS PRICED', 'DID NOT')):
             continue
         cells = [c.strip().replace('*', '')
                  for c in line.strip().strip('|').split('|')]
