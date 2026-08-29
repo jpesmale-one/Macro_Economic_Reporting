@@ -564,7 +564,37 @@ tomorrow. **§10.6 lists what Sunday has to decide first.**
 
 ## §5 — Gold (XAUUSD)
 
-> **⚠ GOLD BROKE ON WARSH. Friday closed 4454.99, DOWN 147.2**, with a low of **4445.46** — the largest daily fall of the week and the lowest print since the run began. **Across the week: 4651.24 → 4454.99, −196.** The mechanism is exactly the one this section describes, running in reverse: **DXY +0.69 on the week** and September hike odds to ~42% lifted real yields, and gold gave back everything. **Levels are CARRIED from Sunday and are now materially out of date — a fresh chart is the weekend edition's first job (R-10).**
+> **⚠ GOLD BROKE ON WARSH. Friday closed 4454.99, DOWN 147.2**, with a low of **4445.46** — the largest daily fall of the week and the lowest print since the run began. **Across the week: 4651.24 → 4454.99, −196.** The mechanism is exactly the one this section describes, running in reverse: **DXY +0.69 on the week** and September hike odds to ~42% lifted real yields, and gold gave back everything. **RE-CHARTED THIS RUN (R-10 closed) — the new forward map is below.**
+
+### Forward level map — re-derived from bars (LD-47)
+
+**`OANDA:XAUUSD` daily, 18 sessions to Fri 28 Aug. ATR(14) = 104.68 points.**
+
+| Level | Price | From price | What it is |
+|---|---|---|---|
+| **R2** | **4697.11** | **+242** | **high of the move**, Tue 25 — tops the pre-break shelf |
+| **R1** | **4651.24** | +196 | Mon 24 close, base of the **4651–4697 shelf** |
+| **R0** | **4564.27** | **+109** | **Thu 27 low — the bar Warsh broke.** First test on any bounce |
+| → | **4454.99** | — | **Friday close, FINAL** |
+| | 4445.46 | −9.5 | Friday's own low, the week low |
+| **S1** | **4324.68** | **−130** | Tue 18 low, **major base** |
+
+**Two supply clusters, not two lines.** **4564–4602** is three bars' worth of
+structure — the first real test. **4651–4697** is four bars and the shelf price
+sat on before it broke.
+
+**⚠ The swing-pivot rule alone would have MISSED both.** A 2-bars-either-side
+scan returns only turning points, and last week's decline was a straight run —
+it found nothing between 4454.99 and 4697.10, a 242-point void that price will
+in fact meet resistance inside. **The clusters come from the closes and lows of
+the bars price fell through.**
+
+**Falsifier test (LD-48):** **S1 4324.68 sits 130 points below price, beyond the
+104.68 ATR** — a real printed bar and a valid falsifier. The nearer lows are
+inside 1 ATR and **do not qualify**.
+
+**Drawn on the chart (LD-5 — observations of structure, never entry/stop/target):**
+`G6dl4I` R2 · `afmmvN` R1 · `S1h9jL` R0 · `93tdF0` S1.
 
 ### ⚠ The dollar check — the reason §5 and §6 exist (LD-45)
 
@@ -710,20 +740,42 @@ read behind **GBPUSD LONG**, not an independent signal (§6).
 
 ## §6 — BTC (BTCUSD)
 
-**Friday close 77,471** · day range 72,472.5–79,470.5 · **+6.7% on the day ·
-+20.0% in three sessions**
+**Friday 28 Aug close 77,389.5 — FINAL** · day range **76,825.5–81,468** ·
+**−3.4% on the day**, reversing from a fresh high. **Across the week: 78,929.5 →
+77,389.5, −243** — a **1,540-point round trip** that ended roughly where it began.
+
+### Forward level map — BTC's first (R-10 closed)
+
+**`OANDA:BTCUSD` daily, 10 sessions to Fri 28 Aug. ATR(9) = 3,004.**
+
+| Level | Price | From price | What it is |
+|---|---|---|---|
+| **R1** | **81,468** | **+4,079** | **Fri 28 high — and the shelf is TWICE-REJECTED** with Mon 24's 81,246 |
+| **R0** | **79,993** | +2,604 | Sun 23 high, first supply on a bounce |
+| → | **77,389.5** | — | **Friday close, FINAL** |
+| **shelf** | **76,670–76,825** | −564 to −720 | Sun 23 + Fri 28 lows. **INSIDE 1 ATR — too close to be a falsifier** |
+| **S1** | **72,472.5** | **−4,917** | Thu 20 low, **breakout base** — beyond 1 ATR, valid falsifier |
+
+**The rejection is the read.** BTC tested **81,246 on Monday and 81,468 on
+Friday — 222 points apart — and failed both. **The second failure closed 4,079 below the high.** Two attempts at the same shelf in one week, both sold.
+
+**Drawn on the chart (LD-5 — observations of structure, never entry/stop/target):**
+`iUTirV` R1 · `SVfzhO` R0 · `tbTghb` support shelf · `e0xwel` S1.
 
 ### The dollar check (LD-45)
 
-**Same reading as §5: USD score +1.75 NEUTRAL against DXY 98.839, −0.82% on
-the week and the lowest close in three months — disagreement, and the price is
-read.** BTC is dollar-priced and non-yielding on
-the identical mechanism.
+**Same reading as §5: USD score +1.75 NEUTRAL against DXY **99.677**, **+0.84 on
+the week** and its highest close of the run — the tally and the price disagree,
+and **the price is read.** BTC is dollar-priced and non-yielding on the identical
+mechanism.
 
 **BTC carries one question Gold does not:** it can trade on the
 dollar/liquidity channel *or* on the equity risk channel, and they point
-different ways. **This week it is liquidity** — F&G momentum 39.0 and breadth
-components sit in Fear while BTC rallies 20%. That is not risk appetite.
+different ways. **This week it was liquidity, and then the dollar took it back** — BTC ran to a
+fresh high on Thursday, then gave up 3.4% on Friday as **DXY posted its biggest
+daily gain of the week** on Warsh. **F&G Safe Haven Demand fell 16.4 into Fear on
+the same session.** The liquidity bid and the dollar bid are the same trade viewed
+from two sides.
 
 ### Drivers — mirroring §5's treatment (LD-31)
 
@@ -863,10 +915,32 @@ in §10.6.
 | **F-61** | **NEW — a scheduled whitelist release simply did not happen.** Below |
 | ~~F-59~~ | **CLOSED** — the falsifier fired Thursday and the week settled around it |
 | ~~R-5~~ | **CLOSED** — Warsh spoke, and he was hawkish (§1) |
-| **F-57** | **OPEN** — capture still has no CHF or NZD rows. R-20 flagged it again today |
+
 | ~~**R-15**~~ | **CLOSED — CAD's June FT figure sourced at +0.6K and cross-checked.** Below |
 | ~~**R-14**~~ | **CLOSED as a DUPLICATE of F-57** — same CHF/NZD calendar gap, tracked twice |
-| **R-10** | OPEN — gold levels are stale after a 196-point week; BTCUSD still has no forward map |
+| ~~**R-10**~~ | **CLOSED — gold re-charted, BTC has its first forward map.** Below |
+| ~~**F-57**~~ | **CLOSED — `capture_calendar.py` now covers all eight currencies** |
+
+**R-10 CLOSED — both halves.** **Gold was re-charted** after a 196-point
+week that made every carried level obsolete, and **BTCUSD has a forward map for
+the first time.**
+
+**One finding came out of doing it.** The **swing-pivot rule (LD-47, two bars
+either side) MISSED gold's entire supply structure.** It returned nothing
+between 4454.99 and 4697.10 — a **242-point void** — because a pivot
+needs a turning point and last week's decline was a straight run. **The levels
+price will actually meet are the closes and lows of the bars it fell
+through**, and those had to be added by hand: **4564–4602** and
+**4651–4697**.
+
+**LD-47 is not wrong, it is incomplete**: pivots find reversals, not the
+overhead supply left by a one-way move. A decline that prints no pivots leaves
+a level map with a hole in it, and **the hole sits exactly where price is
+heading.**
+
+**Nine drawings cleared, eight left alone.** Gold's chart carried **11**
+drawings — 3 ours (labelled) and **8 unlabelled rectangles that are
+Jeff's**. Only ours were removed (LD-5). BTC's five were all ours.
 
 **R-15 CLOSED — and the reason it stayed open is worth recording.**
 CAD's July Employment Change is **+75.1K (FT +38.6K, PT +36.6K)**, and LD-57
