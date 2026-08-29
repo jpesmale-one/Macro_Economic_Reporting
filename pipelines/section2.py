@@ -94,6 +94,56 @@ def tally_table():
     return '\n'.join(out), tot
 
 
+LEADING = ('Production', 'Spending', 'Trade')
+CONFIRMING = ('Employment', 'Inflation')
+
+
+def cycle_table():
+    """Section 2.0b - where each currency sits in Jeff's causal chain (LD-72).
+
+    Jeff, 2026-08-29: "Production, Spending and Trade tends to predict the
+    result of Employment and Inflation. And Employment and Inflation tends to
+    predict what would be the Interest rate decision. Because the Interest Rate
+    dictates if the Currency is Strong or Weak."
+
+    The flat total sums six categories side by side and cannot express WHERE IN
+    THE CHAIN a currency sits. Two currencies with the same score can be at
+    opposite ends of it. Normalising each stage to its own maximum makes the
+    gap comparable:
+
+      GAP > 0   leading ahead of confirming - upstream improving, rate case
+                BUILDING, the strength is still ARRIVING
+      GAP < 0   confirming ahead of leading - nothing upstream feeding it,
+                the strength has ALREADY HAPPENED
+
+    On 2026-08-29 this read GBP at leading 0.00 / confirming 1.00 - maximum
+    negative gap. GBPUSD lost 110.9 pips that week. One observation, not
+    evidence, but it is the read the flat score could not produce.
+    """
+    cs, tot = sm.compute(include_rate=True)
+    lead_max = float(sum(sm.W[c] for c in LEADING))
+    conf_max = float(sum(sm.W[c] for c in CONFIRMING))
+    rows = []
+    for iso in tot:
+        lead = sum(cs.get((c, iso), (0.0,))[0] for c in LEADING) / lead_max
+        conf = sum(cs.get((c, iso), (0.0,))[0] for c in CONFIRMING) / conf_max
+        rows.append((sm.LABEL[iso], lead, conf, lead - conf, tot[iso]))
+
+    out = ['| CCY | Leading | Confirming | **Gap** | Score | Cycle position |',
+           '|---|---|---|---|---|---|']
+    for ccy, lead, conf, gap, total in sorted(rows, key=lambda r: -r[3]):
+        if gap > 0.40:
+            read = '**BUILDING** — upstream ahead, rate case forming'
+        elif gap < -0.40:
+            read = '**IN THE PAST** — nothing upstream feeding it'
+        else:
+            read = 'aligned'
+        f = lambda x: ('%+.2f' % x).replace('-', '−')
+        out.append('| **%s** | %s | %s | **%s** | %s | %s |'
+                   % (ccy, f(lead), f(conf), f(gap), f(total), read))
+    return chr(10).join(out)
+
+
 def standings():
     """Group standings line, each group sorted by score."""
     cs, tot = sm.compute(include_rate=True)
