@@ -1027,44 +1027,73 @@ def assert_news_sources(md):
     return hits
 
 
+FOLDED_SECTIONS = ('§7', '§8')
+
+
 def prose_ratio(md):
-    """LD-27 advisory check - prose blocks as a share of content units.
+    """LD-27 v2 - prose share of the READ, excluding folded sections.
 
-    ADVISORY ONLY, AND A WEAK SIGNAL. Measured 2026-08-23: r13 - the edition
-    Jeff called too noisy - scores 13.0%, while the leaner weekend edition
-    scores 15.1%. The ratio does NOT detect what he objected to, which was
-    225 lines of PROCESS narrative in sections 0/0b/0c before any macro
-    figure. That is a placement problem, not a volume one. Read this as a
-    smell, never as a gate; LD-29 and LD-27's content rule are the real fix.
+    Jeff, 2026-08-29: "it's ok if we overshoot a little as long as it is
+    concentrated on section 7 so the noise is not impacting the other
+    sections."
 
-    Measures the REPORT BODY only. Front-matter and the exec block are
-    metadata, not prose subject to LD-27, and counting them inflated the
-    first measurement by ~6pp.
+    v1 counted the WHOLE body and was red on every edition of the 2026-08-24
+    week while the report measurably improved. Worse, its own docstring
+    already recorded that it FAILED to detect what Jeff objected to: the
+    edition he called too noisy scored 13.0%, the one he liked 15.1%.
+
+    Two changes fix that. R-22 (LD-69) now measures PLACEMENT - build
+    narrative sitting in §0-§6 - which is the real complaint. And this
+    counts prose only where noise HURTS: the read. §7 and §8 FOLD, so
+    verbosity there costs the reader nothing.
+
+    Measured on 2026-08-29 after LD-69 was applied: whole body 15.7%,
+    READ 14.5%, folded sections 25.7%. The overshoot was entirely in the
+    part designed to absorb it.
+
+    Still ADVISORY, and KNOWN TO BE INSENSITIVE. units = blocks + table
+    rows + headings, and a data-heavy edition carries ~260 table rows, so
+    injecting 30 padding paragraphs moved the ratio only 14.8% -> 15.0%.
+    It separates a CLEANED edition (14.8% OK) from uncleaned ones (15.8%,
+    17.7%) and that is the signal it is good for. It is NOT a sensitive
+    bloat detector - do not read it as one. R-22 is the guard that
+    measures the actual complaint.
+
+    Front-matter and the exec block are metadata, not prose subject to
+    LD-27.
     """
     md = EXEC_RE.sub('', FM_RE.sub('', md))
-    lines = [l.rstrip() for l in md.splitlines()]
-    body = [l for l in lines if l.strip()]
+    cur, kept = 'PRE', []
+    for line in md.split(chr(10)):
+        if line.startswith('## '):
+            m = re.match(r'##\s*(§\d+)', line)
+            cur = m.group(1) if m else 'PRE'
+        if cur not in FOLDED_SECTIONS:
+            kept.append(line)
+    body = [l.rstrip() for l in kept if l.strip()]
+
     def is_prose(l):
-        return (not l.lstrip().startswith(('|', '#', '>', '<!--', '<', '- ', '* ',
-                                           '```', '---'))
+        return (not l.lstrip().startswith(
+                    ('|', '#', '>', '<!--', '<', '- ', '* ',
+                     '```', '---'))
                 and not re.match(r'^\d+\.\s', l.lstrip()))
 
-    # Count BLOCKS, not lines. Prose is hard-wrapped at ~78 chars so one
-    # paragraph spans ~4.5 lines while one table row spans 1 - counting lines
-    # measured wrapping style, not verbosity, and put a well-sourced edition at
-    # 42% against a 15% target that no edition could ever meet.
+    # Count BLOCKS, not lines: prose hard-wraps at ~78 chars so one
+    # paragraph spans ~4.5 lines while a table row spans 1.
     blocks, run = 0, False
     for l in body:
         if is_prose(l):
             if not run:
-                blocks += 1; run = True
+                blocks += 1
+                run = True
         else:
             run = False
+    # v1's arithmetic, unchanged - only the INPUT LINES differ. My first
+    # v2 rewrote this too and collapsed a 20-row table to ONE unit,
+    # reporting 38.7% where the true read figure is 14.5%.
     rows = len([l for l in body if l.lstrip().startswith(('|', '- ', '* '))])
     units = blocks + rows + len([l for l in body if l.lstrip().startswith('#')])
     return blocks, units, (100.0 * blocks / max(1, units))
-
-
 if __name__ == '__main__':
     src = sys.argv[1] if len(sys.argv) > 1 else SRC
     md = io.open(src, encoding='utf-8').read()
