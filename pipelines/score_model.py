@@ -1,4 +1,5 @@
 # TRTM-style provenance: this file implements LD-13 (weighted category scoring),
+import re
 # locked 2026-08-19. It is DATA + ARITHMETIC only - no fetching, no I/O.
 # The ROWS table is replaced each edition; W and compute() are the model.
 #
@@ -157,6 +158,85 @@ def claimant_grade(actual):
     return "GOOD" if actual < 0 else "BAD"
 
 
+# ---------------------------------------------------------------------------
+# LD-71 - GRADED SCORING. See module docstring note above compute().
+# ---------------------------------------------------------------------------
+
+_NUM = re.compile(r'-?[0-9][0-9,]*\.?[0-9]*')
+
+
+def _num(v):
+    """First number in a cell. '5.0%' -> 5.0, 'A$1,929M' -> 1929.0, '-' -> None."""
+    if v is None:
+        return None
+    m = _NUM.search(str(v).replace(',', ''))
+    return float(m.group(0)) if m else None
+
+
+def _clamp(x):
+    return max(-1.0, min(1.0, x))
+
+
+def graded(actual, previous, threshold, verdict=None):
+    """Magnitude in [-1, +1] for one indicator, or None to fall back to the
+    three-state verdict.
+
+    The SCALE of each rule is deliberately conservative: full marks require a
+    clearly decisive print, so an ordinary beat lands mid-range and leaves the
+    category room to move. That headroom IS the fix - a slot pinned at 1.00
+    cannot respond to the next release.
+    """
+    a, pv = _num(actual), _num(previous)
+    t = (threshold or '').strip()
+
+    # ---- PMI: distance from 50, the series' own natural pivot ----
+    m = re.fullmatch(r'>\s*(\d+\.?\d*)%?', t)
+    if m and a is not None and float(m.group(1)) >= 45:
+        pivot = float(m.group(1))
+        return _clamp((a - pivot) / 5.0)          # +5 points clear = full mark
+
+    # ---- '>0.5%' style: distance beyond the line ----
+    if m and a is not None:
+        line = float(m.group(1))
+        return _clamp((a - line) / 3.0)           # 3pp clear of the line = full
+
+    # ---- '>Prev' / '<Prev': size of the change ----
+    if t in ('>Prev', '<Prev') and a is not None and pv is not None:
+        if abs(pv) < 1e-9:
+            return None
+        rel = (a - pv) / abs(pv)
+        if t == '<Prev':
+            rel = -rel
+        return _clamp(rel / 0.10)                 # a 10% move = full mark
+
+    return None                                    # not a graded pattern
+
+
+def graded_signed(actual, previous, threshold, verdict):
+    """Magnitude from graded(), SIGN from the verdict column.
+
+    THE BUG THIS FIXES, found 2026-08-30 before any of it shipped: '>Prev' and
+    '<Prev' describe the COMPARISON, not the direction of goodness. NZ Balance
+    of Trade collapsed from +0.02B to -1.95B, verdict BAD - and graded() scored
+    it +1.000, because '<Prev' was read as 'lower is good'. True for
+    unemployment, FALSE for a trade balance. NZD jumped from 4th to 1st on it.
+
+    The VERDICT column already carries polarity and Jeff has curated it row by
+    row (LD-57, LD-58, LD-59). It is the authority. graded() supplies HOW FAR,
+    the verdict supplies WHICH WAY.
+    """
+    g = graded(actual, previous, threshold)
+    if g is None:
+        return None
+    if verdict == 'GOOD':
+        return abs(g)
+    if verdict == 'BAD':
+        return -abs(g)
+    if verdict == 'NEUTRAL':
+        return 0.0
+    return None
+
+
 def compute(include_rate=True):
     """Five scored categories plus Interest Rate (LD-23, weight 3) when
     include_rate is True. Rate scores come from pipelines/rate_model.py, which
@@ -180,7 +260,15 @@ def compute(include_rate=True):
             scored = 0
             for r in rows:
                 v = r[7]
-                if v == "GOOD":
+                # LD-71: graded magnitude where the threshold pattern supports
+                # it; the three-state verdict otherwise. A row Jeff specified
+                # by hand (LD-57, LD-58) has no graded pattern and therefore
+                # keeps its verdict untouched - deliberate, see LD-59.
+                g = graded_signed(r[3], r[4], r[6], v)
+                if g is not None:
+                    s += per * g
+                    scored += 1
+                elif v == "GOOD":
                     s += per; scored += 1
                 elif v == "BAD":
                     s -= per; scored += 1
