@@ -84,7 +84,7 @@ ROWS = [
  ("Employment","AU","Unemployment Rate","4.5%","4.4%","Jul/26",">Prev","BAD"),
  ("Employment","NZ","Unemployment Rate","5.6%","5.4%","Jun/26",">Prev","BAD"),
  ("Employment","CA","Unemployment Rate","6.4%","6.5%","Jul/26","<Prev","GOOD"),
- ("Employment","CA","Employment Change","75.1K (FT +38.6K, PT +36.6K)","18.2K","Jul/26","hdl>0 GOOD; FT (LD-57) needs Jun split NOT SOURCED","GOOD"),
+ ("Employment","CA","Employment Change","75.1K (FT +38.6K, PT +36.6K)","18.2K","Jul/26","hdl>0 GOOD; FT +38.6K vs Jun +0.6K, LD-57 GOOD","GOOD"),
  ("Employment","CH","Non Farm Payrolls","5.698M","5.537M","Q2/26",">Cons 5.4M","GOOD"),
  ("Employment","CH","Unemployment Rate","3.0%","2.9%","Jul/26",">Prev","BAD"),
  # ---------------- INFLATION (w=3) ----------------

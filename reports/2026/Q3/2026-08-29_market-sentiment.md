@@ -850,7 +850,7 @@ directly. **LD-3 held.**
 **Not done, stated plainly:** **§5/§6 levels are materially stale** — gold fell
 196 points across the week and the carried levels predate that. **Re-charting
 gold and building BTCUSD's forward map (R-10) is the weekend edition's first
-job.** **CAD's June FT/PT split remains unsourced** (R-15). **The calendar
+job.** **The calendar
 capture is still not rebuilt** (F-57) — that is Sunday's pipeline work, listed
 in §10.6.
 
@@ -864,7 +864,30 @@ in §10.6.
 | ~~F-59~~ | **CLOSED** — the falsifier fired Thursday and the week settled around it |
 | ~~R-5~~ | **CLOSED** — Warsh spoke, and he was hawkish (§1) |
 | **F-57** | **OPEN** — capture still has no CHF or NZD rows. R-20 flagged it again today |
-| **R-10 · R-14 · R-15** | OPEN |
+| ~~**R-15**~~ | **CLOSED — CAD's June FT figure sourced at +0.6K and cross-checked.** Below |
+| ~~**R-14**~~ | **CLOSED as a DUPLICATE of F-57** — same CHF/NZD calendar gap, tracked twice |
+| **R-10** | OPEN — gold levels are stale after a 196-point week; BTCUSD still has no forward map |
+
+**R-15 CLOSED — and the reason it stayed open is worth recording.**
+CAD's July Employment Change is **+75.1K (FT +38.6K, PT +36.6K)**, and LD-57
+needs the **June FT figure** to grade it. **StatCan's June release does not
+publish a monthly FT/PT split** — only the total (+18.2K) and year-over-year
+components. It was never a lookup anyone skipped; **the number is not in the
+release.**
+
+**Sourced from the TE Canada Full Time Employment Change series: June
++0.6K.** Used here as a **series** source, not a calendar one, and made usable
+by an independent arithmetic check: **18.2 − 0.6 = +17.6K part-time**, which
+matches StatCan's own description of a June gain *"concentrated in part-time
+jobs"* with youth PT **+25K**. Two sources, one arithmetic identity, consistent.
+
+**LD-57 applied:** FT actual **+38.6K** vs previous **+0.6K** — above zero
+and above prior → **GOOD**. **The row already graded GOOD; it now does so on
+a sourced split rather than an assumed one.** CAD stays **+8.38**.
+
+**R-14 CLOSED as a duplicate.** It and F-57 are the same finding — the
+calendar capture carries no CHF or NZD rows — opened on different days and
+tracked separately for a week. **F-57 remains open and carries it.**
 
 **F-61 — JPY Consumer Confidence was scheduled for Fri 13:00 and never
 released.** §4.0 carried it all week with a forecast of 35. **TE's page was
