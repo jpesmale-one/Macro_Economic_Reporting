@@ -173,7 +173,7 @@ Bands: **STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00**
 
 **Group standings** — Safe haven: JPY +2.00 › USD +1.75 › CHF −0.38 · Commodity: CAD +8.38 › NZD +3.75 › AUD +2.75 · Risk-corr: EUR +6.25 › GBP +5.75
 
-**All 71 whitelist indicators published in full**, generated from `score_model.py` by `section2.py` so the tables and the tally cannot drift.
+**All 71 whitelist indicators, published in full.**
 
 ### 2.1 Production (weight 1)
 
@@ -362,9 +362,8 @@ September** *(www150.statcan.gc.ca, primary)*. The model keeps May/26 5.9%,
 | Fri 28 13:00 | JPY | Consumer Confidence | 34.9 | — / 35 | GOOD | **⚠ DID NOT RELEASE** |
 | Fri 28 17:00 | EUR | Consumer Confidence Final | −15.9 | −15.5 / −15.5 | GOOD | **−15.5 — exactly as priced** |
 
-**Nine of ten released. The CHF row was hand-sourced (F-57)** because our
-capture has no Swiss rows; **the JPY confidence row was scheduled and never
-came** — TE's page still shows 30 July.
+**Nine of ten released.** **The JPY confidence row was scheduled and never
+came.**
 
 **⚠ The two events that actually moved the week are not in this table at all:**
 **US PCE** (Wed) and **Warsh** (Fri). Neither is a whitelist indicator.
@@ -383,9 +382,8 @@ came** — TE's page still shows 30 July.
 **Not replaced mid-week: LD-29 governs exits, LD-35 governs selection, and selection is
 Sunday's job.**
 
-**Confidence is NOT re-tallied today.** The set is locked; the LD-20 arithmetic
-re-runs at the next selection, not daily. **What changed is distance, not
-conviction** — and CADJPY's distance halved.
+**What changed this week is distance, not conviction** — the set was locked
+Sunday and rankings do not re-run mid-week (LD-29).
 
 
 ### 4.4 REJECTED — including the fourth-pair test (LD-35)
@@ -426,15 +424,13 @@ one position at double size** (LD-21, EF-3) — but when the parent has already
 run into resistance, a sibling sitting lower in its range may offer the entry
 the parent no longer does.
 
-**Prices are FRIDAY's closes and the range positions are RECOMPUTED on them (LD-67); range positions RECOMPUTED
-from 46 daily bars (1 Jul – 26 Aug).** Support is a named recent bar low.
+**Prices are Friday's closes; range positions computed from 46 daily bars
+(1 Jul – 26 Aug).** Support is a named recent bar low.
 **Scope unchanged (LD-4): these are observations of position, never entries.**
 
-**⚠ The carried version of this table was wrong, not merely stale (F-53).** It
-had CADJPY at *97.8% of range, 7 pips from its 45-bar high* — but 7 pips above
-115.514 is the **20 Aug bar high**, not the 45-bar high of **116.482**. **A
-short-window high was used as if it were the long-window high**, and that
-single substitution **inverted the family ranking**.
+**⚠ This ranking was CORRECTED on 27 Aug and the correction inverted it.**
+CADJPY reads **74.3% of range against a 45-bar high of 116.482** — the LEAST
+extended of its family, not the most. *Cause in §7.*
 
 #### 1 · CADJPY family — SHORT JPY
 
@@ -488,7 +484,7 @@ and it was rejected on structure two weeks running.
 
 #### 3 · GBPUSD family — LONG GBP / SHORT USD
 
-**Parent price refreshed to Tuesday's close; the window here was already correct** — 45-bar high **1.36758**, verified. **F-53 affected the CADJPY family only.** Siblings carry Monday's prices and are marked so.
+*Siblings carry Monday's prices and are marked so.*
 
 | Pair | Live | Range pos | To 45-bar high | To support |
 |---|---|---|---|---|
@@ -549,8 +545,7 @@ only lists hits is a story, not evidence.
 
 ### 4.7 — Next week's window opens tomorrow (LD-66)
 
-**§4.0's window rolls on SUNDAY** to **31 Aug – 4 Sep**. Known already, from
-the country pages hand-sourced this week:
+**§4.0's window rolls on SUNDAY** to **31 Aug – 4 Sep**. What is already known:
 
 | When | CCY | Event | Note |
 |---|---|---|---|
@@ -612,11 +607,7 @@ BTC 20% in three sessions**, both on dollar weakness the model cannot see. Had
 §5 and §6 been read from §2's score, the edition would have missed the largest
 move on the board.
 
-**F-30 RESOLVED — the reading above IS recomputed.** The TradingView MCP had
-desynchronised (chart state reporting one symbol while the data feed returned
-another), which initially blocked the DXY read. **A full restart via
-`TvMsixLaunch.exe` cleared it** and DXY returned real values on the first call.
-The dollar check above is recomputed from bars and meets P2.
+*(The DXY read behind this section is recomputed; see §7.)*
 
 ### Drivers — the chain, in plain terms (LD-31)
 
@@ -697,7 +688,7 @@ edition. **Two drawings on this chart are Jeff's own (`wbVoTI`, `8M24eO`) and
 were left untouched** (LD-5).*
 
 *`OANDA:XAUUSD` daily. Chart carried no prior drawings; none of Jeff's own were
-touched. **Clear these four before the next run** (LD-16 step 6).*
+touched.*
 
 ### Read
 
@@ -788,7 +779,7 @@ the same error as carrying three JPY crosses and calling it 3-for-3 (EF-3).
 | 64,110 | dashed — pre-move base | `B59wel` |
 
 *`OANDA:BTCUSD` daily. Chart carried no prior drawings; none of Jeff's own were
-touched. **Clear these five before the next run** (LD-16 step 6).*
+touched.*
 
 ### With risk, or decoupled? **WITH RISK — via liquidity, not equities**
 
@@ -828,6 +819,27 @@ JPY crosses and calling it 3-for-3 (EF-3).
 | **Fear & Greed (R-17)** | **Re-fetched** — 54.43, stamped 28 Aug, 1 day old |
 | **§4.0 window (LD-66)** | 24–28 Aug — **Saturday still reads this week; it rolls TOMORROW** |
 | **Venue (LD-5)** | Chart opened on `OANDA:XAUUSD`; every symbol **verified with `tv_health_check` before reading** |
+
+**Build notes for this edition (LD-69 — moved out of the read).**
+
+- **§2's 71 rows** are generated by `section2.py` from `score_model.py`, so
+  the tables and the tally cannot drift apart.
+- **§4.0's CHF row was HAND-SOURCED** (F-57): the calendar capture holds no
+  Swiss rows at all, and none for NZD either. **R-20 flags both every run.**
+- **Confidence was not re-tallied** — the LD-20 arithmetic re-runs at selection,
+  not daily, so §4.3's ranking is Sunday's.
+- **§4.5's CADJPY ranking was wrong until 27 Aug (F-53)**, not merely stale: it
+  read *97.8% of range, 7 pips from its 45-bar high*, but 7 pips above 115.514
+  is the **20 Aug bar high**, not the 45-bar high of **116.482**. **A
+  short-window high used as a long-window high inverted the family ranking.**
+  **The GBPUSD family's window was correct throughout** — F-53 touched the
+  CADJPY family only.
+- **§4.7's next-week events** come from the TE country pages, hand-sourced
+  while the capture gap stands.
+- **F-30 RESOLVED.** The TradingView MCP had desynchronised (chart state reporting one symbol while the data feed returned another), which initially blocked the DXY read. **A full restart via `TvMsixLaunch.exe` cleared it** and DXY returned real values on the first call. The dollar check above is recomputed from bars and meets P2.
+- **§5/§6 drawings:** four gold and five BTC levels are on the chart and
+  **must be cleared before the next run** (LD-16 step 6). None of Jeff's own
+  drawings were touched (LD-5).
 
 **Sourcing this run.** JPY Unemployment and EUR Consumer Confidence from
 **TE country pages with their update timestamps checked** — that timestamp is
