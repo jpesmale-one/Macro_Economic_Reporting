@@ -974,6 +974,77 @@ while destroying the citation trail.
 
 ---
 
+### LD-70 — the weekly RETROSPECTIVE is its own artifact
+
+**Jeff, 2026-08-29:** *"§10 the retrospective shouldn't be there. I like the
+Week One Retrospective template so let's keep it for our weekly review."*
+
+**The daily edition ends at §9.** A retrospective is not a section of a day's
+report — it reviews a WEEK, it is written once a week, and it has a different
+audience question: *how did we do*, not *where is price going*.
+
+**It also duplicated badly.** On 2026-08-29 §10 carried 5,676 characters of
+retrospective that was a WEAKER copy of the standalone artifact published the
+same day — the artifact had the day-by-day tables, the gold/BTC lens and the
+correlation work; the section had none of them.
+
+| | Daily edition | **Weekly retrospective** |
+|---|---|---|
+| Cadence | every session | **once, Saturday** |
+| Sections | §0–§9 (+ folded §11) | **its own template, no § numbering** |
+| Question | where is price going | **how did we do** |
+| Form | `reports/YYYY/Qn/DATE_market-sentiment.md` → render | **standalone HTML artifact** |
+
+**The template is the "Week One Retrospective" published 2026-08-29** and it
+covers two categories, four questions each:
+
+**1. The report build** — (a) what went well, (b) problems seen and resolved,
+(c) what to improve, (d) what to continue.
+
+**2. The market analysis** — (a) the selection process and the factors behind
+the bias, (b) the day-by-day record from lock to close **in three lenses: FX,
+gold, BTC** — with WHY it moved for and against, (c) how to foresee direction
+better, (d) best practices to continue.
+
+**Rules that make it worth reading:**
+
+- **Recompute every figure before publishing it** — the 29 Aug retrospective
+  verified all sixteen against the bars before it went out.
+- **State the honest scoreboard first**, before any explanation of it.
+- **Directional pips are NOT P&L** (LD-4). Say so in the footer, every time.
+- **Small-sample statistics are labelled as descriptive**, never as evidence.
+- **Name what the user caught that the guards did not.** That list is the
+  most useful part of the review.
+
+---
+
+### LD-69 — process narrative belongs in a FOLDED section, not in the read
+
+**Jeff, 2026-08-29:** *"I asked for the report to be clean and less process
+narrative. But I got tired of complaining so I just accepted it. Why don't we
+do this then, let's place your process narrative comments in a dedicated
+section of the report that can be folded."*
+
+**§0–§6 are the MARKET READ.** Prices, figures, drivers, bias. A finding is
+named there ONLY when it changes what a number IS — *"the row held June's
+figure; corrected to +5.0%"* — and then in one clause, never a paragraph.
+
+**§11 BUILD NOTES carries everything else** and **FOLDS**, like §7 and §8:
+what broke, what was fixed, which guard fired, what was not re-derived and
+why, pipeline changes.
+
+**Why LD-27 never caught this.** It measured prose VOLUME as a share of all
+blocks. **Its own docstring recorded the failure**: the edition Jeff called too
+noisy scored **13.0%**, the one he was happy with scored **15.1%**. The metric
+was measuring the wrong thing for six days while he stopped complaining.
+
+**R-22 measures PLACEMENT instead** — build language (F-numbers, guard names,
+pipeline filenames) appearing inside §0–§6. On 2026-08-29 that was **26 lines,
+worst §4 with 10**. **Advisory, not blocking**: the line between a finding that
+changes a number and a build log is editorial.
+
+---
+
 ### LD-68 — direction × surprise: where the price is going
 
 **Jeff, 2026-08-26:** *"my goal for this report is to somehow sense where the

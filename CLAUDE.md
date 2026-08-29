@@ -116,6 +116,8 @@ hand-written version silently degraded while the generator sat unused.
 | **Grading rules** | `full_time_grade()` · `claimant_grade()` · `market_pricing()` | applied by hand |
 | **§4.6 direction × surprise** | **`directional.py`** (LD-68) | **never fed into the tally** |
 | The edition itself | `render_edition.py <path.md>` | any other way |
+| **Process narrative** | **§11 BUILD NOTES, folded** (LD-69) | **§0–§6, the market read** |
+| **The weekly retrospective** | **its own artifact** (LD-70) | **a § of the daily edition** |
 
 **Before an edition, always:**
 

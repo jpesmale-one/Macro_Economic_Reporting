@@ -26,6 +26,7 @@ COLLAPSE = (
 # the publish gate, and its open-items list is what a seal is judged against.
 COLLAPSE_H2 = (
     '§7 — Method notes', '§8 — Findings',
+    '§11 — Build notes',
 )
 
 EXTRA_CSS = """
@@ -694,6 +695,51 @@ def assert_tally_sorted(md):
     return len(scores)
 
 
+PROCESS_RE = re.compile(
+    r'\b(F-\d+|R-\d+|LD-\d+|guard|guards|renderer|pipeline|'
+    r'audit_te|score_model|week_ahead|whole_edition|regression|fixture|'
+    r'reconcile|sweep)\b', re.I)
+
+ANALYSIS_SECTIONS = ('§0', '§1', '§2', '§3', '§4', '§5', '§6')
+
+
+def assert_process_placement(md):
+    """Sections 0-6 are the MARKET READ, not the build log (R-22/LD-69).
+
+    Jeff, 2026-08-29: "I asked for the report to be clean and less
+    process narrative. But I got tired of complaining so I just accepted
+    it."
+
+    LD-27 measured prose VOLUME and its own docstring recorded that the
+    metric failed - the edition he called too noisy scored BETTER than
+    the one he liked. The objection was PLACEMENT. This measures that:
+    build language inside the analysis sections.
+
+    Advisory, deliberately. A finding that changes what a number IS
+    belongs in the read, briefly. The line between that and a build log
+    is editorial, so this reports a count and a location rather than
+    refusing to publish.
+    """
+    cur, hits = 'PRE', []
+    for line in md.split(chr(10)):
+        if line.startswith('## '):
+            m = re.match(r'##\s*(§\d+)', line)
+            cur = m.group(1) if m else 'PRE'
+        t = line.strip()
+        if not t or t.startswith(('|', '#', '<!--')):
+            continue
+        if cur in ANALYSIS_SECTIONS and PROCESS_RE.search(t):
+            hits.append((cur, t))
+    by = {}
+    for sec, _t in hits:
+        by[sec] = by.get(sec, 0) + 1
+    if not hits:
+        return 'analysis sections clean'
+    worst = sorted(by.items(), key=lambda kv: -kv[1])[0]
+    return ('%d process line(s) in §0-6, worst %s with %d — move to §11'
+            % (len(hits), worst[0], worst[1]))
+
+
 def assert_no_stale_preview(md, fm):
     """No section may preview an event 4.0 marks RELEASED (R-19).
 
@@ -1019,6 +1065,7 @@ if __name__ == '__main__':
     ntal = assert_tally_sorted(md)
     assert_levels_drawn(md)
     assert_no_offlist_scores(md)
+    place_state = assert_process_placement(md)
     preview_state = assert_no_stale_preview(md, fm)
     whole_state = assert_whole_edition(md)
     fng_state = assert_fng_fresh(fm)
@@ -1041,6 +1088,7 @@ if __name__ == '__main__':
               % (nrow, nexp))
     print('  R-18 whole ed   %s' % whole_state)
     print('  R-19 tense      %s' % preview_state)
+    print('  R-22 placement  %s' % place_state)
     print('  R-17 F&G fresh  %s' % fng_state)
     print('  R-16 scores     %d currency scores agree with §2.0' % nsc)
     print('  LD-65 news cov  %d moved currency(ies) covered' % ncov)
