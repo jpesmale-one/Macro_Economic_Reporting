@@ -25,8 +25,10 @@ COLLAPSE = (
 # h2 sections whose bodies collapse. Section 9 is deliberately NOT here: it is
 # the publish gate, and its open-items list is what a seal is judged against.
 COLLAPSE_H2 = (
+    # LD-69: §7 IS the build-notes section - guards run, sourcing
+    # this run, what was not done. It already folds. An extra §11
+    # would have made THREE folded build sections with fuzzy borders.
     '§7 — Method notes', '§8 — Findings',
-    '§11 — Build notes',
 )
 
 EXTRA_CSS = """
@@ -695,30 +697,44 @@ def assert_tally_sorted(md):
     return len(scores)
 
 
+# R-22 v2. The FIRST version counted every F-/LD-/R- number in §0-§6 and
+# reported 26 lines on 2026-08-29. Reading them showed only ~6 were build
+# narrative; the other 20 were RULE CITATIONS EXPLAINING A MARKET FACT -
+# "LD-48 saved it: a falsifier fires on a CLOSE" explains why a pair survived,
+# and belongs in the read. A guard that overstates by 3x gets ignored, which
+# is precisely how LD-27 died. So this looks for BUILD VOCABULARY, not for
+# rule numbers.
 PROCESS_RE = re.compile(
-    r'\b(F-\d+|R-\d+|LD-\d+|guard|guards|renderer|pipeline|'
-    r'audit_te|score_model|week_ahead|whole_edition|regression|fixture|'
-    r'reconcile|sweep)\b', re.I)
+    r'(\b(?:score_model|section2|week_ahead|audit_te|whole_edition|render_edition|'
+    r'directional|freshness|rate_model|select_pairs)\.py\b'
+    r'|\bregression fixture|\bthe sweep|\bguard(?:s)? (?:fired|pass|run)'
+    r'|\bre-?tallied|\bnot re-?charted|\brefreshed (?:to|this run)'
+    r'|\bbefore the next run\b|\bthis run\b'
+    r'|\bgenerated from|\bhand-?sourced|\bcarried version|\bRESOLVED \u2014)',
+    re.I)
 
 ANALYSIS_SECTIONS = ('§0', '§1', '§2', '§3', '§4', '§5', '§6')
 
 
 def assert_process_placement(md):
-    """Sections 0-6 are the MARKET READ, not the build log (R-22/LD-69).
+    """§0-§6 are the MARKET READ, not the build log (R-22/LD-69).
 
     Jeff, 2026-08-29: "I asked for the report to be clean and less
     process narrative. But I got tired of complaining so I just accepted
     it."
 
-    LD-27 measured prose VOLUME and its own docstring recorded that the
-    metric failed - the edition he called too noisy scored BETTER than
-    the one he liked. The objection was PLACEMENT. This measures that:
-    build language inside the analysis sections.
+    LD-27 measured prose VOLUME and its own docstring recorded that it
+    FAILED - the edition he called too noisy scored BETTER than the one
+    he liked. His objection was PLACEMENT: build talk where the market
+    read should be. This measures that.
 
-    Advisory, deliberately. A finding that changes what a number IS
-    belongs in the read, briefly. The line between that and a build log
-    is editorial, so this reports a count and a location rather than
-    refusing to publish.
+    It does NOT flag a rule citation that explains a market fact. Those
+    belong in the read. It flags BUILD VOCABULARY - pipeline filenames,
+    "not re-charted", "this run", "before the next run".
+
+    Advisory. The border is editorial, so this reports a count and a
+    location rather than refusing to publish. Build detail goes to
+    §7 Method notes, which already folds.
     """
     cur, hits = 'PRE', []
     for line in md.split(chr(10)):
@@ -730,13 +746,13 @@ def assert_process_placement(md):
             continue
         if cur in ANALYSIS_SECTIONS and PROCESS_RE.search(t):
             hits.append((cur, t))
+    if not hits:
+        return 'analysis sections clean'
     by = {}
     for sec, _t in hits:
         by[sec] = by.get(sec, 0) + 1
-    if not hits:
-        return 'analysis sections clean'
     worst = sorted(by.items(), key=lambda kv: -kv[1])[0]
-    return ('%d process line(s) in §0-6, worst %s with %d — move to §11'
+    return ('%d build line(s) in §0-6, worst %s with %d — move to §7'
             % (len(hits), worst[0], worst[1]))
 
 

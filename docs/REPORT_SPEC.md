@@ -1018,7 +1018,7 @@ better, (d) best practices to continue.
 
 ---
 
-### LD-69 — process narrative belongs in a FOLDED section, not in the read
+### LD-69 — process narrative belongs in §7, not in the read
 
 **Jeff, 2026-08-29:** *"I asked for the report to be clean and less process
 narrative. But I got tired of complaining so I just accepted it. Why don't we
@@ -1029,9 +1029,16 @@ section of the report that can be folded."*
 named there ONLY when it changes what a number IS — *"the row held June's
 figure; corrected to +5.0%"* — and then in one clause, never a paragraph.
 
-**§11 BUILD NOTES carries everything else** and **FOLDS**, like §7 and §8:
-what broke, what was fixed, which guard fired, what was not re-derived and
-why, pipeline changes.
+**§7 METHOD NOTES carries everything else** — what broke, what was fixed,
+which guard fired, what was not re-derived and why, pipeline changes. **It
+already exists and it already FOLDS**, alongside §8.
+
+**A §11 was built for this and then removed the same session.** Jeff: *"why
+we can't put it in §7 though?"* — because §7 already IS this section:
+*guards run before any figure was used*, *sourcing this run*, *not done, stated
+plainly*. **Inventing §11 would have produced THREE folded build sections
+with fuzzy borders instead of one clear one.** The fix was a placement rule,
+not a new container.
 
 **Why LD-27 never caught this.** It measured prose VOLUME as a share of all
 blocks. **Its own docstring recorded the failure**: the edition Jeff called too
