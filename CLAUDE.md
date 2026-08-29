@@ -122,6 +122,7 @@ hand-written version silently degraded while the generator sat unused.
 **Before an edition, always:**
 
 ```
+python pipelines/capture_calendar.py --write  # F-57 - global + CH/NZ country pages
 python pipelines/audit_te.py --fetch     # LD-50 - reconcile the whitelist
 python pipelines/freshness.py            # LD-54 - revisions + stalled series
 python pipelines/test_guards.py          # 8 real regressions must all block

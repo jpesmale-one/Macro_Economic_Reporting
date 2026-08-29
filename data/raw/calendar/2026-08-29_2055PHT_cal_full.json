@@ -1,0 +1,2954 @@
+[
+ {
+  "date": "2026-08-26",
+  "time": "",
+  "iso": "CH",
+  "event": "economic sentiment index aug"
+ },
+ {
+  "date": "2026-08-26",
+  "time": "",
+  "iso": "CH",
+  "event": "snb martin speech"
+ },
+ {
+  "date": "2026-08-27",
+  "time": "",
+  "iso": "CH",
+  "event": "non farm payrolls q2"
+ },
+ {
+  "date": "2026-08-28",
+  "time": "",
+  "iso": "CH",
+  "event": "kof leading indicators aug"
+ },
+ {
+  "date": "2026-08-29",
+  "time": "",
+  "iso": "US",
+  "event": "jackson hole symposium"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "",
+  "iso": "JP",
+  "event": "industrial production mom prel jul"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "",
+  "iso": "JP",
+  "event": "retail sales yoy jul"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "",
+  "iso": "JP",
+  "event": "industrial production yoy prel jul"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "",
+  "iso": "JP",
+  "event": "retail sales mom jul"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "",
+  "iso": "KR",
+  "event": "industrial production mom jul"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "",
+  "iso": "KR",
+  "event": "industrial production yoy jul"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "",
+  "iso": "KR",
+  "event": "retail sales mom jul"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "",
+  "iso": "SA",
+  "event": "m3 money supply yoy jul"
+ },
+ {
+  "date": "2026-08-30",
+  "time": "",
+  "iso": "SA",
+  "event": "private bank lending yoy jul"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "AU",
+  "event": "td-mi inflation gauge mom aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "AU",
+  "event": "company gross profits qoq q2"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "AU",
+  "event": "business inventories qoq q2"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "AU",
+  "event": "housing credit mom jul"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "AU",
+  "event": "private sector credit mom jul"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "AU",
+  "event": "private sector credit yoy jul"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "AU",
+  "event": "s&p global manufacturing pmi final aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "AU",
+  "event": "cotality dwelling prices mom aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "BR",
+  "event": "gross debt to gdp jul"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "BR",
+  "event": "nominal budget balance jul"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "BR",
+  "event": "bcb focus market readout"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "CN",
+  "event": "nbs manufacturing pmi aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "CN",
+  "event": "nbs non manufacturing pmi aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "CN",
+  "event": "nbs general pmi aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "baden wuerttemberg cpi mom aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "baden wuerttemberg cpi yoy aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "bavaria cpi mom aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "bavaria cpi yoy aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "brandenburg cpi mom aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "brandenburg cpi yoy aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "hesse cpi mom aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "hesse cpi yoy aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "north rhine westphalia cpi mom aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "north rhine westphalia cpi yoy aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "saxony cpi mom aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "saxony cpi yoy aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "inflation rate yoy prel aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "inflation rate mom prel aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "harmonised inflation rate mom prel aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "DE",
+  "event": "harmonised inflation rate yoy prel aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "ES",
+  "event": "current account jun"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "EU",
+  "event": "2031 eu-bonds auction"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "EU",
+  "event": "2036 eu-bonds auction"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "EU",
+  "event": "2040 eu-bonds auction"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "FR",
+  "event": "12-month btf auction"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "FR",
+  "event": "3-month btf auction"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "FR",
+  "event": "6-month btf auction"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "GB",
+  "event": "brc shop price inflation aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "IN",
+  "event": "gdp growth rate yoy q2"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "IN",
+  "event": "government budget value jul"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "JP",
+  "event": "consumer confidence aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "JP",
+  "event": "housing starts yoy jul"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "JP",
+  "event": "construction orders yoy jul"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "JP",
+  "event": "capital spending yoy q2"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "KR",
+  "event": "2-year ktb auction"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "NZ",
+  "event": "anz business confidence aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "SG",
+  "event": "bank lending jul"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "TR",
+  "event": "gdp growth rate qoq q2"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "TR",
+  "event": "gdp growth rate yoy q2"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "TR",
+  "event": "unemployment rate jul"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "TR",
+  "event": "participation rate jul"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "US",
+  "event": "dallas fed manufacturing index aug"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "US",
+  "event": "3-month bill auction"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "US",
+  "event": "6-month bill auction"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "ZA",
+  "event": "m3 money supply yoy jul"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "ZA",
+  "event": "private sector credit yoy jul"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "ZA",
+  "event": "182-day t-bill auction"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "ZA",
+  "event": "273-day t-bill auction"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "ZA",
+  "event": "364-day t-bill auction"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "ZA",
+  "event": "91-day t-bill auction"
+ },
+ {
+  "date": "2026-08-31",
+  "time": "",
+  "iso": "ZA",
+  "event": "balance of trade jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "AR",
+  "event": "tax revenue aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "AU",
+  "event": "building permits mom prel jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "AU",
+  "event": "building permits yoy prel jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "AU",
+  "event": "current account q2"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "AU",
+  "event": "net exports contribution to gdp q2"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "AU",
+  "event": "private house approvals mom prel jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "AU",
+  "event": "commodity prices yoy aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "AU",
+  "event": "ai group industry index aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "AU",
+  "event": "ai group construction index aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "AU",
+  "event": "ai group manufacturing index aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "BR",
+  "event": "gdp growth rate qoq q2"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "BR",
+  "event": "gdp growth rate yoy q2"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "BR",
+  "event": "s&p global manufacturing pmi aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "CA",
+  "event": "s&p global manufacturing pmi aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "CH",
+  "event": "retail sales yoy jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "CH",
+  "event": "retail sales mom jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "CH",
+  "event": "procure.ch manufacturing pmi aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "CN",
+  "event": "ratingdog manufacturing pmi aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "DE",
+  "event": "retail sales mom jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "DE",
+  "event": "retail sales yoy jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "DE",
+  "event": "s&p global manufacturing pmi final aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "DE",
+  "event": "5-year bobl auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "EA",
+  "event": "s&p global manufacturing pmi final aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "EA",
+  "event": "inflation rate yoy flash aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "EA",
+  "event": "core inflation rate yoy flash aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "EA",
+  "event": "inflation rate mom flash aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "EA",
+  "event": "unemployment rate jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "EA",
+  "event": "cpi flash aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "EA",
+  "event": "ecb vujčić speech"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ES",
+  "event": "tourist arrivals yoy jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ES",
+  "event": "s&p global manufacturing pmi aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ES",
+  "event": "12-month letras auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ES",
+  "event": "6-month letras auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ES",
+  "event": "new car sales yoy aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "FR",
+  "event": "s&p global manufacturing pmi final aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "GB",
+  "event": "nationwide housing prices mom aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "GB",
+  "event": "nationwide housing prices yoy aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "GB",
+  "event": "boe consumer credit jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "GB",
+  "event": "mortgage approvals jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "GB",
+  "event": "mortgage lending jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "GB",
+  "event": "m4 money supply mom jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "GB",
+  "event": "net lending to individuals mom jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "GB",
+  "event": "s&p global manufacturing pmi final aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ID",
+  "event": "s&p global manufacturing pmi aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ID",
+  "event": "balance of trade jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ID",
+  "event": "inflation rate yoy aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ID",
+  "event": "core inflation rate yoy aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ID",
+  "event": "exports yoy jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ID",
+  "event": "imports yoy jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ID",
+  "event": "inflation rate mom aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ID",
+  "event": "tourist arrivals yoy jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "IN",
+  "event": "hsbc manufacturing pmi final aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "IN",
+  "event": "current account q2"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "IT",
+  "event": "s&p global manufacturing pmi aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "IT",
+  "event": "gdp growth rate qoq final q2"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "IT",
+  "event": "gdp growth rate yoy final q2"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "IT",
+  "event": "unemployment rate jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "IT",
+  "event": "inflation rate yoy prel aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "IT",
+  "event": "inflation rate mom prel aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "IT",
+  "event": "harmonised inflation rate mom prel aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "IT",
+  "event": "harmonised inflation rate yoy prel aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "IT",
+  "event": "new car registrations yoy aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "JP",
+  "event": "s&p global manufacturing pmi final aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "JP",
+  "event": "10-year jgb auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "JP",
+  "event": "monetary base yoy"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "KR",
+  "event": "exports yoy aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "KR",
+  "event": "balance of trade aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "KR",
+  "event": "imports yoy aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "KR",
+  "event": "s&p global manufacturing pmi aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "KR",
+  "event": "30-year ktb auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "KR",
+  "event": "inflation rate yoy aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "KR",
+  "event": "inflation rate mom aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "MX",
+  "event": "business confidence aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "MX",
+  "event": "s&p global manufacturing pmi aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "MX",
+  "event": "fiscal balance jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "NZ",
+  "event": "1-year bill auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "NZ",
+  "event": "3-month bill auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "NZ",
+  "event": "6-month bill auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "NZ",
+  "event": "building permits mom jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "NZ",
+  "event": "global dairy trade price index sep/01"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "RU",
+  "event": "s&p global manufacturing pmi aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "SG",
+  "event": "mas 12-week bill auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "SG",
+  "event": "mas 36-week bill auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "SG",
+  "event": "mas 4-week bill auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "TR",
+  "event": "istanbul chamber of industry manufacturing pmi aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "lmi logistics managers index aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "redbook yoy aug/29"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "fed barr speech"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "s&p global manufacturing pmi final aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "ism manufacturing pmi aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "jolts job openings jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "ism manufacturing employment aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "construction spending mom jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "ism manufacturing new orders aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "ism manufacturing prices aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "jolts job quits jul"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "rcm/tipp economic optimism index sep"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "dallas fed services index aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "dallas fed services revenues index aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "52-week bill auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "6-week bill auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "US",
+  "event": "api crude oil stock change aug/28"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ZA",
+  "event": "absa manufacturing pmi aug"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ZA",
+  "event": "2033 bond auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ZA",
+  "event": "2039 bond auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ZA",
+  "event": "2042 bond auction"
+ },
+ {
+  "date": "2026-09-01",
+  "time": "",
+  "iso": "ZA",
+  "event": "total new vehicle sales aug"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "AU",
+  "event": "gdp growth rate qoq q2"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "AU",
+  "event": "gdp growth rate yoy q2"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "AU",
+  "event": "gdp capital expenditure qoq q2"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "AU",
+  "event": "gdp chain price index qoq q2"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "AU",
+  "event": "gdp final consumption qoq q2"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "AU",
+  "event": "s&p global composite pmi final aug"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "AU",
+  "event": "s&p global services pmi final aug"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "BR",
+  "event": "ipc-fipe inflation mom aug"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "BR",
+  "event": "industrial production mom jul"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "BR",
+  "event": "industrial production yoy jul"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "CA",
+  "event": "boc interest rate decision"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "CA",
+  "event": "boc press conference"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "EA",
+  "event": "ecb buch speech"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "ES",
+  "event": "unemployment change aug"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "EU",
+  "event": "12-month bill auction"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "EU",
+  "event": "3-month bill auction"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "EU",
+  "event": "6-month bill auction"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "FR",
+  "event": "budget balance jul"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "FR",
+  "event": "new car registrations yoy aug"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "IT",
+  "event": "ppi mom jul"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "IT",
+  "event": "ppi yoy jul"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "JP",
+  "event": "boj takada speech"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "JP",
+  "event": "foreign bond investment aug/29"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "JP",
+  "event": "stock investment by foreigners aug/29"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "NZ",
+  "event": "rbnz interest rate decision"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "NZ",
+  "event": "rbnz press conference"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "NZ",
+  "event": "export prices qoq q2"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "NZ",
+  "event": "import prices qoq q2"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "NZ",
+  "event": "terms of trade qoq q2"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "RU",
+  "event": "unemployment rate jul"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "RU",
+  "event": "business confidence aug"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "RU",
+  "event": "corporate profits jun"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "RU",
+  "event": "real wage growth yoy jun"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "RU",
+  "event": "retail sales yoy jul"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "RU",
+  "event": "gdp yoy jul"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "SG",
+  "event": "sipmm manufacturing pmi aug"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "mba 30-year mortgage rate aug/28"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "mba mortgage applications aug/28"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "mba mortgage market index aug/28"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "mba mortgage refinance index aug/28"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "mba purchase index aug/28"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "adp employment change aug"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "factory orders mom jul"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "factory orders ex transportation jul"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "eia crude oil stocks change aug/28"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "eia gasoline stocks change aug/28"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "eia crude oil imports change aug/28"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "eia cushing crude oil stocks change aug/28"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "eia distillate fuel production change aug/28"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "eia distillate stocks change aug/28"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "eia gasoline production change aug/28"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "eia heating oil stocks change aug/28"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "eia refinery crude runs change aug/28"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "17-week bill auction"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "fed beige book"
+ },
+ {
+  "date": "2026-09-02",
+  "time": "",
+  "iso": "US",
+  "event": "total vehicle sales aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "AU",
+  "event": "rba jones speech"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "AU",
+  "event": "balance of trade jul"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "AU",
+  "event": "exports mom jul"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "AU",
+  "event": "imports mom jul"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "AU",
+  "event": "rba hunter speech"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "AU",
+  "event": "rba brischetto speech"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "BR",
+  "event": "s&p global services pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "BR",
+  "event": "s&p global composite pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "CA",
+  "event": "balance of trade jul"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "CA",
+  "event": "exports jul"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "CA",
+  "event": "imports jul"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "CA",
+  "event": "labor productivity qoq q2"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "CA",
+  "event": "s&p global composite pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "CA",
+  "event": "s&p global services pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "CA",
+  "event": "2-year bond auction"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "CH",
+  "event": "inflation rate yoy aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "CH",
+  "event": "inflation rate mom aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "CH",
+  "event": "gdp growth rate yoy q2"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "CH",
+  "event": "gdp growth rate qoq final q2"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "CN",
+  "event": "ratingdog services pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "CN",
+  "event": "ratingdog composite pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "DE",
+  "event": "s&p global composite pmi final aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "DE",
+  "event": "s&p global services pmi final aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "DE",
+  "event": "new car registrations yoy aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "EA",
+  "event": "s&p global composite pmi final aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "EA",
+  "event": "s&p global services pmi final aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "EA",
+  "event": "ppi mom jul"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "EA",
+  "event": "ppi yoy jul"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "ES",
+  "event": "s&p global services pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "ES",
+  "event": "s&p global composite pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "ES",
+  "event": "10-year obligacion auction"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "ES",
+  "event": "15-year index-linked obligacion auction"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "ES",
+  "event": "3-year bonos auction"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "ES",
+  "event": "5-year bonos auction"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "FR",
+  "event": "s&p global composite pmi final aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "FR",
+  "event": "s&p global services pmi final aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "FR",
+  "event": "2036 oat auction"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "FR",
+  "event": "2040 oat auction"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "FR",
+  "event": "2046 oat auction"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "GB",
+  "event": "s&p global composite pmi final aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "GB",
+  "event": "s&p global services pmi final aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "GB",
+  "event": "index-linked treasury gilt 2049 auction"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "IN",
+  "event": "hsbc composite pmi final aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "IN",
+  "event": "hsbc services pmi final aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "IT",
+  "event": "s&p global services pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "IT",
+  "event": "s&p global composite pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "JP",
+  "event": "s&p global composite pmi final aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "JP",
+  "event": "s&p global services pmi final aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "JP",
+  "event": "30-year jgb auction"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "JP",
+  "event": "household spending mom jul"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "JP",
+  "event": "household spending yoy jul"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "KR",
+  "event": "foreign exchange reserves aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "KR",
+  "event": "current account jul"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "MX",
+  "event": "consumer confidence aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "NZ",
+  "event": "anz roy morgan consumer confidence aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "RU",
+  "event": "s&p global composite pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "RU",
+  "event": "s&p global services pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "SA",
+  "event": "riyad bank pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "SG",
+  "event": "s&p global pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "TR",
+  "event": "inflation rate mom aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "TR",
+  "event": "inflation rate yoy aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "TR",
+  "event": "ppi mom aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "TR",
+  "event": "ppi yoy aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "TR",
+  "event": "foreign exchange reserves aug/28"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "TR",
+  "event": "balance of trade prel aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "TR",
+  "event": "exports prel aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "TR",
+  "event": "imports prel aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "challenger job cuts aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "balance of trade jul"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "exports jul"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "fed waller speech"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "imports jul"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "initial jobless claims aug/29"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "continuing jobless claims aug/22"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "jobless claims 4-week average aug/29"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "nonfarm productivity qoq final q2"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "unit labour costs qoq final q2"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "s&p global composite pmi final aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "s&p global services pmi final aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "ism services pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "ism services business activity aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "ism services employment aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "ism services new orders aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "ism services prices aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "eia natural gas stocks change aug/28"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "4-week bill auction"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "8-week bill auction"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "15-year mortgage rate sep/03"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "30-year mortgage rate sep/03"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "fed hammack speech"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "US",
+  "event": "fed balance sheet sep/02"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "ZA",
+  "event": "s&p global pmi aug"
+ },
+ {
+  "date": "2026-09-03",
+  "time": "",
+  "iso": "ZA",
+  "event": "business confidence q3"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "BR",
+  "event": "balance of trade aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "CA",
+  "event": "unemployment rate aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "CA",
+  "event": "employment change aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "CA",
+  "event": "full time employment chg aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "CA",
+  "event": "part time employment chg aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "CA",
+  "event": "participation rate aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "CA",
+  "event": "average hourly wages yoy aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "CA",
+  "event": "ivey pmi s.a aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "DE",
+  "event": "factory orders mom jul"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "DE",
+  "event": "s&p global construction pmi aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "EA",
+  "event": "s&p global construction pmi aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "EA",
+  "event": "retail sales mom jul"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "EA",
+  "event": "ecb lane speech"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "EA",
+  "event": "retail sales yoy jul"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "FR",
+  "event": "s&p global construction pmi aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "GB",
+  "event": "new car sales yoy aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "GB",
+  "event": "s&p global construction pmi aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "GB",
+  "event": "dmp 1y cpi expectations aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "GB",
+  "event": "dmp 3m output price expectations aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "GB",
+  "event": "boe gov bailey speech"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "IN",
+  "event": "foreign exchange reserves aug/28"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "IT",
+  "event": "s&p global construction pmi aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "IT",
+  "event": "retail sales mom jul"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "IT",
+  "event": "retail sales yoy jul"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "JP",
+  "event": "3-month bill auction"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "JP",
+  "event": "coincident index prel jul"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "JP",
+  "event": "leading economic index prel jul"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "MX",
+  "event": "gross fixed investment mom jun"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "MX",
+  "event": "gross fixed investment yoy jun"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "RU",
+  "event": "vehicle sales yoy aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "SG",
+  "event": "retail sales mom jul"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "SG",
+  "event": "retail sales yoy jul"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "US",
+  "event": "non farm payrolls aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "US",
+  "event": "unemployment rate aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "US",
+  "event": "average hourly earnings mom aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "US",
+  "event": "average hourly earnings yoy aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "US",
+  "event": "participation rate aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "US",
+  "event": "average weekly hours aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "US",
+  "event": "government payrolls aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "US",
+  "event": "manufacturing payrolls aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "US",
+  "event": "nonfarm payrolls private aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "US",
+  "event": "u-6 unemployment rate aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "US",
+  "event": "baker hughes oil rig count sep/04"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "US",
+  "event": "baker hughes total rigs count sep/04"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "WL",
+  "event": "fao food price index aug"
+ },
+ {
+  "date": "2026-09-04",
+  "time": "",
+  "iso": "WL",
+  "event": "global supply chain pressure index aug"
+ },
+ {
+  "date": "2026-09-06",
+  "time": "",
+  "iso": "JP",
+  "event": "foreign exchange reserves aug"
+ },
+ {
+  "date": "2026-09-06",
+  "time": "",
+  "iso": "OP",
+  "event": "opec and non-opec ministerial meeting"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "AU",
+  "event": "anz-indeed job ads mom aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "BR",
+  "event": "bcb focus market readout"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "CH",
+  "event": "unemployment rate aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "CH",
+  "event": "foreign exchange reserves aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "CN",
+  "event": "foreign exchange reserves aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "DE",
+  "event": "industrial production mom jul"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "DE",
+  "event": "3-month bubill auction"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "DE",
+  "event": "9-month bubill auction"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "EA",
+  "event": "employment change qoq final q2"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "EA",
+  "event": "employment change yoy final q2"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "EA",
+  "event": "gdp growth rate qoq 3rd est q2"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "EA",
+  "event": "gdp growth rate yoy 3rd est q2"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "FR",
+  "event": "foreign exchange reserves aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "FR",
+  "event": "12-month btf auction"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "FR",
+  "event": "3-month btf auction"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "FR",
+  "event": "6-month btf auction"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "GB",
+  "event": "lloyds house price index mom aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "GB",
+  "event": "lloyds house price index yoy aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "GB",
+  "event": "bba mortgage rate aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "GB",
+  "event": "brc retail sales monitor yoy aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "ID",
+  "event": "foreign exchange reserves aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "JP",
+  "event": "average cash earnings yoy jul"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "JP",
+  "event": "overtime pay yoy jul"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "JP",
+  "event": "current account jul"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "JP",
+  "event": "gdp growth annualized final q2"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "JP",
+  "event": "gdp growth rate qoq final q2"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "JP",
+  "event": "bank lending yoy aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "JP",
+  "event": "gdp capital expenditure qoq final q2"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "JP",
+  "event": "gdp external demand qoq final q2"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "JP",
+  "event": "gdp price index yoy final q2"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "JP",
+  "event": "gdp private consumption qoq final q2"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "KR",
+  "event": "3-year ktb auction"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "KR",
+  "event": "gdp growth rate qoq final q2"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "KR",
+  "event": "gdp growth rate yoy final q2"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "MX",
+  "event": "auto exports yoy aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "MX",
+  "event": "auto production yoy aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "NZ",
+  "event": "manufacturing sales yoy q2"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "RU",
+  "event": "foreign exchange reserves aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "SG",
+  "event": "foreign exchange reserves aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "TR",
+  "event": "treasury cash balance aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "ZA",
+  "event": "foreign exchange reserves aug"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "ZA",
+  "event": "182-day t-bill auction"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "ZA",
+  "event": "273-day t-bill auction"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "ZA",
+  "event": "364-day t-bill auction"
+ },
+ {
+  "date": "2026-09-07",
+  "time": "",
+  "iso": "ZA",
+  "event": "91-day t-bill auction"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "AU",
+  "event": "westpac consumer confidence change sep"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "AU",
+  "event": "westpac consumer confidence index sep"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "AU",
+  "event": "nab business confidence aug"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "AU",
+  "event": "building permits mom final jul"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "AU",
+  "event": "building permits yoy final jul"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "AU",
+  "event": "private house approvals mom final jul"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "AU",
+  "event": "rba hunter speech"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "AU",
+  "event": "rba hauser speech"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "CN",
+  "event": "balance of trade aug"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "CN",
+  "event": "exports yoy aug"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "CN",
+  "event": "imports yoy aug"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "CN",
+  "event": "balance of trade yuan aug"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "DE",
+  "event": "balance of trade jul"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "DE",
+  "event": "exports mom jul"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "DE",
+  "event": "imports mom jul"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "DE",
+  "event": "green bond auction"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "ES",
+  "event": "3-month letras auction"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "ES",
+  "event": "9-month letras auction"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "ES",
+  "event": "consumer confidence jul"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "FR",
+  "event": "balance of trade jul"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "FR",
+  "event": "current account jul"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "FR",
+  "event": "exports jul"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "FR",
+  "event": "imports jul"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "JP",
+  "event": "5-year jgb auction"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "JP",
+  "event": "eco watchers survey current aug"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "JP",
+  "event": "eco watchers survey outlook aug"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "NZ",
+  "event": "1-year bill auction"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "NZ",
+  "event": "3-month bill auction"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "NZ",
+  "event": "6-month bill auction"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "SA",
+  "event": "gdp growth rate yoy final q2"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "SG",
+  "event": "mas 12-week bill auction"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "SG",
+  "event": "mas 4-week bill auction"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "US",
+  "event": "nfib business optimism index aug"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "US",
+  "event": "adp employment change weekly"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "US",
+  "event": "redbook yoy sep/05"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "ZA",
+  "event": "gdp growth rate qoq q2"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "ZA",
+  "event": "gdp growth rate yoy q2"
+ },
+ {
+  "date": "2026-09-08",
+  "time": "",
+  "iso": "ZA",
+  "event": "weekly bond auction"
+ },
+ {
+  "date": "2026-09-09",
+  "time": "",
+  "iso": "CH",
+  "event": "bond auction"
+ },
+ {
+  "date": "2026-09-10",
+  "time": "",
+  "iso": "NZ",
+  "event": "business nz pmi aug"
+ },
+ {
+  "date": "2026-09-11",
+  "time": "",
+  "iso": "CH",
+  "event": "consumer confidence aug"
+ },
+ {
+  "date": "2026-09-13",
+  "time": "",
+  "iso": "NZ",
+  "event": "composite nz pci aug"
+ },
+ {
+  "date": "2026-09-13",
+  "time": "",
+  "iso": "NZ",
+  "event": "services nz psi aug"
+ },
+ {
+  "date": "2026-09-13",
+  "time": "",
+  "iso": "NZ",
+  "event": "visitor arrivals yoy jul"
+ },
+ {
+  "date": "2026-09-14",
+  "time": "",
+  "iso": "CH",
+  "event": "producer & import prices mom aug"
+ },
+ {
+  "date": "2026-09-14",
+  "time": "",
+  "iso": "CH",
+  "event": "producer & import prices yoy aug"
+ },
+ {
+  "date": "2026-09-14",
+  "time": "",
+  "iso": "NZ",
+  "event": "electronic retail card spending mom aug"
+ },
+ {
+  "date": "2026-09-14",
+  "time": "",
+  "iso": "NZ",
+  "event": "electronic retail card spending yoy aug"
+ },
+ {
+  "date": "2026-09-15",
+  "time": "",
+  "iso": "NZ",
+  "event": "1-year bill auction"
+ },
+ {
+  "date": "2026-09-15",
+  "time": "",
+  "iso": "NZ",
+  "event": "3-month bill auction"
+ },
+ {
+  "date": "2026-09-15",
+  "time": "",
+  "iso": "NZ",
+  "event": "6-month bill auction"
+ },
+ {
+  "date": "2026-09-15",
+  "time": "",
+  "iso": "NZ",
+  "event": "current account q2"
+ },
+ {
+  "date": "2026-09-15",
+  "time": "",
+  "iso": "NZ",
+  "event": "global dairy trade price index sep/15"
+ },
+ {
+  "date": "2026-09-16",
+  "time": "",
+  "iso": "NZ",
+  "event": "gdp growth rate qoq q2"
+ },
+ {
+  "date": "2026-09-16",
+  "time": "",
+  "iso": "NZ",
+  "event": "gdp growth rate yoy q2"
+ },
+ {
+  "date": "2026-09-16",
+  "time": "",
+  "iso": "NZ",
+  "event": "westpac consumer confidence q3"
+ },
+ {
+  "date": "2026-09-17",
+  "time": "",
+  "iso": "CH",
+  "event": "balance of trade aug"
+ },
+ {
+  "date": "2026-09-17",
+  "time": "",
+  "iso": "CH",
+  "event": "seco economic forecasts"
+ },
+ {
+  "date": "2026-09-17",
+  "time": "",
+  "iso": "NZ",
+  "event": "balance of trade aug"
+ },
+ {
+  "date": "2026-09-17",
+  "time": "",
+  "iso": "NZ",
+  "event": "exports aug"
+ },
+ {
+  "date": "2026-09-17",
+  "time": "",
+  "iso": "NZ",
+  "event": "food inflation yoy aug"
+ },
+ {
+  "date": "2026-09-17",
+  "time": "",
+  "iso": "NZ",
+  "event": "imports aug"
+ },
+ {
+  "date": "2026-09-21",
+  "time": "",
+  "iso": "NZ",
+  "event": "credit card spending yoy aug"
+ },
+ {
+  "date": "2026-09-22",
+  "time": "",
+  "iso": "CH",
+  "event": "current account q2"
+ },
+ {
+  "date": "2026-09-22",
+  "time": "",
+  "iso": "NZ",
+  "event": "1-year bill auction"
+ },
+ {
+  "date": "2026-09-22",
+  "time": "",
+  "iso": "NZ",
+  "event": "3-month bill auction"
+ },
+ {
+  "date": "2026-09-22",
+  "time": "",
+  "iso": "NZ",
+  "event": "6-month bill auction"
+ },
+ {
+  "date": "2026-09-24",
+  "time": "",
+  "iso": "CH",
+  "event": "snb interest rate decision"
+ }
+]
