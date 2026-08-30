@@ -108,6 +108,7 @@ hand-written version silently degraded while the generator sat unused.
 | Build this | With | Never |
 |---|---|---|
 | §2.0 tally | `score_model.py` + `rate_model.py` | by hand |
+| **HOW A CURRENCY IS SCORED** | **`docs/SCORING_BASELINE.md`** — v1 GRADED, locked 2026-08-30 | **guessing from the code** |
 | §2.1–2.5 (all 70 rows) | `section2.py` | summarised, blanked |
 | §4.0 week ahead | `week_ahead.py` | sorted by hand (F-36) |
 | Fear & Greed | emit `<!--FNG-->` | markdown tables |
@@ -145,6 +146,13 @@ Get the AUMID with `Get-StartApps | ? {$_.Name -like '*TradingView*'}` if
 it ever changes. Then `tv_health_check` - CDP comes up in about a second.
 **2026-08-26: `tv_launch` was tried twice and died twice before this was
 found; the handover had recorded F-9 as CLOSED without the command.**
+
+**Before changing HOW anything is scored, read `docs/SCORING_BASELINE.md`.**
+It records the weights, the four graded rules, the divisors and WHY each was
+chosen, a worked example, **the baseline board of 2026-08-30**, and a numbered
+list of what v1 deliberately does NOT do. **LD-71 happened because "54% of
+slots at ceiling" was MEASURED, not guessed** — start any scoring change the
+same way.
 
 **`audit_te.py` is the only thing in this repo that compares a row to the
 world.** Every other check verifies arithmetic *on* the rows — P2 recompute,

@@ -974,6 +974,26 @@ while destroying the citation trail.
 
 ---
 
+### LD-71 · LD-72 — scoring v1 GRADED (see `docs/SCORING_BASELINE.md`)
+
+**The full specification lives in `docs/SCORING_BASELINE.md`** — weights, the four
+graded rules and their divisors, the worked example, the baseline board, and
+the numbered list of what v1 does not do. **That file is the starting line: every
+future scoring change is measured against it.**
+
+The short version:
+
+- **LD-71** — an indicator returns a MAGNITUDE in [−1,+1], not GOOD/NEUTRAL/BAD.
+  **The rule gives the magnitude; the VERDICT COLUMN gives the sign.** Ceiling slots
+  fell 26 → 13. **21 rows keep three-state on purpose** — several are Jeff's
+  hand-specified rules (LD-57, LD-58) and LD-59 governs them.
+- **LD-72** — §2.0b publishes the causal chain as a VIEW: LEADING (Production,
+  Spending, Trade) against CONFIRMING (Employment, Inflation), each normalised
+  to its own maximum. **A positive gap means the rate case is BUILDING; negative
+  means the strength has ALREADY HAPPENED.**
+
+---
+
 ### LD-70 — the weekly RETROSPECTIVE is its own artifact
 
 **Jeff, 2026-08-29:** *"§10 the retrospective shouldn't be there. I like the

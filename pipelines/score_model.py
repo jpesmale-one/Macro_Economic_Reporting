@@ -159,7 +159,13 @@ def claimant_grade(actual):
 
 
 # ---------------------------------------------------------------------------
-# LD-71 - GRADED SCORING. See module docstring note above compute().
+# LD-71 - GRADED SCORING.  v1 BASELINE, locked 2026-08-30.
+#
+# FULL SPEC: docs/SCORING_BASELINE.md - weights, the four rules, the
+# DIVISORS AND WHY THEY WERE CHOSEN, a worked example, the baseline board,
+# and a numbered list of what v1 deliberately does NOT do.
+#
+# Do not change a divisor here without updating that file's version table.
 # ---------------------------------------------------------------------------
 
 _NUM = re.compile(r'-?[0-9][0-9,]*\.?[0-9]*')
