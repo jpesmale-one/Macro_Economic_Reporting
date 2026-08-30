@@ -974,6 +974,35 @@ while destroying the citation trail.
 
 ---
 
+### LD-77 · LD-78 — high-impact events are visible at a glance
+
+**Jeff, 2026-08-30:** *"can you highlight the High Impact news in 4.0? So that I
+can get a sense even if I just scan the report"* and *"make our Market Sentiment
+report more lively Aesthetically"*.
+
+**§4.0 was a flat table** — a central bank decision and a consumer-confidence print
+looked identical, so the reader had to READ every row to find the two that can
+reprice a currency.
+
+| Tier | Matches | Treatment |
+|---|---|---|
+| **CRITICAL** | interest rate decision, rate statement | **red left rule + tinted row** |
+| **HIGH** | NFP, inflation rate, unemployment rate, employment change, GDP | **amber left rule + tinted row** |
+| normal | everything else on the whitelist | plain |
+
+**The tiers match the weights `selection_gates.py` already uses (LD-73)**, so the
+table and the event-risk score cannot disagree about what counts as high impact.
+
+**Scoped to §4.0 only.** Elsewhere an *"inflation rate"* row is a DATA row, not a
+scheduled event — tagging it there would be noise. A legend is emitted once,
+under the §4.0 heading.
+
+**LD-78** is the general lift: rounded table wrappers, uppercase mono column heads,
+very light zebra striping, row hover, more section rhythm. **No new hues** — the
+palette that already existed is simply used properly.
+
+---
+
 ### LD-71 · LD-72 — scoring v1 GRADED (see `docs/SCORING_BASELINE.md`)
 
 **The full specification lives in `docs/SCORING_BASELINE.md`** — weights, the four

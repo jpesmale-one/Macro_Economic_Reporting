@@ -75,6 +75,50 @@ EXTRA_CSS = """
   blockquote p{font-size:inherit}
   .note,em.note{font-size:.82rem;opacity:.85}
 
+  /* LD-77 - impact tiers in §4.0. A left rule + tinted ground so the
+     rows that can reprice a currency separate at a glance. */
+  tr.ev-critical > td:first-child{box-shadow:inset 3px 0 0 var(--bear)}
+  tr.ev-critical > td{background:var(--bear-bg)}
+  tr.ev-high > td:first-child{box-shadow:inset 3px 0 0 var(--warn)}
+  tr.ev-high > td{background:var(--warn-bg)}
+  tr.ev-critical:hover > td,tr.ev-high:hover > td{filter:brightness(1.06)}
+  .imp{font-family:var(--mono);font-size:.56rem;font-weight:700;
+    letter-spacing:.09em;padding:2px 6px;border-radius:3px;
+    margin-right:7px;vertical-align:1px;white-space:nowrap}
+  .imp-c{background:var(--bear);color:#fff}
+  .imp-h{background:var(--warn);color:#fff}
+  /* LD-78 - aesthetic lift. Jeff, 2026-08-30: make the report more
+     lively aesthetically. Restrained: more air, clearer hierarchy,
+     tables that read as data rather than as walls. NO NEW HUES - the
+     palette that already exists just gets used properly. */
+  .tblwrap{border-radius:6px;overflow:hidden;overflow-x:auto;
+    border:1px solid var(--border);margin:16px 0 20px;
+    box-shadow:0 1px 2px rgba(0,0,0,.05)}
+  th{background:var(--surface2);font-family:var(--mono);font-size:.62rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+    font-weight:700;text-align:left;padding:10px 13px;
+    border-bottom:1px solid var(--border);white-space:nowrap}
+  td{padding:9px 13px;border-bottom:1px solid var(--border)}
+  table tr:last-child td{border-bottom:none}
+  /* zebra, very light - enough to track a row across a wide table */
+  table tr:nth-child(even):not(.ev-critical):not(.ev-high) > td{
+    background:rgba(128,128,128,.045)}
+  table tr:hover:not(.ev-critical):not(.ev-high) > td{
+    background:var(--surface2)}
+  /* the exec block carries the read - give it presence */
+  .exec{box-shadow:0 2px 12px rgba(0,0,0,.07)}
+  .exec-b p:first-child{font-size:.95rem}
+  h2.sec{margin-top:44px}
+  blockquote{background:var(--surface);border-radius:0 5px 5px 0;
+    padding:10px 16px;border-left:3px solid var(--info)}
+  /* LD-77 legend for the impact tiers */
+  .implegend{display:flex;flex-wrap:wrap;gap:16px;align-items:center;
+    margin:14px 0 2px;font-family:var(--mono);font-size:.6rem;
+    letter-spacing:.09em;color:var(--muted);font-weight:600}
+  .implegend span{display:inline-flex;align-items:center;gap:7px}
+  .swatch{width:22px;height:11px;border-radius:2px;display:inline-block}
+  .sw-c{background:var(--bear-bg);box-shadow:inset 3px 0 0 var(--bear)}
+  .sw-h{background:var(--warn-bg);box-shadow:inset 3px 0 0 var(--warn)}
   del{opacity:.62;text-decoration-color:var(--bear)}
   .exec{background:var(--surface);border:1px solid var(--info);
     border-left:4px solid var(--info);border-radius:4px;margin:20px 0;overflow:hidden}
@@ -86,6 +130,31 @@ EXTRA_CSS = """
   .exec-b p:last-child{margin-bottom:0}
 </style>
 """
+
+
+CRITICAL_EVENT = re.compile(
+    r'interest rate decision|rate statement|rate decision', re.I)
+HIGH_EVENT = re.compile(
+    r'non.?farm payrolls|inflation rate|unemployment rate|'
+    r'employment change|gdp growth|cpi\b', re.I)
+
+
+def impact_class(cells):
+    """Impact tier for one §4.0 row (LD-77).
+
+    Jeff, 2026-08-30: "can you highlight the High Impact news in 4.0?
+    So that I can get a sense even if I just scan the report"
+
+    Tiers match the weights selection_gates.py already uses, so the
+    table and the event-risk score cannot disagree about what counts
+    as high impact.
+    """
+    txt = ' '.join(cells)
+    if CRITICAL_EVENT.search(txt):
+        return 'ev-critical'
+    if HIGH_EVENT.search(txt):
+        return 'ev-high'
+    return ''
 
 
 def esc(t):
@@ -167,6 +236,8 @@ def render(md):
         lines = lines[end + 1:]
     n = len(lines)
     fold = None          # (title, buffer) while inside a collapsed h3
+    in_week_ahead = False   # LD-77 - impact tagging is scoped to 4.0
+    pending_legend = False  # LD-77 - emit the key once, under 4.0
 
     def flush():
         nonlocal fold
@@ -187,10 +258,25 @@ def render(md):
         if not s:
             i += 1
             continue
+        # LD-77: 4.0 is the WEEK-AHEAD table; impact tagging applies there.
+        _h = re.match(r'^#{3,4}\s+(.*)$', s)
+        if _h:
+            _t = _h.group(1)
+            if _t.startswith('4.0'):
+                in_week_ahead = True
+                pending_legend = True
+            elif re.match(r'^\d+\.\d', _t) or _t.startswith('§'):
+                in_week_ahead = False
         # table
         if s.startswith('|') and i + 1 < n and re.match(r'^\|[\s:|-]+\|$', lines[i + 1].strip()):
             hdr = [c.strip() for c in s.strip('|').split('|')]
             i += 2
+            if pending_legend:
+                emit('<div class="implegend">'
+                     '<span><i class="swatch sw-c"></i>CENTRAL BANK DECISION</span>'
+                     '<span><i class="swatch sw-h"></i>HIGH IMPACT</span>'
+                     '<span>&mdash; scan these first</span></div>')
+                pending_legend = False
             t = ['<div class="tblwrap"><table>',
                  '<tr>' + ''.join('<th>%s</th>' % inline(c) for c in hdr) + '</tr>']
             while i < n and lines[i].strip().startswith('|'):
@@ -199,7 +285,13 @@ def render(md):
                 for c in cs:
                     k, b = cell(c)
                     tds.append('<td%s>%s</td>' % (k, b))
-                t.append('<tr>' + ''.join(tds) + '</tr>')
+                # LD-77: tag high-impact rows so a SCAN surfaces them.
+                # Scoped to the week-ahead table - elsewhere an "inflation
+                # rate" row is a data row, not a scheduled event.
+                klass = impact_class(cs) if in_week_ahead else ''
+                t.append('<tr%s>%s</tr>'
+                         % ((' class="%s"' % klass) if klass else '',
+                            ''.join(tds)))
                 i += 1
             t.append('</table></div>')
             emit('\n'.join(t))

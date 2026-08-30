@@ -237,6 +237,50 @@
   blockquote p{font-size:inherit}
   .note,em.note{font-size:.82rem;opacity:.85}
 
+  /* LD-77 - impact tiers in §4.0. A left rule + tinted ground so the
+     rows that can reprice a currency separate at a glance. */
+  tr.ev-critical > td:first-child{box-shadow:inset 3px 0 0 var(--bear)}
+  tr.ev-critical > td{background:var(--bear-bg)}
+  tr.ev-high > td:first-child{box-shadow:inset 3px 0 0 var(--warn)}
+  tr.ev-high > td{background:var(--warn-bg)}
+  tr.ev-critical:hover > td,tr.ev-high:hover > td{filter:brightness(1.06)}
+  .imp{font-family:var(--mono);font-size:.56rem;font-weight:700;
+    letter-spacing:.09em;padding:2px 6px;border-radius:3px;
+    margin-right:7px;vertical-align:1px;white-space:nowrap}
+  .imp-c{background:var(--bear);color:#fff}
+  .imp-h{background:var(--warn);color:#fff}
+  /* LD-78 - aesthetic lift. Jeff, 2026-08-30: make the report more
+     lively aesthetically. Restrained: more air, clearer hierarchy,
+     tables that read as data rather than as walls. NO NEW HUES - the
+     palette that already exists just gets used properly. */
+  .tblwrap{border-radius:6px;overflow:hidden;overflow-x:auto;
+    border:1px solid var(--border);margin:16px 0 20px;
+    box-shadow:0 1px 2px rgba(0,0,0,.05)}
+  th{background:var(--surface2);font-family:var(--mono);font-size:.62rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+    font-weight:700;text-align:left;padding:10px 13px;
+    border-bottom:1px solid var(--border);white-space:nowrap}
+  td{padding:9px 13px;border-bottom:1px solid var(--border)}
+  table tr:last-child td{border-bottom:none}
+  /* zebra, very light - enough to track a row across a wide table */
+  table tr:nth-child(even):not(.ev-critical):not(.ev-high) > td{
+    background:rgba(128,128,128,.045)}
+  table tr:hover:not(.ev-critical):not(.ev-high) > td{
+    background:var(--surface2)}
+  /* the exec block carries the read - give it presence */
+  .exec{box-shadow:0 2px 12px rgba(0,0,0,.07)}
+  .exec-b p:first-child{font-size:.95rem}
+  h2.sec{margin-top:44px}
+  blockquote{background:var(--surface);border-radius:0 5px 5px 0;
+    padding:10px 16px;border-left:3px solid var(--info)}
+  /* LD-77 legend for the impact tiers */
+  .implegend{display:flex;flex-wrap:wrap;gap:16px;align-items:center;
+    margin:14px 0 2px;font-family:var(--mono);font-size:.6rem;
+    letter-spacing:.09em;color:var(--muted);font-weight:600}
+  .implegend span{display:inline-flex;align-items:center;gap:7px}
+  .swatch{width:22px;height:11px;border-radius:2px;display:inline-block}
+  .sw-c{background:var(--bear-bg);box-shadow:inset 3px 0 0 var(--bear)}
+  .sw-h{background:var(--warn-bg);box-shadow:inset 3px 0 0 var(--warn)}
   del{opacity:.62;text-decoration-color:var(--bear)}
   .exec{background:var(--surface);border:1px solid var(--info);
     border-left:4px solid var(--info);border-radius:4px;margin:20px 0;overflow:hidden}
@@ -487,23 +531,24 @@
 <h2 class="sec">§4 — Conviction Playbook — SELECTION for 31 Aug – 4 Sep</h2>
 <h3 class="sub">4.0 — Week ahead: what the market is pricing (LD-63)</h3>
 <p><b>Window: Mon 31 Aug – Fri 4 Sep (LD-66)</b> — rolled this morning. Captured from the TE global calendar <b>plus the CH and NZ country pages</b>, which the global page omits entirely (F-57).</p>
+<div class="implegend"><span><i class="swatch sw-c"></i>CENTRAL BANK DECISION</span><span><i class="swatch sw-h"></i>HIGH IMPACT</span><span>&mdash; scan these first</span></div>
 <div class="tblwrap"><table>
 <tr><th>When (PHT)</th><th>CCY</th><th>Indicator</th><th>Note</th></tr>
 <tr><td>Mon 31 13:00</td><td class="num">JPY</td><td>Consumer Confidence</td><td>—</td></tr>
 <tr><td><b>Tue 01 09:00</b></td><td class="num"><b>NZD</b></td><td><b>ANZ Business Confidence</b></td><td>prev 56.1</td></tr>
 <tr><td>Tue 01 14:30</td><td class="num">CHF</td><td>Retail Sales YoY</td><td>prev 1.5%</td></tr>
-<tr><td>Tue 01 17:00</td><td class="num">EUR</td><td>Unemployment Rate</td><td>—</td></tr>
+<tr class="ev-high"><td>Tue 01 17:00</td><td class="num">EUR</td><td>Unemployment Rate</td><td>—</td></tr>
 <tr><td>Tue 01 22:00</td><td class="num">USD</td><td>ISM Manufacturing PMI</td><td>—</td></tr>
-<tr><td><b>Wed 02 02:00</b></td><td class="num"><b>NZD</b></td><td><b>⚠ RBNZ INTEREST RATE DECISION</b></td><td><b>only G10 bank actively hiking</b></td></tr>
+<tr class="ev-critical"><td><b>Wed 02 02:00</b></td><td class="num"><b>NZD</b></td><td><b>⚠ RBNZ INTEREST RATE DECISION</b></td><td><b>only G10 bank actively hiking</b></td></tr>
 <tr><td>Wed 02 06:45</td><td class="num">NZD</td><td>Building Permits MoM</td><td>prev −3.6%</td></tr>
-<tr><td><b>Wed 02 13:45</b></td><td class="num"><b>CAD</b></td><td><b>⚠ BoC INTEREST RATE DECISION</b></td><td><b>held since April</b></td></tr>
+<tr class="ev-critical"><td><b>Wed 02 13:45</b></td><td class="num"><b>CAD</b></td><td><b>⚠ BoC INTEREST RATE DECISION</b></td><td><b>held since April</b></td></tr>
 <tr><td>Thu 03 09:30</td><td class="num">AUD</td><td>Balance of Trade</td><td>—</td></tr>
-<tr><td><b>Thu 03 14:30</b></td><td class="num"><b>CHF</b></td><td><b>Inflation Rate YoY</b></td><td>prev 0.4%, <b>fcst 0.7%</b></td></tr>
+<tr class="ev-high"><td><b>Thu 03 14:30</b></td><td class="num"><b>CHF</b></td><td><b>Inflation Rate YoY</b></td><td>prev 0.4%, <b>fcst 0.7%</b></td></tr>
 <tr><td>Thu 03 20:30</td><td>CAD · USD</td><td>Balance of Trade</td><td>both</td></tr>
 <tr><td>Fri 04 07:30</td><td class="num">JPY</td><td>Household Spending YoY</td><td>—</td></tr>
 <tr><td>Fri 04 17:00</td><td class="num">EUR</td><td>Retail Sales YoY</td><td>—</td></tr>
-<tr><td><b>Fri 04 20:30</b></td><td class="num"><b>USD</b></td><td><b>⚠ NON FARM PAYROLLS (Aug)</b></td><td>the real one — F-50</td></tr>
-<tr><td><b>Fri 04 20:30</b></td><td class="num"><b>CAD</b></td><td><b>Employment Change · Unemployment Rate</b></td><td>—</td></tr>
+<tr class="ev-high"><td><b>Fri 04 20:30</b></td><td class="num"><b>USD</b></td><td><b>⚠ NON FARM PAYROLLS (Aug)</b></td><td>the real one — F-50</td></tr>
+<tr class="ev-high"><td><b>Fri 04 20:30</b></td><td class="num"><b>CAD</b></td><td><b>Employment Change · Unemployment Rate</b></td><td>—</td></tr>
 </table></div>
 <p><b>⚠ Two central bank decisions on Wednesday and NFP on Friday.</b></p>
 <h3 class="sub">4.1 — Event risk by currency (LD-73)</h3>

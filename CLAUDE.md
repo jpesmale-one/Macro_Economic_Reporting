@@ -119,6 +119,7 @@ hand-written version silently degraded while the generator sat unused.
 | The edition itself | `render_edition.py <path.md>` | any other way |
 | **Process narrative** | **§7 Method notes — it already folds** (LD-69) | **§0–§6, the market read** |
 | **The weekly retrospective** | **its own artifact** (LD-70) | **a § of the daily edition** |
+| **The retrospective's shape** | **`docs/RETROSPECTIVE_TEMPLATE.md`** — 2 categories, 4 questions each | **improvising it each week** |
 
 **Before an edition, always:**
 
