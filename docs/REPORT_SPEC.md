@@ -583,9 +583,12 @@ primary noise source (R-8). A pair leaves the set mid-week only by its
 falsifier firing, and is not replaced until the next Monday.
 
 **Method, in order (LD-16):**
-1. **Band** the 8 currencies from §2's tally — STRONG ≥ +4.00, NEUTRAL
-   +0.01…+3.99, WEAK ≤ 0.00. Bands cut on the **scale** (±11.00 since
-   LD-23), never on rank.
+1. **Band** the 8 currencies from §2's tally — **STRONG ≥ +5.50, NEUTRAL
+   +0.01…+5.49, WEAK ≤ 0.00** (LD-76, confirmed by Jeff 2026-08-30).
+   Bands cut on the **scale** (±11.00), never on rank. **5.50 is exactly half
+   the scale** — a geometric split, recorded in `docs/SCORING_BASELINE.md`.
+   *(This step read +4.00 until 2026-08-30 — a stale band in the METHOD is
+   worse than a stale one in a table.)*
 2. **Pair** STRONG vs WEAK in correct quote convention. Precedence
    EUR>GBP>AUD>NZD>USD>CAD>CHF>JPY sets base/quote; strong-as-base =
    LONG, strong-as-quote = SHORT. Never emit a non-standard symbol.
@@ -614,8 +617,47 @@ falsifier firing, and is not replaced until the next Monday.
    than three means searching further down the spread ranking; more than
    three means the week offered more, which is information, not excess.
    Binding language — high-probability reads, **never** guarantees.
-8. **Draw** the zones on the OANDA chart, record entity IDs for clearing
-   next run, never touch Jeff's own drawings.
+8. **CHART EVERY SELECTED PAIR — see the requirement below.** This is not
+   optional and it is not the last thing on a list: **R-23 fails the render**
+   if a selecting edition records no entity IDs in §4.3.
+
+#### REQUIREMENT — chart every newly selected pair (LD-79)
+
+**Jeff, 2026-08-30:** *"we should make it as a part of the requirement to chart
+the pairs everytime we select a new pairs"*
+
+**A pair that is selected but not charted is half-delivered.** The report computed
+the levels; the reader should not have to re-plot them by hand to see where the
+week is being tracked from.
+
+**Every selected pair gets AT LEAST three lines, on its `OANDA:` daily chart:**
+
+| Line | What it is |
+|---|---|
+| **Entry reference** | the close the week is graded from |
+| **Falsifier** | the level that voids the read — a real printed bar beyond 1 ATR (LD-48) |
+| **Structure ahead** | what price meets next IN THE BIAS DIRECTION — the room the read is aiming into (LD-47) |
+
+**Draw a fourth when a constraint needs to be visible.** GBPAUD on 2026-08-30
+carried its 45-bar low as a fourth line **because that low sits inside 1 ATR and
+therefore CANNOT serve as the falsifier** — on the chart the constraint is
+obvious; in prose it is a footnote.
+
+**Each line carries a LABEL stating what it is and its evidence** (LD-5): the bar
+that formed it, its distance from price, and for a falsifier the ATR check.
+
+**Record every entity ID in §4.3**, so the next selection can clear them
+(LD-16 step 6) without touching Jeff's own drawings.
+
+**⚠ CHECK `draw_list` AND `draw_get_properties` BEFORE DRAWING** (LD-5). On
+2026-08-30 CADCHF carried **9** of Jeff's rectangles and NZDJPY **4** of his
+rectangles and trend lines. **Ours are labelled; his are not.** Never clear a
+drawing you did not create.
+
+**Enforced by R-23.** A WEEKEND edition must record ≥ 3 entity IDs in §4.3 or
+the render fails. **The rule existed as step 8 and was skipped anyway on
+2026-08-30** — which is why it is now a named requirement with a guard behind
+it rather than a trailing line in a list.
 
 **FOUR IS A HARD CEILING (LD-35)** — 8 currencies, each claimable once,
 so 4 leg-disjoint pairs is the arithmetic maximum. A qualifying fifth

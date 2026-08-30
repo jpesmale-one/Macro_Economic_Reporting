@@ -120,6 +120,7 @@ hand-written version silently degraded while the generator sat unused.
 | **Process narrative** | **§7 Method notes — it already folds** (LD-69) | **§0–§6, the market read** |
 | **The weekly retrospective** | **its own artifact** (LD-70) | **a § of the daily edition** |
 | **The retrospective's shape** | **`docs/RETROSPECTIVE_TEMPLATE.md`** — 2 categories, 4 questions each | **improvising it each week** |
+| **A newly selected pair** | **CHART IT** — entry ref + falsifier + structure ahead (LD-79) | **publishing a falsifier with no line on the chart** |
 
 **Before an edition, always:**
 
@@ -130,8 +131,16 @@ python pipelines/freshness.py            # LD-54 - revisions + stalled series
 python pipelines/test_guards.py          # 8 real regressions must all block
 python pipelines/week_ahead.py           # §4.0 events, DATE -> TIME -> CCY
 python pipelines/whole_edition.py <md>   # LD-67 - every section vs every other
-python pipelines/render_edition.py <md>  # 14 guards run before a byte is written
+python pipelines/render_edition.py <md>  # 17 guards run before a byte is written
 ```
+
+**On a SELECTING edition (Sunday), one more thing is REQUIRED before the
+render: CHART EVERY PAIR** (LD-79). Entry reference, falsifier, and the
+structure it is aiming into — on the `OANDA:` daily chart, labelled, with
+entity IDs recorded in §4.3. **Check `draw_list` first and never clear a
+drawing you did not create** (LD-5). **R-23 fails the render if you skip it**
+— which happened on 2026-08-30, when three pairs were selected and nothing
+was drawn.
 
 **Starting TradingView (F-9 - the recipe, not just the file name).** The
 MCP's own `tv_launch` FAILS on this machine: it falls back to a local MSIX
