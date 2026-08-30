@@ -63,6 +63,23 @@ GROUPS = {'US': 'Safe haven', 'JP': 'Safe haven', 'CH': 'Safe haven',
 
 # Bands cut on the SCALE (+/-11.00 since LD-23), never on rank - a rank split
 # would force three "weak" currencies in a week when all eight are positive.
+# LD-76 - BANDS, confirmed by Jeff 2026-08-30: "The 5.5 is our benchmark
+# for a strong currency then."
+#
+# 5.50 is EXACTLY HALF the +-11.00 scale (weights 1+1+1+2+3 = 8, plus
+# Rate 3). It is a GEOMETRIC split, not an empirical or outcome-derived
+# one: top half STRONG, anything positive NEUTRAL, zero or below WEAK.
+#
+# KEPT DELIBERATELY through the LD-71 regrade. Grading made full marks
+# much harder to earn, so STRONG went from 3 currencies to 1 on the same
+# line - GBP 5.75 -> 5.31 and EUR 6.25 -> 5.05 both crossed out without
+# any judgement being made about them. Jeff's call is that a HIGHER BAR
+# for STRONG is the correct outcome, not a mis-calibration.
+#
+# Nothing downstream SELECTS on a band - section 4 selects on the SPREAD
+# between two currencies. The band is a published label.
+#
+# Full context: docs/SCORING_BASELINE.md section 5.
 BAND_STRONG, BAND_WEAK = 5.50, 0.00
 
 

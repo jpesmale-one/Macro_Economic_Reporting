@@ -54,7 +54,9 @@ the arithmetic is option C and is deliberately NOT in v1** — see §6.
 | **Inflation** | **3.0** | CONFIRMING | the other mandate, and the louder one |
 | **Interest Rate** | **3.0** | THE DRIVER | what actually prices a currency |
 
-**Scale: ±11.00.** Sum of weights = 11.
+**Scale: ±11.00.** The five scored categories in `score_model.W` sum to **8.0**;
+**Rate is added separately in `compute()` at weight 3.0**, so the maximum is 11.0.
+A reader checking `W` alone will see 8 and should not conclude the scale is wrong.
 
 **Within a category the weight splits evenly across its rows.** USD Production
 has 4 rows → each is worth 0.25. A currency with 1 row in a category puts the
@@ -184,12 +186,38 @@ to this.**
 | USD | **+0.52** | +1.75 | +0.43 | −0.15 | +0.58 | BUILDING |
 | CHF | **−0.64** | −0.38 | +0.69 | −0.47 | **+1.16** | BUILDING |
 
-**Bands: STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00.**
+### The bands — CONFIRMED, not inherited (LD-76)
 
-**⚠ Grading lowered most scores.** That is expected — full marks now require a
-decisive print, where before any beat scored maximum. **The BANDS were not
-re-cut for the new distribution.** Under v1 only CAD is STRONG where four
-currencies were before. **That is a known open question, not an oversight.**
+**STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00**
+
+**5.50 is exactly half the ±11.00 scale.** Weights sum to 8 (1+1+1+2+3) and
+Rate adds 3. It is a **geometric split**: top half STRONG, anything positive
+NEUTRAL, zero or below WEAK. **It is not derived from a distribution of scores
+and not validated against outcomes.**
+
+**Jeff, 2026-08-30, asked where it came from, was told exactly this, and kept
+it: _"The 5.5 is our benchmark for a strong currency then."_**
+
+**That decision is the point.** Grading made full marks much harder to earn, so
+**STRONG went from 3 currencies to 1 on an unchanged line** — GBP 5.75 → 5.31
+and EUR 6.25 → 5.05 both crossed out. **The call is that a higher bar for
+STRONG is the correct outcome, not a mis-calibration to be tuned away.**
+
+**Two things to keep in view:**
+
+- **±11.00 is still the maximum and the arithmetic guarantees it** — `graded()`
+  clamps each indicator to [−1,+1], so a category with weight *w* and *n* rows
+  returns exactly *w* when every row scores +1. **What changed is how hard
+  that is**, not the ceiling.
+- **The realistic range has compressed.** CAD leads at **+6.56** and is short
+  **4.44** — of which **2.62 is the Rate category alone**, because
+  `rate_model.py` scores inflation-vs-mandate only and was **not touched by
+  LD-71**. **The heaviest-weighted category still runs on the old logic.**
+  See improvement item #6.
+
+**Nothing downstream selects on a band.** §4 selects on the **spread between
+two currencies**. The band is a published label, which is why leaving it
+unchanged carries no selection risk.
 
 ---
 
@@ -201,11 +229,11 @@ rediscovery.**
 | # | Gap | Status |
 |---|---|---|
 | 1 | **The divisors (5 / 3 / 0.10) are unvalidated judgement calls** | first thing to revisit |
-| 2 | **Bands were not re-cut for the graded distribution** | only CAD is STRONG now |
+| 2 | ~~Bands not re-cut~~ | **DECIDED 2026-08-30 (LD-76)** — kept at 5.50; a higher bar for STRONG is the intended outcome |
 | 3 | **The chain is a VIEW, not arithmetic** (option C) | needs evidence that leading actually predicts confirming **in our data** |
 | 4 | **21 rows still three-state** | several are Jeff's hand-specified rules — needs his word |
 | 5 | **Off-whitelist indicators are invisible** | US PCE moved the dollar twice in one week and §2 saw neither. A whitelist amendment is Jeff's call (F-3) |
-| 6 | **Rate score is inflation-vs-mandate only** | `rate_model.py` — steps 2–4 (priced odds, vote splits, forward paths) were rejected; see that file |
+| 6 | **Rate score is inflation-vs-mandate only AND was not regraded by LD-71** | `rate_model.py`. **The heaviest category (weight 3) still runs old logic** — it is 2.62 of CAD's 4.44 gap to the ceiling. Steps 2–4 (priced odds, vote splits, forward paths) were rejected; see that file |
 
 **Before changing any of these, measure the current state first.** LD-71
 happened because *54% of slots at ceiling* was measured, not guessed — and the
@@ -229,5 +257,5 @@ than trusting the output.
 
 | Version | Date | Change |
 |---|---|---|
-| **v1 GRADED** | **2026-08-30** | **Graded magnitudes replace three-state for 50 of 71 rows (LD-71). Cycle view added (LD-72). BASELINE.** |
+| **v1 GRADED** | **2026-08-30** | **Graded magnitudes replace three-state for 50 of 71 rows (LD-71). Cycle view added (LD-72). Bands confirmed at 5.50 (LD-76). BASELINE.** |
 | v0 three-state | 2026-08-19 | GOOD/NEUTRAL/BAD per indicator, weighted categories (LD-13) |
