@@ -363,7 +363,11 @@ REQUIRED = {
 REQUIRED_SUB = {
     'DAILY':   ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear', '4.0'],
     'MONDAY':  ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear', '4.0'],
-    'WEEKEND': ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear', '4.0'],
+    # LD-74: a WEEKEND edition SELECTS, so it must also carry the cycle
+    # view (2.0b), the chosen set (4.3) and the bench (4.5). Sunday is
+    # not a different template - it is this one with selection in it.
+    'WEEKEND': ['2.0', '2.0b', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6',
+                'Fear', '4.0', '4.3', '4.5'],
 }
 # LD-38 / F-23 - MANDATORY GENERATED BLOCKS, asserted by MARKER not heading.
 # A heading proves a section EXISTS; it does not prove it was BUILT the way
@@ -672,7 +676,10 @@ def assert_tally_sorted(md):
     the table that sets the BANDS every other section reads.
     """
     try:
-        blk = md[md.index('### 2.0'):md.index('### 2.1')]
+        # 2.0b (LD-72) sits between 2.0 and 2.1 and is NOT a tally -
+        # its columns are normalised stage scores. End the slice there.
+        _end = md.index('### 2.0b') if '### 2.0b' in md else md.index('### 2.1')
+        blk = md[md.index('### 2.0'):_end]
     except ValueError:
         return 0
     scores = []
@@ -912,7 +919,10 @@ def assert_scores_consistent(md):
     produced it, so one edition shipped two different values for one currency.
     """
     try:
-        blk = md[md.index('### 2.0'):md.index('### 2.1')]
+        # 2.0b (LD-72) sits between 2.0 and 2.1 and is NOT a tally -
+        # its columns are normalised stage scores. End the slice there.
+        _end = md.index('### 2.0b') if '### 2.0b' in md else md.index('### 2.1')
+        blk = md[md.index('### 2.0'):_end]
     except ValueError:
         return 0
     tally = {}
