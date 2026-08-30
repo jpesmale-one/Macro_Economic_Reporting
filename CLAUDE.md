@@ -116,6 +116,7 @@ hand-written version silently degraded while the generator sat unused.
 | **§2.0 tally** | **`section2.tally_table()`** — sorted by score (LD-61) | **patched in place** |
 | **Grading rules** | `full_time_grade()` · `claimant_grade()` · `market_pricing()` | applied by hand |
 | **§4.6 direction × surprise** | **`directional.py`** (LD-68) | **never fed into the tally** |
+| **A table in an approved section** | **`docs/LAYOUT_LOCK.md`** — the column set is LOCKED (LD-80) | **restyled, renamed or re-columned in passing** |
 | The edition itself | `render_edition.py <path.md>` | any other way |
 | **Process narrative** | **§7 Method notes — it already folds** (LD-69) | **§0–§6, the market read** |
 | **The weekly retrospective** | **its own artifact** (LD-70) | **a § of the daily edition** |
@@ -175,7 +176,7 @@ hand-written generated block (LD-38), fewer than 70 whitelist rows or any
 blank cell (LD-39), an off-list indicator carrying a score (LD-41), a section
 1 with no news source (F-17), levels published but not drawn (LD-46), a stale
 or unreconciled TE capture (LD-50), **a currency score quoted outside
-§2.0 that contradicts the tally (R-16/F-46)**, **a stale Fear & Greed capture (R-17/F-51)**, **any cross-section contradiction (R-18/LD-67)**. **A FATAL is information, not an
+§2.0 that contradicts the tally (R-16/F-46)**, **a stale Fear & Greed capture (R-17/F-51)**, **any cross-section contradiction (R-18/LD-67)**, **a locked table whose column set changed (R-24/LD-80)**. **A FATAL is information, not an
 obstacle — never edit content to clear a gate.**
 
 ### What the guards CANNOT catch
@@ -192,6 +193,16 @@ past every guard and were caught by Jeff reading:
   never whether it was *provisional*.
 
 **Recompute every derived figure and name the bar that produced it (LD-48).**
+
+**A FINDING IS NOT RECORDED UNTIL IT IS IN THE SPEC (LD-81).** F-62, F-63
+and F-64 lived ONLY in commit messages — zero occurrences in
+`REPORT_SPEC.md`. Jeff: *"are we documenting these changes and
+corrections? TI happened already before and it happened again now."*
+**A next session reads the spec and the newest handover, never `git
+log`.** Every finding lands in THREE places in the SAME commit: the
+edition's §8, `docs/REPORT_SPEC.md`, and a guard or audit.
+**The commit message is the fourth, not the first.**
+
 
 ---
 

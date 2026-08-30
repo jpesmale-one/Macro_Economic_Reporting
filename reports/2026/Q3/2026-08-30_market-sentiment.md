@@ -345,7 +345,7 @@ September** *(www150.statcan.gc.ca, primary)*. The model keeps May/26 5.9%,
 
 ## §3 — Interest Rates — forward-looking
 
-**No policy decision has occurred this week** — the next is **NZD on 2 Sep**, then CAD the same day. Republished in full (LD-22). **Rates verified unchanged this run**; the commentary is carried.
+**No policy decision has occurred this week** — the next is **NZD on 2 Sep**, then CAD the same day. **Every policy rate below is unchanged from last week.**
 
 | CCY / Rate | Last decision | Bias | Next meeting (PHT) | Expectation |
 |---|---|---|---|---|
@@ -368,32 +368,38 @@ September** *(www150.statcan.gc.ca, primary)*. The model keeps May/26 5.9%,
 from the TE global calendar **plus the CH and NZ country pages**, which the
 global page omits entirely (F-57).
 
-| When (PHT) | CCY | Indicator | Note |
-|---|---|---|---|
-| **Mon 31 07:50** | **JPY** | **Retail Sales YoY** | prev 0.5% — **added after F-63**, the window was dropping it |
-| Mon 31 13:00 | JPY | Consumer Confidence | — |
-| **Tue 01 07:00** | AUD | S&P Global Mfg PMI Final | prev 52.0 — **added after F-64** |
-| **Tue 01 08:30** | JPY | S&P Global Mfg PMI Final | prev 54.5 |
-| **Tue 01 09:00** | **NZD** | **ANZ Business Confidence** | prev 56.1 |
-| **Tue 01 16:00** | EUR | S&P Global Mfg PMI Final | prev 51.9 |
-| **Tue 01 16:30** | GBP | S&P Global Mfg PMI Final | prev 51.9 |
-| **Tue 01 21:30** | CAD | S&P Global Mfg PMI | prev 53.5 |
-| **Thu 03 15:30** | CHF | Procure.ch-UBS Mfg PMI | prev 53.2 — **F-64b** |
-| Tue 01 14:30 | CHF | Retail Sales YoY | prev 1.5% |
-| Tue 01 17:00 | EUR | Unemployment Rate | — |
-| Tue 01 22:00 | USD | ISM Manufacturing PMI | — |
-| **Wed 02 02:00** | **NZD** | **⚠ RBNZ INTEREST RATE DECISION** | **only G10 bank actively hiking** |
-| Wed 02 06:45 | NZD | Building Permits MoM | prev −3.6% |
-| **Wed 02 13:45** | **CAD** | **⚠ BoC INTEREST RATE DECISION** | **held since April** |
-| Thu 03 09:30 | AUD | Balance of Trade | — |
-| **Thu 03 14:30** | **CHF** | **Inflation Rate YoY** | prev 0.4%, **fcst 0.7%** |
-| Thu 03 20:30 | CAD · USD | Balance of Trade | both |
-| Fri 04 07:30 | JPY | Household Spending YoY | — |
-| Fri 04 17:00 | EUR | Retail Sales YoY | — |
-| **Fri 04 20:30** | **USD** | **⚠ NON FARM PAYROLLS (Aug)** | the real one — F-50 |
-| **Fri 04 20:30** | **CAD** | **Employment Change · Unemployment Rate** | — |
+| When (PHT) | CCY | Indicator | Current actual | Cons / Fcst | **Market priced** | Status |
+|---|---|---|---|---|---|---|
+| **Mon 31 07:50** | JPY | Retail Sales YoY | 0.5% | — / — | UNSCORED | ahead |
+| Mon 31 13:00 | JPY | Consumer Confidence | 34.9 | — / — | UNSCORED | ahead |
+| **Tue 01 07:00** | AUD | S&P Global Mfg PMI Final | 52.0 | — / — | UNSCORED | ahead |
+| **Tue 01 08:30** | JPY | S&P Global Mfg PMI Final | 54.5 | — / — | UNSCORED | ahead |
+| **Tue 01 09:00** | **NZD** | **ANZ Business Confidence** | 56.1 | — / 55.7 | **BAD** | ahead |
+| Tue 01 14:30 | CHF | Retail Sales YoY | 1.5% | — / 2.0% | **GOOD** | ahead |
+| **Tue 01 16:00** | EUR | S&P Global Mfg PMI Final | 51.9 | — / — | UNSCORED | ahead |
+| **Tue 01 16:30** | GBP | S&P Global Mfg PMI Final | 51.9 | — / — | UNSCORED | ahead |
+| Tue 01 17:00 | EUR | Unemployment Rate | 6.3% | — / — | UNSCORED | ahead |
+| **Tue 01 21:30** | CAD | S&P Global Mfg PMI | 53.5 | — / — | UNSCORED | ahead |
+| **Tue 01 22:00** | **USD** | **ISM Manufacturing PMI** | 53.2 | — / — | UNSCORED | ahead |
+| **Wed 02 02:00** | **NZD** | **⚠ RBNZ INTEREST RATE DECISION** | 2.50% | — / 2.75% | **UNSCORED** — not a whitelist row (F-3) | **ahead** |
+| Wed 02 06:45 | NZD | Building Permits MoM | −3.6% | — / 2.5% | **GOOD** | ahead |
+| **Wed 02 13:45** | **CAD** | **⚠ BoC INTEREST RATE DECISION** | 2.25% | — / — | UNSCORED | **ahead** |
+| Thu 03 09:30 | AUD | Balance of Trade | A$1.93B | — / — | UNSCORED | ahead |
+| **Thu 03 14:30** | **CHF** | **Inflation Rate YoY** | 0.4% | — / 0.7% | **GOOD** | ahead |
+| **Thu 03 15:30** | CHF | Procure.ch-UBS Mfg PMI | 53.2 | — / — | UNSCORED | ahead |
+| Thu 03 20:30 | CAD | Balance of Trade | C$3.86B | — / — | UNSCORED | ahead |
+| Thu 03 20:30 | USD | Balance of Trade | −$73.26B | — / — | UNSCORED | ahead |
+| Fri 04 07:30 | JPY | Household Spending YoY | −3.3% | — / — | UNSCORED | ahead |
+| Fri 04 17:00 | EUR | Retail Sales YoY | 0.7% | — / — | UNSCORED | ahead |
+| **Fri 04 20:30** | **USD** | **⚠ NON FARM PAYROLLS (Aug)** | −23K | — / — | UNSCORED | **ahead** |
+| **Fri 04 20:30** | **USD** | **Unemployment Rate** | 4.1% | — / — | UNSCORED | ahead |
+| **Fri 04 20:30** | **CAD** | **Employment Change** | 75.1K | — / — | UNSCORED | ahead |
+| **Fri 04 20:30** | **CAD** | **Unemployment Rate** | 6.4% | — / — | UNSCORED | ahead |
+| Fri 04 (untimed) | NZD | Global Dairy Trade Price Index | 2.3% | — / — | UNSCORED | ahead |
 
-**⚠ Two central bank decisions on Wednesday and NFP on Friday.**
+**⚠ Most CONS / FCST cells read — because TE has not published consensus for
+these yet; it firms up as each release approaches (LD-66). Rows without a
+priced range are **UNSCORED**, not assumed neutral. §4.6 grades them as they land.**
 
 ### 4.1 — Event risk by currency (LD-73)
 

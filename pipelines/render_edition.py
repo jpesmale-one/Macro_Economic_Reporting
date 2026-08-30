@@ -621,6 +621,68 @@ def assert_no_offlist_scores(md):
     return len([l for l in blk.splitlines() if l.startswith('| ')])
 
 
+# LD-80 - LOCKED TABLE HEADERS. Full context: docs/LAYOUT_LOCK.md
+# Jeff, 2026-08-30: "once the report layout is approve we should lock it
+# up and not just changing the report format every now and then. It's
+# important for an analyst to consistently look at standard report."
+#
+# The §4.0 header changed in FOUR CONSECUTIVE EDITIONS and the fourth
+# silently dropped three columns - the entire LD-63 pricing read - while
+# nothing noticed. Content changes freely; STRUCTURE DOES NOT.
+LOCKED_TABLES = {
+    '2.0': ['Band', 'CCY', 'Score', 'Group'],
+    '2.0b': ['CCY', 'Leading', 'Confirming', 'Gap', 'Score'],
+    '4.0': ['When (PHT)', 'CCY', 'Indicator', 'Current actual',
+            'Cons / Fcst', 'Market priced', 'Status'],
+    '4.3': ['#', 'Pair', 'Bias'],
+}
+
+
+def assert_layout_locked(md):
+    """A locked table must keep its column set (R-24/LD-80).
+
+    Checks the FIRST table under each locked heading. Compares stripped
+    header cells against LOCKED_TABLES - a prefix match, so a table may
+    carry EXTRA trailing columns but never fewer, reordered, or renamed.
+
+    This is the guard that would have caught §4.0 going from seven
+    columns to four on 2026-08-30, taking the pricing read with it.
+    """
+    checked = 0
+    for key, want in LOCKED_TABLES.items():
+        m = re.search(r'^#{3,4}\s+' + re.escape(key) + r'(?![\d])', md, re.M)
+        if not m:
+            continue
+        seg = md[m.end():]
+        nxt = re.search(r'^#{2,4}\s', seg, re.M)
+        if nxt:
+            seg = seg[:nxt.start()]
+        hdr = None
+        for line in seg.split(chr(10)):
+            t = line.strip()
+            if t.startswith('|') and not re.match(r'^[|\s:-]+$', t):
+                hdr = [c.strip().replace('*', '')
+                       for c in t.strip('|').split('|')]
+                break
+        if hdr is None:
+            continue
+        checked += 1
+        got = hdr[:len(want)]
+        if got != want:
+            raise SystemExit(
+                'FATAL (R-24/LD-80): §%s table header changed.%s'
+                '  locked: %s%s'
+                '  found : %s%s'
+                'A locked table keeps its COLUMN SET - content changes freely,'
+                ' structure does not. §4.0 changed shape in four consecutive'
+                ' editions and the fourth dropped the pricing columns entirely.'
+                " If the change is intended, ask Jeff and update"
+                ' docs/LAYOUT_LOCK.md in the same commit.'
+                % (key, chr(10), ' | '.join(want), chr(10),
+                   ' | '.join(got), chr(10)))
+    return '%d locked table(s) intact' % checked
+
+
 def assert_pairs_charted(md, etype):
     """A SELECTED pair must be on a chart, with entity IDs (R-23).
 
@@ -1244,6 +1306,7 @@ if __name__ == '__main__':
     nrow, nexp = assert_whitelist(md)
     ntal = assert_tally_sorted(md)
     assert_levels_drawn(md)
+    layout = assert_layout_locked(md)
     charted = assert_pairs_charted(md, fm['type'])
     assert_no_offlist_scores(md)
     place_state = assert_process_placement(md)
@@ -1263,6 +1326,7 @@ if __name__ == '__main__':
     print('  LD-54 freshness %s' % fresh_state)
     print('  LD-46 levels    drawn and entity ids recorded')
     print('  R-23 pairs      %s' % charted)
+    print('  R-24 layout     %s' % layout)
     print('  LD-61 tally     %d rows, sorted by score' % ntal)
     if nexp:
         print('  LD-41 4.0 scores  whitelist indicators only')

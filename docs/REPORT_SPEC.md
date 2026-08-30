@@ -1016,6 +1016,127 @@ while destroying the citation trail.
 
 ---
 
+### LD-80 · R-24 — an approved layout is LOCKED
+
+**Jeff, 2026-08-30:** *"4.0 why we change the format of the table? I only
+asked to highlight high impact news why we're changing table formats again and
+again? once the report layout is approve we should lock it up and not just
+changing the report format every now and then. It's important for an analyst
+to consistently look at standard report."*
+
+**The evidence is worse than the complaint.** §4.0's header changed in **four
+consecutive editions**, and the fourth dropped from seven columns to four —
+**silently taking `Current actual`, `Cons / Fcst` and `Market priced` with it,
+which is the entire LD-63 pricing read.** Nothing flagged the loss.
+
+| Edition | §4.0 columns |
+|---|---|
+| 27 Aug | `When · CCY · Indicator · Current actual · Cons / Fcst · Market priced · Status` |
+| 28 Aug | same seven, **all four right-hand headings renamed** |
+| 29 Aug | same, **Outcome** bolded |
+| **30 Aug** | **`When · CCY · Indicator · Note`** — **four columns** |
+
+**THE RULE: content changes freely; STRUCTURE DOES NOT.** Column count, order
+and headings are fixed until Jeff approves a change. **A request to HIGHLIGHT
+something is not a request to RESTRUCTURE it** — highlighting is a renderer
+concern (LD-77), the column set is a layout concern.
+
+**`docs/LAYOUT_LOCK.md` holds the locked headers** for §2.0, §2.0b, §2.1–2.5,
+§4.0, §4.3 and §4.5, and the procedure for changing one (ask Jeff; update that
+file in the same commit).
+
+**R-24 `assert_layout_locked()`** compares each locked table's first header row
+against `LOCKED_TABLES` and fails the render on a mismatch. A prefix match — a
+table may gain trailing columns, never lose, reorder or rename. **Verified
+against the live defect** rather than trusting a pass:
+
+```
+FATAL (R-24/LD-80): §4.0 table header changed.
+  locked: When (PHT) | CCY | Indicator | Current actual | Cons / Fcst | Market priced | Status
+  found : When (PHT) | CCY | Indicator | Note
+```
+
+**Every one of the four variants was written in good faith while doing
+something else.** That is precisely why it needs a guard and not a resolution.
+
+---
+### F-62 · F-63 · F-64 — three source-alignment defects, 2026-08-30
+
+**All three were found by Jeff, not by a guard.** Recorded here because the
+first two were previously recorded ONLY in commit messages, and Jeff's
+observation was exact: *"TI happened already before and it happened again
+now."* A finding that lives in `git log` is not documented.
+
+#### F-62 — the row held the FORECAST, not the actual
+
+**USD Building Permits MoM Final read 5.0%. TE's actual is 4.3%; 5.0% is its
+CONSENSUS AND FORECAST column.**
+
+**The tell I walked past:** our "sourced" figure matched the published
+consensus EXACTLY. **When a value you claim to have sourced from an agency
+lands precisely on the forecast, re-verify it** — that is the inverse of
+F-1 and it deserves the same reflex.
+
+**Still unresolved, and the exemption says so instead of asserting:** Census
+CB26-127 of 18 Aug states 1,443,000 / "5.0 percent above"; TE's calendar
+carries a Final on 25 Aug at 1.433M / 4.3%. Both are internally consistent
+against a June of 1,374,000 — they differ only on the July level. **The row
+follows TE's ACTUAL because that release demonstrably happened.**
+
+#### F-63 — a UTC date filtered against a PHT window
+
+**The capture stores UTC; the LD-66 window is PHT.** `whitelist_events()`
+filtered the raw date and converted afterwards, so **every event after 16:00
+UTC — the entire Asian session — fell on the next PHT day and was dropped**
+before conversion. JPY Retail Sales at 23:50 UTC Sun is 07:50 PHT Mon.
+
+**Convert first, filter second.**
+
+#### F-64 — "Mfg" never matches "manufacturing"
+
+**Our whitelist writes `Mfg`; every calendar writes `manufacturing`.** Token
+matching needs each whitelist word present, so **seven of eight PMI rows were
+invisible to §4.0.**
+
+**This is F-38 again** — 11 rows that matched nothing, four days earlier.
+**Same defect, same discovery route: Jeff reading.**
+
+| Mechanism | Purpose |
+|---|---|
+| `week_ahead._SYN` | expands abbreviations WE introduced (`mfg`, `svcs`, `chg`, `conf`, `prel`, `ex`) |
+| `week_ahead._DROP` | drops vendor words the calendar omits (CHF's `UBS`) |
+| **`pipelines/coverage_audit.py`** | **R-25 — proves every row is matchable, rather than waiting to be told** |
+
+**A synonym list only fixes abbreviations already tripped over.** The audit is
+the durable answer: over a wide window, **a row that matches NOTHING is not
+quiet — it is unmatchable.** Run it whenever the whitelist changes or a
+source renames a series.
+
+**First run, 2026-08-30:** 37 of 71 matched in a 28-day window; **zero
+unmatchable**. Six apparent misses were verified by hand as `_NOT` filters
+working correctly (MoM vs YoY, prel vs Final, BRC vs ONS).
+
+---
+
+### LD-81 — a finding is not recorded until it is in the SPEC
+
+**Jeff, 2026-08-30:** *"are we documenting these changes and corrections? TI
+happened already before and it happened again now."*
+
+**F-62, F-63 and F-64 existed only in commit messages — zero occurrences in
+`REPORT_SPEC.md` or `CLAUDE.md`.** A session resuming next week reads the
+spec and the handover, not `git log`. **A finding in a commit message is a
+receipt, not documentation.**
+
+**Every finding lands in THREE places, in the same commit:**
+
+1. **The edition's §8** — what happened, that week
+2. **`docs/REPORT_SPEC.md`** — the durable rule, if it changes behaviour
+3. **A guard or an audit** — so it cannot recur silently
+
+**The commit message is the fourth, not the first.**
+
+---
 ### LD-77 · LD-78 — high-impact events are visible at a glance
 
 **Jeff, 2026-08-30:** *"can you highlight the High Impact news in 4.0? So that I
