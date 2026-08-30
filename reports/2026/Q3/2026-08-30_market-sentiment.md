@@ -217,7 +217,7 @@ Bands: **STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00**
 
 | CCY | Indicator | Actual | Previous | Ref | Threshold | Score |
 |---|---|---|---|---|---|---|
-| USD | Building Permits MoM Final | 5.0% | -2.6% | Jul/26 | >0.5% | **GOOD** |
+| USD | Building Permits MoM Final | 4.3% | -2.6% | Jul/26 | >0.5% | **GOOD** |
 | USD | CB Consumer Confidence | 89.4 | 90.2 | Aug/26 | >Prev | **BAD** |
 | USD | Personal Spending MoM | 0.2% | 0.3% | Jul/26 | 0-0.5% | NEUTRAL |
 | USD | Retail Sales YoY | 5.0% | 6.8% | Jul/26 | >0.5% | **GOOD** |

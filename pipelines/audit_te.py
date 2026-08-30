@@ -47,14 +47,20 @@ SLUG = {'US': 'united-states', 'EA': 'euro-area', 'GB': 'united-kingdom',
 # reason - this list is not a way to silence a mismatch (F-35).
 KNOWN_DIFFERENT = {
     ('US', 'Building Permits MoM Final'):
-        'we carry MoM %, TE carries the LEVEL (1443 SAAR). Both are the '
-        'JULY figure from the SAME Census release of 18 Aug 2026 - Census '
-        'publishes ONE monthly New Residential Construction report per '
-        'month (next: 17 Sep), so there is no separate prelim/final pair '
-        'for a given month. F-45: the previous exemption asserted a 25 Aug '
-        'Final that the agency calendar does not have, and that false '
-        'premise kept the row a month stale at -2.6%% BAD when the '
-        'published July figure was +5.0%% GOOD.',
+        "we carry MoM %, TE carries the LEVEL. F-62 (2026-08-30): this row "
+        "held 5.0%, which is TE's CONSENSUS AND FORECAST column, not its "
+        "ACTUAL of 4.3%. Jeff caught it. Corrected. "
+        "TWO SEPARATE DOCUMENTS EXIST AND THEY DISAGREE: Census release "
+        "CB26-127 of 18 Aug states 1,443,000 and '5.0 percent above' and "
+        "says next release 17 Sep; TE's calendar carries a 'Building "
+        "Permits Final JUL' on 25 Aug at 1.433M / 4.3%. Both are "
+        "internally consistent against a June of 1,374,000 - they differ "
+        "only on the July level, 1443 vs 1433. WHICH IS AUTHORITATIVE IS "
+        "NOT SETTLED; the row follows TE's ACTUAL because that release "
+        "demonstrably happened (Jeff supplied the calendar screenshot). "
+        "DO NOT re-assert that the 25 Aug release does not exist - F-45 "
+        "did exactly that, from one document's 'next release' line, and "
+        "it was wrong.",
     ('US', 'Balance of Trade'): 'we carry $bn, TE carries the bare number',
     ('JP', 'Balance of Trade'): 'we carry JPY bn, TE rounds',
     ('NZ', 'Balance of Trade'): 'we carry NZ$ bn, TE carries millions',
