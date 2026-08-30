@@ -370,6 +370,7 @@ global page omits entirely (F-57).
 
 | When (PHT) | CCY | Indicator | Note |
 |---|---|---|---|
+| **Mon 31 07:50** | **JPY** | **Retail Sales YoY** | prev 0.5% — **added after F-63**, the window was dropping it |
 | Mon 31 13:00 | JPY | Consumer Confidence | — |
 | **Tue 01 09:00** | **NZD** | **ANZ Business Confidence** | prev 56.1 |
 | Tue 01 14:30 | CHF | Retail Sales YoY | prev 1.5% |

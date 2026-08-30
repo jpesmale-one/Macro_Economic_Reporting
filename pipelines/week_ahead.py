@@ -226,7 +226,14 @@ def whitelist_events(capture_path, start, end):
     data = json.load(io.open(capture_path, encoding='utf-8'))
     timed, no_time, seen = [], [], set()
     for e in data:
-        if not (start <= e.get('date', '') <= end):
+        # F-63: CONVERT FIRST, FILTER SECOND. The capture stores UTC and the
+        # LD-66 window is PHT, so filtering the raw date drops every event
+        # after 16:00 UTC - which is the whole Asian session. JPY Retail
+        # Sales at 23:50 UTC Sun 30 Aug IS 07:50 PHT Mon 31 Aug, inside the
+        # window, and was being rejected before conversion.
+        _p = pht(e.get('date', ''), e.get('time', ''))
+        _d = _p.strftime('%Y-%m-%d') if _p else e.get('date', '')
+        if not (start <= _d <= end):
             continue
         ccy = CCY.get(e.get('iso'))
         if not ccy:
