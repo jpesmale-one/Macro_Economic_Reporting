@@ -1016,6 +1016,98 @@ while destroying the citation trail.
 
 ---
 
+### LD-82 · R-27 — the SHAPE of the whole edition is locked
+
+**Jeff, 2026-08-30, for the SECOND time in one session:** *"again don't
+change the report format wihtout my approval. if there's a need to change
+then let me know."*
+
+**R-24 worked — §4.0's columns held. And the format changed anyway**, because
+§4.6 **GAINED TWO TABLES** and §4.6 was not in `LOCKED_TABLES`.
+
+**A lock that lists the tables which already broke is a patch over one
+incident, not a lock.** What was asked for is that the report LOOK THE SAME
+unless Jeff approves otherwise — so the guard has to notice a table that did
+not exist before, ANYWHERE, not only a column changing in a table already
+thought about.
+
+**The content was requested; the tables were not.** *"isn't there any changes
+to the Bias?"* is a question about the bias. It is not permission to
+restructure the section that answers it. **Same distinction as LD-80:
+highlighting is not restructuring.**
+
+**R-27 `pipelines/layout_shape.py`** records every section's shape — how many
+tables and each one's columns — in `docs/LAYOUT_LOCK.json`, and fails the
+render when it changes. **Verified against the real defect:**
+
+```
+FATAL (R-27/LD-82): the report SHAPE changed.
+  §4.6 GAINED a table: CCY | Good | Bad | Neutral | No cons. | Net
+```
+
+**Re-blessing is a separate deliberate command** (`--bless`), never a render
+side effect, so a baseline cannot be silently rewritten by the thing it
+guards.
+
+---
+
+### F-67 · LD-83 — coverage is a WINDOW problem, not a NAME problem
+
+**Jeff, 2026-08-30:** *"please please make sure we capture the data
+completely in TE if we need to do a fuzzy matching due to the mismatches then
+let's take a look on it."*
+
+**33 of 71 whitelist rows matched nothing.** The reflex reading is a NAME
+problem — loosen the matcher. **That reading was wrong.**
+
+**TE's GLOBAL page spans about 10 days. The COUNTRY pages span a month.**
+CH and NZ already had country pages and showed 10 and 13 distinct dates;
+**CAD had 4.** The unmatched rows release LATER IN THE MONTH than the global
+page reaches. They were not unmatchable — **they were not in the capture at
+all**, verified by searching the raw rows for each one.
+
+**F-67: fetch every whitelisted currency's country page**, not just the two
+the global page omitted entirely. **505 → 915 rows; coverage 38 → 66 of 71.**
+USD went 92 → 276 rows, CAD 17 → 61.
+
+#### Why NOT fuzzy matching
+
+**The one row that genuinely looked like a name problem is the argument
+against it.** AUD `Inflation Rate YoY` matches nothing, while the capture
+holds **TD-MI Inflation Gauge MoM** and **Consumer Inflation Expectations**.
+A fuzzy matcher binds our CPI row to one of those.
+
+**That is LD-59 exactly** — *"they are 2 different indicator. So they have 2
+different reading."* **A loose match does not report an absence; it INVENTS a
+presence**, and a wrong value is worse than a missing one because nothing
+downstream can tell.
+
+**Matching stays exact.** The remaining 5 rows were each checked by hand and
+are genuine absences — quarterly or monthly series outside even the
+month-long window.
+
+#### LD-83 — expectancy carries the load instead
+
+**Jeff:** *"one thing that could help us determine the usual schedule of the
+indicator in TE is by putting when the indicator is usually released in the
+Month. for example PMI. it's always being released during Week 1."*
+
+**Confirmed by the data — every manufacturing PMI we track lands W1.**
+
+`pipelines/release_week.py` reduces observed release dates to a week-of-month
+(days 1–7 = W1 … 29+ = W5) across every capture kept on disk. **It is a
+histogram of what we have SEEN, not a schedule TE publishes** — it sharpens
+as captures accumulate, and a row seen once is labelled low-confidence.
+
+**`--due` is the view that earns its keep before an edition:** an indicator
+whose usual week is NOW but which is absent from the newest capture. **A
+prompt to look, never proof of a gap** — schedules move.
+
+**This is the durable answer to the coverage question.** Knowing a row is DUE
+is what makes an empty slot legible as a gap rather than a quiet week — which
+is precisely what a looser matcher would have destroyed.
+
+---
 ### F-66 · R-26 — a COMPARISON is not a DIRECTION (again)
 
 **Jeff, 2026-08-30, once F-65 had put real numbers in the consensus column:**

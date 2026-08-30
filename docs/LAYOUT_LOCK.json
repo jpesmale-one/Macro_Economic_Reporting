@@ -1,0 +1,78 @@
+{
+ "0": [
+  "Pair | Bias | Lock ref | Fri close | Week | Outcome",
+  "Change | What it fixes"
+ ],
+ "2.0": [
+  "Band | CCY | Score | Group | Prod · Spend · Trade · Empl · Infl · Rate"
+ ],
+ "2.0b": [
+  "CCY | Leading | Confirming | Gap | Score | Cycle position"
+ ],
+ "2.1": [
+  "CCY | Indicator | Actual | Previous | Ref | Threshold | Score"
+ ],
+ "2.2": [
+  "CCY | Indicator | Actual | Previous | Ref | Threshold | Score"
+ ],
+ "2.3": [
+  "CCY | Indicator | Actual | Previous | Ref | Threshold | Score"
+ ],
+ "2.4": [
+  "CCY | Indicator | Actual | Previous | Ref | Threshold | Score"
+ ],
+ "2.5": [
+  "CCY | Indicator | Actual | Previous | Ref | Threshold | Score"
+ ],
+ "2.6": [
+  "CCY | Rate | Inflation vs mandate | Score"
+ ],
+ "2.7": [
+  " | Before | After"
+ ],
+ "3": [
+  "CCY / Rate | Last decision | Bias | Next meeting (PHT) | Expectation"
+ ],
+ "4.0": [
+  "When (PHT) | CCY | Indicator | Current actual | Cons / Fcst | Market priced | Status"
+ ],
+ "4.1": [
+  "CCY | Risk | Verdict | What lands"
+ ],
+ "4.2": [
+  "Pair | Bias | Spread | Range % | Room | Risk | Confluence | Cycle"
+ ],
+ "4.3": [
+  "# | Pair | Bias | Entry ref | Room | Risk | Falsifier | Clear by",
+  "Pair | Resistance | Entry ref | Falsifier | Entity IDs"
+ ],
+ "4.5": [
+  "Replaces | Alternate | Bias | Conf | Why it is the alternate"
+ ],
+ "4.6": [
+  "Direction (§2) | Surprise | Reading"
+ ],
+ "5": [
+  "Level | Price | From price | What it is",
+  " | Reading | Source",
+  " | Force | How it reaches the gold price | What would stop it",
+  "Level | Touches | Distance | Formed by",
+  "Level | Type | Formed by",
+  "Level | Drawing | TV entity"
+ ],
+ "6": [
+  "Level | Price | From price | What it is",
+  " | Force | How it reaches the BTC price | What would stop it",
+  "Level | Type | Formed by",
+  "Level | Drawing | TV entity"
+ ],
+ "7": [
+  "Guard | Result"
+ ],
+ "8": [
+  "ID | Status"
+ ],
+ "9": [
+  "Gate | State"
+ ]
+}

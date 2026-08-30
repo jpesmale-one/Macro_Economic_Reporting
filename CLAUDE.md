@@ -118,6 +118,7 @@ hand-written version silently degraded while the generator sat unused.
 | **§4.6 direction × surprise** | **`directional.py`** (LD-68) | **never fed into the tally** |
 | **A table in an approved section** | **`docs/LAYOUT_LOCK.md`** — the column set is LOCKED (LD-80) | **restyled, renamed or re-columned in passing** |
 | **What the week is PRICED to deliver** | **`week_ahead.market_pricing()`** — direction from the whitelist (F-66) | **assuming below-consensus is GOOD** |
+| **ANY new table, anywhere** | **ASK JEFF FIRST** — R-27 fails the render (LD-82) | **added because the content was asked for** |
 | The edition itself | `render_edition.py <path.md>` | any other way |
 | **Process narrative** | **§7 Method notes — it already folds** (LD-69) | **§0–§6, the market read** |
 | **The weekly retrospective** | **its own artifact** (LD-70) | **a § of the daily edition** |
@@ -132,6 +133,8 @@ python pipelines/audit_te.py --fetch     # LD-50 - reconcile the whitelist
 python pipelines/freshness.py            # LD-54 - revisions + stalled series
 python pipelines/test_guards.py          # 8 real regressions must all block
 python pipelines/test_pricing.py         # R-26 - 20 hand-graded pricing cases
+python pipelines/release_week.py --due   # LD-83 - due this week, absent from capture
+python pipelines/layout_shape.py <md>    # R-27 - the report SHAPE is locked
 python pipelines/week_ahead.py           # §4.0 events, DATE -> TIME -> CCY
 python pipelines/whole_edition.py <md>   # LD-67 - every section vs every other
 python pipelines/render_edition.py <md>  # 17 guards run before a byte is written
@@ -203,6 +206,16 @@ already saved - `parse()` read `cells[:4]` for the event NAME and stopped.
 nothing.** And when fixing it, remember TE's BLANK Actual cell is itself
 the signal that an event has not released - stripping it shifts every
 column left and manufactures F-1 in our own code (F-65b).
+
+**A ROW THAT MATCHES NOTHING IS USUALLY A WINDOW PROBLEM, NOT A NAME
+PROBLEM (F-67).** 33 of 71 rows matched nothing on 2026-08-30 and the
+reflex was to loosen the matcher. Wrong: TE's GLOBAL page spans ~10 days
+and its COUNTRY pages span a month, so those rows simply were not in the
+capture. Fetching all eight country pages took coverage 38 -> 66 of 71.
+**NEVER fuzzy-match indicator names.** AUD `Inflation Rate YoY` would bind
+to `TD-MI Inflation Gauge` - two different indicators, two different
+readings (LD-59). A loose match does not report an absence, it INVENTS a
+presence. Use `release_week.py --due` for expectancy instead.
 
 
 **A FINDING IS NOT RECORDED UNTIL IT IS IN THE SPEC (LD-81).** F-62, F-63

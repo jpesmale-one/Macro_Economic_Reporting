@@ -1306,6 +1306,10 @@ if __name__ == '__main__':
     nrow, nexp = assert_whitelist(md)
     ntal = assert_tally_sorted(md)
     assert_levels_drawn(md)
+    # R-27/LD-82 - the SHAPE of every section, not just four headers.
+    # 4.0's columns held under R-24 while 4.6 quietly GAINED TWO TABLES.
+    import layout_shape
+    shape_state = layout_shape.check(md)
     layout = assert_layout_locked(md)
     charted = assert_pairs_charted(md, fm['type'])
     assert_no_offlist_scores(md)
@@ -1327,6 +1331,7 @@ if __name__ == '__main__':
     print('  LD-46 levels    drawn and entity ids recorded')
     print('  R-23 pairs      %s' % charted)
     print('  R-24 layout     %s' % layout)
+    print('  R-27 shape      %s' % shape_state)
     print('  LD-61 tally     %d rows, sorted by score' % ntal)
     if nexp:
         print('  LD-41 4.0 scores  whitelist indicators only')

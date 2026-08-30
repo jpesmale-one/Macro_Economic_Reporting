@@ -36,9 +36,26 @@ VAL_FIELDS = ('actual', 'previous', 'consensus', 'forecast')
 
 # TE country pages for currencies the global calendar omits or under-reports.
 # Add a country here the moment R-20 names it.
+# F-67. Every whitelisted currency gets its COUNTRY page, not just the two
+# the global page omitted entirely.
+#
+# The global page spans only ~10 days. The country pages span a MONTH. That
+# asymmetry is why 33 of 71 whitelist rows "matched nothing" on 2026-08-30:
+# they were not unmatchable, they simply release LATER IN THE MONTH than the
+# global page reaches. CAD had 4 distinct dates; CH and NZ, which already had
+# country pages, had 10 and 13.
+#
+# Jeff, 2026-08-30: "please please make sure we capture the data completely
+# in TE".
 COUNTRY_PAGES = {
     'CH': 'https://tradingeconomics.com/switzerland/calendar',
     'NZ': 'https://tradingeconomics.com/new-zealand/calendar',
+    'US': 'https://tradingeconomics.com/united-states/calendar',
+    'GB': 'https://tradingeconomics.com/united-kingdom/calendar',
+    'JP': 'https://tradingeconomics.com/japan/calendar',
+    'AU': 'https://tradingeconomics.com/australia/calendar',
+    'CA': 'https://tradingeconomics.com/canada/calendar',
+    'EA': 'https://tradingeconomics.com/euro-area/calendar',
 }
 GLOBAL_PAGE = 'https://tradingeconomics.com/calendar'
 

@@ -544,43 +544,34 @@ whitelisted.
 **Consensus is now parsed** (F-65 — it was always in TE's HTML; we simply
 never read the column). So §4.0's `Market priced` is no longer UNSCORED by
 default, and the week can be read BEFORE it happens rather than only after.
-
-**This grades what the market EXPECTS versus the last print. It is not a
-forecast of the release, and it never overrides §2 — which is scored from
+**This grades what the market EXPECTS against the last print. It is not a
+forecast of the release, and it never overrides §2, which is scored from
 RELEASED data only.**
 
-| CCY | Good | Bad | Neutral | No cons. | **Net** |
-|---|---|---|---|---|---|
-| **JPY** | 4 | 0 | 0 | 0 | **+4** |
-| EUR | 1 | 0 | 1 | 1 | **+1** |
-| NZD | 0 | 0 | 0 | 3 | 0 |
-| CHF | 0 | 0 | 2 | 1 | 0 |
-| AUD | 0 | 1 | 1 | 0 | −1 |
-| GBP | 0 | 1 | 0 | 0 | −1 |
-| CAD | 0 | 2 | 1 | 1 | **−2** |
-| **USD** | 1 | 3 | 0 | 0 | **−2** |
+**Net of GOOD minus BAD across §4.0:** **JPY +4** · EUR +1 · NZD 0 · CHF 0 ·
+AUD −1 · GBP −1 · **CAD −2** · **USD −2**. Six rows still carry no
+consensus — all three NZD prints, CHF inflation, EUR retail sales and the
+CAD PMI — and those stay UNSCORED rather than assumed neutral.
 
-**JPY is the standout, and it is the one currency §2 scores near the bottom
-(+0.53).** Four prints — Retail Sales 0.5% → **3%**, Household Spending
-−3.3% → **−1.6%**, Consumer Confidence and the Mfg PMI both up — are all
-priced to improve. **That is TENSION in the LD-68 sense: weak direction,
-hotter surprise.**
+**JPY is the standout, and it is the currency §2 scores near the bottom at
++0.53.** Four prints are priced to improve: Retail Sales 0.5% → **3%**,
+Household Spending −3.3% → **−1.6%**, Consumer Confidence 34.9 → 35, and
+the Mfg PMI 54.5 → 55.1. **That is TENSION in the LD-68 sense — weak
+direction, hotter surprise.**
 
-**USD is priced to disappoint on balance despite the NFP headline.** Payrolls
-−23K → **+45K** is the single best-priced US print, but unemployment is
-expected to RISE 4.1% → **4.2%**, ISM to soften, and the trade deficit to
-widen. **One good print inside three bad ones.**
+**USD is priced to disappoint on balance despite the headline.** Payrolls
+−23K → **+45K** is the best-priced US print of the week, but unemployment is
+expected to RISE 4.1% → **4.2%**, ISM to soften 55.6 → 55.3, and the trade
+deficit to widen. **One good print inside three bad ones.**
 
 #### Does this change the pairs? (LD-42 — read it, do not assume)
 
-| Pair | Long leg | Short leg | Week-ahead pressure |
-|---|---|---|---|
-| **GBPAUD** | GBP +5.31, net −1 | AUD +1.97, net −1 | **neutral** — both priced alike |
-| **CADCHF** | CAD +6.56, net −2 | CHF −0.64, net 0 | **FIGHTS** — short leg priced better |
-| **NZDJPY** | NZD +4.65, net 0 | JPY +0.53, net **+4** | **FIGHTS** — short leg priced far better |
+**Measured against the locked set: GBPAUD is neutral** — both legs are priced
+alike at −1. **CADCHF and NZDJPY are both FOUGHT by the week**, CADCHF by 2
+and **NZDJPY by 4**, because in each case the SHORT leg is the better-priced
+currency.
 
 **No pair is dropped, and here is the reasoning rather than the reflex.**
-
 **LD-29 governs: a pair leaves on its FALSIFIER, not on conviction.** All
 three falsifiers are intact and none has been approached. **The spread that
 selected each pair is scored from RELEASED data (§2) and has not moved** —
@@ -588,20 +579,18 @@ CAD still leads CHF by **7.20**, NZD leads JPY by **4.12**.
 
 **What has changed is the EXPECTED path, and that is a different thing from
 the bias.** A currency priced to improve from a weak base is still weak
-today. **NZDJPY is the one to watch**: JPY carries the week's only clean
-+4, and Monday 07:50 PHT opens with JPY Retail Sales — **the first print of
-the week is on the short leg of a pair the week is priced against.**
+today. **NZDJPY is the one to watch:** JPY carries the week's only clean +4,
+and **Monday 07:50 PHT opens with JPY Retail Sales** — the first print of the
+week, on the short leg of a pair the week is priced against.
 
 **Falsifier unchanged at a close below 91.100.** If JPY delivers on all four,
-the honest read is that **NZDJPY's edge narrows before its falsifier is
-anywhere near** — which is exactly the case LD-29 says to hold through, and
-exactly the case Monday's revalidation exists to re-examine.
+the honest read is that **NZDJPY's edge narrows well before its falsifier is
+approached** — which is the case LD-29 says to hold through, and the case
+Monday's revalidation exists to re-examine.
 
-**Confidence: MODERATE.** Six of 24 rows still have no consensus, including
-all three NZD prints and CHF inflation. **What would change my mind: JPY
-missing on Retail Sales and Household Spending, which would remove the
-tension on NZDJPY entirely.**
-
+**Confidence: MODERATE.** **What would change my mind: JPY missing on Retail
+Sales and Household Spending, which would remove the tension on NZDJPY
+entirely.**
 
 ## §5 — Gold (XAUUSD)
 
