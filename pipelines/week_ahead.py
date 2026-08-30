@@ -216,22 +216,75 @@ def current_window(now=None):
     return mon.isoformat(), (mon + dt.timedelta(days=4)).isoformat()
 
 
-def market_pricing(previous, consensus, forecast=None):
-    """Grade what the market is pricing. Returns GOOD/NEUTRAL/BAD or None.
+LOWER_IS_BETTER = (
+    'unemployment rate', 'inflation rate', 'core inflation rate',
+    'unemployment change', 'claimant count change', 'jobless claims',
+    'ppi', 'producer price', 'cpi',
+)
 
-    previous  - the CURRENT ACTUAL (the last released Final for that series)
+
+def lower_is_better(name, threshold=None):
+    """Does a LOWER print favour the currency for this series?
+
+    F-66. The whitelist already answers this in its THRESHOLD column -
+    '<Prev' paired with GOOD means lower is better, '>Prev' with BAD means
+    the same thing. Prefer that answer; fall back to the name only when the
+    row gives no directional threshold.
+    """
+    t = (threshold or '').strip().lower()
+    # F-66b. '<' means TWO different things in the threshold column and only
+    # one of them is a direction:
+    #   '<Prev'  -> a COMPARISON against the last print. Lower is better.
+    #               Unemployment, claimant count.
+    #   '<0%'    -> a STATE description: "this series is currently negative."
+    #               Says NOTHING about which way is better. JPY Household
+    #               Spending -3.3% -> -1.6% is a SMALLER contraction, an
+    #               IMPROVEMENT, and reading '<0%' as "lower is better"
+    #               grades that recovery as BAD.
+    # Only a threshold naming the PREVIOUS PRINT carries direction here.
+    # Everything else falls through to the series name, which is the thing
+    # that actually knows whether low is good.
+    if 'prev' in t:
+        return t.startswith('<')
+    n = (name or '').lower()
+    return any(k in n for k in LOWER_IS_BETTER)
+
+
+def market_pricing(previous, consensus, forecast=None, name=None,
+                   threshold=None):
+    """Grade what the market is PRICING for a not-yet-released event.
+
+    Returns GOOD / NEUTRAL / BAD for the CURRENCY, or None when there is no
+    consensus to price against.
+
+    previous  - the CURRENT ACTUAL (the last released print for the series)
     consensus - TE consensus column
     forecast  - TE forecast column; defaults to consensus when absent
+    name      - the whitelist indicator name (direction of goodness)
+    threshold - the whitelist threshold column, which ENCODES that direction
+
+    F-66. THE BUG THIS FIXES: the original returned GOOD whenever
+    previous < consensus, for EVERY indicator. That is only right where a
+    LOWER print is better. Consensus expecting US unemployment to rise
+    4.1% -> 4.2% is BAD for USD, and this function called it GOOD.
+
+    Same defect as F-62/LD-71: a comparison is not a direction. The
+    whitelist records the direction; read it rather than assuming.
+
+    The sense is: does the market expect this series to move in the
+    currency's FAVOUR (GOOD) or AGAINST it (BAD) relative to the last print?
     """
     if previous is None or consensus is None:
         return None
     hi = consensus if forecast is None else max(consensus, forecast)
     lo = consensus if forecast is None else min(consensus, forecast)
-    if previous < lo:
-        return 'GOOD'
-    if previous > hi:
-        return 'BAD'
-    return 'NEUTRAL'
+    if lo <= previous <= hi:
+        return 'NEUTRAL'
+    # The expected print sits ABOVE the last one when previous < lo.
+    expected_higher = previous < lo
+    if lower_is_better(name, threshold):
+        return 'BAD' if expected_higher else 'GOOD'
+    return 'GOOD' if expected_higher else 'BAD'
 
 
 def pht(date, t):

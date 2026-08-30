@@ -117,6 +117,7 @@ hand-written version silently degraded while the generator sat unused.
 | **Grading rules** | `full_time_grade()` · `claimant_grade()` · `market_pricing()` | applied by hand |
 | **§4.6 direction × surprise** | **`directional.py`** (LD-68) | **never fed into the tally** |
 | **A table in an approved section** | **`docs/LAYOUT_LOCK.md`** — the column set is LOCKED (LD-80) | **restyled, renamed or re-columned in passing** |
+| **What the week is PRICED to deliver** | **`week_ahead.market_pricing()`** — direction from the whitelist (F-66) | **assuming below-consensus is GOOD** |
 | The edition itself | `render_edition.py <path.md>` | any other way |
 | **Process narrative** | **§7 Method notes — it already folds** (LD-69) | **§0–§6, the market read** |
 | **The weekly retrospective** | **its own artifact** (LD-70) | **a § of the daily edition** |
@@ -130,6 +131,7 @@ python pipelines/capture_calendar.py --write  # F-57 - global + CH/NZ country pa
 python pipelines/audit_te.py --fetch     # LD-50 - reconcile the whitelist
 python pipelines/freshness.py            # LD-54 - revisions + stalled series
 python pipelines/test_guards.py          # 8 real regressions must all block
+python pipelines/test_pricing.py         # R-26 - 20 hand-graded pricing cases
 python pipelines/week_ahead.py           # §4.0 events, DATE -> TIME -> CCY
 python pipelines/whole_edition.py <md>   # LD-67 - every section vs every other
 python pipelines/render_edition.py <md>  # 17 guards run before a byte is written
@@ -193,6 +195,15 @@ past every guard and were caught by Jeff reading:
   never whether it was *provisional*.
 
 **Recompute every derived figure and name the bar that produced it (LD-48).**
+**A FIELD EMPTY ON EVERY ROW IS A FACT ABOUT US, NOT ABOUT THE SOURCE
+(F-65).** §4.0 showed `— / —` for consensus for days and I explained it
+away as TE not having published yet. The columns were in the HTML we had
+already saved - `parse()` read `cells[:4]` for the event NAME and stopped.
+**Empty for ONE event is data; empty for all 505 is a parser returning
+nothing.** And when fixing it, remember TE's BLANK Actual cell is itself
+the signal that an event has not released - stripping it shifts every
+column left and manufactures F-1 in our own code (F-65b).
+
 
 **A FINDING IS NOT RECORDED UNTIL IT IS IN THE SPEC (LD-81).** F-62, F-63
 and F-64 lived ONLY in commit messages — zero occurrences in

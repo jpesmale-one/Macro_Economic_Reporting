@@ -370,32 +370,37 @@ global page omits entirely (F-57).
 
 | When (PHT) | CCY | Indicator | Current actual | Cons / Fcst | **Market priced** | Status |
 |---|---|---|---|---|---|---|
-| **Mon 31 07:50** | JPY | Retail Sales YoY | 0.5% | 3% / 1.0% | UNSCORED | ahead |
-| Mon 31 13:00 | JPY | Consumer Confidence | 34.9 | 35 / 35 | UNSCORED | ahead |
-| **Tue 01 07:00** | AUD | S&P Global Mfg PMI Final | 52.0 | 52.0 / 52.0 | UNSCORED | ahead |
-| **Tue 01 08:30** | JPY | S&P Global Mfg PMI Final | 54.5 | 55.1 / 55.1 | UNSCORED | ahead |
-| **Tue 01 09:00** | **NZD** | **ANZ Business Confidence** | **56.1** | — / 55.7 | **BAD** | ahead |
-| Tue 01 14:30 | CHF | Retail Sales YoY | 1.5% | 1.3% / 2.0% | **GOOD** | ahead |
-| **Tue 01 16:00** | EUR | S&P Global Mfg PMI Final | 51.9 | 52.8 / 52.8 | UNSCORED | ahead |
-| **Tue 01 16:30** | GBP | S&P Global Mfg PMI Final | 51.9 | 51.5 / 51.5 | UNSCORED | ahead |
-| Tue 01 17:00 | EUR | Unemployment Rate | 6.3% | 6.3% / 6.3% | UNSCORED | ahead |
-| **Tue 01 21:30** | CAD | S&P Global Mfg PMI | 53.5 | — / 52.7 | UNSCORED | ahead |
-| **Tue 01 22:00** | **USD** | **ISM Manufacturing PMI** | **55.6** | 55.3 / 55 | UNSCORED | ahead |
+| **Mon 31 07:50** | JPY | Retail Sales YoY | 0.5% | 3% / 1.0% | **GOOD** | ahead |
+| Mon 31 13:00 | JPY | Consumer Confidence | 34.9 | 35 / 35 | **GOOD** | ahead |
+| **Tue 01 07:00** | AUD | S&P Global Mfg PMI Final | 52.0 | 52.0 / 52.0 | NEUTRAL | ahead |
+| **Tue 01 08:30** | JPY | S&P Global Mfg PMI Final | 54.5 | 55.1 / 55.1 | **GOOD** | ahead |
+| **Tue 01 09:00** | **NZD** | **ANZ Business Confidence** | **56.1** | — / 55.7 | UNSCORED — no consensus | ahead |
+| Tue 01 14:30 | CHF | Retail Sales YoY | 1.5% | 1.3% / 2.0% | NEUTRAL | ahead |
+| **Tue 01 16:00** | EUR | S&P Global Mfg PMI Final | 51.9 | 52.8 / 52.8 | **GOOD** | ahead |
+| **Tue 01 16:30** | GBP | S&P Global Mfg PMI Final | 51.9 | 51.5 / 51.5 | **BAD** | ahead |
+| Tue 01 17:00 | EUR | Unemployment Rate | 6.3% | 6.3% / 6.3% | NEUTRAL | ahead |
+| **Tue 01 21:30** | CAD | S&P Global Mfg PMI | 53.5 | — / 52.7 | UNSCORED — no consensus | ahead |
+| **Tue 01 22:00** | **USD** | **ISM Manufacturing PMI** | **55.6** | 55.3 / 55 | **BAD** | ahead |
 | **Wed 02 02:00** | **NZD** | **⚠ RBNZ INTEREST RATE DECISION** | **2.50%** | 2.75% / 2.75% | **UNSCORED** — not a whitelist row (F-3) | **ahead** |
-| Wed 02 06:45 | NZD | Building Permits MoM | −3.6% | — / 2.5% | **GOOD** | ahead |
+| Wed 02 06:45 | NZD | Building Permits MoM | −3.6% | — / 2.5% | UNSCORED — no consensus | ahead |
 | **Wed 02 13:45** | **CAD** | **⚠ BoC INTEREST RATE DECISION** | **2.25%** | 2.25% / 2.25% | UNSCORED | **ahead** |
-| Thu 03 09:30 | AUD | Balance of Trade | A$1.929B | A$1.39B / A$1.1B | UNSCORED | ahead |
-| **Thu 03 14:30** | **CHF** | **Inflation Rate YoY** | **0.4%** | — / 0.7% | **GOOD** | ahead |
-| **Thu 03 15:30** | CHF | Procure.ch-UBS Mfg PMI | 53.2 | 53.5 / 52.8 | UNSCORED | ahead |
-| Thu 03 20:30 | CAD | Balance of Trade | C$3.86B | C$3.2B / C$2.2B | UNSCORED | ahead |
-| Thu 03 20:30 | USD | Balance of Trade | −$73.3B | −$86.4B / −$91.2B | UNSCORED | ahead |
-| Fri 04 07:30 | JPY | Household Spending YoY | −3.3% | −1.6% / −1.0% | UNSCORED | ahead |
-| Fri 04 17:00 | EUR | Retail Sales YoY | 0.7% | — / 0.9% | UNSCORED | ahead |
-| **Fri 04 20:30** | **USD** | **⚠ NON FARM PAYROLLS (Aug)** | **−23K** | 45K / 12.0K | UNSCORED | **ahead** |
-| **Fri 04 20:30** | **USD** | **Unemployment Rate** | **4.1%** | 4.2% / 4.2% | UNSCORED | ahead |
-| **Fri 04 20:30** | **CAD** | **Employment Change** | **75.1K** | 15.8K / 10.0K | UNSCORED | ahead |
-| **Fri 04 20:30** | **CAD** | **Unemployment Rate** | **6.4%** | 6.4% / 6.4% | UNSCORED | ahead |
-| Fri 04 (untimed) | NZD | Global Dairy Trade Price Index | 2.3% | — / — | UNSCORED | ahead |
+| Thu 03 09:30 | AUD | Balance of Trade | A$1.929B | A$1.39B / A$1.1B | **BAD** | ahead |
+| **Thu 03 14:30** | **CHF** | **Inflation Rate YoY** | **0.4%** | — / 0.7% | UNSCORED — no consensus | ahead |
+| **Thu 03 15:30** | CHF | Procure.ch-UBS Mfg PMI | 53.2 | 53.5 / 52.8 | NEUTRAL | ahead |
+| Thu 03 20:30 | CAD | Balance of Trade | C$3.86B | C$3.2B / C$2.2B | **BAD** | ahead |
+| Thu 03 20:30 | USD | Balance of Trade | −$73.3B | −$86.4B / −$91.2B | **BAD** | ahead |
+| Fri 04 07:30 | JPY | Household Spending YoY | −3.3% | −1.6% / −1.0% | **GOOD** | ahead |
+| Fri 04 17:00 | EUR | Retail Sales YoY | 0.7% | — / 0.9% | UNSCORED — no consensus | ahead |
+| **Fri 04 20:30** | **USD** | **⚠ NON FARM PAYROLLS (Aug)** | **−23K** | 45K / 12.0K | **GOOD** | **ahead** |
+| **Fri 04 20:30** | **USD** | **Unemployment Rate** | **4.1%** | 4.2% / 4.2% | **BAD** | ahead |
+| **Fri 04 20:30** | **CAD** | **Employment Change** | **75.1K** | 15.8K / 10.0K | **BAD** | ahead |
+| **Fri 04 20:30** | **CAD** | **Unemployment Rate** | **6.4%** | 6.4% / 6.4% | NEUTRAL | ahead |
+| Fri 04 (untimed) | NZD | Global Dairy Trade Price Index | 2.3% | — / — | UNSCORED — no consensus | ahead |
+
+**Consensus and forecast are TE's, captured 2026-08-30 (F-65).** `Current actual`
+carries the **previous** print each release is measured against — every event below
+is **still unreleased**, so its Actual column at TE is correctly EMPTY.
+**§4.6 grades each one against the consensus above as it lands.**
 
 **Consensus and forecast are TE's, captured 2026-08-30 (F-65).** `Current actual`
 carries the **previous** print each release is measured against — every event below
@@ -534,9 +539,68 @@ was priced. Price follows the surprise.**
 speech). It reads surprise, and surprise does not care whether an indicator is
 whitelisted.
 
-**Consensus for next week's events is not yet published** for most rows — TE
-firms it up as each release approaches (LD-66). **§4.6 grades them as they
-land**, not in advance.
+#### What the coming week is PRICED to deliver (F-65/F-66)
+
+**Consensus is now parsed** (F-65 — it was always in TE's HTML; we simply
+never read the column). So §4.0's `Market priced` is no longer UNSCORED by
+default, and the week can be read BEFORE it happens rather than only after.
+
+**This grades what the market EXPECTS versus the last print. It is not a
+forecast of the release, and it never overrides §2 — which is scored from
+RELEASED data only.**
+
+| CCY | Good | Bad | Neutral | No cons. | **Net** |
+|---|---|---|---|---|---|
+| **JPY** | 4 | 0 | 0 | 0 | **+4** |
+| EUR | 1 | 0 | 1 | 1 | **+1** |
+| NZD | 0 | 0 | 0 | 3 | 0 |
+| CHF | 0 | 0 | 2 | 1 | 0 |
+| AUD | 0 | 1 | 1 | 0 | −1 |
+| GBP | 0 | 1 | 0 | 0 | −1 |
+| CAD | 0 | 2 | 1 | 1 | **−2** |
+| **USD** | 1 | 3 | 0 | 0 | **−2** |
+
+**JPY is the standout, and it is the one currency §2 scores near the bottom
+(+0.53).** Four prints — Retail Sales 0.5% → **3%**, Household Spending
+−3.3% → **−1.6%**, Consumer Confidence and the Mfg PMI both up — are all
+priced to improve. **That is TENSION in the LD-68 sense: weak direction,
+hotter surprise.**
+
+**USD is priced to disappoint on balance despite the NFP headline.** Payrolls
+−23K → **+45K** is the single best-priced US print, but unemployment is
+expected to RISE 4.1% → **4.2%**, ISM to soften, and the trade deficit to
+widen. **One good print inside three bad ones.**
+
+#### Does this change the pairs? (LD-42 — read it, do not assume)
+
+| Pair | Long leg | Short leg | Week-ahead pressure |
+|---|---|---|---|
+| **GBPAUD** | GBP +5.31, net −1 | AUD +1.97, net −1 | **neutral** — both priced alike |
+| **CADCHF** | CAD +6.56, net −2 | CHF −0.64, net 0 | **FIGHTS** — short leg priced better |
+| **NZDJPY** | NZD +4.65, net 0 | JPY +0.53, net **+4** | **FIGHTS** — short leg priced far better |
+
+**No pair is dropped, and here is the reasoning rather than the reflex.**
+
+**LD-29 governs: a pair leaves on its FALSIFIER, not on conviction.** All
+three falsifiers are intact and none has been approached. **The spread that
+selected each pair is scored from RELEASED data (§2) and has not moved** —
+CAD still leads CHF by **7.20**, NZD leads JPY by **4.12**.
+
+**What has changed is the EXPECTED path, and that is a different thing from
+the bias.** A currency priced to improve from a weak base is still weak
+today. **NZDJPY is the one to watch**: JPY carries the week's only clean
++4, and Monday 07:50 PHT opens with JPY Retail Sales — **the first print of
+the week is on the short leg of a pair the week is priced against.**
+
+**Falsifier unchanged at a close below 91.100.** If JPY delivers on all four,
+the honest read is that **NZDJPY's edge narrows before its falsifier is
+anywhere near** — which is exactly the case LD-29 says to hold through, and
+exactly the case Monday's revalidation exists to re-examine.
+
+**Confidence: MODERATE.** Six of 24 rows still have no consensus, including
+all three NZD prints and CHF inflation. **What would change my mind: JPY
+missing on Retail Sales and Household Spending, which would remove the
+tension on NZDJPY entirely.**
 
 
 ## §5 — Gold (XAUUSD)

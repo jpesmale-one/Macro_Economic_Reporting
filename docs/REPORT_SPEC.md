@@ -1016,6 +1016,73 @@ while destroying the citation trail.
 
 ---
 
+### F-66 · R-26 — a COMPARISON is not a DIRECTION (again)
+
+**Jeff, 2026-08-30, once F-65 had put real numbers in the consensus column:**
+*"now we have the consensus 1. why is it still unscored?"*
+
+Fair question, and answering it required grading all 26 rows — at which
+point two came out backwards:
+
+```
+USD Unemployment Rate   prev 4.1%   cons 4.2%   -> GOOD    WRONG
+```
+
+**`market_pricing()` returned GOOD whenever `previous < consensus`, for every
+indicator.** But BELOW is only good where LOWER IS BETTER. **Consensus
+expecting US unemployment to RISE is BAD for USD**, and the function called
+it GOOD.
+
+**THIS IS F-62 / LD-71 A SECOND TIME.** `graded_signed()` exists precisely
+because `>Prev`/`<Prev` describe the COMPARISON, not the direction of
+goodness. `market_pricing()` was written before that lesson and never
+received it. **When a lesson is learned in one function, go and look for the
+same shape in every other function that compares two numbers.**
+
+**The whitelist already knew the answer** — the threshold column encodes it:
+
+```
+("Employment","US","Unemployment Rate", ..., "<Prev","GOOD")
+("Employment","AU","Unemployment Rate", ..., ">Prev","BAD")
+```
+
+So the fix is not new judgement. **It is consulting what we already wrote
+down.**
+
+#### F-66b — `<` means two different things
+
+| Threshold | Meaning | Carries direction? |
+|---|---|---|
+| `<Prev`, `>Prev` | a COMPARISON against the last print | **YES** |
+| `<0%`, `<2% & falling` | a STATE description — "currently negative" | **NO** |
+
+**JPY Household Spending −3.3% → −1.6% is a SMALLER contraction — a
+recovery.** Reading `<0%` as "lower is better" grades that improvement as
+BAD. Only a threshold naming the PREVIOUS PRINT carries direction; everything
+else falls through to the series name.
+
+#### F-66c — markdown changed a NUMBER
+
+**`'**75.1K**'` parsed as 75.1 while a plain `'15.8K'` parsed as 15800.** The
+K/M/B suffix test was anchored with `$`, which the trailing `**` defeated. A
+**59K deceleration graded GOOD** because the two sides of the comparison were
+scaled differently.
+
+**Same class as F-65b: a formatting artefact silently changing a VALUE, not
+just its display.** The suffix is now anchored to the digits and markdown is
+stripped before parsing.
+
+#### The guard
+
+**`pipelines/test_pricing.py` (R-26) — 20 cases, every one graded BY HAND
+first and then checked against the code, never the reverse.** It covers both
+reversed rows, both markdown forms, the trade balances, and the
+must-return-`None` case where no consensus exists.
+
+**Run it whenever `market_pricing()`, the threshold column, or §4.0's number
+formatting changes.**
+
+---
 ### F-65 — consensus and forecast were never parsed at all
 
 **Jeff, 2026-08-30:** *"can you check again the consensus and forcast in TE?
