@@ -621,6 +621,39 @@ def assert_no_offlist_scores(md):
     return len([l for l in blk.splitlines() if l.startswith('| ')])
 
 
+def assert_pairs_charted(md, etype):
+    """A SELECTED pair must be on a chart, with entity IDs (R-23).
+
+    Jeff, 2026-08-30: "I think you forgot to chart the pairs."
+
+    LD-46 checked §5 and §6 only. The 2026-08-30 WEEKEND edition
+    selected three pairs, published a falsifier for each, and drew NOT ONE
+    LINE - and LD-46 still reported success, because it was looking at
+    gold and BTC.
+
+    A selected pair is the MOST important thing in the report to have on a
+    chart: it is what gets tracked all week against a level. Only a
+    SELECTING edition is checked - a mid-week edition carries the set
+    forward and the lines are already there.
+    """
+    if etype != 'WEEKEND':
+        return 'n/a (not a selecting edition)'
+    try:
+        blk = md[md.index('### 4.3'):md.index('### 4.4')]
+    except ValueError:
+        return 'no §4.3'
+    ids = re.findall(r'`([A-Za-z0-9]{6})`', blk)
+    if len(ids) < 3:
+        raise SystemExit(
+            'FATAL (R-23/LD-46): §4.3 selects pairs but records only %d drawn'
+            ' level(s).%sEvery selected pair needs its entry reference, its'
+            ' falsifier and the structure it is aiming into ON THE CHART, with'
+            ' entity IDs recorded.%sOn 2026-08-30 three pairs were selected and'
+            ' NOTHING was drawn, while LD-46 passed on §5/§6.'
+            % (len(ids), chr(10), chr(10)))
+    return '%d entity ids in §4.3' % len(ids)
+
+
 def assert_levels_drawn(md):
     """Sections 5 and 6 must record drawn levels with their TV entity IDs.
 
@@ -1211,6 +1244,7 @@ if __name__ == '__main__':
     nrow, nexp = assert_whitelist(md)
     ntal = assert_tally_sorted(md)
     assert_levels_drawn(md)
+    charted = assert_pairs_charted(md, fm['type'])
     assert_no_offlist_scores(md)
     place_state = assert_process_placement(md)
     preview_state = assert_no_stale_preview(md, fm)
@@ -1228,6 +1262,7 @@ if __name__ == '__main__':
     print('  LD-50 TE recon  %s' % te_state)
     print('  LD-54 freshness %s' % fresh_state)
     print('  LD-46 levels    drawn and entity ids recorded')
+    print('  R-23 pairs      %s' % charted)
     print('  LD-61 tally     %d rows, sorted by score' % ntal)
     if nexp:
         print('  LD-41 4.0 scores  whitelist indicators only')

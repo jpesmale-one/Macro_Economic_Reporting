@@ -443,6 +443,23 @@ three pairs, no leg used twice. **EUR and USD unused by design.**
 needed the 90-bar window** — its 45-bar low sits only **41 pips** away, inside
 the **85-pip ATR**, so it could not serve.
 
+**Drawn on the chart (LD-5 — observations of structure, never entry/stop/target):**
+
+| Pair | Resistance | Entry ref | Falsifier | Entity IDs |
+|---|---|---|---|---|
+| **GBPAUD** | 1.93618 *(45-bar high, +464)* | 1.88978 | 1.85396 | `CXwIxn` `vi0wQg` `gRzecv` `Qzs9Xx` |
+| **CADCHF** | 0.58645 *(45-bar high, +44)* | 0.58210 | 0.56513 | `GIssqV` `Vo3JYl` `Ekra2j` |
+| **NZDJPY** | 95.436 *(45-bar high, +77)* | 94.671 | 91.100 | `3dqpO1` `6AabRN` `S1o4s7` |
+
+**GBPAUD carries a fourth line** — its **45-bar low at 1.88569**, marked
+because it sits only **41 pips** below the entry reference, **inside the 85-pip
+ATR**, and therefore **cannot serve as the falsifier**. The line is there so the
+constraint is visible on the chart, not only in the text.
+
+*`OANDA:` daily. **CADCHF carried 9 of Jeff's rectangles and NZDJPY 4 of his
+rectangles and trend lines; none were touched** (LD-5). GBPAUD's chart was
+empty. **Clear our 10 lines before the next selection** (LD-16 step 6).*
+
 **Nothing rolls over (LD-42).** Last week's set ended when the week ended and
 is graded in §0. These three are a fresh derivation.
 
