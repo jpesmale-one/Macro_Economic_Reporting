@@ -57,6 +57,42 @@ _NOT = (
 _NATIONAL = {'DE', 'FR', 'IT', 'ES'}
 
 
+# F-64 - ABBREVIATIONS THE CALENDAR DOES NOT USE.
+# The whitelist writes 'Mfg'; every calendar writes 'manufacturing', so
+# token matching failed on SEVEN OF EIGHT PMI rows and 4.0 showed none
+# of them. Normalise both sides before comparing.
+#
+# Keep this list SMALL AND NAMED. F-37 established that loose fuzzy
+# matching produces false positives - this is not fuzzy matching, it is
+# a dictionary of abbreviations we ourselves introduced.
+_SYN = {
+    'mfg': 'manufacturing',
+    'svcs': 'services',
+    'chg': 'change',
+    'conf': 'confidence',
+    'prel': 'preliminary',
+    'ex': 'excluding',
+}
+
+
+# F-64b - words in OUR row name that the calendar simply does not carry.
+# CHF's row is 'Procure.ch-UBS Mfg PMI'; the calendar says 'procure.ch
+# manufacturing pmi'. The vendor pairing is ours, not theirs. Same shape
+# as audit_te.TE_ALIAS (F-38) and handled the same way: an explicit map,
+# never looser matching.
+_DROP = {
+    ('CH', 'Procure.ch-UBS Mfg PMI'): {'ubs'},
+}
+
+
+def _norm(text):
+    """Lower-case and expand our own abbreviations (F-64)."""
+    out = []
+    for w in re.findall(r'[a-z]+', (text or '').lower()):
+        out.append(_SYN.get(w, w))
+    return out
+
+
 def match(ev, names, iso=None):
     """Return the whitelist name this calendar event IS, or None.
 
@@ -99,8 +135,10 @@ def match(ev, names, iso=None):
         # There is no EA-aggregate unemployment print this week at all.
         if iso in _NATIONAL:      # redundant since F-49, kept deliberately
             continue
-        want = set(re.findall(r'[a-z]+', n)) - _NOISE
-        have = set(re.findall(r'[a-z]+', ev)) - _NOISE
+        # F-64: normalise OUR abbreviations before comparing, or 'Mfg'
+        # can never match 'manufacturing'.
+        want = set(_norm(n)) - _NOISE - _DROP.get((iso, name), set())
+        have = set(_norm(ev)) - _NOISE
         if want and want <= have:
             return name
     return None

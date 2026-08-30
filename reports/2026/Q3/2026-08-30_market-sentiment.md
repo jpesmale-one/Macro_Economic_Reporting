@@ -372,7 +372,13 @@ global page omits entirely (F-57).
 |---|---|---|---|
 | **Mon 31 07:50** | **JPY** | **Retail Sales YoY** | prev 0.5% — **added after F-63**, the window was dropping it |
 | Mon 31 13:00 | JPY | Consumer Confidence | — |
+| **Tue 01 07:00** | AUD | S&P Global Mfg PMI Final | prev 52.0 — **added after F-64** |
+| **Tue 01 08:30** | JPY | S&P Global Mfg PMI Final | prev 54.5 |
 | **Tue 01 09:00** | **NZD** | **ANZ Business Confidence** | prev 56.1 |
+| **Tue 01 16:00** | EUR | S&P Global Mfg PMI Final | prev 51.9 |
+| **Tue 01 16:30** | GBP | S&P Global Mfg PMI Final | prev 51.9 |
+| **Tue 01 21:30** | CAD | S&P Global Mfg PMI | prev 53.5 |
+| **Thu 03 15:30** | CHF | Procure.ch-UBS Mfg PMI | prev 53.2 — **F-64b** |
 | Tue 01 14:30 | CHF | Retail Sales YoY | prev 1.5% |
 | Tue 01 17:00 | EUR | Unemployment Rate | — |
 | Tue 01 22:00 | USD | ISM Manufacturing PMI | — |
