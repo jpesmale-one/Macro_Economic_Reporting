@@ -1016,6 +1016,77 @@ while destroying the citation trail.
 
 ---
 
+### F-65 — consensus and forecast were never parsed at all
+
+**Jeff, 2026-08-30:** *"can you check again the consensus and forcast in TE?
+its very unsual that we can't get any data considering these news will be out
+tomorrow"*
+
+**He was right to disbelieve it, and my explanation had been wrong.** §4.0
+showed `— / —` in nearly every Cons / Fcst cell and I explained it away as TE
+not having published consensus yet. **The columns were in the HTML we had
+already saved.** `capture_calendar.parse()` read `cells[:4]` to find the event
+NAME and stopped; `Actual`, `Previous`, `Consensus` and `Forecast` sit
+immediately to the right and were discarded before anything downstream could
+see them. The capture schema had four fields: date, time, iso, event.
+
+**The tell:** `— / —` on EVERY row is not data, it is a parser returning
+nothing. **A field empty for one event is a fact about that event; a field
+empty for all 505 is a fact about US.**
+
+#### F-65b — the blank Actual cell is the signal, and the first fix deleted it
+
+The first cut stripped leading empty cells before mapping the four columns.
+**Wrong in the most dangerous possible direction:** TE emits an EMPTY
+`<td class="calendar-item">` for Actual when an event has NOT released.
+Dropping it shifted every column one left, so **PREVIOUS was read as ACTUAL**
+and every unreleased event acquired a print it never had — **F-1 manufactured
+by our own parser rather than by TE.** It briefly showed ISM Manufacturing
+with an actual of 55.6 for a release that is still two days away.
+
+**Fix:** select the value cells by their `calendar-item` class and map
+positionally **without dropping blanks**. An empty Actual is data.
+
+```
+ISM Manufacturing PMI, 1 Sep, from the saved HTML:
+  calendar-item ''      <- Actual, EMPTY, not yet released
+  calendar-item '55.6'  <- Previous
+  calendar-item '55.3'  <- Consensus
+  calendar-item '55'    <- Forecast
+```
+
+#### F-65c — ISM and S&P Global are two different surveys
+
+**§4.0 published `ISM Manufacturing PMI` carrying 53.2. That is the S&P
+Global Mfg PMI's consensus.** ISM's previous is **55.6** — a 2.4-point error
+on the single highest-impact US print of Tuesday. Both release on 1 Sep,
+fifteen minutes apart, and token matching cannot separate them because
+"manufacturing pmi" is a substring of both.
+
+**`PIN` in the §4.0 rebuild maps the ambiguous names to exact event keys.**
+Where two surveys share a name fragment, the row names the survey.
+
+#### What this changed in the published edition
+
+**25 of 26 `Current actual` cells were already correct** — they match TE's
+Previous. The defect was almost entirely in Cons / Fcst, plus the one ISM
+conflation. **28 cells changed.** Several matter for the week's bias:
+
+| Event | Previous | Consensus | Reading |
+|---|---|---|---|
+| **USD Non Farm Payrolls** | −23K | **45K** | consensus expects a large positive swing |
+| **USD Unemployment Rate** | 4.1% | **4.2%** | a rise is expected |
+| **CAD Employment Change** | 75.1K | **15.8K** | sharp deceleration expected |
+| **JPY Retail Sales YoY** | 0.5% | **3%** | a big acceleration is priced |
+| **USD ISM Manufacturing** | 55.6 | **55.3** | roughly flat |
+
+**These are what §4.6 grades a surprise against.** With the column empty, a
+surprise could not be measured at all — which is why every row read UNSCORED.
+
+**LD-3 still holds:** TE is the SCHEDULE and CONSENSUS authority. **The actual
+value of a released print still comes from the issuing agency.**
+
+---
 ### LD-80 · R-24 — an approved layout is LOCKED
 
 **Jeff, 2026-08-30:** *"4.0 why we change the format of the table? I only

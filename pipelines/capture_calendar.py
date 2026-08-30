@@ -20,8 +20,10 @@ USAGE
     python pipelines/capture_calendar.py            # capture, print summary
     python pipelines/capture_calendar.py --write    # ... and save the JSON
 
-The capture schema is unchanged - date / time / iso / event - so week_ahead.py
-reads it without modification.
+SCHEMA (F-65): date / time / iso / event / actual / previous /
+consensus / forecast. The four value columns were present in TE's HTML
+from the start and simply never parsed - section 4.0 showed '- / -' on
+every row for days as a result.
 """
 import io, os, re, sys, json, subprocess, datetime as dt
 
@@ -30,6 +32,7 @@ OUT_DIR = os.path.join(REPO, 'data', 'raw', 'calendar')
 UA = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/128.0 Safari/537.36')
 TAG = re.compile(r'<[^>]+>')
+VAL_FIELDS = ('actual', 'previous', 'consensus', 'forecast')
 
 # TE country pages for currencies the global calendar omits or under-reports.
 # Add a country here the moment R-20 names it.
@@ -74,6 +77,19 @@ def iso_date(heading):
                                int(m.group(2)))
 
 
+def clean_val(v):
+    """A TE value cell -> a bare figure, or '' if the cell is empty.
+
+    TE writes '49.2', '-0.3%', '1.433M', 'A$1.93B' and sometimes a bare '-'
+    for 'no value'. A literal '-' must become '' or it reads downstream as a
+    minus sign with no digits (F-65).
+    """
+    v = (v or '').strip()
+    if v in ('', '-', '\u2013', '\u2014', 'N/A'):
+        return ''
+    return v
+
+
 def parse(html, force_iso=None):
     """Rows from a TE calendar page. force_iso for country pages, whose rows
     carry no country column."""
@@ -97,7 +113,9 @@ def parse(html, force_iso=None):
                 iso = im.group(1)
         if not iso or not cur:
             continue
-        tds = re.findall(r'<td\b[^>]*>(.*?)</td>', chunk, re.S | re.I)
+        tds_raw = re.findall(r'<td\b([^>]*)>(.*?)</td>', chunk,
+                              re.S | re.I)
+        tds = [b for _a, b in tds_raw]
         if len(tds) < 3:
             continue
         cells = [txt(t) for t in tds]
@@ -111,21 +129,36 @@ def parse(html, force_iso=None):
             if m:
                 time = m.group(1).strip()
                 break
-        ev = ''
-        for c in cells[:4]:
+        ev, ev_i = '', None
+        for i, c in enumerate(cells[:4]):
             if len(c) > 4 and not re.fullmatch(r'[\d:.\sAPM%,-]*', c):
-                ev = c
+                ev, ev_i = c, i
                 break
+        # F-65/F-65b. The four value columns are the <td> cells carrying
+        # class="calendar-item ...", in TE's header order:
+        #     Actual | Previous | Consensus | Forecast
+        # THE FIRST ONE IS OFTEN EMPTY AND THAT IS THE POINT - an unreleased
+        # event has a BLANK Actual. The first cut of this dropped leading
+        # blanks and shifted every column one left, so Previous was read as
+        # Actual and every unreleased event gained a print it never had.
+        # That is F-1 manufactured by our own parser. Never strip a blank
+        # here; map positionally and let the empty cell mean 'not released'.
+        vals = {'actual': '', 'previous': '', 'consensus': '', 'forecast': ''}
+        vcells = [b for a, b in tds_raw if 'calendar-item' in a
+                  and 'calendar-iso' not in a and '<table' not in b.lower()]
+        for k, v in zip(VAL_FIELDS, vcells):
+            vals[k] = clean_val(txt(v))
         if ev:
-            out.append({'date': cur, 'time': time, 'iso': iso,
-                        'event': ev.lower()})
+            r = {'date': cur, 'time': time, 'iso': iso, 'event': ev.lower()}
+            r.update(vals)
+            out.append(r)
     return out
 
 
 def capture(write=False):
     stamp = dt.datetime.now(dt.timezone(dt.timedelta(hours=8)))
     tag = stamp.strftime('%Y-%m-%d_%H%MPHT')
-    rows, seen = [], set()
+    rows, seen = [], {}
 
     sources = [('GLOBAL', GLOBAL_PAGE, None)]
     sources += [(iso, url, iso) for iso, url in sorted(COUNTRY_PAGES.items())]
@@ -141,8 +174,14 @@ def capture(write=False):
         for r in got:
             k = (r['date'], r['iso'], r['event'])
             if k in seen:
+                # F-65. A country page often carries values the global page
+                # leaves blank. Keep the RICHER row rather than the first one.
+                prev = seen[k]
+                if sum(1 for f in VAL_FIELDS if r.get(f)) > \
+                   sum(1 for f in VAL_FIELDS if prev.get(f)):
+                    prev.update({f: r[f] for f in VAL_FIELDS if r.get(f)})
                 continue
-            seen.add(k)
+            seen[k] = r
             rows.append(r)
             added += 1
         print('  %-8s %4d rows parsed, %4d new' % (name, len(got), added))
