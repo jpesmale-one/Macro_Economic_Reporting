@@ -104,6 +104,19 @@ CASES = [
      '1.5 sits inside the 1.3-2.0 band'),
     ('EUR', 'Unemployment Rate', '6.3%', '6.3%', '6.3%', 'NEUTRAL',
      'unchanged'),
+    # --- F-70: INFLATION IS RATE SUPPORT, not consumer harm. Jeff,
+    # --- 2026-08-31: "The inflation of CHF is expected to increase from
+    # --- 0.4% to 0.7% why is it bad for the currency?" It is not. Rising
+    # --- inflation builds the rate case (LD-23). LOWER_IS_BETTER used to
+    # --- contain 'inflation rate' - the CONSUMER's sign - so every
+    # --- rising-inflation forecast graded BAD for every currency.
+    ('CHF', 'Inflation Rate YoY', '0.4%', '0.7%', '', 'GOOD',
+     'rising off the SNB floor toward the band is rate support'),
+    ('GBP', 'Inflation Rate YoY', '2.6%', '2.9%', '', 'GOOD',
+     'rising above a 2% target hardens the hike case'),
+    # --- but NOT unconditional: far above the ceiling it stops helping
+    ('AUD', 'Inflation Rate YoY', '3.5%', '5.5%', '', 'BAD',
+     'RBA band is 2-3%; 5.5% is a policy problem, not rate support'),
     # --- F-68: the THRESHOLD column must encode DIRECTION, not the
     # --- last observed move. On 2026-08-31 NZD ANZ Business Confidence
     # --- fell 56.1 -> 53.7 and the row was written "<Prev" to DESCRIBE
@@ -138,7 +151,8 @@ def main():
     bad = 0
     for ccy, ind, p, c, f, want, why in CASES:
         got = market_pricing(num(p), num(c), num(f), name=ind,
-                             threshold=THR.get((ccy, ind), ''))
+                             threshold=THR.get((ccy, ind), ''),
+                             ccy=ccy)
         ok = got == want
         if not ok:
             bad += 1

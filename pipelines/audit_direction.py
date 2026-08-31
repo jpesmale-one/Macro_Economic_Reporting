@@ -42,6 +42,40 @@ def expected(name):
     return None
 
 
+def channel_check():
+    """Every whitelist row must sit in the right CHANNEL (F-70).
+
+    Jeff, 2026-08-31: "decreasing unemployment is better for the economy. But
+    in Inflation we want it increasing because it poses for Interest Rate
+    Hike"
+
+    Two routes to the currency, opposite signs:
+      ECONOMIC-HEALTH  unemployment, claimant, jobless   -> LOWER better
+      RATE             inflation, cpi, ppi               -> HIGHER better
+
+    Both read as "bad news" in plain language, which is exactly how one flat
+    "lower is better" list came to invert every inflation forecast.
+    """
+    import week_ahead as wa
+    problems = []
+    for cat, iso, name, act, prev, ref, thr, verd in sm.ROWS:
+        n = name.lower()
+        in_health = any(k in n for k in wa.LOWER_IS_BETTER)
+        in_rate = wa.rate_channel(name)
+        if in_health and in_rate:
+            problems.append((sm.LABEL[iso], name,
+                             'sits in BOTH channels - the sign is ambiguous'))
+        if cat == 'Inflation' and not in_rate:
+            problems.append((sm.LABEL[iso], name,
+                             'is an Inflation row but not in the RATE channel'
+                             ' - a rising print would grade backwards'))
+        if in_health and cat == 'Inflation':
+            problems.append((sm.LABEL[iso], name,
+                             'an Inflation row in the ECONOMIC-HEALTH list'
+                             ' - this is F-70 exactly'))
+    return problems
+
+
 def main():
     bad = []
     checked = 0
@@ -76,6 +110,16 @@ def main():
             + chr(10) + 'to describe the last move - that inverts the grade'
             + chr(10) + '(F-68: a confidence MISS graded as a BEAT).')
     print('  Every *Prev threshold points the way its series does.')
+    print()
+    ch = channel_check()
+    if ch:
+        print('  ** CHANNEL PROBLEMS (F-70) **')
+        for c, n, why in ch:
+            print('    %-4s %-38s %s' % (c, n[:38], why))
+        raise SystemExit('%d row(s) in the wrong channel. Economic-health'
+                         ' series want LOWER; rate-channel series want'
+                         ' HIGHER.' % len(ch))
+    print('  Every row sits in the right channel (F-70).')
 
 
 if __name__ == '__main__':

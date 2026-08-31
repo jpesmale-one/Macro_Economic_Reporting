@@ -215,8 +215,8 @@ light category, exactly as a release would.**
 | **CAD** | +6.56 | **+4.56** | **-2.00** | S&P Global Mfg PMI Prod w1 -1 · Balance of Trade Trad w1 -1 · Employment Change Empl w2 -2 |
 | **JPY** | +0.86 | **+2.36** | **+1.50** | Consumer Confidence Spen w1 +1 · S&P Global Mfg PMI Fin Prod w1 +1 · Household Spending YoY Spen w1 +1 |
 | **AUD** | +1.97 | **+1.47** | -0.50 | Balance of Trade Trad w1 -1 |
+| **CHF** | -0.64 | **+0.86** | **+1.50** | Inflation Rate YoY Infl w3 +3 |
 | **USD** | +0.52 | **-0.48** | **-1.00** | ISM Manufacturing PMI Prod w1 -1 · Balance of Trade Trad w1 -1 · Non Farm Payrolls Empl w2 +2 · Unemployment Rate Empl w2 -2 |
-| **CHF** | -0.64 | **-2.14** | **-1.50** | Inflation Rate YoY Infl w3 -3 |
 
 **k = 0.50, and here is why that number.** It is **the largest value at which
 no currency's rank is decided by a single forecast.** At k=0.75 CHF's lone
@@ -436,7 +436,7 @@ global page omits entirely (F-57).
 | Wed 02 06:45 | NZD | Building Permits MoM | -3.6% | 2.5% | — | **GOOD** | ahead |
 | **Wed 02 13:45** | **CAD** | **⚠ BoC Interest Rate Decision** | **2.25%** | 2.25% | — | **§2.6 · rate score +0.38** (LD-23, w3) | ahead |
 | Thu 03 09:30 | AUD | Balance of Trade | A$1.929B | A$1.39B – A$1.1B | — | **BAD** | ahead |
-| **Thu 03 14:30** | **CHF** | **Inflation Rate YoY** | **0.4%** | 0.7% | — | **BAD** | ahead |
+| **Thu 03 14:30** | **CHF** | **Inflation Rate YoY** | **0.4%** | 0.7% | — | **GOOD** | ahead |
 | **Thu 03 15:30** | CHF | Procure.ch-UBS Mfg PMI | 53.2 | 53.5 – 52.8 | — | NEUTRAL | ahead |
 | Thu 03 20:30 | CAD | Balance of Trade | C$3.86B | C$3.2B – C$2.2B | — | **BAD** | ahead |
 | Thu 03 20:30 | USD | Balance of Trade | $-73.3B | $-86.4B – $-91.2B | — | **BAD** | ahead |

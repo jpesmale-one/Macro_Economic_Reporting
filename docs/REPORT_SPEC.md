@@ -1016,6 +1016,80 @@ while destroying the citation trail.
 
 ---
 
+### F-70 — TWO CHANNELS reach the currency, and they carry OPPOSITE SIGNS
+
+**Jeff, 2026-08-31:** *"The inflation of CHF is expected to increase from
+0.4% to 0.7% why is it bad for the currency?"*
+
+**It is not.** And when I confirmed the fix he stated the whole principle in
+one sentence:
+
+> *"USD Unemployment Rate 4.1% → 4.2% BAD. This is correct because decreasing
+> unemployment is better for the economy. **But in Inflation we want it
+> increasing because it poses for Interest Rate Hike**"*
+
+| Channel | Series | Route to the currency | Sign |
+|---|---|---|---|
+| **ECONOMIC HEALTH** | unemployment, claimant count, jobless claims | **directly** | **LOWER is better** |
+| **RATE** | inflation, CPI, PPI | **through the central bank** | **HIGHER is better** |
+
+**Both read as "bad news" in plain language.** That is exactly how a single
+flat `LOWER_IS_BETTER` list came to hold both — and **inverted every
+rising-inflation forecast for every currency.**
+
+**The destination is the same; the ROUTE decides the sign.**
+
+#### The whitelist always knew
+
+```
+EUR 2.9%  >2% & rising   GOOD     CHF 0.4%  <2% & falling  BAD
+GBP 2.9%  >2% & rising   GOOD
+NZD 4.1%  >2% & rising   GOOD
+CAD 3.0%  >2% & rising   GOOD
+```
+
+**CHF's BAD describes its CURRENT STATE** — 0.4% and falling, below the SNB's
+0–2% floor. **0.4% → 0.7% is rising off the floor toward the mandate, which
+is rate support.** This is Jeff's causal chain (2026-08-29, LD-72): inflation
+predicts the rate decision, and the rate decides strength.
+
+#### Not unconditional
+
+**Inflation helps only while it argues for tightening.** Far above a bank's
+own ceiling it becomes a policy problem — stagflation is not currency-
+positive. The fix is **mandate-aware**, using `rate_model.MANDATE` (LD-23:
+*"MANDATES ARE NOT ALL 2%"*) plus a 1.5pp overshoot tolerance. **AUD 3.5% →
+5.5% against a 2–3% band correctly grades BAD.**
+
+#### What it cost
+
+**CHF's forward score swung −2.14 → +0.86, a 3-point correction**, landing on
+pairs that matter:
+
+| Pair | Wrong forward spread | Corrected |
+|---|---|---|
+| **CADCHF** (held) | 6.70 | **3.70** |
+| **GBPCHF** (re-run ranked #1) | 6.95 | **3.95** |
+| EURCHF | 8.19 | 5.19 |
+
+**GBPCHF's #1 ranking was built on a spread 3 points too wide.** And CADCHF's
+case is materially weaker than reported an hour earlier — **the bug was
+flattering a pair we hold.**
+
+**BASE scores are untouched.** CHF's −0.64 comes from released data (0.4%,
+falling) and is correct; F-70 only ever affected the FORWARD adjustment.
+
+#### The guard
+
+**R-28 gained a CHANNEL CHECK.** Every whitelist row must sit in exactly one
+channel: an Inflation-category row that is not in the rate channel, or any row
+in both, fails the audit. **Verified by reintroducing the bug — 16 problems on
+8 inflation rows.**
+
+**Pricing regressions now 24**, including CHF rising off the floor, GBP rising
+above target, and the AUD overshoot that must still grade BAD.
+
+---
 ### LD-85 — the FORWARD-ADJUSTED tally (§2.0c), k = 0.50
 
 **Jeff, 2026-08-31:** *"the market is forward looking. if we react after the

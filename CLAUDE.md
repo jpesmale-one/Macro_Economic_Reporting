@@ -202,6 +202,16 @@ past every guard and were caught by Jeff reading:
   never whether it was *provisional*.
 
 **Recompute every derived figure and name the bar that produced it (LD-48).**
+**TWO CHANNELS REACH THE CURRENCY AND THEY CARRY OPPOSITE SIGNS (F-70).**
+Jeff, 2026-08-31: *"decreasing unemployment is better for the economy.
+But in Inflation we want it increasing because it poses for Interest
+Rate Hike"*. **Economic health** (unemployment, claimant, jobless)
+reaches the currency DIRECTLY — lower is better. **Inflation** reaches
+it THROUGH the central bank — higher is better, until it runs far past
+the bank's own ceiling. Both look like bad news in plain language,
+which is how one flat "lower is better" list inverted every inflation
+forecast. **The destination is the same; the ROUTE decides the sign.**
+
 **A FIELD EMPTY ON EVERY ROW IS A FACT ABOUT US, NOT ABOUT THE SOURCE
 (F-65).** §4.0 showed `— / —` for consensus for days and I explained it
 away as TE not having published yet. The columns were in the HTML we had

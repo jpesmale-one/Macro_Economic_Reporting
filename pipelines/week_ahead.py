@@ -216,42 +216,100 @@ def current_window(now=None):
     return mon.isoformat(), (mon + dt.timedelta(days=4)).isoformat()
 
 
+# F-70. TWO CHANNELS REACH THE CURRENCY, AND THEY CARRY OPPOSITE SIGNS.
+#
+# Jeff, 2026-08-31, stating it exactly:
+#   "USD Unemployment Rate 4.1% -> 4.2% BAD. This is correct because
+#    decreasing unemployment is better for the economy. But in Inflation we
+#    want it increasing because it poses for Interest Rate Hike"
+#
+#   ECONOMIC-HEALTH channel -> the currency DIRECTLY.
+#       unemployment, claimant count, jobless claims.  LOWER is better.
+#
+#   RATE channel -> the currency THROUGH the central bank.
+#       inflation, CPI, PPI.  HIGHER is better, because it forces the hike -
+#       until it runs far past the bank's own ceiling, where more inflation
+#       is a policy problem rather than rate support.
+#
+# Both look like "bad news" in plain language, which is why one list of
+# "lower is better" collapsed them and inverted every inflation forecast.
+# The DESTINATION is the same; the ROUTE decides the sign.
+#
+#
+# Jeff, 2026-08-31: "The inflation of CHF is expected to increase from 0.4% to
+# 0.7% why is it bad for the currency?" It is not. Rising inflation is RATE
+# SUPPORT (LD-23, and Jeff's causal chain of 2026-08-29). This list used to
+# contain 'inflation rate', 'cpi', 'ppi' - the CONSUMER's sign - so every
+# rising-inflation forecast graded BAD for every currency.
+#
+# Only genuine currency-negatives belong here.
 LOWER_IS_BETTER = (
-    'unemployment rate', 'inflation rate', 'core inflation rate',
-    'unemployment change', 'claimant count change', 'jobless claims',
-    'ppi', 'producer price', 'cpi',
+    'unemployment rate', 'unemployment change', 'claimant count change',
+    'jobless claims',
 )
 
+# Series where a HIGHER print supports the currency through the rate channel,
+# but ONLY while inflation is still arguing for tightening. Above the bank's
+# own ceiling, more inflation is a policy problem rather than rate support -
+# stagflation is not currency-positive - so this is mandate-aware.
+RATE_CHANNEL = (
+    'inflation rate', 'core inflation rate', 'cpi', 'ppi', 'producer price',
+)
+# How far above a bank's ceiling inflation may run before extra inflation
+# stops helping the currency. Percentage points.
+OVERSHOOT_TOLERANCE = 1.5
 
-def lower_is_better(name, threshold=None):
-    """Does a LOWER print favour the currency for this series?
 
-    F-66. The whitelist already answers this in its THRESHOLD column -
-    '<Prev' paired with GOOD means lower is better, '>Prev' with BAD means
-    the same thing. Prefer that answer; fall back to the name only when the
-    row gives no directional threshold.
+def rate_channel(name):
+    return any(k in (name or '').lower() for k in RATE_CHANNEL)
+
+
+def inflation_is_good(ccy, expected):
+    """Does MORE inflation help this currency at this level? (F-70)
+
+    Uses the bank's OWN mandate band (LD-23 - mandates are not all 2%).
+    Below or inside the band, rising inflation builds the rate case. Far
+    above it, it stops being support and becomes a policy problem.
+    """
+    try:
+        import rate_model
+        iso = {'USD': 'US', 'EUR': 'EA', 'GBP': 'GB', 'JPY': 'JP',
+               'AUD': 'AU', 'NZD': 'NZ', 'CAD': 'CA', 'CHF': 'CH'}.get(ccy)
+        lo, hi = rate_model.MANDATE[iso]
+    except Exception:
+        return True
+    if expected is None:
+        return True
+    return expected <= hi + OVERSHOOT_TOLERANCE
+
+
+def lower_is_better(name, threshold=None, ccy=None, expected=None):
+    """Does a LOWER print favour the CURRENCY for this series?
+
+    F-66: the whitelist's threshold column answers this when it names the
+    previous print - '<Prev' means lower is better.
+
+    F-70: inflation is the exception that proves why the NAME fallback is
+    dangerous. For a consumer, lower inflation is better. For a CURRENCY it
+    is the reverse - inflation drives the rate decision, and the rate decides
+    strength. Rising inflation was grading BAD for every currency because
+    'inflation rate' sat in LOWER_IS_BETTER.
     """
     t = (threshold or '').strip().lower()
-    # F-66b. '<' means TWO different things in the threshold column and only
-    # one of them is a direction:
-    #   '<Prev'  -> a COMPARISON against the last print. Lower is better.
-    #               Unemployment, claimant count.
-    #   '<0%'    -> a STATE description: "this series is currently negative."
-    #               Says NOTHING about which way is better. JPY Household
-    #               Spending -3.3% -> -1.6% is a SMALLER contraction, an
-    #               IMPROVEMENT, and reading '<0%' as "lower is better"
-    #               grades that recovery as BAD.
-    # Only a threshold naming the PREVIOUS PRINT carries direction here.
-    # Everything else falls through to the series name, which is the thing
-    # that actually knows whether low is good.
+    # F-66b. '<Prev' is a COMPARISON and carries direction. '<0%' is a STATE
+    # description and does not - it says the series is currently negative,
+    # not which way is better.
     if 'prev' in t:
         return t.startswith('<')
+    if rate_channel(name):
+        # More inflation helps until it runs far past the bank's ceiling.
+        return not inflation_is_good(ccy, expected)
     n = (name or '').lower()
     return any(k in n for k in LOWER_IS_BETTER)
 
 
 def market_pricing(previous, consensus, forecast=None, name=None,
-                   threshold=None):
+                   threshold=None, ccy=None):
     """Grade what the market is PRICING for a not-yet-released event.
 
     Returns GOOD / NEUTRAL / BAD for the CURRENCY, or None when there is no
@@ -282,7 +340,8 @@ def market_pricing(previous, consensus, forecast=None, name=None,
         return 'NEUTRAL'
     # The expected print sits ABOVE the last one when previous < lo.
     expected_higher = previous < lo
-    if lower_is_better(name, threshold):
+    if lower_is_better(name, threshold, ccy=ccy,
+                       expected=(hi + lo) / 2.0):
         return 'BAD' if expected_higher else 'GOOD'
     return 'GOOD' if expected_higher else 'BAD'
 
