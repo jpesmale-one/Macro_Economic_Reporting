@@ -133,6 +133,7 @@ hand-written version silently degraded while the generator sat unused.
 ```
 python pipelines/capture_calendar.py --write  # F-57 - global + CH/NZ country pages
 python pipelines/audit_te.py --fetch     # LD-50 - reconcile the whitelist
+python pipelines/audit_schedule.py       # R-30 - actual vs its own release time (F-71)
 python pipelines/freshness.py            # LD-54 - revisions + stalled series
 python pipelines/test_guards.py          # 8 real regressions must all block
 python pipelines/test_pricing.py         # R-26 - 20 hand-graded pricing cases

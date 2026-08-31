@@ -425,7 +425,7 @@ global page omits entirely (F-57).
 | Mon 31 13:00 | JPY | Consumer Confidence | 34.9 | 35 | — | **GOOD** | ahead |
 | **Tue 01 07:00** | AUD | S&P Global Mfg PMI Final | 52.0 | 52.0 | — | NEUTRAL | ahead |
 | **Tue 01 08:30** | JPY | S&P Global Mfg PMI Final | 54.5 | 55.1 | — | **GOOD** | ahead |
-| **Tue 01 09:00** | NZD | ANZ Business Confidence | 56.1 | 55.7 | **53.7** | **BAD** | **MISS** |
+| **Mon 31 09:00** | NZD | ANZ Business Confidence | 56.1 | 55.7 | **53.7** | **BAD** | **MISS** |
 | Tue 01 14:30 | CHF | Retail Sales YoY | 1.5% | 1.3% – 2.0% | — | NEUTRAL | ahead |
 | **Tue 01 16:00** | EUR | S&P Global Mfg PMI Final | 51.9 | 52.8 | — | **GOOD** | ahead |
 | **Tue 01 16:30** | GBP | S&P Global Mfg PMI Final | 51.9 | 51.5 | — | **BAD** | ahead |
@@ -453,6 +453,15 @@ never over the top of Previous, so the comparison the week was priced on stays
 readable after the fact. **Cons / Fcst is a RANGE when both exist**, the single
 figure when only one does. **Market priced** grades Previous against that range;
 **Status** grades the Actual once it lands.
+
+**⚠ ANZ Business Confidence is dated Mon 31, not Tue 01 as TE shows (F-71).**
+TE carries the scheduled slot at **1 Sep 01:00 UTC** while already publishing
+the actual. **Our own captures settle it: the value was BLANK at 30 Aug 21:45
+PHT and 53.7 by 31 Aug 09:58 PHT** — which is 01:58 UTC, twenty-three hours
+BEFORE TE's own timestamp. **A value cannot exist before the release that
+produces it, so the DATE is stale and the value is sound.** JPY Retail Sales
+MoM carries the same defect. **R-30 `audit_schedule.py` separates this from F-1**,
+where the VALUE is the wrong half.
 
 **⚠ The two rate decisions ARE scored** — §2.6 / LD-23, **weight 3, the heaviest
 on the board**, via `rate_model.py`. What sits outside the 71-row whitelist is the

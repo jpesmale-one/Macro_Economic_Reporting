@@ -1016,6 +1016,49 @@ while destroying the citation trail.
 
 ---
 
+### F-71 · R-30 — an ACTUAL cannot predate its own release
+
+**Jeff, 2026-08-31, reading §4.0:** *"Tue 01 09:00 NZD ANZ Business
+Confidence — The schedule is wrong."*
+
+**Our own captures prove it, with no outside source needed:**
+
+```
+30 Aug 21:45 PHT capture -> date 2026-09-01 01:00 UTC, actual BLANK
+31 Aug 09:58 PHT capture -> date 2026-09-01 01:00 UTC, actual 53.7
+```
+
+**The 09:58 PHT capture is 01:58 UTC on 31 Aug — twenty-three hours BEFORE
+TE's own timestamp for the event.** A value cannot exist before the release
+that produces it. **The actual is real; the DATE is stale.** TE left the
+scheduled slot on tomorrow while publishing today's result.
+
+#### The mirror image of F-1, needing the opposite response
+
+| | Symptom | What is wrong | Response |
+|---|---|---|---|
+| **F-1** | actual present, date in future | **the VALUE** — a forecast wearing a print's label | **do not use it** |
+| **F-71** | actual present, date in future | **the DATE** — TE left the slot stale | **use the value, fix the date** |
+
+**Identical symptoms, opposite fixes.** Treating F-71 as F-1 discards a real
+print; treating F-1 as F-71 publishes a forecast as a fact.
+
+#### The discriminator is CAPTURE HISTORY
+
+**A value that APPEARS between two captures has released** — that is F-71. **A
+value sitting unchanged since before any plausible release** is F-1.
+
+**This is what the raw captures are FOR.** They are kept rather than
+overwritten precisely so a question like this can be settled from the record
+instead of argued.
+
+**R-30 `pipelines/audit_schedule.py`** runs the test on every future-dated row
+carrying an actual and sorts them into the two buckets. **First run found two
+F-71 rows** — ANZ Business Confidence and JPY Retail Sales MoM, the second of
+which nobody had noticed — **and two F-1 suspects** (CAD budget balance, CHF
+KOF) whose values have been static and must not be used.
+
+---
 ### F-70 — TWO CHANNELS reach the currency, and they carry OPPOSITE SIGNS
 
 **Jeff, 2026-08-31:** *"The inflation of CHF is expected to increase from
