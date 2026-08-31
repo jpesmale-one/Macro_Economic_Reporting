@@ -1,6 +1,6 @@
 <!--edition
 date: 2026-08-31
-title: Monday, 31 August 2026 &middot; REVALIDATION &middot; 10:12 PHT
+title: Monday, 31 August 2026 &middot; REVALIDATION &middot; 13:05 PHT
 revision: r1
 seal: UNSEALED
 type: MONDAY
@@ -45,17 +45,17 @@ bar CLOSE beyond the level (LD-48).
 
 | Pair | Bias | Entry ref | **Now** | **Move** | Falsifier | Distance |
 |---|---|---|---|---|---|---|
-| **GBPAUD** | LONG | 1.88978 | **1.88996** | **+1.8 pips** | close < 1.85396 | **360 pips** |
-| **CADCHF** | LONG | 0.58210 | **0.58211** | **+0.1 pips** | close < 0.56513 | **170 pips** |
-| **NZDJPY** | LONG | 94.671 | **94.528** | **−14.3 pips** | close < 91.100 | **343 pips** |
-| | | | **SUM** | **−12.4 pips** | | |
-
+| **GBPAUD** | LONG | 1.88978 | **1.89036** | **+5.8 pips** | close < 1.85396 | **364 pips** |
+| **CADCHF** | LONG | 0.58210 | **0.58259** | **+4.9 pips** | close < 0.56513 | **175 pips** |
+| **NZDJPY** | LONG | 94.671 | **94.547** | **−12.4 pips** | close < 91.100 | **345 pips** |
+| | | | **SUM** | **−1.7 pips** | | |
 **Direction, not P&L** — there is no sizing in this repo (LD-4). `OANDA:` daily,
-**bars FORMING**, pulled 10:12 PHT.
+**bars FORMING**, pulled 13:05 PHT.
 
-**Nothing is close to failing.** The nearest falsifier is 170 pips away on CADCHF,
-and that pair has not moved at all — one tenth of a pip off its reference after a
-full Asian session.
+**Nothing is close to failing, and the set has turned.** The nearest falsifier is
+**175 pips** away on CADCHF. **Two of three are now positive** — the London
+session lifted CADCHF off the flat line it held all morning (+0.1 → +4.9) and
+GBPAUD from +1.8 to +5.8. **NZDJPY is still the only loser.**
 
 ### §0L — What Monday added that Sunday could not see
 
@@ -422,7 +422,7 @@ global page omits entirely (F-57).
 | When (PHT) | CCY | Indicator | Previous | Cons / Fcst range | **Actual** | **Market priced** | Status |
 |---|---|---|---|---|---|---|---|
 | **Mon 31 07:50** | JPY | Retail Sales YoY | 0.6% ® | 3% – 1.0% | **4%** | **GOOD** | **BEAT** |
-| Mon 31 13:00 | JPY | Consumer Confidence | 34.9 | 35 | — | **GOOD** | ahead |
+| Tue 01 13:00 | JPY | Consumer Confidence | 34.9 | 35 | — | **GOOD** | ahead |
 | **Tue 01 07:00** | AUD | S&P Global Mfg PMI Final | 52.0 | 52.0 | — | NEUTRAL | ahead |
 | **Tue 01 08:30** | JPY | S&P Global Mfg PMI Final | 54.5 | 55.1 | — | **GOOD** | ahead |
 | **Mon 31 09:00** | NZD | ANZ Business Confidence | 56.1 | 55.7 | **53.7** | **BAD** | **MISS** |
@@ -456,14 +456,17 @@ figure when only one does. **Market priced** grades Previous against that range;
 
 **⚠ Every time above matches TE's own screen (F-72).** An earlier build put ANZ
 Business Confidence on Tue 01 and blamed TE for a stale timestamp. **That was our
-bug, not theirs** — the parser followed a running date heading that TE prints
-TWICE per day, so rows landed one day late; it now reads each row's own date
-cell. **JPY Retail Sales MoM carried the same defect.** Verified row by row
-against Jeff's screenshot: **8 of 8 match.**
+bug, not theirs** — the parser followed a running date heading TE prints TWICE
+per day; it now reads each row's own date cell.
+
+**⚠ JPY Consumer Confidence has been RESCHEDULED by TE**, Mon 31 → **Tue 01
+13:00 PHT**. Three captures carried 31 Aug and the 13:05 capture carries 1 Sep;
+the raw page confirms it. **A real reschedule, not a parse artefact** — which is
+exactly what Monday's revalidation exists to catch.
 
 **⚠ The two rate decisions ARE scored** — §2.6 / LD-23, **weight 3, the heaviest
-on the board**, via `rate_model.py`. What sits outside the 71-row whitelist is the
-CALENDAR EVENT, not the indicator.
+on the board.** What sits outside the 71-row whitelist is the CALENDAR EVENT,
+not the indicator.
 
 ### 4.1 — Event risk by currency (LD-73)
 
@@ -491,10 +494,10 @@ room instead.
 | AUDCAD | SHORT | 4.59 | 88.9% | **0.89 AMPLE** | 10 | 0.61 | **-0.50** long aligned / short BUILDING |
 | CADJPY | LONG | 5.70 | 74.2% | 0.26 TIGHT | 10 | 0.54 | **+0.00** long aligned / short aligned |
 | GBPJPY | LONG | 4.45 | 68.0% | 0.32 TIGHT | 2 | 0.53 | **-0.50** long IN THE PAST / short aligned |
-| **CADCHF** | LONG | 7.20 | 79.6% | 0.20 TIGHT | 11 | **0.50** | **-0.50** long aligned / short BUILDING |
-| **GBPAUD** | LONG | 3.34 | 43.8% | 0.56 adequate | 2 | **0.48** | **-1.00** long IN THE PAST / short BUILDING |
+| **CADCHF** | LONG | 7.20 | 81.9% | **0.18 NONE** | 11 | **0.49** | **-0.50** long aligned / short BUILDING |
+| **GBPAUD** | LONG | 3.34 | 44.3% | 0.56 adequate | 2 | **0.48** | **-1.00** long IN THE PAST / short BUILDING |
 | GBPCHF | LONG | 5.95 | 80.3% | **0.20 NONE** | 3 | 0.46 | **-1.00** long IN THE PAST / short BUILDING |
-| **NZDJPY** | LONG | 3.43 | 78.0% | 0.22 TIGHT | 8 | **0.40** | **-0.50** long IN THE PAST / short aligned |
+| **NZDJPY** | LONG | 3.43 | 77.9% | 0.22 TIGHT | 8 | **0.40** | **-0.50** long IN THE PAST / short aligned |
 | EURCHF | LONG | 5.69 | 82.3% | **0.18 NONE** | 22 | 0.32 | **-0.50** long aligned / short BUILDING |
 
 **Confluence = (spread/8 + room + inverted risk) / 3, then scaled by the
@@ -519,7 +522,7 @@ healthy 3 BUILDING / 3 aligned / 2 IN THE PAST.
 
 **GBPAUD takes the worst tilt on the board (−1.00)** — long GBP, which is IN
 THE PAST with nothing upstream feeding it, against AUD, which is BUILDING.
-**It survives on room: 462 favourable pips, the most of any candidate.**
+**It survives on room: 458 favourable pips, the most of any candidate.**
 **That is criterion 4 doing exactly what Jeff described** — a lesser cycle
 case with room beating a better one without it.
 
@@ -694,13 +697,12 @@ the pair from narrowing to failing, and the second one is already priced GOOD.
 
 ## §5 — Gold (XAUUSD)
 
-> **⚠ GOLD IS EXTENDING FRIDAY'S BREAK, NOT RETRACING IT.** Monday's bar is **FORMING** — open **4445.72**, high **4472.17**, **low 4418.22**, last **4433.26** at 10:12 PHT. **That low is 27.2 points BELOW Friday's low of 4445.46**, so the session has already printed beneath the level that defined the break. **Friday closed 4454.99, down 147.2 on the day** — the largest fall of the week — and Monday has followed through rather than bounced.
+> **⚠ GOLD KEEPS EXTENDING. The session low is now 4396.53**, a further 21.7 points below the 4418.22 that stood at 10:12, and **49 points below Friday's low of 4445.46.** Monday's bar is **FORMING** — open **4445.72**, high **4472.17**, last **4420.96** at 13:05 PHT. **Friday closed 4454.99, down 147.2**, and Monday has followed through in the same direction all session.
 
-**Across the week and into today: 4651.24 → 4454.99 → 4433.26, −218 from Monday's
-high.** The mechanism is the one this section describes, running in reverse:
-**DXY sits at 99.594**, roughly flat on Friday's close, and September hike odds near 42% keep real yields elevated. **Gold has not needed fresh dollar strength to keep falling** — which is the part worth watching.
+**Across the week and into today: 4651.24 → 4454.99 → 4420.96, −230 from Monday's
+high.** **DXY sits at 99.611, up just 0.017 since 10:12** — essentially unchanged. **Gold is falling without fresh dollar strength**, which is the part worth watching: the move has stopped needing its usual driver.
 
-**Bars are FORMING. A level derived from a forming bar can vanish** — the 4418.22 low is the session's so far, not the day's (LD-5).
+**Bars are FORMING. A level derived from a forming bar can vanish** — 4396.53 is the session's low so far, not the day's (LD-5).
 
 ### Forward level map — re-derived from bars (LD-47)
 
@@ -876,12 +878,12 @@ read behind **GBPUSD LONG**, not an independent signal (§6).
 
 ## §6 — BTC (BTCUSD)
 
-**BTC TRADES THE WEEKEND, AND THAT MATTERS FOR THE RECORD.** Sunday 30 Aug closed **77,701.70 — FINAL**, day range **77,023.78–79,385.99**. Monday's bar is **FORMING**: open **77,659.15**, range **77,440.81–78,168.32**, last **77,791.12** at 10:12 PHT.
+**BTC TRADES THE WEEKEND, AND THAT MATTERS FOR THE RECORD.** Sunday 30 Aug closed **77,701.70 — FINAL**, day range **77,023.78–79,385.99**. Monday's bar is **FORMING**: open **77,659.15**, range **77,381.47–78,168.32**, last **77,640.89** at 13:05 PHT — **−150 since 10:12**, and the session low has crept down with it.
 
 **Friday's 77,389.5 was NOT the last print** — two full sessions have traded
-since, and BTC is **+401.6 above it**. **Quoting a Friday close for a 24/7 instrument on a Monday is a vintage error**, and this section carried one until this run.
+since, and BTC is **+251.4 above it**. **For a 24/7 instrument the Friday close stops being the reference the moment Saturday opens.**
 
-**Across the three sessions: 78,235.02 → 77,701.70 → 77,791.12 — net −443.9.** Sunday alone swung **2,362 points** high-to-low (79,385.99–77,023.78) and closed near the bottom of it. **BTC is going sideways-to-lower while gold breaks down** — the divergence §6's dollar check exists to interrogate.
+**Across the three sessions: 78,235.02 → 77,701.70 → 77,640.89 — net −594.1.** Sunday alone swung **2,362 points** high-to-low (79,385.99–77,023.78) and closed near the bottom of it. **BTC is drifting lower while gold breaks down** — both softening, but only one of them decisively.
 
 ### Forward level map — BTC's first (R-10 closed)
 

@@ -6,9 +6,10 @@
 
 edition: 2026-08-31 (r1, MONDAY REVALIDATION, UNSEALED - set stays LOCKED)
 date: 2026-08-31
-data_asof: 2026-08-31 10:12 PHT (capture 09:58 PHT, 906 rows, all 8 country
+data_asof: 2026-08-31 13:05 PHT (capture 13:05 PHT, all 8 country
            pages; JPY Retail Sales and NZD ANZ Business Confidence RELEASED
-           and fed in; gold/BTC bars FORMING, prices 10:12 PHT)
+           and fed in; JPY Consumer Confidence RESCHEDULED by TE to Tue 01;
+           gold/BTC bars FORMING, prices 13:05 PHT)
 last_sealed: 2026-08-21 (r13, SEALED FULL) - editions 08-24 .. 08-31 UNSEALED
 track: LEAN (no section-2 trigger has fired)
 
