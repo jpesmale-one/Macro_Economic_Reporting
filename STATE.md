@@ -19,6 +19,16 @@ track: LEAN (no section-2 trigger has fired)
 #   4.0 recorded every projection in advance, so the Saturday retrospective
 #   can grade k against what actually printed. RAISE OR LOWER ON THAT
 #   EVIDENCE, not on argument.
+# 2026-09-05: FULL SCORING REVIEW - Jeff, 2026-08-31: "then we put all our
+#   scoring logic for review coming the market close retro review". Agenda
+#   is docs/SCORING_REVIEW_AGENDA.md, written BEFORE the outcomes are known
+#   so the questions cannot be retrofitted. Four items to grade: LD-85
+#   k=0.50, LD-86 cycle gate, the confluence formula that has NEVER been
+#   tested against outcomes, and the three-pair floor vs room floor
+#   conflict. DO NOT TUNE ALL FOUR ON ONE WEEK OF EVIDENCE.
+# CLOSED 2026-08-31: the cycle gap. 2.0b now feeds selection as criterion 7
+#   (LD-86). Flagged in SELECTION_CRITERIA.md as RATIFIED by Jeff, not
+#   authored by him - held to a higher evidence bar for that reason.
 # OPEN: the CYCLE view (2.0b) still feeds nothing. Selection ranks on 2.0
 #   alone. NZD scored 4.29 while 2.0b called it IN THE PAST and its case
 #   rests on Jun/26 quarterly data. Jeff has not ruled on a cycle gate.
