@@ -123,6 +123,7 @@ hand-written version silently degraded while the generator sat unused.
 | **HOW A PAIR IS SELECTED** | **`docs/SELECTION_CRITERIA.md`** — six rules in Jeff's own words (LD-84) | **applied in pieces from memory** |
 | **§2.0c forward tally** | **`forward_adjust.py`** — k=0.50, weighted (LD-85) | **flat, or overwriting the base** |
 | **§4.2 confluence** | **cycle-tilted** — `cycle_gate.py`, criterion 7 (LD-86) | **ranked on §2.0 alone while §2.0b is printed and ignored** |
+| **§2 NEXT DUE column** | **`next_due.py`** — TE's published schedule (LD-87) | **inferred from history when TE publishes the date** |
 | The edition itself | `render_edition.py <path.md>` | any other way |
 | **Process narrative** | **§7 Method notes — it already folds** (LD-69) | **§0–§6, the market read** |
 | **The weekly retrospective** | **its own artifact** (LD-70) | **a § of the daily edition** |
@@ -139,6 +140,7 @@ python pipelines/freshness.py            # LD-54 - revisions + stalled series
 python pipelines/test_guards.py          # 8 real regressions must all block
 python pipelines/test_pricing.py         # R-26 - 20 hand-graded pricing cases
 python pipelines/release_week.py --due   # LD-83 - due this week, absent from capture
+python pipelines/next_due.py             # LD-87 - next scheduled print per row
 python pipelines/audit_direction.py      # R-28 - thresholds point the way their series does
 python pipelines/cycle_gate.py           # LD-86 - cycle positions and tilts
 python pipelines/layout_shape.py <md>    # R-27 - the report SHAPE is locked

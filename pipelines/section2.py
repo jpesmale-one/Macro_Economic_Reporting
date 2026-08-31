@@ -175,17 +175,42 @@ def standings():
     return ' · '.join(parts)
 
 
-def category_table(cat):
-    """One markdown table for a category: every row, no blanks."""
+def category_table(cat, due=None):
+    """One markdown table for a category: every row, no blanks.
+
+    LD-87 adds NEXT DUE. Jeff, 2026-08-31: "For each indicators in §2 we put
+    which week these news will come out. in TE the whole schedule for
+    September is already out."
+
+    A GOOD score with a print due Thursday is a different thing from a GOOD
+    score with nothing until the 24th - the first is about to be tested, the
+    second is being carried. That distinction was invisible in this table,
+    and it is the same blind spot that let NZD sit at +4.29 on Jun/26
+    quarterly data while every fresh print ran the other way.
+    """
+    if due is None:
+        try:
+            import next_due as _nd
+            due = _nd.next_due()
+        except Exception:
+            due = {}
+    try:
+        import next_due as _nd
+        fmt = _nd.label
+    except Exception:
+        fmt = lambda e: '—'
     rows = [r for r in sm.ROWS if r[0] == cat]
     rows.sort(key=lambda r: (ORDER.index(r[1]) if r[1] in ORDER else 99, r[2]))
-    out = ['| CCY | Indicator | Actual | Previous | Ref | Threshold | Score |',
-           '|---|---|---|---|---|---|---|']
+    out = ['| CCY | Indicator | Actual | Previous | Ref | Threshold | Score '
+           '| **Next due** |',
+           '|---|---|---|---|---|---|---|---|']
     for _c, ccy, name, actual, prev, ref, thr, score in rows:
-        out.append('| %s | %s | %s | %s | %s | %s | %s |' % (
-            sm.LABEL.get(ccy, ccy), name,
+        lbl = sm.LABEL.get(ccy, ccy)
+        out.append('| %s | %s | %s | %s | %s | %s | %s | %s |' % (
+            lbl, name,
             actual or '**NOT FOUND**', prev or '—',
-            ref or '—', thr or '—', _score_cell(score)))
+            ref or '—', thr or '—', _score_cell(score),
+            fmt(due.get((lbl, name)))))
     return '\n'.join(out), len(rows)
 
 

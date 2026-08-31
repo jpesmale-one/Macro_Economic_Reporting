@@ -51,8 +51,11 @@ file and fails the render on a mismatch.
 
 ### §2.1–2.5 — Indicator tables
 ```
-| CCY | Indicator | Actual | Previous | Ref | Threshold | Score |
+| CCY | Indicator | Actual | Previous | Ref | Threshold | Score | **Next due** |
 ```
+**LD-87, approved 2026-08-31: NEXT DUE added**, read from TE's published
+schedule. **R-24 enforces these headers from 2026-08-31** — documented here
+from the start but never guarded until now (5 locked tables became 10).
 
 ### §4.0 — Week ahead (LD-63)
 ```
@@ -125,5 +128,6 @@ variants above was written in good faith while doing something else.
 
 | Version | Date | Change |
 |---|---|---|
+| **v3** | **2026-08-31** | **§2.1–2.5 gain NEXT DUE (LD-87) and are now ENFORCED by R-24, not merely documented.** |
 | **v2** | **2026-08-31** | **§2.0c added; §4.0 v2 (Previous frozen, Actual column, Cons/Fcst range); §4.5 room-gated. All three approved by Jeff in advance.** |
 | **v1** | **2026-08-30** | **Locked. §4.0 restored to its 27 Aug seven-column form after four editions of drift.** |

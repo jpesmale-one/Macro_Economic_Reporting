@@ -1016,6 +1016,52 @@ while destroying the citation trail.
 
 ---
 
+### LD-87 — NEXT DUE in §2: when is each indicator retested?
+
+**Jeff, 2026-08-31:** *"For each indicators in §2 we put which week these news
+will come out. in TE the whole schedule for September is already out. so we
+can check on which week in September these indicators will come out."*
+
+**§2.1–2.5 gain a NEXT DUE column** carrying the scheduled date and its week
+of month — `W1 · Thu 3 Sep`.
+
+#### Why this is not LD-83
+
+| | Answers | Source |
+|---|---|---|
+| **LD-83** `release_week.py` | *"this series usually lands in W1"* | **inferred** from capture history |
+| **LD-87** `next_due.py` | *"this row's next print is Thu 3 Sep"* | **read** from TE's schedule |
+
+**Both are worth having** — LD-83 powers the `--due` gap check, LD-87 states a
+fact. **But where TE publishes the calendar, look it up rather than infer it.**
+
+#### What it adds to the read
+
+**A GOOD score with a print due Thursday is not the same thing as a GOOD score
+with nothing until the 24th.** The first is about to be tested; the second is
+being carried. **That distinction was invisible in §2**, and it is the same
+blind spot that let NZD hold +4.29 on Jun/26 quarterly data while every fresh
+print ran the other way.
+
+**First run, 2026-08-31:** 60 of 71 rows have a scheduled print in the window
+(28 Aug – 25 Sep). **W1 carries 25 of them, the densest week of the month.**
+
+**And the finding that matters this week: NZD Inflation is not retested until
+Fri 18 Sep, and NZD Unemployment is not scheduled at all.** Both quarterly,
+both Jun/26, **neither refreshes inside this week's lock.**
+
+#### Two guards moved
+
+**LD-39 rejected the first attempt**, which used an em dash for an unscheduled
+row — correctly, because *"not scheduled"* and *"we failed to look"* must not
+render identically. **It now reads `not scheduled`: a claim about the calendar
+that can be checked.**
+
+**R-24 now locks §2.1–2.5.** `docs/LAYOUT_LOCK.md` documented those headers
+from the start but the guard never enforced them — **5 locked tables became
+10.**
+
+---
 ### LD-86 · R-31 — the CYCLE GATE: §2.0b finally feeds selection
 
 **Jeff, 2026-08-31:** *"2.0b Cycle position — you're pointing this out earlier.

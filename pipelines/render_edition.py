@@ -632,6 +632,19 @@ def assert_no_offlist_scores(md):
 # nothing noticed. Content changes freely; STRUCTURE DOES NOT.
 LOCKED_TABLES = {
     '2.0': ['Band', 'CCY', 'Score', 'Group'],
+    # LD-87, approved 2026-08-31: the indicator tables gain NEXT DUE, read
+    # from TE's published schedule. docs/LAYOUT_LOCK.md documented 2.1-2.5
+    # from the start but R-24 never enforced them - they are locked now.
+    '2.1': ['CCY', 'Indicator', 'Actual', 'Previous', 'Ref', 'Threshold',
+            'Score', 'Next due'],
+    '2.2': ['CCY', 'Indicator', 'Actual', 'Previous', 'Ref', 'Threshold',
+            'Score', 'Next due'],
+    '2.3': ['CCY', 'Indicator', 'Actual', 'Previous', 'Ref', 'Threshold',
+            'Score', 'Next due'],
+    '2.4': ['CCY', 'Indicator', 'Actual', 'Previous', 'Ref', 'Threshold',
+            'Score', 'Next due'],
+    '2.5': ['CCY', 'Indicator', 'Actual', 'Previous', 'Ref', 'Threshold',
+            'Score', 'Next due'],
     '2.0b': ['CCY', 'Leading', 'Confirming', 'Gap', 'Score'],
     # v2, Jeff 2026-08-31: PREVIOUS is frozen and a release lands in
     # its own ACTUAL column; Cons/Fcst is a RANGE when both exist.
