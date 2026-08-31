@@ -46,6 +46,15 @@ SLUG = {'US': 'united-states', 'EA': 'euro-area', 'GB': 'united-kingdom',
 # Rows where OUR presentation legitimately differs from TE's. Each needs a
 # reason - this list is not a way to silence a mismatch (F-35).
 KNOWN_DIFFERENT = {
+    ('JP', 'Industrial Production YoY Final'):
+        "we carry the FINAL, TE's newer figure is the PREL. 2026-08-31: TE "
+        "shows 4.1% dated Jul/26 and flags it NEWER than our 4.9% Jun/26 - "
+        "but that 4.1% is 'industrial production yoy PREL jul', released "
+        "30 Aug. The Jul FINAL is scheduled 15 Sep and has NOT released "
+        "(its Actual cell is empty; TE carries 4.1% as its FORECAST). "
+        "ADOPTING IT WOULD PUT A PROVISIONAL FIGURE UNDER A FINAL'S NAME - "
+        "F-27/F-29/F-36, which happened three times. The row updates when "
+        "the FINAL prints on 15 Sep.",
     ('US', 'Building Permits MoM Final'):
         "we carry MoM %, TE carries the LEVEL. F-62 (2026-08-30): this row "
         "held 5.0%, which is TE's CONSENSUS AND FORECAST column, not its "
@@ -80,6 +89,14 @@ KNOWN_DIFFERENT = {
 # KNOWN_DIFFERENT because this exempts the REFERENCE-PERIOD check, which is the
 # stronger exemption and must stay short.
 KNOWN_SERIES_GAP = {
+    ('JP', 'Industrial Production YoY Final'): 'TE lists the PREL first; '
+        'the whitelist names the FINAL (F-29 rule). 2026-08-31: TE flags '
+        '4.1% Jul/26 as NEWER than our 4.9% Jun/26, but that figure is '
+        '"industrial production yoy PREL jul" released 30 Aug. The Jul '
+        'FINAL is scheduled 15 Sep and has NOT released - its Actual cell '
+        'is empty and TE carries 4.1% there as the FORECAST. Adopting it '
+        'would put a PROVISIONAL under a FINAL name, which is F-27/F-29/'
+        'F-36 - that happened three times. Updates when the FINAL prints.',
     ('EA', 'S&P Global Mfg PMI Final'): 'TE lists the monthly FLASH first; '
         'the whitelist names the FINAL (F-29 rule)',
     ('GB', 'S&P Global Mfg PMI Final'): 'TE lists the FLASH; whitelist = FINAL',

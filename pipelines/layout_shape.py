@@ -25,6 +25,12 @@ BASELINE = os.path.join(os.path.dirname(HERE), 'docs', 'LAYOUT_LOCK.json')
 VARIABLE_ROWS = ()
 
 
+def edition_type(md):
+    """The `type:` field from the edition frontmatter (F-19 validates it)."""
+    m = re.search(r'^type:\s*(\w+)', md, re.M)
+    return m.group(1).strip().upper() if m else 'UNKNOWN'
+
+
 def shape(md):
     """{section: [header, ...]} - one entry per table, in document order."""
     out, cur = {}, 'PRE'
@@ -59,16 +65,25 @@ def load():
 
 
 def check(md):
-    """Compare an edition's shape to the blessed baseline. Returns a summary."""
-    base = load()
+    """Compare an edition's shape to the baseline blessed FOR ITS TYPE.
+
+    Per-type baselines (Jeff, 2026-08-31). 0 grades the expired week on a
+    WEEKEND edition and tracks the live set on a MONDAY one - same section
+    number, two purposes. A single baseline would force a live price under a
+    column headed "Fri close".
+    """
+    allb = load()
     got = shape(md)
-    if base is None:
+    etype = edition_type(md)
+    if allb is None:
         return 'no baseline - run with --bless once Jeff approves the layout'
+    base = allb.get(etype)
+    if base is None:
+        return ('no blessed shape for %s yet - bless this edition to set it'
+                % etype)
     problems = []
     for sec in sorted(set(base) | set(got)):
         b, g = base.get(sec, []), got.get(sec, [])
-        if sec in VARIABLE_ROWS:
-            b, g = b[:1], g[:1]
         if len(g) > len(b):
             for h in g[len(b):]:
                 problems.append('\u00a7%s GAINED a table: %s' % (sec, h))
@@ -81,7 +96,8 @@ def check(md):
                                 % (sec, k + 1, chr(10), bh, chr(10), gh))
     if problems:
         raise SystemExit(
-            'FATAL (R-27/LD-82): the report SHAPE changed.' + chr(10)
+            'FATAL (R-27/LD-82): the %s edition SHAPE changed.' % etype
+            + chr(10)
             + chr(10).join('  ' + p for p in problems) + chr(10)
             + 'Jeff, 2026-08-30: "don\'t change the report format wihtout my'
             + ' approval. if there\'s a need to change then let me know."'
@@ -93,15 +109,20 @@ def check(md):
             + 'the content in it was asked for. Ask, then re-bless:'
             + chr(10)
             + '    python pipelines/layout_shape.py <edition.md> --bless')
-    return '%d section(s) match the blessed shape' % len(base)
+    return '%d section(s) match the blessed %s shape' % (len(base), etype)
 
 
 def bless(md, path):
-    json.dump(shape(md), io.open(BASELINE, 'w', encoding='utf-8'),
+    """Bless this edition's shape FOR ITS TYPE, leaving other types alone."""
+    allb = load() or {}
+    etype = edition_type(md)
+    allb[etype] = shape(md)
+    json.dump(allb, io.open(BASELINE, 'w', encoding='utf-8'),
               indent=1, ensure_ascii=False, sort_keys=True)
-    print('blessed the shape of %s' % os.path.basename(path))
+    print('blessed the %s shape from %s' % (etype, os.path.basename(path)))
     print('  -> %s' % BASELINE)
-    print('  This is now the shape every edition must match.')
+    print('  Types now blessed: %s' % ', '.join(sorted(allb)))
+    print('  Every %s edition must match this shape.' % etype)
 
 
 if __name__ == '__main__':

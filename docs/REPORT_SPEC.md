@@ -1016,6 +1016,67 @@ while destroying the citation trail.
 
 ---
 
+### F-68 · R-28 — the THRESHOLD column is DIRECTION, never history
+
+**Found while building the 2026-08-31 edition — one day after F-66 fixed the
+same class.**
+
+NZD ANZ Business Confidence fell **56.1 → 53.7**, and I updated the row's
+threshold to `<Prev` **to describe that fall**. But `lower_is_better()` reads
+`<Prev` as *"for this series, LOWER IS BETTER"* — so **a confidence MISS
+graded as a BEAT.**
+
+**THE THRESHOLD COLUMN DOES ONE JOB: which direction favours the currency.**
+**The VERDICT column carries what actually happened.** Conflating them
+silently inverts the grade.
+
+| Column | Answers | For ANZ Business Confidence |
+|---|---|---|
+| `threshold` | which way is GOOD? | `>Prev` — confidence rising is good, **always** |
+| `verdict` | what happened? | `BAD` — it fell |
+
+#### It was not one row
+
+**R-28 `pipelines/audit_direction.py` checked all 23 `*Prev` rows and found
+SIX more with the same defect** — every one written to describe the last move:
+
+```
+GBP/JPY/NZD Balance of Trade     '<Prev'  ->  '>Prev'  (a bigger surplus is good)
+AUD/NZD/CHF Unemployment Rate    '>Prev'  ->  '<Prev'  (lower unemployment is good)
+```
+
+**The pattern was systematic, not an accident.** Writing the threshold to
+match the direction a series happened to move reads naturally and is wrong
+every time the series reverses.
+
+**Scores were unaffected** — verdicts drive the tally, thresholds document the
+grading — **which is exactly why it survived undetected.** Nothing in §2
+moved; only §4.0's release grading inverted.
+
+**Run `audit_direction.py` whenever a whitelist row is updated.**
+
+---
+
+### R-27 v2 — one blessed shape PER EDITION TYPE
+
+**Jeff's call, 2026-08-31**, after R-27 fired on Monday's §0.
+
+**That firing was the guard working, and the finding underneath is real:**
+§0 legitimately differs by edition type. **A WEEKEND edition GRADES the
+expired week** (`Pair | Bias | Lock ref | Fri close | Week | Outcome`); **a
+MONDAY edition TRACKS the live set** (`Pair | Bias | Entry ref | Now | Move |
+Falsifier | Distance`). Same section number, two purposes.
+
+**Rejected: forcing one shape**, which would have put a live Monday price
+under a column headed *Fri close*. **Rejected: exempting §0**, which is where
+the pair table lives and is the section most worth protecting.
+
+**`docs/LAYOUT_LOCK.json` now keys on the frontmatter `type:`.** An edition is
+checked against its OWN type's blessed shape, so **WEEKEND cannot drift into
+MONDAY and neither can drift at all.** Verified: drift within a type still
+fires.
+
+---
 ### LD-82 · R-27 — the SHAPE of the whole edition is locked
 
 **Jeff, 2026-08-30, for the SECOND time in one session:** *"again don't

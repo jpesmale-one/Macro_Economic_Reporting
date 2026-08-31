@@ -119,6 +119,7 @@ hand-written version silently degraded while the generator sat unused.
 | **A table in an approved section** | **`docs/LAYOUT_LOCK.md`** — the column set is LOCKED (LD-80) | **restyled, renamed or re-columned in passing** |
 | **What the week is PRICED to deliver** | **`week_ahead.market_pricing()`** — direction from the whitelist (F-66) | **assuming below-consensus is GOOD** |
 | **ANY new table, anywhere** | **ASK JEFF FIRST** — R-27 fails the render (LD-82) | **added because the content was asked for** |
+| **A whitelist row's THRESHOLD** | **the DIRECTION that favours the currency** (F-68) | **written to describe the last move** |
 | The edition itself | `render_edition.py <path.md>` | any other way |
 | **Process narrative** | **§7 Method notes — it already folds** (LD-69) | **§0–§6, the market read** |
 | **The weekly retrospective** | **its own artifact** (LD-70) | **a § of the daily edition** |
@@ -134,6 +135,7 @@ python pipelines/freshness.py            # LD-54 - revisions + stalled series
 python pipelines/test_guards.py          # 8 real regressions must all block
 python pipelines/test_pricing.py         # R-26 - 20 hand-graded pricing cases
 python pipelines/release_week.py --due   # LD-83 - due this week, absent from capture
+python pipelines/audit_direction.py      # R-28 - thresholds point the way their series does
 python pipelines/layout_shape.py <md>    # R-27 - the report SHAPE is locked
 python pipelines/week_ahead.py           # §4.0 events, DATE -> TIME -> CCY
 python pipelines/whole_edition.py <md>   # LD-67 - every section vs every other

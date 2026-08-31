@@ -4,11 +4,12 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-08-25 (r1, TUESDAY, UNSEALED - tracking day, set stays LOCKED)
-date: 2026-08-25
-data_asof: 2026-08-25 06:38 PHT (Monday's daily bar CLOSED; macro = Friday's,
-           both USD releases still ahead, verified via week_ahead.py)
-last_sealed: 2026-08-21 (r13, SEALED FULL) - the authority until Monday seals
+edition: 2026-08-31 (r1, MONDAY REVALIDATION, UNSEALED - set stays LOCKED)
+date: 2026-08-31
+data_asof: 2026-08-31 10:12 PHT (capture 09:58 PHT, 906 rows, all 8 country
+           pages; JPY Retail Sales and NZD ANZ Business Confidence RELEASED
+           and fed in; gold/BTC bars FORMING, prices 10:12 PHT)
+last_sealed: 2026-08-21 (r13, SEALED FULL) - editions 08-24 .. 08-31 UNSEALED
 track: LEAN (no section-2 trigger has fired)
 handover: docs/HANDOVER_2026-08-24_fine_tuning.md - READ THIS FIRST, it is
   what governs the next edition. STATE.md is the ledger; the handover is the

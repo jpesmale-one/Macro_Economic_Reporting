@@ -104,6 +104,14 @@ CASES = [
      '1.5 sits inside the 1.3-2.0 band'),
     ('EUR', 'Unemployment Rate', '6.3%', '6.3%', '6.3%', 'NEUTRAL',
      'unchanged'),
+    # --- F-68: the THRESHOLD column must encode DIRECTION, not the
+    # --- last observed move. On 2026-08-31 NZD ANZ Business Confidence
+    # --- fell 56.1 -> 53.7 and the row was written "<Prev" to DESCRIBE
+    # --- that fall. lower_is_better() reads "<Prev" as "lower is better",
+    # --- so the MISS graded as a BEAT. A confidence index is always
+    # --- ">Prev"; the VERDICT column carries what happened.
+    ('NZD', 'ANZ Business Confidence', '56.1', '53.7', '', 'BAD',
+     'a confidence index FALLING is bad - threshold is direction, not history'),
     # --- MARKDOWN-WRAPPED cells: the table passes these verbatim ------
     # This is the exact pair that broke: '**75.1K**' vs '15.8K'. With a
     # '$'-anchored suffix test the first parsed as 75.1 and the second as
