@@ -207,6 +207,16 @@ past every guard and were caught by Jeff reading:
   never whether it was *provisional*.
 
 **Recompute every derived figure and name the bar that produced it (LD-48).**
+**SAY WHAT YOU KNOW, NOT WHAT YOU INFER FROM ABSENCE (F-73).** §2's NEXT
+DUE column rendered rows we could not see as "not scheduled" - a claim
+about TE's calendar, when what we knew was a fact about OUR WINDOW. TE
+serves ~26 days forward from the fetch and that horizon is a MOVING
+WALL; Jeff named four rows on 29-30 Sep that simply had not entered it.
+**An empty result has at least two causes - it does not exist, or we
+could not see it - and only one is a fact about the world.** The cell now
+reads "beyond 25 Sep", naming our horizon. No guard catches this: the
+cell was populated, non-blank, and wrong.
+
 **WHEN OUR DATA DISAGREES WITH WHAT JEFF SEES ON SCREEN, WE ARE WRONG
 UNTIL PROVEN OTHERWISE (F-72).** Three times now a "source defect" has
 turned out to be ours: F-45 (we held the forecast column), F-63 (UTC

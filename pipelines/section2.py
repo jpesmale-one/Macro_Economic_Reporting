@@ -196,9 +196,10 @@ def category_table(cat, due=None):
             due = {}
     try:
         import next_due as _nd
-        fmt = _nd.label
+        _far = _nd.horizon()
+        fmt = lambda e: _nd.label(e, _far)
     except Exception:
-        fmt = lambda e: '—'
+        fmt = lambda e: 'beyond horizon'
     rows = [r for r in sm.ROWS if r[0] == cat]
     rows.sort(key=lambda r: (ORDER.index(r[1]) if r[1] in ORDER else 99, r[2]))
     out = ['| CCY | Indicator | Actual | Previous | Ref | Threshold | Score '

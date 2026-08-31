@@ -1016,6 +1016,58 @@ while destroying the citation trail.
 
 ---
 
+### F-73 — "not scheduled" was a claim we could not make
+
+**Jeff, 2026-08-31, within minutes of LD-87 shipping:**
+
+> *"USD CB Consumer Confidence — This is scheduled Sept 29 10pm PHT. USD
+> Personal Spending MoM — Sept 30 8:30pm PHT. EUR Consumer Confidence Final —
+> Sept 29 5:00 pm PHT. JPY Retail Sales YoY — Sept 30 7:50 am PHT. I think
+> you're missing Sept 29 – 30"*
+
+**He was right on all four.** The capture **hard-stops at 25 Sep** — zero rows
+beyond it. **TE serves roughly 26 days forward from the fetch date**, and that
+horizon is a **MOVING WALL**, not a published limit.
+
+#### Two defects, one symptom
+
+**1. The label lied.** Rendering an absent row as `not scheduled` states
+something about TE's calendar. **What we actually knew was something about OUR
+WINDOW.** Those four events exist and are scheduled; we simply could not see
+them. **A guard cannot catch this — the cell was populated, non-blank, and
+wrong.**
+
+**2. `next_due` read only the NEWEST capture** and discarded every earlier
+one, throwing away schedule knowledge we had already paid to fetch. It now
+**unions every capture on disk** — which is what `release_week.py` (LD-83) had
+been doing all along.
+
+#### The fix
+
+| Was | Now |
+|---|---|
+| `not scheduled` | **`beyond 25 Sep`** — names OUR horizon |
+| newest capture only | **union of every capture** |
+| horizon invisible | **`horizon()` reports the wall** |
+
+**Trying to fetch further does not work.** `?startdate=`, `?dates=`, `?d1=`
+and a path form were all probed: **TE ignores them and serves its default
+window.** The range is an ASP.NET postback, not a URL parameter.
+
+**The horizon rolls on its own.** 29 Sep enters the window around 4 Sep, 30
+Sep around the 5th. **Daily captures plus the union close the gap without any
+extra fetching** — which is precisely why raw captures are kept rather than
+overwritten.
+
+#### The lesson
+
+**Say what you know, not what you infer from its absence.** An empty result
+has at least two causes — the thing does not exist, or we could not see it —
+**and only one of them is a fact about the world.** Same shape as F-65 (a
+field empty on every row is a fact about US) and F-72 (when our data disagrees
+with what Jeff sees, we are wrong until proven otherwise).
+
+---
 ### LD-87 — NEXT DUE in §2: when is each indicator retested?
 
 **Jeff, 2026-08-31:** *"For each indicators in §2 we put which week these news
