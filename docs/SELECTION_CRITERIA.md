@@ -99,6 +99,68 @@ three correlated pairs are one bet reported as three.
 
 ---
 
+## 7. CYCLE POSITION — is the strength already spent? (LD-86)
+
+**Jeff, 2026-08-31:** *"2.0b Cycle position — you're pointing this out
+earlier. I'd say let's give it a go."* Then: *"I mean we're talking about
+adding it to the selection criteria."*
+
+**⚠ PROVENANCE, stated honestly.** Criteria 1–6 are Jeff's own formulations,
+quoted from what he wrote. **This one is different: I proposed it and he
+ratified it.** It is a criterion because he approved it, not because he
+authored it — and it should be held to a higher bar of evidence for that
+reason. **It is first on the agenda for the 2026-09-05 scoring review.**
+
+**It follows directly from criterion 3, which IS his:**
+
+> *"Production, Spending and Trade tends to predict the result of Employment
+> and Inflation. And Employment and Inflation tends to predict what would be
+> the Interest rate decision."*  — **2026-08-29**
+
+**If that chain is real, then WHERE a currency sits in it matters as much as
+how high it scores.** A currency whose rate case has already played out
+scores well on the tally while having the least left to give.
+
+### Why the tally cannot see this on its own
+
+**The §2.0 weights are Inflation 3 and Rate 3 against Production, Spending and
+Trade at 1 each — dominated 6:3 by the END of the chain.** So the tally
+structurally rewards a currency at the moment its move is finished. **§2.0b
+was built to correct exactly that and then fed nothing for two days.**
+
+### The case that forced it
+
+**NZDJPY, 2026-08-30.** The two views disagreed about one pair and we acted on
+one while printing the other:
+
+| View | Said |
+|---|---|
+| **§2.0 tally** | NZD +4.65 vs JPY +0.53 — spread 4.12, **select it** |
+| **§2.0b cycle** | NZD **IN THE PAST**, nothing upstream feeding it |
+
+**The cycle view was right.** Decomposing the pair showed JPY ahead of NZD on
+Production, Spending AND Employment; **NZD's entire lead came from Inflation
+and Rate**, resting on Jun/26 quarterly data two months old, while every fresh
+NZD print was negative.
+
+### The rule
+
+```
+tilt = (long leg's cycle position − short leg's) / 2      in [−1, +1]
+       BUILDING +1  ·  aligned 0  ·  IN THE PAST −1
+```
+
+**Applied as a ±25% multiplier on confluence — it RE-RANKS, never vetoes.**
+Same restraint as event risk under criterion 2, and for the same reason:
+**Jeff, 2026-08-29, *"I did not give a hard rule"*.** A currency IN THE PAST
+can still be selected; it has to earn it on room and spread.
+
+**A multiplier, not a fourth term — deliberately.** A fourth term would dilute
+ROOM from a third of the score to a quarter, and **criterion 4 is the one that
+must not weaken** (F-69). The multiplier scales a setup the core has already
+judged; **it cannot rescue a pair that has no room.**
+
+---
 ## The order of operations
 
 | Step | Gate | Source |
@@ -106,8 +168,9 @@ three correlated pairs are one bet reported as three.
 | 1 | Macro spread ranks candidates | criterion 1 |
 | 2 | Event risk downgrades the crowded | criterion 2 |
 | 3 | **Room to move re-ranks** — primaries AND bench | **criterion 4** |
-| 4 | Leg-disjoint filter | criterion 5 |
-| 5 | Chart every selected pair (LD-79) | criterion 4 |
+| 4 | **Cycle tilt re-ranks** — ±25% on confluence | **criterion 7** |
+| 5 | Leg-disjoint filter | criterion 5 |
+| 6 | Chart every selected pair (LD-79) | criterion 4 |
 
 **Criterion 3 is not a step — it is what the whole score is FOR.**
 
@@ -122,3 +185,6 @@ Recorded so it is not invented later:
 - **No maximum pair count.** Three is the floor; the ceiling of four is mine
   (LD-35).
 - **No rule that a bench pair must beat the primary it replaces.**
+- **Criterion 7 is MINE, ratified by him** — the ±0.40 cycle
+  thresholds and the ±25% weight are my numbers, not his.
+  **First item on the 2026-09-05 review agenda.**

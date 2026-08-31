@@ -600,16 +600,20 @@
 <h3 class="sub">4.2 — Every candidate, four lenses</h3>
 <div class="tblwrap"><table>
 <tr><th>Pair</th><th>Bias</th><th>Spread</th><th>Range %</th><th>Room</th><th>Risk</th><th><b>Confluence</b></th><th>Cycle</th></tr>
-<tr><td><b>GBPAUD</b></td><td>LONG</td><td class="num">3.34</td><td class="num"><b>8.1%</b></td><td><b>0.92 AMPLE</b></td><td class="num">2</td><td class="num"><b>0.75</b></td><td>GBP past / AUD building</td></tr>
-<tr><td>AUDCAD</td><td>SHORT</td><td class="num">4.60</td><td class="num">91.0%</td><td><b>0.91 AMPLE</b></td><td class="num">10</td><td class="num">0.70</td><td>CAD aligned / AUD building</td></tr>
-<tr><td>GBPJPY</td><td>LONG</td><td class="num">4.78</td><td class="num">70.8%</td><td>0.29 TIGHT</td><td class="num">2</td><td class="num">0.61</td><td>GBP past / JPY aligned</td></tr>
-<tr><td>GBPCHF</td><td>LONG</td><td class="num">5.95</td><td class="num">82.2%</td><td>0.18 NONE</td><td class="num">3</td><td class="num">0.60</td><td>GBP past / CHF building</td></tr>
-<tr><td><b>CADCHF</b></td><td>LONG</td><td class="num"><b>7.21</b></td><td class="num">79.6%</td><td>0.20 TIGHT</td><td class="num">11</td><td class="num">0.57</td><td>CAD aligned / CHF building</td></tr>
-<tr><td>CADJPY</td><td>LONG</td><td class="num">6.04</td><td class="num">76.7%</td><td>0.23 TIGHT</td><td class="num">10</td><td class="num">0.54</td><td>CAD aligned / JPY aligned</td></tr>
-<tr><td><b>NZDJPY</b></td><td>LONG</td><td class="num">4.12</td><td class="num">82.4%</td><td>0.18 NONE</td><td class="num">8</td><td class="num">0.47</td><td>NZD past / JPY aligned</td></tr>
-<tr><td>EURCHF</td><td>LONG</td><td class="num">5.69</td><td class="num">83.8%</td><td>0.16 NONE</td><td class="num">22</td><td class="num"><b>0.35</b></td><td>EUR aligned / CHF building</td></tr>
+<tr><td>AUDCAD</td><td>SHORT</td><td class="num">4.59</td><td class="num">88.9%</td><td><b>0.89 AMPLE</b></td><td class="num">10</td><td class="num">0.61</td><td><b>-0.50</b> long aligned / short BUILDING</td></tr>
+<tr><td>CADJPY</td><td>LONG</td><td class="num">5.70</td><td class="num">74.2%</td><td>0.26 TIGHT</td><td class="num">10</td><td class="num">0.54</td><td><b>+0.00</b> long aligned / short aligned</td></tr>
+<tr><td>GBPJPY</td><td>LONG</td><td class="num">4.45</td><td class="num">68.0%</td><td>0.32 TIGHT</td><td class="num">2</td><td class="num">0.53</td><td><b>-0.50</b> long IN THE PAST / short aligned</td></tr>
+<tr><td><b>CADCHF</b></td><td>LONG</td><td class="num">7.20</td><td class="num">79.6%</td><td>0.20 TIGHT</td><td class="num">11</td><td class="num"><b>0.50</b></td><td><b>-0.50</b> long aligned / short BUILDING</td></tr>
+<tr><td><b>GBPAUD</b></td><td>LONG</td><td class="num">3.34</td><td class="num">43.8%</td><td>0.56 adequate</td><td class="num">2</td><td class="num"><b>0.48</b></td><td><b>-1.00</b> long IN THE PAST / short BUILDING</td></tr>
+<tr><td>GBPCHF</td><td>LONG</td><td class="num">5.95</td><td class="num">80.3%</td><td><b>0.20 NONE</b></td><td class="num">3</td><td class="num">0.46</td><td><b>-1.00</b> long IN THE PAST / short BUILDING</td></tr>
+<tr><td><b>NZDJPY</b></td><td>LONG</td><td class="num">3.43</td><td class="num">78.0%</td><td>0.22 TIGHT</td><td class="num">8</td><td class="num"><b>0.40</b></td><td><b>-0.50</b> long IN THE PAST / short aligned</td></tr>
+<tr><td>EURCHF</td><td>LONG</td><td class="num">5.69</td><td class="num">82.3%</td><td><b>0.18 NONE</b></td><td class="num">22</td><td class="num">0.32</td><td><b>-0.50</b> long aligned / short BUILDING</td></tr>
 </table></div>
-<p><b>Confluence = (spread/8 + room + inverted risk) / 3</b>, equal weights. <b>A first formulation, not a tuned one</b> — it is published so it can be judged against outcomes rather than adjusted quietly.</p>
+<p><b>Confluence = (spread/8 + room + inverted risk) / 3, then scaled by the CYCLE TILT (LD-86), bounded ±25%.</b> §2.0b finally feeds selection instead of being computed and read by nobody.</p>
+<p><b>Tilt = (long leg's cycle position − short leg's) / 2.</b> BUILDING is +1, aligned 0, IN THE PAST −1. <b>A LONG on a BUILDING currency against an IN THE PAST one scores +1.00; the reverse scores −1.00.</b></p>
+<p><b>Why a MULTIPLIER and not a fourth term.</b> Both shapes were costed and both produced the same three pairs — but a fourth term <b>dilutes room from a third of the score to a quarter</b>, and F-69 plus criterion 4 say room is the term that must not weaken. <b>The multiplier scales a setup the core has already judged; it cannot rescue a pair that has no room.</b></p>
+<p><b>⚠ NOT ONE CANDIDATE SCORES POSITIVE ON CYCLE.</b> The three BUILDING currencies are <b>CHF, AUD and USD</b> — every one of which we are SHORT or not using. <b>The board is arranged against us on this axis</b>, and that is a finding about the week rather than about the gate: the distribution is a healthy 3 BUILDING / 3 aligned / 2 IN THE PAST.</p>
+<p><b>GBPAUD takes the worst tilt on the board (−1.00)</b> — long GBP, which is IN THE PAST with nothing upstream feeding it, against AUD, which is BUILDING. <b>It survives on room: 462 favourable pips, the most of any candidate.</b> <b>That is criterion 4 doing exactly what Jeff described</b> — a lesser cycle case with room beating a better one without it.</p>
 <p><b>⚠ EURCHF — last week's only winner — now ranks LAST.</b> At 83.8% of range with <b>0.16 room</b> for a long and both legs event-exposed. <b>The pair that worked has run out of the thing that made it work.</b></p>
 <h3 class="sub">4.3 LOCKED — three leg-disjoint pairs</h3>
 <div class="tblwrap"><table>

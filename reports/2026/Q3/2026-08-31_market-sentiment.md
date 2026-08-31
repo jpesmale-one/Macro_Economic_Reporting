@@ -488,18 +488,40 @@ room instead.
 
 | Pair | Bias | Spread | Range % | Room | Risk | **Confluence** | Cycle |
 |---|---|---|---|---|---|---|---|
-| **GBPAUD** | LONG | 3.34 | **8.1%** | **0.92 AMPLE** | 2 | **0.75** | GBP past / AUD building |
-| AUDCAD | SHORT | 4.60 | 91.0% | **0.91 AMPLE** | 10 | 0.70 | CAD aligned / AUD building |
-| GBPJPY | LONG | 4.78 | 70.8% | 0.29 TIGHT | 2 | 0.61 | GBP past / JPY aligned |
-| GBPCHF | LONG | 5.95 | 82.2% | 0.18 NONE | 3 | 0.60 | GBP past / CHF building |
-| **CADCHF** | LONG | **7.21** | 79.6% | 0.20 TIGHT | 11 | 0.57 | CAD aligned / CHF building |
-| CADJPY | LONG | 6.04 | 76.7% | 0.23 TIGHT | 10 | 0.54 | CAD aligned / JPY aligned |
-| **NZDJPY** | LONG | 4.12 | 82.4% | 0.18 NONE | 8 | 0.47 | NZD past / JPY aligned |
-| EURCHF | LONG | 5.69 | 83.8% | 0.16 NONE | 22 | **0.35** | EUR aligned / CHF building |
+| AUDCAD | SHORT | 4.59 | 88.9% | **0.89 AMPLE** | 10 | 0.61 | **-0.50** long aligned / short BUILDING |
+| CADJPY | LONG | 5.70 | 74.2% | 0.26 TIGHT | 10 | 0.54 | **+0.00** long aligned / short aligned |
+| GBPJPY | LONG | 4.45 | 68.0% | 0.32 TIGHT | 2 | 0.53 | **-0.50** long IN THE PAST / short aligned |
+| **CADCHF** | LONG | 7.20 | 79.6% | 0.20 TIGHT | 11 | **0.50** | **-0.50** long aligned / short BUILDING |
+| **GBPAUD** | LONG | 3.34 | 43.8% | 0.56 adequate | 2 | **0.48** | **-1.00** long IN THE PAST / short BUILDING |
+| GBPCHF | LONG | 5.95 | 80.3% | **0.20 NONE** | 3 | 0.46 | **-1.00** long IN THE PAST / short BUILDING |
+| **NZDJPY** | LONG | 3.43 | 78.0% | 0.22 TIGHT | 8 | **0.40** | **-0.50** long IN THE PAST / short aligned |
+| EURCHF | LONG | 5.69 | 82.3% | **0.18 NONE** | 22 | 0.32 | **-0.50** long aligned / short BUILDING |
 
-**Confluence = (spread/8 + room + inverted risk) / 3**, equal weights. **A
-first formulation, not a tuned one** — it is published so it can be judged
-against outcomes rather than adjusted quietly.
+**Confluence = (spread/8 + room + inverted risk) / 3, then scaled by the
+CYCLE TILT (LD-86), bounded ±25%.** §2.0b finally feeds selection instead of
+being computed and read by nobody.
+
+**Tilt = (long leg's cycle position − short leg's) / 2.** BUILDING is +1,
+aligned 0, IN THE PAST −1. **A LONG on a BUILDING currency against an IN THE
+PAST one scores +1.00; the reverse scores −1.00.**
+
+**Why a MULTIPLIER and not a fourth term.** Both shapes were costed and both
+produced the same three pairs — but a fourth term **dilutes room from a third
+of the score to a quarter**, and F-69 plus criterion 4 say room is the term
+that must not weaken. **The multiplier scales a setup the core has already
+judged; it cannot rescue a pair that has no room.**
+
+**⚠ NOT ONE CANDIDATE SCORES POSITIVE ON CYCLE.** The three BUILDING
+currencies are **CHF, AUD and USD** — every one of which we are SHORT or not
+using. **The board is arranged against us on this axis**, and that is a
+finding about the week rather than about the gate: the distribution is a
+healthy 3 BUILDING / 3 aligned / 2 IN THE PAST.
+
+**GBPAUD takes the worst tilt on the board (−1.00)** — long GBP, which is IN
+THE PAST with nothing upstream feeding it, against AUD, which is BUILDING.
+**It survives on room: 462 favourable pips, the most of any candidate.**
+**That is criterion 4 doing exactly what Jeff described** — a lesser cycle
+case with room beating a better one without it.
 
 **⚠ EURCHF — last week's only winner — now ranks LAST.** At 83.8% of range
 with **0.16 room** for a long and both legs event-exposed. **The pair that

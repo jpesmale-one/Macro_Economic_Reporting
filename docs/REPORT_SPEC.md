@@ -1016,6 +1016,67 @@ while destroying the citation trail.
 
 ---
 
+### LD-86 · R-31 — the CYCLE GATE: §2.0b finally feeds selection
+
+**Jeff, 2026-08-31:** *"2.0b Cycle position — you're pointing this out earlier.
+I'd say let's give it a go"*, then *"I mean we're talking about adding it to
+the selection criteria."*
+
+**Now criterion 7 of `docs/SELECTION_CRITERIA.md`** — and flagged there as the
+one criterion Jeff RATIFIED rather than AUTHORED, which is why it leads the
+2026-09-05 review agenda.
+
+#### What it fixes
+
+**§2.0b was computed, published, and consumed by nothing for two days.** LD-74
+required it to be PRESENT on a selecting edition; no code read it.
+
+**NZDJPY is the case.** On 2026-08-30 the two views disagreed about one pair
+and we acted on one while printing the other — §2.0 said spread 4.12, select
+it; §2.0b said NZD is **IN THE PAST**. **The cycle view was right:** JPY leads
+NZD on Production, Spending AND Employment, and NZD's whole lead came from
+Inflation and Rate on Jun/26 data two months old.
+
+**The tally is structurally blind to this.** Its weights are Inflation 3 and
+Rate 3 against Production/Spending/Trade at 1 each — **dominated 6:3 by the END
+of Jeff's causal chain**, so a currency scores highest exactly when its move is
+finished.
+
+#### The rule
+
+```
+tilt = (long leg's position − short leg's) / 2      in [−1, +1]
+       BUILDING +1 · aligned 0 · IN THE PAST −1
+confluence = core × (1 + 0.25 × tilt)               bounded ±25%
+```
+
+**A MULTIPLIER, not a fourth term — and the reason is F-69.** Both shapes were
+costed and produced the same three pairs, but **a fourth term dilutes ROOM
+from a third of the score to a quarter.** Criterion 4 is the term that must
+not weaken. **The multiplier scales a setup the core has already judged; it
+cannot rescue a pair with no room.**
+
+#### The finding on first run
+
+**Not one candidate scored positive.** The three BUILDING currencies are CHF,
+AUD and USD — **every one of which we are short or not using.** The
+distribution is a healthy 3/3/2, so this is a fact about the week rather than
+a miscalibrated gate. **If it repeats, the ±0.40 thresholds are wrong.**
+
+**GBPAUD takes the worst tilt on the board (−1.00)** — long GBP (IN THE PAST)
+against AUD (BUILDING) — **and survives on room**, 462 favourable pips, the
+most of any candidate. **That is criterion 4 doing exactly what Jeff
+described: a lesser case with room beating a better one without it.**
+
+#### The guard
+
+**R-31 `assert_cycle_gate_live()`** fails the render if §4.2's Cycle column
+carries prose instead of a signed tilt. **A descriptive cycle column is
+precisely what §2.0b looked like while feeding nothing** — the guard exists so
+that state cannot return silently. Verified: fires on all 8 rows when the
+tilts are stripped.
+
+---
 ### F-72 — I blamed TE for my own off-by-one. **F-71 WITHDRAWN.**
 
 **Jeff, 2026-08-31, with a screenshot:** *"How TE is wrong when I can see the

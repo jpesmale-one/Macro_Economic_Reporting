@@ -690,6 +690,40 @@ def assert_layout_locked(md):
     return '%d locked table(s) intact' % checked
 
 
+def assert_cycle_gate_live(md):
+    """§4.2's Cycle column must carry a TILT, not prose (R-31/LD-86).
+
+    §2.0b was computed and published for two days while feeding NOTHING.
+    LD-74 required it to be PRESENT; no code consumed it. NZDJPY was selected
+    on a 4.12 tally spread while §2.0b said NZD was IN THE PAST with nothing
+    upstream - and the cycle view turned out to be right.
+
+    A descriptive Cycle column is exactly what that looked like. This checks
+    the column carries a signed NUMBER, which only the gate produces.
+    """
+    try:
+        blk = md[md.index('### 4.2'):md.index('### 4.3')]
+    except ValueError:
+        return 'no §4.2'
+    body = [l for l in blk.split(chr(10))
+            if l.strip().startswith('|') and 'Pair' not in l
+            and not re.match(r'^[|\s:-]+$', l.strip())]
+    if not body:
+        return '§4.2 has no rows'
+    tilted = sum(1 for l in body
+                 if re.search(r'[+−-]\d\.\d\d', l.split('|')[-2]))
+    if tilted < len(body):
+        raise SystemExit(
+            'FATAL (R-31/LD-86): §4.2 Cycle column is not carrying a tilt on'
+            ' %d of %d row(s).%s'
+            'Criterion 7 of docs/SELECTION_CRITERIA.md re-ranks confluence by'
+            ' the cycle%stilt. A DESCRIPTIVE cycle column is what §2.0b looked'
+            ' like for two days%swhile feeding nothing - and NZDJPY was'
+            ' selected against its own cycle read.'
+            % (len(body) - tilted, len(body), chr(10), chr(10), chr(10)))
+    return '%d row(s) carry a cycle tilt' % tilted
+
+
 def assert_bench_room_gated(md):
     """§4.5's bench must be room-gated, like the primaries (R-29/F-69).
 
@@ -1375,6 +1409,7 @@ if __name__ == '__main__':
     # 4.0's columns held under R-24 while 4.6 quietly GAINED TWO TABLES.
     import layout_shape
     shape_state = layout_shape.check(md)
+    cyc = assert_cycle_gate_live(md)
     bench = assert_bench_room_gated(md)
     layout = assert_layout_locked(md)
     charted = assert_pairs_charted(md, fm['type'])
@@ -1398,6 +1433,7 @@ if __name__ == '__main__':
     print('  R-23 pairs      %s' % charted)
     print('  R-24 layout     %s' % layout)
     print('  R-29 bench      %s' % bench)
+    print('  R-31 cycle      %s' % cyc)
     print('  R-27 shape      %s' % shape_state)
     print('  LD-61 tally     %d rows, sorted by score' % ntal)
     if nexp:
