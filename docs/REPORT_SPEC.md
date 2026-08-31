@@ -1016,6 +1016,66 @@ while destroying the citation trail.
 
 ---
 
+### F-69 · R-29 · LD-84 — the BENCH was ranked on half the criteria
+
+**Jeff, 2026-08-31:** *"did we look at the technicals of the benched pairs?"*
+
+**We had not.** §4.5 ranked alternates on **macro spread and event risk**. Its
+`Conf` column carried **no room, no falsifier, no structure** — criterion 4 of
+LD-84, the technical gate, was never applied to the bench at all.
+
+**This is LD-73 reproduced one week after it was fixed.** GBPUSD was selected
+at 94.4% of range with a LONG bias and lost 110.9 pips; the room gate was
+built so it could not happen again — **and then was wired into the primaries
+only.**
+
+#### What the gate found
+
+| Pair | Bias | In range | Room | Against | R:R | Old rank |
+|---|---|---|---|---|---|---|
+| **AUDCAD** | SHORT | 88.9% | **199** | 25 | **7.98** | 3rd |
+| GBPJPY | LONG | 68.0% | 322 | 682 | 0.47 | **1st** |
+| CADJPY | LONG | 74.2% | 146 | 419 | 0.35 | 4th |
+| GBPCHF | LONG | 80.3% | **63** | 257 | 0.25 | **2nd** |
+| EURCHF | LONG | 82.3% | **41** | 193 | 0.21 | 5th |
+
+**The two highest-ranked bench pairs were the two with the least room.**
+**GBPCHF carried the BEST macro spread on the bench (+5.95) and sat at 80% of
+range with a LONG bias** — the GBPUSD setup exactly, and the old ranking would
+have offered it as the first replacement.
+
+**A bench pair is entered MID-WEEK, with less time to work than a primary. It
+deserves MORE scrutiny, not less.** Ranking it on half the criteria inverted
+that.
+
+**R-29 `assert_bench_room_gated()`** fails the render when §4.5's table has no
+Room column. It checks that the gate was APPLIED, not that the numbers are
+good — grading them is reading, not running.
+
+#### LD-84 — why the criteria now live in one file
+
+**Jeff:** *"let us review what was the criteria I told you about selecting
+high probability pairs? Can you pull up some history where I specifically
+instructed on how do we select our primary and seconday pairs?"*
+
+**Pulled from the transcripts, USER messages only, quoted verbatim.** Six
+rules stated across eleven days, and **they are internally consistent** — the
+problem was never contradiction, it was dispersion. They lived across LD-19,
+LD-29, LD-73 and LD-75, and **nobody could read the whole at once.**
+
+**That dispersion IS the root cause of F-69.** A rule you cannot see whole is
+a rule you apply in pieces.
+
+**`docs/SELECTION_CRITERIA.md`** now holds all six with their dates and the
+order of operations — plus a section recording **what Jeff has NOT said**, so
+the numeric room bands stay labelled as MY proposal rather than hardening into
+his rule by repetition.
+
+**The one-line version, in his words:** *"other pairs with the same or a
+little bit lesser conviction … but with room to move in the favor of our
+bias."* **A lesser spread with room beats a better spread without it.**
+
+---
 ### F-68 · R-28 — the THRESHOLD column is DIRECTION, never history
 
 **Found while building the 2026-08-31 edition — one day after F-66 fixed the

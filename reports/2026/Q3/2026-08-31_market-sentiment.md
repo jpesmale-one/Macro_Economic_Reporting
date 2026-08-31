@@ -501,25 +501,51 @@ because of the risk.
 and NZD's cycle reads **IN THE PAST**. It completes a leg-disjoint set rather
 than earning its place. **If one pair should be dropped, it is this one.**
 
-### 4.5 BENCH — ranked alternates, live all week (LD-75)
+### 4.5 BENCH — ranked alternates, room-gated (LD-75 + LD-84)
 
-**This section used to list correlated pairs. It is now a BENCH:** ranked
-alternates ready to take a primary's place if one fails during the week.
+**Ranked by ROOM TO MOVE, not by macro spread alone.** Jeff, 2026-08-29:
+*"we may want to look for other pairs with the same or a little bit lesser
+conviction … but with room to move in the favor of our bias."* **That gate was
+never applied to this section until today (F-69)** — the bench was ranked on
+spread and event risk, which is the same omission that put GBPUSD in the set
+at 94.4% of range.
 
-| Replaces | Alternate | Bias | Conf | Why it is the alternate |
-|---|---|---|---|---|
-| **NZDJPY** | **GBPJPY** | LONG | **0.61** | Same short-JPY leg. **Better spread (4.78 vs 4.12) and LIGHT risk (2 vs 8).** Blocked only while GBPAUD holds GBP |
-| **CADCHF** | **GBPCHF** | LONG | **0.60** | Same short-CHF leg, **risk 3 not 11** — removes the BoC exposure entirely |
-| **GBPAUD** | **AUDCAD** | SHORT | **0.70** | Highest confluence not selected. **0.91 room** — but long CAD into the BoC |
-| CADCHF | CADJPY | LONG | 0.54 | Keeps the CAD long, swaps the short leg to JPY |
-| any CHF short | EURCHF | LONG | 0.35 | **Last on confluence.** Listed only because it worked last week — **the numbers say do not** |
+| Replaces | Alternate | Bias | Spread | In range | **Room** | Against | R:R | Risk | Read |
+|---|---|---|---|---|---|---|---|---|---|
+| **GBPAUD** | **AUDCAD** | **SHORT** | +4.60 | 88.9% | **199 pips** | 25 | **7.98** | 4 | **GOOD room — the only one whose structure agrees with its bias** |
+| **NZDJPY** | **GBPJPY** | LONG | +4.45 | 68.0% | **322 pips** | 682 | 0.47 | **2** | Most absolute room, but mid-range; lightest event risk on the board |
+| **CADCHF** | CADJPY | LONG | +5.70 | 74.2% | 146 pips | 419 | 0.35 | 5 | TIGHT — keeps the CAD long into the BoC |
+| CADCHF | GBPCHF | LONG | **+5.95** | 80.3% | **63 pips** | 257 | 0.25 | 3 | **⚠ NO ROOM — best spread on the bench, worst structure** |
+| any CHF short | EURCHF | LONG | +5.69 | 82.3% | **41 pips** | 193 | 0.21 | 3 | **⚠ NO ROOM — last on confluence AND last on room** |
+
+*45-bar daily `OANDA:` ranges, pulled 10:30 PHT. **Monday's bar is FORMING**,
+so the range edges can still move (LD-5). Room = pips to the 45-bar edge IN
+the bias direction; Against = pips to the opposite edge.*
+
+**THE RE-RANK IS THE FINDING.** The two pairs previously ranked **#1 and #2**
+on spread — GBPCHF and EURCHF — are **the two with the least room**, 63 and 41
+pips. **GBPCHF carries the best macro spread on the entire bench (+5.95) and
+sits at 80% of its range with a LONG bias.** That is the GBPUSD setup, and the
+old ranking would have handed it to us as the first replacement.
+
+**AUDCAD moves to the top and it is not close.** 199 pips of room against 25,
+**r:r 7.98** — an order of magnitude better than anything else here. Being at
+88.9% of range is GOOD for a SHORT: the room sits in the bias direction. Its
+spread ranks only third, which is exactly the trade-off Jeff described —
+**"the same or a little bit lesser conviction … but with room."**
 
 **How the bench is used.** A primary is replaced **only when its falsifier
-fires** (LD-29 — a pair leaves by its falsifier, not by conviction). Take the
-highest-confluence bench pair still **leg-disjoint against the survivors** —
-which alternate is available depends on which primary went. **The replacement
-is graded from its own entry reference**, not the original's: it is a new
-position, not a continuation.
+fires** (LD-29). Take the highest-room bench pair still **leg-disjoint against
+the survivors** — which alternate is available depends on which primary went.
+**The replacement is graded from its own entry reference**, not the
+original's: a new position, not a continuation.
+
+**⚠ AUDCAD cannot replace NZDJPY.** It is SHORT AUD, and GBPAUD is already
+long GBP / short AUD — taking both doubles the AUD leg and breaks LD-19. **The
+available NZDJPY replacement is still GBPJPY**, and that is blocked while
+GBPAUD holds GBP. **If NZDJPY fails while both others stand, the honest answer
+is that the bench has nothing leg-disjoint to offer** — which is a finding
+about the bench, not a reason to break the rule.
 
 ### 4.6 — Where the price is going: direction × surprise (LD-68)
 

@@ -683,6 +683,56 @@ def assert_layout_locked(md):
     return '%d locked table(s) intact' % checked
 
 
+def assert_bench_room_gated(md):
+    """§4.5's bench must be room-gated, like the primaries (R-29/F-69).
+
+    Jeff, 2026-08-31: "did we look at the technicals of the benched pairs?"
+
+    We had not. §4.5 ranked alternates on MACRO SPREAD and EVENT RISK only -
+    criterion 4 of LD-84, room to move, was never applied to it. The two
+    highest-ranked bench pairs turned out to be the two with the LEAST room:
+    GBPCHF at 80% of range with a LONG bias and 63 pips of headroom, EURCHF
+    at 82% with 41. GBPCHF carried the best macro spread on the bench, so the
+    old ranking would have offered it first - which is the GBPUSD failure
+    (F-32/LD-73) reproduced on the bench a week after it was fixed for the
+    primaries.
+
+    A bench pair is entered MID-WEEK with less time to work than a primary.
+    It deserves more scrutiny, not less.
+
+    Checks that §4.5's table carries a Room column. Does not grade the
+    numbers - that is reading, not running (see "What the guards CANNOT
+    catch").
+    """
+    try:
+        blk = md[md.index('### 4.5'):md.index('### 4.6')]
+    except ValueError:
+        return 'no §4.5'
+    hdr = None
+    for line in blk.split(chr(10)):
+        t = line.strip()
+        if t.startswith('|') and not re.match(r'^[|\s:-]+$', t):
+            hdr = [c.strip().replace('*', '').lower()
+                   for c in t.strip('|').split('|')]
+            break
+    if hdr is None:
+        return '§4.5 has no table'
+    if 'room' not in hdr:
+        raise SystemExit(
+            'FATAL (R-29/F-69): §4.5 ranks the bench without ROOM TO MOVE.%s'
+            '  header: %s%s'
+            'Criterion 4 of docs/SELECTION_CRITERIA.md applies to EVERY pair'
+            ' we might enter,%sprimary and bench alike. Jeff, 2026-08-29:'
+            ' "we may want to look for other%spairs with the same or a little'
+            ' bit lesser conviction ... but with room to move%sin the favor of'
+            ' our bias."%sRanking a bench on spread alone is how GBPCHF - best'
+            ' spread, 63 pips of room -%swould have been offered as the first'
+            ' replacement.'
+            % (chr(10), ' | '.join(hdr), chr(10), chr(10), chr(10), chr(10),
+               chr(10), chr(10)))
+    return '§4.5 room-gated'
+
+
 def assert_pairs_charted(md, etype):
     """A SELECTED pair must be on a chart, with entity IDs (R-23).
 
@@ -1310,6 +1360,7 @@ if __name__ == '__main__':
     # 4.0's columns held under R-24 while 4.6 quietly GAINED TWO TABLES.
     import layout_shape
     shape_state = layout_shape.check(md)
+    bench = assert_bench_room_gated(md)
     layout = assert_layout_locked(md)
     charted = assert_pairs_charted(md, fm['type'])
     assert_no_offlist_scores(md)
@@ -1331,6 +1382,7 @@ if __name__ == '__main__':
     print('  LD-46 levels    drawn and entity ids recorded')
     print('  R-23 pairs      %s' % charted)
     print('  R-24 layout     %s' % layout)
+    print('  R-29 bench      %s' % bench)
     print('  R-27 shape      %s' % shape_state)
     print('  LD-61 tally     %d rows, sorted by score' % ntal)
     if nexp:

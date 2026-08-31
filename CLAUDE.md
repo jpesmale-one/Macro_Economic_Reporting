@@ -120,6 +120,7 @@ hand-written version silently degraded while the generator sat unused.
 | **What the week is PRICED to deliver** | **`week_ahead.market_pricing()`** — direction from the whitelist (F-66) | **assuming below-consensus is GOOD** |
 | **ANY new table, anywhere** | **ASK JEFF FIRST** — R-27 fails the render (LD-82) | **added because the content was asked for** |
 | **A whitelist row's THRESHOLD** | **the DIRECTION that favours the currency** (F-68) | **written to describe the last move** |
+| **HOW A PAIR IS SELECTED** | **`docs/SELECTION_CRITERIA.md`** — six rules in Jeff's own words (LD-84) | **applied in pieces from memory** |
 | The edition itself | `render_edition.py <path.md>` | any other way |
 | **Process narrative** | **§7 Method notes — it already folds** (LD-69) | **§0–§6, the market read** |
 | **The weekly retrospective** | **its own artifact** (LD-70) | **a § of the daily edition** |
@@ -183,7 +184,7 @@ hand-written generated block (LD-38), fewer than 70 whitelist rows or any
 blank cell (LD-39), an off-list indicator carrying a score (LD-41), a section
 1 with no news source (F-17), levels published but not drawn (LD-46), a stale
 or unreconciled TE capture (LD-50), **a currency score quoted outside
-§2.0 that contradicts the tally (R-16/F-46)**, **a stale Fear & Greed capture (R-17/F-51)**, **any cross-section contradiction (R-18/LD-67)**, **a locked table whose column set changed (R-24/LD-80)**. **A FATAL is information, not an
+§2.0 that contradicts the tally (R-16/F-46)**, **a stale Fear & Greed capture (R-17/F-51)**, **any cross-section contradiction (R-18/LD-67)**, **a locked table whose column set changed (R-24/LD-80)**, **a bench ranked without the room gate (R-29/F-69)**. **A FATAL is information, not an
 obstacle — never edit content to clear a gate.**
 
 ### What the guards CANNOT catch

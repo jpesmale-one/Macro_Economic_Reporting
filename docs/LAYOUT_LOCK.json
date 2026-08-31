@@ -48,7 +48,7 @@
    "Pair | Resistance | Entry ref | Falsifier | Entity IDs"
   ],
   "4.5": [
-   "Replaces | Alternate | Bias | Conf | Why it is the alternate"
+   "Replaces | Alternate | Bias | Spread | In range | Room | Against | R:R | Risk | Read"
   ],
   "4.6": [
    "Direction (§2) | Surprise | Reading"
