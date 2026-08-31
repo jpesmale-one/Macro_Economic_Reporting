@@ -76,6 +76,30 @@ not change — only what the cells say.**
 
 ---
 
+
+### §2.0c — Forward-adjusted tally (LD-85, added 2026-08-31)
+```
+| CCY | Base | **Forward** | Change | What the week prices |
+```
+**Added on Jeff's approval 2026-08-31.** Base and Forward BOTH visible — the
+base is never replaced by the forecast.
+
+### §4.0 — v2 (LD-85, changed 2026-08-31)
+```
+| When (PHT) | CCY | Indicator | Previous | Cons / Fcst range | Actual | Market priced | Status |
+```
+**Changed on Jeff's instruction 2026-08-31**, three corrections: PREVIOUS is
+frozen and never overwritten by a release; a release lands in its own ACTUAL
+column; Cons/Fcst is a RANGE when both exist and the single figure when only
+one does.
+
+### §4.5 — Bench, room-gated (F-69, changed 2026-08-31)
+```
+| Replaces | Alternate | Bias | Spread | In range | Room | Against | R:R | Risk | Read |
+```
+**Changed on Jeff's approval 2026-08-31** after the bench was found ranked
+without the room gate.
+
 ## WHAT IS *NOT* LOCKED
 
 - **Row content, ordering within a table, and how many rows appear.**
@@ -101,4 +125,5 @@ variants above was written in good faith while doing something else.
 
 | Version | Date | Change |
 |---|---|---|
+| **v2** | **2026-08-31** | **§2.0c added; §4.0 v2 (Previous frozen, Actual column, Cons/Fcst range); §4.5 room-gated. All three approved by Jeff in advance.** |
 | **v1** | **2026-08-30** | **Locked. §4.0 restored to its 27 Aug seven-column form after four editions of drift.** |

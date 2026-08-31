@@ -121,6 +121,7 @@ hand-written version silently degraded while the generator sat unused.
 | **ANY new table, anywhere** | **ASK JEFF FIRST** — R-27 fails the render (LD-82) | **added because the content was asked for** |
 | **A whitelist row's THRESHOLD** | **the DIRECTION that favours the currency** (F-68) | **written to describe the last move** |
 | **HOW A PAIR IS SELECTED** | **`docs/SELECTION_CRITERIA.md`** — six rules in Jeff's own words (LD-84) | **applied in pieces from memory** |
+| **§2.0c forward tally** | **`forward_adjust.py`** — k=0.50, weighted (LD-85) | **flat, or overwriting the base** |
 | The edition itself | `render_edition.py <path.md>` | any other way |
 | **Process narrative** | **§7 Method notes — it already folds** (LD-69) | **§0–§6, the market read** |
 | **The weekly retrospective** | **its own artifact** (LD-70) | **a § of the daily edition** |

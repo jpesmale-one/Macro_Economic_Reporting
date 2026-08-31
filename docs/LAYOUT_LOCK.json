@@ -10,6 +10,9 @@
   "2.0b": [
    "CCY | Leading | Confirming | Gap | Score | Cycle position"
   ],
+  "2.0c": [
+   "CCY | Base | Forward | Change | What the week prices"
+  ],
   "2.1": [
    "CCY | Indicator | Actual | Previous | Ref | Threshold | Score"
   ],
@@ -35,7 +38,7 @@
    "CCY / Rate | Last decision | Bias | Next meeting (PHT) | Expectation"
   ],
   "4.0": [
-   "When (PHT) | CCY | Indicator | Current actual | Cons / Fcst | Market priced | Status"
+   "When (PHT) | CCY | Indicator | Previous | Cons / Fcst range | Actual | Market priced | Status"
   ],
   "4.1": [
    "CCY | Risk | Verdict | What lands"

@@ -1016,6 +1016,87 @@ while destroying the citation trail.
 
 ---
 
+### LD-85 — the FORWARD-ADJUSTED tally (§2.0c), k = 0.50
+
+**Jeff, 2026-08-31:** *"the market is forward looking. if we react after the
+data has released then we are already late. that's the whole point of this
+market Sentiment. To be able to foresee where the price is going. not
+following the price … isn't it better to price in early than to react after?"*
+
+#### I argued against this and I was wrong
+
+**I cited LD-3 — "the release is truth, the forecast is a prediction" — to
+resist weighting the forecast. That misuses the rule.** LD-3 is a SOURCING
+rule: never dress a forecast as a print, always name the issuing agency for a
+released value. **It says nothing about how much a forecast should move a
+forward-looking bias.** Recorded here because the next session will meet the
+same temptation.
+
+#### The formula
+
+```
+adjusted(ccy) = base(ccy) + k × Σ( verdict × category_weight )
+```
+
+**Weighted, not flat — Jeff's second point:** *"not all indicators do have the
+same weight so we need to consider balancing the scores in that sense."* The
+first costing was flat and let a Mfg PMI (w1) move the tally as much as an
+Inflation print (w3). **The adjustment now runs through the tally's OWN
+weights** — Inflation 3, Rate 3, Employment 2, Production/Spending/Trade 1 —
+so one taxonomy governs both halves.
+
+#### Why k = 0.50
+
+**It is the largest value at which no currency's rank is decided by a single
+forecast.**
+
+| k | Largest single-row move | Effect |
+|---|---|---|
+| 0.25 | 0.75 | re-scores, never re-ranks — barely worth having |
+| **0.50** | **1.50** | **EUR takes the top; JPY clears AUD** |
+| 0.75 | 2.25 | CHF's lone inflation print drops it past USD alone |
+| 1.00 | 3.00 | a forecast counts as much as a release; NZDJPY inverts |
+
+**This is a testable claim, not a preference.** §4.0 records the projections in
+advance, so **Saturday's retrospective grades k against what actually
+printed.** Jeff: *"we can revisit it later after this week's market close."*
+**Revisit after 2026-09-04.**
+
+#### Rules that keep it honest
+
+1. **The base is never overwritten.** §2.0c shows Base and Forward side by
+   side, so the forecast's contribution is always visible.
+2. **Released rows are EXCLUDED** from the adjustment — once a print lands it
+   is in the base via `score_model`, and adjusting it too double-counts.
+   Monday: JPY Retail Sales and NZD ANZ Business Confidence dropped out.
+3. **Selection still ranks on the BASE** until Jeff says otherwise. §2.0c is
+   published and read; it does not silently re-rank pairs.
+
+#### The board on 2026-08-31
+
+| CCY | Base | Forward | Driver |
+|---|---|---|---|
+| EUR | +5.05 | **+6.05** | PMI + retail sales, both w1 |
+| CAD | +6.56 | **+4.56** | −4: employment change is w2 |
+| JPY | +0.86 | **+2.36** | +3 from three w1 rows — broad but light |
+| CHF | −0.64 | **−2.14** | **one inflation print, w3, carries all of it** |
+
+**CHF is the row to watch.** A single w3 forecast moves it 1.50 at k=0.50 and
+would move it 3.00 at k=1.00. **A weighted adjustment concentrates risk in
+exactly the rows most likely to surprise.**
+
+**USD's two employment prints annihilate** — NFP +2 and Unemployment −2, both
+w2, same release, same minute. Net zero, which is arguably the honest reading
+of a mixed report.
+
+#### Interaction with R-16
+
+**A forward score quoted bare in prose FIRES R-16**, which knows only base
+values. **That is the right default — it forces the label.** R-16's message now
+says so explicitly, so the next session labels the number instead of changing
+it to silence the guard.
+
+---
 ### F-69 · R-29 · LD-84 — the BENCH was ranked on half the criteria
 
 **Jeff, 2026-08-31:** *"did we look at the technicals of the benched pairs?"*

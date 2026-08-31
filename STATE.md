@@ -11,6 +11,17 @@ data_asof: 2026-08-31 10:12 PHT (capture 09:58 PHT, 906 rows, all 8 country
            and fed in; gold/BTC bars FORMING, prices 10:12 PHT)
 last_sealed: 2026-08-21 (r13, SEALED FULL) - editions 08-24 .. 08-31 UNSEALED
 track: LEAN (no section-2 trigger has fired)
+
+# OPEN, DATED - do not let these lapse
+# 2026-09-05 (after Fri close): REVISIT k IN LD-85. The forward-adjusted
+#   tally ships at k=0.50 on Jeff's call 2026-08-31: "ok lets do that for
+#   now. then we can revisit it later after this week's market close."
+#   4.0 recorded every projection in advance, so the Saturday retrospective
+#   can grade k against what actually printed. RAISE OR LOWER ON THAT
+#   EVIDENCE, not on argument.
+# OPEN: the CYCLE view (2.0b) still feeds nothing. Selection ranks on 2.0
+#   alone. NZD scored 4.29 while 2.0b called it IN THE PAST and its case
+#   rests on Jun/26 quarterly data. Jeff has not ruled on a cycle gate.
 handover: docs/HANDOVER_2026-08-24_fine_tuning.md - READ THIS FIRST, it is
   what governs the next edition. STATE.md is the ledger; the handover is the
   briefing.

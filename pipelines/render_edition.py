@@ -454,12 +454,13 @@ REQUIRED = {
 # it, because the manifest checked h2 sections and 2.x sub-blocks but not 4.x.
 REQUIRED_SUB = {
     'DAILY':   ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear', '4.0'],
-    'MONDAY':  ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear', '4.0'],
+    'MONDAY':  ['2.0', '2.0c', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6',
+                'Fear', '4.0'],
     # LD-74: a WEEKEND edition SELECTS, so it must also carry the cycle
     # view (2.0b), the chosen set (4.3) and the bench (4.5). Sunday is
     # not a different template - it is this one with selection in it.
-    'WEEKEND': ['2.0', '2.0b', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6',
-                'Fear', '4.0', '4.3', '4.5'],
+    'WEEKEND': ['2.0', '2.0b', '2.0c', '2.1', '2.2', '2.3', '2.4', '2.5',
+                '2.6', 'Fear', '4.0', '4.3', '4.5'],
 }
 # LD-38 / F-23 - MANDATORY GENERATED BLOCKS, asserted by MARKER not heading.
 # A heading proves a section EXISTS; it does not prove it was BUILT the way
@@ -632,8 +633,14 @@ def assert_no_offlist_scores(md):
 LOCKED_TABLES = {
     '2.0': ['Band', 'CCY', 'Score', 'Group'],
     '2.0b': ['CCY', 'Leading', 'Confirming', 'Gap', 'Score'],
-    '4.0': ['When (PHT)', 'CCY', 'Indicator', 'Current actual',
-            'Cons / Fcst', 'Market priced', 'Status'],
+    # v2, Jeff 2026-08-31: PREVIOUS is frozen and a release lands in
+    # its own ACTUAL column; Cons/Fcst is a RANGE when both exist.
+    '4.0': ['When (PHT)', 'CCY', 'Indicator', 'Previous',
+            'Cons / Fcst range', 'Actual', 'Market priced', 'Status'],
+    # LD-85, approved 2026-08-31. Base and Forward BOTH visible - the
+    # base is never overwritten by the forecast.
+    '2.0c': ['CCY', 'Base', 'Forward', 'Change',
+             'What the week prices'],
     '4.3': ['#', 'Pair', 'Bias'],
 }
 
@@ -1187,13 +1194,21 @@ def assert_scores_consistent(md):
             bad.append((ccy, val, tally[ccy], m.group(0).strip()))
     if bad:
         ccy, val, want, ctx = bad[0]
+        # LD-85: 2.0c publishes a FORWARD-ADJUSTED score that legitimately
+        # differs from the base. R-16 only knows base values, so a forward
+        # number quoted bare in prose lands here. That is the RIGHT default -
+        # it forces the label - but the message must say so, or the next
+        # session "fixes" a correct number to silence a guard.
         raise SystemExit(
             'FATAL (R-16/F-46): %s is quoted as %+.2f outside section 2.0, but '
             'the 2.0 tally says %+.2f.%s  "%s"%sOn 2026-08-25 sections 5 and 6 '
             'carried a STALE USD score from Sunday while citing 2.0 as the '
             'source. Re-derive the score wherever it is quoted; carrying a '
-            'section forward must never carry its numbers.'
-            % (ccy, val, want, chr(10), ctx, chr(10)))
+            'section forward must never carry its numbers.%s'
+            'IF THIS IS A FORWARD-ADJUSTED SCORE (LD-85, published in 2.0c) '
+            'it legitimately differs from the base - LABEL it as forward '
+            'rather than changing the number to silence this guard.'
+            % (ccy, val, want, chr(10), ctx, chr(10), chr(10)))
     return len(tally)
 
 

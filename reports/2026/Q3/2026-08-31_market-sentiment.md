@@ -193,6 +193,48 @@ Inflation) / 5.** A gap above **+0.40** means the upstream data is running ahead
 of what has confirmed — the rate case is still BUILDING. Below **−0.40** the move
 is IN THE PAST (LD-72).
 
+### 2.0c Forward-adjusted tally — the week priced in (LD-85)
+
+**Jeff, 2026-08-31:** *"the market is forward looking. if we react after the
+data has released then we are already late … isn't it better to price in early
+than to react after?"*
+
+**§2.0 is the base: what the RELEASED data says.** This adds what the week is
+PRICED to deliver, from §4.0's unreleased rows, **through the tally's own
+category weights** — Inflation 3, Rate 3, Employment 2, Production/Spending/
+Trade 1. **A forecast in a heavy category moves the score more than one in a
+light category, exactly as a release would.**
+
+**`adjusted = base + 0.50 × Σ(verdict × category weight)`**
+
+| CCY | Base | **Forward** | Change | What the week prices |
+|---|---|---|---|---|
+| **EUR** | +5.05 | **+6.05** | **+1.00** | S&P Global Mfg PMI Fin Prod w1 +1 · Retail Sales YoY Spen w1 +1 |
+| **GBP** | +5.31 | **+4.81** | -0.50 | S&P Global Mfg PMI Fin Prod w1 -1 |
+| **NZD** | +4.29 | **+4.79** | +0.50 | Building Permits MoM Spen w1 +1 |
+| **CAD** | +6.56 | **+4.56** | **-2.00** | S&P Global Mfg PMI Prod w1 -1 · Balance of Trade Trad w1 -1 · Employment Change Empl w2 -2 |
+| **JPY** | +0.86 | **+2.36** | **+1.50** | Consumer Confidence Spen w1 +1 · S&P Global Mfg PMI Fin Prod w1 +1 · Household Spending YoY Spen w1 +1 |
+| **AUD** | +1.97 | **+1.47** | -0.50 | Balance of Trade Trad w1 -1 |
+| **USD** | +0.52 | **-0.48** | **-1.00** | ISM Manufacturing PMI Prod w1 -1 · Balance of Trade Trad w1 -1 · Non Farm Payrolls Empl w2 +2 · Unemployment Rate Empl w2 -2 |
+| **CHF** | -0.64 | **-2.14** | **-1.50** | Inflation Rate YoY Infl w3 -3 |
+
+**k = 0.50, and here is why that number.** It is **the largest value at which
+no currency's rank is decided by a single forecast.** At k=0.75 CHF's lone
+inflation print (w3) moves it 2.25 points and drops it past USD on its own; at
+k=1.00 it moves 3.00 and a forecast counts for as much as a release. **At 0.50
+the largest possible single-row move is 1.50 on an 11-point scale.**
+
+**This is a testable claim, not a preference.** §4.0 records the projections in
+advance, so **Saturday's retrospective grades k against what actually
+printed** — and k moves on that evidence, not on argument.
+
+**Released rows are EXCLUDED.** Once a print lands it belongs to §2.0 through
+the whitelist; adjusting it here too would count the same information twice.
+**2 row(s) already released this week and are in the base**, not above.
+
+**The base is never overwritten.** Both numbers stay side by side so the
+forecast's contribution is always visible.
+
 ### 2.1 Production (weight 1)
 
 **19 indicators — 15 GOOD · 2 BAD · 2 NEUTRAL**
@@ -377,34 +419,44 @@ September** *(www150.statcan.gc.ca, primary)*. The model keeps May/26 5.9%,
 from the TE global calendar **plus the CH and NZ country pages**, which the
 global page omits entirely (F-57).
 
-| When (PHT) | CCY | Indicator | Current actual | Cons / Fcst | **Market priced** | Status |
-|---|---|---|---|---|---|---|
-| **Mon 31 07:50** | JPY | Retail Sales YoY | **4%** | 3% / 1.0% | **BEAT** | **RELEASED** |
-| Mon 31 13:00 | JPY | Consumer Confidence | 34.9 | 35 / 35 | **GOOD** | ahead |
-| **Tue 01 07:00** | AUD | S&P Global Mfg PMI Final | 52.0 | 52.0 / 52.0 | NEUTRAL | ahead |
-| **Tue 01 08:30** | JPY | S&P Global Mfg PMI Final | 54.5 | 55.1 / 55.1 | **GOOD** | ahead |
-| **Tue 01 09:00** | NZD | ANZ Business Confidence | **53.7** | — / 55.7 | **MISS** | **RELEASED** |
-| Tue 01 14:30 | CHF | Retail Sales YoY | 1.5% | 1.3% / 2.0% | NEUTRAL | ahead |
-| **Tue 01 16:00** | EUR | S&P Global Mfg PMI Final | 51.9 | 52.8 / 52.8 | **GOOD** | ahead |
-| **Tue 01 16:30** | GBP | S&P Global Mfg PMI Final | 51.9 | 51.5 / 51.5 | **BAD** | ahead |
-| Tue 01 17:00 | EUR | Unemployment Rate | 6.3% | 6.3% / 6.3% | NEUTRAL | ahead |
-| **Tue 01 21:30** | CAD | S&P Global Mfg PMI | 53.5 | — / 52.7 | UNSCORED — no consensus | ahead |
-| **Tue 01 22:00** | **USD** | **ISM Manufacturing PMI** | **55.6** | 55.3 / 55 | **BAD** | ahead |
-| **Wed 02 02:00** | **NZD** | **⚠ RBNZ INTEREST RATE DECISION** | **2.50%** | 2.75% / 2.75% | **UNSCORED** — not a whitelist row (F-3) | **ahead** |
-| Wed 02 06:45 | NZD | Building Permits MoM | -3.6% | — / 2.5% | UNSCORED — no consensus | ahead |
-| **Wed 02 13:45** | **CAD** | **⚠ BoC INTEREST RATE DECISION** | **2.25%** | 2.25% / 2.25% | **UNSCORED** — not a whitelist row (F-3) | **ahead** |
-| Thu 03 09:30 | AUD | Balance of Trade | A$1.929B | A$1.39B / A$1.1B | **BAD** | ahead |
-| **Thu 03 14:30** | **CHF** | **Inflation Rate YoY** | **0.4%** | — / 0.7% | UNSCORED — no consensus | ahead |
-| **Thu 03 15:30** | CHF | Procure.ch-UBS Mfg PMI | 53.2 | 53.5 / 52.8 | NEUTRAL | ahead |
-| Thu 03 20:30 | CAD | Balance of Trade | C$3.86B | C$3.2B / C$2.2B | **BAD** | ahead |
-| Thu 03 20:30 | USD | Balance of Trade | $-73.3B | $-86.4B / $-91.2B | **BAD** | ahead |
-| Fri 04 07:30 | JPY | Household Spending YoY | -3.3% | -1.6% / -1.0% | **GOOD** | ahead |
-| Fri 04 17:00 | EUR | Retail Sales YoY | 0.7% | — / 0.9% | UNSCORED — no consensus | ahead |
-| **Fri 04 20:30** | **USD** | **⚠ NON FARM PAYROLLS (Aug)** | **-23K** | 45K / 12.0K | **GOOD** | ahead |
-| **Fri 04 20:30** | **USD** | **Unemployment Rate** | **4.1%** | 4.2% / 4.2% | **BAD** | ahead |
-| **Fri 04 20:30** | **CAD** | **Employment Change** | **75.1K** | 15.8K / 10.0K | **BAD** | ahead |
-| **Fri 04 20:30** | **CAD** | **Unemployment Rate** | **6.4%** | 6.4% / 6.4% | NEUTRAL | ahead |
-| Fri 04 (untimed) | NZD | Global Dairy Trade Price Index | 2.3% | — / — | UNSCORED — no consensus | ahead |
+| When (PHT) | CCY | Indicator | Previous | Cons / Fcst range | **Actual** | **Market priced** | Status |
+|---|---|---|---|---|---|---|---|
+| **Mon 31 07:50** | JPY | Retail Sales YoY | 0.6% ® | 3% – 1.0% | **4%** | **GOOD** | **BEAT** |
+| Mon 31 13:00 | JPY | Consumer Confidence | 34.9 | 35 | — | **GOOD** | ahead |
+| **Tue 01 07:00** | AUD | S&P Global Mfg PMI Final | 52.0 | 52.0 | — | NEUTRAL | ahead |
+| **Tue 01 08:30** | JPY | S&P Global Mfg PMI Final | 54.5 | 55.1 | — | **GOOD** | ahead |
+| **Tue 01 09:00** | NZD | ANZ Business Confidence | 56.1 | 55.7 | **53.7** | **BAD** | **MISS** |
+| Tue 01 14:30 | CHF | Retail Sales YoY | 1.5% | 1.3% – 2.0% | — | NEUTRAL | ahead |
+| **Tue 01 16:00** | EUR | S&P Global Mfg PMI Final | 51.9 | 52.8 | — | **GOOD** | ahead |
+| **Tue 01 16:30** | GBP | S&P Global Mfg PMI Final | 51.9 | 51.5 | — | **BAD** | ahead |
+| Tue 01 17:00 | EUR | Unemployment Rate | 6.3% | 6.3% | — | NEUTRAL | ahead |
+| **Tue 01 21:30** | CAD | S&P Global Mfg PMI | 53.5 | 52.7 | — | **BAD** | ahead |
+| **Tue 01 22:00** | **USD** | **ISM Manufacturing PMI** | **55.6** | 55.3 – 55 | — | **BAD** | ahead |
+| **Wed 02 02:00** | **NZD** | **⚠ RBNZ Interest Rate Decision** | **2.50%** | 2.75% | — | **§2.6 · rate score +2.25** (LD-23, w3) | ahead |
+| Wed 02 06:45 | NZD | Building Permits MoM | -3.6% | 2.5% | — | **GOOD** | ahead |
+| **Wed 02 13:45** | **CAD** | **⚠ BoC Interest Rate Decision** | **2.25%** | 2.25% | — | **§2.6 · rate score +0.38** (LD-23, w3) | ahead |
+| Thu 03 09:30 | AUD | Balance of Trade | A$1.929B | A$1.39B – A$1.1B | — | **BAD** | ahead |
+| **Thu 03 14:30** | **CHF** | **Inflation Rate YoY** | **0.4%** | 0.7% | — | **BAD** | ahead |
+| **Thu 03 15:30** | CHF | Procure.ch-UBS Mfg PMI | 53.2 | 53.5 – 52.8 | — | NEUTRAL | ahead |
+| Thu 03 20:30 | CAD | Balance of Trade | C$3.86B | C$3.2B – C$2.2B | — | **BAD** | ahead |
+| Thu 03 20:30 | USD | Balance of Trade | $-73.3B | $-86.4B – $-91.2B | — | **BAD** | ahead |
+| Fri 04 07:30 | JPY | Household Spending YoY | -3.3% | -1.6% – -1.0% | — | **GOOD** | ahead |
+| Fri 04 17:00 | EUR | Retail Sales YoY | 0.7% | 0.9% | — | **GOOD** | ahead |
+| **Fri 04 20:30** | **USD** | **⚠ Non Farm Payrolls** | **-23K** | 45K – 12.0K | — | **GOOD** | ahead |
+| **Fri 04 20:30** | **USD** | **Unemployment Rate** | **4.1%** | 4.2% | — | **BAD** | ahead |
+| **Fri 04 20:30** | **CAD** | **Employment Change** | **75.1K** | 15.8K – 10.0K | — | **BAD** | ahead |
+| **Fri 04 20:30** | **CAD** | **Unemployment Rate** | **6.4%** | 6.4% | — | NEUTRAL | ahead |
+| Fri 04 (untimed) | NZD | Global Dairy Trade Price Index | 2.3% | — | — | UNSCORED — no consensus | ahead |
+
+**PREVIOUS is the last released print and it is FROZEN** — a release lands in **ACTUAL**,
+never over the top of Previous, so the comparison the week was priced on stays
+readable after the fact. **Cons / Fcst is a RANGE when both exist**, the single
+figure when only one does. **Market priced** grades Previous against that range;
+**Status** grades the Actual once it lands.
+
+**⚠ The two rate decisions ARE scored** — §2.6 / LD-23, **weight 3, the heaviest
+on the board**, via `rate_model.py`. What sits outside the 71-row whitelist is the
+CALENDAR EVENT, not the indicator.
 
 ### 4.1 — Event risk by currency (LD-73)
 
