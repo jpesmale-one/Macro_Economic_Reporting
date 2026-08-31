@@ -29,9 +29,6 @@ track: LEAN (no section-2 trigger has fired)
 # CLOSED 2026-08-31: the cycle gap. 2.0b now feeds selection as criterion 7
 #   (LD-86). Flagged in SELECTION_CRITERIA.md as RATIFIED by Jeff, not
 #   authored by him - held to a higher evidence bar for that reason.
-# OPEN: the CYCLE view (2.0b) still feeds nothing. Selection ranks on 2.0
-#   alone. NZD scored 4.29 while 2.0b called it IN THE PAST and its case
-#   rests on Jun/26 quarterly data. Jeff has not ruled on a cycle gate.
 handover: docs/HANDOVER_2026-08-24_fine_tuning.md - READ THIS FIRST, it is
   what governs the next edition. STATE.md is the ledger; the handover is the
   briefing.
