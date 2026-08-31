@@ -1016,47 +1016,52 @@ while destroying the citation trail.
 
 ---
 
-### F-71 · R-30 — an ACTUAL cannot predate its own release
+### F-72 — I blamed TE for my own off-by-one. **F-71 WITHDRAWN.**
 
-**Jeff, 2026-08-31, reading §4.0:** *"Tue 01 09:00 NZD ANZ Business
-Confidence — The schedule is wrong."*
+**Jeff, 2026-08-31, with a screenshot:** *"How TE is wrong when I can see the
+screen August 31, 2026 9AM?"*
 
-**Our own captures prove it, with no outside source needed:**
+**TE was never wrong.** His screen showed `Monday August 31 2026` with ANZ
+Business Confidence at 09:00. Our capture stored it as 1 September. **The
+parser was a day out.**
 
-```
-30 Aug 21:45 PHT capture -> date 2026-09-01 01:00 UTC, actual BLANK
-31 Aug 09:58 PHT capture -> date 2026-09-01 01:00 UTC, actual 53.7
-```
+#### The bug
 
-**The 09:58 PHT capture is 01:58 UTC on 31 Aug — twenty-three hours BEFORE
-TE's own timestamp for the event.** A value cannot exist before the release
-that produces it. **The actual is real; the DATE is stale.** TE left the
-scheduled slot on tomorrow while publishing today's result.
+`parse()` tracked the date from a running `<th>` heading. **On a TE country
+page every date heading appears TWICE**, so `cur` advanced to the next day
+before the rows beneath it were read. Meanwhile **each row carries its own
+date in its first cell** — `class=' 2026-08-31'` — which we ignored.
 
-#### The mirror image of F-1, needing the opposite response
+**Fix: read the row's own date; fall back to the heading only if absent.**
 
-| | Symptom | What is wrong | Response |
-|---|---|---|---|
-| **F-1** | actual present, date in future | **the VALUE** — a forecast wearing a print's label | **do not use it** |
-| **F-71** | actual present, date in future | **the DATE** — TE left the slot stale | **use the value, fix the date** |
+#### What I got wrong, and the tell I walked past
 
-**Identical symptoms, opposite fixes.** Treating F-71 as F-1 discards a real
-print; treating F-1 as F-71 publishes a forecast as a fact.
+**I had already "proven" TE wrong from capture history** — the actual appeared
+between two captures, 23 hours before TE's stated time, therefore the date
+must be stale. **The logic was sound and the premise was mine.** I never
+questioned the stored date because I had written the code that produced it.
 
-#### The discriminator is CAPTURE HISTORY
+**THE TELL: three other rows on the same screen converted cleanly at UTC+8 and
+only this one was off by a whole day.** When one row disagrees and its
+neighbours agree, **suspect the parser, not the source.** A source-wide defect
+shows up source-wide.
 
-**A value that APPEARS between two captures has released** — that is F-71. **A
-value sitting unchanged since before any plausible release** is F-1.
+**F-71 is WITHDRAWN.** There was no TE scheduling defect. The four rows R-30
+flagged — two "stale date", two "F-1 suspects, do not use" — **were all the
+same parser bug**, and the two I told Jeff not to trust (CAD budget balance,
+CHF KOF) were sound all along. After the fix: **8 of 8 rows match his screen
+exactly, and R-30 reports no anomalies at all.**
 
-**This is what the raw captures are FOR.** They are kept rather than
-overwritten precisely so a question like this can be settled from the record
-instead of argued.
+#### R-30 is KEPT, on its merits
 
-**R-30 `pipelines/audit_schedule.py`** runs the test on every future-dated row
-carrying an actual and sorts them into the two buckets. **First run found two
-F-71 rows** — ANZ Business Confidence and JPY Retail Sales MoM, the second of
-which nobody had noticed — **and two F-1 suspects** (CAD budget balance, CHF
-KOF) whose values have been static and must not be used.
+The audit itself is correct — an actual really cannot predate its own release,
+and that check has value. **What was wrong was the conclusion I drew from it.**
+R-30 now stands as a genuine cross-check rather than as evidence against TE,
+**and its first honest run is a clean one.**
+
+**Third time in this session that a "source defect" turned out to be ours
+(F-45, F-63, F-72).** The prior should be: *when our data disagrees with what
+Jeff can see on screen, we are wrong until proven otherwise.*
 
 ---
 ### F-70 — TWO CHANNELS reach the currency, and they carry OPPOSITE SIGNS

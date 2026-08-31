@@ -203,6 +203,16 @@ past every guard and were caught by Jeff reading:
   never whether it was *provisional*.
 
 **Recompute every derived figure and name the bar that produced it (LD-48).**
+**WHEN OUR DATA DISAGREES WITH WHAT JEFF SEES ON SCREEN, WE ARE WRONG
+UNTIL PROVEN OTHERWISE (F-72).** Three times now a "source defect" has
+turned out to be ours: F-45 (we held the forecast column), F-63 (UTC
+filtered against a PHT window), F-72 (a running date heading TE prints
+twice, so rows landed a day late). In F-72 I went further and *proved*
+TE wrong from capture history - sound logic on a premise I had authored.
+**THE TELL: three rows on the same screen converted cleanly and only one
+was off. When one row disagrees and its neighbours agree, suspect the
+parser, not the source** - a source-wide defect shows up source-wide.
+
 **TWO CHANNELS REACH THE CURRENCY AND THEY CARRY OPPOSITE SIGNS (F-70).**
 Jeff, 2026-08-31: *"decreasing unemployment is better for the economy.
 But in Inflation we want it increasing because it poses for Interest

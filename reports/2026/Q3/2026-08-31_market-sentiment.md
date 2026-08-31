@@ -437,7 +437,7 @@ global page omits entirely (F-57).
 | **Wed 02 13:45** | **CAD** | **⚠ BoC Interest Rate Decision** | **2.25%** | 2.25% | — | **§2.6 · rate score +0.38** (LD-23, w3) | ahead |
 | Thu 03 09:30 | AUD | Balance of Trade | A$1.929B | A$1.39B – A$1.1B | — | **BAD** | ahead |
 | **Thu 03 14:30** | **CHF** | **Inflation Rate YoY** | **0.4%** | 0.7% | — | **GOOD** | ahead |
-| **Thu 03 15:30** | CHF | Procure.ch-UBS Mfg PMI | 53.2 | 53.5 – 52.8 | — | NEUTRAL | ahead |
+| **Thu 03 15:30** | CHF | Procure.ch-UBS Mfg PMI | — | — | — | UNSCORED — not in capture | ahead |
 | Thu 03 20:30 | CAD | Balance of Trade | C$3.86B | C$3.2B – C$2.2B | — | **BAD** | ahead |
 | Thu 03 20:30 | USD | Balance of Trade | $-73.3B | $-86.4B – $-91.2B | — | **BAD** | ahead |
 | Fri 04 07:30 | JPY | Household Spending YoY | -3.3% | -1.6% – -1.0% | — | **GOOD** | ahead |
@@ -446,7 +446,7 @@ global page omits entirely (F-57).
 | **Fri 04 20:30** | **USD** | **Unemployment Rate** | **4.1%** | 4.2% | — | **BAD** | ahead |
 | **Fri 04 20:30** | **CAD** | **Employment Change** | **75.1K** | 15.8K – 10.0K | — | **BAD** | ahead |
 | **Fri 04 20:30** | **CAD** | **Unemployment Rate** | **6.4%** | 6.4% | — | NEUTRAL | ahead |
-| Fri 04 (untimed) | NZD | Global Dairy Trade Price Index | 2.3% | — | — | UNSCORED — no consensus | ahead |
+| Fri 04 (untimed) | NZD | Global Dairy Trade Price Index | — | — | — | UNSCORED — not in capture | ahead |
 
 **PREVIOUS is the last released print and it is FROZEN** — a release lands in **ACTUAL**,
 never over the top of Previous, so the comparison the week was priced on stays
@@ -454,14 +454,12 @@ readable after the fact. **Cons / Fcst is a RANGE when both exist**, the single
 figure when only one does. **Market priced** grades Previous against that range;
 **Status** grades the Actual once it lands.
 
-**⚠ ANZ Business Confidence is dated Mon 31, not Tue 01 as TE shows (F-71).**
-TE carries the scheduled slot at **1 Sep 01:00 UTC** while already publishing
-the actual. **Our own captures settle it: the value was BLANK at 30 Aug 21:45
-PHT and 53.7 by 31 Aug 09:58 PHT** — which is 01:58 UTC, twenty-three hours
-BEFORE TE's own timestamp. **A value cannot exist before the release that
-produces it, so the DATE is stale and the value is sound.** JPY Retail Sales
-MoM carries the same defect. **R-30 `audit_schedule.py` separates this from F-1**,
-where the VALUE is the wrong half.
+**⚠ Every time above matches TE's own screen (F-72).** An earlier build put ANZ
+Business Confidence on Tue 01 and blamed TE for a stale timestamp. **That was our
+bug, not theirs** — the parser followed a running date heading that TE prints
+TWICE per day, so rows landed one day late; it now reads each row's own date
+cell. **JPY Retail Sales MoM carried the same defect.** Verified row by row
+against Jeff's screenshot: **8 of 8 match.**
 
 **⚠ The two rate decisions ARE scored** — §2.6 / LD-23, **weight 3, the heaviest
 on the board**, via `rate_model.py`. What sits outside the 71-row whitelist is the

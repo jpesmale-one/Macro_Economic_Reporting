@@ -123,6 +123,23 @@ def parse(html, force_iso=None):
             d = iso_date(txt(dm.group(1)))
             if d:
                 cur = d
+        # F-72. THE ROW CARRIES ITS OWN DATE - use it, never the running
+        # <th> heading. Jeff, 2026-08-31: "How TE is wrong when I can see
+        # the screen August 31, 2026 9AM?"
+        #
+        # He was right and I had blamed TE. Each date heading appears TWICE
+        # on a country page, so the running `cur` advanced a day before the
+        # rows beneath it were read, and NZ ANZ Business Confidence landed on
+        # 1 Sep when its own cell says class=' 2026-08-31'.
+        #
+        # I then "proved" TE wrong from capture history (F-71) and re-dated a
+        # row that was never mis-dated at TE. THE TELL I WALKED PAST: three
+        # other rows on the same screen converted cleanly at UTC+8 and only
+        # this one was off by a whole day. When one row disagrees and its
+        # neighbours agree, suspect the parser, not the source.
+        rowm = re.search(r"class='\s*(\d{4}-\d{2}-\d{2})'", chunk)
+        row_date = rowm.group(1) if rowm else None
+
         iso = force_iso
         if not iso:
             im = re.search(r'calendar-iso"?>([A-Z]{2,3})', chunk)
@@ -166,7 +183,8 @@ def parse(html, force_iso=None):
         for k, v in zip(VAL_FIELDS, vcells):
             vals[k] = clean_val(txt(v))
         if ev:
-            r = {'date': cur, 'time': time, 'iso': iso, 'event': ev.lower()}
+            r = {'date': row_date or cur, 'time': time, 'iso': iso,
+                 'event': ev.lower()}
             r.update(vals)
             out.append(r)
     return out
