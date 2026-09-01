@@ -124,6 +124,7 @@ hand-written version silently degraded while the generator sat unused.
 | **§2.0c forward tally** | **`forward_adjust.py`** — k=0.50, weighted (LD-85) | **flat, or overwriting the base** |
 | **§4.2 confluence** | **cycle-tilted** — `cycle_gate.py`, criterion 7 (LD-86) | **ranked on §2.0 alone while §2.0b is printed and ignored** |
 | **§2 NEXT DUE column** | **`next_due.py`** — TE's published schedule (LD-87) | **inferred from history when TE publishes the date** |
+| **A RELEASED §4.0 row** | **graded vs CONSENSUS** (F-74) | **graded vs the PREVIOUS print** |
 | The edition itself | `render_edition.py <path.md>` | any other way |
 | **Process narrative** | **§7 Method notes — it already folds** (LD-69) | **§0–§6, the market read** |
 | **The weekly retrospective** | **its own artifact** (LD-70) | **a § of the daily edition** |

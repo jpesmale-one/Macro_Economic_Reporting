@@ -104,6 +104,14 @@ CASES = [
      '1.5 sits inside the 1.3-2.0 band'),
     ('EUR', 'Unemployment Rate', '6.3%', '6.3%', '6.3%', 'NEUTRAL',
      'unchanged'),
+    # --- F-74: a RELEASE is graded against CONSENSUS, not against the
+    # --- previous print. JPY Mfg PMI printed 54.9 on a 55.1 consensus,
+    # --- up from 54.5. The series improved AND the market was
+    # --- disappointed - both true, and only the second moves price.
+    ('JPY', 'S&P Global Mfg PMI Final', '55.1', '54.9', '', 'BAD',
+     'consensus 55.1, actual 54.9 - a MISS even though prev was 54.5'),
+    ('AUD', 'S&P Global Mfg PMI Final', '52.0', '52.0', '', 'NEUTRAL',
+     'actual equals consensus - in line'),
     # --- F-70: INFLATION IS RATE SUPPORT, not consumer harm. Jeff,
     # --- 2026-08-31: "The inflation of CHF is expected to increase from
     # --- 0.4% to 0.7% why is it bad for the currency?" It is not. Rising

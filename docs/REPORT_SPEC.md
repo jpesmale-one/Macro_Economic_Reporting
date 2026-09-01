@@ -1016,6 +1016,39 @@ while destroying the citation trail.
 
 ---
 
+### F-74 — a RELEASE is graded against CONSENSUS, not against the previous print
+
+**Found building the 2026-09-01 edition.** JPY S&P Global Mfg PMI printed
+**54.9 against a 55.1 consensus**, up from 54.5. **§4.0 graded it BEAT.**
+
+**It is a MISS.** The row compared the actual to the PREVIOUS figure, so any
+improvement on last month scored as a beat regardless of what the market
+expected.
+
+**Both statements are true and only one moves price:**
+
+| Comparison | Result | Moves price? |
+|---|---|---|
+| 54.9 vs previous 54.5 | the series improved | no |
+| 54.9 vs consensus 55.1 | **the market was disappointed** | **yes** |
+
+**A SURPRISE IS MEASURED AGAINST WHAT WAS EXPECTED.** That is the whole
+premise of §4.6 (LD-68, direction × surprise) and of LD-85's forward
+adjustment — both of which grade against consensus. **§4.0's own release
+column was the one place still comparing to the previous print.**
+
+**Fix:** grade against CONSENSUS when one exists; fall back to previous only
+when the week was never priced, and **say which** — an unpriced release now
+reads *up vs prev* rather than borrowing the language of a beat.
+
+**Same family as F-66/F-68/F-70:** all four are the wrong REFERENCE POINT for
+a comparison. F-66 took the direction from the wrong place, F-68 read history
+as direction, F-70 used the consumer's sign, **F-74 used the wrong baseline.**
+
+**Pricing regressions now 26**, including the JPY PMI case and an in-line AUD
+print.
+
+---
 ### F-73 — "not scheduled" was a claim we could not make
 
 **Jeff, 2026-08-31, within minutes of LD-87 shipping:**

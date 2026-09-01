@@ -4,13 +4,12 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-08-31 (r1, MONDAY REVALIDATION, UNSEALED - set stays LOCKED)
-date: 2026-08-31
-data_asof: 2026-08-31 13:05 PHT (capture 13:05 PHT, all 8 country
-           pages; JPY Retail Sales and NZD ANZ Business Confidence RELEASED
-           and fed in; JPY Consumer Confidence RESCHEDULED by TE to Tue 01;
-           gold/BTC bars FORMING, prices 13:05 PHT)
-last_sealed: 2026-08-21 (r13, SEALED FULL) - editions 08-24 .. 08-31 UNSEALED
+edition: 2026-09-01 (r1, TUESDAY, UNSEALED - set stays LOCKED)
+date: 2026-09-01
+data_asof: 2026-09-01 08:44 PHT (capture 08:44, all 8 country pages; JPY and
+           AUD Mfg PMI RELEASED and fed in; F&G re-fetched 49.71 stamped
+           31 Aug; gold/BTC Monday bars CLOSED, Tuesday FORMING)
+last_sealed: 2026-08-21 (r13, SEALED FULL) - editions 08-24 .. 09-01 UNSEALED
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
