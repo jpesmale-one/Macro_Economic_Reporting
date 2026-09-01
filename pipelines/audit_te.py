@@ -89,6 +89,26 @@ KNOWN_DIFFERENT = {
 # KNOWN_DIFFERENT because this exempts the REFERENCE-PERIOD check, which is the
 # stronger exemption and must stay short.
 KNOWN_SERIES_GAP = {
+    ('US', 'ISM Manufacturing PMI'): (
+        "F-76. TE's united-states INDICATOR page carries every ISM "
+        "SUB-INDEX (employment, new orders, prices, production) but NOT "
+        "the ISM headline - 'manufacturing pmi' on that page is S&P "
+        "GLOBAL's, 53.9. The ISM headline lives only on the CALENDAR "
+        "(54.6 Aug/26, verified there 2026-09-02). Before this exemption "
+        "difflib matched our ISM row to S&P Global at 0.86 and reported a "
+        "disagreement that did not exist - a fuzzy matcher does not report "
+        "an ambiguity, it picks one. THE ROW IS RECONCILED AGAINST THE "
+        "CALENDAR CAPTURE INSTEAD, which is where the series actually "
+        "lives."),
+    ('EA', 'Inflation Rate YoY Final'): 'TE lists the monthly FLASH first; '
+        'the whitelist names the FINAL (F-29 rule). 2026-09-02: TE flags '
+        '3.3% Aug/26 as NEWER than our 2.9% Jul/26, but that is '
+        '"inflation rate yoy FLASH aug" released 1 Sep. The Aug FINAL is '
+        'scheduled 17 Sep and has NOT released. Updates when it prints.',
+    ('AU', 'Building Permits YoY Final'): 'TE lists the PREL first; the '
+        'whitelist names the FINAL. 2026-09-02: TE flags a Jul/26 figure '
+        'as NEWER, but that is "building permits yoy PREL jul" released '
+        '1 Sep. The Jul FINAL is scheduled 8 Sep and has NOT released.',
     ('JP', 'Industrial Production YoY Final'): 'TE lists the PREL first; '
         'the whitelist names the FINAL (F-29 rule). 2026-08-31: TE flags '
         '4.1% Jul/26 as NEWER than our 4.9% Jun/26, but that figure is '
@@ -127,6 +147,16 @@ KNOWN_SERIES_GAP = {
 # silently unaudited while the tool reported "all rows agree with TE".
 # Map whitelist name -> the exact TE series key.
 TE_ALIAS = {
+    # F-76. The US publishes TWO manufacturing PMIs 15 minutes apart and
+    # our row names the ISM one. With no alias, difflib matched
+    # "ISM Manufacturing PMI" to S&P Global's "manufacturing pmi final"
+    # at 0.86 and reported OUR 53.2 against THEIR 53.9 - the wrong survey,
+    # flagged as a disagreement that did not exist.
+    #
+    # This is F-65c in a second module: 4.0 got a PIN map for exactly this
+    # collision and audit_te did not. A fuzzy matcher does not report an
+    # ambiguity, it picks one - and then the mismatch it prints is noise
+    # that trains you to skim the audit.
     ('AU', 'Westpac Consumer Conf Change'): 'consumer confidence mom',
     ('AU', 'ANZ-Indeed Job Ads MoM'): 'job advertisements',
     ('US', 'Durable Goods Ex Transp MoM'): 'durable goods orders ex transportation',

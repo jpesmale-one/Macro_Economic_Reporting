@@ -1016,6 +1016,38 @@ while destroying the citation trail.
 
 ---
 
+### F-76 — a fuzzy matcher picks; it does not report an ambiguity
+
+**Found building the 2026-09-02 edition.** LD-50 reported **USD ISM
+Manufacturing PMI: ours 53.2, TE 53.9** — same reference period, no NEWER
+flag. **A disagreement that did not exist.**
+
+**The US publishes TWO manufacturing PMIs fifteen minutes apart.** Our row
+names the **ISM**; TE's indicator page key `manufacturing pmi` is **S&P
+Global's**. With no alias, `difflib.get_close_matches` matched them at 0.86
+and compared our ISM figure against S&P Global's.
+
+**This is F-65c in a second module.** §4.0 got a `PIN` map for exactly this
+collision on 2026-08-30; `audit_te.py` kept fuzzy-matching.
+
+#### The fix is NOT an alias
+
+**The first attempt pinned `ISM Manufacturing PMI` → `ism manufacturing pmi`.
+That key does not exist.** TE's united-states indicator page carries every ISM
+**sub-index** — employment, new orders, prices, production, inventories — **but
+not the ISM headline.** It lives only on the CALENDAR.
+
+**So the row is genuinely unreconcilable against that page**, and it now sits
+in `KNOWN_SERIES_GAP` saying so. **The value is verified against the calendar
+capture instead** (54.6 Aug/26), which is where the series actually lives.
+
+**The lesson generalises: a fuzzy matcher does not report an ambiguity, it
+picks one** — and then the mismatch it prints is noise that trains you to skim
+the audit. Same conclusion as F-67, from the opposite direction: there the
+reflex was to loosen matching, here the damage came from matching that was
+already too loose.
+
+---
 ### LD-88 — §2.1–2.5 publish the GRADED SCORE, not the verdict
 
 **Jeff, 2026-09-01:** *"on 2.1 to 2.5 in the score instead of Good Neutral

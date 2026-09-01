@@ -1,0 +1,428 @@
+{
+ "AU|ANZ-Indeed Job Ads MoM": {
+  "actual": "+0.8%",
+  "previous": "-0.1%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "AU|Balance of Trade": {
+  "actual": "A$1.93B",
+  "previous": "A$-2.37B",
+  "ref": "Jun/26",
+  "score": "GOOD"
+ },
+ "AU|Building Permits YoY Final": {
+  "actual": "8.9%",
+  "previous": "5.5%",
+  "ref": "Jun/26",
+  "score": "GOOD"
+ },
+ "AU|Employment Change": {
+  "actual": "-15.8K (FT +16.3K, PT -32.2K)",
+  "previous": "76.3K (FT +29.3K, PT +47.0K)",
+  "ref": "Jul/26",
+  "score": "NEUTRAL"
+ },
+ "AU|Household Spending YoY": {
+  "actual": "7.0%",
+  "previous": "6.0%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "AU|Inflation Rate YoY": {
+  "actual": "3.5%",
+  "previous": "3.8%",
+  "ref": "Jul/26",
+  "score": "NEUTRAL"
+ },
+ "AU|NAB Business Confidence": {
+  "actual": "-6",
+  "previous": "-6",
+  "ref": "Jul/26",
+  "score": "NEUTRAL"
+ },
+ "AU|S&P Global Mfg PMI Final": {
+  "actual": "52.0",
+  "previous": "52.0",
+  "ref": "Aug/26",
+  "score": "GOOD"
+ },
+ "AU|Unemployment Rate": {
+  "actual": "4.5%",
+  "previous": "4.4%",
+  "ref": "Jul/26",
+  "score": "BAD"
+ },
+ "AU|Westpac Consumer Conf Change": {
+  "actual": "6.0%",
+  "previous": "4.1%",
+  "ref": "Aug/26",
+  "score": "GOOD"
+ },
+ "CA|Balance of Trade": {
+  "actual": "C$3.86B",
+  "previous": "C$3.70B",
+  "ref": "Jun/26",
+  "score": "GOOD"
+ },
+ "CA|Building Permits MoM": {
+  "actual": "+18.5%",
+  "previous": "-3.0%",
+  "ref": "Jun/26",
+  "score": "GOOD"
+ },
+ "CA|Employment Change": {
+  "actual": "75.1K (FT +38.6K, PT +36.6K)",
+  "previous": "18.2K",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "CA|Inflation Rate YoY": {
+  "actual": "3.0%",
+  "previous": "2.8%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "CA|Retail Sales YoY": {
+  "actual": "5.2%",
+  "previous": "5.9%",
+  "ref": "Jun/26",
+  "score": "GOOD"
+ },
+ "CA|S&P Global Mfg PMI": {
+  "actual": "53.0",
+  "previous": "53.5",
+  "ref": "Aug/26",
+  "score": "GOOD"
+ },
+ "CA|Unemployment Rate": {
+  "actual": "6.4%",
+  "previous": "6.5%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "CH|Balance of Trade": {
+  "actual": "CHF8.1B",
+  "previous": "CHF3.8B",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "CH|Consumer Confidence": {
+  "actual": "-35",
+  "previous": "-36",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "CH|Industrial Production YoY": {
+  "actual": "5.5%",
+  "previous": "-7.1%",
+  "ref": "Q2/26",
+  "score": "GOOD"
+ },
+ "CH|Inflation Rate YoY": {
+  "actual": "0.4%",
+  "previous": "0.5%",
+  "ref": "Jul/26",
+  "score": "BAD"
+ },
+ "CH|Non Farm Payrolls": {
+  "actual": "5.698M",
+  "previous": "5.537M",
+  "ref": "Q2/26",
+  "score": "GOOD"
+ },
+ "CH|Procure.ch-UBS Mfg PMI": {
+  "actual": "57.1",
+  "previous": "53.2",
+  "ref": "Aug/26",
+  "score": "GOOD"
+ },
+ "CH|Retail Sales YoY": {
+  "actual": "2.3%",
+  "previous": "1.9%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "CH|Unemployment Rate": {
+  "actual": "3.0%",
+  "previous": "2.9%",
+  "ref": "Jul/26",
+  "score": "BAD"
+ },
+ "EA|Balance of Trade": {
+  "actual": "EUR8.60B",
+  "previous": "EUR-9.00B",
+  "ref": "Jun/26",
+  "score": "GOOD"
+ },
+ "EA|Consumer Confidence Final": {
+  "actual": "-15.5",
+  "previous": "-15.9",
+  "ref": "Aug/26",
+  "score": "GOOD"
+ },
+ "EA|Industrial Production YoY": {
+  "actual": "0.1%",
+  "previous": "-0.1%",
+  "ref": "Jun/26",
+  "score": "NEUTRAL"
+ },
+ "EA|Inflation Rate YoY Final": {
+  "actual": "2.9%",
+  "previous": "2.8%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "EA|Retail Sales YoY": {
+  "actual": "0.7%",
+  "previous": "1.9%",
+  "ref": "Jun/26",
+  "score": "GOOD"
+ },
+ "EA|S&P Global Mfg PMI Final": {
+  "actual": "51.9",
+  "previous": "51.4",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "EA|Unemployment Rate": {
+  "actual": "6.4%",
+  "previous": "6.3%",
+  "ref": "Jul/26",
+  "score": "BAD"
+ },
+ "GB|Balance of Trade": {
+  "actual": "GBP-5.54B",
+  "previous": "GBP-3.46B",
+  "ref": "Jun/26",
+  "score": "BAD"
+ },
+ "GB|Claimant Count Change": {
+  "actual": "-11K",
+  "previous": "-6.4K",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "GB|GfK Consumer Confidence": {
+  "actual": "-14",
+  "previous": "-17",
+  "ref": "Aug/26",
+  "score": "GOOD"
+ },
+ "GB|Industrial Production YoY": {
+  "actual": "-0.2%",
+  "previous": "1.0%",
+  "ref": "Jun/26",
+  "score": "BAD"
+ },
+ "GB|Inflation Rate YoY": {
+  "actual": "2.9%",
+  "previous": "2.6%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "GB|Manufacturing Production YoY": {
+  "actual": "0.5%",
+  "previous": "2.0%",
+  "ref": "Jun/26",
+  "score": "NEUTRAL"
+ },
+ "GB|Retail Sales Ex Fuel YoY": {
+  "actual": "2.3%",
+  "previous": "5.0%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "GB|S&P Global Mfg PMI Final": {
+  "actual": "51.9",
+  "previous": "52.5",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "JP|Balance of Trade": {
+  "actual": "JPY-634.5B",
+  "previous": "JPY-409.9B",
+  "ref": "Jul/26",
+  "score": "BAD"
+ },
+ "JP|Consumer Confidence": {
+  "actual": "35.5",
+  "previous": "34.9",
+  "ref": "Aug/26",
+  "score": "GOOD"
+ },
+ "JP|Household Spending YoY": {
+  "actual": "-3.3%",
+  "previous": "-0.4%",
+  "ref": "Jun/26",
+  "score": "BAD"
+ },
+ "JP|Industrial Production YoY Final": {
+  "actual": "4.9%",
+  "previous": "-2.1%",
+  "ref": "Jun/26",
+  "score": "GOOD"
+ },
+ "JP|Inflation Rate YoY": {
+  "actual": "1.9%",
+  "previous": "1.6%",
+  "ref": "Jul/26",
+  "score": "NEUTRAL"
+ },
+ "JP|Machine Tool Orders YoY": {
+  "actual": "50.4%",
+  "previous": "52.8%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "JP|Machinery Orders YoY": {
+  "actual": "16.9%",
+  "previous": "-1.9%",
+  "ref": "Jun/26",
+  "score": "GOOD"
+ },
+ "JP|Retail Sales YoY": {
+  "actual": "4.0%",
+  "previous": "0.6%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "JP|S&P Global Mfg PMI Final": {
+  "actual": "54.9",
+  "previous": "54.5",
+  "ref": "Aug/26",
+  "score": "GOOD"
+ },
+ "JP|Unemployment Rate": {
+  "actual": "2.4%",
+  "previous": "2.5%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "NZ|ANZ Business Confidence": {
+  "actual": "53.7",
+  "previous": "56.1",
+  "ref": "Aug/26",
+  "score": "BAD"
+ },
+ "NZ|ANZ Roy Morgan Consumer Conf": {
+  "actual": "99.3",
+  "previous": "91.3",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "NZ|Balance of Trade": {
+  "actual": "NZ$-1.95B",
+  "previous": "NZ$0.02B",
+  "ref": "Jul/26",
+  "score": "BAD"
+ },
+ "NZ|Building Permits MoM": {
+  "actual": "-4.3%",
+  "previous": "-3.6%",
+  "ref": "Jul/26",
+  "score": "BAD"
+ },
+ "NZ|Business NZ PMI": {
+  "actual": "54.3",
+  "previous": "60.1",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "NZ|Electronic Retail Card Spending YoY": {
+  "actual": "3.4%",
+  "previous": "1.3%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "NZ|Global Dairy Trade Price Index": {
+  "actual": "0.9%",
+  "previous": "2.3%",
+  "ref": "Sep/26",
+  "score": "GOOD"
+ },
+ "NZ|Inflation Rate YoY": {
+  "actual": "4.1%",
+  "previous": "3.1%",
+  "ref": "Jun/26",
+  "score": "GOOD"
+ },
+ "NZ|Unemployment Rate": {
+  "actual": "5.6%",
+  "previous": "5.4%",
+  "ref": "Jun/26",
+  "score": "BAD"
+ },
+ "US|Balance of Trade": {
+  "actual": "-$73.26B",
+  "previous": "-$77.65B",
+  "ref": "Jun/26",
+  "score": "GOOD"
+ },
+ "US|Building Permits MoM Final": {
+  "actual": "4.3%",
+  "previous": "-2.6%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "US|CB Consumer Confidence": {
+  "actual": "89.4",
+  "previous": "90.2",
+  "ref": "Aug/26",
+  "score": "BAD"
+ },
+ "US|Durable Goods Ex Transp MoM": {
+  "actual": "0.4%",
+  "previous": "0.6%",
+  "ref": "Jul/26",
+  "score": "BAD"
+ },
+ "US|ISM Manufacturing PMI": {
+  "actual": "54.6",
+  "previous": "55.6",
+  "ref": "Aug/26",
+  "score": "GOOD"
+ },
+ "US|Industrial Production YoY": {
+  "actual": "1.1%",
+  "previous": "1.29%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "US|Inflation Rate YoY": {
+  "actual": "3.4%",
+  "previous": "3.5%",
+  "ref": "Jul/26",
+  "score": "NEUTRAL"
+ },
+ "US|Manufacturing Production YoY": {
+  "actual": "1.2%",
+  "previous": "1.1%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "US|Non Farm Payrolls": {
+  "actual": "-23K",
+  "previous": "20K",
+  "ref": "Jul/26",
+  "score": "BAD"
+ },
+ "US|Personal Spending MoM": {
+  "actual": "0.2%",
+  "previous": "0.3%",
+  "ref": "Jul/26",
+  "score": "NEUTRAL"
+ },
+ "US|Retail Sales YoY": {
+  "actual": "5.0%",
+  "previous": "6.8%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ },
+ "US|Unemployment Rate": {
+  "actual": "4.1%",
+  "previous": "4.2%",
+  "ref": "Jul/26",
+  "score": "GOOD"
+ }
+}
