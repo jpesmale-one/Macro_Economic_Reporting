@@ -47,6 +47,38 @@ def _score_cell(v):
     return '**%s**' % v if v in BOLD else v
 
 
+def _graded_cell(actual, prev, thr, verdict):
+    """LD-88 - the row's ACTUAL SCORE, the way 2.6 shows one.
+
+    Jeff, 2026-09-01: "on 2.1 to 2.5 in the score instead of Good Neutral
+    Bad, can you put in the actual score? kinda similar to 2.6"
+
+    2.6 has published a signed number since LD-23 while 2.1-2.5 published
+    GOOD/NEUTRAL/BAD - and since LD-71 those tables have been HIDING a real
+    number. Two GOOD rows can differ by a factor of five: JPY Industrial
+    Production scores +1.000, USD Industrial Production +0.200. Both read
+    "GOOD", and the tally treats them five points apart.
+
+    Every row has a number. 51 of 71 come from a graded rule; the other 20
+    have no rule pattern and score exactly +1 / -1 / 0 from the verdict
+    (LD-59 - Jeff curated those by hand and they stay untouched). Those are
+    marked so a full mark from a rule is never confused with a full mark by
+    default.
+    """
+    g = sm.graded_signed(actual, prev, thr, verdict)
+    if g is None:
+        if not verdict or verdict.upper() in ('', 'NONE'):
+            return '**NOT FOUND**'
+        v = {'GOOD': 1.0, 'BAD': -1.0, 'NEUTRAL': 0.0}.get(verdict)
+        if v is None:
+            return '**NOT FOUND**'
+        # dagger = scored from the VERDICT, no graded rule for this row
+        txt = ('%+.2f' % v).replace('-', '\u2212') + '\u2020'
+        return '**%s**' % txt if v else txt
+    txt = ('%+.2f' % g).replace('-', '\u2212')
+    return '**%s**' % txt if abs(g) >= 0.50 else txt
+
+
 # LD-61 - SECTION 2.0, THE CATEGORY TALLY, IS GENERATED AND SORTED BY SCORE.
 #
 # It was hand-maintained until 2026-08-24 - the ONE table in section 2 that
@@ -210,7 +242,8 @@ def category_table(cat, due=None):
         out.append('| %s | %s | %s | %s | %s | %s | %s | %s |' % (
             lbl, name,
             actual or '**NOT FOUND**', prev or '—',
-            ref or '—', thr or '—', _score_cell(score),
+            ref or '—', thr or '—',
+            _graded_cell(actual, prev, thr, score),
             fmt(due.get((lbl, name)))))
     return '\n'.join(out), len(rows)
 

@@ -258,31 +258,51 @@ until Fri 18 Sep**, and **NZD Unemployment sits beyond the horizon entirely.**
 **Both are quarterly, both are Jun/26, and neither refreshes inside this
 week's lock.**
 
+**⚠ SCORE IS NOW THE ACTUAL GRADED NUMBER, not GOOD/NEUTRAL/BAD (LD-88).**
+Jeff, 2026-09-01: *"instead of Good Neutral Bad, can you put in the actual
+score? kinda similar to 2.6"* — §2.6 has published a signed number since
+LD-23 while these tables published a three-state verdict.
+
+**Since LD-71 these tables have been HIDING a real number.** Two GOOD rows can
+differ by a factor of five: **JPY Industrial Production scores +1.00, USD
+Industrial Production +0.20.** Both read *GOOD*, and the tally treats them a
+full 0.80 apart. **The category totals in §2.0 were always built from these
+numbers — they simply were not shown.**
+
+**Range is −1.00 to +1.00 per row**, multiplied by the category weight in
+§2.0. **Bold marks a decisive print** (magnitude ≥ 0.50).
+
+**† marks a row scored from the VERDICT rather than a graded rule.** 51 of 71
+rows have a rule; the other 20 have no pattern and score exactly +1 / −1 / 0.
+**Those are Jeff's hand-curated rows (LD-57, LD-58, LD-59) and they stay
+untouched** — the dagger exists so a full mark from a rule is never mistaken
+for a full mark by default.
+
 ### 2.1 Production (weight 1)
 
 **19 indicators — 15 GOOD · 2 BAD · 2 NEUTRAL**
 
 | CCY | Indicator | Actual | Previous | Ref | Threshold | Score | **Next due** |
 |---|---|---|---|---|---|---|---|
-| USD | Durable Goods Ex Transp MoM | 0.4% | 0.6% | Jul/26 | >0.5% | **BAD** | W4 · Fri 25 Sep |
-| USD | ISM Manufacturing PMI | 53.2 | 53.9 | Aug/26 | >50.5 | **GOOD** | beyond 25 Sep |
-| USD | Industrial Production YoY | 1.1% | 1.29% | Jul/26 | >0.5% | **GOOD** | W3 · Fri 18 Sep |
-| USD | Manufacturing Production YoY | 1.2% | 1.1% | Jul/26 | >0.5% | **GOOD** | W3 · Fri 18 Sep |
-| EUR | Industrial Production YoY | 0.1% | -0.1% | Jun/26 | 0-0.5% | NEUTRAL | W3 · Wed 16 Sep |
-| EUR | S&P Global Mfg PMI Final | 51.9 | 51.4 | Jul/26 | >50.5 | **GOOD** | beyond 25 Sep |
-| GBP | Industrial Production YoY | -0.2% | 1.0% | Jun/26 | <0% | **BAD** | W2 · Fri 11 Sep |
-| GBP | Manufacturing Production YoY | 0.5% | 2.0% | Jun/26 | 0-0.5% | NEUTRAL | W2 · Fri 11 Sep |
-| GBP | S&P Global Mfg PMI Final | 51.9 | 52.5 | Jul/26 | >50.5 | **GOOD** | W1 · Thu 3 Sep |
-| JPY | Industrial Production YoY Final | 4.9% | -2.1% | Jun/26 | >0.5% | **GOOD** | W2 · Mon 14 Sep |
-| JPY | Machine Tool Orders YoY | 50.4% | 52.8% | Jul/26 | >0.5% | **GOOD** | W2 · Wed 9 Sep |
-| JPY | Machinery Orders YoY | 16.9% | -1.9% | Jun/26 | >0.5% | **GOOD** | W3 · Fri 18 Sep |
-| JPY | S&P Global Mfg PMI Final | 54.9 | 54.5 | Aug/26 | >50.5 | **GOOD** | beyond 25 Sep |
-| AUD | S&P Global Mfg PMI Final | 52.0 | 52.0 | Aug/26 | >50.5 | **GOOD** | beyond 25 Sep |
-| NZD | Business NZ PMI | 54.3 | 60.1 | Jul/26 | >50.5 | **GOOD** | W2 · Thu 10 Sep |
-| NZD | Global Dairy Trade Price Index | 2.3% | 0.1% | Aug/26 | >0.5% | **GOOD** | W1 · Wed 2 Sep |
-| CAD | S&P Global Mfg PMI | 53.5 | 53.0 | Jul/26 | >50.5 | **GOOD** | W1 · Wed 2 Sep |
-| CHF | Industrial Production YoY | 5.5% | -7.1% | Q2/26 | >0.5% | **GOOD** | beyond 25 Sep |
-| CHF | Procure.ch-UBS Mfg PMI | 53.2 | 54.3 | Jul/26 | >50.5 | **GOOD** | W1 · Thu 3 Sep |
+| USD | Durable Goods Ex Transp MoM | 0.4% | 0.6% | Jul/26 | >0.5% | −0.03 | W4 · Fri 25 Sep |
+| USD | ISM Manufacturing PMI | 53.2 | 53.9 | Aug/26 | >50.5 | **+0.54** | beyond 25 Sep |
+| USD | Industrial Production YoY | 1.1% | 1.29% | Jul/26 | >0.5% | +0.20 | W3 · Fri 18 Sep |
+| USD | Manufacturing Production YoY | 1.2% | 1.1% | Jul/26 | >0.5% | +0.23 | W3 · Fri 18 Sep |
+| EUR | Industrial Production YoY | 0.1% | -0.1% | Jun/26 | 0-0.5% | +0.00† | W3 · Wed 16 Sep |
+| EUR | S&P Global Mfg PMI Final | 51.9 | 51.4 | Jul/26 | >50.5 | +0.28 | beyond 25 Sep |
+| GBP | Industrial Production YoY | -0.2% | 1.0% | Jun/26 | <0% | **−1.00†** | W2 · Fri 11 Sep |
+| GBP | Manufacturing Production YoY | 0.5% | 2.0% | Jun/26 | 0-0.5% | +0.00† | W2 · Fri 11 Sep |
+| GBP | S&P Global Mfg PMI Final | 51.9 | 52.5 | Jul/26 | >50.5 | +0.28 | W1 · Thu 3 Sep |
+| JPY | Industrial Production YoY Final | 4.9% | -2.1% | Jun/26 | >0.5% | **+1.00** | W2 · Mon 14 Sep |
+| JPY | Machine Tool Orders YoY | 50.4% | 52.8% | Jul/26 | >0.5% | **+1.00** | W2 · Wed 9 Sep |
+| JPY | Machinery Orders YoY | 16.9% | -1.9% | Jun/26 | >0.5% | **+1.00** | W3 · Fri 18 Sep |
+| JPY | S&P Global Mfg PMI Final | 54.9 | 54.5 | Aug/26 | >50.5 | **+0.88** | beyond 25 Sep |
+| AUD | S&P Global Mfg PMI Final | 52.0 | 52.0 | Aug/26 | >50.5 | +0.30 | beyond 25 Sep |
+| NZD | Business NZ PMI | 54.3 | 60.1 | Jul/26 | >50.5 | **+0.76** | W2 · Thu 10 Sep |
+| NZD | Global Dairy Trade Price Index | 2.3% | 0.1% | Aug/26 | >0.5% | **+0.60** | W1 · Wed 2 Sep |
+| CAD | S&P Global Mfg PMI | 53.5 | 53.0 | Jul/26 | >50.5 | **+0.60** | W1 · Wed 2 Sep |
+| CHF | Industrial Production YoY | 5.5% | -7.1% | Q2/26 | >0.5% | **+1.00** | beyond 25 Sep |
+| CHF | Procure.ch-UBS Mfg PMI | 53.2 | 54.3 | Jul/26 | >50.5 | **+0.54** | W1 · Thu 3 Sep |
 
 ### 2.2 Spending (weight 1)
 
@@ -290,29 +310,29 @@ week's lock.**
 
 | CCY | Indicator | Actual | Previous | Ref | Threshold | Score | **Next due** |
 |---|---|---|---|---|---|---|---|
-| USD | Building Permits MoM Final | 4.3% | -2.6% | Jul/26 | >0.5% | **GOOD** | W4 · Thu 24 Sep |
-| USD | CB Consumer Confidence | 89.4 | 90.2 | Aug/26 | >Prev | **BAD** | beyond 25 Sep |
-| USD | Personal Spending MoM | 0.2% | 0.3% | Jul/26 | 0-0.5% | NEUTRAL | beyond 25 Sep |
-| USD | Retail Sales YoY | 5.0% | 6.8% | Jul/26 | >0.5% | **GOOD** | W3 · Wed 16 Sep |
-| EUR | Consumer Confidence Final | -15.5 | -15.9 | Aug/26 | >Prev | **GOOD** | beyond 25 Sep |
-| EUR | Retail Sales YoY | 0.7% | 1.9% | Jun/26 | >0.5% | **GOOD** | W1 · Fri 4 Sep |
-| GBP | GfK Consumer Confidence | -14 | -17 | Aug/26 | >Prev | **GOOD** | W4 · Fri 25 Sep |
-| GBP | Retail Sales Ex Fuel YoY | 2.3% | 5.0% | Jul/26 | >0.5% | **GOOD** | W3 · Fri 18 Sep |
-| JPY | Consumer Confidence | 34.9 | 33.8 | Jul/26 | >Prev | **GOOD** | beyond 25 Sep |
-| JPY | Household Spending YoY | -3.3% | -0.4% | Jun/26 | <0% | **BAD** | W1 · Thu 3 Sep |
-| JPY | Retail Sales YoY | 4.0% | 0.6% | Jul/26 | >0.5% | **GOOD** | beyond 25 Sep |
-| AUD | Building Permits YoY Final | 8.9% | 5.5% | Jun/26 | >0.5% | **GOOD** | W2 · Tue 8 Sep |
-| AUD | Household Spending YoY | 7.0% | 6.0% | Jul/26 | >0.5% | **GOOD** | beyond 25 Sep |
-| AUD | NAB Business Confidence | -6 | -6 | Jul/26 | >Prev | NEUTRAL | W2 · Tue 8 Sep |
-| AUD | Westpac Consumer Conf Change | 6.0% | 4.1% | Aug/26 | >Prev | **GOOD** | W2 · Tue 8 Sep |
-| NZD | ANZ Business Confidence | 53.7 | 56.1 | Aug/26 | >Prev | **BAD** | beyond 25 Sep |
-| NZD | ANZ Roy Morgan Consumer Conf | 99.3 | 91.3 | Jul/26 | >Prev | **GOOD** | W1 · Thu 3 Sep |
-| NZD | Building Permits MoM | -3.6% | -4.9% | Jun/26 | <0% | **BAD** | W1 · Wed 2 Sep |
-| NZD | Electronic Retail Card Spending YoY | 3.4% | 1.3% | Jul/26 | >0.5% | **GOOD** | W2 · Mon 14 Sep |
-| CAD | Building Permits MoM | +18.5% | -3.0% | Jun/26 | >0.5% | **GOOD** | W3 · Wed 16 Sep |
-| CAD | Retail Sales YoY | 5.2% | 5.9% | Jun/26 | >0.5% | **GOOD** | W4 · Thu 24 Sep |
-| CHF | Consumer Confidence | -35 | -36 | Jul/26 | >Prev | **GOOD** | W2 · Fri 11 Sep |
-| CHF | Retail Sales YoY | 1.5% | 3.4% | Jun/26 | >0.5% | **GOOD** | beyond 25 Sep |
+| USD | Building Permits MoM Final | 4.3% | -2.6% | Jul/26 | >0.5% | **+1.00** | W4 · Thu 24 Sep |
+| USD | CB Consumer Confidence | 89.4 | 90.2 | Aug/26 | >Prev | −0.09 | beyond 25 Sep |
+| USD | Personal Spending MoM | 0.2% | 0.3% | Jul/26 | 0-0.5% | +0.00† | beyond 25 Sep |
+| USD | Retail Sales YoY | 5.0% | 6.8% | Jul/26 | >0.5% | **+1.00** | W3 · Wed 16 Sep |
+| EUR | Consumer Confidence Final | -15.5 | -15.9 | Aug/26 | >Prev | +0.25 | beyond 25 Sep |
+| EUR | Retail Sales YoY | 0.7% | 1.9% | Jun/26 | >0.5% | +0.07 | W1 · Fri 4 Sep |
+| GBP | GfK Consumer Confidence | -14 | -17 | Aug/26 | >Prev | **+1.00** | W4 · Fri 25 Sep |
+| GBP | Retail Sales Ex Fuel YoY | 2.3% | 5.0% | Jul/26 | >0.5% | **+0.60** | W3 · Fri 18 Sep |
+| JPY | Consumer Confidence | 34.9 | 33.8 | Jul/26 | >Prev | +0.33 | beyond 25 Sep |
+| JPY | Household Spending YoY | -3.3% | -0.4% | Jun/26 | <0% | **−1.00†** | W1 · Thu 3 Sep |
+| JPY | Retail Sales YoY | 4.0% | 0.6% | Jul/26 | >0.5% | **+1.00** | beyond 25 Sep |
+| AUD | Building Permits YoY Final | 8.9% | 5.5% | Jun/26 | >0.5% | **+1.00** | W2 · Tue 8 Sep |
+| AUD | Household Spending YoY | 7.0% | 6.0% | Jul/26 | >0.5% | **+1.00** | beyond 25 Sep |
+| AUD | NAB Business Confidence | -6 | -6 | Jul/26 | >Prev | +0.00 | W2 · Tue 8 Sep |
+| AUD | Westpac Consumer Conf Change | 6.0% | 4.1% | Aug/26 | >Prev | **+1.00** | W2 · Tue 8 Sep |
+| NZD | ANZ Business Confidence | 53.7 | 56.1 | Aug/26 | >Prev | −0.43 | beyond 25 Sep |
+| NZD | ANZ Roy Morgan Consumer Conf | 99.3 | 91.3 | Jul/26 | >Prev | **+0.88** | W1 · Thu 3 Sep |
+| NZD | Building Permits MoM | -3.6% | -4.9% | Jun/26 | <0% | **−1.00†** | W1 · Wed 2 Sep |
+| NZD | Electronic Retail Card Spending YoY | 3.4% | 1.3% | Jul/26 | >0.5% | **+0.97** | W2 · Mon 14 Sep |
+| CAD | Building Permits MoM | +18.5% | -3.0% | Jun/26 | >0.5% | **+1.00** | W3 · Wed 16 Sep |
+| CAD | Retail Sales YoY | 5.2% | 5.9% | Jun/26 | >0.5% | **+1.00** | W4 · Thu 24 Sep |
+| CHF | Consumer Confidence | -35 | -36 | Jul/26 | >Prev | +0.28 | W2 · Fri 11 Sep |
+| CHF | Retail Sales YoY | 1.5% | 3.4% | Jun/26 | >0.5% | +0.33 | beyond 25 Sep |
 
 ### 2.3 Trade (weight 1)
 
@@ -320,14 +340,14 @@ week's lock.**
 
 | CCY | Indicator | Actual | Previous | Ref | Threshold | Score | **Next due** |
 |---|---|---|---|---|---|---|---|
-| USD | Balance of Trade | -$73.26B | -$77.65B | Jun/26 | >Prev | **GOOD** | W1 · Thu 3 Sep |
-| EUR | Balance of Trade | EUR8.60B | EUR-9.00B | Jun/26 | >Prev | **GOOD** | W3 · Tue 15 Sep |
-| GBP | Balance of Trade | GBP-5.54B | GBP-3.46B | Jun/26 | >Prev | **BAD** | W2 · Fri 11 Sep |
-| JPY | Balance of Trade | JPY-634.5B | JPY-409.9B | Jul/26 | >Prev | **BAD** | W3 · Wed 16 Sep |
-| AUD | Balance of Trade | A$1.93B | A$-2.37B | Jun/26 | >Prev | **GOOD** | W1 · Thu 3 Sep |
-| NZD | Balance of Trade | NZ$-1.95B | NZ$0.02B | Jul/26 | >Prev | **BAD** | W3 · Thu 17 Sep |
-| CAD | Balance of Trade | C$3.86B | C$3.70B | Jun/26 | >Prev | **GOOD** | W1 · Thu 3 Sep |
-| CHF | Balance of Trade | CHF8.1B | CHF3.8B | Jul/26 | >Prev | **GOOD** | W3 · Thu 17 Sep |
+| USD | Balance of Trade | -$73.26B | -$77.65B | Jun/26 | >Prev | **+0.57** | W1 · Thu 3 Sep |
+| EUR | Balance of Trade | EUR8.60B | EUR-9.00B | Jun/26 | >Prev | **+1.00** | W3 · Tue 15 Sep |
+| GBP | Balance of Trade | GBP-5.54B | GBP-3.46B | Jun/26 | >Prev | **−1.00** | W2 · Fri 11 Sep |
+| JPY | Balance of Trade | JPY-634.5B | JPY-409.9B | Jul/26 | >Prev | **−1.00** | W3 · Wed 16 Sep |
+| AUD | Balance of Trade | A$1.93B | A$-2.37B | Jun/26 | >Prev | **+1.00** | W1 · Thu 3 Sep |
+| NZD | Balance of Trade | NZ$-1.95B | NZ$0.02B | Jul/26 | >Prev | **−1.00** | W3 · Thu 17 Sep |
+| CAD | Balance of Trade | C$3.86B | C$3.70B | Jun/26 | >Prev | +0.43 | W1 · Thu 3 Sep |
+| CHF | Balance of Trade | CHF8.1B | CHF3.8B | Jul/26 | >Prev | **+1.00** | W3 · Thu 17 Sep |
 
 ### 2.4 Employment (weight 2)
 
@@ -335,19 +355,19 @@ week's lock.**
 
 | CCY | Indicator | Actual | Previous | Ref | Threshold | Score | **Next due** |
 |---|---|---|---|---|---|---|---|
-| USD | Non Farm Payrolls | -23K | 20K | Jul/26 | >Cons | **BAD** | W1 · Fri 4 Sep |
-| USD | Unemployment Rate | 4.1% | 4.2% | Jul/26 | <Prev | **GOOD** | W1 · Fri 4 Sep |
-| EUR | Unemployment Rate | 6.3% | 6.3% | Jun/26 | unchanged | NEUTRAL | beyond 25 Sep |
-| GBP | Claimant Count Change | -11K | -6.4K | Jul/26 | <0 (LD-58) | **GOOD** | W3 · Tue 15 Sep |
-| JPY | Unemployment Rate | 2.4% | 2.5% | Jul/26 | <Prev | **GOOD** | beyond 25 Sep |
-| AUD | ANZ-Indeed Job Ads MoM | +0.8% | -0.1% | Jul/26 | >0.5% | **GOOD** | W1 · Mon 7 Sep |
-| AUD | Employment Change | -15.8K (FT +16.3K, PT -32.2K) | 76.3K (FT +29.3K, PT +47.0K) | Jul/26 | hdl BAD; FT NEUTRAL (LD-57); PT GOOD | NEUTRAL | W4 · Thu 24 Sep |
-| AUD | Unemployment Rate | 4.5% | 4.4% | Jul/26 | <Prev | **BAD** | W4 · Thu 24 Sep |
-| NZD | Unemployment Rate | 5.6% | 5.4% | Jun/26 | <Prev | **BAD** | beyond 25 Sep |
-| CAD | Employment Change | 75.1K (FT +38.6K, PT +36.6K) | 18.2K | Jul/26 | hdl>0 GOOD; FT +38.6K vs Jun +0.6K, LD-57 GOOD | **GOOD** | W1 · Fri 4 Sep |
-| CAD | Unemployment Rate | 6.4% | 6.5% | Jul/26 | <Prev | **GOOD** | W1 · Fri 4 Sep |
-| CHF | Non Farm Payrolls | 5.698M | 5.537M | Q2/26 | >Cons 5.4M | **GOOD** | beyond 25 Sep |
-| CHF | Unemployment Rate | 3.0% | 2.9% | Jul/26 | <Prev | **BAD** | W1 · Mon 7 Sep |
+| USD | Non Farm Payrolls | -23K | 20K | Jul/26 | >Cons | **−1.00†** | W1 · Fri 4 Sep |
+| USD | Unemployment Rate | 4.1% | 4.2% | Jul/26 | <Prev | +0.24 | W1 · Fri 4 Sep |
+| EUR | Unemployment Rate | 6.3% | 6.3% | Jun/26 | unchanged | +0.00† | beyond 25 Sep |
+| GBP | Claimant Count Change | -11K | -6.4K | Jul/26 | <0 (LD-58) | **+1.00†** | W3 · Tue 15 Sep |
+| JPY | Unemployment Rate | 2.4% | 2.5% | Jul/26 | <Prev | +0.40 | beyond 25 Sep |
+| AUD | ANZ-Indeed Job Ads MoM | +0.8% | -0.1% | Jul/26 | >0.5% | +0.10 | W1 · Mon 7 Sep |
+| AUD | Employment Change | -15.8K (FT +16.3K, PT -32.2K) | 76.3K (FT +29.3K, PT +47.0K) | Jul/26 | hdl BAD; FT NEUTRAL (LD-57); PT GOOD | +0.00† | W4 · Thu 24 Sep |
+| AUD | Unemployment Rate | 4.5% | 4.4% | Jul/26 | <Prev | −0.23 | W4 · Thu 24 Sep |
+| NZD | Unemployment Rate | 5.6% | 5.4% | Jun/26 | <Prev | −0.37 | beyond 25 Sep |
+| CAD | Employment Change | 75.1K (FT +38.6K, PT +36.6K) | 18.2K | Jul/26 | hdl>0 GOOD; FT +38.6K vs Jun +0.6K, LD-57 GOOD | **+1.00†** | W1 · Fri 4 Sep |
+| CAD | Unemployment Rate | 6.4% | 6.5% | Jul/26 | <Prev | +0.15 | W1 · Fri 4 Sep |
+| CHF | Non Farm Payrolls | 5.698M | 5.537M | Q2/26 | >Cons 5.4M | **+1.00†** | beyond 25 Sep |
+| CHF | Unemployment Rate | 3.0% | 2.9% | Jul/26 | <Prev | −0.34 | W1 · Mon 7 Sep |
 
 ### 2.5 Inflation (weight 3)
 
@@ -355,14 +375,14 @@ week's lock.**
 
 | CCY | Indicator | Actual | Previous | Ref | Threshold | Score | **Next due** |
 |---|---|---|---|---|---|---|---|
-| USD | Inflation Rate YoY | 3.4% | 3.5% | Jul/26 | >2% & falling | NEUTRAL | W2 · Fri 11 Sep |
-| EUR | Inflation Rate YoY Final | 2.9% | 2.8% | Jul/26 | >2% & rising | **GOOD** | W3 · Thu 17 Sep |
-| GBP | Inflation Rate YoY | 2.9% | 2.6% | Jul/26 | >2% & rising | **GOOD** | W3 · Wed 16 Sep |
-| JPY | Inflation Rate YoY | 1.9% | 1.6% | Jul/26 | <2% & rising | NEUTRAL | W3 · Fri 18 Sep |
-| AUD | Inflation Rate YoY | 3.5% | 3.8% | Jul/26 | >2% & falling | NEUTRAL | beyond 25 Sep |
-| NZD | Inflation Rate YoY | 4.1% | 3.1% | Jun/26 | >2% & rising | **GOOD** | W3 · Thu 17 Sep |
-| CAD | Inflation Rate YoY | 3.0% | 2.8% | Jul/26 | >2% & rising | **GOOD** | W2 · Mon 14 Sep |
-| CHF | Inflation Rate YoY | 0.4% | 0.5% | Jul/26 | <2% & falling | **BAD** | W1 · Thu 3 Sep |
+| USD | Inflation Rate YoY | 3.4% | 3.5% | Jul/26 | >2% & falling | +0.00† | W2 · Fri 11 Sep |
+| EUR | Inflation Rate YoY Final | 2.9% | 2.8% | Jul/26 | >2% & rising | **+1.00†** | W3 · Thu 17 Sep |
+| GBP | Inflation Rate YoY | 2.9% | 2.6% | Jul/26 | >2% & rising | **+1.00†** | W3 · Wed 16 Sep |
+| JPY | Inflation Rate YoY | 1.9% | 1.6% | Jul/26 | <2% & rising | +0.00† | W3 · Fri 18 Sep |
+| AUD | Inflation Rate YoY | 3.5% | 3.8% | Jul/26 | >2% & falling | +0.00† | beyond 25 Sep |
+| NZD | Inflation Rate YoY | 4.1% | 3.1% | Jun/26 | >2% & rising | **+1.00†** | W3 · Thu 17 Sep |
+| CAD | Inflation Rate YoY | 3.0% | 2.8% | Jul/26 | >2% & rising | **+1.00†** | W2 · Mon 14 Sep |
+| CHF | Inflation Rate YoY | 0.4% | 0.5% | Jul/26 | <2% & falling | **−1.00†** | W1 · Thu 3 Sep |
 
 
 ### 2.6 Interest Rate (weight 3) — scored on inflation vs each bank's own mandate

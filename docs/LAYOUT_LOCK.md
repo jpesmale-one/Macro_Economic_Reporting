@@ -128,6 +128,7 @@ variants above was written in good faith while doing something else.
 
 | Version | Date | Change |
 |---|---|---|
+| **v3.1** | **2026-09-01** | **§2.1–2.5 Score cell now carries the graded NUMBER (LD-88). Columns UNCHANGED — content only, no re-bless needed.** |
 | **v3** | **2026-08-31** | **§2.1–2.5 gain NEXT DUE (LD-87) and are now ENFORCED by R-24, not merely documented.** |
 | **v2** | **2026-08-31** | **§2.0c added; §4.0 v2 (Previous frozen, Actual column, Cons/Fcst range); §4.5 room-gated. All three approved by Jeff in advance.** |
 | **v1** | **2026-08-30** | **Locked. §4.0 restored to its 27 Aug seven-column form after four editions of drift.** |

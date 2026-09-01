@@ -1016,6 +1016,53 @@ while destroying the citation trail.
 
 ---
 
+### LD-88 — §2.1–2.5 publish the GRADED SCORE, not the verdict
+
+**Jeff, 2026-09-01:** *"on 2.1 to 2.5 in the score instead of Good Neutral
+Bad, can you put in the actual score? kinda similar to 2.6"*
+
+**§2.6 has published a signed number since LD-23. §2.1–2.5 published
+GOOD/NEUTRAL/BAD — and since LD-71 those tables have been HIDING a real
+number.**
+
+| Row | Old cell | Actual score |
+|---|---|---|
+| JPY Industrial Production YoY | GOOD | **+1.00** |
+| USD Industrial Production YoY | GOOD | **+0.20** |
+| USD ISM Manufacturing PMI | GOOD | **+0.54** |
+| USD Durable Goods Ex Transp | BAD | **−0.03** |
+
+**Two rows reading GOOD can differ by a factor of five**, and §2.0's totals
+were always built from the numbers rather than the labels. **The tables were
+showing less than the model knew.**
+
+#### The dagger
+
+**51 of 71 rows have a graded rule. The other 20 have no pattern and score
+exactly +1 / −1 / 0 from the verdict** — Jeff's hand-curated rows (LD-57,
+LD-58, LD-59), which stay untouched by design.
+
+**Those carry †**, so a full mark earned from a rule is never mistaken for a
+full mark taken by default. **The distinction matters: −1.00† on CHF
+Inflation is a three-state verdict, while −0.03 on USD Durable Goods is a
+measured near-miss.**
+
+#### Verified by reconstruction
+
+**Every published row score was summed back into §2.0's totals** — category
+weight divided by that currency's row count in that category, plus §2.6's rate
+score. **All eight currencies reconcile to within 0.006**, which is the
+2-decimal display rounding and nothing else.
+
+**The first attempt at that check failed on all eight** because it divided the
+category weight by the CATEGORY's row count rather than the CURRENCY's. **The
+checker was wrong, not the table** — worth recording, because a reconciliation
+that fails is only evidence once you have verified the reconciler.
+
+**No layout change:** the column set is untouched, so R-24 and R-27 pass
+without re-blessing. Only cell CONTENT moved.
+
+---
 ### F-74 — a RELEASE is graded against CONSENSUS, not against the previous print
 
 **Found building the 2026-09-01 edition.** JPY S&P Global Mfg PMI printed
