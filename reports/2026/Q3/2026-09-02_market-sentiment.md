@@ -501,33 +501,33 @@ CALENDAR EVENT, not the indicator.
 
 **Weighted: central bank decision 3 · high-impact release 2 · other whitelist 1.**
 
+**⚠ THIS COUNTS ONLY WHAT IS STILL AHEAD (F-80).** Twelve of §4.0's 26 rows have released; an earlier build kept counting them, which left NZD reading **CROWDED on events that had already printed.**
+
 | CCY | Risk | Verdict | What lands |
 |---|---|---|---|
-| **EUR** | **19** | **CROWDED** | five inflation prints + unemployment |
-| **USD** | **9** | **CROWDED** | ISM, trade, **NFP**, unemployment |
-| **CAD** | **8** | **CROWDED** | **BoC decision**, employment, trade |
-| **NZD** | **6** | **CROWDED** | **RBNZ decision**, confidence, permits |
-| CHF | 3 | BUSY | retail sales, inflation |
-| JPY | 2 | LIGHT | confidence, household spending |
-| AUD | 2 | LIGHT | building permits, trade |
-| **GBP** | **0** | **QUIET** | **nothing scheduled** |
+| **CAD** | **8** | **CROWDED** | BoC Interest Rate Decision, Balance of Trade, Employment Change, Unemployment Rate |
+| USD | 5 | BUSY | Balance of Trade, Non Farm Payrolls, Unemployment Rate |
+| NZD | 4 | BUSY | RBNZ Interest Rate Decisio, Global Dairy Trade Price I |
+| CHF | 3 | BUSY | Inflation Rate YoY, Procure.ch-UBS Mfg PMI |
+| AUD | 1 | LIGHT | Balance of Trade |
+| JPY | 1 | LIGHT | Household Spending YoY |
+| EUR | 1 | LIGHT | Retail Sales YoY |
+| GBP | 0 | QUIET | nothing left this week |
 
-**This does not veto a pair.** High-impact news means *be more careful*, not
-*avoid* — it downgrades confidence so a crowded pair must earn its place on
-room instead.
+**This does not veto a pair.** High-impact news means *be more careful*, not *avoid* — it downgrades confidence so a crowded pair must earn its place on room instead.
 
 ### 4.2 — Every candidate, four lenses
 
 | Pair | Bias | Spread | Range % | Room | Risk | **Confluence** | Cycle |
 |---|---|---|---|---|---|---|---|
-| AUDCAD | SHORT | 4.59 | 88.9% | **0.89 AMPLE** | 10 | 0.61 | **-0.50** long aligned / short BUILDING |
-| CADJPY | LONG | 5.70 | 74.2% | 0.26 TIGHT | 10 | 0.54 | **+0.00** long aligned / short aligned |
-| GBPJPY | LONG | 4.45 | 68.0% | 0.32 TIGHT | 2 | 0.53 | **-0.50** long IN THE PAST / short aligned |
-| **CADCHF** | LONG | 7.20 | 81.9% | **0.18 NONE** | 11 | **0.49** | **-0.50** long aligned / short BUILDING |
-| **GBPAUD** | LONG | 3.34 | 44.3% | 0.56 adequate | 2 | **0.48** | **-1.00** long IN THE PAST / short BUILDING |
-| GBPCHF | LONG | 5.95 | 80.3% | **0.20 NONE** | 3 | 0.46 | **-1.00** long IN THE PAST / short BUILDING |
-| **NZDJPY** | LONG | 3.43 | 77.9% | 0.22 TIGHT | 8 | **0.40** | **-0.50** long IN THE PAST / short aligned |
-| EURCHF | LONG | 5.69 | 82.3% | **0.18 NONE** | 22 | 0.32 | **-0.50** long aligned / short BUILDING |
+| AUDCAD | SHORT | 4.59 | 88.9% | **0.89 AMPLE** | 9 | 0.62 | **-0.50** long aligned / short BUILDING |
+| CADJPY | LONG | 5.73 | 74.2% | 0.26 TIGHT | 9 | 0.55 | **+0.00** long aligned / short aligned |
+| GBPJPY | LONG | 4.48 | 68.0% | 0.32 TIGHT | 1 | 0.54 | **-0.50** long IN THE PAST / short aligned |
+| EURCHF | LONG | 5.24 | 82.3% | **0.18 NONE** | 5 | 0.48 | **-0.50** long aligned / short BUILDING |
+| **GBPAUD** | LONG | 3.34 | 45.5% | 0.55 adequate | 1 | **0.48** | **-1.00** long IN THE PAST / short BUILDING |
+| **CADCHF** | LONG | 7.07 | 89.4% | **0.11 NONE** | 11 | **0.47** | **-0.50** long aligned / short BUILDING |
+| GBPCHF | LONG | 5.82 | 80.3% | **0.20 NONE** | 3 | 0.45 | **-1.00** long IN THE PAST / short BUILDING |
+| **NZDJPY** | LONG | 3.46 | 74.5% | 0.26 TIGHT | 5 | **0.44** | **-0.50** long IN THE PAST / short aligned |
 
 **Confluence = (spread/8 + room + inverted risk) / 3, then scaled by the
 CYCLE TILT (LD-86), bounded ±25%.** §2.0b finally feeds selection instead of
@@ -551,7 +551,7 @@ healthy 3 BUILDING / 3 aligned / 2 IN THE PAST.
 
 **GBPAUD takes the worst tilt on the board (−1.00)** — long GBP, which is IN
 THE PAST with nothing upstream feeding it, against AUD, which is BUILDING.
-**It survives on room: 458 favourable pips, the most of any candidate.**
+**It survives on room: 462 favourable pips, the most of any candidate.**
 **That is criterion 4 doing exactly what Jeff described** — a lesser cycle
 case with room beating a better one without it.
 
@@ -563,9 +563,9 @@ worked has run out of the thing that made it work.**
 
 | # | Pair | Bias | Entry ref | Room | Risk | Falsifier | Clear by |
 |---|---|---|---|---|---|---|---|
-| **1** | **GBPAUD** | **LONG** | **1.88978** | **0.92** | 2 | close < **1.85396** | **358 pips** |
-| **2** | **CADCHF** | **LONG** | **0.58210** | 0.20 | 11 | close < **0.56513** | **170 pips** |
-| **3** | **NZDJPY** | **LONG** | **94.671** | 0.18 | 8 | close < **91.100** | **357 pips** |
+| **1** | **GBPAUD** | **LONG** | **1.88978** | **0.55** | 1 | close < **1.85396** | **374 pips** |
+| **2** | **CADCHF** | **LONG** | **0.58210** | **0.11** | 11 | close < **0.56513** | **191 pips** |
+| **3** | **NZDJPY** | **LONG** | **94.67100** | **0.26** | 5 | close < **91.100** | **331 pips** |
 
 **Net exposure: long GBP · CAD · NZD, short AUD · CHF · JPY.** Six currencies,
 three pairs, no leg used twice. **EUR and USD unused by design.**
@@ -625,11 +625,11 @@ at 94.4% of range.
 
 | Replaces | Alternate | Bias | Spread | In range | **Room** | Against | R:R | Risk | Read |
 |---|---|---|---|---|---|---|---|---|---|
-| **GBPAUD** | **AUDCAD** | **SHORT** | +4.60 | 88.9% | **199 pips** | 25 | **7.98** | 4 | **GOOD room — the only one whose structure agrees with its bias** |
-| **NZDJPY** | **GBPJPY** | LONG | +4.45 | 68.0% | **322 pips** | 682 | 0.47 | **2** | Most absolute room, but mid-range; lightest event risk on the board |
-| **CADCHF** | CADJPY | LONG | +5.70 | 74.2% | 146 pips | 419 | 0.35 | 5 | TIGHT — keeps the CAD long into the BoC |
-| CADCHF | GBPCHF | LONG | **+5.95** | 80.3% | **63 pips** | 257 | 0.25 | 3 | **⚠ NO ROOM — best spread on the bench, worst structure** |
-| any CHF short | EURCHF | LONG | +5.69 | 82.3% | **41 pips** | 193 | 0.21 | 3 | **⚠ NO ROOM — last on confluence AND last on room** |
+| GBPAUD | **AUDCAD** | SHORT | +3.59 | 88.9% | **199 pips** | 25 | 7.98 | 9 | **GOOD room** |
+| NZDJPY | **GBPJPY** | LONG | +3.98 | 68.0% | **322 pips** | 682 | 0.47 | 1 | TIGHT |
+| CADCHF | **CADJPY** | LONG | +3.73 | 74.2% | **146 pips** | 419 | 0.35 | 9 | TIGHT |
+| CADCHF | **GBPCHF** | LONG | +4.32 | 80.3% | **63 pips** | 257 | 0.25 | 3 | **⚠ NO ROOM** |
+| any CHF short | **EURCHF** | LONG | +4.24 | 82.3% | **41 pips** | 193 | 0.21 | 4 | **⚠ NO ROOM** |
 
 *45-bar daily `OANDA:` ranges, pulled 10:30 PHT. **Monday's bar is FORMING**,
 so the range edges can still move (LD-5). Room = pips to the 45-bar edge IN
@@ -1036,12 +1036,18 @@ JPY crosses and calling it 3-for-3 (EF-3).
 | Guard | Result |
 |---|---|
 | **Timezone (F-2)** | **VERIFIED** — PHT = UTC+8, computed |
-| **Market status** | **CLOSED** — Friday's bars are FINAL. Next open Mon 05:00 PHT |
-| **TE reconciliation (LD-50)** | Fresh capture, **all 71 rows agree, 0 unmatched** |
-| **Coverage gaps (R-20)** | **NONE** — all eight currencies have calendar rows for the first time |
-| **§4.0 window (LD-66)** | **ROLLED this morning** to 31 Aug – 4 Sep |
-| **Fear & Greed (R-17)** | 54.43, stamped 28 Aug |
-
+| **Market status** | **OPEN** — Tuesday's daily bars are FINAL, Wednesday FORMING |
+| **TE reconciliation (LD-50)** | 0.1d capture, **all rows agree, 0 unmatched** |
+| **§4.0 times (R-32)** | **19 of 19 match `pht(capture)`** — no hand-typed time |
+| **Schedule vs actual (R-30)** | **No future-dated row carries an actual** |
+| **Threshold direction (R-28)** | Every row sits in the right channel (F-70) |
+| **Coverage (R-25)** | 62 of 71 rows matched; horizon **25 Sep** (F-73) |
+| **§4.0 window (LD-66)** | 31 Aug – 4 Sep, **12 of 26 rows RELEASED** |
+| **Layout (R-24 / R-27)** | 10 locked tables intact, 23 sections match DAILY |
+| **Pasted markup (R-33)** | Clean — no duplicated F&G block, no escaped entities |
+| **Dead references (R-34)** | Clean — no forward phrase beside a past date |
+| **Fear & Greed (R-17)** | **49.71**, stamped 31 Aug, 2d old |
+| **Regressions / pricing** | **8 of 8 blocked · 26 of 26 pricing cases correct** |
 **Build notes for this edition (LD-69 — moved out of the read).**
 
 - **LD-71 graded scoring shipped this morning.** Two real bugs were caught

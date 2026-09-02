@@ -148,6 +148,7 @@ python pipelines/audit_direction.py      # R-28 - thresholds point the way their
 python pipelines/cycle_gate.py           # LD-86 - cycle positions and tilts
 python pipelines/layout_shape.py <md>    # R-27 - the report SHAPE is locked
 python pipelines/week_ahead.py           # §4.0 events, DATE -> TIME -> CCY
+python pipelines/section_drift.py <new> <prev>  # R-35 - did every section MOVE? (F-80)
 python pipelines/whole_edition.py <md>   # LD-67 - every section vs every other
 python pipelines/render_edition.py <md>  # 17 guards run before a byte is written
 ```

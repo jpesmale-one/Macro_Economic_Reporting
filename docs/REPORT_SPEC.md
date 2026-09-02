@@ -1016,6 +1016,60 @@ while destroying the citation trail.
 
 ---
 
+### F-80 · R-35 — §4 carried Sunday's measurements for three days
+
+**Jeff, 2026-09-02:** *"Didn't I asked that every section should be revisited
+and refreshed everytime we build a new edition? is there any other sections of
+the report still stale?"*
+
+**He asked for this on 26 Aug and it is in CLAUDE.md.** I had been refreshing
+the sections I happened to touch and letting the rest carry. **Measuring it
+settled the question in one table:**
+
+| § | Same as yesterday | |
+|---|---|---|
+| 0, 1, 3 | 29–59% | refreshed |
+| 2, 5, 6 | 89–96% | partial |
+| **4** | **99.2%** | **carried verbatim** — the selection playbook |
+| **7** | **100%** | **carried verbatim** — yesterday's guard results |
+| 8, 9 | 100% | legitimately quiet |
+
+#### What §4 was actually publishing
+
+**§4.3 showed SUNDAY's room and clear-by figures as though current**, and
+**contradicted §4.2 in the same edition** — GBPAUD room **0.92** in one table
+and **0.56** in the other. Entry ref and falsifier are correctly frozen; **room
+and distance are live measurements and were not.**
+
+**§4.1 counted event risk on twelve rows that had already released**, leaving
+NZD reading **CROWDED** on events that had printed.
+
+**§4.5's bench was three sessions old** — 199/322/146 pips, none re-measured.
+
+**And §4.2 itself turned out to be the stale one of the pair**: built with
+Tuesday 13:05 prices and never refreshed. **CADCHF's real room is 0.11, not
+the 0.20 it had been showing.**
+
+#### §7 said the market was closed
+
+*"Market status: CLOSED — Friday's bars are FINAL"* on a **Wednesday**, plus
+the 28 Aug Fear & Greed and a TE line from a different run. **A guard table
+that reports yesterday's run is worse than no guard table** — it reads as
+evidence.
+
+#### The guard, and its limit
+
+**R-35 `pipelines/section_drift.py`** diffs each section against the previous
+edition and names anything that carried verbatim.
+
+**It REPORTS rather than blocks, deliberately.** It cannot distinguish a
+section that legitimately did not change from one that was forgotten — §8 (the
+findings ledger) and §9 (gate status) often genuinely repeat. **The point is to
+make a carry VISIBLE so it is a decision rather than an oversight.**
+
+**After the fix: §4 99.2% → 93.4%, §7 100% → 82.4%**, and only §8/§9 carry.
+
+---
 ### F-79 · R-34 — a carried section keeps its VERBS, and the verbs go stale first
 
 **Jeff, 2026-09-02:** *"§3 — is this updated? I can see this note Jackson Hole
