@@ -1422,6 +1422,11 @@ if __name__ == '__main__':
     # 4.0's columns held under R-24 while 4.6 quietly GAINED TWO TABLES.
     import layout_shape
     shape_state = layout_shape.check(md)
+    # R-32/F-77 - every 4.0 time must equal pht(capture). The hand-typed
+    # labels had both central banks EIGHT HOURS EARLY and produced a whole
+    # section about an RBNZ decision that had not happened yet.
+    import audit_times
+    times = audit_times.check(md)
     cyc = assert_cycle_gate_live(md)
     bench = assert_bench_room_gated(md)
     layout = assert_layout_locked(md)
@@ -1447,6 +1452,7 @@ if __name__ == '__main__':
     print('  R-24 layout     %s' % layout)
     print('  R-29 bench      %s' % bench)
     print('  R-31 cycle      %s' % cyc)
+    print('  R-32 times      %s' % times)
     print('  R-27 shape      %s' % shape_state)
     print('  LD-61 tally     %d rows, sorted by score' % ntal)
     if nexp:

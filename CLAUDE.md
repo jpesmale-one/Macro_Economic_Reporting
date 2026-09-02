@@ -138,6 +138,7 @@ hand-written version silently degraded while the generator sat unused.
 python pipelines/capture_calendar.py --write  # F-57 - global + CH/NZ country pages
 python pipelines/audit_te.py --fetch     # LD-50 - reconcile the whitelist
 python pipelines/audit_schedule.py       # R-30 - actual vs its own release time (F-71)
+python pipelines/audit_times.py <md>     # R-32 - VERIFY THE TIME FIRST (F-77)
 python pipelines/freshness.py            # LD-54 - revisions + stalled series
 python pipelines/test_guards.py          # 8 real regressions must all block
 python pipelines/test_pricing.py         # R-26 - 20 hand-graded pricing cases
@@ -209,6 +210,16 @@ past every guard and were caught by Jeff reading:
   never whether it was *provisional*.
 
 **Recompute every derived figure and name the bar that produced it (LD-48).**
+**VERIFY THE TIME FIRST, AND NEVER RE-CONVERT A RENDERED ONE (F-77).**
+Jeff, 2026-09-02: *"Every time we fetch Data can you always verify the
+Time first?"* 4.0 published the RBNZ at 02:00 PHT when the capture said
+10:00. Two errors compounded: the EV list carried HAND-TYPED times, and
+I then read the rendered label and converted it a SECOND time to argue
+the decision was overdue. **Price appeared to confirm it - NZD was flat
+because the decision had not happened yet.** A false premise that agrees
+with the evidence is the most expensive kind. R-32 now computes every
+When cell from pht(capture) and fails the render on a mismatch.
+
 **SAY WHAT YOU KNOW, NOT WHAT YOU INFER FROM ABSENCE (F-73).** §2's NEXT
 DUE column rendered rows we could not see as "not scheduled" - a claim
 about TE's calendar, when what we knew was a fact about OUR WINDOW. TE

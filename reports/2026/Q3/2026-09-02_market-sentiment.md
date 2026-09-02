@@ -6,8 +6,8 @@ seal: UNSEALED
 type: DAILY
 eyebrow: Macro Economic Reporting &middot; Wednesday &mdash; day 3 of the 31 Aug&ndash;4 Sep lock
 chip: <b>Set LOCKED</b> &middot; best week yet at <b>+10.3 pips</b>
-chip: <b class="dn">RBNZ has NOT posted</b> &middot; price says no decision
-chip: <b>Gold &minus;120.8</b> &middot; broke the floor &middot; BoC 13:45
+chip: <b class="dn">RBNZ 10:00</b> &middot; BoC 21:45 &middot; both still AHEAD
+chip: <b>Gold &minus;120.8</b> &middot; broke the floor &middot; NZD 0 for 3
 fng_note: <b>Carried from the 31 Aug capture</b> &mdash; <b>49.71 NEUTRAL</b>. CNN publishes on the US session close, so this reading is 2 days old and is restated, not re-fetched (R-17 holds it to 2).
 fng_spread: Spread top-to-bottom bar: <b>93.80 &minus; 25.00 = 68.80</b>. <b>Unchanged since the 31 Aug capture</b> &mdash; restated, not re-fetched.
 -->
@@ -18,7 +18,9 @@ fng_spread: Spread top-to-bottom bar: <b>93.80 &minus; 25.00 = 68.80</b>. <b>Unc
 
 **Session by session: GBPAUD +1.8 → −3.4 → **+15.5**. CADCHF +0.1 → +15.4 → **+21.0**. NZDJPY −14.3 → −10.3 → **−26.2**.** The running total moved **−12.4 → +1.7 → +10.3**.
 
-**⚠ THE RBNZ DECISION HAS NOT BEEN POSTED.** It was scheduled **02:00 PHT today — five and a half hours ago — and TE's Actual cell is still empty.** **Price agrees:** NZDUSD moved **9 pips** and AUDNZD **16 pips** across the whole window either side of the release. **A 25bp hike, or a hold against a priced hike, would move NZD far more than that.** **This is not scored and not assumed** — see §3.
+**⚠ BOTH CENTRAL BANKS ARE STILL AHEAD TODAY. RBNZ at 10:00 PHT, BoC at 21:45 PHT.** **An earlier build of this edition had both eight hours early and claimed the RBNZ was overdue — that was a conversion error on our side, not a TE defect (F-77).** §4.0's times are now derived from the capture rather than hand-typed, and **R-32 fails the render if any of them disagrees with `pht()`.**
+
+**RBNZ is the week's pivot and it has not happened yet.** Priced for a **HIKE to 2.75% from 2.50%**, and **NZD is the LONG leg of NZDJPY, the only losing pair.**
 
 **TWELVE whitelist prints have now landed, half the week.** **NZD is 0 for 3** — ANZ confidence missed, Building Permits missed, dairy fell to 0.9% from 2.3%. **USD ISM Manufacturing missed hard: 54.6 against 55.2**, its employment sub-index down to 51.2 and new orders to 53.7.
 
@@ -103,8 +105,8 @@ the most event-exposed.**
 
 ### 🇨🇦🇳🇿 Two central banks decide on Wednesday
 
-**RBNZ 02:00 PHT** — the only G10 bank in an active hiking cycle, last **+25bp
-on 8 Jul**, TE forecasting 2.75%. **BoC 13:45 PHT** — held since April at
+**RBNZ 10:00 PHT** — the only G10 bank in an active hiking cycle, last **+25bp
+on 8 Jul**, TE forecasting 2.75%. **BoC 21:45 PHT** — held since April at
 2.25%, **the lowest G10 policy rate ex-JPY/CHF against the highest fundamental
 score.**
 
@@ -134,24 +136,21 @@ it.**
 position on the board gets harder. **Two of three primaries are short CHF or
 short a CHF-adjacent leg.**
 
-### 🇳🇿 ⚠ The RBNZ has not posted, and price says nothing happened
+### 🇳🇿 ⚠ RBNZ decides at 10:00 PHT — in about an hour
 
-**The decision was scheduled 02:00 PHT today. It is now 07:40 — five and a half hours past — and TE's Actual cell is still empty.**
+**Priced for a HIKE to 2.75% from 2.50%** — the only G10 bank still tightening. **NZD is the LONG leg of NZDJPY, which has lost ground every session this week and sits at −26.2.**
 
-**Price is the independent check, and it agrees:**
+**⚠ A CORRECTION TO AN EARLIER BUILD OF THIS EDITION.** It carried the decision at **02:00 PHT** and argued it was five hours overdue and unposted. **That was our error, not TE's.** The capture always said **10:00**; the table label was hand-typed at 02:00 and I then converted that label a second time to reason about it. **Jeff caught it from his own screen.**
 
-**NZDUSD ranged 9 pips (0.58874–0.58966) and AUDNZD 16 pips (1.21211–1.21371)** across 15-minute bars from 00:45 to 07:30 PHT, spanning the 02:00 release.
+**The pattern is F-72's, and this is its third instance:** when our data disagrees with what is on screen, **we are wrong until proven otherwise.** **Price appeared to confirm the wrong reading** — NZD was flat across the window — **because the decision had not happened yet.** A false premise that agrees with the evidence is the most expensive kind.
 
-**A 25bp hike — or a hold against a fully priced hike — would move NZD far more than nine pips.** **Two independent NZD crosses both dead through the window is not what a delivered decision looks like.**
+**§4.0 no longer carries a hand-typed time.** Every When cell is computed from the capture row, and **R-32 fails the render on any disagreement.**
 
-**So this edition scores NOTHING for it.** §2.6 carries NZD's rate score at **+2.25 from the LAST decision** (LD-23), unchanged, and §4.0 shows the row **ahead**. **An absent actual is not evidence of a hold** — that is F-73, and the honest statement is that we do not yet know.
+**What to watch:** §2.6 carries NZD's rate score at **+2.25 from the July hike**, the heaviest single input NZD holds. **If the RBNZ holds rather than hikes, that number is what changes**, and NZDJPY's whole case rests on it.
 
-**What to watch:** if the decision lands during the London session and NZD moves, **§2.6's +2.25 is the number that changes** — it is the heaviest single input NZD carries, and NZDJPY's entire case rests on it.
-
-### 🇨🇦 BoC decides at 13:45 PHT today
+### 🇨🇦 BoC decides at 21:45 PHT tonight
 
 **Priced to HOLD at 2.25%**, consensus and forecast agreed. **CAD is the long leg of CADCHF, the pair carrying the week at +21.0.** A hold changes nothing; a cut would be the surprise.
-
 ### 🇺🇸 ISM missed hard, and the internals are worse
 
 **54.6 against a 55.2 consensus**, down from 55.6. **Employment fell to 51.2 from 52.8 and new orders to 53.7 from 56.7** — both leading components, both down. **Prices paid held at 71.1.**
@@ -164,7 +163,7 @@ short a CHF-adjacent leg.**
 
 ### Not found this morning
 
-**No tariff development, no BoJ headline, no fresh CAD story.** Checked investinglive.com plus the TE country calendars (LD-30). **The RBNZ silence is the story, and it is an absence rather than a headline.**
+**No tariff development, no BoJ headline, no fresh CAD story.** Checked investinglive.com plus the TE country calendars (LD-30). **Both central banks are still ahead — RBNZ at 10:00, BoC at 21:45.**
 
 ---
 ## §2 — Macro Economic Indicators
@@ -489,9 +488,9 @@ global page omits entirely (F-57).
 | Tue 01 17:00 | EUR | Unemployment Rate | 6.4% ® | 6.3% | **6.4%** | **GOOD** | **MISS** |
 | **Tue 01 21:30** | CAD | S&P Global Mfg PMI | 53.5 | 52.7 | **53.0** | **BAD** | **BEAT** |
 | **Tue 01 22:00** | **USD** | **ISM Manufacturing PMI** | 55.6 | 55.2 – 55 | **54.6** | **BAD** | **MISS** |
-| **Wed 02 02:00** | **NZD** | **⚠ RBNZ Interest Rate Decision** | **2.50%** | 2.75% | — | **§2.6 · rate score +2.25** (LD-23, w3) | ahead |
+| **Wed 02 10:00** | **NZD** | **⚠ RBNZ Interest Rate Decision** | **2.50%** | 2.75% | — | **§2.6 · rate score +2.25** (LD-23, w3) | ahead |
 | Wed 02 06:45 | NZD | Building Permits MoM | -3.7% ® | 2.5% | **-4.3%** | **GOOD** | **MISS** |
-| **Wed 02 13:45** | **CAD** | **⚠ BoC Interest Rate Decision** | **2.25%** | 2.25% | — | **§2.6 · rate score +0.38** (LD-23, w3) | ahead |
+| **Wed 02 21:45** | **CAD** | **⚠ BoC Interest Rate Decision** | **2.25%** | 2.25% | — | **§2.6 · rate score +0.38** (LD-23, w3) | ahead |
 | Thu 03 09:30 | AUD | Balance of Trade | A$1.929B | A$1.40B – A$1.1B | — | **BAD** | ahead |
 | **Thu 03 14:30** | **CHF** | **Inflation Rate YoY** | **0.4%** | 0.5% – 0.6% | — | **GOOD** | ahead |
 | **Thu 03 15:30** | CHF | Procure.ch-UBS Mfg PMI | — | — | — | UNSCORED — not in capture | ahead |
@@ -512,8 +511,8 @@ figure when only one does. **Market priced** grades Previous against that range;
 **Status** grades the Actual once it lands.
 
 **⚠ The two rate decisions ARE scored** — §2.6 / LD-23, **weight 3, the heaviest
-on the board.** What sits outside the 71-row whitelist is the CALENDAR EVENT,
-not the indicator.
+on the board**, via board.** What sits outside the 71-row whitelist is the
+CALENDAR EVENT, not the indicator.
 
 ### 4.1 — Event risk by currency (LD-73)
 

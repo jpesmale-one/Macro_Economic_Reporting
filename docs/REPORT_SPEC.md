@@ -1016,6 +1016,54 @@ while destroying the citation trail.
 
 ---
 
+### F-77 · R-32 — I converted a converted time, twice
+
+**Jeff, 2026-09-02:** *"Every time we fetch Data can you always verify the
+Time first? as per TE RBNZ is scheduled 10AM today roughly in 1 Hr"*
+
+**He was right. §4.0 published the RBNZ at 02:00 PHT; `pht()` on the same
+capture row returns 10:00** — exactly what his screen showed.
+
+#### Two errors compounding
+
+**1. The §4.0 builder's `EV` list carried HAND-TYPED times.** They were never
+checked against the capture, so once one was wrong it survived every rebuild.
+**Both central banks were eight hours early** — RBNZ 02:00 for 10:00, BoC
+13:45 for 21:45.
+
+**2. I then read "02:00 PHT" off the RENDERED TABLE and converted it BACKWARDS
+to 18:00 UTC** to argue the decision had already passed. **The cell was the
+LABEL — already converted.** I converted twice, concluded the RBNZ was five
+hours overdue, and wrote an entire section about its silence.
+
+#### Why it survived my own checks
+
+**Price appeared to confirm it.** NZDUSD ranged 9 pips and AUDNZD 16 pips
+across the window I examined — which I read as proof no decision had been
+delivered. **It was flat because the decision had not happened yet.**
+
+**A false premise that agrees with the evidence is the most expensive kind.**
+I had two independent confirmations of a conclusion that was wrong at the
+root, and the confirmations were real.
+
+**This is F-72's rule, third instance:** *when our data disagrees with what
+Jeff sees on screen, we are wrong until proven otherwise.* **I had the rule
+written down in CLAUDE.md and did not apply it** — because the disagreement
+was with a number I had produced, and it looked like a TE defect.
+
+#### The fix
+
+**§4.0's When cell is now COMPUTED from `pht(capture)`** — the hand-typed
+times are out of the trust path entirely.
+
+**R-32 `pipelines/audit_times.py`** fails the render when any §4.0 time
+disagrees with the capture row it names. **Verified: passes on 19 of 19 rows,
+fires on the RBNZ row when reset to 02:00.**
+
+**Run it on every edition** — it is in the pre-edition list, and it is the
+answer to Jeff's actual question: *verify the time first.*
+
+---
 ### F-76 — a fuzzy matcher picks; it does not report an ambiguity
 
 **Found building the 2026-09-02 edition.** LD-50 reported **USD ISM

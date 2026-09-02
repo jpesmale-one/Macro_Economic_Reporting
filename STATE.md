@@ -8,8 +8,9 @@ edition: 2026-09-02 (r1, WEDNESDAY, UNSEALED - set stays LOCKED)
 date: 2026-09-02
 data_asof: 2026-09-02 07:40 PHT (capture 07:40, all 8 country pages; 12 of
            26 4.0 rows RELEASED; 8 whitelist rows updated. RBNZ decision
-           scheduled 02:00 PHT NOT POSTED by TE and price confirms no move -
-           NOT SCORED. gold/BTC Tuesday bars CLOSED, Wednesday FORMING)
+           at 10:00 PHT and BoC at 21:45 PHT are BOTH STILL AHEAD - an
+           earlier build had them 8h early (F-77). gold/BTC Tuesday bars
+           CLOSED, Wednesday FORMING)
 last_sealed: 2026-08-21 (r13, SEALED FULL) - editions 08-24 .. 09-02 UNSEALED
 track: LEAN (no section-2 trigger has fired)
 
