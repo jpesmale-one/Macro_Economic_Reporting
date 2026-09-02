@@ -64,29 +64,9 @@ fng_spread: Spread top-to-bottom bar: <b>93.80 &minus; 25.00 = 68.80</b>. <b>Unc
 ---
 ## §1 — Headline Alerts, News & Current Events
 
-### 📊 Sentiment — CNN Fear &amp; Greed Index
+### 📊 Sentiment — CNN Fear & Greed Index
 
 <!--FNG-->
-
-<div class="fng-head">
-<div class="fng-big">49.71 <span class="fng-lab">NEUTRAL</span></div>
-<div class="fng-hist">
-<div class="fng-h"><span class="fng-lab">PREV CLOSE</span><b>54.43</b><span class="dn">-4.71</span></div>
-<div class="fng-h"><span class="fng-lab">1 WEEK AGO</span><b>56.09</b><span class="dn">-6.37</span></div>
-<div class="fng-h"><span class="fng-lab">1 MONTH AGO</span><b>45.23</b><span class="up">+4.49</span></div>
-<div class="fng-h"><span class="fng-lab">1 YEAR AGO</span><b>61.54</b><span class="dn">-11.83</span></div>
-</div></div>
-<div class="fng-bars">
-<div class="fng-row"><span class="fng-n">Junk Bond Demand</span><span class="fng-track"><i class="fng-fill" style="width:93.8%;background:var(--bear)"></i></span><span class="fng-v">93.8</span><span class="pill p-bad">extreme greed</span></div>
-<div class="fng-row"><span class="fng-n">Safe Haven Demand</span><span class="fng-track"><i class="fng-fill" style="width:25.4%;background:var(--warn)"></i></span><span class="fng-v">25.4</span><span class="pill p-warn">fear</span></div>
-<div class="fng-row"><span class="fng-n">Stock Price Breadth</span><span class="fng-track"><i class="fng-fill" style="width:53.8%;background:var(--muted)"></i></span><span class="fng-v">53.8</span><span class="pill p-neut">neutral</span></div>
-<div class="fng-row"><span class="fng-n">Market Volatility (VIX)</span><span class="fng-track"><i class="fng-fill" style="width:50.0%;background:var(--muted)"></i></span><span class="fng-v">50.0</span><span class="pill p-neut">neutral</span></div>
-<div class="fng-row"><span class="fng-n">Put / Call Options</span><span class="fng-track"><i class="fng-fill" style="width:64.8%;background:var(--bull)"></i></span><span class="fng-v">64.8</span><span class="pill p-good">greed</span></div>
-<div class="fng-row"><span class="fng-n">Market Momentum S&P 500</span><span class="fng-track"><i class="fng-fill" style="width:35.4%;background:var(--warn)"></i></span><span class="fng-v">35.4</span><span class="pill p-warn">fear</span></div>
-<div class="fng-row"><span class="fng-n">Stock Price Strength</span><span class="fng-track"><i class="fng-fill" style="width:25.0%;background:var(--violet)"></i></span><span class="fng-v">25.0</span><span class="pill p-vio">extreme fear</span></div>
-</div>
-<div class="readbox"><b>Recompute (P2)</b>(93.8 + 25.4 + 53.8 + 50.0 + 64.8 + 35.4 + 25.0) &divide; 7 = <b>49.7429</b> &mdash; published <b>49.7143</b>, difference <b>0.0286</b>. <b>The simple-average property still holds</b> &mdash; the components carry <b>independent timestamps</b> (Stock Price Breadth is stamped 01 Sep 07:59, the others earlier), so one refreshed after the index computed. 0.03 on a 0&ndash;100 scale is 0.03%.</div>
-<div class="warnbox"><b>The headline hides the story.</b> &ldquo;Neutral 50&rdquo; is the average of a market that is <em>not</em> neutral internally. The spread between highest and lowest component is <b>68.8 points</b>: <b>Junk Bond Demand 93.8 (extreme greed)</b> against <b>Stock Price Strength 25.0 (extreme fear)</b>. </div>
 
 ### 🇺🇸 The dollar closed the week at its high, and Warsh is why
 

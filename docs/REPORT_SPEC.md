@@ -1016,6 +1016,39 @@ while destroying the citation trail.
 
 ---
 
+### F-78 · R-33 — a generated block was PASTED as well as generated
+
+**Jeff, 2026-09-02, with a screenshot:** *"Our Fear and Greed index is not
+rendering correctly. can you check?"*
+
+**It rendered TWICE.** Once correctly from `<!--FNG-->`, then again as an
+escaped paragraph of visible tag soup — `&lt;div class="fng-head"&gt;` and the
+whole block, printed as text below the chart.
+
+**The renderer BUILDS that block from the marker alone.** A previous build had
+pasted the generated HTML into the markdown right after the marker, so the
+file carried a duplicate that markdown then escaped. **15 escaped copies of
+every `fng-*` class in the output.**
+
+**This is LD-38's other half.** LD-38 catches a generated block REPLACED by
+hand-written markdown; this catches one DUPLICATED by hand-pasted HTML. **Same
+root cause: treating a generated block as editable text.**
+
+#### The second defect in the same screenshot
+
+**The heading read `CNN Fear &amp; Greed Index`.** The markdown source carried
+a pre-escaped `&amp;`, and **the renderer escapes on output**, so it became
+`&amp;amp;` and the reader saw the entity. **Front-matter is exempt — it is
+HTML by design — but the body must carry a literal `&`.**
+
+**R-33 `assert_no_raw_generated_html()`** fails the render on either: pasted
+`fng-*` markup in the body, or a pre-escaped `&amp;`/`&lt;`/`&gt;`/`&quot;`.
+**Verified against both defects.**
+
+**Both September editions were affected and both are corrected** — the block
+is 4 KB smaller with the duplicate gone.
+
+---
 ### F-77 · R-32 — I converted a converted time, twice
 
 **Jeff, 2026-09-02:** *"Every time we fetch Data can you always verify the

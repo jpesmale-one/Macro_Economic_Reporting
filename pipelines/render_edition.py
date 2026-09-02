@@ -703,6 +703,52 @@ def assert_layout_locked(md):
     return '%d locked table(s) intact' % checked
 
 
+def assert_no_raw_generated_html(md):
+    """A GENERATED block is emitted by its MARKER, never pasted (R-33/F-78).
+
+    Jeff, 2026-09-02, with a screenshot: "Our Fear and Greed index is not
+    rendering correctly."
+
+    It rendered TWICE - once properly from <!--FNG--> and once as an escaped
+    paragraph, because a previous build had pasted the generated HTML into
+    the markdown right after the marker. The renderer BUILDS that block from
+    the marker alone; anything else in the file is a duplicate, and markdown
+    escapes it into visible tag soup.
+
+    This is LD-38's other half. LD-38 catches a generated block REPLACED by
+    hand-written markdown; this catches one DUPLICATED by hand-pasted HTML.
+    Same root cause - treating a generated block as editable text.
+
+    Also flags PRE-ESCAPED ENTITIES in the body. The renderer escapes on
+    output, so a literal "&amp;" in the source becomes "&amp;amp;" and the
+    reader sees the entity. Front-matter is exempt - it IS html by design.
+    """
+    body = md[md.index('-->') + 3:] if '-->' in md else md
+    problems = []
+    for cls in ('fng-head', 'fng-bars', 'fng-row'):
+        n = body.count(cls)
+        if n:
+            problems.append('%d copy of generated FNG markup pasted into the '
+                            'body (class="%s")' % (n, cls))
+            break
+    ents = re.findall(r'&(amp|lt|gt|quot);', body)
+    if ents:
+        problems.append('%d pre-escaped entit(y/ies) in the body - the '
+                        'renderer escapes on output, so "&amp;" becomes '
+                        '"&amp;amp;"' % len(ents))
+    if problems:
+        raise SystemExit(
+            'FATAL (R-33/F-78): generated markup or escaped entities in the '
+            'markdown body.%s  %s%s'
+            'A generated block is emitted by its MARKER and built by its '
+            'module. Pasting%sthe rendered HTML back into the .md renders it '
+            'twice - once correctly and%sonce as escaped tag soup, which is '
+            'what Jeff saw.'
+            % (chr(10), (chr(10) + '  ').join(problems), chr(10), chr(10),
+               chr(10)))
+    return 'no pasted markup, no pre-escaped entities'
+
+
 def assert_cycle_gate_live(md):
     """§4.2's Cycle column must carry a TILT, not prose (R-31/LD-86).
 
@@ -1426,6 +1472,7 @@ if __name__ == '__main__':
     # labels had both central banks EIGHT HOURS EARLY and produced a whole
     # section about an RBNZ decision that had not happened yet.
     import audit_times
+    rawhtml = assert_no_raw_generated_html(md)
     times = audit_times.check(md)
     cyc = assert_cycle_gate_live(md)
     bench = assert_bench_room_gated(md)
@@ -1453,6 +1500,7 @@ if __name__ == '__main__':
     print('  R-29 bench      %s' % bench)
     print('  R-31 cycle      %s' % cyc)
     print('  R-32 times      %s' % times)
+    print('  R-33 markup     %s' % rawhtml)
     print('  R-27 shape      %s' % shape_state)
     print('  LD-61 tally     %d rows, sorted by score' % ntal)
     if nexp:
