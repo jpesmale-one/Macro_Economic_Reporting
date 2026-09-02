@@ -81,7 +81,7 @@ consensus in Sunday's capture and was published UNSCORED rather than assumed neu
 ---
 ## §1 — Headline Alerts, News & Current Events
 
-### 📊 Sentiment — CNN Fear &amp; Greed Index
+### 📊 Sentiment — CNN Fear & Greed Index
 
 <!--FNG-->
 
@@ -102,8 +102,8 @@ the most event-exposed.**
 
 ### 🇨🇦🇳🇿 Two central banks decide on Wednesday
 
-**RBNZ 02:00 PHT** — the only G10 bank in an active hiking cycle, last **+25bp
-on 8 Jul**, TE forecasting 2.75%. **BoC 13:45 PHT** — held since April at
+**RBNZ 10:00 PHT** — the only G10 bank in an active hiking cycle, last **+25bp
+on 8 Jul**, TE forecasting 2.75%. **BoC 21:45 PHT** — held since April at
 2.25%, **the lowest G10 policy rate ex-JPY/CHF against the highest fundamental
 score.**
 
@@ -149,7 +149,7 @@ that missed and short the one that beat.**
 investinglive.com plus the TE country calendars (LD-30). **The weekend was quiet
 on policy; the damage, such as it is, came from scheduled data.**
 
-**⚠ The two central banks still decide Wednesday** — **RBNZ 02:00 PHT**, **BoC
+**⚠ The two central banks still decide Wednesday** — **RBNZ 10:00 PHT**, **BoC
 13:45 PHT**. Neither is a whitelist row, so neither scores (F-3), and both sit on
 legs we hold. **RBNZ is priced for a HIKE to 2.75% from 2.50%** — it is the only G10 bank still tightening. **Today's confidence miss cuts AGAINST that**, and NZD is the LONG leg of NZDJPY: a hold rather than a hike removes the rate support the pair was selected on.
 
@@ -423,11 +423,15 @@ September** *(www150.statcan.gc.ca, primary)*. The model keeps May/26 5.9%,
 
 ## §3 — Interest Rates — forward-looking
 
+**Unchanged since the previous edition** — carried verbatim, and flagged
+retrospectively by R-35 (LD-89) rather than at build time. **The guard
+that would have caught it did not exist yet.**
+
 **No policy decision has occurred this week** — the next is **NZD on 2 Sep**, then CAD the same day. **Every policy rate below is unchanged from last week.**
 
 | CCY / Rate | Last decision | Bias | Next meeting (PHT) | Expectation |
 |---|---|---|---|---|
-| **USD 3.50–3.75%** | HELD 29 Jul, **9–3** — Hammack, Kashkari, Logan dissent for +25bp *(federalreserve.gov, primary)* | **HIKE RISK** | **15–16 Sep** | Three hawkish dissents; market **fully priced for +25bp by September** against a Desk survey seeing no move until a 2028 cut. **Jackson Hole 27–29 Aug is the next signal.** |
+| **USD 3.50–3.75%** | HELD 29 Jul, **9–3** — Hammack, Kashkari, Logan dissent for +25bp *(federalreserve.gov, primary)* | **HIKE RISK** | **15–16 Sep** | Three hawkish dissents; market **fully priced for +25bp by September** against a Desk survey seeing no move until a 2028 cut. **Jackson Hole 27–29 Aug has passed** — Warsh was hawkish and it is in the price. |
 | **NZD 2.50%** | **HIKED +25bp** 8 Jul *(TE)* | **TIGHTENING** | **2 Sep** | Only currency in an active hiking cycle. TE forecasts 2.75%. Inflation 4.1% and rising does the work; employment (−2.00) is the counterweight. |
 | **GBP 3.75%** | HELD 30 Jul, **Vote Hike 3/9** (was 2/9), Cut 0/9 *(TE)* | **SPLIT** | **17 Sep** | Hawkish drift with CPI 2.9% and rising. **No cut votes at all.** |
 | **EUR 2.40%** | HELD 23 Jul *(TE)* | **CPI DECIDES** | **10 Sep** | Inflation finalised 2.9%, above target and rising. **Meeting Accounts still not retrieved** — open item. |
@@ -459,9 +463,9 @@ global page omits entirely (F-57).
 | Tue 01 17:00 | EUR | Unemployment Rate | 6.3% | 6.3% | — | NEUTRAL | ahead |
 | **Tue 01 21:30** | CAD | S&P Global Mfg PMI | 53.5 | 52.7 | — | **BAD** | ahead |
 | **Tue 01 22:00** | **USD** | **ISM Manufacturing PMI** | **55.6** | 55.3 – 55 | — | **BAD** | ahead |
-| **Wed 02 02:00** | **NZD** | **⚠ RBNZ Interest Rate Decision** | **2.50%** | 2.75% | — | **§2.6 · rate score +2.25** (LD-23, w3) | ahead |
+| **Wed 02 10:00** | **NZD** | **⚠ RBNZ Interest Rate Decision** | **2.50%** | 2.75% | — | **§2.6 · rate score +2.25** (LD-23, w3) | ahead |
 | Wed 02 06:45 | NZD | Building Permits MoM | -3.6% | 2.5% | — | **GOOD** | ahead |
-| **Wed 02 13:45** | **CAD** | **⚠ BoC Interest Rate Decision** | **2.25%** | 2.25% | — | **§2.6 · rate score +0.38** (LD-23, w3) | ahead |
+| **Wed 02 21:45** | **CAD** | **⚠ BoC Interest Rate Decision** | **2.25%** | 2.25% | — | **§2.6 · rate score +0.38** (LD-23, w3) | ahead |
 | Thu 03 09:30 | AUD | Balance of Trade | A$1.929B | A$1.39B – A$1.1B | — | **BAD** | ahead |
 | **Thu 03 14:30** | **CHF** | **Inflation Rate YoY** | **0.4%** | 0.7% | — | **GOOD** | ahead |
 | **Thu 03 15:30** | CHF | Procure.ch-UBS Mfg PMI | — | — | — | UNSCORED — not in capture | ahead |
@@ -712,7 +716,7 @@ NZDJPY is narrowing from both ends at once — the long leg missing while the
 short leg beats. **That is the specific pattern that erodes a pair before its
 falsifier fires.**
 
-**Wednesday is the test.** RBNZ at 02:00 PHT is priced for a **HIKE to 2.75%**,
+**Wednesday is the test.** RBNZ at 10:00 PHT is priced for a **HIKE to 2.75%**,
 and NZD is the LONG leg. **Today's confidence miss cuts against that hike.** If
 the RBNZ holds, the rate support NZDJPY was selected on goes with it — and that
 is a §3 event, not a §4.0 one, because a policy decision is not a whitelist row
@@ -1026,6 +1030,10 @@ JPY crosses and calling it 3-for-3 (EF-3).
 ---
 
 ## §7 — Method notes
+
+**Unchanged since the previous edition** — carried verbatim, and flagged
+retrospectively by R-35 (LD-89) rather than at build time. **The guard
+that would have caught it did not exist yet.**
 
 **Guards run before any figure was used (LD-43 step 0):**
 

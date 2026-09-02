@@ -1017,6 +1017,10 @@ JPY crosses and calling it 3-for-3 (EF-3).
 
 ## §7 — Method notes
 
+**Unchanged since the previous edition** — carried verbatim, and flagged
+retrospectively by R-35 (LD-89) rather than at build time. **The guard
+that would have caught it did not exist yet.**
+
 **Guards run before any figure was used (LD-43 step 0):**
 
 | Guard | Result |

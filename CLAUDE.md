@@ -148,7 +148,7 @@ python pipelines/audit_direction.py      # R-28 - thresholds point the way their
 python pipelines/cycle_gate.py           # LD-86 - cycle positions and tilts
 python pipelines/layout_shape.py <md>    # R-27 - the report SHAPE is locked
 python pipelines/week_ahead.py           # §4.0 events, DATE -> TIME -> CCY
-python pipelines/section_drift.py <new> <prev>  # R-35 - did every section MOVE? (F-80)
+python pipelines/section_drift.py <new> <prev>  # R-35 - the DETAIL; the render blocks on it (LD-89)
 python pipelines/whole_edition.py <md>   # LD-67 - every section vs every other
 python pipelines/render_edition.py <md>  # 17 guards run before a byte is written
 ```
@@ -194,7 +194,7 @@ hand-written generated block (LD-38), fewer than 70 whitelist rows or any
 blank cell (LD-39), an off-list indicator carrying a score (LD-41), a section
 1 with no news source (F-17), levels published but not drawn (LD-46), a stale
 or unreconciled TE capture (LD-50), **a currency score quoted outside
-§2.0 that contradicts the tally (R-16/F-46)**, **a stale Fear & Greed capture (R-17/F-51)**, **any cross-section contradiction (R-18/LD-67)**, **a locked table whose column set changed (R-24/LD-80)**, **a bench ranked without the room gate (R-29/F-69)**, **a §4.0 time that disagrees with pht(capture) (R-32/F-77)**, **generated markup pasted into the body (R-33/F-78)**, **a forward phrase beside a past date (R-34/F-79)**. **A FATAL is information, not an
+§2.0 that contradicts the tally (R-16/F-46)**, **a stale Fear & Greed capture (R-17/F-51)**, **any cross-section contradiction (R-18/LD-67)**, **a locked table whose column set changed (R-24/LD-80)**, **a bench ranked without the room gate (R-29/F-69)**, **a §4.0 time that disagrees with pht(capture) (R-32/F-77)**, **generated markup pasted into the body (R-33/F-78)**, **a forward phrase beside a past date (R-34/F-79)**, **any section that did not move against the previous edition (R-35/LD-89)**. **A FATAL is information, not an
 obstacle — never edit content to clear a gate.**
 
 ### What the guards CANNOT catch

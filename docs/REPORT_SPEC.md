@@ -1016,6 +1016,49 @@ while destroying the citation trail.
 
 ---
 
+### LD-89 — R-35 BLOCKS: every section must move, or say why not
+
+**Jeff, 2026-09-02:** *"can we make sure we visit every section everytime we
+build a new report moving forward?"*
+
+**R-35 shipped as a REPORT and that was not enough.** A report I have to
+remember to read is exactly what failed on 26 Aug, when he first asked for
+this. **It now fails the render.**
+
+#### The escape hatch is the point
+
+**A section that genuinely has nothing new says so IN THE SECTION** —
+*"unchanged since \<date\>: \<why\>"* — and the guard accepts it.
+
+**That converts a silent carry into a published claim someone can check.**
+Same principle as F-73: say what you know, and say that you know it. **§8
+(findings ledger) and §9 (gate status) are exempt** — they legitimately repeat.
+
+#### What it found the moment it blocked
+
+Run against the three most recent editions, it failed two of them:
+
+| Edition | Carried verbatim |
+|---|---|
+| **31 Aug** | **§3 and §7**, 100% identical |
+| **1 Sep** | **§7**, 100% identical |
+| 2 Sep | clean after the F-80 fix |
+
+**§7 was carried on BOTH days** — a guard table reporting an older run, which
+is worse than no table because it reads as evidence.
+
+**And clearing R-35 exposed three more defects in those editions**, each
+caught by a guard written after they published:
+
+- **R-34** — the same *"Jackson Hole is the next signal"* line, still live
+- **R-33** — the pasted F&G block and a pre-escaped `&amp;`
+- **R-32** — both central banks eight hours early
+
+**All three editions now render clean under every guard.** The carries are
+declared rather than back-filled with invented content — the history says what
+happened, and the guard that would have caught it did not exist yet.
+
+---
 ### F-80 · R-35 — §4 carried Sunday's measurements for three days
 
 **Jeff, 2026-09-02:** *"Didn't I asked that every section should be revisited

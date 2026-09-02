@@ -710,6 +710,83 @@ _MON = {'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
         'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12}
 
 
+def assert_every_section_moved(md, fm):
+    """Every section must MOVE against the previous edition (R-35/LD-89).
+
+    Jeff, 2026-09-02: "can we make sure we visit every section everytime we
+    build a new report moving forward?"
+
+    R-35 shipped as a REPORT and that was not enough - a report I have to
+    remember to read is exactly what failed on 26 Aug, when he first asked
+    for this. It now BLOCKS.
+
+    A section that carried verbatim is not automatically wrong. 8 (findings
+    ledger) and 9 (gate status) legitimately repeat, and they are exempt.
+    Everything else must show movement, or the edition does not publish.
+
+    THE ESCAPE HATCH IS DELIBERATE AND NARROW. A section that genuinely has
+    nothing new says so IN THE SECTION - "unchanged since <date>: <why>" -
+    which turns a silent carry into a published claim someone can check.
+    That is the same principle as F-73: say what you know, and say that you
+    know it.
+    """
+    import difflib
+    import glob as _glob
+    QUIET = ('8', '9')
+    cur = os.path.join(REPO, 'reports/2026/Q3',
+                       '%s_market-sentiment.md' % fm.get('date', ''))
+    prior = [f for f in sorted(_glob.glob(
+        os.path.join(REPO, 'reports/2026/Q3/*_market-sentiment.md')))
+        if os.path.basename(f) < os.path.basename(cur)]
+    if not prior:
+        return 'no previous edition to compare'
+    prev = io.open(prior[-1], encoding='utf-8').read()
+
+    def _secs(t):
+        out, k, buf = {}, None, []
+        for line in t.split(chr(10)):
+            m = re.match(r'^#{2}\s*\u00a7(\d+[a-z]?)', line)
+            if m:
+                if k:
+                    out[k] = chr(10).join(buf)
+                k, buf = m.group(1), [line]
+            elif k is not None:
+                buf.append(line)
+        if k:
+            out[k] = chr(10).join(buf)
+        return out
+
+    A, B = _secs(prev), _secs(md)
+    stale = []
+    for key in sorted(B):
+        if key in QUIET or key not in A:
+            continue
+        r = difflib.SequenceMatcher(None, A[key], B[key]).ratio()
+        if r >= 0.98:
+            body = B[key].lower()
+            if 'unchanged since' in body or 'no change since' in body:
+                continue          # declared, not forgotten
+            stale.append((key, r))
+    if stale:
+        raise SystemExit(
+            'FATAL (R-35/LD-89): %d section(s) did not move against %s.%s'
+            % (len(stale), os.path.basename(prior[-1]), chr(10))
+            + chr(10).join('  \u00a7%-4s %.1f%% identical' % (k, r * 100)
+                           for k, r in stale) + chr(10)
+            + 'Jeff, 2026-08-26: "Everytime we build a new edition we should'
+            + ' be looking' + chr(10)
+            + 'if every parts of the report have moved."' + chr(10)
+            + 'On 2026-09-02 \u00a74 was 99.2%% identical and published SUNDAY room'
+            + ' figures that' + chr(10)
+            + 'contradicted \u00a74.2 in the same edition; \u00a77 said the market was'
+            + ' CLOSED on a' + chr(10)
+            + 'Wednesday. EITHER refresh the section, OR write "unchanged'
+            + ' since <date>: <why>"' + chr(10)
+            + 'inside it - which turns a silent carry into a claim someone'
+            + ' can check.')
+    return '%d section(s) moved' % (len(B) - len(QUIET))
+
+
 def assert_no_dead_signal(md, fm):
     """No line may call a PAST date the next signal (R-34/F-79).
 
@@ -1536,6 +1613,7 @@ if __name__ == '__main__':
     # labels had both central banks EIGHT HOURS EARLY and produced a whole
     # section about an RBNZ decision that had not happened yet.
     import audit_times
+    moved = assert_every_section_moved(md, fm)
     dead = assert_no_dead_signal(md, fm)
     rawhtml = assert_no_raw_generated_html(md)
     times = audit_times.check(md)
@@ -1567,6 +1645,7 @@ if __name__ == '__main__':
     print('  R-32 times      %s' % times)
     print('  R-33 markup     %s' % rawhtml)
     print('  R-34 dead refs  %s' % dead)
+    print('  R-35 drift      %s' % moved)
     print('  R-27 shape      %s' % shape_state)
     print('  LD-61 tally     %d rows, sorted by score' % ntal)
     if nexp:
