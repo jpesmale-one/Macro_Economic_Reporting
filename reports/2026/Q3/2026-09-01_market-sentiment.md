@@ -423,7 +423,7 @@ September** *(www150.statcan.gc.ca, primary)*. The model keeps May/26 5.9%,
 
 | CCY / Rate | Last decision | Bias | Next meeting (PHT) | Expectation |
 |---|---|---|---|---|
-| **USD 3.50–3.75%** | HELD 29 Jul, **9–3** — Hammack, Kashkari, Logan dissent for +25bp *(federalreserve.gov, primary)* | **HIKE RISK** | **15–16 Sep** | Three hawkish dissents; market **fully priced for +25bp by September** against a Desk survey seeing no move until a 2028 cut. **Jackson Hole 27–29 Aug is the next signal.** |
+| **USD 3.50–3.75%** | HELD 29 Jul, **9–3** — Hammack, Kashkari, Logan dissent for +25bp *(federalreserve.gov, primary)* | **HIKE RISK** | **15–16 Sep** | Three hawkish dissents; market **fully priced for +25bp by September** against a Desk survey seeing no move until a 2028 cut. **Jackson Hole has passed — Warsh was hawkish and it is already in the price. NFP Fri 4 Sep 20:30 is the next signal.** |
 | **NZD 2.50%** | **HIKED +25bp** 8 Jul *(TE)* | **TIGHTENING** | **2 Sep** | Only currency in an active hiking cycle. TE forecasts 2.75%. Inflation 4.1% and rising does the work; employment (−2.00) is the counterweight. |
 | **GBP 3.75%** | HELD 30 Jul, **Vote Hike 3/9** (was 2/9), Cut 0/9 *(TE)* | **SPLIT** | **17 Sep** | Hawkish drift with CPI 2.9% and rising. **No cut votes at all.** |
 | **EUR 2.40%** | HELD 23 Jul *(TE)* | **CPI DECIDES** | **10 Sep** | Inflation finalised 2.9%, above target and rising. **Meeting Accounts still not retrieved** — open item. |

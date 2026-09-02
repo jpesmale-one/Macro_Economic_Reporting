@@ -1016,6 +1016,49 @@ while destroying the citation trail.
 
 ---
 
+### F-79 · R-34 — a carried section keeps its VERBS, and the verbs go stale first
+
+**Jeff, 2026-09-02:** *"§3 — is this updated? I can see this note Jackson Hole
+27–29 Aug is the next signal. but this is already in the past"*
+
+**§3 was carrying FOUR dead references at once:**
+
+| Claim | Reality |
+|---|---|
+| *"Jackson Hole 27–29 Aug is the next signal"* | **five days past** |
+| *"No policy decision has occurred this week — the next is NZD on 2 Sep"* | **it was 2 Sep** |
+| *"AU inflation Wed 26 Aug is the weight-3 category"* | **a week past** |
+| *"No CHF release next week — the score cannot correct"* | **CHF released twice on 1 Sep** |
+
+**And §5/§6 carried Jackson Hole as a LIVE headwind in five more places** —
+"a hawkish Jackson Hole is the event most likely to cause it" — while its
+outcome was already in the price.
+
+**Also wrong: the Fed row read "15–16 Sep"**, the US local date. `pht()` on
+the capture gives **Thu 17 Sep 02:00 PHT**.
+
+#### Why a carried section rots this way
+
+**Numbers get refreshed because a guard checks them. Verbs do not.** R-16
+catches a stale SCORE, R-19 catches a released event still previewed in §4.0,
+LD-50 catches a stale VALUE — **nothing looked at tense.** So §3 kept its
+rates current and its outlook frozen in late August.
+
+**R-34 `assert_no_dead_signal()`** fails the render when a forward phrase
+(*next signal*, *the next is*, *upcoming*, *next meeting*, *still ahead*) sits
+beside a date that has already passed.
+
+**F-79b — scope it to the CLAUSE, not the line.** The first version matched
+across a whole §3 table row, which is 300 characters wide and legitimately
+holds *"HELD 29 Jul"* in one cell and *"next meeting"* in another. **It
+flagged two rows that were entirely correct.** Splitting on `|`, em-dash and
+sentence boundaries fixed it — **and then it caught the real one still sitting
+in the 1 Sep edition.**
+
+**§3 is now rebuilt from the capture**: every meeting time is `pht()`, and
+every row names what actually released this week.
+
+---
 ### F-78 · R-33 — a generated block was PASTED as well as generated
 
 **Jeff, 2026-09-02, with a screenshot:** *"Our Fear and Greed index is not

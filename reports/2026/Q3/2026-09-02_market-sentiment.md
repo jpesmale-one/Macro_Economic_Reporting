@@ -432,21 +432,24 @@ September** *(www150.statcan.gc.ca, primary)*. The model keeps May/26 5.9%,
 
 ## §3 — Interest Rates — forward-looking
 
-**No policy decision has occurred this week** — the next is **NZD on 2 Sep**, then CAD the same day. **Every policy rate below is unchanged from last week.**
+**⚠ TWO DECISIONS LAND TODAY — the first of the lock.** **RBNZ 10:00 PHT** and **BoC 21:45 PHT**, both still ahead at the 07:40 capture. **Every policy rate below is unchanged since the last edition**, and **§2.6 scores the LAST decision, never the pending one** (LD-23).
+
+**Meeting times are `pht(capture)`, not hand-typed (R-32/F-77).** An earlier build had both of today's eight hours early.
 
 | CCY / Rate | Last decision | Bias | Next meeting (PHT) | Expectation |
 |---|---|---|---|---|
-| **USD 3.50–3.75%** | HELD 29 Jul, **9–3** — Hammack, Kashkari, Logan dissent for +25bp *(federalreserve.gov, primary)* | **HIKE RISK** | **15–16 Sep** | Three hawkish dissents; market **fully priced for +25bp by September** against a Desk survey seeing no move until a 2028 cut. **Jackson Hole 27–29 Aug is the next signal.** |
-| **NZD 2.50%** | **HIKED +25bp** 8 Jul *(TE)* | **TIGHTENING** | **2 Sep** | Only currency in an active hiking cycle. TE forecasts 2.75%. Inflation 4.1% and rising does the work; employment (−2.00) is the counterweight. |
-| **GBP 3.75%** | HELD 30 Jul, **Vote Hike 3/9** (was 2/9), Cut 0/9 *(TE)* | **SPLIT** | **17 Sep** | Hawkish drift with CPI 2.9% and rising. **No cut votes at all.** |
-| **EUR 2.40%** | HELD 23 Jul *(TE)* | **CPI DECIDES** | **10 Sep** | Inflation finalised 2.9%, above target and rising. **Meeting Accounts still not retrieved** — open item. |
-| **CAD 2.25%** | HELD 15 Jul *(bankofcanada.ca, primary)* | **FLOORED** | **2 Sep** | Held since April. Highest fundamental score against the lowest G10 policy rate ex-JPY/CHF — the divergence is the interesting part. |
-| **AUD 4.35%** | HELD 11 Aug *(TE)* | **CPI DECIDES** | **29 Sep** | Highest policy rate in the set. Inflation 3.8% and falling caps hike risk; employment just deteriorated. **AU inflation Wed 26 Aug is the weight-3 category, currently 0.00.** |
-| **JPY 1.00%** | HELD 31 Jul; hiked to 1% 16 Jun *(TE)* | **REPRICING** | **18 Sep** | Out of ZIRP and hiking. Inflation now **1.9%**, closer to target than the sealed edition showed. **Plus an intervention backstop (§1).** |
-| **CHF 0.00%** | HELD 18 Jun *(TE)* | **TRAPPED** | **24 Sep** | At zero, inflation 0.4% and falling, SNB calling it expectations-driven (§1). **No CHF release next week** — the score cannot correct. |
+| **NZD 2.50%** | **HIKED +25bp** 8 Jul *(TE)* | **TIGHTENING** | **⚠ TODAY, Wed 2 Sep 10:00** | **The week's pivot.** Only G10 bank in an active hiking cycle; TE consensus and forecast both **2.75%**. Inflation 4.1% and rising does the work — but **NZD is 0 for 3 on releases this week** (ANZ confidence, building permits, dairy), and employment sits at −0.74. **A hold is the surprise, and NZD is the long leg of NZDJPY.** |
+| **CAD 2.25%** | HELD 15 Jul *(bankofcanada.ca, primary)* | **FLOORED** | **⚠ TODAY, Wed 2 Sep 21:45** | Held since April. Consensus and forecast both **2.25% — priced to hold**. Highest fundamental score on the board against the lowest G10 policy rate ex-JPY/CHF; **that divergence is the interesting part.** CAD is the long leg of **CADCHF, +21.0 and the week's best pair.** |
+| **EUR 2.40%** | HELD 23 Jul *(TE)* | **CPI DECIDES** | **Thu 10 Sep 20:15** | **Flash CPI jumped to 3.3% on 1 Sep** from 2.9%, well above target and accelerating — but the whitelist row still carries the **Jul Final 2.9%** until the Aug Final prints **17 Sep** (F-29). **Unemployment rose to 6.4%.** **Meeting Accounts still not retrieved** — open item. |
+| **USD 3.50–3.75%** | HELD 29 Jul, **9–3** — Hammack, Kashkari, Logan dissent for +25bp *(federalreserve.gov, primary)* | **HIKE RISK** | **Thu 17 Sep 02:00** | Three hawkish dissents and the market priced for +25bp by September. **ISM missed hard on 1 Sep — 54.6 against 55.2, employment 51.2, new orders 53.7 — while prices paid held at 71.1.** **Softening activity with sticky prices is the combination that complicates a hike**, and **NFP lands Fri 4 Sep 20:30** before the meeting. |
+| **GBP 3.75%** | HELD 30 Jul, **Vote Hike 3/9** (was 2/9), Cut 0/9 *(TE)* | **SPLIT** | **Thu 17 Sep 19:00** | Hawkish drift with CPI 2.9% and rising. **No cut votes at all.** Mfg PMI beat on 1 Sep (51.7 vs 51.5). |
+| **JPY 1.00%** | HELD 31 Jul; hiked to 1% 16 Jun *(TE)* | **REPRICING** | **Fri 18 Sep 11:00** | Out of ZIRP and hiking, inflation 1.9%. **Split week: Retail Sales and Consumer Confidence beat, Mfg PMI missed.** **Household Spending Fri 4 Sep is the last test** of §4.6's JPY case. |
+| **AUD 4.35%** | HELD 11 Aug *(TE)* | **CPI DECIDES** | **Tue 29 Sep** | Highest policy rate in the set. Inflation 3.5% and **falling** caps hike risk; employment deteriorating. **The Inflation category sits at 0.00** — and **AU CPI is beyond the 25 Sep capture horizon** (F-73), so it cannot correct inside this window. |
+| **CHF 0.00%** | HELD 18 Jun *(TE)* | **TRAPPED** | **Thu 24 Sep 15:30** | At zero with inflation 0.4% and falling. **But the upstream turned this week: Retail Sales beat at 2.3% and Procure.ch PMI jumped 53.2 → 57.1.** **§2.0b has CHF as the strongest BUILDING on the board at +1.28** — and **CHF inflation prints Thu 3 Sep 14:30**, the one row that can move its −3.00 Inflation score. |
+
+**⚠ Read the last two rows together.** **CHF is the currency the cycle view says is improving fastest, and we are SHORT it in the week's best pair.** Tomorrow's inflation print is the test: **forecast 0.6–0.7% against 0.4%**, and rising inflation off a deflationary floor is **rate support** (F-70), not a negative.
 
 ---
-
 ## §4 — Conviction Playbook — SELECTION for 31 Aug – 4 Sep
 
 ### 4.0 — Week ahead: what the market is pricing (LD-63)
@@ -829,9 +832,9 @@ force gold and BTC share**, and it is why they moved together on Friday.
 | | Force | How it reaches the gold price | What would stop it |
 |---|---|---|---|
 | **Tailwind** | Buyback effective **9 Sep** | Yields fall → non-yielding gold costs less to hold | Treasury walking back the size |
-| **Tailwind** | Dollar at 3-month lows | Fewer dollars buy the same ounce | A hawkish Jackson Hole reversing the dollar |
+| **Tailwind** | **Fed hike odds softening on ISM** | A weaker hike case caps real yields | A hot NFP on Fri 4 Sep |
 | **Tailwind** | Debasement bid | Buyers rotate into assets with no issuer | Confidence returning to the bond market |
-| **⚠ Headwind** | **Jackson Hole 27–29 Aug** | A hawkish Fed lifts real yields → gold costs more to hold | A dovish or neutral tone |
+| **⚠ Headwind** | **DXY 99.665, +0.277 Tue** | A firmer dollar lifts real yields → gold costs more to hold | DXY turning back below 99.4 |
 | **⚠ Headwind** | Position after +1.85% | Fast moves invite profit-taking | Continuation through 4,632 |
 
 ### Levels — recomputed, naming the bars
@@ -897,7 +900,7 @@ while both haven currencies are weak, the driver is the dollar and real yields,
 not fear.**
 
 **Falsifier:** a daily close back below **4,508.995** (Friday's low) breaks the
-breakout structure. A hawkish Jackson Hole is the event most likely to cause it.
+breakout structure. **NFP on Fri 4 Sep 20:30 is now the event most likely to cause it** — Jackson Hole has passed and its hawkish read is already in the price.
 
 **What this means for the week's proposals:** none has a gold leg, so nothing is
 directly affected. Gold's strength is corroborating evidence for the weak-dollar
@@ -976,7 +979,7 @@ the same error as carrying three JPY crosses and calling it 3-for-3 (EF-3).
 | **Tailwind** | Buyback liquidity, effective 9 Sep | Yields fall → non-yielding assets cheaper to hold | Treasury reversing |
 | **Tailwind** | Debasement rotation | Buyers move to assets with no issuer | Bond-market confidence returning |
 | **⚠ Headwind** | **+20% in three sessions** | Moves this fast unwind fast | Consolidation above 72,657 |
-| **⚠ Headwind** | Jackson Hole | Hawkish Fed → higher real yields → risk-off | Dovish tone |
+| **⚠ Headwind** | **NFP Fri 4 Sep 20:30** | A hot print → higher real yields → risk-off | A soft print |
 | **⚠ Headwind** | F&G internals weak (§1) | 4 of 7 components Fear | Breadth and momentum recovering |
 
 ### Levels — recomputed, naming the bars
@@ -1017,7 +1020,7 @@ day and the same driver as gold's +1.85%.
 ### Read
 
 **Falsifier:** a daily close below **72,472.5** (Friday's low) ends the run
-structure. A hawkish Jackson Hole is the most likely cause.
+structure. **NFP on Fri 4 Sep is the most likely cause** — Jackson Hole has passed.
 
 **What this means for the week's proposals:** none has a BTC leg. BTC and gold
 moving together on one cause is **one signal, not two** — reading them as

@@ -703,6 +703,70 @@ def assert_layout_locked(md):
     return '%d locked table(s) intact' % checked
 
 
+DEAD_DATE_FWD = re.compile(
+    'next signal|the next is|is the next|upcoming|next week|watch for'
+    '|next meeting|still ahead|lands next|due next', re.I)
+_MON = {'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
+        'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12}
+
+
+def assert_no_dead_signal(md, fm):
+    """No line may call a PAST date the next signal (R-34/F-79).
+
+    Jeff, 2026-09-02: "is this updated? I can see this note Jackson Hole
+    27-29 Aug is the next signal. but this is already in the past"
+
+    3 carried FOUR dead references at once - Jackson Hole as the next Fed
+    signal, "AU inflation Wed 26 Aug", "No CHF release next week" while CHF
+    had released twice, and "the next is NZD on 2 Sep" on 2 Sep itself.
+    5 and 6 carried Jackson Hole as a live headwind in five more places.
+
+    R-19 catches a RELEASED event still previewed in 4.0. This catches the
+    other shape: prose naming a date that has passed as though it were
+    ahead. A carried-forward section keeps its verbs, and the verbs are what
+    go stale first.
+    """
+    import datetime as _dt
+    try:
+        today = _dt.datetime.strptime(fm.get('date', ''), '%Y-%m-%d').date()
+    except ValueError:
+        return 'no edition date'
+    bad = []
+    for line in md.split(chr(10)):
+        t = line.strip()
+        if not t:
+            continue
+        # F-79b. Scope the test to the CLAUSE, not the line. A 3 table row
+        # is 300 characters wide and legitimately holds "HELD 29 Jul" in one
+        # cell and "next meeting" in another - matching across the whole line
+        # flags a row that is entirely correct. Split on sentence and cell
+        # boundaries so a forward phrase is only tested against dates that
+        # sit beside it.
+        for t in re.split(r'\|| — |\. ', t):
+            t = t.strip()
+            if not t or not DEAD_DATE_FWD.search(t):
+                continue
+            for m in re.finditer(r'(\d{1,2})(?:–\d{1,2})?\s+'
+                                 r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|'
+                                 r'Nov|Dec)', t):
+                try:
+                    d = _dt.date(today.year, _MON[m.group(2)],
+                                 int(m.group(1)))
+                except ValueError:
+                    continue
+                if d < today:
+                    bad.append((d.isoformat(), t[:110]))
+                    break
+    if bad:
+        raise SystemExit(
+            'FATAL (R-34/F-79): %d line(s) call a PAST date the next signal.%s'
+            % (len(bad), chr(10))
+            + chr(10).join('  [%s] %s' % b for b in bad) + chr(10)
+            + 'A carried-forward section keeps its verbs, and the verbs go '
+            'stale first.')
+    return 'no dead forward references'
+
+
 def assert_no_raw_generated_html(md):
     """A GENERATED block is emitted by its MARKER, never pasted (R-33/F-78).
 
@@ -1472,6 +1536,7 @@ if __name__ == '__main__':
     # labels had both central banks EIGHT HOURS EARLY and produced a whole
     # section about an RBNZ decision that had not happened yet.
     import audit_times
+    dead = assert_no_dead_signal(md, fm)
     rawhtml = assert_no_raw_generated_html(md)
     times = audit_times.check(md)
     cyc = assert_cycle_gate_live(md)
@@ -1501,6 +1566,7 @@ if __name__ == '__main__':
     print('  R-31 cycle      %s' % cyc)
     print('  R-32 times      %s' % times)
     print('  R-33 markup     %s' % rawhtml)
+    print('  R-34 dead refs  %s' % dead)
     print('  R-27 shape      %s' % shape_state)
     print('  LD-61 tally     %d rows, sorted by score' % ntal)
     if nexp:
