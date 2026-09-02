@@ -116,18 +116,19 @@ it.**
 position on the board gets harder. **Two of three primaries are short CHF or
 short a CHF-adjacent leg.**
 
-### 🇳🇿 ⚠ RBNZ decides at 10:00 PHT — in about an hour
+### 🇳🇿 ⚠ THE RBNZ HIKED TO 2.75% AND NZD FELL 108 PIPS
 
-**Priced for a HIKE to 2.75% from 2.50%** — the only G10 bank still tightening. **NZD is the LONG leg of NZDJPY, which has lost ground every session this week and sits at −26.2.**
+**Actual 2.75%. Consensus 2.75%. Forecast 2.75%.** A perfect match — and **NZDJPY went 94.409 → 93.331, −107.8 pips**, selling one-way through the session.
 
-**⚠ A CORRECTION TO AN EARLIER BUILD OF THIS EDITION.** It carried the decision at **02:00 PHT** and argued it was five hours overdue and unposted. **That was our error, not TE's.** The capture always said **10:00**; the table label was hand-typed at 02:00 and I then converted that label a second time to reason about it. **Jeff caught it from his own screen.**
+**The hike itself was not news.** Swaps had **~95% odds**, all **21 economists in the Bloomberg poll** expected it, and both ASB and Westpac called 25bp to 2.75%. **When a decision is that well telegraphed it is in the price days before. Zero new information = zero reason to buy.**
 
-**The pattern is F-72's, and this is its third instance:** when our data disagrees with what is on screen, **we are wrong until proven otherwise.** **Price appeared to confirm the wrong reading** — NZD was flat across the window — **because the decision had not happened yet.** A false premise that agrees with the evidence is the most expensive kind.
+**What was live was the FORWARD TRACK, and the bar was set very high.** Markets were pricing **~95bp of tightening by June 2027** while the RBNZ's own projections embed only **another 25bp over three quarters** (ING). **To rally, NZD needed an October hike signalled as more likely than not, or a terminal rate above ~3.28%.** Anything short of that is a **relative dovish surprise — even alongside a hike.** The likely sequence: a flatter OCR track, 2027 rate expectations marked down, and the Kiwi sold off with them.
 
-**§4.0 no longer carries a hand-typed time.** Every When cell is computed from the capture row, and **R-32 fails the render on any disagreement.**
+**⚠ THIS IS NOW IN THE MODEL (LD-90).** §2.6 previously scored a hike +1.00 on the realised term and **would have scored NZD MORE POSITIVELY for an event that cost 108 pips.** It now carries a **SURPRISE** term — actual against consensus — and **a fully-priced hike scores 0.00.**
 
-**What to watch:** §2.6 carries NZD's rate score at **+2.25 from the July hike**, the heaviest single input NZD holds. **If the RBNZ holds rather than hikes, that number is what changes**, and NZDJPY's whole case rests on it.
+**NZD's rate score falls +2.25 → +1.50, and the tally +4.29 → +3.31.** The level still earns its credit; **the news that was not news earns nothing.**
 
+**What is NOT scored, deliberately:** the forward track itself. TE publishes no OCR track and no terminal rate, and **LD-23 keeps out any input that cannot be sourced for all eight currencies on equal terms** — Jeff's own instruction. **It is commentary in §3, never a number.**
 ### 🇨🇦 BoC decides at 21:45 PHT tonight
 
 **Priced to HOLD at 2.25%**, consensus and forecast agreed. **CAD is the long leg of CADCHF, the pair carrying the week at +21.0.** A hold changes nothing; a cut would be the surprise.
@@ -154,30 +155,30 @@ short a CHF-adjacent leg.**
 
 | Band | CCY | **Score** | Group | Prod · Spend · Trade · Empl · Infl · **Rate** |
 |---|---|---|---|---|
-| **STRONG** | **CAD** | **+6.56** | Commodity | +0.60 · +1.00 · +0.43 · +1.15 · +3.00 · **+0.38** |
+| **STRONG** | **CAD** | **+6.46** | Commodity | +0.50 · +1.00 · +0.43 · +1.15 · +3.00 · **+0.38** |
 | NEUTRAL | GBP | **+5.31** | Risk-corr | −0.24 · +0.80 · −1.00 · +2.00 · +3.00 · **+0.75** |
 | NEUTRAL | EUR | **+4.73** | Risk-corr | +0.14 · +0.16 · +1.00 · −0.32 · +3.00 · **+0.75** |
-| NEUTRAL | NZD | **+4.29** | Commodity | +0.68 · +0.10 · −1.00 · −0.74 · +3.00 · **+2.25** |
+| NEUTRAL | NZD | **+3.31** | Commodity | +0.45 · +0.10 · −1.00 · −0.74 · +3.00 · **+1.50** |
 | NEUTRAL | AUD | **+1.97** | Commodity | +0.30 · +0.75 · +1.00 · −0.08 · +0.00 · **+0.00** |
 | NEUTRAL | JPY | **+0.83** | Safe haven | +0.97 · +0.06 · −1.00 · +0.80 · +0.00 · **+0.00** |
-| NEUTRAL | USD | **+0.52** | Safe haven | +0.24 · +0.48 · +0.57 · −0.76 · +0.00 · **+0.00** |
-| **WEAK** | **CHF** | **−0.51** | Safe haven | +0.77 · +0.44 · +1.00 · +0.66 · −3.00 · **−0.38** |
+| NEUTRAL | USD | **+0.59** | Safe haven | +0.31 · +0.48 · +0.57 · −0.76 · +0.00 · **+0.00** |
+| **WEAK** | **CHF** | **−0.28** | Safe haven | +1.00 · +0.44 · +1.00 · +0.66 · −3.00 · **−0.38** |
 
 Bands: **STRONG ≥ +5.50 · NEUTRAL +0.01 to +5.49 · WEAK ≤ 0.00**
 
-Safe haven: JPY +0.83 › USD +0.52 › CHF −0.51 · Commodity: CAD +6.56 › NZD +4.29 › AUD +1.97 · Risk-corr: GBP +5.31 › EUR +4.73
+Safe haven: JPY +0.83 › USD +0.59 › CHF −0.28 · Commodity: CAD +6.46 › NZD +3.31 › AUD +1.97 · Risk-corr: GBP +5.31 › EUR +4.73
 
 ### 2.0b Cycle position — where each currency sits in the chain (LD-72)
 
 | CCY | Leading | Confirming | **Gap** | Score | Cycle position |
 |---|---|---|---|---|---|
-| **CHF** | +0.74 | −0.47 | **+1.21** | −0.51 | **BUILDING** — upstream ahead, rate case forming |
+| **CHF** | +0.81 | −0.47 | **+1.28** | −0.28 | **BUILDING** — upstream ahead, rate case forming |
 | **AUD** | +0.68 | −0.02 | **+0.70** | +1.97 | **BUILDING** — upstream ahead, rate case forming |
-| **USD** | +0.43 | −0.15 | **+0.58** | +0.52 | **BUILDING** — upstream ahead, rate case forming |
+| **USD** | +0.45 | −0.15 | **+0.60** | +0.59 | **BUILDING** — upstream ahead, rate case forming |
 | **EUR** | +0.43 | +0.54 | **−0.10** | +4.73 | aligned |
 | **JPY** | +0.01 | +0.16 | **−0.15** | +0.83 | aligned |
-| **CAD** | +0.68 | +0.83 | **−0.15** | +6.56 | aligned |
-| **NZD** | −0.07 | +0.45 | **−0.52** | +4.29 | **IN THE PAST** — nothing upstream feeding it |
+| **CAD** | +0.64 | +0.83 | **−0.19** | +6.46 | aligned |
+| **NZD** | −0.15 | +0.45 | **−0.60** | +3.31 | **IN THE PAST** — nothing upstream feeding it |
 | **GBP** | −0.15 | +1.00 | **−1.15** | +5.31 | **IN THE PAST** — nothing upstream feeding it |
 
 **LEADING = (Production + Spending + Trade) / 3. CONFIRMING = (Employment +
@@ -380,9 +381,17 @@ for a full mark by default.
 
 ### 2.6 Interest Rate (weight 3) — scored on inflation vs each bank's own mandate
 
+**⚠ SCORE = (REALISED + EXPECTED + SURPRISE) ÷ n × 3 (LD-90).** Jeff, 2026-09-02:
+*“A central bank decision moves price by its surprise component only. Level of
+rates → already discounted.”* **NZD hiked to 2.75% exactly on consensus and fell
+108 pips** — the realised term still credits the level, the surprise term pays
+**0.00** for news that was not news. **A currency with no published consensus
+carries no surprise term at all**, rather than a zero that would assert the market
+was unsurprised.
+
 | CCY | Rate | Inflation vs mandate | Score |
 |---|---|---|---|
-| NZD | 2.50% | 4.1% vs 1–3% ceiling, **rising** — actively hiking | **+2.25** |
+| NZD | **2.75%** | 4.1% vs 1–3% ceiling, **rising** — **hiked today, fully priced** | **+1.50** |
 | EUR | 2.40% | 2.9% vs 2%, rising | **+0.75** |
 | GBP | 3.75% | 2.9% vs 2%, rising, 3/9 hike votes | **+0.75** |
 | CAD | 2.25% | 3.0% vs 2%, rising, but held since April | **+0.38** |
@@ -438,7 +447,7 @@ September** *(www150.statcan.gc.ca, primary)*. The model keeps May/26 5.9%,
 
 | CCY / Rate | Last decision | Bias | Next meeting (PHT) | Expectation |
 |---|---|---|---|---|
-| **NZD 2.50%** | **HIKED +25bp** 8 Jul *(TE)* | **TIGHTENING** | **⚠ TODAY, Wed 2 Sep 10:00** | **The week's pivot.** Only G10 bank in an active hiking cycle; TE consensus and forecast both **2.75%**. Inflation 4.1% and rising does the work — but **NZD is 0 for 3 on releases this week** (ANZ confidence, building permits, dairy), and employment sits at −0.74. **A hold is the surprise, and NZD is the long leg of NZDJPY.** |
+| **NZD 2.75%** | **HIKED +25bp TODAY** — 2.75%, **exactly on consensus** *(TE)* | **PRICED OUT** | Wed 30 Sep | **⚠ The hike was fully priced and NZD fell 108 pips.** ~95% swap odds, 21 of 21 economists, ASB and Westpac both at 25bp. **The tradable variable was the OCR track, and it came in flatter than the ~95bp of tightening markets had priced to June 2027.** §2.6 now scores the **surprise at 0.00** (LD-90), so the rate score falls **+2.25 → +1.50**. **NZD is the long leg of NZDJPY.** |
 | **CAD 2.25%** | HELD 15 Jul *(bankofcanada.ca, primary)* | **FLOORED** | **⚠ TODAY, Wed 2 Sep 21:45** | Held since April. Consensus and forecast both **2.25% — priced to hold**. Highest fundamental score on the board against the lowest G10 policy rate ex-JPY/CHF; **that divergence is the interesting part.** CAD is the long leg of **CADCHF, +21.0 and the week's best pair.** |
 | **EUR 2.40%** | HELD 23 Jul *(TE)* | **CPI DECIDES** | **Thu 10 Sep 20:15** | **Flash CPI jumped to 3.3% on 1 Sep** from 2.9%, well above target and accelerating — but the whitelist row still carries the **Jul Final 2.9%** until the Aug Final prints **17 Sep** (F-29). **Unemployment rose to 6.4%.** **Meeting Accounts still not retrieved** — open item. |
 | **USD 3.50–3.75%** | HELD 29 Jul, **9–3** — Hammack, Kashkari, Logan dissent for +25bp *(federalreserve.gov, primary)* | **HIKE RISK** | **Thu 17 Sep 02:00** | Three hawkish dissents and the market priced for +25bp by September. **ISM missed hard on 1 Sep — 54.6 against 55.2, employment 51.2, new orders 53.7 — while prices paid held at 71.1.** **Softening activity with sticky prices is the combination that complicates a hike**, and **NFP lands Fri 4 Sep 20:30** before the meeting. |
@@ -936,7 +945,7 @@ Friday — 222 points apart — and failed both. **The second failure closed 4,0
 
 ### The dollar check (LD-45)
 
-**Same reading as §5: USD score +0.52 NEUTRAL *(regraded today, LD-71)* against DXY **99.677**, **+0.84 on
+**Same reading as §5: USD score +0.59 NEUTRAL *(regraded today, LD-71)* against DXY **99.677**, **+0.84 on
 the week** and its highest close of the run — the tally and the price disagree,
 and **the price is read.** BTC is dollar-priced and non-yielding on the identical
 mechanism.

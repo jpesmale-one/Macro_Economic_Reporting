@@ -60,14 +60,18 @@ MANDATE = {
 
 # ccy -> (rate, realised, cpi, rising, cpi_note)
 ROWS = {
-    'NZ': ('2.50%', +1.0, 4.1, True,  'QUARTERLY series - stale by construction'),
-    'US': ('3.50-3.75%', 0.0, 3.4, False, 'CPI as proxy; the Fed targets PCE'),
-    'EA': ('2.40%', 0.0, 2.9, True,  'HICP final'),
-    'GB': ('3.75%', 0.0, 2.9, True,  ''),
-    'JP': ('1.00%', 0.0, 1.9, True,  'Jul/26 print, released 07:30 PHT 21 Aug'),
-    'AU': ('4.35%', 0.0, 3.8, False, ''),
-    'CA': ('2.25%', 0.0, 3.0, True,  ''),
-    'CH': ('0.00%', 0.0, 0.4, False, ''),
+    # LD-90. The 6th field is the DECISION SURPRISE, actual vs consensus.
+    # NZD 2026-09-02: hiked to 2.75% exactly on consensus and FELL 108
+    # pips. A fully-priced hike is not news, so it scores 0.00 - the
+    # realised term still pays for the level, the surprise pays nothing.
+    'NZ': ('2.75%', +1.0, 4.1, True,  'HIKED 2 Sep to 2.75%, exactly on consensus - fully priced, NZD -108 pips (LD-90)', 0.0),
+    'US': ('3.50-3.75%', 0.0, 3.4, False, 'CPI as proxy; the Fed targets PCE', None),
+    'EA': ('2.40%', 0.0, 2.9, True,  'HICP final', None),
+    'GB': ('3.75%', 0.0, 2.9, True,  '', None),
+    'JP': ('1.00%', 0.0, 1.9, True,  'Jul/26 print, released 07:30 PHT 21 Aug', None),
+    'AU': ('4.35%', 0.0, 3.8, False, '', None),
+    'CA': ('2.25%', 0.0, 3.0, True,  '', None),
+    'CH': ('0.00%', 0.0, 0.4, False, '', None),
 }
 
 
@@ -85,13 +89,33 @@ def expected(ccy, cpi, rising):
 
 
 def compute():
+    """REALISED + EXPECTED + SURPRISE (LD-90).
+
+    Jeff, 2026-09-02, after the RBNZ hiked exactly on consensus and NZD fell
+    108 pips: "A central bank decision moves price by its surprise component
+    only. Level of rates -> already discounted."
+
+    REALISED and EXPECTED both describe what already happened. SURPRISE is
+    the gap between the decision and what was priced, and it is the only one
+    of the three that is forward-looking. A fully-priced hike now scores
+    nothing extra rather than another +1.
+
+    A surprise of None means UNMEASURABLE - no consensus published - and it
+    is left out of the average entirely rather than counted as zero, which
+    would assert the market was unsurprised.
+    """
     out = {}
-    for ccy, (rate, real, cpi, ris, note) in ROWS.items():
+    for ccy, row in ROWS.items():
+        rate, real, cpi, ris, note = row[:5]
+        surp = row[5] if len(row) > 5 else None
         exp, why = expected(ccy, cpi, ris)
-        raw = (real + exp) / 2.0
+        terms = [real, exp]
+        if surp is not None:
+            terms.append(surp)
+        raw = sum(terms) / float(len(terms))
         out[ccy] = {'rate': rate, 'realised': real, 'expected': exp,
-                    'raw': raw, 'score': raw * W_RATE, 'cpi': cpi,
-                    'rising': ris, 'why': why, 'note': note,
+                    'surprise': surp, 'raw': raw, 'score': raw * W_RATE,
+                    'cpi': cpi, 'rising': ris, 'why': why, 'note': note,
                     'mandate': MANDATE[ccy]}
     return out
 

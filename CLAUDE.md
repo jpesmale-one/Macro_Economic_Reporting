@@ -126,6 +126,7 @@ hand-written version silently degraded while the generator sat unused.
 | **§2 NEXT DUE column** | **`next_due.py`** — TE's published schedule (LD-87) | **inferred from history when TE publishes the date** |
 | **A RELEASED §4.0 row** | **graded vs CONSENSUS** (F-74) | **graded vs the PREVIOUS print** |
 | **§2.1–2.5 Score column** | **the GRADED number** (LD-88), † = scored from the verdict | **GOOD/NEUTRAL/BAD, which hides a 5x spread** |
+| **§2.6 rate score** | **REALISED + EXPECTED + SURPRISE** (LD-90) | **crediting a hike that was fully priced** |
 | The edition itself | `render_edition.py <path.md>` | any other way |
 | **Process narrative** | **§7 Method notes — it already folds** (LD-69) | **§0–§6, the market read** |
 | **The weekly retrospective** | **its own artifact** (LD-70) | **a § of the daily edition** |
@@ -142,6 +143,7 @@ python pipelines/audit_times.py <md>     # R-32 - VERIFY THE TIME FIRST (F-77)
 python pipelines/freshness.py            # LD-54 - revisions + stalled series
 python pipelines/test_guards.py          # 8 real regressions must all block
 python pipelines/test_pricing.py         # R-26 - 20 hand-graded pricing cases
+python pipelines/test_surprise.py        # R-36 - a decision moves price by its SURPRISE (LD-90)
 python pipelines/release_week.py --due   # LD-83 - due this week, absent from capture
 python pipelines/next_due.py             # LD-87 - next scheduled print per row
 python pipelines/audit_direction.py      # R-28 - thresholds point the way their series does

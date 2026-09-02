@@ -1016,6 +1016,77 @@ while destroying the citation trail.
 
 ---
 
+### LD-90 — a decision moves price by its SURPRISE only
+
+**Jeff, 2026-09-02, after the RBNZ hiked to 2.75% and NZD fell 108 pips:**
+
+> *"The market is always forward looking. The hike itself wasn't news. What
+> the market trades is the gap between what happened and what was already
+> priced — and on that measure this was a dovish event."*
+
+> *"A central bank decision moves price by its surprise component only. Level
+> of rates → already discounted. Change in the expected path → that's the
+> tradable variable. This is why you'll see currencies fall on hikes and rally
+> on cuts more often than beginners expect."*
+
+#### The evidence, from our own capture and chart
+
+```
+RBNZ  actual 2.75%   consensus 2.75%   forecast 2.75%
+NZDJPY 94.409 (07:40 PHT) -> 93.331 (14:15) = -107.8 pips
+```
+
+**~95% swap odds. 21 of 21 economists. ASB and Westpac both at 25bp.** A
+decision that well telegraphed is in the price days before. **Zero new
+information = zero reason to buy.**
+
+#### What was broken
+
+**`rate_model` scored REALISED (hiked +1 / held 0 / cut −1) plus EXPECTED
+(inflation vs mandate). Both describe the LEVEL and DIRECTION of what already
+happened. Neither knows what was PRICED.**
+
+**So §2.6 would have scored NZD MORE POSITIVELY for an event that cost 108
+pips.** That is the flaw stated at its sharpest.
+
+#### The fix
+
+```
+score = (REALISED + EXPECTED + SURPRISE) / n * 3
+surprise = clamp((actual - consensus) / 0.25, -1, +1)
+```
+
+**NZD: realised +1.00, expected +0.50, surprise 0.00 → rate score +2.25 →
++1.50, tally +4.29 → +3.31.** The level still earns credit; **the news that
+was not news earns nothing.**
+
+**A surprise of None is UNMEASURABLE and drops out of the average entirely** —
+scoring it zero would assert the market was unsurprised, which is a claim we
+cannot make without a consensus.
+
+#### What is deliberately NOT scored
+
+**The forward track — which Jeff correctly identifies as the variable that was
+actually live.** Markets priced **~95bp of tightening to June 2027** against
+the RBNZ's own **25bp over three quarters**; the track came in flatter and the
+Kiwi sold off with it.
+
+**TE publishes no OCR track, no terminal rate, no priced path**, and **LD-23
+already rejected exactly these inputs** on Jeff's own instruction: *"if we
+cannot find an equilibrium for Steps 2,3,4 then I'd say let's just used Step 1
+in the scoring. this way we are not nit-picking and create a unfavorable bias
+for other currencies."*
+
+**So the path is COMMENTARY in §3 and never a number.** Scoring a path
+sourceable for one or two currencies would recreate the bias LD-23 exists to
+prevent. **This is on the 2026-09-05 agenda as an open question: worth
+carrying as commentary where it exists, or not at all?**
+
+**R-36 `test_surprise.py` — 8 cases graded by hand first**, including the two
+counter-intuitive ones Jeff named: **a hold that sinks the currency** and **a
+cut that rallies it.**
+
+---
 ### LD-89 — R-35 BLOCKS: every section must move, or say why not
 
 **Jeff, 2026-09-02:** *"can we make sure we visit every section everytime we

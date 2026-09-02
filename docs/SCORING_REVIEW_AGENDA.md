@@ -78,6 +78,32 @@ on 41 pips of room. **A forced pick should probably be labelled as one.**
 
 ---
 
+## 5. LD-90 — the SURPRISE term, and the path we cannot score
+
+**Added 2026-09-02, from the live case Jeff called out.**
+
+**RBNZ hiked to 2.75% exactly on consensus and NZD fell 108 pips.** Before
+LD-90, §2.6 would have scored NZD **more positively** for that event.
+
+**Grade it on:**
+- **Did the surprise term improve the read on any OTHER decision this week?**
+  BoC lands 21:45 tonight priced to hold — a hold scores 0.00 surprise, and
+  the question is whether CAD moves anyway.
+- **Is SURPRISE_WEIGHT = 1.0 right?** It currently counts equally with the
+  realised decision. Jeff's argument says the surprise IS the tradable
+  component, which argues for equal or higher — but one event is one event.
+- **⚠ THE OPEN GAP: the forward track.** Jeff's fuller point is that the
+  tradable variable was the **OCR track versus what was priced** — ~95bp of
+  tightening to Jun 2027 against the RBNZ's own 25bp. **We score none of
+  that**, because TE publishes no track and LD-23 forbids an input we can
+  only source for one or two currencies.
+
+  **The question for Jeff: is a path read worth carrying as COMMENTARY in
+  §3 for the currencies where it exists, accepting that it will never be a
+  number?** That is a different trade-off from the one LD-23 settled — that
+  was about SCORING, this is about SAYING.
+
+---
 ## What NOT to do at the retro
 
 **Do not tune four things at once.** Four changes shipped in two days; if all
