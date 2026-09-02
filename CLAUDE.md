@@ -127,6 +127,8 @@ hand-written version silently degraded while the generator sat unused.
 | **A RELEASED §4.0 row** | **graded vs CONSENSUS** (F-74) | **graded vs the PREVIOUS print** |
 | **§2.1–2.5 Score column** | **the GRADED number** (LD-88), † = scored from the verdict | **GOOD/NEUTRAL/BAD, which hides a 5x spread** |
 | **§2.6 rate score** | **REALISED + EXPECTED + SURPRISE** (LD-90) | **crediting a hike that was fully priced** |
+| **A §4.0 rate row** | **the SURPRISE read** — `rate_surprise.priced_read()` (LD-91) | **restating §2.6's score, which is about the past** |
+| **§2.0d parallel scores** | **`parallel_scores.py`** — evidence for the review (LD-93) | **used to SELECT — selection ranks on CURRENT** |
 | The edition itself | `render_edition.py <path.md>` | any other way |
 | **Process narrative** | **§7 Method notes — it already folds** (LD-69) | **§0–§6, the market read** |
 | **The weekly retrospective** | **its own artifact** (LD-70) | **a § of the daily edition** |
@@ -148,6 +150,7 @@ python pipelines/release_week.py --due   # LD-83 - due this week, absent from ca
 python pipelines/next_due.py             # LD-87 - next scheduled print per row
 python pipelines/audit_direction.py      # R-28 - thresholds point the way their series does
 python pipelines/cycle_gate.py           # LD-86 - cycle positions and tilts
+python pipelines/parallel_scores.py      # LD-93 - three weightings side by side
 python pipelines/layout_shape.py <md>    # R-27 - the report SHAPE is locked
 python pipelines/week_ahead.py           # §4.0 events, DATE -> TIME -> CCY
 python pipelines/section_drift.py <new> <prev>  # R-35 - the DETAIL; the render blocks on it (LD-89)

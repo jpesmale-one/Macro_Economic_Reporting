@@ -454,12 +454,12 @@ REQUIRED = {
 # it, because the manifest checked h2 sections and 2.x sub-blocks but not 4.x.
 REQUIRED_SUB = {
     'DAILY':   ['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', 'Fear', '4.0'],
-    'MONDAY':  ['2.0', '2.0c', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6',
+    'MONDAY':  ['2.0', '2.0c', '2.0d', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6',
                 'Fear', '4.0'],
     # LD-74: a WEEKEND edition SELECTS, so it must also carry the cycle
     # view (2.0b), the chosen set (4.3) and the bench (4.5). Sunday is
     # not a different template - it is this one with selection in it.
-    'WEEKEND': ['2.0', '2.0b', '2.0c', '2.1', '2.2', '2.3', '2.4', '2.5',
+    'WEEKEND': ['2.0', '2.0b', '2.0c', '2.0d', '2.1', '2.2', '2.3', '2.4', '2.5',
                 '2.6', 'Fear', '4.0', '4.3', '4.5'],
 }
 # LD-38 / F-23 - MANDATORY GENERATED BLOCKS, asserted by MARKER not heading.
@@ -652,6 +652,9 @@ LOCKED_TABLES = {
             'Cons / Fcst range', 'Actual', 'Market priced', 'Status'],
     # LD-85, approved 2026-08-31. Base and Forward BOTH visible - the
     # base is never overwritten by the forecast.
+    # LD-93, approved 2026-09-02. Three weightings side by side;
+    # selection still ranks on CURRENT, the others are evidence.
+    '2.0d': ['CCY', 'Current', 'Equal', 'Leading-tilt', 'Rank move'],
     '2.0c': ['CCY', 'Base', 'Forward', 'Change',
              'What the week prices'],
     '4.3': ['#', 'Pair', 'Bias'],

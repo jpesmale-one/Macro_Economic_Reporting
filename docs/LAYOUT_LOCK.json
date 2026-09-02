@@ -13,6 +13,9 @@
   "2.0c": [
    "CCY | Base | Forward | Change | What the week prices"
   ],
+  "2.0d": [
+   "CCY | Current | Equal | Leading-tilt | Rank move"
+  ],
   "2.1": [
    "CCY | Indicator | Actual | Previous | Ref | Threshold | Score | Next due"
   ],

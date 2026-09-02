@@ -104,9 +104,60 @@ LD-90, §2.6 would have scored NZD **more positively** for that event.
   was about SCORING, this is about SAYING.
 
 ---
+## 6. ⚠ THE HEADLINE ITEM — is the model LEADING or LAGGING? (LD-92, LD-93)
+
+**Jeff, 2026-09-02:** *"the whole point of this report is to foresee if the
+central bank will Hike before it happen. If we can predict that the currency
+is getting strong we can price in early and trade it … probably our scoring
+makes things lagging instead of leading."*
+
+**This is the biggest open question in the model and it leads the review.**
+
+### The measurement that prompted it
+
+| Stage | Weight | Share |
+|---|---|---|
+| LEADING — Production, Spending, Trade | 3 | **27%** |
+| CONFIRMING — Employment, Inflation | 5 | 45% |
+| RATE — the decision | 3 | 27% |
+
+**73% of the score is the thing being predicted. 27% is the thing that
+predicts it.**
+
+### What shipped on 2 Sep, and what did NOT
+
+**SHIPPED — LD-92:** cycle tilt **±25% → ±50%**. Strengthens the leading read
+without touching the weights. **Reversible on one line.**
+
+**SHIPPED — LD-93:** §2.0d publishes CURRENT, EQUAL and LEADING-TILT side by
+side. **Selection still ranks on CURRENT.** The others accumulate a record.
+
+**NOT SHIPPED — the weights themselves.** On n=3 that is tuning to noise.
+
+### Grade it on
+
+- **Which scheme ranked the week's movers best?** §2.0d has a daily record by
+  Saturday. **Current and Leading both went 2 of 3 on Wednesday; Equal went
+  1 of 3.**
+- **NZD is the test case.** 4th under CURRENT, **LAST under LEADING**. It was
+  the week's only losing leg and §2.0b called it IN THE PAST on Sunday.
+- **CHF is the counter-test.** −0.28 under CURRENT, **+5.85 under LEADING** —
+  a six-place jump. **We are SHORT CHF in the week's best pair.** If CADCHF
+  keeps winning, LEADING is wrong about CHF and the record must say so.
+- **Did ±50% help or overshoot?** It moved CADJPY to the top of §4.2 and
+  GBPAUD to the bottom — **and GBPAUD made +15.5 this week.**
+
+### The structural argument against EQUAL
+
+**Flattening Inflation 3 → 1 strips out the rate-differential signal**, which
+is the actual transmission channel to price. **Jeff's own chain says rates
+decide strength** (2026-08-21). EQUAL denies the mechanism the report is
+built on — it is on the sheet for completeness, not as a live candidate.
+
+---
 ## What NOT to do at the retro
 
-**Do not tune four things at once.** Four changes shipped in two days; if all
+**Do not tune six things at once.** Four changes shipped in two days; if all
 four move again on one week of evidence, nothing is learnable. **Change the
 one with the clearest verdict and leave the rest for another week.**
 

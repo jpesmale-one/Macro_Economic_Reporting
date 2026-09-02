@@ -272,6 +272,46 @@ rows have a rule; the other 20 have no pattern and score exactly +1 / −1 / 0.
 untouched** — the dagger exists so a full mark from a rule is never mistaken
 for a full mark by default.
 
+### 2.0d Parallel scoring — three weightings, side by side (LD-93)
+
+**Jeff, 2026-09-02:** *"probably our scoring makes things lagging instead of
+leading … we probably want to focus more on the leading side or see all of
+them as equal."*
+
+**Measured first.** Of §2.0's 11 points: **LEADING (Production, Spending,
+Trade) carries 3 — 27%. CONFIRMING (Employment, Inflation) carries 5 — 45%.
+RATE carries 3 — 27%.** **73% of the score is the thing being PREDICTED; 27%
+is the thing that predicts it.** For a model built to foresee a hike, that is
+backwards.
+
+| CCY | **Current** | Equal | Leading-tilt | Rank move |
+|---|---|---|---|---|
+| **CAD** | **+6.46** | +3.63 | +7.64 | — |
+| **GBP** | **+5.31** | +1.81 | +2.93 | equa -2 · lead -3 |
+| **EUR** | **+4.73** | +2.39 | +3.83 | equa +1 · lead -1 |
+| **NZD** | **+3.31** | +0.68 | +0.41 | equa -3 · lead -4 |
+| **AUD** | **+1.97** | +2.01 | +5.07 | equa +2 · lead +2 |
+| **JPY** | **+0.83** | +0.43 | +1.88 | equa -2 · lead -1 |
+| **USD** | **+0.59** | +0.97 | +2.72 | equa +1 · lead +1 |
+| **CHF** | **-0.28** | +1.64 | +5.85 | equa +3 · lead +6 |
+
+**⚠ SELECTION STILL RANKS ON CURRENT. The other two change nothing** — they
+accumulate a record so **Saturday's retrospective decides on a week of
+parallel evidence rather than three sessions.**
+
+**Costed against this week's actual pip moves**, the schemes split: CURRENT
+and LEADING both called **2 of 3** pairs correctly, EQUAL only **1**.
+**LEADING is the only one that had NZDJPY pointing down** — the week's loser,
+the pair §2.0b called IN THE PAST on Sunday. **But it breaks GBPAUD, which
+made +15.5.** One right answer traded for another, on n=3.
+
+**EQUAL is the clear loser, and structurally so:** flattening Inflation 3 → 1
+strips out the rate-differential signal, **which is the actual transmission
+channel to price** — Jeff's own chain says rates decide strength.
+
+**Note NZD: 4th under CURRENT, LAST under LEADING.** That is the whole
+argument in one row.
+
 ### 2.1 Production (weight 1)
 
 **19 indicators — 15 GOOD · 2 BAD · 2 NEUTRAL**
@@ -480,9 +520,9 @@ global page omits entirely (F-57).
 | Tue 01 17:00 | EUR | Unemployment Rate | 6.4% ® | 6.3% | **6.4%** | **GOOD** | **MISS** |
 | **Tue 01 21:30** | CAD | S&P Global Mfg PMI | 53.5 | 52.7 | **53.0** | **BAD** | **BEAT** |
 | **Tue 01 22:00** | **USD** | **ISM Manufacturing PMI** | 55.6 | 55.2 – 55 | **54.6** | **BAD** | **MISS** |
-| **Wed 02 10:00** | **NZD** | **⚠ RBNZ Interest Rate Decision** | **2.50%** | 2.75% | — | **§2.6 · rate score +2.25** (LD-23, w3) | ahead |
+| **Wed 02 10:00** | **NZD** | **⚠ RBNZ Interest Rate Decision** | 2.5% | 2.75% | **2.75%** | **§2.6 surprise +0.00** — FULLY PRICED - no surprise, no reason to buy | **FULLY PRICED** |
 | Wed 02 06:45 | NZD | Building Permits MoM | -3.7% ® | 2.5% | **-4.3%** | **GOOD** | **MISS** |
-| **Wed 02 21:45** | **CAD** | **⚠ BoC Interest Rate Decision** | **2.25%** | 2.25% | — | **§2.6 · rate score +0.38** (LD-23, w3) | ahead |
+| **Wed 02 21:45** | **CAD** | **⚠ BoC Interest Rate Decision** | **2.25%** | 2.25% | — | **HOLD PRICED** — a hold is the baseline - ANY move is the surprise | ahead |
 | Thu 03 09:30 | AUD | Balance of Trade | A$1.929B | A$1.40B – A$1.1B | — | **BAD** | ahead |
 | **Thu 03 14:30** | **CHF** | **Inflation Rate YoY** | **0.4%** | 0.5% – 0.6% | — | **GOOD** | ahead |
 | **Thu 03 15:30** | CHF | Procure.ch-UBS Mfg PMI | — | — | — | UNSCORED — not in capture | ahead |
@@ -529,22 +569,36 @@ CALENDAR EVENT, not the indicator.
 
 | Pair | Bias | Spread | Range % | Room | Risk | **Confluence** | Cycle |
 |---|---|---|---|---|---|---|---|
-| AUDCAD | SHORT | 4.59 | 88.9% | **0.89 AMPLE** | 9 | 0.62 | **-0.50** long aligned / short BUILDING |
 | CADJPY | LONG | 5.73 | 74.2% | 0.26 TIGHT | 9 | 0.55 | **+0.00** long aligned / short aligned |
-| GBPJPY | LONG | 4.48 | 68.0% | 0.32 TIGHT | 1 | 0.54 | **-0.50** long IN THE PAST / short aligned |
-| EURCHF | LONG | 5.24 | 82.3% | **0.18 NONE** | 5 | 0.48 | **-0.50** long aligned / short BUILDING |
-| **GBPAUD** | LONG | 3.34 | 45.5% | 0.55 adequate | 1 | **0.48** | **-1.00** long IN THE PAST / short BUILDING |
-| **CADCHF** | LONG | 7.07 | 89.4% | **0.11 NONE** | 11 | **0.47** | **-0.50** long aligned / short BUILDING |
-| GBPCHF | LONG | 5.82 | 80.3% | **0.20 NONE** | 3 | 0.45 | **-1.00** long IN THE PAST / short BUILDING |
-| **NZDJPY** | LONG | 3.46 | 74.5% | 0.26 TIGHT | 5 | **0.44** | **-0.50** long IN THE PAST / short aligned |
+| AUDCAD | SHORT | 4.59 | 88.9% | **0.89 AMPLE** | 9 | 0.54 | **-0.50** long aligned / short BUILDING |
+| GBPJPY | LONG | 4.48 | 68.0% | 0.32 TIGHT | 1 | 0.46 | **-0.50** long IN THE PAST / short aligned |
+| EURCHF | LONG | 5.24 | 82.3% | **0.18 NONE** | 5 | 0.41 | **-0.50** long aligned / short BUILDING |
+| **CADCHF** | LONG | 7.07 | 89.4% | **0.11 NONE** | 11 | **0.40** | **-0.50** long aligned / short BUILDING |
+| **NZDJPY** | LONG | 3.46 | 74.5% | 0.26 TIGHT | 5 | **0.38** | **-0.50** long IN THE PAST / short aligned |
+| **GBPAUD** | LONG | 3.34 | 45.5% | 0.55 adequate | 1 | **0.32** | **-1.00** long IN THE PAST / short BUILDING |
+| GBPCHF | LONG | 5.82 | 80.3% | **0.20 NONE** | 3 | 0.30 | **-1.00** long IN THE PAST / short BUILDING |
 
 **Confluence = (spread/8 + room + inverted risk) / 3, then scaled by the
-CYCLE TILT (LD-86), bounded ±25%.** §2.0b finally feeds selection instead of
+CYCLE TILT (LD-86), bounded ±50% since 2026-09-02 (LD-92).** §2.0b finally feeds selection instead of
 being computed and read by nobody.
 
 **Tilt = (long leg's cycle position − short leg's) / 2.** BUILDING is +1,
 aligned 0, IN THE PAST −1. **A LONG on a BUILDING currency against an IN THE
 PAST one scores +1.00; the reverse scores −1.00.**
+
+**⚠ THE TILT WAS RAISED ±25% → ±50% TODAY (LD-92).** Jeff: *"probably our
+scoring makes things lagging instead of leading."* **Measured: 73% of §2.0 is
+CONFIRMING + RATE — the last two stages of the causal chain — and only 27% is
+LEADING.** §2.0b already computed the lead-vs-confirm gap and called NZD IN
+THE PAST on Sunday, correctly; **the signal was never missing, it was
+outvoted 8:3.** Raising the tilt strengthens it **without touching the
+weights**, which is the reversible lever. **The weights themselves go to
+Saturday's review with §2.0d as evidence.**
+
+**It reshuffled the ranking: CADJPY now leads on confluence** — the only
+cycle-neutral pair on the board — and **GBPAUD falls to last** on its −1.00
+tilt despite the best room. **That is the leading read asserting itself, and
+it is exactly what Saturday has to judge.**
 
 **Why a MULTIPLIER and not a fourth term.** Both shapes were costed and both
 produced the same three pairs — but a fourth term **dilutes room from a third

@@ -1016,6 +1016,86 @@ while destroying the citation trail.
 
 ---
 
+### LD-91 · LD-92 · LD-93 — making the model LEADING instead of LAGGING
+
+**Jeff, 2026-09-02:** *"Trading the news is one thing. But the whole point of
+this report is to foresee if the central bank will Hike before it happen …
+probably our scoring makes things lagging instead of leading. Instead of
+putting weight into the lagging indicators we probably want to focus more on
+the leading side or see all of them as equal."*
+
+#### The measurement
+
+| Stage | Weight | Share |
+|---|---|---|
+| LEADING — Production, Spending, Trade | 3 | **27%** |
+| CONFIRMING — Employment, Inflation | 5 | 45% |
+| RATE — the decision | 3 | 27% |
+
+**73% of the score is the thing being PREDICTED; 27% is the thing that
+PREDICTS it.** For a model whose stated job is to foresee a hike, that is
+backwards.
+
+**One thing I checked and got wrong first:** I claimed the heavy categories
+were also the stalest, so the lag compounded. **They are not** — Production
+1.9mo, Inflation 2.1mo, and Trade is the OLDEST at 2.6mo carrying weight 1.
+**The ages are flat. It is the weights, and only the weights.**
+
+#### LD-91 — §4.0 scores a rate decision by its SURPRISE
+
+**Jeff:** *"now that we have the picture for Interest Rate news how do we
+score it in §4.0?"*
+
+The cell used to restate §2.6's score — **a number about the past, sitting in
+a forward-looking table.** It now says what the market must SEE to be
+surprised:
+
+```
+AHEAD     HIKE PRICED +0.25pp - delivering it is NOT news; a hold is the shock
+          HOLD PRICED        - a hold is the baseline, ANY move is the surprise
+          UNPRICED           - no consensus, the surprise cannot be measured
+RELEASED  surprise +0.00     - FULLY PRICED, no surprise, no reason to buy
+```
+
+**RBNZ today reads FULLY PRICED. BoC tonight reads HOLD PRICED.**
+
+#### LD-92 — cycle tilt ±25% → ±50%
+
+**§2.0b already computed the lead-vs-confirm gap and called NZD IN THE PAST on
+30 Aug — correctly.** NZDJPY went on to be the week's only loser. **The
+leading signal was never missing; it sat downstream of a tally that outvotes
+it 8:3.**
+
+**Raising the tilt strengthens it WITHOUT touching the weights** — the cheaper
+lever, and reversible on one line.
+
+**It reshuffled §4.2: CADJPY to the top** (the only cycle-neutral pair) **and
+GBPAUD to the bottom** on its −1.00 tilt — **and GBPAUD made +15.5 this week.**
+That tension is the review's job, not mine to resolve on n=3.
+
+#### LD-93 — §2.0d publishes three weightings in parallel
+
+**Selection still ranks on CURRENT. Nothing changes today.** EQUAL and
+LEADING-TILT accumulate a record beside it so **Saturday decides on a week of
+evidence rather than three sessions.**
+
+| CCY | Current | Equal | Leading | |
+|---|---|---|---|---|
+| **NZD** | +3.31 (4th) | +0.68 | **+0.41 (LAST)** | the week's only losing leg |
+| **CHF** | −0.28 (last) | +1.64 | **+5.85 (2nd)** | and we are SHORT it in the best pair |
+
+**Those two rows are the whole argument, and they point opposite ways.**
+
+**EQUAL is on the sheet for completeness, not as a live candidate.**
+Flattening Inflation 3 → 1 strips the rate-differential signal, **which is the
+transmission channel the whole report rests on** — Jeff, 2026-08-21: *"the
+Interest Rate dictates if the Currency is Strong or Weak."* It scored **1 of
+3** against this week's moves; CURRENT and LEADING both scored 2.
+
+**THE WEIGHTS THEMSELVES ARE NOT CHANGED.** On n=3 that is tuning to noise.
+**It is the headline item on the 2026-09-05 agenda.**
+
+---
 ### LD-90 — a decision moves price by its SURPRISE only
 
 **Jeff, 2026-09-02, after the RBNZ hiked to 2.75% and NZD fell 108 pips:**

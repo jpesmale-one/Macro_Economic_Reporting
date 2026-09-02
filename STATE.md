@@ -28,6 +28,13 @@ track: LEAN (no section-2 trigger has fired)
 #   k=0.50, LD-86 cycle gate, the confluence formula that has NEVER been
 #   tested against outcomes, and the three-pair floor vs room floor
 #   conflict. DO NOT TUNE ALL FOUR ON ONE WEEK OF EVIDENCE.
+# 2026-09-05 HEADLINE ITEM: is the model LEADING or LAGGING? Jeff,
+#   2026-09-02: "the whole point of this report is to foresee if the central"
+#   bank will Hike before it happen ... probably our scoring makes things
+#   lagging instead of leading." MEASURED: 73% of 2.0 is CONFIRMING+RATE,
+#   27% is LEADING. Shipped LD-92 (tilt 25->50%) and LD-93 (2.0d parallel
+#   scoring, selection unchanged). THE WEIGHTS THEMSELVES ARE NOT CHANGED -
+#   that decision waits for a week of 2.0d evidence.
 # CLOSED 2026-08-31: the cycle gap. 2.0b now feeds selection as criterion 7
 #   (LD-86). Flagged in SELECTION_CRITERIA.md as RATIFIED by Jeff, not
 #   authored by him - held to a higher evidence bar for that reason.

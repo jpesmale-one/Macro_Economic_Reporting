@@ -116,7 +116,27 @@ def explain(base, quote, direction, pos=None):
 #
 # BOUNDED AT +/-25% so the cycle re-ranks without dominating - the same
 # restraint as k=0.50 in LD-85.
-CYCLE_WEIGHT = 0.25
+# LD-92, Jeff's call 2026-09-02: raised 0.25 -> 0.50.
+#
+# "probably our scoring makes things lagging instead of leading. Instead of
+#  putting weight into the lagging indicators we probably want to focus more
+#  on the leading side"
+#
+# MEASURED: 73% of the 2.0 score is CONFIRMING (5) + RATE (3) - the two
+# stages that come LAST in his causal chain. Only 27% is LEADING. A model
+# built to FORESEE a hike is three-quarters made of the hike and its
+# immediate precursors.
+#
+# 2.0b ALREADY measures the lead-vs-confirm gap and called NZD IN THE PAST
+# on 30 Aug - correctly; NZDJPY went on to be the week's only loser. The
+# leading signal was never missing. It was sitting downstream of a tally
+# that outvotes it 8:3.
+#
+# Raising the tilt strengthens the leading read WITHOUT touching the
+# weights, which is the cheaper of the two levers and the one that can be
+# reversed on one line. The weights themselves go to the 2026-09-05 review
+# with parallel scoring as evidence (LD-93).
+CYCLE_WEIGHT = 0.50
 
 
 def apply_tilt(confluence, tilt, weight=CYCLE_WEIGHT):

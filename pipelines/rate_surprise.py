@@ -119,6 +119,41 @@ def explain(ccy, actual, consensus, forecast=None):
             % (ccy, actual, consensus or forecast, s, verdict(s)))
 
 
+def priced_read(previous, consensus, forecast=None):
+    """What 4.0 should say about a rate decision BEFORE it lands (LD-91).
+
+    Jeff, 2026-09-02: "now that we have the picture for Interest Rate news
+    how do we score it in 4.0 - Week ahead?"
+
+    The old cell restated 2.6's score, which is a number about the PAST. A
+    forward-looking row has to say what the market must see to be SURPRISED,
+    because that is the only part that moves price (LD-90).
+
+    Returns (label, note):
+      HIKE PRICED    consensus above the current rate - a hike is the
+                     baseline, so delivering one is NOT news. The tradable
+                     outcomes are a hold (dovish shock) or a bigger move.
+      CUT PRICED     the mirror.
+      HOLD PRICED    consensus equals the rate. Any move at all is a surprise.
+      UNPRICED       no consensus - we cannot say what is expected, and
+                     saying nothing is the honest answer.
+    """
+    pv, c = _bp(previous), _bp(consensus)
+    if c is None:
+        c = _bp(forecast)
+    if pv is None or c is None:
+        return ('UNPRICED', 'no consensus - the surprise cannot be measured')
+    d = c - pv
+    if abs(d) < 0.01:
+        return ('HOLD PRICED',
+                'a hold is the baseline - ANY move is the surprise')
+    if d > 0:
+        return ('HIKE PRICED %+.2fpp' % d,
+                'delivering it is NOT news; a hold is the dovish shock')
+    return ('CUT PRICED %+.2fpp' % d,
+            'delivering it is NOT news; a hold is the hawkish shock')
+
+
 if __name__ == '__main__':
     print('LD-90 SURPRISE TERM')
     print()
