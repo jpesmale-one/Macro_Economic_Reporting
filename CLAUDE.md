@@ -86,6 +86,15 @@ ledgers, and the separation is what keeps this one lean.
 
 ---
 
+## 0a-i. NEW HERE? READ `docs/SYSTEM_OVERVIEW.md` FIRST
+
+**The whole machine read forwards** — what feeds it, what it computes, what it
+refuses to publish, and what it currently gets wrong. `REPORT_SPEC.md` is 2,500
+lines of findings in the order they happened; **SYSTEM_OVERVIEW is the same
+system as a map.** Every figure in it was pulled by running the pipelines.
+
+---
+
 ## 0a. READ THE NEWEST HANDOVER FIRST
 
 **`docs/HANDOVER_2026-08-24_fine_tuning.md`** — thirteen decisions and six
