@@ -579,26 +579,12 @@ CALENDAR EVENT, not the indicator.
 | GBPCHF | LONG | 5.82 | 80.3% | **0.20 NONE** | 3 | 0.30 | **-1.00** long IN THE PAST / short BUILDING |
 
 **Confluence = (spread/8 + room + inverted risk) / 3, then scaled by the
-CYCLE TILT (LD-86), bounded ±50% since 2026-09-02 (LD-92).** §2.0b finally feeds selection instead of
+CYCLE TILT (LD-86), bounded ±25%.** §2.0b finally feeds selection instead of
 being computed and read by nobody.
 
 **Tilt = (long leg's cycle position − short leg's) / 2.** BUILDING is +1,
 aligned 0, IN THE PAST −1. **A LONG on a BUILDING currency against an IN THE
 PAST one scores +1.00; the reverse scores −1.00.**
-
-**⚠ THE TILT WAS RAISED ±25% → ±50% TODAY (LD-92).** Jeff: *"probably our
-scoring makes things lagging instead of leading."* **Measured: 73% of §2.0 is
-CONFIRMING + RATE — the last two stages of the causal chain — and only 27% is
-LEADING.** §2.0b already computed the lead-vs-confirm gap and called NZD IN
-THE PAST on Sunday, correctly; **the signal was never missing, it was
-outvoted 8:3.** Raising the tilt strengthens it **without touching the
-weights**, which is the reversible lever. **The weights themselves go to
-Saturday's review with §2.0d as evidence.**
-
-**It reshuffled the ranking: CADJPY now leads on confluence** — the only
-cycle-neutral pair on the board — and **GBPAUD falls to last** on its −1.00
-tilt despite the best room. **That is the leading read asserting itself, and
-it is exactly what Saturday has to judge.**
 
 **Why a MULTIPLIER and not a fourth term.** Both shapes were costed and both
 produced the same three pairs — but a fourth term **dilutes room from a third

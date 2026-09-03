@@ -4,14 +4,13 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-09-02 (r1, WEDNESDAY, UNSEALED - set stays LOCKED)
-date: 2026-09-02
-data_asof: 2026-09-02 07:40 PHT (capture 07:40, all 8 country pages; 12 of
-           26 4.0 rows RELEASED; 8 whitelist rows updated. RBNZ decision
-           at 10:00 PHT and BoC at 21:45 PHT are BOTH STILL AHEAD - an
-           earlier build had them 8h early (F-77). gold/BTC Tuesday bars
-           CLOSED, Wednesday FORMING)
-last_sealed: 2026-08-21 (r13, SEALED FULL) - editions 08-24 .. 09-02 UNSEALED
+edition: 2026-09-03 (r1, THURSDAY, UNSEALED - set stays LOCKED)
+date: 2026-09-03
+data_asof: 2026-09-03 08:21 PHT (capture 08:21, all 8 country pages; BOTH
+           central banks DECIDED and both were FULLY PRICED - RBNZ hiked to
+           2.75% and NZD fell 108, BoC held at 2.25% and CAD rose 53. Set at
+           -188.0 pips, worst of the week. gold/BTC Wed bars CLOSED)
+last_sealed: 2026-08-21 (r13, SEALED FULL) - editions 08-24 .. 09-03 UNSEALED
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse

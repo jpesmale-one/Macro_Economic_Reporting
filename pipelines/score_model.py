@@ -60,7 +60,7 @@ ROWS = [
  ("Spending","NZ","Building Permits MoM","-4.3%","-3.6%","Jul/26","<0%","BAD"),
  ("Spending","NZ","Electronic Retail Card Spending YoY","3.4%","1.3%","Jul/26",">0.5%","GOOD"),
  ("Spending","NZ","ANZ Business Confidence","53.7","56.1","Aug/26",">Prev","BAD"),
- ("Spending","NZ","ANZ Roy Morgan Consumer Conf","99.3","91.3","Jul/26",">Prev","GOOD"),
+ ("Spending","NZ","ANZ Roy Morgan Consumer Conf","98.0","99.3","Aug/26",">Prev","BAD"),
  ("Spending","CA","Retail Sales YoY","5.2%","5.9%","Jun/26",">0.5%","GOOD"),
  ("Spending","CA","Building Permits MoM","+18.5%","-3.0%","Jun/26",">0.5%","GOOD"),
  ("Spending","CH","Consumer Confidence","-35","-36","Jul/26",">Prev","GOOD"),
