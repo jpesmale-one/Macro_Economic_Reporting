@@ -4,16 +4,52 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-09-03 (r1, THURSDAY, UNSEALED - set stays LOCKED)
-date: 2026-09-03
-data_asof: 2026-09-03 08:21 PHT (capture 08:21, all 8 country pages; BOTH
-           central banks DECIDED and both were FULLY PRICED - RBNZ hiked to
-           2.75% and NZD fell 108, BoC held at 2.25% and CAD rose 53. Set at
-           -188.0 pips, worst of the week. gold/BTC Wed bars CLOSED)
-last_sealed: 2026-08-21 (r13, SEALED FULL) - editions 08-24 .. 09-03 UNSEALED
+edition: 2026-09-04 (r1, FRIDAY, UNSEALED - set stays LOCKED, expires tonight)
+date: 2026-09-04
+data_asof: 2026-09-04 08:24 PHT (calendar re-captured 08:02, 771 rows all 8
+           countries; TE whitelist reconciled 08:26 after LD-50 BLOCKED on a
+           stale snapshot; F&G re-fetched 07:41 = 35.26 FEAR, first material
+           move in 4 editions; prices 08:24. Set at -402.4 pips, worst of the
+           week. NZDJPY 32.7 PIPS FROM ITS FALSIFIER. Thu bars CLOSED)
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-04 FRIDAY BUILD - EIGHT FINDINGS, none caught by a guard:
+#   F-81 s1 prose published a hand-typed NFP consensus (+45K) that matched no
+#     capture and contradicted its own 4.0 table (58K) four sections later.
+#   F-82 parallel_scores printed 'equa' from k[:4].lower(). Fixed.
+#   F-83 4.0 graded RELEASED rows on their PRE-RELEASE expectation. JPY
+#     Household Spending printed -3.6% vs -1.6% consensus and carried GOOD.
+#     Released rows now grade actual-vs-consensus; 3 verdicts flipped.
+#   F-84 'UNSCORED - not in capture' was the WRONG DIAGNOSIS for 4 rows that
+#     had simply released BEFORE the window opened. Pointed at the wrong
+#     problem for three editions.
+#   F-85 rows with a FORECAST but no CONSENSUS were published 'unscorable'.
+#     4 rows recovered; forecast is the documented fallback benchmark.
+#   F-86 the two rate-decision rows were spliced beside their currency's
+#     first row rather than sorted on their own timestamp.
+#   F-87 THE LONGEST-LIVED: s5 and s6 TAILS were still the 2026-08-21 SEALED
+#     edition's, through FOURTEEN builds - a falsifier ABOVE current price,
+#     BTC levels formed 19-21 Aug, a GBPUSD LONG that had not existed for two
+#     weeks. R-35 measures WHOLE-SECTION change and the TOPS were rewritten
+#     every edition, so the section always 'moved' while its tail never did.
+#     SECTION DRIFT IS NOT UNIFORM WITHIN A SECTION.
+#   F-88 rate_model's CH row kept 0.4% FALLING after the 0.8% RISING print, so
+#     2.5 and 2.6 drove the same indicator in OPPOSITE directions in one
+#     edition. CHF rate -0.38 -> +0.38; CAD +0.38 -> +0.25 (BoC surprise 0.00
+#     added under LD-90). Found by REBUILDING 2.6 from the model - the
+#     published table would have been internally consistent and wrong.
+# 2026-09-05 ADD TO THE AGENDA: THE ROOM GATE INVERTED. NZDJPY scores 0.91
+#   room - second-highest on the board - while sitting 32.7 pips from its
+#   falsifier, because it has fallen to 8.7% of its 45-bar range. CADCHF, the
+#   only pair in profit, scores WORST at 0.10 because it went UP. The gate
+#   ranks our best pair last and our worst pair second. Room cannot tell
+#   'space ahead' from 'free fall'. NOT previously on the agenda.
+# 2026-09-05 LEADING-VS-LAGGING now has a WEEK of record and all three
+#   disagreements went the leading scheme's way: NZD +3.06 current / -0.34
+#   leading (NZDJPY -324.4), CHF +3.47 / +7.10 (we are SHORT it), AUD +1.97 /
+#   +5.07 (we are SHORT it). Two of three are legs we are short. STILL n=3.
+
 # 2026-09-05 (after Fri close): REVISIT k IN LD-85. The forward-adjusted
 #   tally ships at k=0.50 on Jeff's call 2026-08-31: "ok lets do that for
 #   now. then we can revisit it later after this week's market close."

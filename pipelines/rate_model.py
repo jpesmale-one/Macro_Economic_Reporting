@@ -70,8 +70,16 @@ ROWS = {
     'GB': ('3.75%', 0.0, 2.9, True,  '', None),
     'JP': ('1.00%', 0.0, 1.9, True,  'Jul/26 print, released 07:30 PHT 21 Aug', None),
     'AU': ('4.35%', 0.0, 3.8, False, '', None),
-    'CA': ('2.25%', 0.0, 3.0, True,  '', None),
-    'CH': ('0.00%', 0.0, 0.4, False, '', None),
+    # LD-90: BoC HELD 2 Sep at 2.25%, exactly on consensus. A fully-priced
+    # hold is not news either - the surprise term pays 0.00 rather than
+    # being absent. NZD's row already recorded this; CAD's did not.
+    'CA': ('2.25%', 0.0, 3.0, True,  'HELD 2 Sep at 2.25%, exactly on consensus - fully priced, CAD +53 pips (LD-90)', 0.0),
+    # F-88: this row still carried 0.4% FALLING after CHF inflation
+    # printed 0.8% RISING on 3 Sep. Section 2.5 updated on that print and
+    # 2.6 did not, so the same indicator drove two categories in opposite
+    # directions in one edition. Inside-band and rising is +0.25, not
+    # -0.25 - a 0.75 swing on a weight-3 category.
+    'CH': ('0.00%', 0.0, 0.8, True,  'Aug/26 print, 0.8% vs 0.5% consensus - inside the SNB 0-2% band and RISING', None),
 }
 
 

@@ -155,6 +155,60 @@ decide strength** (2026-08-21). EQUAL denies the mechanism the report is
 built on — it is on the sheet for completeness, not as a live candidate.
 
 ---
+## 7. ⚠ ADDED 2026-09-04 — the ROOM gate inverted, and nobody designed for it
+
+**This was not on the agenda when the agenda was written.** It surfaced on the
+last day of the lock and it is the cleanest single defect the week produced.
+
+### What happened
+
+| Pair | Room | Confluence rank | Actual result |
+|---|---|---|---|
+| **NZDJPY** | **0.91** | **2nd of 8** | **−324.4 pips, 32.7 from its falsifier** |
+| **CADCHF** | **0.10** | **8th of 8, last** | **+33.2 pips, the only winner** |
+
+**The gate ranked our worst pair second and our best pair last.**
+
+### Why
+
+**Room measures the fraction of the 45-bar range lying in the bias direction.**
+NZDJPY had fallen to **8.7% of its range**, so almost the whole range sits
+"above" a LONG — **the gate reports the 324 pips already lost as opportunity
+ahead.** CADCHF *rose* to 89.6% of its range, so it scores as having nowhere
+to go **because it worked**.
+
+### The distinction the gate cannot draw
+
+**A pair with room ahead of it and a pair in free fall look identical from the
+bottom of a range.** F-69 built this gate to catch GBPUSD — a LONG at 94% of
+range with 30 pips of headroom — and **it still does that job correctly.** The
+failure is at the other end of the scale, which was never tested.
+
+### Grade it on
+
+**1. Does room predict anything at all?** n=3 this week, plus the 4 pairs of
+2026-08-24 and the 3 of 2026-08-31. **~10 observations — thin, but it is what
+exists.**
+
+**2. Would a DIRECTION filter fix it or break it?** e.g. room only counts when
+price is not making new lows against the bias. **Costed against every past
+selection before it ships**, because the same change would have removed
+GBPAUD from this week's set (it also gained room by falling) — and GBPAUD is
+not the pair that failed.
+
+**3. Or is room simply mis-weighted rather than wrong?** It is a third of
+confluence. **F-69 and criterion 4 both say it must not weaken**, which is
+exactly the constraint that made LD-86 a multiplier rather than a fourth term.
+
+### ⚠ The trap
+
+**Do not fix this by down-weighting room.** The one pair that made money this
+week scored 0.10 on room, so **a naive reading says room should be inverted**
+— and that reading is drawn from a single week in which the yen repriced 292
+pips on a central bank that did not meet. **One event drove three of the
+eight rows.**
+
+---
 ## What NOT to do at the retro
 
 **Do not tune six things at once.** Four changes shipped in two days; if all

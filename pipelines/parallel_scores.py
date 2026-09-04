@@ -95,10 +95,12 @@ def table():
     rc = {k: sorted(t[k], key=lambda c: -t[k][c]) for k in SCHEMES}
     for c in order:
         moves = []
-        for k in ('EQUAL', 'LEADING'):
+        # F-82: k[:4].lower() rendered EQUAL as "equa" in every published
+        # edition. Label the schemes explicitly rather than by truncation.
+        for k, lbl in (('EQUAL', 'equal'), ('LEADING', 'lead')):
             d = rc['CURRENT'].index(c) - rc[k].index(c)
             if d:
-                moves.append('%s %+d' % (k[:4].lower(), d))
+                moves.append('%s %+d' % (lbl, d))
         rows.append('| **%s** | **%+.2f** | %+.2f | %+.2f | %s |'
                     % (c, t['CURRENT'][c], t['EQUAL'][c], t['LEADING'][c],
                        ' · '.join(moves) or '—'))

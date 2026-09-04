@@ -50,7 +50,7 @@ ROWS = [
  ("Spending","EA","Consumer Confidence Final","-15.5","-15.9","Aug/26",">Prev","GOOD"),
  ("Spending","GB","GfK Consumer Confidence","-14","-17","Aug/26",">Prev","GOOD"),
  ("Spending","GB","Retail Sales Ex Fuel YoY","2.3%","5.0%","Jul/26",">0.5%","GOOD"),
- ("Spending","JP","Household Spending YoY","-3.3%","-0.4%","Jun/26","<0%","BAD"),
+ ("Spending","JP","Household Spending YoY","-3.6%","-3.3%","Jul/26",">Cons -1.6%","BAD"),
  ("Spending","JP","Consumer Confidence","35.5","34.9","Aug/26",">Prev","GOOD"),
  ("Spending","JP","Retail Sales YoY","4.0%","0.6%","Jul/26",">0.5%","GOOD"),
  ("Spending","AU","Household Spending YoY","7.0%","6.0%","Jul/26",">0.5%","GOOD"),
@@ -66,13 +66,13 @@ ROWS = [
  ("Spending","CH","Consumer Confidence","-35","-36","Jul/26",">Prev","GOOD"),
  ("Spending","CH","Retail Sales YoY","2.3%","1.9%","Jul/26",">0.5%","GOOD"),
  # ---------------- TRADE (w=1) ----------------
- ("Trade","US","Balance of Trade","-$73.26B","-$77.65B","Jun/26",">Prev","GOOD"),
+ ("Trade","US","Balance of Trade","-$88.6B","-$71.2B","Jul/26",">Cons -$90B","GOOD"),
  ("Trade","EA","Balance of Trade","EUR8.60B","EUR-9.00B","Jun/26",">Prev","GOOD"),
  ("Trade","GB","Balance of Trade","GBP-5.54B","GBP-3.46B","Jun/26",">Prev","BAD"),
  ("Trade","JP","Balance of Trade","JPY-634.5B","JPY-409.9B","Jul/26",">Prev","BAD"),
- ("Trade","AU","Balance of Trade","A$1.93B","A$-2.37B","Jun/26",">Prev","GOOD"),
+ ("Trade","AU","Balance of Trade","A$1.923B","A$2.341B","Jul/26",">Cons A$1.40B","GOOD"),
  ("Trade","NZ","Balance of Trade","NZ$-1.95B","NZ$0.02B","Jul/26",">Prev","BAD"),
- ("Trade","CA","Balance of Trade","C$3.86B","C$3.70B","Jun/26",">Prev","GOOD"),
+ ("Trade","CA","Balance of Trade","C$0.77B","C$4.2B","Jul/26",">Cons C$3.6B","BAD"),
  ("Trade","CH","Balance of Trade","CHF8.1B","CHF3.8B","Jul/26",">Prev","GOOD"),
  # ---------------- EMPLOYMENT (w=2) ----------------
  ("Employment","US","Non Farm Payrolls","-23K","20K","Jul/26",">Cons","BAD"),
@@ -96,7 +96,7 @@ ROWS = [
  ("Inflation","AU","Inflation Rate YoY","3.5%","3.8%","Jul/26",">2% & falling","NEUTRAL"),
  ("Inflation","NZ","Inflation Rate YoY","4.1%","3.1%","Jun/26",">2% & rising","GOOD"),
  ("Inflation","CA","Inflation Rate YoY","3.0%","2.8%","Jul/26",">2% & rising","GOOD"),
- ("Inflation","CH","Inflation Rate YoY","0.4%","0.5%","Jul/26","<2% & falling","BAD"),
+ ("Inflation","CH","Inflation Rate YoY","0.8%","0.4%","Aug/26","<2% & rising","NEUTRAL"),
 ]
 
 CCYS = ["US","EA","GB","JP","AU","NZ","CA","CH"]
