@@ -14,6 +14,37 @@ data_asof: 2026-09-04 08:24 PHT (calendar re-captured 08:02, 771 rows all 8
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-04 RETROSPECTIVE HELD EARLY (Jeff: "I'm not available tomorrow").
+#   docs/RETRO_2026-09-04.md. Held 12h BEFORE NFP, so items 1 and 3 are
+#   PROVISIONAL and the file says so.
+#   NOTHING SHIPPED. Six agenda items + the room gate, one week of evidence,
+#   and the honest number of changes is zero.
+#   VALIDATED: LD-90. Two fully-priced decisions (RBNZ hike, BoC hold),
+#     opposite currency outcomes, neither driven by the decision. Keep at 1.0.
+#   VALIDATED-ISH: the cycle gate's IN THE PAST bucket. NZD -1.97% and GBP
+#     -0.96% were the two weakest currencies and 2.0b called both on Sunday.
+#     BUT 'BUILDING' averaged -0.15%, WORSE than aligned - the gate predicts
+#     WEAKNESS but not STRENGTH. If that repeats, make it PENALTY-ONLY.
+#   MEASURED, and it is the strongest change case on the sheet: 4.0's
+#     pre-release calls landed 3 RIGHT of 11 - materially WORSE than chance
+#     (~4). That is the signal LD-85 amplifies by k=0.50. HOLD k one more
+#     week, then decide on ~20 rows. If still <50%, k falls toward 0.25.
+#     NOTE: this is TE CONSENSUS being a poor forecaster, not our arithmetic.
+#   LEADING vs LAGGING: ranked by Spearman vs actual currency strength,
+#     LEADING +0.190 > EQUAL +0.048 > CURRENT -0.119. The order Jeff
+#     predicted. AND NOT SIGNIFICANT - n=8 needs ~|0.71| for p<0.05. DO NOT
+#     TOUCH THE WEIGHTS. Revisit at n>=4 weeks.
+#   THE WEEK'S REAL LESSON: JPY +2.87%, nearly 7x the next currency, moved by
+#     a BoJ that did not meet (Takata + a rate check). No whitelist row could
+#     have seen it. The gap is not the weights.
+# >>> OPEN DECISION FOR JEFF, blocks nothing but recurs every Sunday:
+#     THE THREE-PAIR FLOOR (LD-35) vs the room floor. On 30 Aug only TWO
+#     pairs cleared 0.20 room. The rule demanded three. The third was NZDJPY,
+#     which 4.4 called 'the weakest of the three ... if one pair should be
+#     dropped, it is this one' IN ADVANCE - and it lost 324 pips.
+#     HOLD THREE AND ACCEPT A THIN PICK, OR LET THE SET SHRINK TO TWO?
+#     This is not a tuning decision and I have not made it.
+
 # 2026-09-04 FRIDAY BUILD - EIGHT FINDINGS, none caught by a guard:
 #   F-81 s1 prose published a hand-typed NFP consensus (+45K) that matched no
 #     capture and contradicted its own 4.0 table (58K) four sections later.
