@@ -4,16 +4,57 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-09-08 (r3, WEEKLY, UNSEALED - first edition on the REVAMPED
-         model; awaiting Jeff's audit)
-date: 2026-09-08
-data_asof: 2026-09-08 23:30 PHT (calendar re-captured 23:26, 828 rows all 8
-           countries; TE whitelist re-fetched 23:27, 0 unmatched; fact
-           tables Sep-26 populated, 78 of 78 cells. NO PRICE DATA - TV was
-           already running without CDP so 9222 never listened)
+edition: 2026-09-06 (r1, WEEKLY, UNSEALED - selection for the 7-11 Sep
+         cycle, built on SUNDAY 6 SEP VINTAGE)
+date: 2026-09-06
+data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
+           TE reconciled 23:27, 0 unmatched. Fact tables ROLLED BACK to what
+           was knowable on Sunday - 4 rows that printed Mon 7 / Tue 8
+           reverted to Aug-26. NO PRICE DATA)
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-06 WEEKLY BUILT (as of Sunday, on Jeff's instruction 2026-09-09:
+#   "Make it as if it's September 6 Sunday. Our cycle is every Sunday to
+#   Saturday."). reports/2026/Q3/2026-09-06_weekly.md
+#   The 2026-09-08 draft (r1/r2/r3) is DELETED - it was built midweek for
+#   the WRONG WEEK. Its decisions (LD-98..LD-101) survive in the pipelines.
+#   >>> VINTAGE DISCIPLINE APPLIED. 4 rows that printed AFTER Sunday were
+#     reverted to their Aug-26 values: AUD Job Ads (Mon 7 01:30), CHF
+#     Unemployment (Mon 7 07:00), AUD NAB (Tue 8 01:30), AUD Westpac (Tue 8
+#     12:30). The 5 that printed on/before Fri 4 Sep STAY - a Sunday report
+#     legitimately sees Friday. Leaving the Mon/Tue prints in would have
+#     been a backtest contaminated with hindsight.
+#   >>> AND THE HORIZON POINT IS PROVEN. Building on SUNDAY for the week
+#     ahead gives 12 of 12 rows scorable, 5 with a real TE consensus.
+#     The same pipeline run midweek against 14-18 Sep scored only 13 of 20,
+#     because TE publishes consensus CLOSE TO THE RELEASE. Jeff called this
+#     before I measured it: "It's because it's still too early to look at
+#     Next Week."
+#   THE SET for 7-11 Sep:
+#     NZDCHF SHORT +8.00 (CHF +7.00 top vs NZD -1.00 bottom - widest gap
+#       this model has produced)
+#     EURJPY LONG  +3.33
+#     GBPUSD LONG  +1.00 (thin - a point on a +/-14 scale)
+#     AUD and CAD unused.
+#   THE CALIBRATOR MOVED FOUR OF EIGHT CURRENCIES ACROSS BANDS:
+#     AUD +5.50 (2nd) -> +3.50 (4th)  STRONG -> NEUTRAL, three rows price
+#       weak Mon-Tue. It was the base-only 2nd pick (AUDJPY) and is now out.
+#     GBP +3.00 (6th) -> +4.00 (3rd)  WEAK -> STRONG on three JUL
+#       production rows Friday.
+#     USD +4.00 (3rd) -> +3.00 (6th)  STRONG -> WEAK, CPI 2.5% -> 2.4%.
+#     That is a large effect for a +/-5 term against a +/-9 base, and it
+#     happens because the base board is TIGHTLY PACKED - six of eight
+#     currencies within 2.5 points.
+#   RULE 1 FIRED on AUD Tue 8: three rows, THREE reference months (SEP/AUG/
+#     JUL). September supersedes both. NOTE: all three scored -1, so the
+#     rule changed WHICH ROW the number came from, not the number.
+#   RULE 2 FIRED on GBP Fri 11: three JUL rows shared -> (+1+1+1)/3.
+#   >>> RULE 1a DID NOT FIRE this week - every colliding row was scorable.
+#     IT WILL FIRE on the 14-18 Sep build (JPY Wed 16). STILL UNRATIFIED.
+# NEXT: the 14-18 Sep selection AT THE WEEKEND, not before. Jeff: "Then
+#   let's look at Next week on the Weekend."
+
 # 2026-09-08 r3 - THE MODEL IS FEATURE-COMPLETE. pipelines/calibrator.py
 #   built (LD-98), wired into pair_select.final_scores(). The edition now
 #   publishes FINAL = base + calibrator rather than the base term alone.
