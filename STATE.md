@@ -4,7 +4,7 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-09-08 (r1, WEEKLY, UNSEALED - first edition on the REVAMPED
+edition: 2026-09-08 (r2, WEEKLY, UNSEALED - first edition on the REVAMPED
          model; awaiting Jeff's audit)
 date: 2026-09-08
 data_asof: 2026-09-08 23:30 PHT (calendar re-captured 23:26, 828 rows all 8
@@ -14,6 +14,42 @@ data_asof: 2026-09-08 23:30 PHT (calendar re-captured 23:26, 828 rows all 8
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-08 r2 - JEFF AUDITED r1 AND BOTH DEFECTS WERE MINE, NOT THE SPEC'S.
+#   LD-101 SUPERSEDES F-89's 'fix'. I imported Watch_list.txt as a hard
+#     constraint WITHOUT ASKING, then filed the pipeline ignoring it as a
+#     finding. Jeff: "Disregard my watch list. our Pair selection will come
+#     from currencies we're taking. so AUDJPY if the data said it's a valid
+#     pair then we trade it." The list has NO JPY PAIR, so my filter made
+#     the whole yen bloc untradeable - and JPY moved 2.87% in the week of
+#     31 Aug, 7x the next currency. ALL 28 COMBINATIONS ARE NOW ELIGIBLE.
+#     What the watchlist WAS right about is the SYMBOL: express the view in
+#     the pair the market quotes, direction carries the bias. Long CHF /
+#     short GBP is GBPCHF SHORT, never CHFGBP LONG. PRECEDENCE tuple in
+#     pair_select.symbol() does this.
+#   LD-100 SUPERSEDES LD-95, which I proposed and which caused F-90. Jeff:
+#     "if one of them qualify as Strong but since boundary calls the other
+#     to be pushed to Neutral then I'd say tak off that boundary and just
+#     put both of them in Strong." Bands still TARGET 3/2/3 by rank, but a
+#     boundary only moves when the currencies either side are TIED, and then
+#     the band absorbs every currency on that score. Board came out 4/1/3.
+#     THIS ALSO REMOVED MIN_GAP=0.50, which was my unratified number - a
+#     zero-gap pair can no longer straddle a boundary by construction.
+#   >>> THE PATTERN IN BOTH: F-89 was a rule I IMPORTED without asking; F-90
+#     came from LD-95, a rule I PROPOSED. Neither came from Jeff's spec.
+#     Both defects in the first build were ADDITIONS, not omissions. On a
+#     revamp the failure mode is filling a spec gap with an assumption
+#     instead of a question.
+#   THE SET CHANGED, not just the symbols: 2 pairs -> 4, all 8 currencies
+#     used (leg-disjoint ceiling). AUDJPY LONG +2.83 enters, takes AUD and
+#     JPY off the board, which frees CAD and EUR to pair with each other.
+#     NZDCHF SHORT +7.00 | AUDJPY LONG +2.83 | GBPUSD SHORT +1.00 |
+#     EURCAD LONG +0.50. The tail is thin - half a point on a +/-9 scale.
+#   ALSO FIXED IN r2: three hand-typed counts replaced by computed ones
+#     (the 'six of eight RISK OFF' line was already wrong at 7, and the pair
+#     universe changed again after). And the NZDJPY 'SURVIVED ITS FALSIFIER'
+#     claim came BACK in the rebuild because I had fixed it in the r1 OUTPUT
+#     and not in the build script. Fixed at source now. Same shape as F-77.
+
 # 2026-09-08 FIRST REVAMPED WEEKLY BUILT - reports/2026/Q3/2026-09-08_weekly.md
 #   Jeff: "I'll let you build the report first then I'll audit after."
 #   BASE SCORES ONLY - the LD-98 calibrator is specified but NOT BUILT, so

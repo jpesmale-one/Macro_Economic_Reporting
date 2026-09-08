@@ -132,15 +132,43 @@ def coverage(month=None):
 
 
 def bands(scores):
-    """LD-95 - RANK-based: top 3 STRONG, middle 2 NEUTRAL, bottom 3 WEAK.
+    """LD-100 - three bands by rank, but A TIE IS NEVER SPLIT.
 
-    NOT fixed thresholds. On 2026-09-04 fixed bands put 8 of 8 currencies in
-    NEUTRAL and no pair could have been formed at all.
+    Jeff, 2026-09-08: "As much as possible I don't want to put a strict
+    number of currencies in Strong, Weak, and Neutral. so if one of them
+    qualify as Strong but since boundary calls the other to be pushed to
+    Neutral then I'd say tak off that boundary and just put both of them in
+    Strong."
+
+    SUPERSEDES LD-95, which banded strictly top 3 / middle 2 / bottom 3.
+    That rule split USD and EUR at +4.00 apiece on 2026-09-08 and the
+    selector duly emitted EURUSD SHORT on a gap of +0.00 (F-90) - a coin
+    flip wearing a conviction label.
+
+    The target shape is still 3 / 2 / 3. A boundary only MOVES when the
+    currencies either side of it are TIED, and then the band absorbs every
+    currency on that score. So bands can come out 4/1/3, 3/3/2, or on a
+    heavily tied board 8/0/0 - the sizes report what the scores support
+    rather than forcing a shape onto them.
+
+    THIS ALSO REMOVES THE NEED FOR A MINIMUM GAP. A zero-gap pair can no
+    longer straddle a boundary, because equal scores now share a band and
+    same-band pairings are not eligible.
     """
     order = sorted(scores, key=lambda c: -scores[c])
-    return (dict([(c, 'STRONG') for c in order[:3]]
-                 + [(c, 'NEUTRAL') for c in order[3:5]]
-                 + [(c, 'WEAK') for c in order[5:]]), order)
+
+    def cut(at):
+        """Extend a cut past any currency tied with the last one inside it."""
+        while at < len(order) and scores[order[at]] == scores[order[at - 1]]:
+            at += 1
+        return at
+
+    hi = cut(3)                      # STRONG absorbs ties on the 3rd score
+    lo = cut(max(hi, 5))             # NEUTRAL ends after the 5th, ties absorbed
+    out = {}
+    for i, c in enumerate(order):
+        out[c] = 'STRONG' if i < hi else ('NEUTRAL' if i < lo else 'WEAK')
+    return out, order
 
 
 if __name__ == '__main__':

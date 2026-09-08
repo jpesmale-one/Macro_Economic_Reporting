@@ -34,30 +34,40 @@ import fact_tables as ft
 
 HAVEN, COMMODITY, CYCLICAL = 'Safe haven', 'Commodity', 'Cyclical'
 
-# Idea_dump/Watch_list.txt - Jeff's 21 tradeable forex pairs, VERBATIM.
-# THE WATCHLIST IS A HARD CONSTRAINT, NOT A PREFERENCE (F-89). The first run
-# of this pipeline selected AUDJPY, and there is NO JPY PAIR ON THE LIST at
-# all - so a currency can rank anywhere and still be untradeable. Scoring
-# eight currencies while only 21 of their 28 combinations are tradeable is
-# exactly the kind of gap that ships silently.
-WATCHLIST = (
-    'AUDCAD', 'AUDNZD', 'AUDUSD', 'AUDCHF', 'NZDCAD', 'NZDUSD', 'NZDCHF',
-    'CADCHF', 'EURCHF', 'EURGBP', 'EURUSD', 'EURNZD', 'EURCAD', 'EURAUD',
-    'USDCAD', 'USDCHF', 'GBPUSD', 'GBPCAD', 'GBPAUD', 'GBPNZD', 'GBPCHF',
-)
+# LD-101. THE PAIR UNIVERSE IS EVERY COMBINATION OF THE EIGHT CURRENCIES.
+#
+# Jeff, 2026-09-08: "Disregard my watch list. our Pair selection will come
+# from currencies we're taking. so AUDJPY if the data said it's a valid pair
+# then we trade it."
+#
+# SUPERSEDES F-89's fix, which was mine and wrong. I imported Watch_list.txt
+# as a hard constraint without asking - and it contains NO JPY PAIR AT ALL,
+# so it silently made the whole yen bloc untradeable. JPY moved 2.87% in the
+# week of 31 Aug, seven times the next currency; a filter that removes it
+# from selection removes the largest mover on the board.
+#
+# All 28 combinations of 8 currencies are eligible. What the watchlist WAS
+# right about is the SYMBOL: a view is expressed in the pair the market
+# actually quotes, with the direction carrying the bias.
+#
+# Jeff: "CHFGBP - Yes we should follow the correct pair symbol then the
+# direction is our bias. If it's in favor of CHF then GBPCHF - Short"
+#
+# Conventional FX quote precedence. The currency earlier in this list is the
+# BASE when the two are paired: EURGBP not GBPEUR, GBPJPY not JPYGBP.
+PRECEDENCE = ('EUR', 'GBP', 'AUD', 'NZD', 'USD', 'CAD', 'CHF', 'JPY')
 
 
-def tradeable(lng, sht):
-    """(symbol, direction) as the market quotes it, or None if not on the list.
+def symbol(lng, sht):
+    """(symbol, direction) for a long-lng / short-sht view.
 
-    A LONG lng / SHORT sht view is expressed either as the pair lng+sht LONG,
-    or as sht+lng SHORT. Only one of the two will be on the watchlist.
+    The market quotes one orientation; the bias becomes the direction.
+    Long CHF / short GBP is GBPCHF SHORT, never CHFGBP LONG.
     """
-    if lng + sht in WATCHLIST:
+    if PRECEDENCE.index(lng) < PRECEDENCE.index(sht):
         return lng + sht, 'LONG'
-    if sht + lng in WATCHLIST:
-        return sht + lng, 'SHORT'
-    return None
+    return sht + lng, 'SHORT'
+
 
 # (long role, short role) -> category label
 CATEGORY = {
@@ -72,13 +82,9 @@ TIER = {('STRONG', 'WEAK'): 1,
         ('STRONG', 'NEUTRAL'): 2,
         ('NEUTRAL', 'WEAK'): 2}
 
-# F-90. RANK-BASED BANDS CAN SPLIT A TIE, AND A TIE IS NOT A VIEW.
-# On 2026-09-08 USD and EUR both scored +4.00. LD-95 bands by RANK, so the
-# sort put USD in STRONG and EUR in NEUTRAL - and the pipeline duly emitted
-# EURUSD SHORT on a gap of +0.00. Two currencies the model cannot separate
-# are not a trade; the band label made a coin flip look like a conviction.
-# A pair must clear a real gap, not merely straddle a band boundary.
-MIN_GAP = 0.50
+# F-90 is now fixed AT SOURCE by LD-100 rather than by a threshold here.
+# Equal scores share a band, so a zero-gap pair can no longer straddle a
+# boundary - and MIN_GAP, which was my number and never ratified, is gone.
 
 
 def candidates(scores=None, band=None):
@@ -104,12 +110,7 @@ def candidates(scores=None, band=None):
             if cat is None:          # same role - no risk story to tell
                 continue
             gap = scores[lng] - scores[sht]
-            if gap < MIN_GAP:        # F-90 - a tie is not a view
-                continue
-            tr = tradeable(lng, sht)
-            if tr is None:           # F-89 - not on Jeff's watchlist
-                continue
-            sym, direction = tr
+            sym, direction = symbol(lng, sht)
             out.append(dict(long=lng, short=sht, category=cat, tier=t,
                             gap=gap, pair=sym, direction=direction))
     out.sort(key=lambda d: (d['tier'], -d['gap']))
@@ -142,7 +143,9 @@ if __name__ == '__main__':
     print('THE BOARD - %s' % ft.latest_month())
     for c in order:
         tie = [o for o in order if o != c and abs(sc[o] - sc[c]) < 1e-9]
-        note = ('   TIED with %s - band split is arbitrary (F-90)'
+        # LD-100: a tie now SHARES a band rather than being split by one,
+        # so this is a note about the board, not a warning about the model.
+        note = ('   tied with %s - same band (LD-100)'
                 % ', '.join(tie)) if tie else ''
         print('  %-7s %-4s %-12s %+6.2f%s'
               % (band[c], c, ft.ROLE[c], sc[c], note))
