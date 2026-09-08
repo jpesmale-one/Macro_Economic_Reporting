@@ -35,7 +35,14 @@ ROWS = [
  ("Production","EA","S&P Global Mfg PMI Final","52.7","51.9","Aug/26",">50.5","GOOD"),
  ("Production","EA","Industrial Production YoY","0.1%","-0.1%","Jun/26","0-0.5%","NEUTRAL"),
  ("Production","GB","S&P Global Mfg PMI Final","51.9","52.5","Jul/26",">50.5","GOOD"),
- ("Production","GB","Industrial Production YoY","-0.2%","1.0%","Jun/26","<0%","BAD"),
+ # F-93: the threshold read "<0%", which says NEGATIVE growth is GOOD for
+ # GBP. It was written to DESCRIBE the -0.2% print, not to encode the
+ # direction - the exact F-68 shape. Industrial production is a growth
+ # series: >0.5% good, <0% bad, between neutral, matching every other
+ # production row on the board. The row itself still grades BAD, because
+ # -0.2% IS below zero - what changes is that a POSITIVE forecast now
+ # scores positively in the calibrator instead of being graded bad.
+ ("Production","GB","Industrial Production YoY","-0.2%","1.0%","Jun/26",">0.5%","BAD"),
  ("Production","GB","Manufacturing Production YoY","0.5%","2.0%","Jun/26","0-0.5%","NEUTRAL"),
  ("Production","JP","Industrial Production YoY Final","4.9%","-2.1%","Jun/26",">0.5%","GOOD"),
  ("Production","JP","Machinery Orders YoY","16.9%","-1.9%","Jun/26",">0.5%","GOOD"),

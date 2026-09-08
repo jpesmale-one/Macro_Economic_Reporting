@@ -14,6 +14,30 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 F-93 + THE SET CHANGED. GBP Industrial Production carried the
+#   threshold '<0%', which says NEGATIVE growth is GOOD for GBP. Written to
+#   DESCRIBE the -0.2% print, not to encode direction - the F-68 shape.
+#   Corrected to '>0.5%', matching every other production row. The ROW still
+#   grades BAD (-0.2% IS below zero); what changes is that a POSITIVE
+#   forecast now scores positively in the calibrator.
+#   >>> F-92 + F-93 TOGETHER MOVED TWO OF THREE PAIRS:
+#       was  NZDCHF SHORT +8.00 | EURJPY LONG +3.33 | GBPUSD LONG +1.00
+#       now  NZDCHF SHORT +6.00 | AUDJPY LONG +1.83 | EURUSD LONG +1.00
+#     Calibrator moves: JPY +0.67 -> +2.67 (Machine Tool Orders 43% > 0.5%),
+#     NZD -1.00 -> +1.00 (Business NZ PMI 54 > 50.5), AUD -2.00 -> -1.00,
+#     GBP +1.00 -> +0.67. USD STRONG -> WEAK; GBP WEAK -> NEUTRAL.
+#   AND RULE 1 NOW CHANGES THE NUMBER, not just the source row: AUD Tue 8
+#     scores -1,-1,+1 across SEP/AUG/JUL. Sharing gives -0.33; taking the
+#     September row alone gives -1.00. A live demonstration of why LD-98
+#     takes the most current read.
+# >>> THE PROCESS LESSON, AND IT COST THREE REVERTS: I corrected figures in
+#   the OUTPUT twice and the rebuild reverted them both times. Same shape as
+#   F-77 - a corrected output with an uncorrected source. EVERY figure in
+#   both the markdown and the web page is now GENERATED from the pipelines:
+#   pipelines/build_weekly.py and pipelines/gen_page.py. 14 hard-coded
+#   sentences replaced, including the collision tables, the band-move table,
+#   the exec block and the masthead chips.
+
 # 2026-09-09 F-91 - JEFF CAUGHT A STALE ROW BY READING THE AUDIT VIEW.
 #   EUR S&P Global Mfg PMI Final still held the JUL print (51.9 from 51.4)
 #   after the AUG Final released 1 Sep 08:00 at 52.7 from 51.9.

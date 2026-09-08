@@ -214,7 +214,7 @@ footer p{max-width:none}
   <div class="chips">
     <span class="chip">3 pairs</span>
     <span class="chip">base + calibrator</span>
-    <span class="chip">NZDCHF +8.00</span>
+    <span class="chip">NZDCHF SHORT +6.00</span>
     <span class="chip q">12 of 12 rows scorable</span>
     <span class="chip q">UNSEALED</span>
   </div>
@@ -222,68 +222,63 @@ footer p{max-width:none}
 
 <section>
   <h2>The set</h2>
-  <p class="sub">Three pairs, leg-disjoint. Nothing forced the number.</p>
+  <p class="sub">3 pairs, leg-disjoint. Nothing forced the number.</p>
 
   <div class="set">
     <div class="pair top">
       <span class="rank">1</span>
       <span class="sym">NZDCHF<span class="bias short">SHORT</span></span>
-      <span class="gap big">+8.00</span>
-      <span class="legs"><span class="cat">RISK OFF</span> &nbsp;long CHF <strong>+7.00</strong> · short NZD <strong>−1.00</strong></span>
+      <span class="gap big">+6.00</span>
+      <span class="legs"><span class="cat">RISK OFF</span> &nbsp;long CHF <strong>+7.00</strong> · short NZD <strong>+1.00</strong></span>
     </div>
     <div class="pair">
       <span class="rank">2</span>
-      <span class="sym">EURJPY<span class="bias long">LONG</span></span>
-      <span class="gap">+3.33</span>
-      <span class="legs"><span class="cat">RISK ON</span> &nbsp;long EUR <strong>+4.00</strong> · short JPY <strong>+0.67</strong></span>
+      <span class="sym">AUDJPY<span class="bias long">LONG</span></span>
+      <span class="gap">+1.83</span>
+      <span class="legs"><span class="cat">RISK ON</span> &nbsp;long AUD <strong>+4.50</strong> · short JPY <strong>+2.67</strong></span>
     </div>
     <div class="pair">
       <span class="rank">3</span>
-      <span class="sym">GBPUSD<span class="bias long">LONG</span></span>
+      <span class="sym">EURUSD<span class="bias long">LONG</span></span>
       <span class="gap">+1.00</span>
-      <span class="legs"><span class="cat">RISK ON</span> &nbsp;long GBP <strong>+4.00</strong> · short USD <strong>+3.00</strong></span>
+      <span class="legs"><span class="cat">RISK ON</span> &nbsp;long EUR <strong>+4.00</strong> · short USD <strong>+3.00</strong></span>
     </div>
   </div>
 
-  <p><strong>NZDCHF carries a +8.00 gap, the widest this model has produced</strong> — CHF is top of the board at +7.00 and NZD is bottom at −1.00, the only negative score. Short the weakest currency against the strongest.</p>
+  <p><strong>NZDCHF SHORT carries the widest gap on the board at +6.00</strong> — <strong>CHF is top at +7.00 and NZD is bottom at +1.00</strong>.</p>
 
   <div class="note flag">
     <span class="lbl">⚠ THE TAIL IS THIN</span>
-    <strong>GBPUSD rests on a +1.00 gap</strong> — GBP at +4.00 against USD at +3.00. On a ±14 scale that is a weak view. It is in the set because it qualified, not because anything demanded a third pair.
+    <strong>EURUSD LONG rests on a +1.00 gap</strong> — EUR at +4.00 against USD at +3.00. On a ±14 scale that is a weak view. It is in the set because it qualified, not because anything demanded another pair.
   </div>
 
-  <p><strong>6 currencies used; AUD and CAD unused.</strong> No currency is used twice, and no rule forced a third pair.</p>
+  <p><strong>6 currencies used; CAD and GBP unused.</strong> No currency is used twice.</p>
 </section>
 
 <section>
   <h2>§1 The board</h2>
   <p class="sub">FINAL = base + calibrator</p>
-
   <div class="scroll">
   <table>
-    <thead><tr>
-      <th>Band</th><th>CCY</th><th>Role</th>
-      <th class="num">Base</th><th class="num">Calib</th><th class="num">Final</th>
-      <th class="num">Lead</th><th class="num">Confirm</th>
-    </tr></thead>
+    <thead><tr><th>Band</th><th>CCY</th><th>Role</th><th class="num">Base</th><th class="num">Calib</th><th class="num">Final</th><th class="num">Lead</th><th class="num">Confirm</th></tr></thead>
     <tbody>
-      <tr><td><span class="band s">STRONG</span></td><td class="ccy">CHF</td><td>Safe haven</td><td class="num">+6.00</td><td class="num pos">+1.00</td><td class="num pos">+7.00</td><td class="num">+6.00</td><td class="num zero">+0.00</td></tr>
-      <tr><td><span class="band s">STRONG</span></td><td class="ccy">EUR</td><td>Cyclical</td><td class="num">+4.00</td><td class="num zero">+0.00</td><td class="num">+4.00</td><td class="num">+3.00</td><td class="num">+1.00</td></tr>
-      <tr><td><span class="band s">STRONG</span></td><td class="ccy">GBP</td><td>Cyclical</td><td class="num">+3.00</td><td class="num pos">+1.00</td><td class="num">+4.00</td><td class="num zero">+0.00</td><td class="num">+3.00</td></tr>
-      <tr><td><span class="band n">NEUTRAL</span></td><td class="ccy">AUD</td><td>Commodity</td><td class="num">+5.50</td><td class="num neg">−2.00</td><td class="num">+3.50</td><td class="num">+5.50</td><td class="num zero">+0.00</td></tr>
-      <tr><td><span class="band n">NEUTRAL</span></td><td class="ccy">CAD</td><td>Commodity</td><td class="num">+3.50</td><td class="num zero">+0.00</td><td class="num">+3.50</td><td class="num">+2.00</td><td class="num">+1.50</td></tr>
-      <tr><td><span class="band w">WEAK</span></td><td class="ccy">USD</td><td>Safe haven</td><td class="num">+4.00</td><td class="num neg">−1.00</td><td class="num">+3.00</td><td class="num">+3.50</td><td class="num">+0.50</td></tr>
-      <tr><td><span class="band w">WEAK</span></td><td class="ccy">JPY</td><td>Safe haven</td><td class="num">+1.67</td><td class="num neg">−1.00</td><td class="num">+0.67</td><td class="num">+0.67</td><td class="num">+1.00</td></tr>
-      <tr><td><span class="band w">WEAK</span></td><td class="ccy">NZD</td><td>Commodity</td><td class="num">+0.00</td><td class="num neg">−1.00</td><td class="num neg">−1.00</td><td class="num neg">−1.00</td><td class="num">+1.00</td></tr>
+      <tr><td><span class="band s">STRONG</span></td><td class="ccy">CHF</td><td>Safe haven</td><td class="num">+6.00</td><td class="num pos">+1.00</td><td class="num pos">+7.00</td><td class="num">+6.00</td><td class="num">+0.00</td></tr>
+      <tr><td><span class="band s">STRONG</span></td><td class="ccy">AUD</td><td>Commodity</td><td class="num">+5.50</td><td class="num neg">−1.00</td><td class="num pos">+4.50</td><td class="num">+5.50</td><td class="num">+0.00</td></tr>
+      <tr><td><span class="band s">STRONG</span></td><td class="ccy">EUR</td><td>Cyclical</td><td class="num">+4.00</td><td class="num zero">+0.00</td><td class="num pos">+4.00</td><td class="num">+3.00</td><td class="num">+1.00</td></tr>
+      <tr><td><span class="band n">NEUTRAL</span></td><td class="ccy">GBP</td><td>Cyclical</td><td class="num">+3.00</td><td class="num pos">+0.67</td><td class="num pos">+3.67</td><td class="num">+0.00</td><td class="num">+3.00</td></tr>
+      <tr><td><span class="band n">NEUTRAL</span></td><td class="ccy">CAD</td><td>Commodity</td><td class="num">+3.50</td><td class="num zero">+0.00</td><td class="num pos">+3.50</td><td class="num">+2.00</td><td class="num">+1.50</td></tr>
+      <tr><td><span class="band w">WEAK</span></td><td class="ccy">USD</td><td>Safe haven</td><td class="num">+4.00</td><td class="num neg">−1.00</td><td class="num pos">+3.00</td><td class="num">+3.50</td><td class="num">+0.50</td></tr>
+      <tr><td><span class="band w">WEAK</span></td><td class="ccy">JPY</td><td>Safe haven</td><td class="num">+1.67</td><td class="num pos">+1.00</td><td class="num pos">+2.67</td><td class="num">+0.67</td><td class="num">+1.00</td></tr>
+      <tr><td><span class="band w">WEAK</span></td><td class="ccy">NZD</td><td>Commodity</td><td class="num">+0.00</td><td class="num pos">+1.00</td><td class="num pos">+1.00</td><td class="num">−1.00</td><td class="num">+1.00</td></tr>
     </tbody>
   </table>
   </div>
 
   <dl class="kv">
     <dt>Base</dt><dd>−9 … +9 — six fact tables, <code>Sep-26</code>, 78 of 78 cells scored</dd>
-    <dt>Calibrator</dt><dd>−5 … +5 — the five trading days ahead</dd>
+    <dt>Calibrator</dt><dd>−5 … +5 — 12 scheduled rows, 12 scorable, 5 with a TE consensus</dd>
     <dt>Weights</dt><dd>Production, Spending, Trade = <strong>2</strong> (leading) · Employment, Inflation, Interest Rate = <strong>1</strong>. <strong>The calibrator has no weights</strong> — the day is the unit.</dd>
-    <dt>Bands</dt><dd>Target 3 / 2 / 3 by rank, and <strong>a tie is never split</strong>. EUR and GBP tie at +4.00; both are STRONG.</dd>
+    <dt>Bands</dt><dd>Target 3 / 2 / 3 by rank, and <strong>a tie is never split</strong>. This week: <strong>3 / 2 / 3</strong>.</dd>
   </dl>
 
   <h3>What the calibrator changed</h3>
@@ -291,112 +286,113 @@ footer p{max-width:none}
   <table>
     <thead><tr><th>CCY</th><th class="num">Base</th><th class="num">Calib</th><th class="num">Final</th><th>Effect</th></tr></thead>
     <tbody>
-      <tr><td class="ccy">AUD</td><td class="num">+5.50 <span class="zero">(2nd)</span></td><td class="num neg">−2.00</td><td class="num">+3.50 <span class="zero">(4th)</span></td><td><strong>STRONG → NEUTRAL.</strong> Three rows price weak Mon–Tue</td></tr>
-      <tr><td class="ccy">GBP</td><td class="num">+3.00 <span class="zero">(6th)</span></td><td class="num pos">+1.00</td><td class="num">+4.00 <span class="zero">(3rd)</span></td><td><strong>WEAK → STRONG.</strong> Three production rows price strong Friday</td></tr>
-      <tr><td class="ccy">USD</td><td class="num">+4.00 <span class="zero">(3rd)</span></td><td class="num neg">−1.00</td><td class="num">+3.00 <span class="zero">(6th)</span></td><td><strong>STRONG → WEAK.</strong> CPI expected to fall 2.5% → 2.4%</td></tr>
-      <tr><td class="ccy">CHF</td><td class="num">+6.00 <span class="zero">(1st)</span></td><td class="num pos">+1.00</td><td class="num">+7.00 <span class="zero">(1st)</span></td><td>Already top; the week ahead extends it</td></tr>
+      <tr><td class="ccy">CHF</td><td class="num">+6.00 <span class="zero">(#1)</span></td><td class="num pos">+1.00</td><td class="num">+7.00 <span class="zero">(#1)</span></td><td>stays STRONG</td></tr>
+      <tr><td class="ccy">AUD</td><td class="num">+5.50 <span class="zero">(#2)</span></td><td class="num neg">−1.00</td><td class="num">+4.50 <span class="zero">(#2)</span></td><td>stays STRONG</td></tr>
+      <tr class="sel"><td class="ccy">USD</td><td class="num">+4.00 <span class="zero">(#3)</span></td><td class="num neg">−1.00</td><td class="num">+3.00 <span class="zero">(#6)</span></td><td><strong>STRONG → WEAK</strong></td></tr>
+      <tr><td class="ccy">JPY</td><td class="num">+1.67 <span class="zero">(#7)</span></td><td class="num pos">+1.00</td><td class="num">+2.67 <span class="zero">(#7)</span></td><td>stays WEAK</td></tr>
+      <tr><td class="ccy">NZD</td><td class="num">+0.00 <span class="zero">(#8)</span></td><td class="num pos">+1.00</td><td class="num">+1.00 <span class="zero">(#8)</span></td><td>stays WEAK</td></tr>
+      <tr class="sel"><td class="ccy">GBP</td><td class="num">+3.00 <span class="zero">(#6)</span></td><td class="num pos">+0.67</td><td class="num">+3.67 <span class="zero">(#4)</span></td><td><strong>WEAK → NEUTRAL</strong></td></tr>
     </tbody>
   </table>
   </div>
-
-  <p><strong>Four of eight currencies move band on the week ahead.</strong> That is a large effect for a term bounded at ±5 against a base bounded at ±9, and it happens because <strong>the base board is tightly packed</strong> — six of eight currencies sit within 2.5 points of each other.</p>
+  <p><strong>2 of 8 currencies move band</strong> (6 take a non-zero adjustment). <strong>The board is tightly packed — the whole final spread is 6.00 points — so a term bounded at ±5 re-ranks it readily</strong>, which is what a calibrator is for.</p>
 </section>
 
 <section>
   <h2>§2 The calibrator</h2>
   <p class="sub">The day is the unit, not the category.</p>
-
   <p>One question per currency per day — <em>is this currency positive or negative on Monday?</em> <strong>A currency with three releases on Tuesday scores Tuesday once</strong>, so a crowded calendar cannot outvote the macro base by accident.</p>
-
   <div class="scroll">
   <table>
     <thead><tr><th>CCY</th><th class="num">Mon 7</th><th class="num">Tue 8</th><th class="num">Wed 9</th><th class="num">Thu 10</th><th class="num">Fri 11</th><th class="num">Week</th></tr></thead>
     <tbody>
       <tr><td class="ccy">CHF</td><td class="num zero">+0.00</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num pos">+1.00</td></tr>
+      <tr><td class="ccy">AUD</td><td class="num zero">+0.00</td><td class="num neg">−1.00</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num neg">−1.00</td></tr>
       <tr><td class="ccy">EUR</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num zero">+0.00</td></tr>
-      <tr><td class="ccy">GBP</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num pos">+1.00</td></tr>
-      <tr><td class="ccy">AUD</td><td class="num neg">−1.00</td><td class="num neg">−1.00</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num neg">−2.00</td></tr>
+      <tr><td class="ccy">GBP</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+0.67</td><td class="num pos">+0.67</td></tr>
       <tr><td class="ccy">CAD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num zero">+0.00</td></tr>
       <tr><td class="ccy">USD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num neg">−1.00</td><td class="num neg">−1.00</td></tr>
-      <tr><td class="ccy">JPY</td><td class="num dash">—</td><td class="num dash">—</td><td class="num neg">−1.00</td><td class="num dash">—</td><td class="num dash">—</td><td class="num neg">−1.00</td></tr>
-      <tr><td class="ccy">NZD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num neg">−1.00</td><td class="num neg">−1.00</td></tr>
+      <tr><td class="ccy">JPY</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+1.00</td></tr>
+      <tr><td class="ccy">NZD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num pos">+1.00</td></tr>
     </tbody>
   </table>
   </div>
-
-  <div class="note"><strong>A dash is a day with no scheduled whitelist row.</strong> EUR and CAD have no rows at all this week, so their calibrator terms are +0.00 <strong>by absence — not by balance</strong>.</div>
+  <div class="note"><strong>A dash is a day with no scheduled whitelist row.</strong> <strong>EUR and CAD have no rows at all this week</strong>, so their calibrator terms are +0.00 by absence — not by balance.</div>
 
   <h3>Every scheduled row, and how it scored</h3>
   <div class="scroll">
   <table>
     <thead><tr><th>When (PHT)</th><th>CCY</th><th>Indicator</th><th class="num">Previous</th><th class="num">Cons / Fcst</th><th class="num">Score</th></tr></thead>
     <tbody>
-      <tr><td class="mono">Mon 07 09:30</td><td class="ccy">AUD</td><td>ANZ-Indeed Job Ads MoM</td><td class="num">1.9% ®</td><td class="num">0.5%</td><td class="num neg">−1</td></tr>
-      <tr><td class="mono">Mon 07 15:00</td><td class="ccy">CHF</td><td>Unemployment Rate</td><td class="num">3%</td><td class="num">3.0%</td><td class="num zero">0</td></tr>
-      <tr><td class="mono">Tue 08 08:30</td><td class="ccy">AUD</td><td>Westpac Consumer Conf Change</td><td class="num">6%</td><td class="num">−3.6%</td><td class="num neg">−1</td></tr>
-      <tr><td class="mono">Tue 08 09:30</td><td class="ccy">AUD</td><td>NAB Business Confidence</td><td class="num">−6</td><td class="num">−8</td><td class="num neg">−1</td></tr>
-      <tr><td class="mono">Tue 08 09:30</td><td class="ccy">AUD</td><td>Building Permits YoY Final</td><td class="num">9.5%</td><td class="num">9.0%</td><td class="num neg">−1</td></tr>
-      <tr><td class="mono">Wed 09 14:00</td><td class="ccy">JPY</td><td>Machine Tool Orders YoY</td><td class="num">50.4%</td><td class="num">43.0%</td><td class="num neg">−1</td></tr>
-      <tr><td class="mono">Fri 11 06:30</td><td class="ccy">NZD</td><td>Business NZ PMI</td><td class="num">54.3</td><td class="num">54</td><td class="num neg">−1</td></tr>
-      <tr><td class="mono">Fri 11 14:00</td><td class="ccy">GBP</td><td>Balance of Trade</td><td class="num">£−5.537B</td><td class="num">£−4.0B</td><td class="num pos">+1</td></tr>
-      <tr><td class="mono">Fri 11 14:00</td><td class="ccy">GBP</td><td>Industrial Production YoY</td><td class="num">−0.2%</td><td class="num">0.5% – 0.3%</td><td class="num pos">+1</td></tr>
-      <tr><td class="mono">Fri 11 14:00</td><td class="ccy">GBP</td><td>Manufacturing Production YoY</td><td class="num">0.5%</td><td class="num">2% – 1.0%</td><td class="num pos">+1</td></tr>
-      <tr><td class="mono">Fri 11 15:00</td><td class="ccy">CHF</td><td>Consumer Confidence</td><td class="num">−35</td><td class="num">−32 – −34</td><td class="num pos">+1</td></tr>
-      <tr><td class="mono">Fri 11 20:30</td><td class="ccy">USD</td><td>Inflation Rate YoY</td><td class="num">2.5%</td><td class="num">2.4%</td><td class="num neg">−1</td></tr>
+      <tr><td class="mono">Mon 07 09:30</td><td class="ccy">AUD</td><td>ANZ-Indeed Job Ads MoM</td><td class="num v">1.9% ®</td><td class="num v">0.5%</td><td class="num zero">0</td></tr>
+      <tr><td class="mono">Mon 07 15:00</td><td class="ccy">CHF</td><td>Unemployment Rate</td><td class="num v">3%</td><td class="num v">3.0%</td><td class="num zero">0</td></tr>
+      <tr><td class="mono">Tue 08 08:30</td><td class="ccy">AUD</td><td>Westpac Consumer Conf Change</td><td class="num v">6%</td><td class="num v">−3.6%</td><td class="num neg">−1</td></tr>
+      <tr><td class="mono">Tue 08 09:30</td><td class="ccy">AUD</td><td>NAB Business Confidence</td><td class="num v">−6</td><td class="num v">−8</td><td class="num neg">−1</td></tr>
+      <tr><td class="mono">Tue 08 09:30</td><td class="ccy">AUD</td><td>Building Permits YoY Final</td><td class="num v">9.5%</td><td class="num v">9.0%</td><td class="num pos">+1</td></tr>
+      <tr><td class="mono">Wed 09 14:00</td><td class="ccy">JPY</td><td>Machine Tool Orders YoY</td><td class="num v">50.4%</td><td class="num v">43.0%</td><td class="num pos">+1</td></tr>
+      <tr><td class="mono">Fri 11 06:30</td><td class="ccy">NZD</td><td>Business NZ PMI</td><td class="num v">54.3</td><td class="num v">54</td><td class="num pos">+1</td></tr>
+      <tr><td class="mono">Fri 11 14:00</td><td class="ccy">GBP</td><td>Balance of Trade</td><td class="num v">£−5.537B</td><td class="num v">£−4.0B</td><td class="num pos">+1</td></tr>
+      <tr><td class="mono">Fri 11 14:00</td><td class="ccy">GBP</td><td>Industrial Production YoY</td><td class="num v">−0.2%</td><td class="num v">0.5% – 0.3%</td><td class="num zero">0</td></tr>
+      <tr><td class="mono">Fri 11 14:00</td><td class="ccy">GBP</td><td>Manufacturing Production YoY</td><td class="num v">0.5%</td><td class="num v">2% – 1.0%</td><td class="num pos">+1</td></tr>
+      <tr><td class="mono">Fri 11 15:00</td><td class="ccy">CHF</td><td>Consumer Confidence</td><td class="num v">−35</td><td class="num v">−32 – −34</td><td class="num pos">+1</td></tr>
+      <tr><td class="mono">Fri 11 20:30</td><td class="ccy">USD</td><td>Inflation Rate YoY</td><td class="num v">2.5%</td><td class="num v">2.4%</td><td class="num neg">−1</td></tr>
     </tbody>
   </table>
   </div>
-
   <p><strong>12 of 12 rows are scorable, and 5 carry a real TE consensus.</strong> That is the value of building on Sunday rather than a week out — the same pipeline run against 14–18 Sep could score only 13 of 20, because <strong>TE publishes consensus close to the release</strong>.</p>
 
-  <h3>The collision rule that fired</h3>
-  <p><strong>Tue 8, AUD — three rows, three reference months.</strong></p>
+  <h3>The collision rules, from this run</h3>
+  <p><strong>Tue 8, AUD — 3 rows, RULE 1 — latest month wins.</strong></p>
   <div class="scroll">
   <table>
-    <thead><tr><th>Row</th><th>Ref month</th><th class="num">Score</th><th>Kept?</th></tr></thead>
+    <thead><tr><th>Row</th><th>Ref</th><th class="num">Score</th><th>Kept?</th></tr></thead>
     <tbody>
       <tr class="sel"><td>Westpac Consumer Conf Change</td><td class="mono">SEP</td><td class="num neg">−1</td><td><strong>KEPT</strong></td></tr>
-      <tr><td>NAB Business Confidence</td><td class="mono">AUG</td><td class="num neg">−1</td><td class="zero">dropped</td></tr>
-      <tr><td>Building Permits YoY Final</td><td class="mono">JUL</td><td class="num neg">−1</td><td class="zero">dropped</td></tr>
+      <tr><td>NAB Business Confidence</td><td class="mono">AUG</td><td class="num neg">−1</td><td><span class="zero">dropped</span></td></tr>
+      <tr><td>Building Permits YoY Final</td><td class="mono">JUL</td><td class="num pos">+1</td><td><span class="zero">dropped</span></td></tr>
     </tbody>
   </table>
   </div>
-  <p><strong>Rule 1: the latest reference month wins the day.</strong> September supersedes both August and July, so Westpac carries Tuesday alone at −1.00.</p>
-  <div class="note"><strong>The outcome is the same either way here</strong> — all three score −1, so sharing them would also give −1.00. The rule did not change the number this week; <strong>it changed which row the number came from</strong>, and that matters the first week they disagree.</div>
-  <p><strong>Fri 11, GBP</strong> — three rows, all JUL, all +1: they <strong>share</strong> the day (Rule 2) for (+1+1+1)/3 = <strong>+1.00</strong>.</p>
+  <div class="note flag"><span class="lbl">⚠ THE RULE CHANGES THE NUMBER</span>Sharing all 3 rows would give <strong>−0.33</strong>; taking only the latest month gives <strong>−1.00</strong>. <strong>The most current read of the economy decides the day</strong> — an older row does not dilute it.</div>
+  <p><strong>Fri 11, GBP — 3 rows, RULE 2 — same month, shared.</strong></p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Row</th><th>Ref</th><th class="num">Score</th><th>Kept?</th></tr></thead>
+    <tbody>
+      <tr class="sel"><td>Balance of Trade</td><td class="mono">JUL</td><td class="num pos">+1</td><td><strong>KEPT</strong></td></tr>
+      <tr class="sel"><td>Industrial Production YoY</td><td class="mono">JUL</td><td class="num zero">0</td><td><strong>KEPT</strong></td></tr>
+      <tr class="sel"><td>Manufacturing Production YoY</td><td class="mono">JUL</td><td class="num pos">+1</td><td><strong>KEPT</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Day score <strong>+0.67</strong>.</p>
 </section>
 
 <section>
   <h2>§3 The pairs</h2>
   <p class="sub">Risk category is an output, not a forecast.</p>
-
-  <p>Of the <strong>17 permitted pairings, 8 are RISK ON, 3 RISK OFF and 6 EITHER</strong>. Nothing here predicts the regime — the roles present in each band decide which categories can be filled.</p>
-
+  <p>Of the <strong>14 permitted pairings, 8 are RISK ON, 3 RISK OFF and 3 EITHER</strong>. Nothing here predicts the regime — the roles present in each band decide which categories can be filled.</p>
   <div class="scroll">
   <table>
     <thead><tr><th>Pair</th><th>Dir</th><th>Category</th><th class="num">Tier</th><th class="num">Gap</th><th>Long / short</th></tr></thead>
     <tbody>
-      <tr class="sel"><td class="ccy">NZDCHF</td><td>SHORT</td><td>RISK OFF</td><td class="num">1</td><td class="num pos">+8.00</td><td>CHF over NZD</td></tr>
-      <tr><td class="ccy">EURNZD</td><td>LONG</td><td>EITHER</td><td class="num">1</td><td class="num">+5.00</td><td>EUR over NZD</td></tr>
-      <tr><td class="ccy">GBPNZD</td><td>LONG</td><td>EITHER</td><td class="num">1</td><td class="num">+5.00</td><td>GBP over NZD</td></tr>
-      <tr class="sel"><td class="ccy">EURJPY</td><td>LONG</td><td>RISK ON</td><td class="num">1</td><td class="num pos">+3.33</td><td>EUR over JPY</td></tr>
-      <tr><td class="ccy">GBPJPY</td><td>LONG</td><td>RISK ON</td><td class="num">1</td><td class="num">+3.33</td><td>GBP over JPY</td></tr>
-      <tr><td class="ccy">EURUSD</td><td>LONG</td><td>RISK ON</td><td class="num">1</td><td class="num">+1.00</td><td>EUR over USD</td></tr>
-      <tr class="sel"><td class="ccy">GBPUSD</td><td>LONG</td><td>RISK ON</td><td class="num">1</td><td class="num pos">+1.00</td><td>GBP over USD</td></tr>
-      <tr><td class="ccy">AUDCHF</td><td>SHORT</td><td>RISK OFF</td><td class="num">2</td><td class="num">+3.50</td><td>CHF over AUD</td></tr>
-      <tr><td class="ccy">CADCHF</td><td>SHORT</td><td>RISK OFF</td><td class="num">2</td><td class="num">+3.50</td><td>CHF over CAD</td></tr>
-      <tr><td class="ccy">AUDJPY</td><td>LONG</td><td>RISK ON</td><td class="num">2</td><td class="num">+2.83</td><td>AUD over JPY</td></tr>
-      <tr><td class="ccy">CADJPY</td><td>LONG</td><td>RISK ON</td><td class="num">2</td><td class="num">+2.83</td><td>CAD over JPY</td></tr>
-      <tr><td class="ccy">EURAUD</td><td>LONG</td><td>EITHER</td><td class="num">2</td><td class="num">+0.50</td><td>EUR over AUD</td></tr>
-      <tr><td class="ccy">EURCAD</td><td>LONG</td><td>EITHER</td><td class="num">2</td><td class="num">+0.50</td><td>EUR over CAD</td></tr>
-      <tr><td class="ccy">GBPAUD</td><td>LONG</td><td>EITHER</td><td class="num">2</td><td class="num">+0.50</td><td>GBP over AUD</td></tr>
-      <tr><td class="ccy">GBPCAD</td><td>LONG</td><td>EITHER</td><td class="num">2</td><td class="num">+0.50</td><td>GBP over CAD</td></tr>
-      <tr><td class="ccy">AUDUSD</td><td>LONG</td><td>RISK ON</td><td class="num">2</td><td class="num">+0.50</td><td>AUD over USD</td></tr>
-      <tr><td class="ccy">USDCAD</td><td>SHORT</td><td>RISK ON</td><td class="num">2</td><td class="num">+0.50</td><td>CAD over USD</td></tr>
+      <tr class="sel"><td class="ccy">NZDCHF</td><td>SHORT</td><td>RISK OFF</td><td class="num">1</td><td class="num pos">+6.00</td><td>CHF over NZD</td></tr>
+      <tr><td class="ccy">EURNZD</td><td>LONG</td><td>EITHER</td><td class="num">1</td><td class="num ">+3.00</td><td>EUR over NZD</td></tr>
+      <tr class="sel"><td class="ccy">AUDJPY</td><td>LONG</td><td>RISK ON</td><td class="num">1</td><td class="num pos">+1.83</td><td>AUD over JPY</td></tr>
+      <tr><td class="ccy">AUDUSD</td><td>LONG</td><td>RISK ON</td><td class="num">1</td><td class="num ">+1.50</td><td>AUD over USD</td></tr>
+      <tr><td class="ccy">EURJPY</td><td>LONG</td><td>RISK ON</td><td class="num">1</td><td class="num ">+1.33</td><td>EUR over JPY</td></tr>
+      <tr class="sel"><td class="ccy">EURUSD</td><td>LONG</td><td>RISK ON</td><td class="num">1</td><td class="num pos">+1.00</td><td>EUR over USD</td></tr>
+      <tr><td class="ccy">CADCHF</td><td>SHORT</td><td>RISK OFF</td><td class="num">2</td><td class="num ">+3.50</td><td>CHF over CAD</td></tr>
+      <tr><td class="ccy">GBPCHF</td><td>SHORT</td><td>RISK OFF</td><td class="num">2</td><td class="num ">+3.33</td><td>CHF over GBP</td></tr>
+      <tr><td class="ccy">GBPNZD</td><td>LONG</td><td>EITHER</td><td class="num">2</td><td class="num ">+2.67</td><td>GBP over NZD</td></tr>
+      <tr><td class="ccy">GBPJPY</td><td>LONG</td><td>RISK ON</td><td class="num">2</td><td class="num ">+1.00</td><td>GBP over JPY</td></tr>
+      <tr><td class="ccy">CADJPY</td><td>LONG</td><td>RISK ON</td><td class="num">2</td><td class="num ">+0.83</td><td>CAD over JPY</td></tr>
+      <tr><td class="ccy">GBPUSD</td><td>LONG</td><td>RISK ON</td><td class="num">2</td><td class="num ">+0.67</td><td>GBP over USD</td></tr>
+      <tr><td class="ccy">EURCAD</td><td>LONG</td><td>EITHER</td><td class="num">2</td><td class="num ">+0.50</td><td>EUR over CAD</td></tr>
+      <tr><td class="ccy">USDCAD</td><td>SHORT</td><td>RISK ON</td><td class="num">2</td><td class="num ">+0.50</td><td>CAD over USD</td></tr>
     </tbody>
   </table>
   </div>
-
   <p><strong>Conviction is the score gap, not the category</strong> — a RISK OFF pair is not inherently better than a RISK ON one. Tier 1 is STRONG vs WEAK; tier 2 is STRONG vs NEUTRAL or NEUTRAL vs WEAK. <strong>All 28 currency combinations are eligible</strong>, each returned in the symbol the market quotes with the direction carrying the bias.</p>
 
   <h3>What the calibrator changed in the set</h3>
@@ -405,11 +401,11 @@ footer p{max-width:none}
     <thead><tr><th>Basis</th><th>Pairs</th></tr></thead>
     <tbody>
       <tr><td class="zero">Base only</td><td class="mono">NZDCHF SHORT · AUDJPY LONG · GBPUSD SHORT · EURCAD LONG</td></tr>
-      <tr class="sel"><td><strong>+ calibrator</strong></td><td class="mono"><strong>NZDCHF SHORT · EURJPY LONG · GBPUSD LONG</strong></td></tr>
+      <tr class="sel"><td><strong>+ calibrator</strong></td><td class="mono"><strong>NZDCHF SHORT · AUDJPY LONG · EURUSD LONG</strong></td></tr>
     </tbody>
   </table>
   </div>
-  <p><strong>AUDJPY was the base-only second pick and the calibrator removed it.</strong> AUD fell out of STRONG on its own week ahead, and <strong>EURJPY took its place</strong> — EUR has no scheduled rows at all, so it holds its base score while AUD gives up two points.</p>
+  <p><strong>The calibrator changed the set.</strong> <strong>Out: EURCAD LONG, GBPUSD SHORT.</strong> <strong>In: EURUSD LONG.</strong></p>
 </section>
 
 <section>
@@ -514,7 +510,7 @@ footer p{max-width:none}
         <td class="num v">-0.2%</td>
         <td class="num v dim">1.0%</td>
         <td class="dim sm">Jun/26</td>
-        <td class="dim sm">&lt;0%</td>
+        <td class="dim sm">&gt;0.5%</td>
         <td class="num neg">−1</td>
         <td class="num zero tot" rowspan="3">+0.00</td>
       </tr>
