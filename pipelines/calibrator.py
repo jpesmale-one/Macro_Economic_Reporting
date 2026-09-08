@@ -76,11 +76,84 @@ def ref_month(raw_event):
     return None
 
 
+def level_test(thr, expected):
+    """Grade a LEVEL threshold: does the expected VALUE clear the bar?
+
+    F-92. Jeff, 2026-09-09, on JPY Machine Tool Orders YoY: "This is Good
+    because our criteria ... is Actual > 0.5% is Good, < 0% is Bad. Actual
+    in between 0.5 - 0 is Neutral."
+
+    The forecast was 43.0% - far above the >0.5% bar - and the calibrator
+    scored it -1, because market_pricing() asks whether the series is
+    RISING OR FALLING against its last print. 50.4% -> 43.0% is a fall, so
+    it graded BAD.
+
+    BUT A FALL FROM 50.4% TO 43.0% IS STILL 43.0%, AND THE RULE IS A LEVEL
+    TEST. Deceleration inside a strong band is not weakness by this
+    whitelist's own criterion.
+
+    39 of 71 rows carry a level threshold - more than half - so this was
+    not an edge case. Returns None for thresholds that are genuinely
+    comparative ('>Prev', '>Cons ...'), which market_pricing still owns.
+
+    Forms handled, all of them present in the whitelist:
+        '>0.5%'   '>50.5'   '<0%'   '0-0.5%'   '<0 (LD-58)'
+    Band forms ('>2% & rising') are mandate rules and stay with the rate
+    channel - they need the direction term this function deliberately drops.
+    """
+    t = (thr or '').strip()
+    if not t or expected is None:
+        return None
+    low = t.lower()
+    if 'prev' in low or 'cons' in low or '&' in t or ';' in t:
+        return None                      # comparative or compound - not ours
+
+    m = re.match(r'^>\s*(-?[\d.]+)', t)
+    if m:
+        bar = float(m.group(1))
+        # The BAD floor is not always zero. A growth series ('>0.5%') is bad
+        # once it turns negative, so the floor is 0 and 0..0.5 is NEUTRAL.
+        # A DIFFUSION INDEX ('>50.5') is bad below 50 - the expansion line -
+        # so 49.0 is BAD, not NEUTRAL. Using 0 for both graded a contracting
+        # PMI as merely unremarkable.
+        floor = 50.0 if bar >= 45 else (0.0 if bar > 0 else bar)
+        if expected > bar:
+            return 'GOOD'
+        if expected < floor:
+            return 'BAD'
+        return 'NEUTRAL'
+
+    m = re.match(r'^<\s*(-?[\d.]+)', t)
+    if m:
+        bar = float(m.group(1))
+        return 'BAD' if expected > bar else 'GOOD'
+
+    m = re.match(r'^(-?[\d.]+)\s*-\s*(-?[\d.]+)', t)
+    if m:
+        lo, hi = float(m.group(1)), float(m.group(2))
+        if expected > hi:
+            return 'GOOD'
+        if expected < lo:
+            return 'BAD'
+        return 'NEUTRAL'
+    return None
+
+
 def score_row(ccy, name, rec):
     """+1 / 0 / -1 for one scheduled row, or None if unscorable.
 
-    Grades the EXPECTATION - previous against the consensus/forecast range -
-    which is what "what the market is pricing" means before a release.
+    Grades WHAT IS EXPECTED TO PRINT against that indicator's own criterion.
+
+    TWO KINDS OF THRESHOLD, and they ask different questions (F-92):
+
+      LEVEL       '>0.5%', '>50.5', '<0%', '0-0.5%' - does the expected
+                  VALUE clear the bar? A fall from 50.4% to 43.0% is still
+                  43.0%, and 43.0% > 0.5% is GOOD.
+
+      COMPARATIVE '>Prev', '>Cons ...' - is the expected print better than
+                  the reference? Only here does direction of change decide,
+                  and market_pricing() owns it with all its channel logic
+                  (F-66/F-68/F-70).
     """
     prev = num(rec.get('previous'))
     cons = num(rec.get('consensus'))
@@ -89,8 +162,17 @@ def score_row(ccy, name, rec):
         cons = fcst            # F-85: forecast is the documented fallback
     if prev is None or cons is None:
         return None
-    v = wa.market_pricing(prev, cons, fcst, name=name,
-                          threshold=THR.get((ccy, name)), ccy=ccy)
+
+    thr = THR.get((ccy, name))
+    # the expected print is the midpoint of the cons-fcst range
+    hi = cons if fcst is None else max(cons, fcst)
+    lo = cons if fcst is None else min(cons, fcst)
+    expected = (hi + lo) / 2.0
+
+    v = level_test(thr, expected)
+    if v is None:
+        v = wa.market_pricing(prev, cons, fcst, name=name,
+                              threshold=thr, ccy=ccy)
     return {'GOOD': 1, 'NEUTRAL': 0, 'BAD': -1}.get(v)
 
 
