@@ -14,6 +14,33 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 F-94 - Jeff: "are we capturing now Aug 31 - Sept 4 data?"
+#   PARTLY, AND THAT WAS THE BUG. On 8 Sep I graded nine rows from TE and
+#   wrote the +1/0/-1 into the CSVs, but never updated score_model.ROWS -
+#   which is where the audit view reads actual/previous/ref from. So the
+#   page rendered NFP as '-23K' while scoring it +1 off the +162K print, and
+#   CAD Employment as '75.1K' while scoring it -1 off -41.7K.
+#   THE SCORES WERE RIGHT. THE PUBLISHED EVIDENCE CONTRADICTED THEM.
+#   Five rows synced: USD NFP (162K vs 56K cons), USD Unemployment (4.1%
+#   in line -> NEUTRAL), CAD Employment (-41.7K vs +15K), CAD Unemployment
+#   (6.4% in line -> NEUTRAL), EUR Retail Sales (0.6% vs 1.1% cons).
+#   BOARD AND SET UNCHANGED - the cells were already correct.
+# NEW GUARD R-37: pipelines/audit_evidence.py, two checks.
+#   VERDICT  every CSV cell must equal score_model's GOOD/NEUTRAL/BAD.
+#            PROVEN: reintroduced F-94 and it fired.
+#   VINTAGE  our ref month must not lag the latest RELEASED row in the
+#            capture. PROVEN: reintroduced F-91 and it fired.
+#   >>> THE VINTAGE HALF WAS PASSING VACUOUSLY AT FIRST. TE's event text
+#     carries no year ('...pmi final aug'), so month_key returned year 0 and
+#     every comparison against our 'Jul/26' was false. It reported 'no row
+#     lags' while F-91 sat in front of it. Now takes the year from the row's
+#     own release date. A GREEN GUARD THAT HAS NEVER FIRED IS NOT EVIDENCE -
+#     test it against the finding it was written for.
+# >>> THE STRUCTURAL FIX IS STILL OPEN. Both F-91 and F-94 exist because a
+#   release must be written into TWO places - the CSV cell and score_model.
+#   PUT actual/previous/ref IN THE FACT TABLES beside the score and this
+#   whole class disappears. R-37 is a guard against a design gap.
+
 # 2026-09-09 F-93 + THE SET CHANGED. GBP Industrial Production carried the
 #   threshold '<0%', which says NEGATIVE growth is GOOD for GBP. Written to
 #   DESCRIBE the -0.2% print, not to encode direction - the F-68 shape.
