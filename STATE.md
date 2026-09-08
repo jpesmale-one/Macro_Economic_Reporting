@@ -14,6 +14,40 @@ data_asof: 2026-09-04 08:24 PHT (calendar re-captured 08:02, 771 rows all 8
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-04 REVAMP - SCORING + SELECTION PIPELINES BUILT AND RUNNING.
+#   pipelines/fact_tables.py  - loads the six CSVs, scores, ranks, bands
+#   pipelines/pair_select.py  - categories, conviction tiers, leg-disjoint
+#   LD-99 RISK REGIME IS AN OUTPUT, NOT A FORECAST. Jeff: "We're not gonna
+#     try to forecast if the week ahead is going to be a Risk On or a Risk
+#     Off Week ... Let's treat them as a category to fill not a forecast."
+#     The ROLES present in each band decide which categories can be filled.
+#     This also kills the circularity I flagged: a regime INPUT taken from
+#     the board could never disagree with the ranking it was interpreting.
+#     CONVICTION IS THE SCORE GAP, not the category. Strong-vs-Weak is
+#     tier 1; Strong-vs-Neutral and Neutral-vs-Weak are tier 2.
+#   F-89 THE WATCHLIST IS A HARD CONSTRAINT AND THE FIRST RUN IGNORED IT.
+#     pair_select selected AUDJPY. THERE IS NO JPY PAIR IN Watch_list.txt -
+#     none of the 21. A currency can rank anywhere and still be untradeable.
+#     Also emitted CHFGBP, which no venue quotes. Now every candidate is
+#     checked against the watchlist and returned in market convention with
+#     its direction (long CHF / short GBP -> GBPCHF SHORT).
+#   HOUSEKEEPING DONE: all six CSVs normalised - BOM stripped, LF endings,
+#     headers Mon-YY (five files were 26-Aug). Aug-26 BACK-POPULATED from
+#     score_model + rate_model, 78 of 78 cells, 0 blank. Verdicts were
+#     migrated rather than re-derived, which preserves every direction fix
+#     (F-66/F-68/F-70) instead of risking their reintroduction.
+#   ARITHMETIC VERIFIED against Jeff's own worked example: USD Production
+#     (-1+1+1+1)/4 = 0.5 x weight 2 = +1.00. Pipeline agrees.
+#   >>> THE NEW BOARD IS VERY DIFFERENT AND IT MOVES THE RIGHT WAY:
+#     GBP #1 -> #6 (finished the week 2nd WEAKEST at -0.96%)
+#     NZD #4 -> #8 (finished the week WEAKEST at -1.97%)
+#     CHF #5 -> #2 and AUD #6 -> #3 - the two currencies we were SHORT.
+#     The weights are Jeff's, the cells are a migration of already-
+#     reconciled verdicts, and the arithmetic was checked BEFORE the
+#     ranking was looked at. This is not tuning to the outcome.
+#   STILL NOT BUILT: the week-ahead calibrator (LD-98) and the report
+#     renderer. Base scoring and selection only.
+
 # 2026-09-04 REVAMP SPEC AGREED - docs/REVAMP_SPEC.md. Jeff's draft is
 #   Idea_dump/Weekly_Market_Sentiment_Revamp.txt, committed VERBATIM (LD-7).
 #   WEEKLY separates from DAILY. 5 Gold and 6 BTC REMOVED.

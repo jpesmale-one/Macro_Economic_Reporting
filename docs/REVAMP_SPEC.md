@@ -185,41 +185,51 @@ scratch** rather than inheriting that verdict either way.
 
 ### LD-95 — Strong / Neutral / Weak is RANK-based: top 3 / middle 2 / bottom 3
 
-**Not fixed thresholds.** Rank-based always yields tradeable currencies on both
-sides, which the role-pairing in §7 requires.
+**Not fixed thresholds.** Rank-based always yields tradeable currencies on both sides, which the pairing in §7 requires.
 
-**The evidence:** on 2026-09-04 the whole board sat inside NEUTRAL (+0.83 to
-+5.31) under fixed bands — **8 of 8 NEUTRAL, and no pair could have been
-formed at all.**
+**The evidence:** on 2026-09-04 the whole board sat inside NEUTRAL (+0.83 to +5.31) under fixed bands — **8 of 8 NEUTRAL, and no pair could have been formed at all.**
 
 ---
 
 ## 7. Pair selection
 
-| Scenario | Rule |
-|---|---|
-| **Risk ON** | A **strong Commodity or Cyclical** against a **weak Safe haven** |
-| **Risk OFF** | A **strong Safe haven** against a **weak Commodity or Cyclical** |
-| **Either** | **Cyclical vs Commodity**, when the Cyclical is the stronger |
+### LD-99 — RISK REGIME IS AN OUTPUT, NOT A FORECAST
+
+**Jeff, 2026-09-04:** *"We're not gonna try to forecast if the week ahead is going to be a Risk On or a Risk Off Week. It will come naturally in the result of our tally … Let's treat them as a category to fill not a forecast."*
+
+**Nothing determines the regime. The regime DESCRIBES what the board permits.** Read the roles present in each band, then fill whichever categories the ranking makes available:
+
+| Category | Formed when | Direction |
+|---|---|---|
+| **Risk OFF** | a **Safe haven** ranks above a **Commodity** | long the haven / short the commodity |
+| **Risk ON** | a **Commodity or Cyclical** ranks above a **Safe haven** | long the cyclical-or-commodity / short the haven |
+| **Either** | a **Cyclical** ranks above a **Commodity** | long the cyclical / short the commodity |
+
+**This removes the circularity I flagged when the spec was drafted.** A regime *input* would have had to come from somewhere — Fear & Greed, or the board itself — and the second is circular: the regime could never disagree with the ranking it was meant to interpret. **Treating it as a label solves that by not asking the question.**
+
+### Conviction ranks by the SCORE GAP
+
+**Jeff:** *"let's utilize the rankings to identify which Risk Off pairs do we see as with the Highest Conviction. By combining Strong vs Weak, Strong vs Neutral, Neutral vs Weak…"*
+
+| Tier | Combination | Why |
+|---|---|---|
+| **1 — highest** | **STRONG vs WEAK** | the widest score gap on the board |
+| 2 | STRONG vs NEUTRAL | strong long leg, unremarkable short |
+| 2 | NEUTRAL vs WEAK | unremarkable long, weak short |
+
+**Conviction is the SCORE GAP, not the category.** A Risk Off pair is not inherently better than a Risk On one — **the spread between the two legs is what ranks them**, and that is the one term of the old confluence formula that survives this revamp.
 
 ### LD-96 — leg-disjoint SURVIVES, the three-pair floor is DROPPED
 
-**No currency may be used twice** (LD-19 stands). EF-3 is the reason: this week
-the single yen move would have hit three JPY-short pairs simultaneously.
+**No currency may be used twice** (LD-19 stands). **EF-3 is the reason:** on 2026-09-04 a single yen move would have hit three JPY-short pairs at once.
 
-**But the minimum of three is gone.** Take the pairs that qualify — **two, or
-one, or none.**
+**But the minimum of three is gone.** Take the pairs that qualify — **two, or one, or none.**
 
-**The evidence, and it is the cleanest of the week:** LD-35 demanded three
-pairs. Only two cleared. The forced third was **NZDJPY**, which §4.4 called
-*"the weakest of the three … if one pair should be dropped, it is this one"*
-**in writing, before the week started** — and it lost **324 pips**, more than
-the other two combined.
+**The evidence, and it is the cleanest of the week:** LD-35 demanded three pairs. Only two cleared. The forced third was **NZDJPY**, which §4.4 called *"the weakest of the three … if one pair should be dropped, it is this one"* **in writing, before the week started** — and it lost **324 pips**, more than the other two combined.
 
 **This closes the open decision the retrospective referred to Jeff.**
 
 ---
-
 ## 8. What carries over unchanged
 
 **These are not up for revision and the revamp does not touch them:**

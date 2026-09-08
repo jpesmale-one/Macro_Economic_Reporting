@@ -1,9 +1,9 @@
-﻿Currency,Indicator,Frequency,26-Aug,26-Sep,26-Oct
-USD,Inflation Rate YoY,Monthly,,,
-EUR,Inflation Rate YoY Final,Monthly,,,
-GBP,Inflation Rate YoY,Monthly,,,
-JPY,Inflation Rate YoY,Monthly,,,
-AUD,Inflation Rate YoY,Monthly,,,
-NZD,Inflation Rate YoY,Quarterly,,,
-CAD,Inflation Rate YoY,Monthly,,,
-CHF,Inflation Rate YoY,Monthly,,,
+Currency,Indicator,Frequency,Aug-26,Sep-26,Oct-26
+USD,Inflation Rate YoY,Monthly,0,,
+EUR,Inflation Rate YoY Final,Monthly,1,,
+GBP,Inflation Rate YoY,Monthly,1,,
+JPY,Inflation Rate YoY,Monthly,0,,
+AUD,Inflation Rate YoY,Monthly,0,,
+NZD,Inflation Rate YoY,Quarterly,1,,
+CAD,Inflation Rate YoY,Monthly,1,,
+CHF,Inflation Rate YoY,Monthly,0,,
