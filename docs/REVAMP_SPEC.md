@@ -3,8 +3,9 @@
 **Source:** `Idea_dump/Weekly_Market_Sentiment_Revamp.txt`, Jeff, 2026-09-04.
 Committed verbatim as input and never edited (the LD-7 rule for his drafts).
 
-**Status: SPEC AGREED, NOT YET BUILT.** Four open questions were put to Jeff
-on 2026-09-04 and answered; they are recorded as LD-94..LD-97 below.
+**Status: SPEC AGREED, NOT YET BUILT.** Five questions were put to Jeff on
+2026-09-04 and answered; they are recorded as **LD-94 .. LD-98** below.
+**§4 is now fully specified and unblocked.**
 
 > *"We're already down 2 weeks. And I think we need to revamp the report …
 > Basically this is a total revamp so our current process is up for change."*
@@ -128,26 +129,33 @@ forecast as BAD for its currency. **The channel logic is the accumulated fix.**
 
 ## 4. Week-ahead scoring — the calibrator
 
-**Scored +1 / 0 / −1 by subjecting the Cons–Fcst range to that indicator's
-own macro criterion.** e.g. `USD PMI Cons–Fcst > 50.5 → +1`.
+### LD-98 — THE DAY IS THE UNIT, NOT THE CATEGORY
 
-**Then scored PER DAY, and summed across the week:**
+**Jeff, 2026-09-04:** *"In here we are scoring the day not the category. It can perceive as 'Does USD (for example) is positive or negative on Monday?' We don't look at it as the usual category separation."*
 
-1. **Multiple indicators, same day, different reference months** → **the
-   latest month wins.** Jeff's example: EUR Unemployment JUL and S&P Mfg PMI
-   Final AUG on the same Monday → **the PMI carries the day.**
-2. **Multiple indicators, same day, same reference month** → **they share the
-   day**, averaged, then × the category weight. Jeff's example: JPY Mfg PMI
-   AUG and Consumer Confidence AUG → `(+1 +1)/2 × 1`.
-3. **Week total = sum of the five daily scores.**
+**§4 asks ONE question per currency per day: is this currency positive or negative today?** Categories do not enter it. **There is NO weight multiplier anywhere in §4** — the `× 1` in Jeff's JPY example is not a category weight, it is the day's score standing as itself.
 
-> **⚠ OPEN — rule 2's weight is ambiguous in the draft.** The example shows
-> `× 1` for two indicators that sit in **different** categories (Production
-> weight 2, Spending weight 2). Whether the shared-day score takes the
-> category weight, an average of the two weights, or a flat 1 is **not
-> settled** and changes the arithmetic. **Ask before building this rule.**
+**Category weights live ONLY in §3**, the base scoring off the fact tables. **Two separate scales that meet at the tally**, which is what "base + calibrator" means.
 
----
+### The rules
+
+**Each indicator scores +1 / 0 / −1 by subjecting the Cons–Fcst range to that indicator's own macro criterion** — the same channel logic as §3 (LD-94). e.g. `USD PMI Cons–Fcst > 50.5 → +1`.
+
+**Then one score per currency per day:**
+
+1. **Same day, DIFFERENT reference months → the LATEST month wins.** It is the more current read of the economy. Jeff's example: EUR Unemployment **JUL** and S&P Mfg PMI Final **AUG** on the same Monday → **the PMI carries the day**, and the JUL row is not counted.
+
+2. **Same day, SAME reference month → they share the day, averaged.** Jeff's example: JPY Mfg PMI **AUG** and Consumer Confidence **AUG** → `(+1 +1)/2 = +1.00`. **No weight applied**, even though those two sit in different categories (Production and Spending).
+
+3. **Week total = the sum of the five daily scores.** Jeff's example: USD `0, +1, +1, −1, +1` → **+2**.
+
+**Range: −5 to +5** — five trading days, each capped at ±1.
+
+### Why this shape is right
+
+**It bounds the calibrator against the base.** §3 spans −9 to +9 and §4 spans −5 to +5, so **the week ahead can re-rank the board but cannot overturn it** — a currency needs a genuinely lopsided week to move more than a few places.
+
+**And it makes a busy day worth no more than a quiet one.** A currency with four releases on Thursday scores that Thursday **once**, not four times. **That is the correct treatment**: a day is a day, and the alternative would let a crowded calendar outvote the macro base by accident.
 
 ## 5. The tally
 
@@ -233,11 +241,22 @@ the other two combined.
 
 ## 9. Open before the first build
 
-1. **§4 rule 2's weight** — the shared-day multiplier when two indicators of
-   different categories land together. **Blocks the week-ahead pipeline.**
-2. **CSV header format** — `Aug-26` vs `26-Aug`. Trivial, but pick one.
-3. **Back-population** — do the CSVs get filled from the existing 71 rows and
-   the capture history, or start empty from the next release?
-4. **Risk-on / risk-off regime** — §7 branches on it, but nothing in the spec
-   *determines* it. Fear & Greed is the obvious candidate and is already
-   captured daily.
+**✓ CLOSED 2026-09-04 — §4's shared-day weight.** Answered by LD-98: there is no weight in §4 at all. **The week-ahead pipeline is unblocked.**
+
+**Still open, and none of these blocks the scoring pipeline:**
+
+1. **CSV header format** — `Production` uses `Aug-26`, the other five use `26-Aug`. **I will normalise to `Aug-26` unless told otherwise**; it is a data-hygiene call, not a modelling one.
+
+2. **Back-population** — do the six CSVs get filled from the existing 71 whitelist rows plus the capture history, or start empty from the next release? **Recommendation: back-populate.** The current rows are already reconciled against TE (LD-50, 0 unmatched on 2026-09-04), and starting empty means the first weekly has no base score at all.
+
+3. **⚠ RISK-ON / RISK-OFF IS UNDETERMINED, AND §7 BRANCHES ON IT.** The pairing rules need to know the regime and **nothing in the draft says what sets it.** This is the one remaining gap with real modelling consequences.
+
+   **Candidates, in the order I would rank them:**
+
+   | Source | For | Against |
+   |---|---|---|
+   | **CNN Fear & Greed** | Already captured daily; explicit risk gauge; moved 55.40 → 35.26 in the week just ended | US-equity-centric, and it is one vendor's index |
+   | **The board itself** | No new source — if safe havens rank top, that IS risk-off | Circular: the regime then cannot disagree with the ranking it is meant to interpret |
+   | **Neither — publish all three scenarios** | Honest about uncertainty; Jeff's own example lists Risk On, Risk Off and Either side by side | Does not narrow the candidate list, which is what selection needs |
+
+   **Jeff's draft actually implies the third** — his worked example shows all three buckets populated at once. **If that is the intent, say so and §7 becomes a presentation rule rather than a branch.**

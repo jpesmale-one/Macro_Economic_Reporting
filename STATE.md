@@ -14,6 +14,39 @@ data_asof: 2026-09-04 08:24 PHT (calendar re-captured 08:02, 771 rows all 8
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-04 REVAMP SPEC AGREED - docs/REVAMP_SPEC.md. Jeff's draft is
+#   Idea_dump/Weekly_Market_Sentiment_Revamp.txt, committed VERBATIM (LD-7).
+#   WEEKLY separates from DAILY. 5 Gold and 6 BTC REMOVED.
+#   LD-94 direction-of-goodness keeps the CURRENT channel logic. Binary
+#     scoring changes the SCALE, not which way is good. F-66/F-68/F-70 were
+#     all direction bugs and that logic is the accumulated fix.
+#   LD-95 Strong/Neutral/Weak is RANK-based, top 3 / middle 2 / bottom 3.
+#     Fixed bands would have put 8 of 8 in NEUTRAL on 2026-09-04 and no pair
+#     could have been formed at all.
+#   LD-96 leg-disjoint SURVIVES; the THREE-PAIR FLOOR IS DROPPED. This closes
+#     the open decision the retrospective referred to Jeff.
+#   LD-97 the weekly is the DECISION ONLY - 0,1,3,5,6,7,8,9 all go.
+#     OBJECTION RECORDED AND OVERRULED: 1 is where the BoJ rate-check
+#     surfaced (JPY +2.87%, ~7x the next currency), which no whitelist
+#     indicator could register. The cost is known, not relitigated.
+#   LD-98 THE DAY IS THE UNIT, NOT THE CATEGORY. Jeff, 2026-09-04: "we are
+#     scoring the day not the category ... Does USD is positive or negative
+#     on Monday?" NO WEIGHT MULTIPLIER ANYWHERE IN 4 - the 'x 1' in his JPY
+#     example is the day's score standing as itself. Category weights live
+#     ONLY in the base scoring. Range -5..+5 against the base's -9..+9, so
+#     the week ahead RE-RANKS but cannot overturn. A busy day scores once.
+#   STILL OPEN, none blocking the scoring pipeline:
+#     - CSV headers: Production uses Aug-26, the other five 26-Aug. I will
+#       normalise to Aug-26 unless told otherwise.
+#     - back-populate the CSVs from the 71 rows + capture history, or start
+#       empty? RECOMMEND back-populate; starting empty means the first
+#       weekly has no base score at all.
+#     - >>> RISK-ON/RISK-OFF IS UNDETERMINED AND 7 BRANCHES ON IT. Nothing
+#       in the draft says what sets the regime. Jeff's own worked example
+#       shows all three buckets populated at once, which implies 7 is a
+#       PRESENTATION rule rather than a branch - needs confirming.
+#   NOTHING BUILT YET. No pipeline written, no edition produced.
+
 # 2026-09-04 RETROSPECTIVE HELD EARLY (Jeff: "I'm not available tomorrow").
 #   docs/RETRO_2026-09-04.md. Held 12h BEFORE NFP, so items 1 and 3 are
 #   PROVISIONAL and the file says so.
