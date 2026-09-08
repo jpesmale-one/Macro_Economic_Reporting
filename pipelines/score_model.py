@@ -26,7 +26,13 @@ ROWS = [
  ("Production","US","Industrial Production YoY","1.1%","1.29%","Jul/26",">0.5%","GOOD"),
  ("Production","US","Manufacturing Production YoY","1.2%","1.1%","Jul/26",">0.5%","GOOD"),
  ("Production","US","Durable Goods Ex Transp MoM","0.4%","0.6%","Jul/26",">0.5%","BAD"),
- ("Production","EA","S&P Global Mfg PMI Final","51.9","51.4","Jul/26",">50.5","GOOD"),
+ # F-91: this row still held the JUL print after the AUG Final released
+ # 1 Sep 08:00. Jeff caught it reading the audit view. The score does not
+ # change - 52.7 and 51.9 are both above 50.5 - but the EVIDENCE was a
+ # month stale, and audit_te did not flag it because TE's country page had
+ # already rolled forward, so our value and TE's current value agreed on
+ # being "the last print" while meaning different months.
+ ("Production","EA","S&P Global Mfg PMI Final","52.7","51.9","Aug/26",">50.5","GOOD"),
  ("Production","EA","Industrial Production YoY","0.1%","-0.1%","Jun/26","0-0.5%","NEUTRAL"),
  ("Production","GB","S&P Global Mfg PMI Final","51.9","52.5","Jul/26",">50.5","GOOD"),
  ("Production","GB","Industrial Production YoY","-0.2%","1.0%","Jun/26","<0%","BAD"),

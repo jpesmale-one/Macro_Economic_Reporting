@@ -14,6 +14,39 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 F-91 - JEFF CAUGHT A STALE ROW BY READING THE AUDIT VIEW.
+#   EUR S&P Global Mfg PMI Final still held the JUL print (51.9 from 51.4)
+#   after the AUG Final released 1 Sep 08:00 at 52.7 from 51.9.
+#   THE SCORE DOES NOT CHANGE - 52.7 and 51.9 are both above the >50.5
+#   threshold, so it is +1 either way and no ranking moved. What was wrong
+#   was the EVIDENCE: a published actual a month out of date.
+#   >>> WHY audit_te DID NOT CATCH IT. That guard compares our stored actual
+#     against TE's CURRENT value. TE's country page had already rolled to
+#     the Aug print, so both sides agreed on 'the last print' while MEANING
+#     DIFFERENT MONTHS. The guard has no reference-month term.
+#   SCANNED THE WHOLE WINDOW (31 Aug - 4 Sep, 20 whitelist rows) against the
+#     4 Sep calendar capture rather than the country pages: 13 already
+#     current, 1 genuinely stale (this one), 5 had no actual yet, and 1
+#     apparent mismatch was formatting only (-$88.6B vs $-88.6B).
+#     So this was the ONLY stale row, not the first of many.
+# >>> BUILD A GUARD FOR THIS. Compare our REF MONTH against the reference
+#   month of the latest released row in the capture. That is the check that
+#   would have caught F-91, and audit_te structurally cannot.
+# ALSO 2026-09-09: pipelines/gen_audit.py added - reproduces the old
+#   2.1-2.6 layout (actual/previous/ref/threshold/score) for the revamped
+#   model, joining score_model + rate_model values onto the fact tables.
+#   Published to the artifact alongside reports/2026/Q3/2026-09-06_weekly.html
+#   >>> THE UNDERLYING GAP IT EXPOSES: the fact tables store ONLY the
+#     +1/0/-1. A reader cannot audit a score from the CSVs alone because
+#     they record the VERDICT and not the EVIDENCE. The tables should carry
+#     actual/previous/ref beside the score.
+# 2026-09-09 VINTAGE HELD TWICE UNDER PRESSURE. Jeff stopped me applying the
+#   CHF Unemployment Aug print (released Mon 7 Sep 07:00) to a report built
+#   as of Sunday 6 Sep - I had read A=3% P=3% off the AUG row and started
+#   'fixing' the JUL row, which would have been exactly the hindsight
+#   contamination the vintage rollback exists to prevent. THE AUDIT VIEW
+#   SHOWED THE REF COLUMN AND I DID NOT READ IT.
+
 # 2026-09-06 WEEKLY BUILT (as of Sunday, on Jeff's instruction 2026-09-09:
 #   "Make it as if it's September 6 Sunday. Our cycle is every Sunday to
 #   Saturday."). reports/2026/Q3/2026-09-06_weekly.md
