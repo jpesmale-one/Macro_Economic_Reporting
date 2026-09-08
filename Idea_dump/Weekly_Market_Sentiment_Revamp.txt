@@ -1,0 +1,46 @@
+ It's time to revamp our Market Sentiment Report. There are Several changes I want to implement. We will separate a Weekly reporting from Daily monitoring. First we'll create this Weekly Reporting.
+	1. §5 — Gold (XAUUSD) and §6 — BTC (BTCUSD) - Let's Remove these 2 for now. Currently I want to focus on Forex first. These sections adds complications in our routine.
+	2. §2 — Macro Economic Indicators - It's time for us to store the data into a Fact tables so that we have a data not just memory. I created CSV files for each category, we should be populating them from now on so we have a structured data. They are located in "Macro_Economic_Reporting\data\macro_indicators"
+		a. Production_Macro_Indicators.csv
+		b. Spending_Macro_Indicators.csv
+		c. Trade_Macro_Indicators.csv
+		d. Employment_Macro_Indicators.csv
+		e. Inflation_Macro_Indicators.csv
+		f. Interest_Rate_Macro_Indicators.csv
+	3. §2 — Macro Economic Indicators - Let's revamp this whole section. We should combine Macro Economic Indicators and Week ahead. 
+		a. First the Macro Economic base scoring, we keep a binary score for each Indicator that would be +1, 0, -1 for Good, Neutral, and Bad. And this time we'll give more weight to our Leading Indicators Production, Spending, and Trade = 2. Then for Employment, Inflation, and Interest Rate = 1. A sample calculation would be; for Production USD have 4 indicators. If the scores are +1, +1, -1, 0, the calculation would be (1 + 1 - 1 + 0)/4 then multiplied to Production weight which is 2 = 0.5)
+		b. 4.0 — Week ahead - The scheduled release for the week will now impact in our scoring. For the Week ahead we'll use a scoring of +1, 0, -1 for Good, Neutral, and Bad. This time we subject our Cons-Fcst range with our Macro Economic criteria for that indicator. For example if USD PMI Cons-Fcst > 50.5 = +1. Then we score it each day based on the schedule. 
+			1) If multiple indicators fall on the same day we give focus on the one with the latest data. For example; Sept 1 Monday, EUR have Unemployment Rate JUL and S&P Global Manufacturing PMI Final AUG. In this case we give focus on the PMI for that day. So if its positive EUR is +1 on Monday.
+			2) If the indicators on the same day is for the same month then they share the score for that day. Example; Sept 1 Monday, JPY have S&P Global Manufacturing PMI Final AUG and Consumer Confidence AUG since both of them is for AUG month only then the score would be (+1+1)/2 multiplied by 1 
+			3) Then we sum up the week score of that currency. For Example; USD
+				a) Monday = 0
+				b) Tuesday = 1
+				c) Wednesday = 1
+				d) Thursday = -1
+				e) Friday = 1
+				f) USD week total = +2
+		c. For the Tally we'll do it like this. The result from the Macro Economic Indicators will be our base line. Then the score from the Week ahead will serve as calibrator. We combine the scores of these 2 to form our final Currency Ranking. Example USD Macro Economic Score = +2 and Week Ahead Score = +2 Then USD Total Score = 4
+		d. Currency Ranking and pair Selection
+			1) First understand the currency roles
+				a) Safe Haven: USD, JPY, CHF - If the market is on Risk Off these are the go to currencies 
+				b) Commodity: AUD, CAD, NZD - If the market is on Risk On these are the go to currencies
+				c) Cyclical: GBP, EUR - They can move in either Risk On or Risk Off scenarios. Although majority they move with Risk On
+			2) We line up the currencies based on total score then we can see our Strong, Neutral, and Weak currencies for the Upcoming week. 
+				a) We may need to figure out the boundary on which we can tell if the currency is Strong, Weak or Neutral.
+			3) Then we select currency pairs based on the following:
+				a) Risk On Scenario - If we have a Commodity or Cyclical currencies on the Strong side then we can pair it with the Weaker Safe Haven currency.
+				b) Risk Off Scenario - If we have a Safe Haven currency on the Strong side then we can pair it with the Weaker Commodity or Cyclical currencies.
+				c) Either - It is by pairing Cyclical to Commodity currencies if Cyclical appears to be stronger than Commodity.
+				d) For example we have: Strong - JPY, GBP; Neutral - USD, EUR; Weak - CAD, AUD, NZD, CHF. Then we can pair up
+					a) Risk Off:
+						i) CADJPY - Short
+						ii) AUDJPY - Short
+						iii) NZDJPY - Short
+					b) Risk On:
+						i) GBPUSD - Long
+						ii) GBPCHF - Long
+						iii) EURCHF - Long
+					c) Either:
+						i) GBPCAD - Long
+						ii) GBPAUD - Long
+						iii) GBPNZD - Long
