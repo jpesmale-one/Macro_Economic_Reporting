@@ -20,7 +20,11 @@ TWO CHECKS, and they catch different failures:
             see, because a stale row can still be internally consistent.
 
 USAGE
-    python pipelines/audit_evidence.py [capture.json]
+    python pipelines/audit_evidence.py [capture.json] [YYYY-MM-DD as-of]
+
+The as-of date matters for a BACK-DATED edition: the 2026-09-06 weekly holds
+four rows at their August values on purpose, because they printed Mon 7 /
+Tue 8. Without it the guard calls a correct vintage stale.
 
 THE REAL FIX IS STRUCTURAL. Both halves exist because a release has to be
 written into two places. Put actual/previous/ref in the fact tables beside
@@ -75,20 +79,36 @@ def verdict_check():
     return bad, len(cells)
 
 
-def vintage_check(capture):
-    """Our ref month must not lag the latest RELEASED row in the capture."""
+def vintage_check(capture, asof=None):
+    """Our ref month must not lag the latest RELEASED row in the capture.
+
+    ASOF is the build date. A back-dated edition must NOT be measured against
+    prints that landed after it - the 2026-09-06 weekly deliberately holds
+    four rows at their August values because they printed Mon 7 / Tue 8, and
+    without this the guard reports them as stale when they are correct.
+    """
     raw = json.load(io.open(capture, encoding='utf-8'))
     import week_ahead as wa
     latest = {}
     for e in raw:
         if e.get('iso') not in ISO or not (e.get('actual') or '').strip():
             continue
+        if asof and (e.get('date') or '') > asof:
+            continue                      # not knowable at the build date
+        # PREL and FINAL are different rows for the same reference month.
+        # Matching a Prel actual against a Final row reports a stale value
+        # that is not stale - AUD Building Permits YoY Final was flagged off
+        # the 1 Sep PREL while its own Final had not released.
+        _ev = (e.get('event') or '').lower()
+        _prel = ' prel' in _ev
         ccy = ISO[e['iso']]
-        hit = wa.match(e.get('event', '').lower(),
+        hit = wa.match(_ev,
                        [r[2] for r in sm.ROWS if sm.LABEL[r[1]] == ccy],
                        e.get('iso'))
         if not hit:
             continue
+        if _prel and 'final' in hit.lower():
+            continue                      # a Prel never supersedes a Final
         mk = month_key(e.get('event', ''))
         if mk is None:
             continue
@@ -123,6 +143,8 @@ if __name__ == '__main__':
                REPO, 'data/raw/calendar/*_cal_full.json')))[-1])
     print('R-37 EVIDENCE AUDIT')
     print('  capture: %s' % os.path.basename(cap))
+    if len(sys.argv) > 2:
+        print('  as of  : %s (later prints ignored)' % sys.argv[2])
     print()
 
     bad, n = verdict_check()
@@ -135,9 +157,21 @@ if __name__ == '__main__':
         print('  every cell matches its verdict')
     print()
 
-    vb, vn = vintage_check(cap)
+    asof = sys.argv[2] if len(sys.argv) > 2 else None
+    vb, vn = vintage_check(cap, asof)
     print('VINTAGE  (%d rows matched in the capture)' % vn)
-    if vb:
+    if vn == 0:
+        # A check that matched nothing has PROVED nothing. This bit twice:
+        # first when TE's year-less event text made every comparison false,
+        # then when an as-of cutoff against a forward-looking capture left
+        # no released rows at all. Say so rather than printing a green line.
+        print('  *** MATCHED NO ROWS - this check proved NOTHING.')
+        print('      A forward-looking capture holds few released rows, and')
+        print('      an as-of cutoff can remove the rest. Point it at a')
+        print('      capture taken ON or BEFORE the build date.')
+        vb = list(vb) + [('*', 'vintage check matched no rows',
+                          '-', '-', '-', '-')]
+    elif vb:
         for ccy, nm, ref, a, te_a, te_d in vb:
             print('  *** %-4s %-30s ours=%-9s (%s)  TE=%-9s released %s'
                   % (ccy, nm[:30], a, ref, te_a, te_d))

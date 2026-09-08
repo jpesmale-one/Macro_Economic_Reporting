@@ -14,6 +14,35 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 RECHECK after F-91/92/93/94 - Jeff: "since the numbers have
+#   moved we should recheck the tally and the pairs". DONE, and the tally,
+#   the bands and the set are all UNCHANGED and internally consistent:
+#     78 of 78 cells | all 8 category totals reconcile to their cells
+#     base + calibrator = final for all 8 | bands 3/2/3
+#     SET: NZDCHF SHORT +6.00 | AUDJPY LONG +1.83 | EURUSD LONG +1.00
+#     Published md and html both match the model, 0 stale figures.
+#   R-28 clean, 14 of 14 level tests pass.
+# >>> R-37 NEEDED TWO FIXES, FOUND BY RUNNING IT:
+#   1. AS-OF CUTOFF. It defaults to the NEWEST capture, which for a
+#      back-dated edition sees prints the build must not. It flagged the
+#      four rows deliberately reverted for the 6 Sep vintage as stale. Now
+#      takes an as-of date: audit_evidence.py <capture> <YYYY-MM-DD>.
+#   2. PREL vs FINAL. It matched AUD Building Permits YoY *Prel* (1 Sep,
+#      9.0%) against our *Final* row and called it stale. Those are
+#      different rows for the same month; a Prel never supersedes a Final.
+# >>> AND IT WENT VACUOUS A SECOND TIME. With the cutoff applied to a
+#   forward-looking capture, 0 rows matched and it printed 'no row lags'.
+#   Same failure as the year bug yesterday, different cause. It now REPORTS
+#   A PROBLEM when it matches nothing. A check that matched nothing has
+#   proved nothing, and must not render green.
+#   CORRECT USAGE for the 6 Sep build:
+#     python pipelines/audit_evidence.py \
+#       data/raw/calendar/2026-09-04_0802PHT_cal_full.json 2026-09-06
+#     -> 15 rows matched, 0 problems.
+# ALSO: a STALE __pycache__ made R-37 report the F-91 row as unfixed when
+#   score_model.py on disk was correct. rm -rf pipelines/__pycache__ before
+#   trusting a guard result after editing a module.
+
 # 2026-09-09 F-94 - Jeff: "are we capturing now Aug 31 - Sept 4 data?"
 #   PARTLY, AND THAT WAS THE BUG. On 8 Sep I graded nine rows from TE and
 #   wrote the +1/0/-1 into the CSVs, but never updated score_model.ROWS -
