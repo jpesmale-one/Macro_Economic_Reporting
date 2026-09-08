@@ -4,16 +4,46 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-09-04 (r1, FRIDAY, UNSEALED - set stays LOCKED, expires tonight)
-date: 2026-09-04
-data_asof: 2026-09-04 08:24 PHT (calendar re-captured 08:02, 771 rows all 8
-           countries; TE whitelist reconciled 08:26 after LD-50 BLOCKED on a
-           stale snapshot; F&G re-fetched 07:41 = 35.26 FEAR, first material
-           move in 4 editions; prices 08:24. Set at -402.4 pips, worst of the
-           week. NZDJPY 32.7 PIPS FROM ITS FALSIFIER. Thu bars CLOSED)
+edition: 2026-09-08 (r1, WEEKLY, UNSEALED - first edition on the REVAMPED
+         model; awaiting Jeff's audit)
+date: 2026-09-08
+data_asof: 2026-09-08 23:30 PHT (calendar re-captured 23:26, 828 rows all 8
+           countries; TE whitelist re-fetched 23:27, 0 unmatched; fact
+           tables Sep-26 populated, 78 of 78 cells. NO PRICE DATA - TV was
+           already running without CDP so 9222 never listened)
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-08 FIRST REVAMPED WEEKLY BUILT - reports/2026/Q3/2026-09-08_weekly.md
+#   Jeff: "I'll let you build the report first then I'll audit after."
+#   BASE SCORES ONLY - the LD-98 calibrator is specified but NOT BUILT, so
+#   the tally is the first term of base+calibrator and the edition says so.
+#   THE BOARD IS RISK-OFF: CHF +7.00 and USD +4.00 both STRONG, and 7 of the
+#     8 permitted pairings are RISK OFF. Nothing forecast that (LD-99).
+#   SELECTED TWO PAIRS, NOT THREE - the first week LD-96 actually binds:
+#     NZDCHF SHORT gap +7.00 (widest this model has produced)
+#     GBPUSD SHORT gap +1.00 (marginal - clears MIN_GAP by 0.50)
+#     AUD, CAD, EUR unused. Under the old floor a third would be FORCED.
+#   TWO FINDINGS, NEITHER CAUGHT BY A GUARD:
+#     F-89 THE WATCHLIST IS A HARD CONSTRAINT and pair_select ignored it.
+#       First run selected AUDJPY - there is NO JPY PAIR among the 21. Also
+#       emitted CHFGBP, which no venue quotes. Now watchlist-checked and
+#       returned in market convention with direction.
+#     F-90 RANK BANDS CAN SPLIT A TIE, AND A TIE IS NOT A VIEW. USD and EUR
+#       both scored +4.00; the sort put one STRONG and one NEUTRAL, and the
+#       pipeline emitted EURUSD SHORT on a +0.00 gap. MIN_GAP=0.50 blocks
+#       it and the tie now PRINTS. >>> MIN_GAP IS MY NUMBER, NOT JEFF'S -
+#       it needs ratifying.
+#   NINE ROWS UPDATED from TE. NFP +162K vs +56K consensus - a 106K BEAT,
+#     the largest surprise of the week. CAD Employment -41.7K vs +15K.
+#     All 7 directions checked against lower_is_better() BEFORE grading.
+#   >>> NZDJPY'S OUTCOME IS UNGRADED. It was 32.7 pips from its falsifier on
+#     4 Sep and NO PRICE DATA was available this session, so whether it
+#     fired is UNKNOWN - not assumed either way. THE SET STILL OWES A
+#     GRADING; do it when TradingView is reachable.
+#   ALSO NOT DONE: entry references, falsifiers, charts (LD-79) - all need
+#     price data. The renderer was not run; this edition is markdown only.
+
 # 2026-09-04 REVAMP - SCORING + SELECTION PIPELINES BUILT AND RUNNING.
 #   pipelines/fact_tables.py  - loads the six CSVs, scores, ranks, bands
 #   pipelines/pair_select.py  - categories, conviction tiers, leg-disjoint
