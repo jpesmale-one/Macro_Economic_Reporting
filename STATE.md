@@ -4,7 +4,7 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-09-08 (r2, WEEKLY, UNSEALED - first edition on the REVAMPED
+edition: 2026-09-08 (r3, WEEKLY, UNSEALED - first edition on the REVAMPED
          model; awaiting Jeff's audit)
 date: 2026-09-08
 data_asof: 2026-09-08 23:30 PHT (calendar re-captured 23:26, 828 rows all 8
@@ -14,6 +14,44 @@ data_asof: 2026-09-08 23:30 PHT (calendar re-captured 23:26, 828 rows all 8
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-08 r3 - THE MODEL IS FEATURE-COMPLETE. pipelines/calibrator.py
+#   built (LD-98), wired into pair_select.final_scores(). The edition now
+#   publishes FINAL = base + calibrator rather than the base term alone.
+#   >>> THE CALIBRATOR CHANGED THE SET ON ITS FIRST RUN, which is the
+#     evidence it was worth building:
+#       base only : NZDCHF SHORT, AUDJPY LONG, GBPUSD SHORT, EURCAD LONG
+#       with calib: NZDCHF SHORT, AUDJPY LONG, GBPUSD LONG
+#     GBPUSD REVERSED DIRECTION. Base had USD over GBP by a point; the week
+#     ahead has GBP +1.00 (CPI Wed 16) and USD -2.00 (three soft rows), a
+#     three-point swing. Same macro data, opposite bias, purely on schedule.
+#     EURCAD dropped: its +0.50 base gap became -0.50 and both legs landed
+#     in NEUTRAL, so it fails on gap AND on band.
+#   THE USD/EUR TIE THAT FORCED LD-100 IS GONE - not because the rule
+#     changed but because the week ahead separated them (+4.00 apiece on
+#     base, two points apart after). The calibrator tie-breaks without
+#     having been designed to.
+#   BOTH LD-98 COLLISION RULES VERIFIED ON LIVE DATA:
+#     RULE 2 (same month, share): NZD Fri 18 two AUG rows -> (+1+1)/2;
+#       USD Fri 18 two AUG rows -> (-1-1)/2. Also GBP Fri 11 three rows.
+#     RULE 1 (latest month wins): AUD Tue 08 dropped the older NAB row.
+#   >>> RULE 1a IS A GAP IN LD-98 THAT I FILLED WITHOUT ASKING. When the
+#     LATEST row is UNSCORABLE and an earlier one is not (JPY Wed 16:
+#     Balance of Trade AUG has no benchmark, Machinery Orders JUL scores
+#     -1), precedence runs over SCORABLE rows only, so the JUL row carries
+#     the day. The alternative blanks the day to honour a row carrying no
+#     signal. DOCUMENTED IN CODE AND IN 2 OF THE EDITION. UNRATIFIED.
+#   >>> THE CALIBRATOR IS RUNNING ON THIN DATA. Only 1 of 20 scheduled rows
+#     carries a TE consensus; 12 grade against forecast; 7 - more than a
+#     third - carry neither and are unscorable. TE publishes consensus near
+#     the release, so this is a HORIZON problem, not a source defect.
+#     RE-RUN ON SUNDAY and the score will move.
+#   PRIOR OPEN ITEMS CLOSED on Jeff's instruction: "drop this we are moving
+#     on with the revamp ... we're building a new". NZDJPY's ungraded
+#     outcome and the old model's findings do NOT carry forward.
+#   STILL TO BUILD: price data (entry refs, falsifiers, charts - LD-79),
+#     and a GUARD SUITE for the new pipelines. render_edition.py's guards
+#     target the OLD section structure and do not apply to this report.
+
 # 2026-09-08 r2 - JEFF AUDITED r1 AND BOTH DEFECTS WERE MINE, NOT THE SPEC'S.
 #   LD-101 SUPERSEDES F-89's 'fix'. I imported Watch_list.txt as a hard
 #     constraint WITHOUT ASKING, then filed the pipeline ignoring it as a

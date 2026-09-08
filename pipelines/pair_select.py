@@ -87,6 +87,30 @@ TIER = {('STRONG', 'WEAK'): 1,
 # boundary - and MIN_GAP, which was my number and never ratified, is gone.
 
 
+def final_scores(capture=None, start=None, end=None):
+    """FINAL = base + calibrator (the revamp's 5).
+
+    Jeff, 2026-09-04: "The result from the Macro Economic Indicators will be
+    our base line. Then the score from the Week ahead will serve as
+    calibrator."
+
+    Returns {ccy: {'base', 'cal', 'total'}}. With no capture, the calibrator
+    term is zero and this degrades to base-only - which is what r1 and r2 of
+    the 2026-09-08 edition published, and said so.
+    """
+    b = ft.base_scores()
+    out = dict((c, {'base': b[c]['total'], 'cal': 0.0,
+                    'total': b[c]['total']}) for c in b)
+    if capture and start and end:
+        import calibrator
+        cal = calibrator.calibrate(capture, start, end)
+        for c in out:
+            v = cal.get(c, {}).get('total', 0.0)
+            out[c]['cal'] = v
+            out[c]['total'] = out[c]['base'] + v
+    return out
+
+
 def candidates(scores=None, band=None):
     """Every permitted pairing, richest gap first.
 
