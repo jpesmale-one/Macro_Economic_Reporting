@@ -14,6 +14,36 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 LD-105 - Idea_dump IS AMENDABLE WITH CONSENT, AND A LOGIC FIX
+#   GOES TO THE ROOT. Jeff: "we can amend the idea_dump as long as I give
+#   consent ... if its a logic correction we reflect it down to the roots".
+#   Written into CLAUDE.md as section 8c.
+#   >>> 'NEVER EDITED' WAS NEVER A DECISION. LD-7 is about SCOPE (LD-4).
+#   'committed VERBATIM - never edited' was a line in the 2026-08-19 session
+#   LOG that hardened into a rule by repetition, and I cited it for weeks
+#   without checking what LD-7 actually says.
+#   WHY THE OLD HABIT WAS HARMFUL: a rule corrected only in code leaves the
+#   draft carrying the wrong one. Two authorities diverge silently, and
+#   R-38 - which compares code against the draft - is worthless if the
+#   draft is knowingly stale.
+#   PROTOCOL: consent explicit, never inferred | amend draft + score_model +
+#   fact tables + guard rule tables IN ONE COMMIT | keep the ORIGINAL
+#   WORDING INLINE so the file is auditable without git | say WHY | re-run
+#   R-38 (fewer matched rows after an edit means the edit broke the parser).
+#   AMEND for a RULE that was wrong. NEVER for a value, a vintage or a
+#   one-week judgement - F-96/97/98 were eleven thresholds drifting exactly
+#   that way.
+# >>> APPLYING IT IMMEDIATELY FOUND A GAP: LD-102 removed CHF Industrial
+#   Production from score_model AND the CSV this morning and LEFT IT LIVE
+#   IN THE DRAFT (lines 70-71). The exact divergence the rule exists to
+#   prevent, created hours before the rule was written. Draft now marks it
+#   REMOVED with the original rule preserved.
+# R-38 EXTENDED: it now separates draft rows MARKED removed from silent
+#   gaps. 21 unmatched -> 1 marked REMOVED + 20 checked by name:
+#   10 naming drift (Mfg vs Manufacturing), 8 rate decisions (they live in
+#   rate_model, not score_model.ROWS), 2 Employment Change header lines.
+#   NO OTHER UNREFLECTED REMOVALS.
+
 # 2026-09-09 LD-104 - THE BASE GRADES ACTUAL vs PREVIOUS; CONSENSUS LIVES
 #   IN THE CALIBRATOR. Jeff: "Change to > Prev, and amend the spec. The
 #   Consensus/Forecast will be applicable with the Week Ahead scoring".

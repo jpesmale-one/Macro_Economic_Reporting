@@ -568,6 +568,49 @@ question, and do not proceed on "probably fine".
 EDITION.** That is the failure mode this rule exists for.
 
 ---
+## 8c. `Idea_dump/` IS AMENDABLE WITH CONSENT — AND A LOGIC FIX GOES TO
+## THE ROOT (LD-105)
+
+**Jeff, 2026-09-09:** *"yes, we can amend the idea_dump as long as I give
+consent. It is one way we make correction and I want to make sure if its a
+logic correction we reflect it down to the roots"*
+
+**This supersedes “never edited”, which was never a decision.** LD-7 is
+about SCOPE (LD-4), not about editing the drafts; “committed VERBATIM —
+never edited” was a line in the 2026-08-19 session log that hardened into a
+rule by repetition. **I cited it for weeks without checking what it was.**
+
+### Why the old habit was actively harmful
+
+**A rule corrected only in code leaves the draft still carrying the wrong
+one.** Two authorities then disagree silently, and the next person to read
+the source is misled by the very file that is supposed to settle
+arguments. **R-38 exists to compare code against the draft — that guard is
+worthless if the draft is knowingly stale.**
+
+### The protocol
+
+| Step | Rule |
+|---|---|
+| **1. Consent** | **Jeff says so explicitly.** Never infer it from a bug report or a question |
+| **2. Root** | Amend `Idea_dump/`, `score_model.ROWS`, the fact tables, and any guard's rule table — **in the same commit** |
+| **3. Provenance** | Keep the ORIGINAL WORDING INLINE: `[AMENDED <date> by Jeff, LD-nnn — was "..."]`. **The file must be auditable without git** |
+| **4. Reason** | The amendment says WHY, not just what |
+| **5. Verify** | Re-run R-38. A parse that matches fewer rows after an edit means the edit broke the parser |
+
+### What is a LOGIC correction, and what is not
+
+**AMEND THE ROOT** when the rule itself was wrong — LD-104 moved NFP from a
+consensus test to `>Prev` because consensus belongs in the calibrator. The
+draft said something that is no longer what the model should do.
+
+**DO NOT AMEND** for a value, a vintage, or a one-week judgement. **A
+release updates a VALUE; it never rewrites the RULE** (F-96/F-97/F-98 —
+eleven thresholds drifted exactly that way).
+
+**When in doubt it is a rule change, and rule changes are Jeff's** (F-3).
+
+---
 ## 9. FLAG IMMEDIATELY (interrupt whatever you are doing)
 
 - A section-2 trigger firing — name it by number BEFORE proceeding.

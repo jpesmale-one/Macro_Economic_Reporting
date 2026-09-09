@@ -136,11 +136,23 @@ if __name__ == '__main__':
             print('      %-4s %-28s %s' % (ccy, ind[:28], tok))
             print('           %s' % why)
     if unmatched:
+        # LD-105: a draft row with no whitelist row is EITHER harmless naming
+        # drift OR a removal that never reached the root. LD-102 dropped CHF
+        # Industrial Production from the code and the CSV and left it live in
+        # the draft - exactly the two-authorities-diverging failure the rule
+        # exists to prevent. A row explicitly marked REMOVED/WAS is accounted
+        # for; anything else is listed for a human to judge.
+        silent = [(c, i) for c, i in unmatched
+                  if 'REMOVED' not in i.upper() and 'WAS:' not in i.upper()]
+        marked = len(unmatched) - len(silent)
         print()
-        print('  %d spec rule(s) name no whitelist row (naming drift, not a'
-              ' defect):' % len(unmatched))
-        for ccy, ind in unmatched[:8]:
+        print('  %d spec rule(s) name no whitelist row (%d marked REMOVED):'
+              % (len(unmatched), marked))
+        for ccy, ind in silent[:10]:
             print('      %-4s %s' % (ccy, ind[:44]))
+        if silent:
+            print('      -> naming drift, OR a removal that never reached the'
+                  ' draft. Check before ignoring.')
     print()
     print('%d disagreement(s)' % len(bad))
     sys.exit(1 if bad else 0)

@@ -67,8 +67,8 @@ Forward Looking Macro-Economic Indicators:
 		h. CH
 			i. Procure.ch Manufacturing PMI
 				1) Actual > 50.5 is Good, Actual < 49.5 is Bad, Actual in between 49.5 - 50.5 is Neutral
-			ii. Industrial Production YoY
-				1) Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral
+			ii. Industrial Production YoY [REMOVED 2026-09-09 by Jeff, LD-102 - quarterly, so it scores the same value for ~13 consecutive weekly editions and can never appear in the Week Ahead scoring. Retained here struck through, not deleted, so the original list stays readable]
+				1) [WAS: Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral]
 				
 	2. Spending - Related to People and Business Spending. Get Actual vs Previous
 		a. US
