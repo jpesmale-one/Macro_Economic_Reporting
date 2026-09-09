@@ -14,6 +14,37 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 F-98 + R-38 - JEFF'S DRAFT IS THE THRESHOLD AUTHORITY AND
+#   NOTHING HAD EVER CHECKED AGAINST IT. He quoted two rules from
+#   Idea_dump/Macro_economic_indicators.txt; both were right, and building a
+#   guard found ELEVEN drifted thresholds in total.
+#   THE SPEC SAYS: all 8 Balance of Trade rows are '>Prev' (lines 129-153),
+#   both Household Spending rows are '>0.5%' (lines 95, 113).
+#   RESTORED: JPY Household Spending, USD/AUD/CAD Balance of Trade, EUR
+#     Industrial Production, GBP Manufacturing Production, USD Personal
+#     Spending, NZD Building Permits. Plus EUR Retail Sales / CAD Employment
+#     / USD NFP from F-96/F-97 earlier today.
+#   >>> THE THREE '0-0.5%' BANDS I CALLED 'DEFENSIBLE' ON 2026-09-09 WERE
+#     NEVER IN THE SPEC. I invented them. Saying a rule is defensible is not
+#     the same as checking whether it is MINE.
+#   TWO VERDICTS FLIPPED and the board moved hard:
+#     USD Balance of Trade -$88.6B vs prev -$71.2B  GOOD -> BAD
+#     AUD Balance of Trade A$1.923B vs prev A$2.341B GOOD -> BAD
+#     Both FELL against the previous print; only beating a low consensus
+#     made them look good, which is not the rule.
+#     USD base +4.00 -> +0.00 (LAST on the board), AUD +5.50 -> +1.50.
+#     was  NZDCHF SHORT | EURJPY LONG | AUDUSD LONG
+#     now  EURUSD LONG +7.00 | AUDCHF SHORT +6.50 | GBPNZD LONG +2.67
+#   >>> AND IT DEMONSTRATES THE CONCENTRATION RISK MEASURED THIS MORNING:
+#     Trade is ONE ROW for every currency at WEIGHT 2, so a single verdict
+#     flip moves a currency 4.00 points - nearly half the +/-9 base range.
+# NEW GUARD R-38: pipelines/audit_spec.py parses Jeff's draft and compares
+#   every threshold. 67 rules parsed, 46 matched, 0 disagreements.
+#   LD-58 (GBP Claimant Count '<0') is REGISTERED AS AN OVERRIDE, not a
+#   silent skip - it is a LATER locked decision that legitimately supersedes
+#   the draft, and the entry names the reason so the exemption is checkable.
+#   Also refuses to pass if it matches no rows (the vacuous-green lesson).
+
 # 2026-09-09 F-96 + F-97 - UPDATING A VALUE IS NOT LICENCE TO RESTATE ITS
 #   RULE. Jeff caught EUR Retail Sales; checking it found I had done the
 #   same thing to THREE rows in the F-94 sync, not one.

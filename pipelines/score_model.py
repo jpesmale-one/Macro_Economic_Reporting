@@ -33,7 +33,7 @@ ROWS = [
  # already rolled forward, so our value and TE's current value agreed on
  # being "the last print" while meaning different months.
  ("Production","EA","S&P Global Mfg PMI Final","52.7","51.9","Aug/26",">50.5","GOOD"),
- ("Production","EA","Industrial Production YoY","0.1%","-0.1%","Jun/26","0-0.5%","NEUTRAL"),
+ ("Production","EA","Industrial Production YoY","0.1%","-0.1%","Jun/26",">0.5%","NEUTRAL"),
  # F-95: held the JUL print after the AUG Final released Tue 1 Sep 08:30
  # at 51.7 from 51.9. Same shape as F-91 on the EUR row - the two are
  # the same indicator family and went stale the same way. Score is
@@ -50,7 +50,7 @@ ROWS = [
  # -0.2% IS below zero - what changes is that a POSITIVE forecast now
  # scores positively in the calibrator instead of being graded bad.
  ("Production","GB","Industrial Production YoY","-0.2%","1.0%","Jun/26",">0.5%","BAD"),
- ("Production","GB","Manufacturing Production YoY","0.5%","2.0%","Jun/26","0-0.5%","NEUTRAL"),
+ ("Production","GB","Manufacturing Production YoY","0.5%","2.0%","Jun/26",">0.5%","NEUTRAL"),
  ("Production","JP","Industrial Production YoY Final","4.9%","-2.1%","Jun/26",">0.5%","GOOD"),
  ("Production","JP","Machinery Orders YoY","16.9%","-1.9%","Jun/26",">0.5%","GOOD"),
  ("Production","JP","Machine Tool Orders YoY","50.4%","52.8%","Jul/26",">0.5%","GOOD"),
@@ -70,7 +70,7 @@ ROWS = [
  ("Spending","US","Building Permits MoM Final","4.3%","-2.6%","Jul/26",">0.5%","GOOD"),
  ("Spending","US","Retail Sales YoY","5.0%","6.8%","Jul/26",">0.5%","GOOD"),
  ("Spending","US","CB Consumer Confidence","89.4","90.2","Aug/26",">Prev","BAD"),
- ("Spending","US","Personal Spending MoM","0.2%","0.3%","Jul/26","0-0.5%","NEUTRAL"),
+ ("Spending","US","Personal Spending MoM","0.2%","0.3%","Jul/26",">0.5%","NEUTRAL"),
  # F-96: I changed the RULE while updating the VALUE in F-94. This row
  # carried ">0.5%" like the other five Retail Sales rows; I rewrote it
  # to ">Cons 1.1%" and it became the only one of six not on the level
@@ -82,14 +82,17 @@ ROWS = [
  ("Spending","EA","Consumer Confidence Final","-15.5","-15.9","Aug/26",">Prev","GOOD"),
  ("Spending","GB","GfK Consumer Confidence","-14","-17","Aug/26",">Prev","GOOD"),
  ("Spending","GB","Retail Sales Ex Fuel YoY","2.3%","5.0%","Jul/26",">0.5%","GOOD"),
- ("Spending","JP","Household Spending YoY","-3.6%","-3.3%","Jul/26",">Cons -1.6%","BAD"),
+ # F-98: spec line 113 - ">0.5% Good, <0% Bad, between Neutral". Restored
+ # from a consensus test I substituted during a sync. -3.6% is below 0,
+ # so BAD either way - the RULE was wrong, not the verdict.
+ ("Spending","JP","Household Spending YoY","-3.6%","-3.3%","Jul/26",">0.5%","BAD"),
  ("Spending","JP","Consumer Confidence","35.5","34.9","Aug/26",">Prev","GOOD"),
  ("Spending","JP","Retail Sales YoY","4.0%","0.6%","Jul/26",">0.5%","GOOD"),
  ("Spending","AU","Household Spending YoY","7.0%","6.0%","Jul/26",">0.5%","GOOD"),
  ("Spending","AU","Building Permits YoY Final","8.9%","5.5%","Jun/26",">0.5%","GOOD"),
  ("Spending","AU","Westpac Consumer Conf Change","6.0%","4.1%","Aug/26",">Prev","GOOD"),
  ("Spending","AU","NAB Business Confidence","-6","-6","Jul/26",">Prev","NEUTRAL"),
- ("Spending","NZ","Building Permits MoM","-4.3%","-3.6%","Jul/26","<0%","BAD"),
+ ("Spending","NZ","Building Permits MoM","-4.3%","-3.6%","Jul/26",">0.5%","BAD"),
  ("Spending","NZ","Electronic Retail Card Spending YoY","3.4%","1.3%","Jul/26",">0.5%","GOOD"),
  ("Spending","NZ","ANZ Business Confidence","53.7","56.1","Aug/26",">Prev","BAD"),
  ("Spending","NZ","ANZ Roy Morgan Consumer Conf","98.0","99.3","Aug/26",">Prev","BAD"),
@@ -98,13 +101,21 @@ ROWS = [
  ("Spending","CH","Consumer Confidence","-35","-36","Jul/26",">Prev","GOOD"),
  ("Spending","CH","Retail Sales YoY","2.3%","1.9%","Jul/26",">0.5%","GOOD"),
  # ---------------- TRADE (w=1) ----------------
- ("Trade","US","Balance of Trade","-$88.6B","-$71.2B","Jul/26",">Cons -$90B","GOOD"),
+ # F-98: spec line 132. -$88.6B is a WIDER deficit than -$71.2B, so this
+ # FLIPS GOOD -> BAD. Beating a -$90B consensus is not the test.
+ ("Trade","US","Balance of Trade","-$88.6B","-$71.2B","Jul/26",">Prev","BAD"),
  ("Trade","EA","Balance of Trade","EUR8.60B","EUR-9.00B","Jun/26",">Prev","GOOD"),
  ("Trade","GB","Balance of Trade","GBP-5.54B","GBP-3.46B","Jun/26",">Prev","BAD"),
  ("Trade","JP","Balance of Trade","JPY-634.5B","JPY-409.9B","Jul/26",">Prev","BAD"),
- ("Trade","AU","Balance of Trade","A$1.923B","A$2.341B","Jul/26",">Cons A$1.40B","GOOD"),
+ # F-98: spec line 141 - all eight Balance of Trade rows are ">Prev".
+ # A$1.923B is BELOW the A$2.341B previous, so this FLIPS GOOD -> BAD.
+ # It only read GOOD because it beat a low consensus, which is not the
+ # rule Jeff specified.
+ ("Trade","AU","Balance of Trade","A$1.923B","A$2.341B","Jul/26",">Prev","BAD"),
  ("Trade","NZ","Balance of Trade","NZ$-1.95B","NZ$0.02B","Jul/26",">Prev","BAD"),
- ("Trade","CA","Balance of Trade","C$0.77B","C$4.2B","Jul/26",">Cons C$3.6B","BAD"),
+ # F-98: spec line 138. C$0.77B is below the C$4.2B previous - BAD under
+ # either rule, but the rule is ">Prev".
+ ("Trade","CA","Balance of Trade","C$0.77B","C$4.2B","Jul/26",">Prev","BAD"),
  ("Trade","CH","Balance of Trade","CHF8.1B","CHF3.8B","Jul/26",">Prev","GOOD"),
  # ---------------- EMPLOYMENT (w=2) ----------------
  ("Employment","US","Non Farm Payrolls","162K","-23K","Aug/26",">Cons","GOOD"),
