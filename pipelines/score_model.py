@@ -53,7 +53,12 @@ ROWS = [
  ("Production","NZ","Global Dairy Trade Price Index","0.9%","2.3%","Sep/26",">0.5%","GOOD"),
  ("Production","CA","S&P Global Mfg PMI","53.0","53.5","Aug/26",">50.5","GOOD"),
  ("Production","CH","Procure.ch-UBS Mfg PMI","57.1","53.2","Aug/26",">50.5","GOOD"),
- ("Production","CH","Industrial Production YoY","5.5%","-7.1%","Q2/26",">0.5%","GOOD"),
+ # LD-102: CHF Industrial Production YoY REMOVED 2026-09-09 on Jeff's
+ # call - quarterly, so it scores the same value for ~13 consecutive
+ # weekly editions and can never appear in the calibrator. It was
+ # contributing certainty it had not earned. CHF Production is now a
+ # ONE-ROW weight-2 category: Procure.ch PMI alone moves CHF by up to
+ # 2.00 points.
  # ---------------- SPENDING (w=1) ----------------
  ("Spending","US","Building Permits MoM Final","4.3%","-2.6%","Jul/26",">0.5%","GOOD"),
  ("Spending","US","Retail Sales YoY","5.0%","6.8%","Jul/26",">0.5%","GOOD"),

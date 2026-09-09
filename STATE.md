@@ -14,6 +14,30 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 LD-102 - CHF Industrial Production YoY REMOVED on Jeff's call:
+#   "Since this is released quarterly let's take this out of our
+#   indicators." F-3 makes the list a CLOSED SET amendable only by him.
+#   WHY IT MATTERS BEYOND ONE ROW: a quarterly series scores the SAME value
+#   for ~13 consecutive weekly editions - a constant the currency carries
+#   whether or not anything happened - and can NEVER appear in the
+#   calibrator, which only sees the five days ahead. It contributed
+#   certainty it had not earned.
+#   Whitelist 78 -> 77 cells. BOARD AND SET UNCHANGED: both CHF Production
+#   rows scored +1, so the average is identical at +2.00.
+#   THE THREE OTHER QUARTERLY ROWS STAY, and for a structural reason rather
+#   than preference: NZD Unemployment is the ONLY row in NZD Employment,
+#   NZD Inflation the only row in NZD Inflation, SNB the only row in CHF
+#   Interest Rate. Removing them EMPTIES a category, and an empty category
+#   scores 0.00 - which reads NEUTRAL when the truth is UNKNOWN. That is
+#   the F-73 shape and it is worse than slow data.
+# >>> MEASURED WHILE CHECKING THIS, AND IT REFRAMES THE CONCERN: SINGLE-ROW
+#   CATEGORIES ARE ALREADY THE NORM. Trade, Inflation and Interest Rate are
+#   ONE-ROW FOR ALL EIGHT CURRENCIES; Employment is one-row for five.
+#   32 of 48 (category, currency) cells rest on a single indicator. CHF
+#   Production joining them is unremarkable - but it means a single print
+#   moves a weight-2 category by its full range, which is worth knowing
+#   before adding weight anywhere.
+
 # 2026-09-09 RECHECK after F-91/92/93/94 - Jeff: "since the numbers have
 #   moved we should recheck the tally and the pairs". DONE, and the tally,
 #   the bands and the set are all UNCHANGED and internally consistent:
