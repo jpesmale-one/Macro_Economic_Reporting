@@ -14,6 +14,35 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 F-96 + F-97 - UPDATING A VALUE IS NOT LICENCE TO RESTATE ITS
+#   RULE. Jeff caught EUR Retail Sales; checking it found I had done the
+#   same thing to THREE rows in the F-94 sync, not one.
+#   F-96 EUR Retail Sales YoY: threshold '>0.5%' -> '>Cons 1.1%'. Six Retail
+#     Sales rows exist and EUR became the ONLY one not on the level test.
+#     Jeff: "Actual > 0.5% is Good, < 0% is Bad ... in between is Neutral".
+#     0.6% clears 0.5%: BAD -> GOOD, EUR Spending +0.00 -> +2.00.
+#   F-97 CAD Employment Change: threshold encoded LD-57, a LOCKED four-clause
+#     FT/PT rule with its own function, and I overwrote it with a bare
+#     '>Cons 15K' WITHOUT FLAGGING that a locked decision was changing.
+#     THE VERDICT STANDS AT BAD - -41.7K is negative and far under +15K, bad
+#     under LD-57 clause (c) and under a consensus test alike.
+#     >>> BUT THE FT/PT SPLIT COULD NOT BE APPLIED: scheduled 4 Sep 20:30,
+#     our last pre-Sunday capture is 4 Sep 08:02, so NO capture holds an
+#     actual for it. The threshold now NAMES LD-57 and records the split as
+#     unsourced rather than silently substituting a different rule.
+#   USD NFP: '>Cons' -> '>Cons 56K' was the same rule with the number named.
+#     Restored to '>Cons' for consistency; no verdict change.
+# >>> THE BOARD MOVED, and this is the first of Jeff's recent catches that
+#   changes SCORES rather than evidence:
+#     EUR +4.00 -> +6.00, now SECOND on the board
+#     was  NZDCHF SHORT +6.00 | AUDJPY LONG +1.83 | EURUSD LONG +1.00
+#     now  NZDCHF SHORT +6.00 | EURJPY LONG +3.33 | AUDUSD LONG +1.50
+#   Two of three pairs changed. Guards clean: R-37 24 rows 0 problems.
+# >>> PATTERN TO WATCH: F-94 was a five-row sync and I altered thresholds on
+#   three of them while claiming to update values. NEXT TIME A RELEASE IS
+#   SYNCED, DIFF THE THRESHOLD COLUMN SEPARATELY - a value change should
+#   leave it untouched unless Jeff has said otherwise (F-3).
+
 # 2026-09-09 F-95 - GBP S&P Global Mfg PMI Final held the JUL print. Jeff
 #   caught it; LD-103's five checks all passed and it shipped.
 #   ONE CORRECTION TO THE REQUEST, and it did not change the outcome: the

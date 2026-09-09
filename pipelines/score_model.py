@@ -71,7 +71,14 @@ ROWS = [
  ("Spending","US","Retail Sales YoY","5.0%","6.8%","Jul/26",">0.5%","GOOD"),
  ("Spending","US","CB Consumer Confidence","89.4","90.2","Aug/26",">Prev","BAD"),
  ("Spending","US","Personal Spending MoM","0.2%","0.3%","Jul/26","0-0.5%","NEUTRAL"),
- ("Spending","EA","Retail Sales YoY","0.6%","0.7%","Jul/26",">Cons 1.1%","BAD"),
+ # F-96: I changed the RULE while updating the VALUE in F-94. This row
+ # carried ">0.5%" like the other five Retail Sales rows; I rewrote it
+ # to ">Cons 1.1%" and it became the only one of six not on the level
+ # test. Jeff, 2026-09-09: "Actual > 0.5% is Good, < 0% is Bad. Actual
+ # in between 0.5 - 0 is Neutral". 0.6% clears 0.5%, so BAD -> GOOD and
+ # EUR Spending goes +0.00 -> +2.00. UPDATING A VALUE IS NOT LICENCE TO
+ # RESTATE ITS RULE.
+ ("Spending","EA","Retail Sales YoY","0.6%","0.7%","Jul/26",">0.5%","GOOD"),
  ("Spending","EA","Consumer Confidence Final","-15.5","-15.9","Aug/26",">Prev","GOOD"),
  ("Spending","GB","GfK Consumer Confidence","-14","-17","Aug/26",">Prev","GOOD"),
  ("Spending","GB","Retail Sales Ex Fuel YoY","2.3%","5.0%","Jul/26",">0.5%","GOOD"),
@@ -100,7 +107,7 @@ ROWS = [
  ("Trade","CA","Balance of Trade","C$0.77B","C$4.2B","Jul/26",">Cons C$3.6B","BAD"),
  ("Trade","CH","Balance of Trade","CHF8.1B","CHF3.8B","Jul/26",">Prev","GOOD"),
  # ---------------- EMPLOYMENT (w=2) ----------------
- ("Employment","US","Non Farm Payrolls","162K","-23K","Aug/26",">Cons 56K","GOOD"),
+ ("Employment","US","Non Farm Payrolls","162K","-23K","Aug/26",">Cons","GOOD"),
  ("Employment","US","Unemployment Rate","4.1%","4.1%","Aug/26","<Prev","NEUTRAL"),
  ("Employment","EA","Unemployment Rate","6.4%","6.3%","Jul/26","<Prev","BAD"),
  ("Employment","GB","Claimant Count Change","-11K","-6.4K","Jul/26","<0 (LD-58)","GOOD"),
@@ -110,7 +117,19 @@ ROWS = [
  ("Employment","AU","Unemployment Rate","4.5%","4.4%","Jul/26","<Prev","BAD"),
  ("Employment","NZ","Unemployment Rate","5.6%","5.4%","Jun/26","<Prev","BAD"),
  ("Employment","CA","Unemployment Rate","6.4%","6.4%","Aug/26","<Prev","NEUTRAL"),
- ("Employment","CA","Employment Change","-41.7K","75.1K","Aug/26",">Cons 15K","BAD"),
+ # F-97: the same mistake, and worse - this row's threshold encoded
+ # LD-57, a LOCKED four-clause full-time/part-time rule with its own
+ # function, and F-94 overwrote it with a bare consensus test without
+ # flagging that a locked decision was being changed.
+ # THE VERDICT STANDS AT BAD on the headline: -41.7K is negative and
+ # far below the +15K consensus, which is BAD under LD-57 clause (c)
+ # and under a consensus test alike.
+ # >>> THE FT/PT SPLIT COULD NOT BE APPLIED. It was scheduled 4 Sep
+ # 20:30 and our last pre-Sunday capture is 4 Sep 08:02, so NO capture
+ # holds an actual for it. The threshold below names LD-57 as the
+ # governing rule and records that the split is unsourced - it does
+ # not silently substitute a different rule.
+ ("Employment","CA","Employment Change","-41.7K","75.1K","Aug/26","hdl<0 BAD (LD-57); FT/PT split unsourced","BAD"),
  ("Employment","CH","Non Farm Payrolls","5.698M","5.537M","Q2/26",">Cons 5.4M","GOOD"),
  ("Employment","CH","Unemployment Rate","3.0%","2.9%","Jul/26","<Prev","BAD"),
  # ---------------- INFLATION (w=3) ----------------
