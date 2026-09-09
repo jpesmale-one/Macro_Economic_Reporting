@@ -67,6 +67,10 @@ A('  <p><strong>Read a row left to right:</strong> the <em>actual</em> is '
   '<strong>+1 / 0 / \u22121</strong>. A category score is the <strong>mean of '
   'that currency\'s rows in it, times the category weight</strong>.</p>')
 A('')
+A('  <div class="note"><strong>A Ref ending in (Q) is a QUARTERLY series.</strong> '
+  'NZD publishes Unemployment and Inflation quarterly, so those rows sit two '
+  'months behind the monthly ones around them — <strong>that is the cadence, '
+  'not a stale row</strong>.</div>')
 A('  <div class="note flag">')
 A('    <span class="lbl">\u26a0 DIRECTION OF GOODNESS IS NOT UNIFORM</span>')
 A('    <strong>Unemployment and claimant counts score +1 when they FALL</strong> '
@@ -119,7 +123,14 @@ for cat in CATS:
             A('        <td>%s</td>' % esc(nm))
             A('        <td class="num v">%s</td>' % esc(v.get('actual', '\u2014')))
             A('        <td class="num v dim">%s</td>' % esc(v.get('prev', '\u2014')))
-            A('        <td class="dim sm">%s</td>' % esc(v.get('ref', '\u2014')))
+            _ref = v.get('ref', '—')
+            # LD-106: a REF ending in '(Q)' is a QUARTERLY series, so an
+            # old-looking month is its cadence and not a stale row.
+            _q = _ref.endswith('(Q)')
+            A('        <td class="dim sm%s"%s>%s</td>'
+              % (' q' if _q else '',
+                 ' title="Quarterly series - this is its cadence, not a'
+                 ' stale row"' if _q else '', esc(_ref)))
             A('        <td class="dim sm">%s</td>' % esc(v.get('thr', '\u2014')))
             A('        <td class="num %s">%s</td>' % (k, txt))
             if first:

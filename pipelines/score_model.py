@@ -19,6 +19,13 @@ W = {"Production":1, "Spending":1, "Trade":1, "Employment":2, "Inflation":3}
 # Interest Rate is category 6, weight 3 - scored in pipelines/rate_model.py (LD-23).
 # Range is therefore +/-11.00, not +/-8.00.
 
+# LD-106: a REF ending in ' (Q)' means the series is QUARTERLY, so an
+# old-looking month is its cadence and not a stale row. NZD publishes
+# Unemployment and Inflation quarterly and both sit two months behind
+# the monthly rows around them; without the marker the audit view
+# shows 'Jun/26' beside 'Aug/26' and reads as a defect.
+# The suffix is COSMETIC TO THE PARSER - audit_evidence.month_key()
+# still reads (26, 6) from 'Jun/26 (Q)' - verified before applying.
 # (category, ccy, indicator, actual, prev, ref, rule, score)  score in GOOD/BAD/NEUTRAL/MISSING
 ROWS = [
  # ---------------- PRODUCTION (w=1) ----------------
@@ -126,7 +133,7 @@ ROWS = [
  ("Employment","AU","ANZ-Indeed Job Ads MoM","+0.8%","-0.1%","Jul/26",">0.5%","GOOD"),
  ("Employment","AU","Employment Change","-15.8K (FT +16.3K, PT -32.2K)","76.3K (FT +29.3K, PT +47.0K)","Jul/26","hdl BAD; FT NEUTRAL (LD-57); PT GOOD","NEUTRAL"),
  ("Employment","AU","Unemployment Rate","4.5%","4.4%","Jul/26","<Prev","BAD"),
- ("Employment","NZ","Unemployment Rate","5.6%","5.4%","Jun/26","<Prev","BAD"),
+ ("Employment","NZ","Unemployment Rate","5.6%","5.4%","Jun/26 (Q)","<Prev","BAD"),
  ("Employment","CA","Unemployment Rate","6.4%","6.4%","Aug/26","<Prev","NEUTRAL"),
  # F-97: the same mistake, and worse - this row's threshold encoded
  # LD-57, a LOCKED four-clause full-time/part-time rule with its own
@@ -149,7 +156,7 @@ ROWS = [
  ("Inflation","GB","Inflation Rate YoY","2.9%","2.6%","Jul/26",">2% & rising","GOOD"),
  ("Inflation","JP","Inflation Rate YoY","1.9%","1.6%","Jul/26","<2% & rising","NEUTRAL"),
  ("Inflation","AU","Inflation Rate YoY","3.5%","3.8%","Jul/26",">2% & falling","NEUTRAL"),
- ("Inflation","NZ","Inflation Rate YoY","4.1%","3.1%","Jun/26",">2% & rising","GOOD"),
+ ("Inflation","NZ","Inflation Rate YoY","4.1%","3.1%","Jun/26 (Q)",">2% & rising","GOOD"),
  ("Inflation","CA","Inflation Rate YoY","3.0%","2.8%","Jul/26",">2% & rising","GOOD"),
  ("Inflation","CH","Inflation Rate YoY","0.8%","0.4%","Aug/26","<2% & rising","NEUTRAL"),
 ]

@@ -175,6 +175,7 @@ table.ind td.tot{
 table.ind td.v{font-family:"IBM Plex Mono",monospace; font-size:12.5px; white-space:nowrap}
 table.ind td.dim{color:var(--ink-2)}
 table.ind td.sm{font-size:12px; white-space:nowrap}
+table.ind td.q{color:var(--warn); font-weight:500}
 p.cnt{
   font:500 12px/1 "IBM Plex Mono",monospace; letter-spacing:.04em;
   color:var(--ink-3); margin:0 0 10px;
@@ -452,6 +453,7 @@ footer p{max-width:none}
 
   <p><strong>Read a row left to right:</strong> the <em>actual</em> is measured against the <em>threshold</em>, which gives the binary <strong>+1 / 0 / −1</strong>. A category score is the <strong>mean of that currency's rows in it, times the category weight</strong>.</p>
 
+  <div class="note"><strong>A Ref ending in (Q) is a QUARTERLY series.</strong> NZD publishes Unemployment and Inflation quarterly, so those rows sit two months behind the monthly ones around them — <strong>that is the cadence, not a stale row</strong>.</div>
   <div class="note flag">
     <span class="lbl">⚠ DIRECTION OF GOODNESS IS NOT UNIFORM</span>
     <strong>Unemployment and claimant counts score +1 when they FALL</strong> — they reach the currency through the economy. <strong>Inflation scores +1 when it RISES</strong> — it reaches the currency through the central bank, and stops helping only past that bank's own ceiling. The two look alike in plain language and carry opposite signs, which is what to check first on any row that looks wrong.
@@ -1069,7 +1071,7 @@ footer p{max-width:none}
         <td>Unemployment Rate</td>
         <td class="num v">5.6%</td>
         <td class="num v dim">5.4%</td>
-        <td class="dim sm">Jun/26</td>
+        <td class="dim sm q" title="Quarterly series - this is its cadence, not a stale row">Jun/26 (Q)</td>
         <td class="dim sm">&lt;Prev</td>
         <td class="num neg">−1</td>
         <td class="num neg tot" rowspan="1">-1.00</td>
@@ -1159,7 +1161,7 @@ footer p{max-width:none}
         <td>Inflation Rate YoY</td>
         <td class="num v">4.1%</td>
         <td class="num v dim">3.1%</td>
-        <td class="dim sm">Jun/26</td>
+        <td class="dim sm q" title="Quarterly series - this is its cadence, not a stale row">Jun/26 (Q)</td>
         <td class="dim sm">&gt;2% &amp; rising</td>
         <td class="num pos">+1</td>
         <td class="num pos tot" rowspan="1">+1.00</td>

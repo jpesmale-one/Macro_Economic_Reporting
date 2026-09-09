@@ -14,6 +14,21 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 LD-106 - QUARTERLY ROWS ARE MARKED '(Q)' IN THE REF COLUMN.
+#   Jeff: "NZD Unemployment Rate / NZD Inflation Rate YoY - Lets mark these
+#   as Quarterly in REF column so we know why its stale".
+#   Both read Jun/26 while the monthly rows around them read Aug/26, so on
+#   the audit page they LOOK like defects. They are not - that is the
+#   cadence. Now 'Jun/26 (Q)', amber, with a hover title.
+#   >>> CHECKED BEFORE APPLYING: R-37's vintage half PARSES the ref column
+#   via month_key(). Verified month_key('Jun/26 (Q)') still returns (26, 6)
+#   BEFORE editing any row - a cosmetic suffix on a parsed field is exactly
+#   how a guard gets broken silently.
+#   The CSVs already carried Frequency=Quarterly; this puts it where a
+#   READER sees it. Board and set unchanged - purely presentational.
+#   THE THIRD QUARTERLY ROW, CHF SNB Interest Rate Decision, is in
+#   rate_model rather than score_model.ROWS and has no Ref cell to mark.
+
 # 2026-09-09 LD-105 - Idea_dump IS AMENDABLE WITH CONSENT, AND A LOGIC FIX
 #   GOES TO THE ROOT. Jeff: "we can amend the idea_dump as long as I give
 #   consent ... if its a logic correction we reflect it down to the roots".
