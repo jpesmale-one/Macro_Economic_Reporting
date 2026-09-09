@@ -270,3 +270,38 @@ Forward Looking Macro-Economic Indicators:
 		h. CH
 			i. SNB Interest Rate Decision
 				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
+
+	7. GDP - The broadest measure of output. [ADDED 2026-09-09 by Jeff, LD-113 - a new category, weight 1]
+		Jeff, 2026-09-09: "lets build a category for GDP. Give them a category score of 1.
+		Scoring would be: Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is
+		Neutral. Let's create a separate CSV file for this."
+		WEIGHT 1 (confirming). Q2 GDP publishes in September - by the time it prints, the
+		quarter it measures ended two months ago and every leading series has moved. It
+		corroborates a read; it does not lead one.
+		SOURCE: TE 'gdp growth rate qoq'. Verified 2026-09-09 present for all eight
+		currencies across the capture archive, so it clears LD-23.
+		RANGE: adding this widens the base from -9..+9 to -10..+10.
+		a. US
+			i. GDP Growth Rate QoQ
+				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral
+		b. EA
+			i. GDP Growth Rate QoQ
+				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral
+		c. GB
+			i. GDP Growth Rate QoQ
+				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral
+		d. JP
+			i. GDP Growth Rate QoQ
+				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral
+		e. AU
+			i. GDP Growth Rate QoQ
+				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral
+		f. NZ
+			i. GDP Growth Rate QoQ
+				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral
+		g. CA
+			i. GDP Growth Rate QoQ
+				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral
+		h. CH
+			i. GDP Growth Rate QoQ
+				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral

@@ -104,7 +104,20 @@ the SNB's own 0-2% mandate. Each bank is judged against its own target.
 TERM_WEIGHT = {'realised': 0.20, 'expected': 0.30,
                'surprise': 0.20, 'path': 0.30}
 
-W_RATE = 3
+# F-100 (2026-09-09) - W_RATE IS A PRE-REVAMP LEFTOVER AND IS NOW 1.
+#
+# The revamp set Interest_Rate to weight 1 in fact_tables.WEIGHT. But the
+# fact table stored raw*W_RATE, and fact_tables then applied its own weight
+# of 1 to that already-tripled number - so the category has been carrying an
+# EFFECTIVE WEIGHT OF 3 since the revamp shipped, while the spec said 1.
+#
+# INVISIBLE UNTIL THE ACTUALS MIGRATION (LD-112). While the CSV held a score,
+# nothing compared it to what the model would compute; deriving the score
+# from the actual surfaced the factor of three on the first run. This is
+# exactly the class of bug Jeff's "store actuals not scores" fixes.
+#
+# 'score' is kept as an alias of raw so nothing downstream breaks.
+W_RATE = 1
 
 # ccy -> (low, high). A point target has low == high.
 MANDATE = {

@@ -60,20 +60,36 @@ def month_key(text):
 
 
 def verdict_check():
-    """Every CSV cell must equal the verdict score_model records."""
+    """The fact table's ACTUAL must equal score_model's actual (LD-112).
+
+    WHAT THIS GUARD IS FOR NOW. It used to compare the CSV cell against the
+    VERDICT, because the cell held a score. Jeff moved the fact tables to
+    actuals on 2026-09-09, so a verdict comparison here would flag every
+    correct row - the cell holds '54.6', not '1'.
+
+    THE DUPLICATION IT GUARDS HAS SHRUNK BUT NOT VANISHED. score_model.ROWS
+    still carries an actual alongside its threshold and verdict, so the same
+    print exists in two files. Until ROWS is reduced to RULES ONLY, this
+    check is what keeps the two copies honest - and it is now comparing like
+    with like, which is why it can pass at all.
+
+    THE SCORE IS NO LONGER CHECKED HERE because it is no longer STORED
+    anywhere to disagree with: derive_scores.py computes it from this very
+    actual on every run. That is the whole point of the migration.
+    """
     cells = {}
     for cat in ft.WEIGHT:
-        if cat == 'Interest_Rate':
-            continue                      # rate rows live in rate_model
+        if cat in ('Interest_Rate', 'GDP'):
+            continue        # rate lives in rate_model; GDP has no ROWS entry
         for r in ft.load(cat):
-            cells[(r['Currency'].strip(), r['Indicator'].strip())] = \
-                (r.get(ft.latest_month()) or '').strip()
+            key = (r['Currency'].strip(), r['Indicator'].strip())
+            cells[key] = (r.get(ft.latest_month()) or '').strip()
     bad = []
-    for cat, iso, name, a, p, ref, thr, v in sm.ROWS:
+    for cat, iso, name, a, p_, ref, thr, v in sm.ROWS:
         k = (sm.LABEL[iso], name)
         if k not in cells:
             continue
-        want = VERDICT.get(v, '')
+        want = (a or '').strip()
         if cells[k] != want:
             bad.append((k[0], k[1], v, want, cells[k]))
     return bad, len(cells)
@@ -103,12 +119,19 @@ def all_captures(upto=None):
 
 
 def rate_cell_check():
-    """LD-110: each Interest_Rate cell must equal rate_model's raw score.
+    """The Interest_Rate cell must equal rate_model's POLICY RATE (LD-112).
 
-    The rate cell is CONTINUOUS - it carries the weighted score itself, not
-    a +1/0/-1 verdict - so the verdict check skips it and nothing else was
-    comparing it. That is the F-94 shape: a value written into two places
-    with no check that they agree.
+    WHAT CHANGED, 2026-09-09. This guard used to compare the cell against
+    rate_model's SCORE, because the cell used to hold a score. Jeff moved
+    the fact tables to ACTUALS, so the cell now holds the policy rate and
+    the score is derived in derive_scores.py. The guard follows the data:
+    it still checks that the one value written into the fact table agrees
+    with the model that owns it - only the value is now the rate itself.
+
+    THE ORIGINAL REASON STANDS. This is the F-94 shape - a value living in
+    two places with nothing comparing them - and the actuals migration
+    shrinks it rather than removing it, because the rate is still typed
+    into a CSV by hand.
     """
     import rate_model
     r = rate_model.compute()
@@ -122,9 +145,9 @@ def rate_cell_check():
         if not cell:
             continue
         n += 1
-        want = r[iso[c]]['score']
-        if abs(float(cell) - want) > 0.0005:
-            bad.append((c, cell, '%.3f' % want))
+        want = str(r[iso[c]]['rate']).strip()
+        if cell != want:
+            bad.append((c, cell, want))
     return bad, n
 
 

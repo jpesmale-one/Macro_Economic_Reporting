@@ -11,7 +11,9 @@ other. One keyed table makes that class of bug structural rather than
 vigilance-dependent.
 
 SCHEMA  Currency, Indicator, Frequency, <Mon-YY>, <Mon-YY>, ...
-CELLS   +1 GOOD / 0 NEUTRAL / -1 BAD, or empty for not-yet-released.
+CELLS   THE ACTUAL AS PUBLISHED (LD-112), or empty for not-yet-released.
+        The +1/0/-1 is derived by derive_scores.py and written, for the
+        record only, to data/derived/scores.csv.
 
 THE MODEL (revamp 3, LD-94 for direction of goodness):
 
@@ -38,11 +40,24 @@ import io, os, csv, glob
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(REPO, 'data', 'macro_indicators')
 
+# LD-113 - GDP joins the board at weight 1 (Jeff, 2026-09-09):
+#   "lets build a category for GDP. Give them a category score of 1."
+#
+# CONFIRMING, and the most confirming series on the board. Q2 GDP is
+# published in September; by the time it prints, the quarter it measures
+# has been over for two months and every leading series has already moved.
+# Weight 1 is the right price for it - it corroborates, it does not lead.
+#
+# THE RANGE WIDENS: -9..+9 becomes -10..+10. The calibrator's -5..+5 is
+# unchanged, so the forward half of the model now carries proportionally
+# less of the total. That is a real consequence of adding a backward-looking
+# category and it is recorded here rather than discovered later.
 WEIGHT = {'Production': 2, 'Spending': 2, 'Trade': 2,
-          'Employment': 1, 'Inflation': 1, 'Interest_Rate': 1}
+          'Employment': 1, 'Inflation': 1, 'Interest_Rate': 1,
+          'GDP': 1}
 
 LEADING = ('Production', 'Spending', 'Trade')
-CONFIRMING = ('Employment', 'Inflation', 'Interest_Rate')
+CONFIRMING = ('Employment', 'Inflation', 'Interest_Rate', 'GDP')
 
 CCYS = ('USD', 'EUR', 'GBP', 'JPY', 'AUD', 'NZD', 'CAD', 'CHF')
 
@@ -84,8 +99,17 @@ def latest_month():
 def category_score(cat, ccy, month=None):
     """(score, n_scored, n_rows) for one currency in one category.
 
+    THE CELL HOLDS AN ACTUAL, NOT A SCORE (LD-112). Jeff, 2026-09-09: "we
+    need to store the actuals not our scores in them." So the score is
+    DERIVED here on every read, from the actual plus the rule that owns it,
+    rather than looked up from a number somebody typed.
+
+    That is what closes F-91/F-94/F-95: there is no longer a second copy of
+    the verdict to drift away from the first.
+
     score is already weighted. Empty cells drop out of the divisor.
     """
+    import derive_scores
     month = month or latest_month()
     vals = []
     total = 0
@@ -94,8 +118,11 @@ def category_score(cat, ccy, month=None):
             continue
         total += 1
         cell = (r.get(month) or '').strip()
-        if cell:
-            vals.append(float(cell))
+        if not cell:
+            continue
+        v = derive_scores.score_row(cat, ccy, r['Indicator'].strip(), cell)
+        if v is not None:
+            vals.append(float(v))
     if not vals:
         return 0.0, 0, total
     return sum(vals) / len(vals) * WEIGHT[cat], len(vals), total

@@ -32,7 +32,13 @@ ROWS = [
  ("Production","US","ISM Manufacturing PMI","54.6","55.6","Aug/26",">50.5","GOOD"),
  ("Production","US","Industrial Production YoY","1.1%","1.29%","Jul/26",">0.5%","GOOD"),
  ("Production","US","Manufacturing Production YoY","1.2%","1.1%","Jul/26",">0.5%","GOOD"),
- ("Production","US","Durable Goods Ex Transp MoM","0.4%","0.6%","Jul/26",">0.5%","BAD"),
+ # F-101 (2026-09-09): verdict was BAD on a 0.4% print against a >0.5% LEVEL
+ # threshold. That grades DIRECTION (0.4 < 0.5) on a rule that tests WHERE THE
+ # PRINT SITS. Jeff's band, stated four times this session and now spec'd for
+ # GDP: above the line GOOD, below zero BAD, IN BETWEEN NEUTRAL. 0.4 is between.
+ # F-92 was fixed in the calibrator and never reached the fact table; deriving
+ # the score from the actual (LD-112) surfaced it on the first run.
+ ("Production","US","Durable Goods Ex Transp MoM","0.4%","0.6%","Jul/26",">0.5%","NEUTRAL"),
  # F-91: this row still held the JUL print after the AUG Final released
  # 1 Sep 08:00. Jeff caught it reading the audit view. The score does not
  # change - 52.7 and 51.9 are both above 50.5 - but the EVIDENCE was a

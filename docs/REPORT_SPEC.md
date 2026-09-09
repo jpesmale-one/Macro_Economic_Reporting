@@ -2562,3 +2562,124 @@ edition, which is where the next week is scoped.
 
 ---
 
+## LD-112 - THE FACT TABLES HOLD ACTUALS, THE SCORES ARE DERIVED
+
+**Jeff, 2026-09-09:** *"I noticed that you were putting category scores in
+our CSV rather than the Actual scores of these indicators. I would say we
+need to store the actuals not our scores in them. If you want you can create
+a separate CSV for your scoring."*
+
+**HE FOUND THE ROOT CAUSE OF THREE FINDINGS.** F-91, F-94 and F-95 were all
+the same failure with different names: a release had to be written into
+**two** places - the ACTUAL into `score_model.ROWS`, the VERDICT into the
+fact table - and nothing kept them in step. R-37 was built to compare those
+two copies. **Storing the actual once and deriving the verdict removes the
+gap rather than guarding it.**
+
+| File | Holds | Status |
+|---|---|---|
+| `data/macro_indicators/*.csv` | **ACTUALS**, as published | SOURCE OF TRUTH |
+| `data/derived/scores.csv` | +1 / 0 / -1 | **DERIVED, never hand-edited** |
+
+**WHY A THRESHOLD ALONE CANNOT GRADE A ROW.** `>Prev` says which comparison
+to make, never which direction is GOOD - lower unemployment is good, a lower
+trade balance is not (F-70: two channels, opposite signs). `score_model`'s
+VERDICT column carries that polarity and Jeff curated it row by row (LD-57,
+LD-58, LD-59). So the derivation is:
+
+    actual (fact table) x threshold + polarity (score_model) -> score
+
+**That is still one authority per fact.** The actual lives in exactly one
+place; the RULE lives in exactly one place; neither is a copy of the other.
+
+**77 cells migrated, 0 unresolved.** The 8 Interest_Rate rows had no entry in
+`score_model.ROWS` - their actual is the POLICY RATE, which `rate_model`
+owns.
+
+**BOTH R-37 CHECKS WERE RETARGETED, NOT DELETED.** The verdict check now
+compares the fact table's actual against `score_model`'s actual; the rate
+check compares the cell against the policy rate. The duplication has shrunk
+but not vanished - `ROWS` still carries an actual - so the guard still has
+work. **Proven by injecting a wrong actual: it fired.**
+
+---
+
+## LD-113 - THE GDP CATEGORY (weight 1)
+
+**Jeff, 2026-09-09:** *"lets build a category for GDP. Give them a category
+score of 1. Scoring would be: Actual > 0.5% is Good, < 0% is Bad. Actual in
+between 0.5 - 0 is Neutral. Let's create a separate CSV file for this."*
+
+**SOURCE:** TE `gdp growth rate qoq`. **LD-23 clears** - verified present for
+all eight currencies across the capture archive.
+
+**A FACT-CHECK CAUGHT MY OWN EARLIER CLAIM.** I had recorded GDP as "verified
+available for all eight". Against the 8 Sep capture only **five** appeared,
+and AU/CA/CH showed nothing. Widening to the whole archive found all three -
+**the misses were TE's ~26-day horizon, not absence** (F-73). The claim was
+right; the evidence I had cited for it was not.
+
+**VINTAGE, for the 2026-09-06 edition.** Five of the eight Q2 prints landed
+**before the capture archive begins (2026-08-17)**, so their actual is taken
+from TE's PREVIOUS column on the scheduled revision. **That is a published
+value, not a schedule row** - LD-3 forbids reading a value off an unreleased
+row's FORECAST, which this is not.
+
+| CCY | Actual | Released | Source |
+|---|---|---|---|
+| USD | 2.1% | 2026-07-30 | prev on final Q2 (30 Sep) |
+| EUR | 0.6% | 2026-09-07 | 3rd est Q2 |
+| GBP | 0.6% | 2026-08-14 | prev on final Q2 (30 Sep) |
+| JPY | 0.4% | 2026-09-07 | final Q2 |
+| AUD | 0.4% | 2026-09-02 | Q2 |
+| NZD | 0.8% | 2026-06-18 | prev on Q2 (16 Sep) |
+| CAD | 0.8% | 2026-08-28 | Q2 |
+| CHF | 1.5% | 2026-09-03 | final Q2 |
+
+**WEIGHT 1, AND CONFIRMING.** Q2 GDP publishes in September - by the time it
+prints, the quarter it measures ended two months ago and every leading series
+has already moved. It corroborates a read; it does not lead one.
+
+**THE RANGE WIDENS: -9..+9 becomes -10..+10.** The calibrator is unchanged at
+-5..+5, so **the forward half of the model now carries proportionally less of
+the total.** Recorded here rather than discovered later.
+
+**Spec amended under LD-105** with Jeff's wording inline. R-38 re-run: 0
+disagreements.
+
+---
+
+## F-100 - INTEREST RATE CARRIED AN EFFECTIVE WEIGHT OF 3, NOT 1
+
+The revamp set `Interest_Rate` to **weight 1** in `fact_tables.WEIGHT`. But
+the fact table stored `raw x W_RATE` with `W_RATE = 3` - a **pre-revamp
+leftover** - and `fact_tables` then applied its own weight of 1 to that
+already-tripled number. **The category has been scoring at 3x the specified
+weight since the revamp shipped.**
+
+**INVISIBLE UNTIL THE ACTUALS MIGRATION.** While the CSV held a score,
+nothing compared it against what the model would compute. Deriving the score
+from the actual surfaced the factor of three **on the first run** - seven
+rate rows, every one of them exactly 3x.
+
+**This is precisely the class of bug LD-112 was requested to fix**, found by
+the fix itself. `W_RATE` is now 1.
+
+---
+
+## F-101 - F-92 SURVIVED IN ONE FACT-TABLE ROW
+
+`USD Durable Goods Ex Transp MoM`: actual **0.4%**, threshold **`>0.5%`**,
+stored verdict **BAD**.
+
+**0.4 sits between 0 and 0.5.** Jeff's band for this threshold shape - stated
+four times in this session (JPY Machine Tool Orders, EUR Retail Sales, JPY
+Household Spending, and now GDP) - is **above the line GOOD, below zero BAD,
+in between NEUTRAL**. The stored BAD graded DIRECTION (0.4 < 0.5) on a rule
+that tests **where the print sits**.
+
+**F-92 was fixed in the calibrator and never reached the fact table.** The
+two graded the same threshold shape in opposite ways for three days. Corrected
+to NEUTRAL; USD Production moves -1.00 -> +0.00.
+
+---
