@@ -155,7 +155,7 @@ Forward Looking Macro-Economic Indicators:
 	4. Employment - Measures how much of the available workforce currently being paid to produce goods and services. Get Previous, Consensus/Forecast, and Actual
 		a. US
 			i. Non Farm Payrolls
-				1) Actual > Consensus/Forecast is Good, Actual < Consensus/Forecast is Bad
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral [AMENDED 2026-09-09 by Jeff, LD-104 - was "Actual > Consensus/Forecast is Good, Actual < Consensus/Forecast is Bad". Consensus/Forecast now applies in the Week Ahead scoring only]
 			ii. Unemployment Rate
 				1) Actual < Previous is Good, Actual > Previous is Bad. No change is Neutral
 		b. EA
@@ -191,7 +191,7 @@ Forward Looking Macro-Economic Indicators:
 				1) Actual < Previous is Good, Actual > Previous is Bad. No change is Neutral
 		h. CH
 			i. Non Farm Payrolls
-				1) Actual > Consensus/Forecast is Good, Actual < Consensus/Forecast is Bad
+				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral [AMENDED 2026-09-09 by Jeff, LD-104 - was "Actual > Consensus/Forecast is Good, Actual < Consensus/Forecast is Bad". Consensus/Forecast now applies in the Week Ahead scoring only]
 			ii. Unemployment Rate
 				1) Actual < Previous is Good, Actual > Previous is Bad. No change is Neutral
 				

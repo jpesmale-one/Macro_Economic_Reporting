@@ -118,7 +118,7 @@ ROWS = [
  ("Trade","CA","Balance of Trade","C$0.77B","C$4.2B","Jul/26",">Prev","BAD"),
  ("Trade","CH","Balance of Trade","CHF8.1B","CHF3.8B","Jul/26",">Prev","GOOD"),
  # ---------------- EMPLOYMENT (w=2) ----------------
- ("Employment","US","Non Farm Payrolls","162K","-23K","Aug/26",">Cons","GOOD"),
+ ("Employment","US","Non Farm Payrolls","162K","-23K","Aug/26",">Prev","GOOD"),
  ("Employment","US","Unemployment Rate","4.1%","4.1%","Aug/26","<Prev","NEUTRAL"),
  ("Employment","EA","Unemployment Rate","6.4%","6.3%","Jul/26","<Prev","BAD"),
  ("Employment","GB","Claimant Count Change","-11K","-6.4K","Jul/26","<0 (LD-58)","GOOD"),
@@ -141,7 +141,7 @@ ROWS = [
  # governing rule and records that the split is unsourced - it does
  # not silently substitute a different rule.
  ("Employment","CA","Employment Change","-41.7K","75.1K","Aug/26","hdl<0 BAD (LD-57); FT/PT split unsourced","BAD"),
- ("Employment","CH","Non Farm Payrolls","5.698M","5.537M","Q2/26",">Cons 5.4M","GOOD"),
+ ("Employment","CH","Non Farm Payrolls","5.698M","5.537M","Q2/26",">Prev","GOOD"),
  ("Employment","CH","Unemployment Rate","3.0%","2.9%","Jul/26","<Prev","BAD"),
  # ---------------- INFLATION (w=3) ----------------
  ("Inflation","US","Inflation Rate YoY","3.4%","3.5%","Jul/26",">2% & falling","NEUTRAL"),

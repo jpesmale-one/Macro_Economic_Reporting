@@ -14,6 +14,34 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 LD-104 - THE BASE GRADES ACTUAL vs PREVIOUS; CONSENSUS LIVES
+#   IN THE CALIBRATOR. Jeff: "Change to > Prev, and amend the spec. The
+#   Consensus/Forecast will be applicable with the Week Ahead scoring".
+#   >>> FIRST, A CORRECTION TO THE REQUEST AS FRAMED. Jeff selected line 169
+#   (CAD Full Time Employment Chg). USD NFP is line 158, and it ALREADY read
+#   'Actual > Consensus/Forecast is Good' - our code matched it. THIS WAS
+#   NOT DRIFT; it is a deliberate RULE CHANGE, and it was put to him as one
+#   before anything was edited (LD-103).
+#   THE SEPARATION IT DRAWS:
+#     BASE (2)       what HAS happened - actual vs the previous print
+#     CALIBRATOR (4) what is EXPECTED - the cons/fcst range ahead
+#   Consensus is forward-looking. Having it in the base meant the
+#   backward-looking half was partly grading expectations, and the two
+#   halves overlapped.
+#   TWO ROWS, both 'Non Farm Payrolls' - USD (spec 158) and CHF (194).
+#   Both were GOOD and both stay GOOD (162K vs -23K; 5.698M vs 5.537M), so
+#   NO VERDICT FLIPS AND THE BOARD HOLDS. It bites from the next print.
+#   >>> ZERO base rows now carry a consensus test. The base is purely
+#   backward-looking for the first time.
+# >>> THE SPEC FILE WAS EDITED, AND THAT IS A FIRST. Idea_dump has been
+#   VERBATIM INPUT since 2026-08-19 (LD-7). This is the first amendment,
+#   made on Jeff's explicit instruction, with the ORIGINAL WORDING PRESERVED
+#   INLINE in brackets so the change is auditable from the file itself.
+#   R-38 re-parses: 69 rules (was 67), 48 matched (was 46), 0 disagreements.
+#   The retired '>Cons' form is KEPT in the guard's rule table so an
+#   unamended copy of the draft still parses and reports the disagreement
+#   rather than silently matching nothing.
+
 # 2026-09-09 F-98 + R-38 - JEFF'S DRAFT IS THE THRESHOLD AUTHORITY AND
 #   NOTHING HAD EVER CHECKED AGAINST IT. He quoted two rules from
 #   Idea_dump/Macro_economic_indicators.txt; both were right, and building a

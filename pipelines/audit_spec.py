@@ -40,6 +40,10 @@ RULES = [
      '<Prev'),
     (r'actual\s*>\s*0\.5%\s*is good.*?<\s*0%\s*is bad', '>0.5%'),
     (r'actual\s*>\s*50\.5\s*is good', '>50.5'),
+    # LD-104 retired this form from the BASE - consensus now lives in the
+    # calibrator only. Kept so an unamended copy of the draft still parses
+    # and reports the disagreement rather than silently matching nothing.
+    (r'actual\s*>\s*consensus/forecast is good', '>Cons'),
 ]
 
 # A LATER LOCKED DECISION MAY LEGITIMATELY OVERRIDE THE DRAFT, and that is
