@@ -14,6 +14,43 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 LD-111 - THE OUTCOME LEDGER. Jeff: "how many weeks do you
+#   actually consider before you can say that this is not noise? ... I don't
+#   have that much of time and capital for prolonged trial and error".
+#   >>> 'WAIT FOR MORE WEEKS' WAS A DODGE AND HE WAS RIGHT TO PUSH. Nothing
+#   was accumulating - there was NO OUTCOME RECORD ANYWHERE in the repo, so
+#   every review reasoned from memory of the last one and the sample never
+#   grew. data/derived/outcomes.csv + pipelines/outcome_log.py now exist.
+#   THREE QUESTIONS, THREE SAMPLE SIZES - conflating them is what made the
+#   answer sound like 'wait forever':
+#     A does it MAKE MONEY?   85-190 trades to separate 60-65% from a coin
+#       flip. Months. NOT the question to run the model on week to week.
+#     B does CONVICTION RANK? measurable EVERY WEEK as rank correlation
+#       between gap and outcome. THREE consecutive inverted weeks is ~1-in-8
+#       if the gap were uninformative - that is a signal, not noise.
+#     C is a COMPONENT WRONG? n=1. F-92 was one row, found and fixed同day.
+#   MEASURED ON PEAK (MFE), not Friday's close - Jeff: "if the pair already
+#   moved 174.8 pips why would I wait ti'll Friday just to see it reversed?"
+#   The ledger records MFE and MAE alongside the close.
+#   WEEK 1 (7-11 Sep, graded to Wed 9):
+#     CADJPY  gap 0.41  MFE +215.4  MAE  -3.4  close +174.8
+#     GBPNZD  gap 1.73  MFE +214.9  MAE -11.0  close +156.0
+#     EURUSD  gap 6.56  MFE  +31.3  MAE  -6.4  close  +27.5
+#     AUDCHF  gap 5.78  MFE   +8.4  MAE -21.0  close  -10.2
+#     rho -0.80 on BOTH peak and close - CONVICTION RANKED ALMOST EXACTLY
+#     BACKWARDS. The pair the report called 'NOISE, NOT A VIEW' was the top
+#     performer; the two widest gaps produced +31 and -10.
+#   >>> I TESTED MY OWN EXPLANATION AND IT FAILED. Hypothesis: the winners
+#   were calibrator-driven (this week's data) and the losers base-driven
+#   (slow monthly data). AUDCHF has the LARGEST calibrator edge (+2.00) and
+#   is the ONLY loser. rho for calibrator share is also -0.80. NO MECHANISM
+#   IDENTIFIED - n=4 cannot separate these, and saying so is the honest
+#   answer rather than inventing one.
+# >>> DECISION RULE NOW IN PLACE: 3 consecutive inverted weeks -> investigate
+#   the gap formula immediately, do NOT wait for a month. 2 more weeks of
+#   data decides it. If week 2 and week 3 also come in negative that is
+#   enough to act on.
+
 # 2026-09-09 LD-109 + LD-110 - WEIGHTED RATE TERMS, AND A CONTINUOUS CELL.
 #   Jeff: "most of them showing as +1 doesn't make sense to me ... giving
 #   more weight to Expectancy. Realised 20 / Expected 30 / Surprise 20 /
