@@ -14,6 +14,29 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 LD-103 - FACT-CHECK THE REQUEST BEFORE ACTING. Jeff: "what
+#   ever I requested please do a fact check first to see if what I'm
+#   requesting makes sense or I'm making a mistake." Written into CLAUDE.md
+#   as section 8b, so it loads every session rather than living in a commit.
+#   FIVE CHECKS, and the two middle ones are where it actually goes wrong:
+#     VALUE        does the source say this?
+#     VINTAGE      is the print inside the edition's as-of date?
+#     ROW IDENTITY same indicator, same ref month, Prel vs Final?
+#     BLAST RADIUS what else moves - scores, bands, pairs, guards?
+#     PRECEDENT    does a locked decision already settle it?
+#   BOTH MIDDLE CHECKS BIT TODAY:
+#     CHF Unemployment - Jeff's claim was TRUE (TE does show 3%/3%) and the
+#       row was ALSO right. That 3%/3% is the AUGUST print, released Mon 7
+#       Sep; the edition is as-of Sunday 6 Sep and holds JULY. I confirmed
+#       the value, skipped the vintage, and started applying hindsight I
+#       had spent the previous turn removing. HE STOPPED ME.
+#     AUD Building Permits - R-37 flagged our Final row against a 1 Sep
+#       actual belonging to the PREL. A confirmed value on the wrong row.
+#   >>> THE POINT IS NOT THAT JEFF IS OFTEN WRONG - HE IS NOT. Six for six
+#     across the revamp (LD-99..LD-102, F-91, F-92). That record is exactly
+#     what makes verification feel redundant, and the failure mode is a
+#     request that is RIGHT ABOUT THE DATA and WRONG FOR THIS EDITION.
+
 # 2026-09-09 LD-102 - CHF Industrial Production YoY REMOVED on Jeff's call:
 #   "Since this is released quarterly let's take this out of our
 #   indicators." F-3 makes the list a CLOSED SET amendable only by him.

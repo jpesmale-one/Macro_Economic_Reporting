@@ -518,6 +518,56 @@ those trees). The summary that always applies:
 
 ---
 
+## 8b. FACT-CHECK THE REQUEST BEFORE ACTING ON IT (LD-103)
+
+**Jeff, 2026-09-09:** *"what ever I requested please do a fact check first
+to see if what I'm requesting makes sense or I'm making a mistake. just so
+we keep the process in check"*
+
+**Check the claim against the data BEFORE changing anything.**
+
+**The hit rate is the reason, not the exception.** In the 2026-09-04..09
+revamp alone Jeff was right on **LD-99** (risk regime is an output),
+**LD-100** (a tie shares a band), **LD-101** (the watchlist was my
+constraint, and it hid the whole yen bloc), **LD-102** (quarterly is too
+slow), **F-91** (EUR PMI held a stale month) and **F-92** (level thresholds
+graded as direction - 39 of 71 rows). **Six for six.**
+
+**That is exactly why an unchecked request is dangerous.** A record like
+that makes verification feel redundant, and the one time it is not, the
+habit of skipping it is already formed.
+
+**THE VERIFICATION IS NOT "DOES TE AGREE". It is:**
+
+| Check | The question |
+|---|---|
+| **Value** | Does the source actually say this? |
+| **⚠ VINTAGE** | **Is this print inside the edition's as-of date?** |
+| **⚠ ROW IDENTITY** | Same indicator, same reference month, Prel vs Final? |
+| **Blast radius** | What else moves - scores, bands, pairs, guards? |
+| **Precedent** | Does a locked decision already settle it? |
+
+**THE TWO MIDDLE ROWS ARE WHERE IT GOES WRONG, AND BOTH BIT ON 2026-09-09.**
+
+**CHF Unemployment.** Jeff said TE shows 3% on both Actual and Previous. It
+does. I confirmed it in the raw capture and started correcting the row -
+**and the row was right.** The 3%/3% I was reading is the **AUGUST** print,
+released Mon 7 Sep; the edition is built as of **Sunday 6 Sep** and holds
+the JULY print. **Jeff stopped me applying hindsight I had just spent a
+turn removing.** The audit view was showing the Ref column the whole time.
+
+**AUD Building Permits.** R-37 flagged our Final row as stale against a 1
+Sep actual. That actual belonged to the **Prel**, a different row for the
+same month. **A confirmed value on the wrong row is still wrong.**
+
+**When the check says he is right, say so and act.** When it says otherwise,
+**say which check failed and show the row** - do not soften it into a
+question, and do not proceed on "probably fine".
+
+**A request that is right about the DATA can still be wrong for THIS
+EDITION.** That is the failure mode this rule exists for.
+
+---
 ## 9. FLAG IMMEDIATELY (interrupt whatever you are doing)
 
 - A section-2 trigger firing — name it by number BEFORE proceeding.
