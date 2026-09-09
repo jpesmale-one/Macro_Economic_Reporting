@@ -309,13 +309,23 @@ A('**%d pairs. %d currencies used; %s unused.** No currency is used twice '
 A('')
 _last = PICKED[-1]
 if len(PICKED) > 1 and _last['gap'] < 2.0:
-    A('**\u26a0 THE TAIL IS THIN AND WORTH NAMING.** **%s %s rests on a %+.2f '
-      'gap** \u2014 %s at %+.2f against %s at %+.2f. **On a \u00b114 scale that '
-      'is a weak view**, and it is in the set because it qualified, not '
-      'because anything demanded another pair.'
+    # LD-108: under 0.50 is noise, not a weak view. Say which.
+    _noise = _last['gap'] < 0.50
+    A(('**⚠ THE LAST PAIR IS NOISE, NOT A VIEW.** ' if _noise else
+       '**⚠ THE TAIL IS THIN AND WORTH NAMING.** ')
+      + '**%s %s rests on a %+.2f gap** — %s at %+.2f against %s at '
+        '%+.2f. %s'
       % (_last['pair'], _last['direction'], _last['gap'],
          _last['long'], SC[_last['long']], _last['short'],
-         SC[_last['short']]))
+         SC[_last['short']],
+         ('**On a ±14 scale that is inside the rounding of a single '
+          'indicator flip** — one row changing verdict would reverse it. '
+          'It is in the set because it qualified and no rule forces a count '
+          'either way (LD-96); **read it as a coin flip, not a signal.**')
+         if _noise else
+         ('**On a ±14 scale that is a weak view**, and it is in the set '
+          'because it qualified, not because anything demanded another '
+          'pair.')))
 A('')
 A('**What the calibrator changed in the SET:**')
 A('')

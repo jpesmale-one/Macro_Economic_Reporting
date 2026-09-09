@@ -80,15 +80,27 @@ A('  <p><strong>%s %s carries the widest gap on the board at %s</strong> '
      ORDER[0], sg(SC[ORDER[0]]), ORDER[-1], sg(SC[ORDER[-1]])))
 last = PICKED[-1]
 if len(PICKED) > 1 and last['gap'] < 2.0:
-    A('')
+    # LD-108: a gap under 0.50 on a +/-14 scale is not a weak view, it is
+    # noise. Jeff's call 2026-09-09 is to TAKE it (LD-96 - take what
+    # qualifies) rather than reinstate a floor, so the report has to say so
+    # in proportion to how thin it actually is.
+    _noise = last['gap'] < 0.50
     A('  <div class="note flag">')
-    A('    <span class="lbl">\u26a0 THE TAIL IS THIN</span>')
-    A('    <strong>%s %s rests on a %s gap</strong> \u2014 %s at %s against %s '
-      'at %s. On a \u00b114 scale that is a weak view. It is in the set '
-      'because it qualified, not because anything demanded another pair.'
+    A('    <span class="lbl">%s</span>'
+      % ('⚠ THE LAST PAIR IS NOISE, NOT A VIEW' if _noise
+         else '⚠ THE TAIL IS THIN'))
+    A('    <strong>%s %s rests on a %s gap</strong> — %s at %s against %s '
+      'at %s. %s'
       % (last['pair'], last['direction'], sg(last['gap']),
          last['long'], sg(SC[last['long']]),
-         last['short'], sg(SC[last['short']])))
+         last['short'], sg(SC[last['short']]),
+         ('<strong>On a ±14 scale that is inside the rounding of a '
+          'single indicator flip</strong> — one row changing verdict would '
+          'reverse it. It is in the set because it qualified and no rule '
+          'forces a count either way (LD-96); <strong>read it as a coin '
+          'flip, not a signal.</strong>') if _noise else
+         ('On a ±14 scale that is a weak view. It is in the set because '
+          'it qualified, not because anything demanded another pair.')))
     A('  </div>')
 used = set()
 for c in PICKED:

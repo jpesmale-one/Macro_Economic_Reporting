@@ -44,6 +44,47 @@ against a 2% point target penalised CHF for 0.4% inflation that sits INSIDE
 the SNB's own 0-2% mandate. Each bank is judged against its own target.
 """
 
+# LD-107 - THE EXPECTED PATH, a fourth term (Jeff, 2026-09-09):
+#
+#   "I think we need to inject Hawkish and Dovish tone in the score as market
+#    moves prior the change then we might want to reflect the market
+#    sentiment in the score for the Interest Rate"
+#
+# THE PROBLEM IT FIXES, and it is the most expensive gap this model has had.
+# On 2026-09-03 the BoJ moved the yen 292 pips WITHOUT MEETING - Takata left
+# the door open to back-to-back hikes and traders reported a rate check. JPY
+# finished the week +2.87%, seven times the next currency, and 2.6 scored it
+# 0.000. Every term in the old score describes a decision that has already
+# happened; none of them can see a repricing between meetings.
+#
+# WHAT IS SCORED, and why it clears LD-23. TE publishes a FORECAST for each
+# next decision. That forecast IS the market's hawkish/dovish expectation,
+# expressed as a number instead of as prose - no sentiment reading, no
+# subjective tone call. Verified 2026-09-09: ALL EIGHT currencies have
+# carried one. NZD and CAD show none today only because they decided on 2
+# Sep and their next meetings sit beyond TE's horizon.
+#
+#   path = forecast - current policy rate, in basis points
+#
+#     >= +25bp   HAWKISH   +0.5    a hike is priced
+#     +1..+24    leaning   +0.25
+#      0         NEUTRAL    0.0    no move priced
+#     -1..-24    leaning   -0.25
+#     <= -25bp   DOVISH    -0.5    a cut is priced
+#
+# THE SAME SCALE AS THE OTHER TERMS (+/-0.5), so path cannot outvote the
+# realised level or the surprise - it re-weights, it does not dominate.
+#
+# WHY NOT A TONE READING OF SPEECHES, which is what "hawkish/dovish" usually
+# means: the capture schedules CB speak for six currencies and ZERO for CAD
+# and CHF. Scoring it would blank two currencies - the exact "unfavorable
+# bias" Jeff ruled out for steps 2-4 above. A forecast is available to all
+# eight and needs no interpretation.
+#
+# NONE means NO FORECAST PUBLISHED. Like SURPRISE, it drops out of the
+# average rather than scoring 0, which would assert the market prices no
+# move when the truth is that we cannot see one.
+
 W_RATE = 3
 
 # ccy -> (low, high). A point target has low == high.
@@ -64,22 +105,22 @@ ROWS = {
     # NZD 2026-09-02: hiked to 2.75% exactly on consensus and FELL 108
     # pips. A fully-priced hike is not news, so it scores 0.00 - the
     # realised term still pays for the level, the surprise pays nothing.
-    'NZ': ('2.75%', +1.0, 4.1, True,  'HIKED 2 Sep to 2.75%, exactly on consensus - fully priced, NZD -108 pips (LD-90)', 0.0),
-    'US': ('3.50-3.75%', 0.0, 3.4, False, 'CPI as proxy; the Fed targets PCE', None),
-    'EA': ('2.40%', 0.0, 2.9, True,  'HICP final', None),
-    'GB': ('3.75%', 0.0, 2.9, True,  '', None),
-    'JP': ('1.00%', 0.0, 1.9, True,  'Jul/26 print, released 07:30 PHT 21 Aug', None),
-    'AU': ('4.35%', 0.0, 3.8, False, '', None),
+    'NZ': ('2.75%', +1.0, 4.1, True,  'HIKED 2 Sep to 2.75%, exactly on consensus - fully priced, NZD -108 pips (LD-90)', 0.0, 2.50, None),
+    'US': ('3.50-3.75%', 0.0, 3.4, False, 'CPI as proxy; the Fed targets PCE', None, 3.75, 4.00),
+    'EA': ('2.40%', 0.0, 2.9, True,  'HICP final', None, 2.40, 2.65),
+    'GB': ('3.75%', 0.0, 2.9, True,  '', None, 3.75, 3.75),
+    'JP': ('1.00%', 0.0, 1.9, True,  'Jul/26 print, released 07:30 PHT 21 Aug', None, 1.00, 1.25),
+    'AU': ('4.35%', 0.0, 3.8, False, '', None, 4.35, 4.35),
     # LD-90: BoC HELD 2 Sep at 2.25%, exactly on consensus. A fully-priced
     # hold is not news either - the surprise term pays 0.00 rather than
     # being absent. NZD's row already recorded this; CAD's did not.
-    'CA': ('2.25%', 0.0, 3.0, True,  'HELD 2 Sep at 2.25%, exactly on consensus - fully priced, CAD +53 pips (LD-90)', 0.0),
+    'CA': ('2.25%', 0.0, 3.0, True,  'HELD 2 Sep at 2.25%, exactly on consensus - fully priced, CAD +53 pips (LD-90)', 0.0, 2.25, None),
     # F-88: this row still carried 0.4% FALLING after CHF inflation
     # printed 0.8% RISING on 3 Sep. Section 2.5 updated on that print and
     # 2.6 did not, so the same indicator drove two categories in opposite
     # directions in one edition. Inside-band and rising is +0.25, not
     # -0.25 - a 0.75 swing on a weight-3 category.
-    'CH': ('0.00%', 0.0, 0.8, True,  'Aug/26 print, 0.8% vs 0.5% consensus - inside the SNB 0-2% band and RISING', None),
+    'CH': ('0.00%', 0.0, 0.8, True,  'Aug/26 print, 0.8% vs 0.5% consensus - inside the SNB 0-2% band and RISING', None, 0.00, 0.00),
 }
 
 
@@ -94,6 +135,27 @@ def expected(ccy, cpi, rising):
             else (-0.5, 'below %s floor and FALLING' % band)
     return (+0.25, 'inside %s, rising' % band) if rising \
         else (-0.25, 'inside %s, falling' % band)
+
+
+def path_score(current, forecast):
+    """(score, bp, label) for the expected path, or (None, None, ...).
+
+    current/forecast are percentages. A range like '3.50-3.75%' takes its
+    UPPER bound, which is the rate the market quotes and the one TE's
+    forecast is expressed against.
+    """
+    if current is None or forecast is None:
+        return None, None, 'no forecast published'
+    bp = round((forecast - current) * 100)
+    if bp >= 25:
+        return 0.5, bp, 'HAWKISH - a hike is priced'
+    if bp > 0:
+        return 0.25, bp, 'leaning hawkish'
+    if bp == 0:
+        return 0.0, bp, 'NEUTRAL - no move priced'
+    if bp > -25:
+        return -0.25, bp, 'leaning dovish'
+    return -0.5, bp, 'DOVISH - a cut is priced'
 
 
 def compute():
@@ -116,13 +178,19 @@ def compute():
     for ccy, row in ROWS.items():
         rate, real, cpi, ris, note = row[:5]
         surp = row[5] if len(row) > 5 else None
+        cur, fcst = (row[6], row[7]) if len(row) > 7 else (None, None)
         exp, why = expected(ccy, cpi, ris)
+        path, bp, path_why = path_score(cur, fcst)
         terms = [real, exp]
         if surp is not None:
             terms.append(surp)
+        if path is not None:                       # LD-107
+            terms.append(path)
         raw = sum(terms) / float(len(terms))
         out[ccy] = {'rate': rate, 'realised': real, 'expected': exp,
-                    'surprise': surp, 'raw': raw, 'score': raw * W_RATE,
+                    'surprise': surp, 'path': path, 'path_bp': bp,
+                    'path_why': path_why, 'forecast': fcst,
+                    'raw': raw, 'score': raw * W_RATE,
                     'cpi': cpi, 'rising': ris, 'why': why, 'note': note,
                     'mandate': MANDATE[ccy]}
     return out

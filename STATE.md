@@ -14,6 +14,43 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 LD-107 - THE EXPECTED PATH TERM. Jeff: "we need to inject
+#   Hawkish and Dovish tone in the score as market moves prior the change".
+#   THE GAP IT CLOSES IS THE MOST EXPENSIVE THIS MODEL HAS HAD. On 3 Sep the
+#   BoJ moved the yen 292 pips WITHOUT MEETING (Takata + a rate check); JPY
+#   finished that week +2.87%, 7x the next currency, and 2.6 scored it
+#   0.000. Every old term describes a decision that ALREADY HAPPENED.
+#   WHAT IS SCORED: TE's FORECAST for the next decision, which IS the
+#   market's hawkish/dovish expectation as a NUMBER - no tone reading, no
+#   subjective call. path = forecast - current, in bp:
+#     >=+25 HAWKISH +0.5 | +1..24 +0.25 | 0 NEUTRAL | -1..-24 -0.25 |
+#     <=-25 DOVISH -0.5.  Same +/-0.5 scale as the other terms, so it
+#     re-weights and cannot dominate. None = no forecast published, drops
+#     out of the average (never scored 0).
+#   >>> WHY IT CLEARS LD-23 WHERE STEPS 2-4 DID NOT: verified ALL EIGHT
+#     currencies have carried a forecast. NZD and CAD show none TODAY only
+#     because they decided 2 Sep and their next meetings are beyond TE's
+#     horizon - a timing gap, not a structural one.
+#   >>> AND WHY NOT A TONE READING OF SPEECHES, the usual meaning of
+#     hawkish/dovish: the capture schedules CB speak for 6 currencies and
+#     ZERO for CAD and CHF. That would blank two - the exact 'unfavorable
+#     bias' Jeff ruled out for steps 2-4.
+#   JPY 0.000 -> +0.500, USD 0.000 -> +0.500. JPY base +1.67 -> +2.67 and
+#   it ENTERS STRONG. Board:
+#     CHF +7.00 EUR +6.00 GBP +3.67 JPY +3.67 CAD +3.50 NZD +1.00
+#     AUD +0.50 USD +0.00
+#     SET: AUDCHF SHORT +6.50 | EURUSD LONG +6.00 | GBPNZD LONG +2.67 |
+#          CADJPY SHORT +0.17
+# LD-108 - A 4TH PAIR APPEARED ON A +0.17 GAP AND JEFF SAID TAKE IT.
+#   'Take it - no floor', consistent with LD-96 (take what qualifies).
+#   >>> MY ASSUMPTION WHEN REMOVING MIN_GAP UNDER LD-100 WAS WRONG: I
+#   thought ties were the only source of near-zero gaps. GBP and JPY tie at
+#   +3.67 so both are STRONG, but CAD sits +0.17 below in NEUTRAL - a REAL
+#   but meaningless gap, and nothing filtered it.
+#   The report now says so IN PROPORTION: under 0.50 it reads 'THE LAST PAIR
+#   IS NOISE, NOT A VIEW ... read it as a coin flip', instead of the
+#   softer 'tail is thin' used under 2.00.
+
 # 2026-09-09 LD-106 - QUARTERLY ROWS ARE MARKED '(Q)' IN THE REF COLUMN.
 #   Jeff: "NZD Unemployment Rate / NZD Inflation Rate YoY - Lets mark these
 #   as Quarterly in REF column so we know why its stale".
