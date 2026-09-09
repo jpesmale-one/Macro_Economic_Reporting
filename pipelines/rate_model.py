@@ -85,6 +85,25 @@ the SNB's own 0-2% mandate. Each bank is judged against its own target.
 # average rather than scoring 0, which would assert the market prices no
 # move when the truth is that we cannot see one.
 
+# LD-109 - THE TERMS ARE NOT EQUAL. Jeff, 2026-09-09:
+#
+#   "I think we should divide the score on your scoring criteria but giving
+#    more weight to Expectancy (Expected and Path) ... Realised 20, Expected
+#    30, Surprise 20, Path 30. This will give more forward looking narative"
+#
+# REALISED and SURPRISE describe a decision that has already been taken and
+# already been traded. EXPECTED and PATH describe where policy is going -
+# the inflation case building toward a move, and the move the market has
+# priced for the next meeting. 60% of the score now sits on the forward
+# half, which is the whole point of a model built to FORESEE a hike.
+#
+# RENORMALISED OVER LIVE TERMS ONLY. A currency between meetings has no
+# SURPRISE; one whose next meeting is beyond TE's horizon has no PATH. The
+# divisor is the sum of the weights that actually apply, so a missing term
+# neither scores zero nor penalises the currency for the absence.
+TERM_WEIGHT = {'realised': 0.20, 'expected': 0.30,
+               'surprise': 0.20, 'path': 0.30}
+
 W_RATE = 3
 
 # ccy -> (low, high). A point target has low == high.
@@ -181,13 +200,15 @@ def compute():
         cur, fcst = (row[6], row[7]) if len(row) > 7 else (None, None)
         exp, why = expected(ccy, cpi, ris)
         path, bp, path_why = path_score(cur, fcst)
-        terms = [real, exp]
-        if surp is not None:
-            terms.append(surp)
-        if path is not None:                       # LD-107
-            terms.append(path)
-        raw = sum(terms) / float(len(terms))
-        out[ccy] = {'rate': rate, 'realised': real, 'expected': exp,
+        # LD-109: weighted, renormalised over the terms that exist.
+        terms = {'realised': real, 'expected': exp,
+                 'surprise': surp, 'path': path}
+        live = dict((k, v) for k, v in terms.items() if v is not None)
+        wsum = sum(TERM_WEIGHT[k] for k in live)
+        raw = (sum(v * TERM_WEIGHT[k] for k, v in live.items()) / wsum
+               if wsum else 0.0)
+        out[ccy] = {'weights': dict((k, TERM_WEIGHT[k]) for k in live),
+                    'rate': rate, 'realised': real, 'expected': exp,
                     'surprise': surp, 'path': path, 'path_bp': bp,
                     'path_why': path_why, 'forecast': fcst,
                     'raw': raw, 'score': raw * W_RATE,

@@ -14,6 +14,35 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 LD-109 + LD-110 - WEIGHTED RATE TERMS, AND A CONTINUOUS CELL.
+#   Jeff: "most of them showing as +1 doesn't make sense to me ... giving
+#   more weight to Expectancy. Realised 20 / Expected 30 / Surprise 20 /
+#   Path 30. This will give more forward looking narative".
+#   >>> HIS READ WAS RIGHT, HIS DIAGNOSIS WAS HALF THE STORY, AND I SAID SO
+#   BEFORE BUILDING. The '+1 everywhere' is BINARISATION, not weights: the
+#   raw scores already spanned +0.25 to +1.50 - a 6x range - and the cell
+#   crushed all seven positives to +1. Reweighting alone moves scores only
+#   +0.03 to +0.13 and every row still renders +1.
+#   LD-109 WEIGHTS: realised 20 / expected 30 / surprise 20 / path 30,
+#     RENORMALISED over live terms. 60% now sits on the forward half
+#     (expected + path). A missing term drops out and the weights
+#     rebalance - between meetings a row scores 25/37/37.
+#   LD-110 CONTINUOUS CELL: the Interest_Rate cell now carries the raw
+#     weighted score instead of +1/0/-1. fact_tables already read cells as
+#     floats, so nothing else changed.
+#     >>> IT IS THE ONLY NON-BINARY CATEGORY, which is a real inconsistency
+#     with Jeff's spec 3a, and it was put to him as such before shipping.
+#   THE BOARD MOVED AND CHF/EUR SWAPPED: CHF base 6.00 -> 5.28 (its rate
+#   row is +0.281, not a flat +1), EUR 6.00 -> 6.12.
+#     CHF +6.28 EUR +6.12 GBP +3.23 JPY +3.23 CAD +2.82 NZD +1.50
+#     AUD +0.50 USD -0.44
+#     SET: EURUSD LONG +6.56 | AUDCHF SHORT +5.78 | GBPNZD LONG +1.73 |
+#          CADJPY SHORT +0.41
+# R-37 EXTENDED with a RATE CELL check - the verdict half skips
+#   Interest_Rate (those rows live in rate_model), so a continuous cell had
+#   NOTHING comparing it to the model. That is the F-94 shape exactly.
+#   PROVEN: corrupted NZD 1.500 -> 1.000 and it fired, then restored.
+
 # 2026-09-09 F-99 - LD-107 SHIPPED WITHOUT REACHING THE TABLE. Jeff: "is it
 #   reflected in our Interest Rate table?" NO, AND THE ANSWER MATTERED.
 #   The rate table showed rate / CPI / mandate only. After LD-107 both USD

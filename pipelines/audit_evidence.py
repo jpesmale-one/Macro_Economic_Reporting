@@ -102,6 +102,32 @@ def all_captures(upto=None):
     return out
 
 
+def rate_cell_check():
+    """LD-110: each Interest_Rate cell must equal rate_model's raw score.
+
+    The rate cell is CONTINUOUS - it carries the weighted score itself, not
+    a +1/0/-1 verdict - so the verdict check skips it and nothing else was
+    comparing it. That is the F-94 shape: a value written into two places
+    with no check that they agree.
+    """
+    import rate_model
+    r = rate_model.compute()
+    iso = {'USD': 'US', 'EUR': 'EA', 'GBP': 'GB', 'JPY': 'JP',
+           'AUD': 'AU', 'NZD': 'NZ', 'CAD': 'CA', 'CHF': 'CH'}
+    bad = []
+    n = 0
+    for row in ft.load('Interest_Rate'):
+        c = row['Currency'].strip()
+        cell = (row.get(ft.latest_month()) or '').strip()
+        if not cell:
+            continue
+        n += 1
+        want = r[iso[c]]['score']
+        if abs(float(cell) - want) > 0.0005:
+            bad.append((c, cell, '%.3f' % want))
+    return bad, n
+
+
 def vintage_check(capture, asof=None):
     """Our ref month must not lag the latest RELEASED row in the capture.
 
@@ -188,6 +214,15 @@ if __name__ == '__main__':
     print()
 
     asof = sys.argv[2] if len(sys.argv) > 2 else None
+    rb, rn = rate_cell_check()
+    print('RATE CELLS vs rate_model  (%d rows)' % rn)
+    if rb:
+        for c, got, want in rb:
+            print('  *** %-4s cell=%-9s model=%s' % (c, got, want))
+    else:
+        print('  every rate cell matches its computed score')
+    print()
+
     vb, vn = vintage_check(cap, asof)
     print('VINTAGE  (%d rows matched in the capture)' % vn)
     if vn == 0:
@@ -208,5 +243,5 @@ if __name__ == '__main__':
     else:
         print('  no row lags a released print')
     print()
-    print('%d problem(s)' % (len(bad) + len(vb)))
-    sys.exit(1 if (bad or vb) else 0)
+    print('%d problem(s)' % (len(bad) + len(vb) + len(rb)))
+    sys.exit(1 if (bad or vb or rb) else 0)

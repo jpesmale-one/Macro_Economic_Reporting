@@ -67,13 +67,19 @@ def rate_detail(ccy):
         bits.append('surprise %+.2f' % d['surprise'])
     if d['path'] is not None:
         bits.append('path %+.2f (%+dbp)' % (d['path'], d['path_bp']))
+    # LD-109: name the weight each live term carried, renormalised
+    w = d.get('weights', {})
+    tot = sum(w.values()) or 1.0
+    wtxt = ' · '.join('%s %.0f%%' % (k, w[k] / tot * 100)
+                          for k in ('realised', 'expected', 'surprise',
+                                    'path') if k in w)
     why = d['why']
     if d['path'] is not None:
         why += ' · ' + d['path_why']
     return dict(actual=d['rate'], prev='CPI %.1f%%' % d['cpi'],
                 ref=arrow, thr='mandate ' + band, verdict=why,
                 terms=' + '.join(bits) or 'all terms zero',
-                raw=d['score'])
+                weights=wtxt, raw=d['score'])
 
 
 out = []
@@ -169,7 +175,9 @@ for cat in CATS:
                 # F-99: show the terms that were averaged, and the RAW score
                 # before it is flattened to +1/0/-1 - CHF's +0.25 and NZD's
                 # +1.50 both render as '+1' in the cell.
-                A('        <td class="sm terms">%s</td>' % v.get('terms', ''))
+                A('        <td class="sm terms">%s<br><span class="wt2">'
+                  '%s</span></td>'
+                  % (v.get('terms', ''), v.get('weights', '')))
                 A('        <td class="num v">%+.2f</td>' % v.get('raw', 0.0))
             else:
                 A('        <td class="dim sm">%s</td>'
@@ -185,28 +193,19 @@ for cat in CATS:
 
     if cat == 'Interest_Rate':
         A('  <div class="note"><strong>The rate rows are scored from FOUR '
-          'TERMS, not from an actual against a threshold.</strong> '
-          '<code>score = (realised + expected + surprise + path) / n</code>, '
-          'where <strong>n counts only the terms that exist</strong> — a '
-          'missing term drops out rather than scoring 0, which would assert '
-          '“no surprise” when the truth is that we cannot see one.'
-          '</div>')
-        A('  <div class="note"><strong>REALISED</strong> — did the bank '
-          'actually move. <strong>EXPECTED</strong> — inflation vs '
-          '<em>that bank’s own mandate</em>; the SNB targets '
-          '<strong>0–2%</strong> and the RBNZ <strong>1–3%</strong>, not '
-          'a common 2%. <strong>SURPRISE</strong> — the decision against '
-          'what was priced. <strong>PATH</strong> — the forecast for the '
-          'NEXT meeting minus the current rate, which is the hawkish/dovish '
-          'read.</div>')
-        A('  <div class="note flag"><span class="lbl">⚠ READ THE RAW '
-          'COLUMN, NOT THE CELL</span><strong>Cell</strong> is the binary '
-          'the tally consumes, so <strong>CHF’s +0.25 and NZD’s +1.50 '
-          'both render as +1</strong>. And <strong>USD and JPY score '
-          'entirely on PATH</strong> — both have a +25bp hike priced and '
-          'neither has met. That is the repricing the model could not see '
-          'when the yen moved +2.87%% in a week and this category scored it '
-          'zero.</div>')
+          'WEIGHTED TERMS, not from an actual against a threshold.</strong> '
+          '<code>score = Σ(term × weight) / Σ(weight)</code> over the '
+          'terms that exist — <strong>realised 20% · expected 30% · '
+          'surprise 20% · path 30%</strong>. <strong>60% sits on the '
+          'forward half</strong> (expected + path), which is the point of a '
+          'model built to foresee a move rather than report one.</div>')
+        A('  <div class="note">A missing term <strong>drops out and the '
+          'weights renormalise</strong> — a currency between meetings has '
+          'no surprise, one whose next meeting is beyond the calendar '
+          'horizon has no path. It is not scored 0, which would assert '
+          '“no surprise” when the truth is that we cannot see one. The '
+          'second line of each Terms cell shows the weights actually '
+          'used.</div>')
 
 A('')
 A('  <h3>Reconciliation</h3>')
@@ -237,13 +236,15 @@ A('  <p><strong>Weights: Production, Spending and Trade \u00d7 2; Employment, '
   'is the FINAL in \u00a71.</p>')
 A('')
 A('  <div class="note flag">')
-A('    <span class="lbl">\u26a0 A GAP WORTH FIXING</span>')
-A('    <strong>The fact tables store only the \u22121 / 0 / +1</strong> \u2014 the '
-  'actual, previous, reference and threshold columns above are joined in '
-  'from <code>score_model.py</code> and <code>rate_model.py</code>. '
-  '<strong>A reader cannot audit a score from the CSVs alone</strong>, '
-  'because they record the verdict and not the evidence. The tables should '
-  'carry the values beside the score.')
+A('    <span class="lbl">⚠ A GAP WORTH FIXING</span>')
+A('    <strong>The five binary categories store only the −1 / 0 / +1</strong>'
+  ' — their actual, previous, reference and threshold columns above '
+  'are joined in from <code>score_model.py</code>. <strong>A reader '
+  'cannot audit those scores from the CSVs alone</strong>, because they '
+  'record the verdict and not the evidence. <strong>Interest Rate is '
+  'the exception</strong>: since LD-110 its cell carries the computed '
+  'score itself, so the CSV and the model cannot silently disagree — '
+  'and R-37 now checks that they do not.')
 A('  </div>')
 A('</section>')
 
