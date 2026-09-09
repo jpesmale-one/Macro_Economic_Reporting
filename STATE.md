@@ -14,6 +14,31 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 F-95 - GBP S&P Global Mfg PMI Final held the JUL print. Jeff
+#   caught it; LD-103's five checks all passed and it shipped.
+#   ONE CORRECTION TO THE REQUEST, and it did not change the outcome: the
+#   AUG Final released TUE 1 SEP 08:30, not Sept 4. Either date is inside
+#   the Sunday 6 Sep vintage, so the row belongs in this edition.
+#   51.7 from 51.9. Score UNCHANGED - both clear >50.5 - evidence was a
+#   month stale. Same shape as F-91 on the EUR row; the two are the same
+#   indicator family and went stale identically.
+# >>> R-37 SHOULD HAVE CAUGHT THIS AND DID NOT, and the reason generalises:
+#   TE ROLLS A ROW FORWARD once the next occurrence is scheduled. The 1 Sep
+#   actual is GONE from the 4 Sep capture - that row now shows the Sep
+#   Flash with no actual. The vintage check had nothing to compare against
+#   and said nothing. A PER-ROW version of the same 'green on nothing'
+#   failure the whole-check version already had.
+#   FIXED: vintage_check now reads EVERY capture up to the as-of date, not
+#   just one. Matched rows 15 -> 24. PROVEN by reintroducing F-95 and
+#   watching it fire.
+#   >>> THE CAPTURE ARCHIVE IS NOW LOad-BEARING. Old captures are the only
+#   record of a print TE has since rolled past. Do not prune them.
+# SCANNED with the widened check: 0 stale rows as of 6 Sep. Without a
+#   cutoff, 5 stale - all Mon 7 / Tue 8 prints, correctly excluded from
+#   this edition and QUEUED FOR THE WEEKEND BUILD:
+#     AUD Building Permits YoY Final, AUD Westpac, AUD NAB, AUD Job Ads,
+#     CHF Unemployment.
+
 # 2026-09-09 LD-103 - FACT-CHECK THE REQUEST BEFORE ACTING. Jeff: "what
 #   ever I requested please do a fact check first to see if what I'm
 #   requesting makes sense or I'm making a mistake." Written into CLAUDE.md

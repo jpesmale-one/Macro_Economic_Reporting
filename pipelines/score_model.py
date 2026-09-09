@@ -34,7 +34,14 @@ ROWS = [
  # being "the last print" while meaning different months.
  ("Production","EA","S&P Global Mfg PMI Final","52.7","51.9","Aug/26",">50.5","GOOD"),
  ("Production","EA","Industrial Production YoY","0.1%","-0.1%","Jun/26","0-0.5%","NEUTRAL"),
- ("Production","GB","S&P Global Mfg PMI Final","51.9","52.5","Jul/26",">50.5","GOOD"),
+ # F-95: held the JUL print after the AUG Final released Tue 1 Sep 08:30
+ # at 51.7 from 51.9. Same shape as F-91 on the EUR row - the two are
+ # the same indicator family and went stale the same way. Score is
+ # unchanged (51.7 and 51.9 both clear >50.5); the EVIDENCE was a month
+ # old. R-37 missed it because no GBP Mfg PMI Final row with an actual
+ # sits in the 4 Sep capture - TE had already rolled the row forward to
+ # the Sep Flash, so there was nothing to compare against.
+ ("Production","GB","S&P Global Mfg PMI Final","51.7","51.9","Aug/26",">50.5","GOOD"),
  # F-93: the threshold read "<0%", which says NEGATIVE growth is GOOD for
  # GBP. It was written to DESCRIBE the -0.2% print, not to encode the
  # direction - the exact F-68 shape. Industrial production is a growth

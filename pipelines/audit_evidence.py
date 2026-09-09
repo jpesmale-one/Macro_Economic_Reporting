@@ -79,6 +79,29 @@ def verdict_check():
     return bad, len(cells)
 
 
+def all_captures(upto=None):
+    """Every capture file, oldest first, optionally capped at a build date.
+
+    F-95. A SINGLE capture is not enough. TE's calendar rolls a row forward
+    once the next occurrence is scheduled, so an actual released on 1 Sep is
+    GONE from the 4 Sep capture - the row now shows the Sep Flash with no
+    actual. The vintage check had nothing to compare against and reported
+    nothing, which is how GBP Mfg PMI Final sat a month stale past a guard
+    written to catch exactly that.
+
+    Reading every capture up to the build date recovers those prints: the
+    2 Sep capture still held GBP Mfg PMI Final Aug at 51.7.
+    """
+    out = []
+    for f in sorted(glob.glob(os.path.join(
+            REPO, 'data/raw/calendar/*_cal_full.json'))):
+        stamp = os.path.basename(f)[:10]
+        if upto and stamp > upto:
+            continue
+        out.append(f)
+    return out
+
+
 def vintage_check(capture, asof=None):
     """Our ref month must not lag the latest RELEASED row in the capture.
 
@@ -87,8 +110,15 @@ def vintage_check(capture, asof=None):
     four rows at their August values because they printed Mon 7 / Tue 8, and
     without this the guard reports them as stale when they are correct.
     """
-    raw = json.load(io.open(capture, encoding='utf-8'))
     import week_ahead as wa
+    raw = []
+    for f in all_captures(asof):
+        try:
+            raw.extend(json.load(io.open(f, encoding='utf-8')))
+        except Exception:
+            continue
+    if not raw:                                  # fall back to the one named
+        raw = json.load(io.open(capture, encoding='utf-8'))
     latest = {}
     for e in raw:
         if e.get('iso') not in ISO or not (e.get('actual') or '').strip():
