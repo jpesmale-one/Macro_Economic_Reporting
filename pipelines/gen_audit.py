@@ -47,12 +47,33 @@ def esc(t):
 
 
 def rate_detail(ccy):
+    """A rate row's evidence, with EVERY term that produced its score.
+
+    F-99: the table showed rate, CPI and mandate only - so after LD-107 both
+    USD and JPY scored +1 ENTIRELY on the expected-path term and the row
+    gave no hint why. Two of eight rows were unauditable, which is the exact
+    failure this section exists to prevent.
+    """
     d = RATE[ISO[ccy]]
     lo, hi = d['mandate']
-    band = ('%g\u2013%g%%' % (lo, hi)) if lo != hi else ('%g%%' % lo)
+    band = ('%g–%g%%' % (lo, hi)) if lo != hi else ('%g%%' % lo)
     arrow = 'rising' if d['rising'] else 'falling'
+    bits = []
+    if d['realised']:
+        bits.append('realised %+.2f' % d['realised'])
+    if d['expected']:
+        bits.append('expected %+.2f' % d['expected'])
+    if d['surprise'] is not None:
+        bits.append('surprise %+.2f' % d['surprise'])
+    if d['path'] is not None:
+        bits.append('path %+.2f (%+dbp)' % (d['path'], d['path_bp']))
+    why = d['why']
+    if d['path'] is not None:
+        why += ' · ' + d['path_why']
     return dict(actual=d['rate'], prev='CPI %.1f%%' % d['cpi'],
-                ref=arrow, thr='mandate ' + band, verdict=d['why'])
+                ref=arrow, thr='mandate ' + band, verdict=why,
+                terms=' + '.join(bits) or 'all terms zero',
+                raw=d['score'])
 
 
 out = []
@@ -101,9 +122,21 @@ for cat in CATS:
     A('  <p class="cnt">%s</p>' % summary)
     A('  <div class="scroll">')
     A('  <table class="ind">')
-    A('    <thead><tr><th>CCY</th><th>Indicator</th><th class="num">Actual</th>'
-      '<th class="num">Previous</th><th>Ref</th><th>Threshold</th>'
-      '<th class="num">Score</th><th class="num">Category</th></tr></thead>')
+    if cat == 'Interest_Rate':
+        # F-99: the rate rows are scored from four TERMS, not from an
+        # actual against a threshold. Show the terms, or the score cannot
+        # be audited - USD and JPY score +1 purely on the path.
+        A('    <thead><tr><th>CCY</th><th>Bank</th><th class="num">Rate</th>'
+          '<th class="num">CPI</th><th>CPI trend</th>'
+          '<th>Terms averaged</th><th class="num">Raw</th>'
+          '<th class="num">Cell</th><th class="num">Category</th>'
+          '</tr></thead>')
+    else:
+        A('    <thead><tr><th>CCY</th><th>Indicator</th>'
+          '<th class="num">Actual</th>'
+          '<th class="num">Previous</th><th>Ref</th><th>Threshold</th>'
+          '<th class="num">Score</th><th class="num">Category</th>'
+          '</tr></thead>')
     A('    <tbody>')
     for ccy in ORDER:
         rs = by.get(ccy, [])
@@ -114,15 +147,16 @@ for cat in CATS:
         for i, r in enumerate(rs):
             nm = r['Indicator'].strip()
             cell = (r.get(MONTH) or '').strip()
-            k, txt = CELL.get(cell, ('dash', '\u2014'))
+            k, txt = CELL.get(cell, ('dash', '—'))
             v = (rate_detail(ccy) if cat == 'Interest_Rate'
                  else VALS.get((ccy, nm), {}))
             first = i == 0
             A('      <tr%s>' % (' class="grp"' if first else ''))
             A('        <td class="ccy">%s</td>' % (ccy if first else ''))
             A('        <td>%s</td>' % esc(nm))
-            A('        <td class="num v">%s</td>' % esc(v.get('actual', '\u2014')))
-            A('        <td class="num v dim">%s</td>' % esc(v.get('prev', '\u2014')))
+            A('        <td class="num v">%s</td>' % esc(v.get('actual', '—')))
+            A('        <td class="num v dim">%s</td>'
+              % esc(v.get('prev', '—')))
             _ref = v.get('ref', '—')
             # LD-106: a REF ending in '(Q)' is a QUARTERLY series, so an
             # old-looking month is its cadence and not a stale row.
@@ -131,7 +165,15 @@ for cat in CATS:
               % (' q' if _q else '',
                  ' title="Quarterly series - this is its cadence, not a'
                  ' stale row"' if _q else '', esc(_ref)))
-            A('        <td class="dim sm">%s</td>' % esc(v.get('thr', '\u2014')))
+            if cat == 'Interest_Rate':
+                # F-99: show the terms that were averaged, and the RAW score
+                # before it is flattened to +1/0/-1 - CHF's +0.25 and NZD's
+                # +1.50 both render as '+1' in the cell.
+                A('        <td class="sm terms">%s</td>' % v.get('terms', ''))
+                A('        <td class="num v">%+.2f</td>' % v.get('raw', 0.0))
+            else:
+                A('        <td class="dim sm">%s</td>'
+                  % esc(v.get('thr', '—')))
             A('        <td class="num %s">%s</td>' % (k, txt))
             if first:
                 A('        <td class="num %s tot" rowspan="%d">%+.2f</td>'
@@ -142,13 +184,29 @@ for cat in CATS:
     A('  </div>')
 
     if cat == 'Interest_Rate':
-        A('  <div class="note"><strong>The rate rows read differently.</strong> '
-          '<em>Actual</em> is the policy rate, <em>previous</em> the CPI it is '
-          'judged against, and <em>threshold</em> that bank\'s own mandate '
-          '\u2014 <strong>not a common 2%</strong>. The SNB targets '
-          '<strong>0\u20132%</strong>, so CHF at 0.8% and rising sits INSIDE its '
-          'band; the RBNZ targets 1\u20133%, so NZD at 4.1% is above its ceiling '
-          'and rising, which is why it scores highest.</div>')
+        A('  <div class="note"><strong>The rate rows are scored from FOUR '
+          'TERMS, not from an actual against a threshold.</strong> '
+          '<code>score = (realised + expected + surprise + path) / n</code>, '
+          'where <strong>n counts only the terms that exist</strong> — a '
+          'missing term drops out rather than scoring 0, which would assert '
+          '“no surprise” when the truth is that we cannot see one.'
+          '</div>')
+        A('  <div class="note"><strong>REALISED</strong> — did the bank '
+          'actually move. <strong>EXPECTED</strong> — inflation vs '
+          '<em>that bank’s own mandate</em>; the SNB targets '
+          '<strong>0–2%</strong> and the RBNZ <strong>1–3%</strong>, not '
+          'a common 2%. <strong>SURPRISE</strong> — the decision against '
+          'what was priced. <strong>PATH</strong> — the forecast for the '
+          'NEXT meeting minus the current rate, which is the hawkish/dovish '
+          'read.</div>')
+        A('  <div class="note flag"><span class="lbl">⚠ READ THE RAW '
+          'COLUMN, NOT THE CELL</span><strong>Cell</strong> is the binary '
+          'the tally consumes, so <strong>CHF’s +0.25 and NZD’s +1.50 '
+          'both render as +1</strong>. And <strong>USD and JPY score '
+          'entirely on PATH</strong> — both have a +25bp hike priced and '
+          'neither has met. That is the repricing the model could not see '
+          'when the yen moved +2.87%% in a week and this category scored it '
+          'zero.</div>')
 
 A('')
 A('  <h3>Reconciliation</h3>')

@@ -14,6 +14,26 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-09 F-99 - LD-107 SHIPPED WITHOUT REACHING THE TABLE. Jeff: "is it
+#   reflected in our Interest Rate table?" NO, AND THE ANSWER MATTERED.
+#   The rate table showed rate / CPI / mandate only. After LD-107 both USD
+#   and JPY score +1 ENTIRELY on the expected-path term - and the row gave
+#   no hint why. TWO OF EIGHT ROWS WERE UNAUDITABLE, which is the exact
+#   failure the audit section exists to prevent.
+#   THE PATTERN: I added a term to the MODEL and verified the SCORES moved,
+#   then published without checking the row that is supposed to justify
+#   them. A scoring change is not shipped until its EVIDENCE is visible.
+#   FIXED: the Interest Rate table now has its own 9-column shape -
+#     CCY | Bank | Rate | CPI | CPI trend | TERMS AVERAGED | RAW | Cell |
+#     Category
+#   'Terms averaged' prints every term that entered the mean, e.g. USD
+#   'path +0.50 (+25bp)' and NZD 'realised +1.00 + expected +0.50 +
+#   surprise +0.00'.
+#   >>> AND IT EXPOSED A SECOND OPACITY: the binary Cell flattens CHF's
+#   +0.25 and NZD's +1.50 both to '+1'. The RAW column now shows the
+#   underlying number, and a flag says to read RAW rather than Cell.
+#   Verified 9 headers = 9 cells before publishing.
+
 # 2026-09-09 LD-107 - THE EXPECTED PATH TERM. Jeff: "we need to inject
 #   Hawkish and Dovish tone in the score as market moves prior the change".
 #   THE GAP IT CLOSES IS THE MOST EXPENSIVE THIS MODEL HAS HAD. On 3 Sep the
