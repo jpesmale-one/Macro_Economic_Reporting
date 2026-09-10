@@ -258,33 +258,39 @@ def day_score(rows):
     carries the day. The alternative - the unscorable AUG row wins and
     blanks the day - throws away a real signal to honour a row that carries
     none. But it IS a choice, and Jeff has not ratified it.
-    RULE 0 - GDP TAKES THE DAY (LD-118, Jeff's option B, 2026-09-10).
+    LD-119 - OPTION B WAS TAKEN BACK. Jeff, 2026-09-10: "I'm taking back
+    the B decision. Let's keep the prioritization rule intact. So if GDP
+    release date have other Indicator release which have more latest data
+    then we still focus on that one Rather than the GDP."
 
-    Rule 1 ranks rows by REFERENCE MONTH, and a quarter always loses to
-    a monthly - Q2 ends in June, so any JUL or AUG row outranks it. GDP
-    would have entered the calibrator and then been discarded on 4 of 5
-    of its own release days. The rule was comparing measurements taken at
-    different CADENCES as though they were rival reads of the same thing,
-    which is a category error, not a ranking.
+    So GDP is an ORDINARY calibrator row. It enters the whitelist, it is
+    scored by its own range rule (LD-117), and then it competes on
+    reference month like everything else - a quarter ends in June, so any
+    JUL or AUG row outranks it.
 
-    Jeff chose B: GDP overrides precedence and owns its day. The evidence
-    is that both GDP prints in the archive moved price hard within four
-    hours - AUD +111.6 pips, JPY +83.0 (F-107, PHT-verified) - which is
-    more than any monthly on those days did.
+    THE MEASURED CONSEQUENCE, and a correction to my own earlier figure.
+    I told Jeff GDP would survive Rule 1 on "1 of 5" release days. That
+    counted EVERY TE calendar row, including crude oil stocks and car
+    production - rows not on the whitelist, which never compete. Rule 1
+    ranks WHITELIST rows only.
 
-    WHEN SEVERAL GDP ROWS SHARE A DAY they share it between themselves,
-    exactly as Rule 2 would.
+    Measured properly: GDP survives on 4 of 5 whitelist days.
+
+        EUR Mon 07 Sep   +1  kept, alone on the day
+        JPY Tue 08 Sep   +1  kept, alone on the day
+        NZD Thu 17 Sep   -1  kept, alone on the day
+        GBP Wed 30 Sep   +1  kept, alone on the day
+        USD Wed 30 Sep   +1  DROPPED - Personal Spending MoM AUG (0)
+                             outranks Q2, so the day scores 0.00
+
+    The drop is the rule working as Jeff specified, not a defect. He wants
+    a week of it before changing anything: "We'll do this first then let's
+    see what will happen next week."
     """
     scored = [r for r in rows if r['score'] is not None]
     if not scored:
         return None, 'unscorable', [], list(rows)
 
-    # RULE 0 (LD-118) - GDP outranks everything else on its day.
-    gdp = [r for r in scored if r['name'] == 'GDP Growth Rate QoQ']
-    if gdp:
-        val = sum(r['score'] for r in gdp) / float(len(gdp))
-        return (val, 'GDP takes the day', gdp,
-                [r for r in rows if r not in gdp])
     dated = [r for r in scored if r['month'] is not None]
     if dated:
         top = max(r['month'] for r in dated)

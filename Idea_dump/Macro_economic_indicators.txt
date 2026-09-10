@@ -297,9 +297,16 @@ Forward Looking Macro-Economic Indicators:
 		accumulated past, and YoY is structurally almost always positive - which would
 		recreate the very defect that removed GDP from the base.
 
-		PRECEDENCE: a GDP release TAKES ITS DAY outright (LD-118, Jeff's option B).
-		Rule 1 ranks by reference month and a quarter always loses to a monthly, so
-		GDP would have been discarded on 4 of 5 of its own release days.
+		PRECEDENCE: RULE 1 APPLIES TO GDP LIKE ANY OTHER ROW (LD-119).
+		Jeff, 2026-09-10: "I'm taking back the B decision. Let's keep the
+		prioritization rule intact. So if GDP release date have other Indicator
+		release which have more latest data then we still focus on that one Rather
+		than the GDP."
+		Option B (LD-118) was proposed and WITHDRAWN the same day, before any
+		edition shipped with it. GDP competes on reference month: a quarter ends in
+		June, so a JUL or AUG whitelist row outranks it.
+		MEASURED over whitelist rows: GDP survives on 4 of 5 release days. The one
+		drop is USD Wed 30 Sep, where Personal Spending MoM AUG outranks Q2.
 
 		a. US
 			i. GDP Growth Rate QoQ

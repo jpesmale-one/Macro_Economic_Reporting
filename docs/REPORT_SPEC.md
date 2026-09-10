@@ -3033,3 +3033,50 @@ level threshold are not the same KIND of rule, so a string compare cannot
 match). R-37, R-38, R-39 all green.
 
 ---
+
+## LD-119 - OPTION B WITHDRAWN. RULE 1 APPLIES TO GDP LIKE ANY OTHER ROW.
+
+**Jeff, 2026-09-10:** *"I'm taking back the B decision. Let's keep the
+prioritization rule intact. So if GDP release date have other Indicator
+release which have more latest data then we still focus on that one Rather
+than the GDP. We'll do this first then let's see what will happen next week."*
+
+**LD-118 was proposed and withdrawn the same day, before any edition shipped
+with it.** GDP stays in the calibrator with its range rule (LD-117), QoQ only
+(LD-116), and then competes on reference month like everything else.
+
+### A CORRECTION TO MY OWN FIGURE
+
+I argued for option B partly on *"GDP would be discarded on 4 of 5 of its own
+release days."* **That number was wrong.** It counted every TE calendar row -
+crude oil stocks, car production, housing prices - rows that **are not on the
+whitelist and never compete**. Rule 1 ranks whitelist rows only.
+
+**Measured properly: GDP survives on 4 of 5 whitelist days.**
+
+| Day | GDP | Outcome |
+|---|---|---|
+| EUR Mon 07 Sep | +1 | kept — alone on the day |
+| JPY Tue 08 Sep | +1 | kept — alone on the day |
+| NZD Thu 17 Sep | −1 | kept — alone on the day |
+| GBP Wed 30 Sep | +1 | kept — alone on the day |
+| **USD Wed 30 Sep** | +1 | **DROPPED** — Personal Spending MoM AUG (0) outranks Q2, day scores 0.00 |
+
+**So the objection that drove option B barely exists.** GDP shares a day with
+a higher-ranked whitelist row exactly once in the archive. **The case I made
+for B was built on a number I had not filtered to the whitelist** - the same
+shape as F-106/F-107/F-108: a figure quoted before it was checked.
+
+**Jeff's instinct to keep the rule intact was better than my argument to
+change it**, and one fewer special case is worth more than one recovered
+score.
+
+### Live position for 14-18 Sep
+
+**NZD Thu 17 Sep still scores −1.00** — GDP is the only NZD whitelist row
+that day, so nothing outranks it. Board: EUR +5.38, CHF +4.09, JPY +3.85 /
+GBP +3.19, USD +2.69 / CAD +1.61, AUD +1.50, NZD +0.50. Preliminary
+selection EURNZD LONG, AUDCHF SHORT, CADJPY SHORT — **the Sunday build is
+authoritative.**
+
+---
