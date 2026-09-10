@@ -2752,3 +2752,41 @@ one-off - in roughly six weeks it will hold a timeline for all eight
 currencies and the F-102 question becomes answerable.
 
 ---
+
+## F-106 - A DAILY BAR IS NOT A DAY. I READ THE WRONG BAR AND REVERSED A SIGN.
+
+**Claim I made, 2026-09-10:** *"AUDNZD fell 11.6 pips on AUD's GDP day."*
+**Jeff:** *"Can you fact check this with TE and Trading View?"*
+
+**HE WAS RIGHT TO ASK. THE CLAIM WAS FALSE, AND BACKWARDS.**
+
+| | |
+|---|---|
+| TE says | AUD GDP Q2 released **2026-09-01 17:30 UTC** (02 Sep 01:30 PHT), **actual 0.4% vs 0.2% forecast - a BEAT** |
+| I read | the daily bar TradingView labels **2 Sep**, close-to-close: -11.6 pips |
+| The tape says | **+111.6 pips in the four hours after the release** |
+
+**THE ERROR: OANDA's daily bars open at 21:00 UTC**, so a 17:30 UTC release
+falls inside the bar labelled **1 Sep**. The "+126 pips on Tue 1 Sep" I had
+attributed to something else IS the GDP move. One event, counted on the wrong
+side of a bar boundary, and the sign flipped.
+
+**THIS IS F-77's SHAPE, THIRD TIME.** F-77 was reading a RENDERED time and
+re-converting it. LD-48 says recompute a derived figure and NAME THE BAR that
+produced it. **A close-to-close daily change is a derived figure**, and I did
+not check which bar contained the timestamp before quoting it.
+
+**RULE: before attributing a move to a release, convert the release timestamp
+into the FEED's bar convention and name the bar.** For an intraday event,
+read intraday bars - a daily bar answers a question about a day, not about an
+event.
+
+**WHAT THE ERROR COST THE ARGUMENT.** I used the false claim to argue GDP does
+not move price even in its release week, and preferred precedence option A
+over B partly on it. **That reason is void.** What survives is independent of
+price: as a BASE category GDP scores 6 GOOD / 2 NEUTRAL / 0 BAD with a range
+of 1.00, adding a near-constant to the board rather than ranking anything.
+**The calibrator case is now stronger than I argued** - the surprise (0.4 vs
+0.2) moved the pair 111.6 pips in four hours.
+
+---
