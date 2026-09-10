@@ -3438,3 +3438,50 @@ holding all four is one AUD-short view expressed three times, which is the
 correlation EF-3 measured.
 
 ---
+
+## F-113 - THE LEDGER BLENDED TWO SELECTION RULES INTO ONE rho
+
+The 7-11 Sep week was selected **three times** as the rules changed under it:
+gap-first (r1), one tier-1 per category (r3), then category + strong currency
+(r4/LD-126). Logging r4's four pairs beside two survivors of r1 produced a
+single rho over six rows from **two different rules** — a number answering
+neither question.
+
+**LD-111 asks whether CONVICTION RANKS OUTCOME. A rule change resets that
+question**, because the gaps come from a different selection and are not
+comparable observations.
+
+Every row now carries the `rule` that produced it, and `weekly_ranking()`
+groups on `(week, rule)`. A re-selected week reports one rho per rule.
+
+---
+
+## THE 7-11 SEP SET, GRADED TO THU 10 SEP (week incomplete)
+
+| Pair | Bias | Gap | MFE | MAE | Now | Covers |
+|---|---|---|---|---|---|---|
+| EURUSD | LONG | +6.69 | +41.0 | −6.0 | **+26.2** | RISK ON / EUR |
+| EURAUD | LONG | +5.88 | +11.0 | −47.1 | **+3.6** | EITHER |
+| AUDCHF | SHORT | +5.59 | +4.1 | −25.9 | **−4.7** | RISK OFF / CHF |
+| **AUDJPY** | **SHORT** | **+3.35** | **+203.0** | −29.9 | **+149.3** | **JPY** |
+
+**3 of 4 in profit, +174.4 pips open.**
+
+### The pair Jeff's question added is carrying the set
+
+**AUDJPY exists in this set only because Jeff asked why JPY was missing**
+(LD-126). It has the **narrowest gap** and **+203 peak**; the other three
+together are +25.1.
+
+### Conviction ranked backwards again — rho −0.20
+
+Second consecutive inverted week (r1 was **−0.80**). **LD-111 says three
+consecutive is a signal, not noise.** One more and the gap formula needs
+investigating rather than waiting on.
+
+**Both weeks share a shape worth naming: the widest gap did not produce the
+widest move, and the narrowest gap produced the largest.** CADJPY at +0.41 —
+labelled "NOISE, NOT A VIEW" — peaked at +215.4 under r1; AUDJPY at +3.35
+peaked at +203.0 under r4.
+
+---

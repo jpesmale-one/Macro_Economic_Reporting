@@ -51,9 +51,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 LEDGER = os.path.join(REPO, 'data', 'derived', 'outcomes.csv')
 
-FIELDS = ('week_start', 'built', 'pair', 'direction', 'gap', 'tier',
-          'category', 'ref_close', 'mfe_pips', 'mae_pips', 'close_pips',
-          'graded_to', 'note')
+# F-113 - a week can be selected more than once as rules change, and
+# rows from different rules must NOT share a rho. 'rule' names the
+# selection that produced the row; weekly_ranking groups on it.
+FIELDS = ('week_start', 'rule', 'built', 'pair', 'direction', 'gap',
+          'tier', 'category', 'ref_close', 'mfe_pips', 'mae_pips',
+          'close_pips', 'graded_to', 'note')
 
 
 def load():
@@ -102,12 +105,15 @@ def weekly_ranking(metric='mfe_pips'):
     rows = load()
     weeks = {}
     for r in rows:
-        weeks.setdefault(r['week_start'], []).append(r)
+        # F-113: group on (week, rule) - a week re-selected under a new rule
+        # yields two independent observations, never one blended rho.
+        key = (r['week_start'], (r.get('rule') or 'unspecified'))
+        weeks.setdefault(key, []).append(r)
     out = {}
-    for wk, rs in sorted(weeks.items()):
+    for key, rs in sorted(weeks.items()):
         pts = [(r['pair'], float(r['gap']), float(r[metric] or 0))
                for r in rs if r.get(metric)]
-        out[wk] = (spearman(pts), len(pts))
+        out[key] = (spearman(pts), len(pts))
     return out
 
 
