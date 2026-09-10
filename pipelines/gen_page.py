@@ -132,6 +132,43 @@ A('  <p>Of the <strong>%d permitted pairings, %d are RISK ON, %d RISK OFF '
   'present in each band decide which categories can be filled.</p>'
   % (non + noff + nei, non, noff, nei))
 A('')
+# LD-123 - ONE REPRESENTATIVE PER CATEGORY. Jeff, 2026-09-10: "I want you to
+# give me representative for each categories (Risk On, Off, Either)".
+#
+# THE CASE THAT MAKES IT NECESSARY, live this week: EITHER holds +5.88 - the
+# SECOND WIDEST GAP ON THE BOARD - and contributed NOTHING to the set,
+# because both its top pairs need EUR and EURUSD had already taken it. A
+# reader seeing "EITHER: 0 selected" would conclude the category was weak.
+# It was crowded out by leg-disjointness, which is a different fact.
+A('  <h3>The strongest read in each category</h3>')
+A('  <div class="scroll">')
+A('  <table>')
+A('    <thead><tr><th>Category</th><th>Representative</th><th>Dir</th>'
+  '<th class="num">Gap</th><th>Long / short</th><th>In the set?</th>'
+  '</tr></thead>')
+A('    <tbody>')
+for _cat, _top, _inset in ps.representatives(CANDS, PICKED):
+    A('      <tr%s><td><span class="cat">%s</span></td>'
+      '<td class="ccy">%s</td><td>%s</td><td class="num %s">%s</td>'
+      '<td>%s over %s</td><td>%s</td></tr>'
+      % (' class="sel"' if _inset else '', _cat, ps.label(CANDS, _top),
+         _top['direction'], 'pos' if _inset else '', sg(_top['gap']),
+         _top['long'], _top['short'],
+         '<strong>yes</strong>' if _inset
+         else '<span class="zero">crowded out</span>'))
+A('    </tbody>')
+A('  </table>')
+A('  </div>')
+_out = [(c, t) for c, t, i in ps.representatives(CANDS, PICKED) if not i]
+if _out:
+    A('  <p><strong>%s</strong> \u2014 %s. <strong>That is a leg conflict, '
+      'not a weak read</strong>: the pairs it would need were built on '
+      'currencies an earlier, wider pair had already taken (LD-96).</p>'
+      % (', '.join('%s carries %s and is not in the set'
+                   % (c, sg(t['gap'])) for c, t in _out),
+         'leg-disjoint selection allows each currency once'))
+A('')
+
 # LD-120 - ONE TABLE PER RISK CATEGORY. Jeff, 2026-09-10: "create a table for
 # each category Risk On, Risk Off, Either just so the pairs are segragated and
 # easy to spot". The categories are an OUTPUT of which roles sit in which band

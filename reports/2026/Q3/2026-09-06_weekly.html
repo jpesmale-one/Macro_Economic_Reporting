@@ -258,6 +258,19 @@ footer p{max-width:none}
   <p class="sub">Risk category is an output, not a forecast.</p>
   <p>Of the <strong>14 permitted pairings, 3 are RISK ON, 6 RISK OFF and 5 EITHER</strong>. Nothing here predicts the regime — the roles present in each band decide which categories can be filled.</p>
 
+  <h3>The strongest read in each category</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Category</th><th>Representative</th><th>Dir</th><th class="num">Gap</th><th>Long / short</th><th>In the set?</th></tr></thead>
+    <tbody>
+      <tr class="sel"><td><span class="cat">RISK ON</span></td><td class="ccy">EURUSD</td><td>LONG</td><td class="num pos">+6.69</td><td>EUR over USD</td><td><strong>yes</strong></td></tr>
+      <tr class="sel"><td><span class="cat">RISK OFF</span></td><td class="ccy">AUDCHF/NZDCHF</td><td>SHORT</td><td class="num pos">+5.59</td><td>CHF over AUD</td><td><strong>yes</strong></td></tr>
+      <tr><td><span class="cat">EITHER</span></td><td class="ccy">EURAUD/EURNZD</td><td>LONG</td><td class="num ">+5.88</td><td>EUR over AUD</td><td><span class="zero">crowded out</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>EITHER carries +5.88 and is not in the set</strong> — leg-disjoint selection allows each currency once. <strong>That is a leg conflict, not a weak read</strong>: the pairs it would need were built on currencies an earlier, wider pair had already taken (LD-96).</p>
+
   <h3>RISK ON <span class="wt">3 pairs · 1 selected</span></h3>
   <div class="scroll">
   <table>

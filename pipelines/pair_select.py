@@ -171,6 +171,39 @@ def label(cands, pick):
     return '/'.join([pick['pair']] + [t['pair'] for t in twins])
 
 
+def representatives(cands=None, picked=None):
+    """The widest-gap pair in each risk category (LD-123).
+
+    Jeff, 2026-09-10: "I want you to give me representative for each
+    categories (Risk On, Off, Either)".
+
+    WHY THIS IS NOT THE SAME AS THE SET. Selection is leg-disjoint: the
+    richest gap takes its two currencies and every later pair needing either
+    of them is blocked. So a category can hold a very strong read and still
+    contribute nothing.
+
+    Live on 2026-09-07..11: EITHER's best pair carries +5.88, the SECOND
+    WIDEST GAP ON THE BOARD, and EITHER contributed NOTHING to the set -
+    both its top pairs need EUR and EURUSD had already taken it. Without a
+    representative, a reader sees "EITHER: 0 selected" and concludes the
+    category was weak. It was not; it was crowded out.
+
+    Returns [(category, pair, in_set)] in RISK ON / RISK OFF / EITHER order,
+    skipping a category with no candidates at all.
+    """
+    cands = candidates() if cands is None else cands
+    picked = select(cands) if picked is None else picked
+    ids = set(id(p) for p in picked)
+    out = []
+    for cat in ('RISK ON', 'RISK OFF', 'EITHER'):
+        rows = [c for c in cands if c['category'] == cat]
+        if not rows:
+            continue
+        top = max(rows, key=lambda c: c['gap'])
+        out.append((cat, top, id(top) in ids))
+    return out
+
+
 def select(cands=None, max_pairs=None):
     """Leg-disjoint pick, richest gap first (LD-96).
 

@@ -3194,3 +3194,32 @@ assembler to splice the indicator block AHEAD of Method rather than append it.
 Renumbering alone would have left them in the old physical order.
 
 ---
+
+## LD-123 - A REPRESENTATIVE PAIR FOR EACH RISK CATEGORY
+
+**Jeff, 2026-09-10:** *"I want you to give me representative for each
+categories (Risk On, Off, Either)"*
+
+**The widest-gap pair in each category**, marked for whether it reached the
+set. `pair_select.representatives()`.
+
+### The case that makes it necessary, live this week
+
+| Category | Representative | Gap | In the set? |
+|---|---|---|---|
+| RISK ON | EURUSD LONG | +6.69 | yes |
+| RISK OFF | AUDCHF/NZDCHF SHORT | +5.59 | yes |
+| **EITHER** | **EURAUD/EURNZD LONG** | **+5.88** | **crowded out** |
+
+**EITHER holds the SECOND WIDEST GAP ON THE BOARD and contributed nothing to
+the set.** Both its top pairs need EUR, and EURUSD had already taken it.
+
+**Without this table a reader sees "EITHER: 0 selected" and concludes the
+category was weak.** It was not — it was crowded out by leg-disjointness,
+which is a different fact about a different thing. The page now says which.
+
+**This is the same class of omission as F-73**: a zero that means *"blocked
+by a rule"* being read as *"nothing there"*. An absence has more than one
+cause and only one of them is a fact about the market.
+
+---
