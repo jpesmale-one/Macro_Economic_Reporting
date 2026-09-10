@@ -3319,3 +3319,74 @@ graded, and this limitation is now documented at `fact_tables` so the next
 reader does not mistake an accurate record for a usable board.
 
 ---
+
+## F-112 - TWO SLASHES IN ONE SET OFFERED COMBINATIONS THE RULE FORBIDS
+
+**Jeff, 2026-09-10:** *"if we have this rule why we have AUDCHF/NZDCHF then
+we also have NZDJPY/AUDJPY?"*
+
+**The SELECTION was correct.** It took AUDCHF (CHF+AUD), which blocked NZDCHF
+and AUDJPY, then took NZDJPY (JPY+NZD). Three pairs, six currencies, each once.
+
+**The LABELS were not.** LD-121 marked each pick's twin independently, so the
+page implied a free choice. Of the four readings, **two break leg-disjointness**:
+
+| | |
+|---|---|
+| AUDCHF + NZDJPY | disjoint — what selection chose |
+| NZDCHF + AUDJPY | disjoint — the valid mirror |
+| AUDCHF + AUDJPY | **AUD twice** |
+| NZDCHF + NZDJPY | **NZD twice** |
+
+**The swaps are COUPLED** — change one and the other must change too. A reader
+following the page could have assembled a set the model would never produce.
+
+`swappable()` now offers a twin only when substituting it leaves the whole set
+disjoint; `coupled()` reports the case where a twin exists but cannot move
+alone.
+
+---
+
+## LD-125 - THE SET IS ONE TIER-1 PAIR PER CATEGORY
+
+**Jeff, 2026-09-10:** *"for §1 The pairs sort them by Tier then Gap. Then on
+The set let's get Tier 1 pairs for each category"*
+
+### The question behind it, answered
+
+*"how do you select which category is going first?"* — **None did.** `select()`
+sorted purely by gap and never read the category. Measured:
+
+| Order | Total gap | Set |
+|---|---|---|
+| gap only | **15.64** | EURUSD, AUDCHF, NZDJPY |
+| RISK ON first | 15.64 | identical |
+| RISK OFF first | 15.64 | identical |
+| **EITHER first** | **11.15** | EURAUD, GBPNZD, USDCAD |
+
+**Gap-first is optimal by construction** — it never passes over a wider pair.
+EITHER-first would have cost 4.49 points, because EURAUD (+5.88) consumes EUR
+and blocks EURUSD (+6.69).
+
+**But Jeff's underlying point was right: nothing guaranteed coverage.** EITHER
+held +5.88 this week and contributed nothing.
+
+### The trade, stated
+
+| | Coverage | Leg reuse | Total gap |
+|---|---|---|---|
+| gap-first (old) | not guaranteed | none | 15.64 |
+| **tier-1 per category (new)** | **guaranteed** | **EUR ×2, AUD ×2** | 18.16 |
+
+**Guaranteeing coverage and forbidding leg reuse cannot both hold.** The page
+now prints the overlap as a flagged note and shows what gap-first would have
+given, so the trade is visible every week rather than assumed.
+
+**TIER 1 ONLY** is the right constraint: tier 1 is STRONG vs WEAK, the widest
+structural separation the bands produce. **A category with no tier-1 pair goes
+UNFILLED** rather than padding the set with a thin read.
+
+§1 now sorts **tier, then gap** — so RISK OFF lists its 3.35 tier-1 pairs above
+a 3.49 tier-2 one, putting structure ahead of the raw number.
+
+---

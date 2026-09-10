@@ -163,12 +163,94 @@ def tied_with(cands, pick):
             and (c['long'] == pick['long'] or c['short'] == pick['short'])]
 
 
-def label(cands, pick):
-    """'AUDCHF/NZDCHF' when a pick has equivalents, else 'AUDCHF'."""
-    twins = tied_with(cands, pick)
+def swappable(cands, picked, pick):
+    """Twins of `pick` that keep the WHOLE set leg-disjoint when swapped in.
+
+    F-112. Jeff, 2026-09-10: "if we have this rule why we have AUDCHF/NZDCHF
+    then we also have NZDJPY/AUDJPY?"
+
+    Marking each pick's twin independently offered four combinations, two of
+    which reuse a currency:
+
+        AUDCHF + NZDJPY   disjoint    <- what selection chose
+        NZDCHF + AUDJPY   disjoint    <- the valid mirror
+        AUDCHF + AUDJPY   AUD twice
+        NZDCHF + NZDJPY   NZD twice
+
+    A twin only qualifies if the set formed by substituting it - and leaving
+    every OTHER pick as-is - still uses each currency once. On the week above
+    that returns NOTHING for either pick, which is correct: the two swaps are
+    COUPLED and neither can move alone.
+    """
+    out = []
+    others = [p for p in picked if p is not pick]
+    for t in tied_with(cands, pick):
+        used = set()
+        clash = False
+        for p in others + [t]:
+            if p['long'] in used or p['short'] in used:
+                clash = True
+                break
+            used.add(p['long'])
+            used.add(p['short'])
+        if not clash:
+            out.append(t)
+    return out
+
+
+def coupled(cands, picked, pick):
+    """True when `pick` HAS a tied twin but no independent swap (F-112)."""
+    return bool(tied_with(cands, pick)) and not swappable(cands, picked, pick)
+
+
+def label(cands, pick, picked=None):
+    """'AUDCHF/NZDCHF' only when the twin can actually be swapped in.
+
+    With `picked` given, a twin that would break leg-disjointness is NOT
+    offered - the page must not present a choice the model forbids (F-112).
+    Without it, falls back to the raw tie for callers that only want the
+    equivalence.
+    """
+    twins = (tied_with(cands, pick) if picked is None
+             else swappable(cands, picked, pick))
     if not twins:
         return pick['pair']
     return '/'.join([pick['pair']] + [t['pair'] for t in twins])
+
+
+def by_category(cands=None, tier=1):
+    """The best TIER-`tier` pair in each risk category (LD-125).
+
+    Jeff, 2026-09-10: "on The set let's get Tier 1 pairs for each category".
+
+    NOT LEG-DISJOINT, deliberately. Guaranteeing coverage and forbidding leg
+    reuse cannot both hold: this week the top tier-1 pairs are EURUSD,
+    AUDCHF and EURAUD, which use EUR twice and AUD twice. Jeff chose
+    coverage, so the caller must publish the overlap rather than hide it.
+
+    WHY TIER 1. Tier 1 is STRONG vs WEAK - the widest separation the bands
+    produce. Tier 2 is STRONG vs NEUTRAL or NEUTRAL vs WEAK, a thinner read.
+    Requiring tier 1 means a category with nothing convincing goes UNFILLED
+    instead of padding the set with a weak pair.
+
+    Returns [(category, pick_or_None)] in RISK ON / RISK OFF / EITHER order.
+    """
+    cands = candidates() if cands is None else cands
+    out = []
+    for cat in ('RISK ON', 'RISK OFF', 'EITHER'):
+        rows = [c for c in cands
+                if c['category'] == cat and c['tier'] == tier]
+        out.append((cat, max(rows, key=lambda c: c['gap']) if rows else None))
+    return out
+
+
+def leg_overlap(picks):
+    """{ccy: n} for any currency used more than once across `picks`."""
+    n = {}
+    for p in picks:
+        for leg in (p['long'], p['short']):
+            n[leg] = n.get(leg, 0) + 1
+    return dict((k, v) for k, v in n.items() if v > 1)
 
 
 def representatives(cands=None, picked=None):

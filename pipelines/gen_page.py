@@ -25,7 +25,15 @@ F = ps.final_scores(CAP, START, END)
 SC = dict((c, F[c]['total']) for c in F)
 BAND, ORDER = ft.bands(SC)
 CANDS = ps.candidates(SC, BAND)
-PICKED = ps.select(CANDS)
+# LD-125 - THE SET IS ONE TIER-1 PAIR PER CATEGORY. Jeff, 2026-09-10:
+# "on The set let's get Tier 1 pairs for each category".
+# NOT leg-disjoint any more: guaranteeing coverage and forbidding leg
+# reuse cannot both hold. LEGACY is kept so the page can still show what
+# the old gap-first rule would have produced.
+BYCAT = ps.by_category(CANDS)
+PICKED = [x for _c, x in BYCAT if x is not None]
+LEGACY = ps.select(CANDS)
+OVERLAP = ps.leg_overlap(PICKED)
 CALD = cal.calibrate(CAP, START, END)
 ROWS = sorted(cal.week_rows(CAP, START, END), key=lambda r: r['when'])
 B = ft.base_scores()
@@ -56,7 +64,7 @@ A = o.append
 
 A('<section>')
 A('  <h2>The set</h2>')
-A('  <p class="sub">%d pairs, leg-disjoint. Nothing forced the number.</p>'
+A('  <p class="sub">%d pairs \u2014 the best tier-1 read in each risk category.</p>'
   % len(PICKED))
 A('')
 A('  <div class="set">')
@@ -108,9 +116,28 @@ for c in PICKED:
     used.add(c['short'])
 unused = sorted(set(ft.CCYS) - used)
 A('')
-A('  <p><strong>%d currencies used; %s.</strong> No currency is used twice.</p>'
-  % (len(used),
-     ('%s unused' % ' and '.join(unused)) if unused else 'none unused'))
+A('')
+if OVERLAP:
+    A('  <div class="note flag">')
+    A('    <span class="lbl">\u26a0 THESE PAIRS SHARE LEGS</span>')
+    A('    <strong>%s.</strong> The set now takes one tier-1 pair per '
+      'category (LD-125), and guaranteeing coverage means a currency can '
+      'appear more than once \u2014 <strong>taking every pair would hold '
+      'one view twice</strong>, which is the correlation that inflates a '
+      'scorecard (EF-3). <strong>Read them as three separate reads, not a '
+      'portfolio.</strong>'
+      % ', '.join('%s is used in %d pairs' % (k, v)
+                  for k, v in sorted(OVERLAP.items())))
+    A('  </div>')
+_gapfirst = ' \u00b7 '.join('%s %s' % (c['pair'], c['direction'])
+                            for c in LEGACY)
+A('  <p><strong>The old gap-first rule would have given:</strong> '
+  '<span class="mono">%s</span> \u2014 leg-disjoint, %s total gap '
+  'against %s here. <strong>That set was optimal on conviction and had '
+  'no way to guarantee a category was represented</strong>; this one '
+  'guarantees coverage and gives up the disjointness.</p>'
+  % (_gapfirst, sg(sum(c['gap'] for c in LEGACY)),
+     sg(sum(c['gap'] for c in PICKED))))
 A('</section>')
 A('<section>')
 A('  <h2>\u00a71 The pairs</h2>')
@@ -183,8 +210,13 @@ for _p in PICKED:
         _folded.add(id(_t))
 
 for _cat in ('RISK ON', 'RISK OFF', 'EITHER'):
-    _rows = [c for c in CANDS
-             if c['category'] == _cat and id(c) not in _folded]
+    # LD-125: Jeff, 2026-09-10 - "for §1 The pairs sort them by Tier
+    # then Gap". Tier 1 is STRONG vs WEAK, the widest structural
+    # separation; sorting on it first puts the strongest STRUCTURE at the
+    # top rather than the widest number, which can be a tier-2 pair.
+    _rows = sorted([c for c in CANDS
+                    if c['category'] == _cat and id(c) not in _folded],
+                   key=lambda c: (c['tier'], -c['gap']))
     if not _rows:
         A('  <h3>%s</h3>' % _cat)
         A('  <p class="note">No pairing this week produces a %s pair \u2014 '

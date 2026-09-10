@@ -226,7 +226,7 @@ footer p{max-width:none}
 
 <section>
   <h2>The set</h2>
-  <p class="sub">3 pairs, leg-disjoint. Nothing forced the number.</p>
+  <p class="sub">3 pairs — the best tier-1 read in each risk category.</p>
 
   <div class="set">
     <div class="pair top">
@@ -243,20 +243,25 @@ footer p{max-width:none}
     </div>
     <div class="pair">
       <span class="rank">3</span>
-      <span class="sym">NZDJPY/AUDJPY<span class="bias short">SHORT</span></span>
-      <span class="gap">+3.35</span>
-      <span class="legs"><span class="cat">RISK OFF</span> &nbsp;long JPY <strong>+3.85</strong> · short NZD <strong>+0.50</strong></span>
+      <span class="sym">EURAUD/EURNZD<span class="bias long">LONG</span></span>
+      <span class="gap">+5.88</span>
+      <span class="legs"><span class="cat">EITHER</span> &nbsp;long EUR <strong>+6.38</strong> · short AUD <strong>+0.50</strong></span>
     </div>
   </div>
 
   <p><strong>EURUSD LONG carries the widest gap on the board at +6.69</strong> — <strong>EUR is top at +6.38 and USD is bottom at −0.31</strong>.</p>
 
-  <p><strong>6 currencies used; CAD and GBP unused.</strong> No currency is used twice.</p>
+
+  <div class="note flag">
+    <span class="lbl">⚠ THESE PAIRS SHARE LEGS</span>
+    <strong>AUD is used in 2 pairs, EUR is used in 2 pairs.</strong> The set now takes one tier-1 pair per category (LD-125), and guaranteeing coverage means a currency can appear more than once — <strong>taking every pair would hold one view twice</strong>, which is the correlation that inflates a scorecard (EF-3). <strong>Read them as three separate reads, not a portfolio.</strong>
+  </div>
+  <p><strong>The old gap-first rule would have given:</strong> <span class="mono">EURUSD LONG · AUDCHF SHORT · NZDJPY SHORT</span> — leg-disjoint, +15.64 total gap against +18.16 here. <strong>That set was optimal on conviction and had no way to guarantee a category was represented</strong>; this one guarantees coverage and gives up the disjointness.</p>
 </section>
 <section>
   <h2>§1 The pairs</h2>
   <p class="sub">Risk category is an output, not a forecast.</p>
-  <p>Of the <strong>14 permitted pairings, 3 are RISK ON, 6 RISK OFF and 5 EITHER</strong>. Nothing here predicts the regime — the roles present in each band decide which categories can be filled.</p>
+  <p>Of the <strong>14 permitted pairings, 3 are RISK ON, 7 RISK OFF and 4 EITHER</strong>. Nothing here predicts the regime — the roles present in each band decide which categories can be filled.</p>
 
   <h3>The strongest read in each category</h3>
   <div class="scroll">
@@ -265,11 +270,10 @@ footer p{max-width:none}
     <tbody>
       <tr class="sel"><td><span class="cat">RISK ON</span></td><td class="ccy">EURUSD</td><td>LONG</td><td class="num pos">+6.69</td><td>EUR over USD</td><td><strong>yes</strong></td></tr>
       <tr class="sel"><td><span class="cat">RISK OFF</span></td><td class="ccy">AUDCHF/NZDCHF</td><td>SHORT</td><td class="num pos">+5.59</td><td>CHF over AUD</td><td><strong>yes</strong></td></tr>
-      <tr><td><span class="cat">EITHER</span></td><td class="ccy">EURAUD/EURNZD</td><td>LONG</td><td class="num ">+5.88</td><td>EUR over AUD</td><td><span class="zero">crowded out</span></td></tr>
+      <tr class="sel"><td><span class="cat">EITHER</span></td><td class="ccy">EURAUD/EURNZD</td><td>LONG</td><td class="num pos">+5.88</td><td>EUR over AUD</td><td><strong>yes</strong></td></tr>
     </tbody>
   </table>
   </div>
-  <p><strong>EITHER carries +5.88 and is not in the set</strong> — leg-disjoint selection allows each currency once. <strong>That is a leg conflict, not a weak read</strong>: the pairs it would need were built on currencies an earlier, wider pair had already taken (LD-96).</p>
 
   <h3>RISK ON <span class="wt">3 pairs · 1 selected</span></h3>
   <div class="scroll">
@@ -282,13 +286,14 @@ footer p{max-width:none}
     </tbody>
   </table>
   </div>
-  <h3>RISK OFF <span class="wt">6 pairs · 2 selected</span></h3>
+  <h3>RISK OFF <span class="wt">7 pairs · 1 selected</span></h3>
   <div class="scroll">
   <table>
     <thead><tr><th>Pair</th><th>Dir</th><th class="num">Tier</th><th class="num">Gap</th><th>Long / short</th></tr></thead>
     <tbody>
       <tr class="sel"><td class="ccy">AUDCHF/NZDCHF</td><td>SHORT</td><td class="num">1</td><td class="num pos">+5.59</td><td>CHF over AUD</td></tr>
-      <tr class="sel"><td class="ccy">NZDJPY/AUDJPY</td><td>SHORT</td><td class="num">1</td><td class="num pos">+3.35</td><td>JPY over NZD</td></tr>
+      <tr><td class="ccy">AUDJPY</td><td>SHORT</td><td class="num">1</td><td class="num ">+3.35</td><td>JPY over AUD</td></tr>
+      <tr><td class="ccy">NZDJPY</td><td>SHORT</td><td class="num">1</td><td class="num ">+3.35</td><td>JPY over NZD</td></tr>
       <tr><td class="ccy">CADCHF</td><td>SHORT</td><td class="num">2</td><td class="num ">+3.49</td><td>CHF over CAD</td></tr>
       <tr><td class="ccy">GBPCHF</td><td>SHORT</td><td class="num">2</td><td class="num ">+3.24</td><td>CHF over GBP</td></tr>
       <tr><td class="ccy">CADJPY</td><td>SHORT</td><td class="num">2</td><td class="num ">+1.25</td><td>JPY over CAD</td></tr>
@@ -296,13 +301,12 @@ footer p{max-width:none}
     </tbody>
   </table>
   </div>
-  <h3>EITHER <span class="wt">5 pairs · 0 selected</span></h3>
+  <h3>EITHER <span class="wt">4 pairs · 1 selected</span></h3>
   <div class="scroll">
   <table>
     <thead><tr><th>Pair</th><th>Dir</th><th class="num">Tier</th><th class="num">Gap</th><th>Long / short</th></tr></thead>
     <tbody>
-      <tr><td class="ccy">EURAUD</td><td>LONG</td><td class="num">1</td><td class="num ">+5.88</td><td>EUR over AUD</td></tr>
-      <tr><td class="ccy">EURNZD</td><td>LONG</td><td class="num">1</td><td class="num ">+5.88</td><td>EUR over NZD</td></tr>
+      <tr class="sel"><td class="ccy">EURAUD/EURNZD</td><td>LONG</td><td class="num">1</td><td class="num pos">+5.88</td><td>EUR over AUD</td></tr>
       <tr><td class="ccy">EURCAD</td><td>LONG</td><td class="num">2</td><td class="num ">+3.77</td><td>EUR over CAD</td></tr>
       <tr><td class="ccy">GBPAUD</td><td>LONG</td><td class="num">2</td><td class="num ">+2.35</td><td>GBP over AUD</td></tr>
       <tr><td class="ccy">GBPNZD</td><td>LONG</td><td class="num">2</td><td class="num ">+2.35</td><td>GBP over NZD</td></tr>
@@ -310,7 +314,7 @@ footer p{max-width:none}
   </table>
   </div>
   <div class="note">
-    <strong>A slash means the legs scored identically and either expression carries the same read</strong> — <strong>AUDCHF/NZDCHF</strong> at gap +5.59; <strong>NZDJPY/AUDJPY</strong> at gap +3.35. <strong>They are alternatives, not additions</strong>: both share a leg, so taking both would hold one exposure twice, which is the correlation LD-96's leg-disjoint rule exists to prevent. <strong>The slot counts once.</strong>
+    <strong>A slash means the legs scored identically and either expression carries the same read</strong> — <strong>AUDCHF/NZDCHF</strong> at gap +5.59; <strong>EURAUD/EURNZD</strong> at gap +5.88. <strong>They are alternatives, not additions</strong>: both share a leg, so taking both would hold one exposure twice, which is the correlation LD-96's leg-disjoint rule exists to prevent. <strong>The slot counts once.</strong>
   </div>
   <p><strong>Conviction is the score gap, not the category</strong> — a RISK OFF pair is not inherently better than a RISK ON one. Tier 1 is STRONG vs WEAK; tier 2 is STRONG vs NEUTRAL or NEUTRAL vs WEAK. <strong>All 28 currency combinations are eligible</strong>, each returned in the symbol the market quotes with the direction carrying the bias.</p>
 
@@ -320,11 +324,11 @@ footer p{max-width:none}
     <thead><tr><th>Basis</th><th>Pairs</th></tr></thead>
     <tbody>
       <tr><td class="zero">Base only</td><td class="mono">EURNZD LONG · AUDCHF SHORT · USDCAD SHORT</td></tr>
-      <tr class="sel"><td><strong>+ calibrator</strong></td><td class="mono"><strong>EURUSD LONG · AUDCHF SHORT · NZDJPY SHORT</strong></td></tr>
+      <tr class="sel"><td><strong>+ calibrator</strong></td><td class="mono"><strong>EURUSD LONG · AUDCHF SHORT · EURAUD LONG</strong></td></tr>
     </tbody>
   </table>
   </div>
-  <p><strong>The calibrator changed the set.</strong> <strong>Out: EURNZD LONG, USDCAD SHORT.</strong> <strong>In: EURUSD LONG, NZDJPY SHORT.</strong></p>
+  <p><strong>The calibrator changed the set.</strong> <strong>Out: EURNZD LONG, USDCAD SHORT.</strong> <strong>In: EURAUD LONG, EURUSD LONG.</strong></p>
 </section>
 <section>
   <h2>§2 The board</h2>
