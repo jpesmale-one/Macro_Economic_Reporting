@@ -27,8 +27,13 @@ import score_model as sm
 import rate_model
 
 MONTH = ft.latest_month()
-CATS = ('Production', 'Spending', 'Trade',
-        'Employment', 'Inflation', 'Interest_Rate')
+# F-105: THIS WAS A HARDCODED SIX AND GDP NEVER APPEARED.
+# LD-113 added the GDP category to fact_tables.WEIGHT on 2026-09-09; this
+# page kept iterating its own frozen tuple, so the board totals it printed
+# INCLUDED GDP while the per-category working it showed DID NOT - the page
+# could not be reconciled against itself.
+# Derive from the weight table, the one authority on which categories exist.
+CATS = tuple(sorted(ft.WEIGHT, key=lambda c: (c in ft.CONFIRMING, c)))
 ORDER = ('CHF', 'EUR', 'GBP', 'AUD', 'CAD', 'USD', 'JPY', 'NZD')
 ISO = {'USD': 'US', 'EUR': 'EA', 'GBP': 'GB', 'JPY': 'JP',
        'AUD': 'AU', 'NZD': 'NZ', 'CAD': 'CA', 'CHF': 'CH'}
@@ -37,6 +42,20 @@ VALS = {}
 for cat, iso, name, a, p, ref, thr, v in sm.ROWS:
     VALS[(sm.LABEL[iso], name)] = dict(actual=a, prev=p, ref=ref,
                                        thr=thr, verdict=v)
+
+# GDP has no score_model.ROWS entry - its actual lives in the fact table
+# (LD-112/LD-113), so its detail is joined from there instead. Without this
+# the eight GDP rows render with every value blank.
+import derive_scores as _ds
+for _r in ft.load('GDP'):
+    _c = _r['Currency'].strip()
+    _a = (_r.get(ft.latest_month()) or '').strip()
+    if not _a:
+        continue
+    _sc = _ds.score_row('GDP', _c, _r['Indicator'].strip(), _a)
+    VALS[(_c, _r['Indicator'].strip())] = dict(
+        actual=_a, prev='—', ref='Q2/26', thr=_ds.GDP_THRESHOLD,
+        verdict={1: 'GOOD', 0: 'NEUTRAL', -1: 'BAD'}.get(_sc, '—'))
 
 RATE = rate_model.compute()
 CELL = {'1': ('pos', '+1'), '-1': ('neg', '\u22121'), '0': ('zero', '0')}
@@ -87,7 +106,10 @@ A = out.append
 
 A('<section>')
 A('  <h2>\u00a75 Every indicator, with its working</h2>')
-A('  <p class="sub">78 rows \u2014 the evidence behind all 48 category scores.</p>')
+# F-105b: hardcoded, and stale the moment GDP landed - this said 78 rows
+# while rendering 85. A count in prose is a figure; figures are derived.
+A('  <p class="sub">%d rows \u2014 the evidence behind all %d category '
+  'scores.</p>' % (sum(len(ft.load(c)) for c in CATS), len(CATS) * 8))
 A('')
 A('  <p><strong>Read a row left to right:</strong> the <em>actual</em> is '
   'measured against the <em>threshold</em>, which gives the binary '
@@ -230,21 +252,26 @@ for ccy in ORDER:
 A('    </tbody>')
 A('  </table>')
 A('  </div>')
-A('  <p><strong>Weights: Production, Spending and Trade \u00d7 2; Employment, '
-  'Inflation and Interest Rate \u00d7 1.</strong> The six category cells in each '
-  'row sum to that currency\'s base score, and the base plus the calibrator '
-  'is the FINAL in \u00a71.</p>')
+A('  <p><strong>Weights: leading \u00d7 2, confirming \u00d7 1.</strong> '
+  'The %d category cells in each row sum to that currency\'s base '
+  'score, and the base plus the calibrator is the FINAL in \u00a71.</p>'
+  % len(CATS))
 A('')
-A('  <div class="note flag">')
-A('    <span class="lbl">⚠ A GAP WORTH FIXING</span>')
-A('    <strong>The five binary categories store only the −1 / 0 / +1</strong>'
-  ' — their actual, previous, reference and threshold columns above '
-  'are joined in from <code>score_model.py</code>. <strong>A reader '
-  'cannot audit those scores from the CSVs alone</strong>, because they '
-  'record the verdict and not the evidence. <strong>Interest Rate is '
-  'the exception</strong>: since LD-110 its cell carries the computed '
-  'score itself, so the CSV and the model cannot silently disagree — '
-  'and R-37 now checks that they do not.')
+# THE OLD NOTE HERE DESCRIBED A GAP THAT IS NOW CLOSED. It read: 'A
+# reader cannot audit those scores from the CSVs alone, because they
+# record the verdict and not the evidence.' Jeff read that on 2026-09-09
+# and fixed it the same day (LD-112). Leaving it up would advertise a
+# defect the repo no longer has - the mirror of letting a real one go
+# unrecorded, and just as misleading to the next reader.
+A('  <div class="note">')
+A('    <strong>Every cell above is the ACTUAL AS PUBLISHED, and the '
+  'score beside it is DERIVED from it</strong> \u2014 so this table '
+  'can be audited against the source without trusting a verdict anyone '
+  'typed. <strong>Until 2026-09-09 the fact tables stored the verdict '
+  'while the actual lived elsewhere</strong>, which is what produced '
+  'F-91, F-94 and F-95: one release written into two places, with '
+  'nothing keeping them in step. Storing the actual once removed that '
+  'class of bug rather than guarding against it (LD-112).')
 A('  </div>')
 A('</section>')
 

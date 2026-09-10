@@ -140,14 +140,18 @@ A('  </table>')
 A('  </div>')
 A('')
 A('  <dl class="kv">')
-A('    <dt>Base</dt><dd>\u22129 \u2026 +9 \u2014 six fact tables, <code>%s</code>, '
-  '%d of %d cells scored</dd>' % (MONTH, scored, total))
+# F-105b: the range and the table count were typed for six categories.
+# LD-113 made both wrong. Derive from WEIGHT, the one authority.
+_lim = sum(ft.WEIGHT.values())
+_nm = {6: 'six', 7: 'seven', 8: 'eight', 9: 'nine'}.get(
+    len(ft.WEIGHT), str(len(ft.WEIGHT)))
+A('    <dt>Base</dt><dd>\u2212%d \u2026 +%d \u2014 %s fact tables, <code>%s</code>, '
+  '%d of %d cells scored</dd>' % (_lim, _lim, _nm, MONTH, scored, total))
 A('    <dt>Calibrator</dt><dd>\u22125 \u2026 +5 \u2014 %d scheduled rows, %d '
   'scorable, %d with a TE consensus</dd>' % (len(ROWS), n_scor, n_cons))
-A('    <dt>Weights</dt><dd>Production, Spending, Trade = <strong>2</strong> '
-  '(leading) \u00b7 Employment, Inflation, Interest Rate = <strong>1</strong>. '
-  '<strong>The calibrator has no weights</strong> \u2014 the day is the '
-  'unit.</dd>')
+A('    <dt>Weights</dt><dd>%s = <strong>2</strong> (leading) \u00b7 %s = <strong>1</strong>. '
+  '<strong>The calibrator has no weights</strong> \u2014 the day is the unit.</dd>'
+  % (' \u00b7 '.join(sorted(c.replace('_', ' ') for c in ft.LEADING)), ' \u00b7 '.join(sorted(c.replace('_', ' ') for c in ft.CONFIRMING))))
 sizes = [len([c for c in ORDER if BAND[c] == b])
          for b in ('STRONG', 'NEUTRAL', 'WEAK')]
 ties = {}
