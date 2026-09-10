@@ -3265,3 +3265,57 @@ that WERE shown were correct.**
 **A guard that verifies the model cannot see a page that fails to render it.**
 
 ---
+
+## LD-124 - Aug-26 HOLDS ACTUALS TOO, AND A MONTH COLUMN IS A VINTAGE
+
+**Jeff, 2026-09-10, reading the CSV:** *"Sept column already showing the
+actuals but August month is still the same. it needs to be consistent"*
+
+**He is right.** LD-112 migrated Sep-26 to actuals and left Aug-26 holding
+verdicts — one header row, two meanings, sitting side by side.
+
+### How the values were recovered — Jeff offered to look them up and did not have to
+
+**A month column is an EDITION VINTAGE, not a reference month.** Sep-26 holds
+prints whose own reference months run Jun/26 to Sep/26. So Aug-26 is *what
+the 2026-08-31 edition could see*, and its actuals split cleanly:
+
+| | Rows | Source |
+|---|---|---|
+| Did **not** re-release between 31 Aug and 6 Sep | **59** | their Sep-26 actual **is** their Aug-26 actual — a fact, not an estimate |
+| **Did** re-release | **18** | TE's **PREVIOUS** column on the superseding row |
+
+That 59/18 split is why **63 of 69 verdicts were identical** before the
+migration — the columns were never a month apart in data, only in edition.
+
+### The revision trap, avoided by construction
+
+Three rows disagreed between captures:
+
+| | Captured **before** release | Captured **after** |
+|---|---|---|
+| CHF Retail Sales | **1.5%** | 1.9% ® |
+| USD Balance of Trade | **−$73.3B** | −$71.2B ® |
+| CAD Balance of Trade | **C$3.86B** | C$4.2B ® |
+
+**When September printed, TE revised the prior month and restated Previous.**
+The pre-release figure is the one our 31 Aug edition actually saw; the revised
+one did not exist yet. Taking the EARLIEST capture in the window gets this
+right; taking the latest would have been hindsight (LD-3).
+
+### *** AN OLDER COLUMN IS A RECORD, NOT A SCOREABLE BOARD ***
+
+**29 of 70 rows carry a COMPARATIVE threshold (`>Prev`), and grading one needs
+THAT VINTAGE'S OWN previous — which was never stored.** `derive_scores` would
+grade Aug-26 against the CURRENT previous and return today's verdict on
+yesterday's actual.
+
+Live example: **CAD Employment Change was +75.1K in August** — clearly good —
+and scores −1 against September's reference. **The actual is right and the
+score is meaningless.**
+
+`latest_month()` already keeps every caller on the only column that can be
+graded, and this limitation is now documented at `fact_tables` so the next
+reader does not mistake an accurate record for a usable board.
+
+---

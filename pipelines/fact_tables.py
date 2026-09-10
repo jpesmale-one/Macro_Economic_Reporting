@@ -11,6 +11,23 @@ other. One keyed table makes that class of bug structural rather than
 vigilance-dependent.
 
 SCHEMA  Currency, Indicator, Frequency, <Mon-YY>, <Mon-YY>, ...
+
+A MONTH COLUMN IS AN EDITION VINTAGE, NOT A REFERENCE MONTH (LD-124). The
+Sep-26 column holds prints whose own reference months run Jun/26 to Sep/26 -
+it is 'what this edition could see', not 'September data'.
+
+*** ONLY THE LATEST COLUMN CAN BE SCORED. *** Jeff, 2026-09-10: "Sept column
+already showing the actuals but August month is still the same. it needs to
+be consistent." Aug-26 now holds actuals too - 59 copied from Sep-26 because
+those rows never re-released between the editions, 18 recovered from TE's
+PREVIOUS column on the row that superseded them.
+
+But 29 of 70 rows carry a COMPARATIVE threshold ('>Prev'), and grading one
+needs THAT VINTAGE'S OWN previous, which was never stored. So an older
+column is an accurate RECORD and not a scoreable board: derive_scores would
+grade it against the CURRENT previous and silently return today's verdict on
+yesterday's actual. latest_month() exists to keep every caller on the only
+column that can be graded.
 CELLS   THE ACTUAL AS PUBLISHED (LD-112), or empty for not-yet-released.
         The +1/0/-1 is derived by derive_scores.py and written, for the
         record only, to data/derived/scores.csv.
