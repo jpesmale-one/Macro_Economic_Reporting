@@ -46,16 +46,12 @@ for cat, iso, name, a, p, ref, thr, v in sm.ROWS:
 # GDP has no score_model.ROWS entry - its actual lives in the fact table
 # (LD-112/LD-113), so its detail is joined from there instead. Without this
 # the eight GDP rows render with every value blank.
-import derive_scores as _ds
-for _r in ft.load('GDP'):
-    _c = _r['Currency'].strip()
-    _a = (_r.get(ft.latest_month()) or '').strip()
-    if not _a:
-        continue
-    _sc = _ds.score_row('GDP', _c, _r['Indicator'].strip(), _a)
-    VALS[(_c, _r['Indicator'].strip())] = dict(
-        actual=_a, prev='—', ref='Q2/26', thr=_ds.GDP_THRESHOLD,
-        verdict={1: 'GOOD', 0: 'NEUTRAL', -1: 'BAD'}.get(_sc, '—'))
+# LD-117: GDP LEFT THE BASE on 2026-09-10 and is now a CALIBRATOR row, so it
+# has no fact-table CSV to join here. The join that used to sit at this line
+# was added on 2026-09-09 when GDP was briefly a base category (LD-113) and
+# is removed with it - the GDP evidence now belongs in the calibrator section,
+# where the consensus-forecast RANGE is the whole input (Jeff: "we're trading
+# the expectations not the result").
 
 RATE = rate_model.compute()
 CELL = {'1': ('pos', '+1'), '-1': ('neg', '\u22121'), '0': ('zero', '0')}
