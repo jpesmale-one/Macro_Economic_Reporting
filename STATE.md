@@ -14,6 +14,39 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-10 LD-115 - EVERY TIME IS PHT (UTC+8). Jeff: "Every time youre going
+#   to Trading Economics and Trading View can you always verify the Time Zone
+#   and make sure you're looking at UTC+8 so that it always fall on the same
+#   Timezone where I am."
+#   >>> TWO SIGN REVERSALS IN TWO TURNS, and LD-114 - written BETWEEN them,
+#   saying verify before asserting - did not stop the second:
+#     F-106 AUD GDP  reported -11.6 pips, actual +111.6 (daily bar LABEL)
+#     F-107 JPY GDP  reported  -7.2 pips, actual  +83.0 (offset backwards)
+#   A RULE I HAVE TO REMEMBER IS NOT A CONTROL. A FUNCTION I CALL IS.
+#   CONVENTIONS, pinned against a row Jeff read on his own screen:
+#     TE  capture stores the time cell VERBATIM = UTC. The PHT in a capture
+#         FILENAME is when WE FETCHED, never when the event fires.
+#         stored '2026-09-07 11:50 PM' -> 08 Sep 07:50 AM PHT (Jeff's screen)
+#     TV  OHLCV time is a UNIX epoch (UTC) marking the bar OPEN. OANDA DAILY
+#         bars open 21:00 UTC, so a daily LABEL is not a calendar day.
+#   NEW pipelines/phtime.py - te_pht / bar_pht / containing_bar / describe.
+#   describe() prints BOTH zones because F-106 and F-107 each survived review
+#   with only one zone on screen.
+#   NEW R-39 pipelines/test_phtime.py - both findings as tests. PROVEN by
+#   reintroducing F-107: 3 checks failed, clean after restore.
+#   WIRED into the pre-edition command list and the generator table.
+#
+# 2026-09-10 GDP-AS-NEWS REPLICATES, 2 of 2. Both beats moved their currency
+#   hard within four hours of release (PHT-verified bars):
+#     AUD GDP Q2 first est, 0.4% vs 0.2%   -> AUDNZD +111.6 pips / 4h
+#     JPY GDP Q2 FINAL,     0.4% vs 0.3%   -> JPY     +83.0 pips / 4h, pk 127
+#   >>> TWO HYPOTHESES OF MINE ARE WITHDRAWN, both built on the bad reading:
+#     "a final revision carries little information" - JPY's WAS a Final.
+#     "the JPY case weakens option B" - it contributed 83 pips, not nothing.
+#   THE BASE-CATEGORY CASE IS UNAFFECTED (measured from fact tables, not
+#   price): GDP scores 6 GOOD / 2 NEUTRAL / 0 BAD, range 1.00, adding a
+#   near-constant instead of ranking. MOVE TO CALIBRATOR still stands.
+#   OPEN: precedence A vs B, and whether GDP grades vs consensus. Jeff's call.
 # 2026-09-10 F-102 - THE RBNZ GAP, LOGGED NOT PATCHED. Jeff asked whether
 #   Interest Rate Expectations should be its own category after NZD fell on a
 #   softer RBNZ statement while our score ranked it TOP.

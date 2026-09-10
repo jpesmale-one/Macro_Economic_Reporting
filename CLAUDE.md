@@ -138,6 +138,7 @@ hand-written version silently degraded while the generator sat unused.
 | **§2.6 rate score** | **REALISED + EXPECTED + SURPRISE** (LD-90) | **crediting a hike that was fully priced** |
 | **A §4.0 rate row** | **the SURPRISE read** — `rate_surprise.priced_read()` (LD-91) | **restating §2.6's score, which is about the past** |
 | **§2.0d parallel scores** | **`parallel_scores.py`** — evidence for the review (LD-93) | **used to SELECT — selection ranks on CURRENT** |
+| **ANY time from TE or TradingView** | **`phtime.py` — TE stores UTC, TV epochs are UTC (LD-115)** | **converted by hand; two sign reversals came from exactly that** |
 | The edition itself | `render_edition.py <path.md>` | any other way |
 | **Process narrative** | **§7 Method notes — it already folds** (LD-69) | **§0–§6, the market read** |
 | **The weekly retrospective** | **its own artifact** (LD-70) | **a § of the daily edition** |
@@ -155,6 +156,7 @@ python pipelines/audit_schedule.py       # R-30 - actual vs its own release time
 python pipelines/audit_times.py <md>     # R-32 - VERIFY THE TIME FIRST (F-77)
 python pipelines/freshness.py            # LD-54 - revisions + stalled series
 python pipelines/test_guards.py          # 8 real regressions must all block
+python pipelines/test_phtime.py          # R-39 - EVERY TIME IS PHT (UTC+8)
 python pipelines/test_pricing.py         # R-26 - 20 hand-graded pricing cases
 python pipelines/test_surprise.py        # R-36 - a decision moves price by its SURPRISE (LD-90)
 python pipelines/release_week.py --due   # LD-83 - due this week, absent from capture

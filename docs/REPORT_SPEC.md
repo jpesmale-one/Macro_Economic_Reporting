@@ -2836,3 +2836,54 @@ this repo's captures the answer is now recorded: **TE's stored `time` is UTC.
 The `PHT` in the filename refers only to when WE fetched it.**
 
 ---
+
+## LD-115 - EVERY TIME IS PHT (UTC+8), AND A MODULE ENFORCES IT (R-39)
+
+**Jeff, 2026-09-10:** *"Every time youre going to Trading Economics and
+Trading View can you always verify the Time Zone and make sure you're
+looking at UTC+8 so that it always fall on the same Timezone where I am."*
+
+**WHY A MODULE AND NOT A HABIT.** Two timezone errors landed in two
+consecutive turns, and **LD-114 - written between them, saying verify before
+asserting - did not stop the second.** Both reversed a SIGN, and both
+survived my own review:
+
+| | Reported | Actual |
+|---|---|---|
+| **F-106** AUD GDP | −11.6 pips | **+111.6** |
+| **F-107** JPY GDP | −7.2 pips | **+83.0** |
+
+**A rule I have to remember is not a control. A function I have to call is.**
+
+### The two source conventions, each verified against Jeff's own screen
+
+| Source | Convention |
+|---|---|
+| **Trading Economics** | `capture_calendar` stores TE's time cell **VERBATIM and converts nothing — the string is UTC**. The `PHT` in a capture FILENAME is when WE FETCHED, never when the event fires |
+| **TradingView** | OHLCV `time` is a **UNIX epoch (UTC)** and marks the bar's **OPEN**. **OANDA daily bars open 21:00 UTC**, so a daily bar spans 21:00→21:00 and **its label is not the calendar day it mostly covers** |
+
+Pinned by a row Jeff read himself: stored `2026-09-07 11:50 PM` →
+**2026-09-08 07:50 AM PHT**, exactly what his screen showed.
+
+### `pipelines/phtime.py`
+
+    te_pht(date, time)                a TE row in PHT
+    bar_pht(epoch) / bar_utc(epoch)   a TV bar timestamp
+    containing_bar(rel, bars, secs)   the bar HOLDING a release, never the
+                                      one that merely shares its date label
+    describe(x)                       one line, BOTH zones
+
+**`describe()` exists because F-106 and F-107 both survived review with only
+one zone ever on screen.** Print it beside any figure derived from a
+timestamp.
+
+**A row with no published time returns None**, never a guessed midnight — a
+guessed time produces a real-looking answer that is wrong.
+
+### R-39 — `pipelines/test_phtime.py`
+
+Both findings reintroduced as tests. **Proven by putting F-107 back: three
+checks failed, and passed again on restore.** A guard that has never failed
+on its own bug is not evidence of anything.
+
+---
