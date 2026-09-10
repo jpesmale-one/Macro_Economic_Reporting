@@ -53,6 +53,8 @@ for cat, iso, name, a, p, ref, thr, v in sm.ROWS:
 # where the consensus-forecast RANGE is the whole input (Jeff: "we're trading
 # the expectations not the result").
 
+import derive_scores as _derive
+
 RATE = rate_model.compute()
 CELL = {'1': ('pos', '+1'), '-1': ('neg', '\u22121'), '0': ('zero', '0')}
 
@@ -135,11 +137,20 @@ for cat in CATS:
     lead = 'LEADING' if cat in ft.LEADING else 'confirming'
     label = cat.replace('_', ' ')
 
+    # F-111: this counted raw cells against '1'/'0'/'-1'. Since LD-112 the
+    # cell holds an ACTUAL, so every bucket was empty and each category
+    # reported "0 good \u00b7 0 neutral \u00b7 0 bad" under a table of real scores.
     tally = collections.Counter()
     for r in rows:
-        tally[(r.get(MONTH) or '').strip()] += 1
+        _v = _derive.score_row(cat, r['Currency'].strip(),
+                               r['Indicator'].strip(),
+                               (r.get(MONTH) or '').strip())
+        if _v is None:
+            tally['none'] += 1
+        else:
+            tally['good' if _v > 0 else 'bad' if _v < 0 else 'neutral'] += 1
     summary = '%d rows \u2014 %d good \u00b7 %d neutral \u00b7 %d bad' % (
-        len(rows), tally['1'], tally['0'], tally['-1'])
+        len(rows), tally['good'], tally['neutral'], tally['bad'])
 
     A('')
     A('  <h3>%s <span class="wt">weight %d \u00b7 %s</span></h3>' % (label, w, lead))
@@ -171,7 +182,18 @@ for cat in CATS:
         for i, r in enumerate(rs):
             nm = r['Indicator'].strip()
             cell = (r.get(MONTH) or '').strip()
-            k, txt = CELL.get(cell, ('dash', '—'))
+            # F-111: the CSV holds an ACTUAL since LD-112, not a verdict, so
+            # CELL.get('54.6') missed on EVERY row and the whole Score column
+            # rendered as em-dashes - 107 of them - while the category totals
+            # beside it stayed correct. Derive the score the same way
+            # fact_tables does.
+            _sc = _derive.score_row(cat, ccy, nm, cell)
+            k, txt = CELL.get('' if _sc is None else str(int(round(_sc)))
+                              if float(_sc).is_integer() else '',
+                              ('dash', '—'))
+            if _sc is not None and not float(_sc).is_integer():
+                k, txt = ('pos' if _sc > 0 else 'neg' if _sc < 0 else 'zero',
+                          '%+.2f' % _sc)
             v = (rate_detail(ccy) if cat == 'Interest_Rate'
                  else VALS.get((ccy, nm), {}))
             first = i == 0

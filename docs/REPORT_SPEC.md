@@ -3223,3 +3223,45 @@ by a rule"* being read as *"nothing there"*. An absence has more than one
 cause and only one of them is a fact about the market.
 
 ---
+
+## F-111 - §4's ENTIRE SCORE COLUMN WAS EM-DASHES, AND THE TOTALS BESIDE IT WERE FINE
+
+Found only because Jeff said *"I'm not seeing any changes"* and I re-read the
+LIVE page instead of trusting the publish result.
+
+**107 em-dashes.** Every per-row Score cell in §4 rendered `—`, and every
+category header read **"0 good · 0 neutral · 0 bad"** — while the category
+totals in the same table (+2.00, −1.00) stayed correct.
+
+### Cause
+
+`gen_audit` did `CELL.get(cell)` against a map of `'1' / '0' / '-1'`. **Since
+LD-112 the CSV holds an ACTUAL** — `'54.6'`, `'162K'` — so every lookup missed
+and fell through to the dash default. The tally counted the same way, so all
+three buckets were empty.
+
+**Broken since the actuals migration on 2026-09-09** and published three
+times. Both now derive through `derive_scores.score_row()`, the same path
+`fact_tables` uses.
+
+### Why nothing caught it
+
+- **The totals were computed separately** and stayed right, so the section
+  looked internally plausible
+- **A dash is a legitimate value elsewhere** on the page — §3's day grid is
+  full of them for days with no release
+- **R-37 checks the CSV against `score_model`, not the rendered page**
+
+**The section exists to make scores auditable, and it was displaying no
+scores.** A reader could see +2.00 and had no way to check it.
+
+### The pattern, third time in two days
+
+F-104 (stale hand-edited furniture), F-110 (a whole section silently
+deleted), F-111 (a column of nothing where evidence should be). **Every one
+was in the OUTPUT, not the model, and every one survived because the numbers
+that WERE shown were correct.**
+
+**A guard that verifies the model cannot see a page that fails to render it.**
+
+---
