@@ -2887,3 +2887,68 @@ checks failed, and passed again on restore.** A guard that has never failed
 on its own bug is not evidence of anything.
 
 ---
+
+## F-108 - I BUILT THE TIMEZONE MODULE AND THEN QUOTED THE RAW FIELD ANYWAY
+
+**Jeff, 2026-09-10, with a screenshot:** *"Again this is wrong schedule. in
+My TE the schedule was Sept 17. I'm at UTC+8."*
+
+I had said *"NZD 16 Sep forecast -0.1% scores BAD"*. TE stores
+`2026-09-16 10:45 PM` **UTC**; in PHT that is **Thu 17 Sep 06:45** - exactly
+his screenshot. I read the stored `date` field straight out of the JSON.
+
+**LD-115 AND `phtime.py` WERE BUILT ONE TURN EARLIER, FOR THIS EXACT BUG.**
+Having the tool is not the same as calling it. This is now the THIRD
+timezone error in three turns (F-106 bar label, F-107 offset backwards,
+F-108 raw field quoted).
+
+### The blast radius, measured
+
+**146 of 639 major-currency rows (23%) land on a DIFFERENT CALENDAR DAY in
+PHT**, concentrated in **JPY and NZD** - the Asia-session currencies whose
+releases fall after 16:00 UTC.
+
+### The pipeline was never wrong - I was
+
+`week_ahead.pht()` already adds 8h, so `calibrator.day_score` groups by the
+**PHT** day and every one of those 146 rows is assigned correctly. **The
+defect was confined to my own prose.** Verified: NZD Balance of Trade and
+Inflation, stored 17 Sep, both group to **Fri 18 Sep PHT** in the calibrator.
+
+**RULE: never quote a TE `date` or `time` field directly. Route it through
+`phtime.te_pht()` even when the answer looks obvious** - especially for JPY
+and NZD, where being wrong is the base case, not the exception.
+
+---
+
+## LD-116 - GDP SCORES ON **QoQ**, NOT YoY
+
+Jeff, 2026-09-10: *"what weights more GDP QoQ or YoY?"*
+
+**They disagree exactly where it matters.** Under his range rule, across
+every GDP release in the capture archive:
+
+| ISO | Date | QoQ | YoY | |
+|---|---|---|---|---|
+| NZ | 17 Sep | **[-0.10] BAD** | **[1.60] GOOD** | **DISAGREE** |
+| AU | 2 Sep | [0.20,0.30] GOOD | [1.60,1.80] GOOD | agree |
+| CH | 3 Sep | [1.50,1.60] GOOD | [1.70] GOOD | agree |
+| EA | 7 Sep | [0.40] GOOD | [1.00] GOOD | agree |
+| GB | 30 Sep | [0.40] GOOD | [1.20] GOOD | agree |
+
+**QoQ IS THE TURNING POINT; YoY IS THE ACCUMULATED PAST.** An economy can sit
+1.6% above last year while shrinking this quarter - which is precisely NZ.
+
+**Three reasons for QoQ:**
+1. **It leads.** YoY cannot turn negative until four weak quarters have piled
+   up. This model exists to FORESEE, which is why leading categories carry 2.
+2. **YoY is structurally almost always positive** - 1.6, 1.7, 1.0, 1.6, 1.2,
+   every one GOOD. It would recreate the exact defect that got GDP removed
+   from the base: **a category that says GOOD for everyone ranks no one.**
+3. **The market trades the QoQ headline.**
+
+**HONEST LIMIT: this cannot be proven from price.** QoQ and YoY release in the
+same instant, so no test here can attribute a move to one rather than the
+other. The argument is structural, not empirical.
+
+---

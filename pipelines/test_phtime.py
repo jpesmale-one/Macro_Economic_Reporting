@@ -67,6 +67,22 @@ ok(pt.bar_pht(1788822000).utcoffset().total_seconds() == 8 * 3600,
 d = pt.describe(1788822000, 'bar')
 ok('UTC' in d and 'PHT' in d, 'describe() shows BOTH zones on one line')
 
+# ---------------------------------------------------------------- F-108
+# I quoted TE's raw stored date instead of routing it through te_pht().
+# 23% of major-currency rows land on a DIFFERENT calendar day in PHT.
+print()
+print('F-108  the raw stored date is NOT the PHT date')
+p2 = pt.te_pht('2026-09-16', '10:45 PM')
+ok(p2.strftime('%Y-%m-%d') == '2026-09-17',
+   'NZ GDP stored 16 Sep -> Thu 17 Sep PHT (Jeff screenshot)',
+   p2.strftime('%Y-%m-%d'), '2026-09-17')
+ok(p2.strftime('%H:%M') == '06:45', 'at 06:45 PHT', p2.strftime('%H:%M'), '06:45')
+# any TE time from 16:00 UTC onward rolls the PHT date forward
+rolled = [t for t in ('04:00 PM', '10:45 PM', '11:50 PM')
+          if pt.te_pht('2026-09-16', t).strftime('%Y-%m-%d') != '2026-09-16']
+ok(len(rolled) == 3,
+   'every TE time >= 16:00 UTC rolls the PHT date forward', len(rolled), 3)
+
 print()
 if FAIL:
     print('*** %d FAILURE(S): %s' % (len(FAIL), '; '.join(FAIL)))
