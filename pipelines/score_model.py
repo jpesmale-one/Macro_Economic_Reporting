@@ -168,6 +168,23 @@ ROWS = [
 ]
 
 CCYS = ["US","EA","GB","JP","AU","NZ","CA","CH"]
+# LD-117 - GDP is a CALIBRATOR row, not a base row. It sits in ROWS so
+# week_ahead.whitelist_events() can match it against the calendar; its
+# actual/previous are placeholders because calibrator.gdp_score reads
+# the CONSENSUS-FORECAST RANGE and nothing else (Jeff: "we're trading
+# the expectations not the result"). QoQ only - LD-116.
+GDP_ROWS = [
+    ("GDP","US","GDP Growth Rate QoQ","-","-","Q2/26",">0 range (LD-117)","NEUTRAL"),
+    ("GDP","EA","GDP Growth Rate QoQ","-","-","Q2/26",">0 range (LD-117)","NEUTRAL"),
+    ("GDP","GB","GDP Growth Rate QoQ","-","-","Q2/26",">0 range (LD-117)","NEUTRAL"),
+    ("GDP","JP","GDP Growth Rate QoQ","-","-","Q2/26",">0 range (LD-117)","NEUTRAL"),
+    ("GDP","AU","GDP Growth Rate QoQ","-","-","Q2/26",">0 range (LD-117)","NEUTRAL"),
+    ("GDP","NZ","GDP Growth Rate QoQ","-","-","Q2/26",">0 range (LD-117)","NEUTRAL"),
+    ("GDP","CA","GDP Growth Rate QoQ","-","-","Q2/26",">0 range (LD-117)","NEUTRAL"),
+    ("GDP","CH","GDP Growth Rate QoQ","-","-","Q2/26",">0 range (LD-117)","NEUTRAL"),
+]
+ROWS = ROWS + GDP_ROWS
+
 LABEL = {"US":"USD","EA":"EUR","GB":"GBP","JP":"JPY","AU":"AUD","NZ":"NZD","CA":"CAD","CH":"CHF"}
 
 # LD-57 - FULL TIME EMPLOYMENT CHANGE, Jeff's rule, 2026-08-24.

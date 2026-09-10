@@ -52,12 +52,32 @@ DATA = os.path.join(REPO, 'data', 'macro_indicators')
 # unchanged, so the forward half of the model now carries proportionally
 # less of the total. That is a real consequence of adding a backward-looking
 # category and it is recorded here rather than discovered later.
+# LD-117 - GDP LEFT THE BASE ON 2026-09-10 AND MOVED TO THE CALIBRATOR.
+#
+# It was added as a base category on 2026-09-09 (LD-113) and removed one day
+# later. Jeff: "GDP is a very late indicator, and looking at the board I'm
+# not convinced we should add them to the tally ... On the other hand when
+# GDP releases the market moves."
+#
+# BOTH HALVES WERE RIGHT, and they are about different things. MEASURED as a
+# base category it scored 6 GOOD / 2 NEUTRAL / 0 BAD with a weighted range of
+# 1.00 - it handed six of eight currencies the identical +1.00 and ranked
+# nobody. Compare Trade, which spans 4.00. A near-constant is not a ranking
+# input.
+#
+# But as NEWS it moves price hard: AUD +111.6 pips within 4h of its Q2 print,
+# JPY +83.0 pips within 4h of its Q2 Final - both PHT-verified (F-107).
+#
+# So GDP is not weak, it is MIS-PLACED. The base asks "how does this economy
+# compare right now"; the calibrator asks "what lands this week". A quarterly
+# figure published two months after the quarter ended belongs in the second.
+#
+# Range returns to -9..+9.
 WEIGHT = {'Production': 2, 'Spending': 2, 'Trade': 2,
-          'Employment': 1, 'Inflation': 1, 'Interest_Rate': 1,
-          'GDP': 1}
+          'Employment': 1, 'Inflation': 1, 'Interest_Rate': 1}
 
 LEADING = ('Production', 'Spending', 'Trade')
-CONFIRMING = ('Employment', 'Inflation', 'Interest_Rate', 'GDP')
+CONFIRMING = ('Employment', 'Inflation', 'Interest_Rate')
 
 CCYS = ('USD', 'EUR', 'GBP', 'JPY', 'AUD', 'NZD', 'CAD', 'CHF')
 

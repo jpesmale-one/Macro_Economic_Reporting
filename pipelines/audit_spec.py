@@ -52,6 +52,20 @@ RULES = [
 # because a row is inconvenient - only because Jeff changed the rule AFTER
 # the draft and said so.
 OVERRIDES = {
+    # LD-117/LD-118 - GDP is a CALIBRATOR row scored on the
+    # consensus-forecast RANGE, not a level threshold. The spec and the
+    # code agree; they are simply not the same KIND of rule, so a string
+    # comparison of thresholds cannot match. Jeff, 2026-09-10: "We're
+    # trading the expectations not the result."
+    ('USD', 'GDP Growth Rate QoQ'): ('>0 range (LD-117)', 'LD-117 - calibrator range rule scored on the consensus-forecast RANGE, not a level threshold'),
+    ('EUR', 'GDP Growth Rate QoQ'): ('>0 range (LD-117)', 'LD-117 - calibrator range rule scored on the consensus-forecast RANGE, not a level threshold'),
+    ('GBP', 'GDP Growth Rate QoQ'): ('>0 range (LD-117)', 'LD-117 - calibrator range rule scored on the consensus-forecast RANGE, not a level threshold'),
+    ('JPY', 'GDP Growth Rate QoQ'): ('>0 range (LD-117)', 'LD-117 - calibrator range rule scored on the consensus-forecast RANGE, not a level threshold'),
+    ('AUD', 'GDP Growth Rate QoQ'): ('>0 range (LD-117)', 'LD-117 - calibrator range rule scored on the consensus-forecast RANGE, not a level threshold'),
+    ('NZD', 'GDP Growth Rate QoQ'): ('>0 range (LD-117)', 'LD-117 - calibrator range rule scored on the consensus-forecast RANGE, not a level threshold'),
+    ('CAD', 'GDP Growth Rate QoQ'): ('>0 range (LD-117)', 'LD-117 - calibrator range rule scored on the consensus-forecast RANGE, not a level threshold'),
+    ('CHF', 'GDP Growth Rate QoQ'): ('>0 range (LD-117)', 'LD-117 - calibrator range rule scored on the consensus-forecast RANGE, not a level threshold'),
+
     ('GBP', 'Claimant Count Change'): (
         '<0 (LD-58)',
         'LD-58, Jeff 2026-08-24: the series measures the CHANGE in claimants, '

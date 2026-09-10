@@ -271,37 +271,73 @@ Forward Looking Macro-Economic Indicators:
 			i. SNB Interest Rate Decision
 				1) Actual > Previous is Good, Actual < Previous is Bad. No change is Neutral
 
-	7. GDP - The broadest measure of output. [ADDED 2026-09-09 by Jeff, LD-113 - a new category, weight 1]
-		Jeff, 2026-09-09: "lets build a category for GDP. Give them a category score of 1.
-		Scoring would be: Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is
-		Neutral. Let's create a separate CSV file for this."
-		WEIGHT 1 (confirming). Q2 GDP publishes in September - by the time it prints, the
-		quarter it measures ended two months ago and every leading series has moved. It
-		corroborates a read; it does not lead one.
-		SOURCE: TE 'gdp growth rate qoq'. Verified 2026-09-09 present for all eight
-		currencies across the capture archive, so it clears LD-23.
-		RANGE: adding this widens the base from -9..+9 to -10..+10.
+	7. GDP - The broadest measure of output. [AMENDED 2026-09-10 by Jeff, LD-117 - was a BASE category at weight 1 (LD-113, 2026-09-09); it is now a
+		CALIBRATOR row and scores the EXPECTATION RANGE, not a level threshold.
+		Original LD-113 wording: "Give them a category score of 1. Scoring would be:
+		Actual > 0.5% is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral."]
+
+		WHY IT LEFT THE BASE. Jeff, 2026-09-10: "GDP is a very late indicator, and
+		looking at the board I'm not convinced we should add them to the tally... On
+		the other hand when GDP releases the market moves."
+		MEASURED as a base category it scored 6 GOOD / 2 NEUTRAL / 0 BAD with a
+		weighted range of 1.00 - it gave six of eight currencies the identical +1.00
+		and ranked nobody (Trade spans 4.00). But as NEWS it moves price hard: AUD
+		+111.6 pips within 4h of its Q2 print, JPY +83.0 within 4h of its Q2 Final.
+		GDP was not weak, it was MIS-PLACED.
+
+		THE SCORING RULE, Jeff 2026-09-10: "GDP Consensus-Forecast is > 0 is Good,
+		Consensus-Forecast is < 0 is Bad. If Consensus-Forecast is a mix of positive
+		and negative values then Neutral."
+		And on why it is not a surprise test: "Calibrator is forward looking and by
+		the time we build the report we don't have the actual values yet. We're
+		trading the expectations not the result."
+
+		QoQ ONLY (LD-116). QoQ and YoY disagree exactly where it matters - NZ 17 Sep
+		is QoQ -0.1% BAD against YoY +1.6% GOOD. QoQ is the turning point, YoY the
+		accumulated past, and YoY is structurally almost always positive - which would
+		recreate the very defect that removed GDP from the base.
+
+		PRECEDENCE: a GDP release TAKES ITS DAY outright (LD-118, Jeff's option B).
+		Rule 1 ranks by reference month and a quarter always loses to a monthly, so
+		GDP would have been discarded on 4 of 5 of its own release days.
+
 		a. US
 			i. GDP Growth Rate QoQ
-				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral
+				1) Consensus-Forecast range entirely > 0 is Good
+				2) Consensus-Forecast range entirely < 0 is Bad
+				3) Range straddling 0 is Neutral
 		b. EA
 			i. GDP Growth Rate QoQ
-				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral
+				1) Consensus-Forecast range entirely > 0 is Good
+				2) Consensus-Forecast range entirely < 0 is Bad
+				3) Range straddling 0 is Neutral
 		c. GB
 			i. GDP Growth Rate QoQ
-				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral
+				1) Consensus-Forecast range entirely > 0 is Good
+				2) Consensus-Forecast range entirely < 0 is Bad
+				3) Range straddling 0 is Neutral
 		d. JP
 			i. GDP Growth Rate QoQ
-				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral
+				1) Consensus-Forecast range entirely > 0 is Good
+				2) Consensus-Forecast range entirely < 0 is Bad
+				3) Range straddling 0 is Neutral
 		e. AU
 			i. GDP Growth Rate QoQ
-				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral
+				1) Consensus-Forecast range entirely > 0 is Good
+				2) Consensus-Forecast range entirely < 0 is Bad
+				3) Range straddling 0 is Neutral
 		f. NZ
 			i. GDP Growth Rate QoQ
-				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral
+				1) Consensus-Forecast range entirely > 0 is Good
+				2) Consensus-Forecast range entirely < 0 is Bad
+				3) Range straddling 0 is Neutral
 		g. CA
 			i. GDP Growth Rate QoQ
-				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral
+				1) Consensus-Forecast range entirely > 0 is Good
+				2) Consensus-Forecast range entirely < 0 is Bad
+				3) Range straddling 0 is Neutral
 		h. CH
 			i. GDP Growth Rate QoQ
-				1) Actual > 0.5% is Good, Actual < 0% is Bad. In between is Neutral
+				1) Consensus-Forecast range entirely > 0 is Good
+				2) Consensus-Forecast range entirely < 0 is Bad
+				3) Range straddling 0 is Neutral

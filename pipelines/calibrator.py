@@ -139,6 +139,41 @@ def level_test(thr, expected):
     return None
 
 
+# LD-117 - GDP IS SCORED ON THE EXPECTATION RANGE ITSELF.
+#
+# Jeff, 2026-09-10: "GDP Consensus-Forecast is > 0 is Good ... < 0 is Bad.
+# If ... a mix of positive and negative values then Neutral" and, on why:
+# "Calibrator is forward looking and by the time we build the report we
+# don't have the actual values yet. We're trading the expectations not the
+# result."
+#
+# THIS IS NOT A SURPRISE TEST AND MUST NOT BE TURNED INTO ONE. Every other
+# calibrator row asks "will the print beat its reference?". GDP asks "is the
+# economy expected to GROW?" - a positive expected range is good for the
+# currency whether or not the actual later beats it. That is scorable on
+# SUNDAY, which is the whole point: the actual does not exist yet.
+#
+# QoQ ONLY (LD-116). QoQ and YoY disagree exactly where it matters - NZ
+# 17 Sep is QoQ -0.1% BAD against YoY +1.6% GOOD - and YoY is structurally
+# almost always positive, which would recreate the defect that got GDP
+# thrown out of the base: a category that says GOOD for everyone ranks no
+# one.
+GDP_NAME = 'GDP Growth Rate QoQ'
+
+
+def gdp_score(lo, hi):
+    """Jeff's range rule. Both bounds positive GOOD, both negative BAD,
+    straddling zero NEUTRAL."""
+    if lo is None or hi is None:
+        return None
+    if lo > 0:
+        return 1
+    if hi < 0:
+        return -1
+    return 0
+
+
+
 def score_row(ccy, name, rec):
     """+1 / 0 / -1 for one scheduled row, or None if unscorable.
 
@@ -160,13 +195,20 @@ def score_row(ccy, name, rec):
     fcst = num(rec.get('forecast'))
     if cons is None:
         cons = fcst            # F-85: forecast is the documented fallback
-    if prev is None or cons is None:
+    if cons is None:
         return None
+    if prev is None and name != GDP_NAME:
+        return None          # LD-117: GDP needs no previous, only the range
+
+    hi = cons if fcst is None else max(cons, fcst)
+    lo = cons if fcst is None else min(cons, fcst)
+
+    # LD-117: GDP scores the RANGE, not a threshold and not a surprise.
+    if name == GDP_NAME:
+        return gdp_score(lo, hi)
 
     thr = THR.get((ccy, name))
     # the expected print is the midpoint of the cons-fcst range
-    hi = cons if fcst is None else max(cons, fcst)
-    lo = cons if fcst is None else min(cons, fcst)
     expected = (hi + lo) / 2.0
 
     v = level_test(thr, expected)
@@ -216,10 +258,33 @@ def day_score(rows):
     carries the day. The alternative - the unscorable AUG row wins and
     blanks the day - throws away a real signal to honour a row that carries
     none. But it IS a choice, and Jeff has not ratified it.
+    RULE 0 - GDP TAKES THE DAY (LD-118, Jeff's option B, 2026-09-10).
+
+    Rule 1 ranks rows by REFERENCE MONTH, and a quarter always loses to
+    a monthly - Q2 ends in June, so any JUL or AUG row outranks it. GDP
+    would have entered the calibrator and then been discarded on 4 of 5
+    of its own release days. The rule was comparing measurements taken at
+    different CADENCES as though they were rival reads of the same thing,
+    which is a category error, not a ranking.
+
+    Jeff chose B: GDP overrides precedence and owns its day. The evidence
+    is that both GDP prints in the archive moved price hard within four
+    hours - AUD +111.6 pips, JPY +83.0 (F-107, PHT-verified) - which is
+    more than any monthly on those days did.
+
+    WHEN SEVERAL GDP ROWS SHARE A DAY they share it between themselves,
+    exactly as Rule 2 would.
     """
     scored = [r for r in rows if r['score'] is not None]
     if not scored:
         return None, 'unscorable', [], list(rows)
+
+    # RULE 0 (LD-118) - GDP outranks everything else on its day.
+    gdp = [r for r in scored if r['name'] == 'GDP Growth Rate QoQ']
+    if gdp:
+        val = sum(r['score'] for r in gdp) / float(len(gdp))
+        return (val, 'GDP takes the day', gdp,
+                [r for r in rows if r not in gdp])
     dated = [r for r in scored if r['month'] is not None]
     if dated:
         top = max(r['month'] for r in dated)

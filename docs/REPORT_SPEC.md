@@ -2952,3 +2952,84 @@ same instant, so no test here can attribute a move to one rather than the
 other. The argument is structural, not empirical.
 
 ---
+
+## LD-117/118 - GDP MOVES TO THE CALIBRATOR, SCORED ON THE EXPECTATION RANGE
+
+**Jeff, 2026-09-10:** *"lets move the GDP to Calibrator"* and *"GDP
+Consensus-Forecast is > 0 is Good, Consensus-Forecast is < 0 is Bad. If
+Consensus-Forecast is a mix of positive and negative values then Neutral"*
+
+**IT IS NOT A SURPRISE TEST, AND MUST NOT BE TURNED INTO ONE.** I first read
+the rule as ACTUAL-vs-range and Jeff corrected it:
+
+> *"Calibrator is forward looking and by the time we build the report we
+> don't have the actual values yet. We're trading the expectations not the
+> result. so if Consensus-Forecast (as a range) is >0 meaning positive then
+> that is Good."*
+
+**He is right and it is structural, not a preference.** A Sunday build has no
+actual - it does not exist. Every other calibrator row asks *"will the print
+beat its reference?"*; GDP asks *"is the economy expected to GROW?"*
+
+### Why it left the base after one day
+
+Added as a base category 2026-09-09 (LD-113), removed 2026-09-10. **Both
+halves of Jeff's observation were right and they are about different things:**
+
+| As a BASE category | As NEWS |
+|---|---|
+| 6 GOOD / 2 NEUTRAL / 0 BAD | AUD **+111.6 pips** within 4h of its Q2 print |
+| weighted range **1.00** (Trade spans 4.00) | JPY **+83.0 pips** within 4h of its Q2 Final |
+| six of eight got the identical +1.00 | both PHT-verified (F-107) |
+| **ranks nobody** | **moves price** |
+
+**GDP was never weak. It was MIS-PLACED.** The base asks how an economy
+compares right now; the calibrator asks what lands this week. A quarterly
+figure published two months after the quarter ended belongs in the second.
+
+Base range returns to **−9..+9**.
+
+### LD-118 - a GDP release TAKES ITS DAY (Jeff's option B)
+
+Rule 1 ranks by REFERENCE MONTH, and **a quarter always loses to a monthly** -
+Q2 ends in June, so any JUL or AUG row outranks it. Measured: **GDP would
+have survived Rule 1 on 1 of 5 release days.** It would have entered the
+calibrator and been discarded on its own release days.
+
+**That is a category error, not a ranking.** Rule 1 compares rival reads of
+the same thing; GDP and industrial production are measurements at different
+cadences. Option B overrides precedence. Several GDP rows on one day share it.
+
+### The miss case, which Jeff asked for
+
+*"what weights more... how does the market react if GDP is not a Beat?"*
+
+**CHF 3 Sep, 1.5% actual vs 1.6% consensus - a MISS - still gained +12.8 pips
+over 4h.** All three ranges in the archive were positive and all three
+currencies gained; the beats gained 83-111 pips, the miss gained 13.
+**Direction tracked the RANGE, magnitude tracked the SURPRISE** - which is
+the behaviour Jeff's rule assumes. **n=1 on misses, and 12.8 pips is inside
+noise: not contradicted, not confirmed.**
+
+### Live on the 14-18 Sep week
+
+**NZD Thu 17 Sep PHT: forecast −0.1% → −1.00, "GDP takes the day".** Scored
+on Sunday, before release. NZD's week nets +1.00 (+1 Tue, −1 Thu, +1 Fri) -
+the GDP day fires and the other days offset it, which is the day-is-the-unit
+model working, not a bug.
+
+**Jeff's own caution, recorded:** *"it means that the price might actually be
+pricing already even now."* Tested: NZD fell **−45.8 pips BEFORE** the −0.1%
+forecast was published (30 Aug) and −65.6 after, so the forecast did not
+TRIGGER the decline. NZD-specific though - **AUD +0.82% while NZD −1.06%**
+over the same window against the same USD. And GDP is one of at least five NZ
+forward negatives, the largest being **Current Account −7.5B vs −1.01B prior**.
+**The calibrator is contemporaneous with the market, not ahead of it** - watch
+whether calibrator-driven picks underperform base-driven ones in the ledger.
+
+**Spec amended under LD-105** with the original LD-113 wording preserved
+inline; R-38 registers the 8 rows as LD-117 overrides (a range rule and a
+level threshold are not the same KIND of rule, so a string compare cannot
+match). R-37, R-38, R-39 all green.
+
+---
