@@ -226,7 +226,7 @@ footer p{max-width:none}
 
 <section>
   <h2>The set</h2>
-  <p class="sub">3 pairs — the best tier-1 read in each risk category.</p>
+  <p class="sub">4 pairs — one tier-1 read for every category and every strong currency.</p>
 
   <div class="set">
     <div class="pair top">
@@ -234,18 +234,28 @@ footer p{max-width:none}
       <span class="sym">EURUSD<span class="bias long">LONG</span></span>
       <span class="gap big">+6.69</span>
       <span class="legs"><span class="cat">RISK ON</span> &nbsp;long EUR <strong>+6.38</strong> · short USD <strong>−0.31</strong></span>
+      <span class="legs"><span class="cat">covers</span> &nbsp;RISK ON · EUR</span>
     </div>
     <div class="pair">
       <span class="rank">2</span>
-      <span class="sym">AUDCHF/NZDCHF<span class="bias short">SHORT</span></span>
-      <span class="gap">+5.59</span>
-      <span class="legs"><span class="cat">RISK OFF</span> &nbsp;long CHF <strong>+6.09</strong> · short AUD <strong>+0.50</strong></span>
-    </div>
-    <div class="pair">
-      <span class="rank">3</span>
       <span class="sym">EURAUD/EURNZD<span class="bias long">LONG</span></span>
       <span class="gap">+5.88</span>
       <span class="legs"><span class="cat">EITHER</span> &nbsp;long EUR <strong>+6.38</strong> · short AUD <strong>+0.50</strong></span>
+      <span class="legs"><span class="cat">covers</span> &nbsp;EITHER</span>
+    </div>
+    <div class="pair">
+      <span class="rank">3</span>
+      <span class="sym">AUDCHF/NZDCHF<span class="bias short">SHORT</span></span>
+      <span class="gap">+5.59</span>
+      <span class="legs"><span class="cat">RISK OFF</span> &nbsp;long CHF <strong>+6.09</strong> · short AUD <strong>+0.50</strong></span>
+      <span class="legs"><span class="cat">covers</span> &nbsp;RISK OFF · CHF</span>
+    </div>
+    <div class="pair">
+      <span class="rank">4</span>
+      <span class="sym">AUDJPY/NZDJPY<span class="bias short">SHORT</span></span>
+      <span class="gap">+3.35</span>
+      <span class="legs"><span class="cat">RISK OFF</span> &nbsp;long JPY <strong>+3.85</strong> · short AUD <strong>+0.50</strong></span>
+      <span class="legs"><span class="cat">covers</span> &nbsp;JPY</span>
     </div>
   </div>
 
@@ -254,14 +264,14 @@ footer p{max-width:none}
 
   <div class="note flag">
     <span class="lbl">⚠ THESE PAIRS SHARE LEGS</span>
-    <strong>AUD is used in 2 pairs, EUR is used in 2 pairs.</strong> The set now takes one tier-1 pair per category (LD-125), and guaranteeing coverage means a currency can appear more than once — <strong>taking every pair would hold one view twice</strong>, which is the correlation that inflates a scorecard (EF-3). <strong>Read them as three separate reads, not a portfolio.</strong>
+    <strong>AUD appears in 3 pairs, EUR appears in 2 pairs.</strong> The set covers every category AND every strong currency (LD-126), and that guarantee means a currency can appear more than once. <strong>These are 4 separate reads, not a portfolio</strong> — taking them all would hold one view several times over, which is the correlation that inflates a scorecard (EF-3).  <strong>Note the concentration: short AUD carries 3 of the 4 pairs.</strong>
   </div>
-  <p><strong>The old gap-first rule would have given:</strong> <span class="mono">EURUSD LONG · AUDCHF SHORT · NZDJPY SHORT</span> — leg-disjoint, +15.64 total gap against +18.16 here. <strong>That set was optimal on conviction and had no way to guarantee a category was represented</strong>; this one guarantees coverage and gives up the disjointness.</p>
+  <p><strong>The old gap-first rule would have given:</strong> <span class="mono">EURUSD LONG · AUDCHF SHORT · NZDJPY SHORT</span> — leg-disjoint, +15.64 total gap against +21.51 here. <strong>That set was optimal on conviction and had no way to guarantee a category was represented</strong>; this one guarantees coverage and gives up the disjointness.</p>
 </section>
 <section>
   <h2>§1 The pairs</h2>
   <p class="sub">Risk category is an output, not a forecast.</p>
-  <p>Of the <strong>14 permitted pairings, 3 are RISK ON, 7 RISK OFF and 4 EITHER</strong>. Nothing here predicts the regime — the roles present in each band decide which categories can be filled.</p>
+  <p>Of the <strong>13 permitted pairings, 3 are RISK ON, 6 RISK OFF and 4 EITHER</strong>. Nothing here predicts the regime — the roles present in each band decide which categories can be filled.</p>
 
   <h3>The strongest read in each category</h3>
   <div class="scroll">
@@ -286,14 +296,13 @@ footer p{max-width:none}
     </tbody>
   </table>
   </div>
-  <h3>RISK OFF <span class="wt">7 pairs · 1 selected</span></h3>
+  <h3>RISK OFF <span class="wt">6 pairs · 2 selected</span></h3>
   <div class="scroll">
   <table>
     <thead><tr><th>Pair</th><th>Dir</th><th class="num">Tier</th><th class="num">Gap</th><th>Long / short</th></tr></thead>
     <tbody>
       <tr class="sel"><td class="ccy">AUDCHF/NZDCHF</td><td>SHORT</td><td class="num">1</td><td class="num pos">+5.59</td><td>CHF over AUD</td></tr>
-      <tr><td class="ccy">AUDJPY</td><td>SHORT</td><td class="num">1</td><td class="num ">+3.35</td><td>JPY over AUD</td></tr>
-      <tr><td class="ccy">NZDJPY</td><td>SHORT</td><td class="num">1</td><td class="num ">+3.35</td><td>JPY over NZD</td></tr>
+      <tr class="sel"><td class="ccy">AUDJPY/NZDJPY</td><td>SHORT</td><td class="num">1</td><td class="num pos">+3.35</td><td>JPY over AUD</td></tr>
       <tr><td class="ccy">CADCHF</td><td>SHORT</td><td class="num">2</td><td class="num ">+3.49</td><td>CHF over CAD</td></tr>
       <tr><td class="ccy">GBPCHF</td><td>SHORT</td><td class="num">2</td><td class="num ">+3.24</td><td>CHF over GBP</td></tr>
       <tr><td class="ccy">CADJPY</td><td>SHORT</td><td class="num">2</td><td class="num ">+1.25</td><td>JPY over CAD</td></tr>
@@ -314,7 +323,7 @@ footer p{max-width:none}
   </table>
   </div>
   <div class="note">
-    <strong>A slash means the legs scored identically and either expression carries the same read</strong> — <strong>AUDCHF/NZDCHF</strong> at gap +5.59; <strong>EURAUD/EURNZD</strong> at gap +5.88. <strong>They are alternatives, not additions</strong>: both share a leg, so taking both would hold one exposure twice, which is the correlation LD-96's leg-disjoint rule exists to prevent. <strong>The slot counts once.</strong>
+    <strong>A slash means the legs scored identically and either expression carries the same read</strong> — <strong>EURAUD/EURNZD</strong> at gap +5.88; <strong>AUDCHF/NZDCHF</strong> at gap +5.59; <strong>AUDJPY/NZDJPY</strong> at gap +3.35. <strong>They are alternatives, not additions</strong>: both share a leg, so taking both would hold one exposure twice, which is the correlation LD-96's leg-disjoint rule exists to prevent. <strong>The slot counts once.</strong>
   </div>
   <p><strong>Conviction is the score gap, not the category</strong> — a RISK OFF pair is not inherently better than a RISK ON one. Tier 1 is STRONG vs WEAK; tier 2 is STRONG vs NEUTRAL or NEUTRAL vs WEAK. <strong>All 28 currency combinations are eligible</strong>, each returned in the symbol the market quotes with the direction carrying the bias.</p>
 
@@ -324,11 +333,11 @@ footer p{max-width:none}
     <thead><tr><th>Basis</th><th>Pairs</th></tr></thead>
     <tbody>
       <tr><td class="zero">Base only</td><td class="mono">EURNZD LONG · AUDCHF SHORT · USDCAD SHORT</td></tr>
-      <tr class="sel"><td><strong>+ calibrator</strong></td><td class="mono"><strong>EURUSD LONG · AUDCHF SHORT · EURAUD LONG</strong></td></tr>
+      <tr class="sel"><td><strong>+ calibrator</strong></td><td class="mono"><strong>EURUSD LONG · EURAUD LONG · AUDCHF SHORT · AUDJPY SHORT</strong></td></tr>
     </tbody>
   </table>
   </div>
-  <p><strong>The calibrator changed the set.</strong> <strong>Out: EURNZD LONG, USDCAD SHORT.</strong> <strong>In: EURAUD LONG, EURUSD LONG.</strong></p>
+  <p><strong>The calibrator changed the set.</strong> <strong>Out: EURNZD LONG, USDCAD SHORT.</strong> <strong>In: AUDJPY SHORT, EURAUD LONG, EURUSD LONG.</strong></p>
 </section>
 <section>
   <h2>§2 The board</h2>

@@ -30,8 +30,15 @@ CANDS = ps.candidates(SC, BAND)
 # NOT leg-disjoint any more: guaranteeing coverage and forbidding leg
 # reuse cannot both hold. LEGACY is kept so the page can still show what
 # the old gap-first rule would have produced.
-BYCAT = ps.by_category(CANDS)
-PICKED = [x for _c, x in BYCAT if x is not None]
+# LD-126 - the set covers every CATEGORY and every STRONG CURRENCY.
+# Jeff, 2026-09-10: "we have EUR, CHF, JPY as our strong currencies. We
+# have pairs for EUR, and CHF but we're not getting for JPY?" Per-category
+# coverage does not imply per-currency coverage: CHF and JPY are both safe
+# havens, so every pair they make is RISK OFF and they compete for one
+# slot. SET SIZE VARIES - that is the honest consequence.
+SETROWS = ps.the_set(CANDS, BAND, SC)
+PICKED = [x for x, _w in SETROWS]
+WHY = dict((id(x), w) for x, w in SETROWS)
 LEGACY = ps.select(CANDS)
 OVERLAP = ps.leg_overlap(PICKED)
 CALD = cal.calibrate(CAP, START, END)
@@ -64,7 +71,7 @@ A = o.append
 
 A('<section>')
 A('  <h2>The set</h2>')
-A('  <p class="sub">%d pairs \u2014 the best tier-1 read in each risk category.</p>'
+A('  <p class="sub">%d pairs \u2014 one tier-1 read for every category and every strong currency.</p>'
   % len(PICKED))
 A('')
 A('  <div class="set">')
@@ -79,6 +86,8 @@ for i, c in enumerate(PICKED, 1):
       '<strong>%s</strong> \u00b7 short %s <strong>%s</strong></span>'
       % (c['category'], c['long'], sg(SC[c['long']]),
          c['short'], sg(SC[c['short']])))
+    A('      <span class="legs"><span class="cat">covers</span> '
+      '&nbsp;%s</span>' % ' \u00b7 '.join(WHY[id(c)]))
     A('    </div>')
 A('  </div>')
 A('')
@@ -120,14 +129,20 @@ A('')
 if OVERLAP:
     A('  <div class="note flag">')
     A('    <span class="lbl">\u26a0 THESE PAIRS SHARE LEGS</span>')
-    A('    <strong>%s.</strong> The set now takes one tier-1 pair per '
-      'category (LD-125), and guaranteeing coverage means a currency can '
-      'appear more than once \u2014 <strong>taking every pair would hold '
-      'one view twice</strong>, which is the correlation that inflates a '
-      'scorecard (EF-3). <strong>Read them as three separate reads, not a '
-      'portfolio.</strong>'
-      % ', '.join('%s is used in %d pairs' % (k, v)
-                  for k, v in sorted(OVERLAP.items())))
+    _worst = max(OVERLAP.values())
+    _conc = ('  <strong>Note the concentration: short %s carries %d of the %d pairs.</strong>'
+             % (', '.join(k for k, v in OVERLAP.items()
+                          if v == _worst), _worst, len(PICKED))
+             ) if _worst >= 3 else ''
+    A('    <strong>%s.</strong> The set covers every category AND every '
+      'strong currency (LD-126), and that guarantee means a currency can '
+      'appear more than once. <strong>These are %d separate reads, not a '
+      'portfolio</strong> \u2014 taking them all would hold one view several '
+      'times over, which is the correlation that inflates a scorecard (EF-3).%s'
+      % (', '.join('%s appears in %d pairs' % (k, v)
+                   for k, v in sorted(OVERLAP.items(),
+                                      key=lambda z: -z[1])),
+         len(PICKED), _conc))
     A('  </div>')
 _gapfirst = ' \u00b7 '.join('%s %s' % (c['pair'], c['direction'])
                             for c in LEGACY)

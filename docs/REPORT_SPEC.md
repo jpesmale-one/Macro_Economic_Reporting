@@ -3390,3 +3390,51 @@ UNFILLED** rather than padding the set with a thin read.
 a 3.49 tier-2 one, putting structure ahead of the raw number.
 
 ---
+
+## LD-126 - THE SET COVERS EVERY CATEGORY **AND** EVERY STRONG CURRENCY
+
+**Jeff, 2026-09-10:** *"In the board we have EUR, CHF, JPY as our strong
+currencies. We have pairs for EUR, and CHF but we're not getting for JPY?"*
+
+**A hole in LD-125, and the cause is structural rather than incidental.**
+
+| | Role | Why it did or didn't appear |
+|---|---|---|
+| **EUR** | Cyclical | fills RISK ON **and** EITHER — no clash, appeared twice |
+| **CHF** | Safe haven | won the single RISK OFF slot at +5.59 |
+| **JPY** | Safe haven | **tier-1 pairs exist at +3.35 and were never reached** |
+
+**CHF and JPY are BOTH safe havens**, so every pair either makes against a
+commodity currency is RISK OFF. They compete for the same slot and CHF wins
+on gap. **"One per category" quietly ranked CHF above JPY on a dimension
+never meant to rank them** — a currency in the STRONG band earned that band,
+and the set should show what it is expressing.
+
+### The rule
+
+The **union** of:
+- the best tier-1 pair in each risk category (LD-125), and
+- the best tier-1 pair for each **STRONG currency**
+
+This week — 4 pairs, and each card names what it covers:
+
+| Pair | Gap | Covers |
+|---|---|---|
+| EURUSD LONG | +6.69 | RISK ON · EUR |
+| EURAUD/EURNZD LONG | +5.88 | EITHER |
+| AUDCHF/NZDCHF SHORT | +5.59 | RISK OFF · CHF |
+| **AUDJPY/NZDJPY SHORT** | **+3.35** | **JPY** |
+
+**SET SIZE NOW VARIES.** Some weeks the two rules pick the same pairs and the
+set is small; some weeks they diverge and it grows. **LD-96 already dropped
+the three-pair floor** — a fixed count was never a property worth protecting.
+
+### The cost, printed on the page
+
+**AUD is short in 3 of the 4 pairs.** The page now names the worst
+concentration explicitly whenever a currency carries 3+ pairs, on top of the
+existing overlap note. These are **separate reads, not a portfolio** —
+holding all four is one AUD-short view expressed three times, which is the
+correlation EF-3 measured.
+
+---

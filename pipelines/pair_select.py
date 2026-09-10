@@ -244,6 +244,58 @@ def by_category(cands=None, tier=1):
     return out
 
 
+def by_strong(cands=None, band=None, scores=None, tier=1):
+    """The best tier-`tier` pair for each STRONG currency (LD-126).
+
+    Jeff, 2026-09-10: "we have EUR, CHF, JPY as our strong currencies. We
+    have pairs for EUR, and CHF but we're not getting for JPY?"
+
+    Per-CATEGORY coverage does not give per-CURRENCY coverage. CHF and JPY
+    are both safe havens, so every pair they make is RISK OFF and they
+    compete for one slot; CHF wins on gap and JPY vanishes despite holding
+    tier-1 pairs at +3.35. EUR is cyclical, so it fills two categories and
+    appears twice.
+
+    Returns [(ccy, pick_or_None)], strongest currency first.
+    """
+    cands = candidates() if cands is None else cands
+    if band is None or scores is None:
+        import fact_tables as _ft
+        scores = scores or dict(
+            (c, _ft.base_scores()[c]['total']) for c in _ft.CCYS)
+        band = band or _ft.bands(scores)[0]
+    strong = sorted([c for c in band if band[c] == 'STRONG'],
+                    key=lambda c: -scores[c])
+    out = []
+    for ccy in strong:
+        rows = [c for c in cands
+                if c['tier'] == tier and ccy in (c['long'], c['short'])]
+        out.append((ccy, max(rows, key=lambda c: c['gap']) if rows else None))
+    return out
+
+
+def the_set(cands, band, scores, tier=1):
+    """LD-126 - cover every CATEGORY and every STRONG CURRENCY.
+
+    The union of by_category() and by_strong(), de-duplicated, richest gap
+    first. Each pick carries WHY it is in the set, so the page can say
+    whether a pair is there for its category, its currency, or both.
+
+    SET SIZE VARIES. Some weeks the two rules agree and the set is small;
+    some weeks they diverge and it grows. LD-96 already dropped the
+    three-pair floor - a fixed count was never a property worth keeping.
+    """
+    why = {}
+    for cat, pick in by_category(cands, tier):
+        if pick is not None:
+            why.setdefault(id(pick), [pick, []])[1].append(cat)
+    for ccy, pick in by_strong(cands, band, scores, tier):
+        if pick is not None:
+            why.setdefault(id(pick), [pick, []])[1].append(ccy)
+    picks = sorted(why.values(), key=lambda z: -z[0]['gap'])
+    return [(p, reasons) for p, reasons in picks]
+
+
 def leg_overlap(picks):
     """{ccy: n} for any currency used more than once across `picks`."""
     n = {}
