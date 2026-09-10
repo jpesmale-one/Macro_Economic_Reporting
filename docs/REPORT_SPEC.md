@@ -2790,3 +2790,49 @@ of 1.00, adding a near-constant to the board rather than ranking anything.
 0.2) moved the pair 111.6 pips in four hours.
 
 ---
+
+## F-107 - THE CAPTURE STORES TE's TIME VERBATIM. IT IS UTC, NOT PHT.
+
+**Jeff, 2026-09-10:** *"can you verify the timezone where you're looking at
+JPY GDP release? Mine is at UTC+8 and the release was Sept 8 7:50 AM"*
+
+**HE WAS RIGHT. I HAD THE OFFSET BACKWARDS.**
+
+| | |
+|---|---|
+| Capture stores | `date=2026-09-07  time=11:50 PM` |
+| I assumed | that string is **PHT**, so UTC = 15:50 on 7 Sep |
+| It is actually | **UTC**. 23:50 UTC + 8h = **08 Sep 07:50 PHT** - exactly Jeff's screen |
+| So I analysed | bars **eight hours before** the release |
+
+**THE PARSER NEVER CONVERTS.** `capture_calendar.parse()` stores TE's time
+cell as text; **only the FILENAME is PHT** (`stamp.strftime('%Y-%m-%d_%H%MPHT')`).
+Reading the stored time as PHT is reading a UTC value in the wrong zone, and
+converting it "to UTC" then moves it a further 8 hours the wrong way.
+
+**WHAT IT COST - THE FINDING REVERSED:**
+
+| JPY GDP, 4h after release | |
+|---|---|
+| Reported (wrong bars) | **-7.2 pips** - "the theory does not replicate" |
+| Actual | **+83.0 pips**, peak +127.4 |
+
+**BOTH GDP BEATS MOVED PRICE HARD**: AUD +111.6 pips / 4h, JPY +83.0 / 4h.
+The theory REPLICATES. I had reported the opposite.
+
+**TWO CLAIMS WITHDRAWN, both built on the artefact:**
+1. *"A final revision carries little information"* - JPY's WAS a Final and
+   moved 83 pips. The hypothesis was explaining a reading error.
+2. *"The JPY case weakens option B"* - I said GDP would have claimed the day
+   and contributed nothing. **It contributed 83 pips.**
+
+**THIS IS THE SECOND TIMEZONE-SHAPED ERROR IN TWO TURNS** (F-106: bar
+boundary; F-107: offset applied backwards) and **LD-114 was written between
+them and did not prevent it.** Naming the bar is not enough if the TIMESTAMP
+feeding it is in an unverified zone.
+
+**RULE: establish the SOURCE's timezone before converting anything.** For
+this repo's captures the answer is now recorded: **TE's stored `time` is UTC.
+The `PHT` in the filename refers only to when WE fetched it.**
+
+---

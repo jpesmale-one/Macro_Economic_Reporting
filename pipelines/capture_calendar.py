@@ -21,7 +21,19 @@ USAGE
     python pipelines/capture_calendar.py --write    # ... and save the JSON
 
 SCHEMA (F-65): date / time / iso / event / actual / previous /
-consensus / forecast. The four value columns were present in TE's HTML
+consensus / forecast.
+
+*** THE STORED `time` IS UTC (F-107). *** It is TE's own cell text, kept
+VERBATIM - this parser performs NO timezone conversion anywhere. Only the
+FILENAME is PHT, and it records when WE FETCHED, never when the event fires.
+
+    stored 2026-09-07 "11:50 PM"  ->  08 Sep 07:50 AM on Jeff's UTC+8 screen
+
+On 2026-09-10 I read that field as PHT and converted it BACKWARDS, analysing
+price bars eight hours before a release and reporting that a GDP beat moved
+JPY -7.2 pips. It moved it +83.0. Jeff caught it by comparing against his own
+screen. Establish the SOURCE's zone before converting - naming the bar is not
+enough when the timestamp feeding it is in an unverified zone. The four value columns were present in TE's HTML
 from the start and simply never parsed - section 4.0 showed '- / -' on
 every row for days as a result.
 """
