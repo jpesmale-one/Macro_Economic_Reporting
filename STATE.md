@@ -14,6 +14,109 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-10 F-102 - THE RBNZ GAP, LOGGED NOT PATCHED. Jeff asked whether
+#   Interest Rate Expectations should be its own category after NZD fell on a
+#   softer RBNZ statement while our score ranked it TOP.
+#   >>> THE DIAGNOSIS IS REAL: NZD scored +0.500 on REALISED+EXPECTED+SURPRISE
+#   which are THREE VIEWS OF ONE EVENT (the 2 Sep hike). PATH was absent, so a
+#   single delivered decision took 100% of the weight through three doors. The
+#   score was not stale - it was NARROW.
+#   >>> ALL THREE FIXES FAILED LD-23, THE SAME WAY:
+#     separate Expectations category - TE publishes NO numeric actual for CB
+#       speeches/statements. 0 of 20 rows. Scoring it = reading prose.
+#     decay the REALISED term - needs last-decision date. Visible for 2 of 8.
+#     carry last PATH forward - needs a prior forecast. Same horizon wall.
+#   DECAY WOULD ALSO FIRE BACKWARDS: NZ and CA are the only visible ones and
+#   their decision was FOUR DAYS OLD - the freshest on the board.
+#   >>> SCORING LEFT ALONE. Renormalising asserts "we cannot see the path",
+#   which is true; every alternative asserts more than we can source. n=1, and
+#   LD-111 says a RANKING question needs three weeks, not one.
+#   NEW pipelines/decision_history.py - reports the timeline, changes NO score.
+#   RUN IT WEEKLY. That is the whole point (see F-103).
+#
+# 2026-09-10 F-103 - I CLAIMED TE COUNTRY PAGES SPAN FIVE MONTHS. THEY DO NOT.
+#   The raw HTML carries dates back to 2026-05-06; NO TABLE ROW DOES. ~37 rows
+#   render and every one is FORWARD of today. The May date is a filter widget.
+#   A fresh capture backfilled NOTHING.
+#   >>> I read a date range off a file without checking it belonged to a row -
+#   the same error shape as the GDP coverage claim the day before. Twice in two
+#   days; both times the CHECK caught it, not the output.
+#   CONSEQUENCE: decision history accumulates GOING FORWARD ONLY. In ~6 weeks
+#   there will be a timeline for all eight and F-102 becomes answerable.
+#
+# 2026-09-10 NO FORWARD MEETING IN WINDOW (as of 2026-09-10): EUR, NZD, CAD.
+#   These score PATH as ABSENT and are 100% backward-looking on rate. EUR
+#   JOINED this group when its 10 Sep meeting passed - the set is not stable,
+#   so it is reported every run rather than remembered.
+# 2026-09-09 LD-112 - THE FACT TABLES HOLD ACTUALS. Jeff: "I noticed that you
+#   were putting category scores in our CSV rather than the Actual scores of
+#   these indicators. I would say we need to store the actuals not our scores
+#   in them."
+#   >>> HE FOUND THE ROOT CAUSE OF F-91, F-94 AND F-95. All three were one
+#   failure wearing three names: a release had to be written into TWO places
+#   - the ACTUAL into score_model.ROWS, the VERDICT into the fact table - and
+#   nothing kept them in step. R-37 existed ONLY to compare those copies.
+#   Store the actual once and derive the verdict and the class is gone.
+#     data/macro_indicators/*.csv  ACTUALS as published   SOURCE OF TRUTH
+#     data/derived/scores.csv      +1/0/-1                DERIVED, never hand-edited
+#   77 cells migrated, 0 unresolved. The 8 Interest_Rate rows have no ROWS
+#   entry - their actual is the POLICY RATE, which rate_model owns.
+#   THE THRESHOLD ALONE CANNOT GRADE A ROW. '>Prev' says which comparison to
+#   make, never which direction is GOOD (F-70: lower unemployment good, lower
+#   trade balance not). The VERDICT column carries polarity and Jeff curated
+#   it row by row. So: actual (fact table) x threshold+polarity (score_model).
+#   Still ONE authority per fact - neither file is a copy of the other.
+#   BOTH R-37 CHECKS RETARGETED, NOT DELETED - the duplication shrank but did
+#   not vanish (ROWS still carries an actual). PROVEN by injecting a wrong
+#   actual: the guard fired. A guard that has never failed is unproven.
+#   NEW: pipelines/derive_scores.py. fact_tables.category_score now derives
+#   on every read instead of reading a typed-in number.
+#
+# 2026-09-09 LD-113 - THE GDP CATEGORY, weight 1. Jeff: "lets build a category
+#   for GDP. Give them a category score of 1. Scoring would be: Actual > 0.5%
+#   is Good, < 0% is Bad. Actual in between 0.5 - 0 is Neutral."
+#   SOURCE TE 'gdp growth rate qoq' - LD-23 clears, all eight currencies.
+#   CONFIRMING, and the most confirming series on the board: Q2 GDP publishes
+#   in September, two months after the quarter it measures ended.
+#   >>> A FACT-CHECK CAUGHT MY OWN EARLIER CLAIM (LD-103 working). I had
+#   recorded GDP as "verified available for all eight". Against the 8 Sep
+#   capture only FIVE appeared - AU/CA/CH showed nothing. Widening to the
+#   whole archive found all three: the misses were TE's ~26-day HORIZON, not
+#   absence (F-73). The claim held; the evidence I had cited for it did not.
+#   VINTAGE: five of the eight Q2 prints landed BEFORE the archive begins
+#   (2026-08-17), so their actual comes from TE's PREVIOUS column on the
+#   scheduled revision - a PUBLISHED value, not a forecast off an unreleased
+#   row. LD-3 permits this; LD-3 forbids the forecast.
+#   >>> RANGE WIDENS -9..+9 -> -10..+10. The calibrator stays -5..+5, so THE
+#   FORWARD HALF OF THE MODEL NOW CARRIES PROPORTIONALLY LESS. Recorded here
+#   rather than discovered later.
+#   Spec amended under LD-105 with Jeff's wording inline; R-38 0 disagreements.
+#
+# 2026-09-09 F-100 - INTEREST RATE CARRIED AN EFFECTIVE WEIGHT OF 3, NOT 1.
+#   The revamp set Interest_Rate to weight 1. But the CSV stored raw x W_RATE
+#   with W_RATE=3 - a PRE-REVAMP LEFTOVER - and fact_tables then applied its
+#   own weight of 1 on top. The category has scored at 3x spec since the
+#   revamp shipped. INVISIBLE WHILE THE CSV HELD A SCORE, because nothing
+#   compared it against what the model would compute. Deriving from the actual
+#   exposed it on the FIRST RUN as seven rate rows all exactly 3x. W_RATE = 1.
+#   >>> This is the exact class of bug LD-112 was requested to fix, found by
+#   the fix itself.
+#
+# 2026-09-09 F-101 - F-92 SURVIVED IN ONE FACT-TABLE ROW. USD Durable Goods
+#   Ex Transp MoM: actual 0.4%, threshold >0.5% (a LEVEL test), stored BAD.
+#   0.4 sits BETWEEN 0 and 0.5. Jeff's band, stated four times this session
+#   and now spec'd for GDP: above the line GOOD, below zero BAD, in between
+#   NEUTRAL. The stored BAD graded DIRECTION (0.4 < 0.5) on a rule that tests
+#   WHERE THE PRINT SITS. F-92 was fixed in the calibrator and never reached
+#   the fact table - the two graded the same threshold shape in OPPOSITE ways
+#   for three days. Corrected to NEUTRAL.
+#
+# 2026-09-09 BOARD AFTER LD-112/113 + F-100/F-101 (Sep-26, 85 rows, all graded)
+#   EUR +6.38  CHF +6.09  CAD +3.61 | GBP +3.19  JPY +1.85 | USD +1.69
+#   AUD +1.50  NZD +0.50        bands 3/2/3, no ties to absorb
+#   ONE RANK CHANGE: USD and AUD swap 6th/7th, both inside WEAK.
+#   SELECTION UNCHANGED: EURNZD long, AUDCHF short, USDCAD short (gaps only
+#   widened). The top four held their order, so the pairs were untouched.
 # 2026-09-09 LD-111 - THE OUTCOME LEDGER. Jeff: "how many weeks do you
 #   actually consider before you can say that this is not noise? ... I don't
 #   have that much of time and capital for prolonged trial and error".

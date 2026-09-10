@@ -148,6 +148,8 @@ hand-written version silently degraded while the generator sat unused.
 
 ```
 python pipelines/capture_calendar.py --write  # F-57 - global + CH/NZ country pages
+python pipelines/decision_history.py --write # F-102/F-103 - CB decision timeline.
+                                             # HISTORY ONLY ACCUMULATES IF THIS RUNS.
 python pipelines/audit_te.py --fetch     # LD-50 - reconcile the whitelist
 python pipelines/audit_schedule.py       # R-30 - actual vs its own release time (F-71)
 python pipelines/audit_times.py <md>     # R-32 - VERIFY THE TIME FIRST (F-77)

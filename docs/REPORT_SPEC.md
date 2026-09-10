@@ -2683,3 +2683,72 @@ two graded the same threshold shape in opposite ways for three days. Corrected
 to NEUTRAL; USD Production moves -1.00 -> +0.00.
 
 ---
+
+## F-102 - THE RBNZ GAP: A RATE SCORE THAT IS 100% BACKWARD-LOOKING
+
+**Jeff, 2026-09-09:** *"NZD fell because the RBNZ statement read softer...
+The tone should impact the score so we can recalibrate the rankings early.
+If we need to create a another category for Interest Rate Expectations then
+let's take a look on it."*
+
+**THE DIAGNOSIS IS REAL AND IT IS NOT STALENESS.** NZD scored **+0.500, the
+highest rate score on the board**, on three terms - REALISED, EXPECTED,
+SURPRISE - that are **three views of ONE event**, the 2 Sep hike. PATH was
+absent because the next meeting sat beyond TE's horizon, so a single
+delivered decision took 100% of the weight through three separate doors.
+The score was not old. It was **narrow**.
+
+### Four options were considered. Three were unbuildable, and the reason matters
+
+| Option | Why it failed |
+|---|---|
+| **Separate Expectations category** | TE schedules CB speeches/statements but publishes **no numeric actual for any of them** - verified 0 of 20 rows. Scoring it means reading prose, on all eight, every week |
+| **Decay the REALISED term** | Needs each bank's **last decision date**. Visible for **2 of 8** |
+| **Carry the last PATH forward** | Needs a prior forecast. Same horizon wall |
+| **Log it and revisit** | **CHOSEN** |
+
+**ALL THREE FIXES FAIL LD-23 IDENTICALLY** - an input available to some
+currencies and not others. That is the same rule that rejected speech tone,
+and the same shape as LD-101, where my own watchlist hid the entire yen bloc.
+
+**DECAY WOULD ALSO HAVE FIRED BACKWARDS.** NZ and CA are the only two whose
+last decision is visible, and it was **four days old** - the freshest on the
+board. A decay rule would have penalised the two most recent decisions while
+leaving six stale ones untouched, because their dates cannot be seen.
+
+**THE SCORING WAS LEFT ALONE.** Renormalising over live terms asserts "we
+cannot see the path", which is TRUE. Every alternative asserts something
+stronger that cannot be sourced evenly. **No fix here was better than the
+current behaviour**, and one week with n=1 is not grounds to change scoring
+(LD-111: a component defect is n=1, a RANKING question needs three weeks -
+this is the second kind).
+
+**NEW: `pipelines/decision_history.py`.** Reports each bank's last and next
+decision, days elapsed, and which currencies have no forward meeting. It
+**changes no score**. It exists so the question can be answered on evidence
+for eight currencies instead of two.
+
+---
+
+## F-103 - I CLAIMED TE's COUNTRY PAGES SPAN FIVE MONTHS. THEY DO NOT.
+
+While trying to backfill decision history I reported that TE's country pages
+carry roughly five months (2026-05-06 .. 2026-10-06) and that our three-week
+archive was the only limit.
+
+**The raw HTML does contain those dates. No table row does.** The page
+renders ~37 rows and **every one is forward of today**; the May date is page
+furniture - a filter widget. **A fresh capture backfilled nothing.**
+
+**I read a date range off a file without checking it belonged to a row.**
+That is the same error shape as the GDP coverage claim the day before: the
+conclusion I was reaching for was right, the evidence I cited for it was not.
+**Twice in two days, and both times the check caught it rather than the
+output.**
+
+**CONSEQUENCE:** decision history can only accumulate **going forward**, from
+captures we take. `decision_history.py` is therefore a **weekly** run, not a
+one-off - in roughly six weeks it will hold a timeline for all eight
+currencies and the F-102 question becomes answerable.
+
+---
