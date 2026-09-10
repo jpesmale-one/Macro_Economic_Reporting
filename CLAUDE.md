@@ -97,10 +97,10 @@ system as a map.** Every figure in it was pulled by running the pipelines.
 
 ## 0a. READ THE NEWEST HANDOVER FIRST
 
-**`docs/HANDOVER_2026-08-24_fine_tuning.md`** — thirteen decisions and six
-findings from the fine-tuning session, written as *what changes what you do*
-rather than as a log. STATE.md is 4,250 lines; the handover is the part that
-governs the next edition.
+**`docs/HANDOVER_2026-09-10_seal_and_sunday.md`** — the 2026-09-06 weekly is
+SEALED at r5, and **conviction has now ranked backwards twice**. LD-111 calls
+three consecutive a signal rather than noise, so the 14-18 Sep build is the
+third data point. Written as *what changes what you do*, not as a log.
 
 **It goes stale the moment a newer handover lands.** `ls -t docs/HANDOVER_*`
 and read the top one.

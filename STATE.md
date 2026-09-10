@@ -4,8 +4,10 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-09-06 (r1, WEEKLY, UNSEALED - selection for the 7-11 Sep
-         cycle, built on SUNDAY 6 SEP VINTAGE)
+edition: 2026-09-06 (r5, WEEKLY, *** SEALED 2026-09-10 by Jeff *** -
+         selection for the 7-11 Sep cycle, built on SUNDAY 6 SEP VINTAGE.
+         Jeff: "report is looking good. let's sealed this report then let's
+         see the progress on Sunday")
 date: 2026-09-06
 data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
            TE reconciled 23:27, 0 unmatched. Fact tables ROLLED BACK to what
@@ -14,6 +16,55 @@ data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-09-10 *** THE 2026-09-06 WEEKLY IS SEALED AT r5 *** P3 satisfied -
+#   Jeff read it and said "let's sealed this report".
+#   VERIFIED BEFORE SEALING, not assumed:
+#     published artifact == repo copy == what the generators produce now.
+#     Regenerating from the current model changes NOTHING, so the page is
+#     not a snapshot of a model that has since moved on.
+#     R-37 (69 cells + 8 rate rows), R-38 (0 disagreements), R-39 all green.
+#   NINETEEN COMMITS between the first build and the seal. What the edition
+#   became, in order:
+#     LD-112  fact tables hold ACTUALS; scores derived  (+ F-100, F-101)
+#     LD-113  GDP as a base category ... withdrawn one day later
+#     LD-115  every time is PHT (UTC+8), module + R-39  (F-106/107/108)
+#     LD-116  GDP scores on QoQ, not YoY
+#     LD-117  GDP moves to the CALIBRATOR, scored on the expectation RANGE
+#     LD-119  option B withdrawn - Rule 1 applies to GDP like any other row
+#     LD-120  pairs to 1, split by risk category      (F-109, F-110)
+#     LD-121  a tie is proposed as BOTH pairs          (F-112 coupling)
+#     LD-122  4 and 5 interchanged
+#     LD-123  a representative pair per category
+#     LD-124  Aug-26 holds actuals too                 (F-111)
+#     LD-125  the set is one TIER-1 pair per category
+#     LD-126  ... AND every STRONG CURRENCY            <- Jeff caught JPY
+#     LD-127  day-by-day review with catalysts
+#
+# 2026-09-10 THE SEALED SET, and how it stood at the seal (Thu 10 Sep, the
+#   week INCOMPLETE - Friday had not closed):
+#     EURUSD LONG  +6.69  MFE  +41.0  MAE  -6.0  now  +26.2  RISK ON / EUR
+#     EURAUD LONG  +5.88  MFE  +11.0  MAE -47.1  now   +3.6  EITHER
+#     AUDCHF SHORT +5.59  MFE   +4.1  MAE -25.9  now   -4.7  RISK OFF / CHF
+#     AUDJPY SHORT +3.35  MFE +203.0  MAE -29.9  now +149.3  JPY
+#   3 of 4 in profit, +174.4 pips open.
+#   >>> AUDJPY IS IN THIS SET ONLY BECAUSE JEFF ASKED WHY JPY WAS MISSING
+#   (LD-126). It has the NARROWEST gap and carried the set - the other three
+#   together are +25.1 pips. 88 of its 148 pips landed on MONDAY, hours after
+#   JPY GDP beat 0.4 vs 0.3 at 07:50 PHT - the calibrator row scoring +1 and
+#   price agreeing the same morning.
+#
+# 2026-09-10 *** CONVICTION HAS NOW RANKED BACKWARDS TWICE ***
+#     r1 gap-first          rho -0.80
+#     r4 LD-126 cat+ccy     rho -0.20
+#   LD-111 says THREE consecutive inverted weeks is a signal, not noise.
+#   WE ARE AT TWO. The 14-18 Sep build is the third data point.
+#   BOTH WEEKS SHARE A SHAPE: the widest gap did not produce the widest move
+#   and the NARROWEST gap produced the LARGEST - CADJPY +0.41 -> +215.4 peak
+#   under r1, AUDJPY +3.35 -> +203.0 under r4. If Sunday makes it three, the
+#   gap formula is investigated rather than waited on.
+#   F-113: the ledger now tags every row with the RULE that produced it, so a
+#   week re-selected under a new rule reports one rho per rule instead of one
+#   meaningless blend.
 # 2026-09-10 LD-115 - EVERY TIME IS PHT (UTC+8). Jeff: "Every time youre going
 #   to Trading Economics and Trading View can you always verify the Time Zone
 #   and make sure you're looking at UTC+8 so that it always fall on the same
