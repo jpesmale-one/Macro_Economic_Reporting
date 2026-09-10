@@ -253,9 +253,71 @@ footer p{max-width:none}
 
   <p><strong>6 currencies used; CAD and GBP unused.</strong> No currency is used twice.</p>
 </section>
-
 <section>
-  <h2>§1 The board</h2>
+  <h2>§1 The pairs</h2>
+  <p class="sub">Risk category is an output, not a forecast.</p>
+  <p>Of the <strong>16 permitted pairings, 3 are RISK ON, 8 RISK OFF and 5 EITHER</strong>. Nothing here predicts the regime — the roles present in each band decide which categories can be filled.</p>
+
+  <h3>RISK ON <span class="wt">3 pairs · 1 selected</span></h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Pair</th><th>Dir</th><th class="num">Tier</th><th class="num">Gap</th><th>Long / short</th></tr></thead>
+    <tbody>
+      <tr class="sel"><td class="ccy">EURUSD</td><td>LONG</td><td class="num">1</td><td class="num pos">+6.69</td><td>EUR over USD</td></tr>
+      <tr><td class="ccy">GBPUSD</td><td>LONG</td><td class="num">2</td><td class="num ">+3.17</td><td>GBP over USD</td></tr>
+      <tr><td class="ccy">USDCAD</td><td>SHORT</td><td class="num">2</td><td class="num ">+2.92</td><td>CAD over USD</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>RISK OFF <span class="wt">8 pairs · 2 selected</span></h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Pair</th><th>Dir</th><th class="num">Tier</th><th class="num">Gap</th><th>Long / short</th></tr></thead>
+    <tbody>
+      <tr class="sel"><td class="ccy">AUDCHF</td><td>SHORT</td><td class="num">1</td><td class="num pos">+5.59</td><td>CHF over AUD</td></tr>
+      <tr><td class="ccy">NZDCHF</td><td>SHORT</td><td class="num">1</td><td class="num ">+5.59</td><td>CHF over NZD</td></tr>
+      <tr><td class="ccy">AUDJPY</td><td>SHORT</td><td class="num">1</td><td class="num ">+3.35</td><td>JPY over AUD</td></tr>
+      <tr class="sel"><td class="ccy">NZDJPY</td><td>SHORT</td><td class="num">1</td><td class="num pos">+3.35</td><td>JPY over NZD</td></tr>
+      <tr><td class="ccy">CADCHF</td><td>SHORT</td><td class="num">2</td><td class="num ">+3.49</td><td>CHF over CAD</td></tr>
+      <tr><td class="ccy">GBPCHF</td><td>SHORT</td><td class="num">2</td><td class="num ">+3.24</td><td>CHF over GBP</td></tr>
+      <tr><td class="ccy">CADJPY</td><td>SHORT</td><td class="num">2</td><td class="num ">+1.25</td><td>JPY over CAD</td></tr>
+      <tr><td class="ccy">GBPJPY</td><td>SHORT</td><td class="num">2</td><td class="num ">+1.00</td><td>JPY over GBP</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>EITHER <span class="wt">5 pairs · 0 selected</span></h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Pair</th><th>Dir</th><th class="num">Tier</th><th class="num">Gap</th><th>Long / short</th></tr></thead>
+    <tbody>
+      <tr><td class="ccy">EURAUD</td><td>LONG</td><td class="num">1</td><td class="num ">+5.88</td><td>EUR over AUD</td></tr>
+      <tr><td class="ccy">EURNZD</td><td>LONG</td><td class="num">1</td><td class="num ">+5.88</td><td>EUR over NZD</td></tr>
+      <tr><td class="ccy">EURCAD</td><td>LONG</td><td class="num">2</td><td class="num ">+3.77</td><td>EUR over CAD</td></tr>
+      <tr><td class="ccy">GBPAUD</td><td>LONG</td><td class="num">2</td><td class="num ">+2.35</td><td>GBP over AUD</td></tr>
+      <tr><td class="ccy">GBPNZD</td><td>LONG</td><td class="num">2</td><td class="num ">+2.35</td><td>GBP over NZD</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note flag">
+    <span class="lbl">⚠ AN ORDERING TIE-BREAK, NOT A PREFERENCE</span>
+    <strong>AUDCHF</strong> was taken over <strong>NZDCHF</strong> at the same gap +5.59; <strong>NZDJPY</strong> was taken over <strong>AUDJPY</strong> at the same gap +3.35. <strong>Selection walks the list richest-gap-first and the first pair consumes its legs</strong> (LD-96), so the twin is blocked by leg reuse, not by a weaker read. <strong>Nothing in the data preferred one over the other</strong> — read them as interchangeable.
+  </div>
+  <p><strong>Conviction is the score gap, not the category</strong> — a RISK OFF pair is not inherently better than a RISK ON one. Tier 1 is STRONG vs WEAK; tier 2 is STRONG vs NEUTRAL or NEUTRAL vs WEAK. <strong>All 28 currency combinations are eligible</strong>, each returned in the symbol the market quotes with the direction carrying the bias.</p>
+
+  <h3>What the calibrator changed in the set</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Basis</th><th>Pairs</th></tr></thead>
+    <tbody>
+      <tr><td class="zero">Base only</td><td class="mono">EURNZD LONG · AUDCHF SHORT · USDCAD SHORT</td></tr>
+      <tr class="sel"><td><strong>+ calibrator</strong></td><td class="mono"><strong>EURUSD LONG · AUDCHF SHORT · NZDJPY SHORT</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>The calibrator changed the set.</strong> <strong>Out: EURNZD LONG, USDCAD SHORT.</strong> <strong>In: EURUSD LONG, NZDJPY SHORT.</strong></p>
+</section>
+<section>
+  <h2>§2 The board</h2>
   <p class="sub">FINAL = base + calibrator</p>
   <div class="scroll">
   <table>
@@ -297,9 +359,8 @@ footer p{max-width:none}
   </div>
   <p><strong>2 of 8 currencies move band</strong> (7 take a non-zero adjustment). <strong>The board is tightly packed — the whole final spread is 6.69 points — so a term bounded at ±5 re-ranks it readily</strong>, which is what a calibrator is for.</p>
 </section>
-
 <section>
-  <h2>§2 The calibrator</h2>
+  <h2>§3 The calibrator</h2>
   <p class="sub">The day is the unit, not the category.</p>
   <p>One question per currency per day — <em>is this currency positive or negative on Monday?</em> <strong>A currency with three releases on Tuesday scores Tuesday once</strong>, so a crowded calendar cannot outvote the macro base by accident.</p>
   <div class="scroll">
@@ -371,45 +432,36 @@ footer p{max-width:none}
 </section>
 
 <section>
-  <h2>§3 The pairs</h2>
-  <p class="sub">Risk category is an output, not a forecast.</p>
-  <p>Of the <strong>16 permitted pairings, 3 are RISK ON, 8 RISK OFF and 5 EITHER</strong>. Nothing here predicts the regime — the roles present in each band decide which categories can be filled.</p>
+  <h2>§4 Method and limits</h2>
+  <p class="sub">What this report can and cannot see.</p>
   <div class="scroll">
   <table>
-    <thead><tr><th>Pair</th><th>Dir</th><th>Category</th><th class="num">Tier</th><th class="num">Gap</th><th>Long / short</th></tr></thead>
+    <thead><tr><th>Term</th><th>Range</th><th>Source</th></tr></thead>
     <tbody>
-      <tr class="sel"><td class="ccy">EURUSD</td><td>LONG</td><td>RISK ON</td><td class="num">1</td><td class="num pos">+6.69</td><td>EUR over USD</td></tr>
-      <tr><td class="ccy">EURAUD</td><td>LONG</td><td>EITHER</td><td class="num">1</td><td class="num ">+5.88</td><td>EUR over AUD</td></tr>
-      <tr><td class="ccy">EURNZD</td><td>LONG</td><td>EITHER</td><td class="num">1</td><td class="num ">+5.88</td><td>EUR over NZD</td></tr>
-      <tr class="sel"><td class="ccy">AUDCHF</td><td>SHORT</td><td>RISK OFF</td><td class="num">1</td><td class="num pos">+5.59</td><td>CHF over AUD</td></tr>
-      <tr><td class="ccy">NZDCHF</td><td>SHORT</td><td>RISK OFF</td><td class="num">1</td><td class="num ">+5.59</td><td>CHF over NZD</td></tr>
-      <tr><td class="ccy">AUDJPY</td><td>SHORT</td><td>RISK OFF</td><td class="num">1</td><td class="num ">+3.35</td><td>JPY over AUD</td></tr>
-      <tr class="sel"><td class="ccy">NZDJPY</td><td>SHORT</td><td>RISK OFF</td><td class="num">1</td><td class="num pos">+3.35</td><td>JPY over NZD</td></tr>
-      <tr><td class="ccy">EURCAD</td><td>LONG</td><td>EITHER</td><td class="num">2</td><td class="num ">+3.77</td><td>EUR over CAD</td></tr>
-      <tr><td class="ccy">CADCHF</td><td>SHORT</td><td>RISK OFF</td><td class="num">2</td><td class="num ">+3.49</td><td>CHF over CAD</td></tr>
-      <tr><td class="ccy">GBPCHF</td><td>SHORT</td><td>RISK OFF</td><td class="num">2</td><td class="num ">+3.24</td><td>CHF over GBP</td></tr>
-      <tr><td class="ccy">GBPUSD</td><td>LONG</td><td>RISK ON</td><td class="num">2</td><td class="num ">+3.17</td><td>GBP over USD</td></tr>
-      <tr><td class="ccy">USDCAD</td><td>SHORT</td><td>RISK ON</td><td class="num">2</td><td class="num ">+2.92</td><td>CAD over USD</td></tr>
-      <tr><td class="ccy">GBPAUD</td><td>LONG</td><td>EITHER</td><td class="num">2</td><td class="num ">+2.35</td><td>GBP over AUD</td></tr>
-      <tr><td class="ccy">GBPNZD</td><td>LONG</td><td>EITHER</td><td class="num">2</td><td class="num ">+2.35</td><td>GBP over NZD</td></tr>
-      <tr><td class="ccy">CADJPY</td><td>SHORT</td><td>RISK OFF</td><td class="num">2</td><td class="num ">+1.25</td><td>JPY over CAD</td></tr>
-      <tr><td class="ccy">GBPJPY</td><td>SHORT</td><td>RISK OFF</td><td class="num">2</td><td class="num ">+1.00</td><td>JPY over GBP</td></tr>
+      <tr><td>Base</td><td class="mono">−9 … +9</td><td>six fact tables, <code>Sep-26</code>, 77 of 77 cells</td></tr>
+      <tr><td>Calibrator</td><td class="mono">−5 … +5</td><td><strong>14 scheduled rows, 14 scorable, 7 with a TE consensus</strong></td></tr>
+      <tr class="sel"><td><strong>FINAL</strong></td><td class="mono"><strong>−14 … +14</strong></td><td>the sum</td></tr>
     </tbody>
   </table>
   </div>
-  <p><strong>Conviction is the score gap, not the category</strong> — a RISK OFF pair is not inherently better than a RISK ON one. Tier 1 is STRONG vs WEAK; tier 2 is STRONG vs NEUTRAL or NEUTRAL vs WEAK. <strong>All 28 currency combinations are eligible</strong>, each returned in the symbol the market quotes with the direction carrying the bias.</p>
 
-  <h3>What the calibrator changed in the set</h3>
+  <div class="note flag">
+    <span class="lbl">⚠ VINTAGE</span>
+    <strong>Built as of Sunday 6 September.</strong> The fact tables hold what was knowable then — rows that printed Mon 7 or Tue 8 are held at their earlier values.<br><br>Releases up to Friday 4 September stay: a Sunday report legitimately sees Friday's prints.<br><br><strong>Leaving the Mon/Tue prints in would have been a backtest contaminated with hindsight.</strong> An analysis asking <em>what was knowable then</em> must use the vintage available then, and say which it used. This one says.
+  </div>
+
+  <h3>What is not here</h3>
   <div class="scroll">
   <table>
-    <thead><tr><th>Basis</th><th>Pairs</th></tr></thead>
+    <thead><tr><th>Absent</th><th>Reason</th></tr></thead>
     <tbody>
-      <tr><td class="zero">Base only</td><td class="mono">EURNZD LONG · AUDCHF SHORT · USDCAD SHORT</td></tr>
-      <tr class="sel"><td><strong>+ calibrator</strong></td><td class="mono"><strong>EURUSD LONG · AUDCHF SHORT · NZDJPY SHORT</strong></td></tr>
+      <tr><td>Gold, BTC</td><td><strong>Removed</strong> — forex focus</td></tr>
+      <tr><td>Entry references, falsifiers, charts</td><td><strong>No price data in this edition</strong></td></tr>
+      <tr><td>News, rate-path commentary</td><td>LD-97 — the weekly is the decision</td></tr>
+      <tr><td>Lot sizes, entries, stops, targets</td><td><strong>LD-4 — no money path</strong></td></tr>
     </tbody>
   </table>
   </div>
-  <p><strong>The calibrator changed the set.</strong> <strong>Out: EURNZD LONG, USDCAD SHORT.</strong> <strong>In: EURUSD LONG, NZDJPY SHORT.</strong></p>
 </section>
 
 <section>

@@ -112,11 +112,108 @@ A('  <p><strong>%d currencies used; %s.</strong> No currency is used twice.</p>'
   % (len(used),
      ('%s unused' % ' and '.join(unused)) if unused else 'none unused'))
 A('</section>')
-
-# ------------------------------------------------------------------ 1
-A('')
 A('<section>')
-A('  <h2>\u00a71 The board</h2>')
+A('  <h2>\u00a71 The pairs</h2>')
+A('  <p class="sub">Risk category is an output, not a forecast.</p>')
+non = len([c for c in CANDS if c['category'] == 'RISK ON'])
+noff = len([c for c in CANDS if c['category'] == 'RISK OFF'])
+nei = len([c for c in CANDS if c['category'] == 'EITHER'])
+A('  <p>Of the <strong>%d permitted pairings, %d are RISK ON, %d RISK OFF '
+  'and %d EITHER</strong>. Nothing here predicts the regime \u2014 the roles '
+  'present in each band decide which categories can be filled.</p>'
+  % (len(CANDS), non, noff, nei))
+A('')
+# LD-120 - ONE TABLE PER RISK CATEGORY. Jeff, 2026-09-10: "create a table for
+# each category Risk On, Risk Off, Either just so the pairs are segragated and
+# easy to spot". The categories are an OUTPUT of which roles sit in which band
+# (LD-99), so grouping by them shows what the week actually permits - a band
+# holding no safe haven simply produces no RISK OFF table.
+for _cat in ('RISK ON', 'RISK OFF', 'EITHER'):
+    _rows = [c for c in CANDS if c['category'] == _cat]
+    if not _rows:
+        A('  <h3>%s</h3>' % _cat)
+        A('  <p class="note">No pairing this week produces a %s pair \u2014 '
+          'the bands hold no role combination that fills it.</p>' % _cat)
+        continue
+    _sel = [c for c in _rows if c in PICKED]
+    A('  <h3>%s <span class="wt">%d pair%s\u00b7 %d selected</span></h3>'
+      % (_cat, len(_rows), 's ' if len(_rows) != 1 else ' ', len(_sel)))
+    A('  <div class="scroll">')
+    A('  <table>')
+    A('    <thead><tr><th>Pair</th><th>Dir</th>'
+      '<th class="num">Tier</th><th class="num">Gap</th>'
+      '<th>Long / short</th></tr></thead>')
+    A('    <tbody>')
+    for c in _rows:
+        s = c in PICKED
+        A('      <tr%s><td class="ccy">%s</td><td>%s</td>'
+          '<td class="num">%d</td><td class="num %s">%s</td>'
+          '<td>%s over %s</td></tr>'
+          % (' class="sel"' if s else '', c['pair'], c['direction'],
+             c['tier'], 'pos' if s else '', sg(c['gap']), c['long'],
+             c['short']))
+    A('    </tbody>')
+    A('  </table>')
+    A('  </div>')
+# F-109 - NAME AN ORDERING TIE-BREAK RATHER THAN LET IT READ AS CONVICTION.
+# When two candidates carry the SAME gap, selection takes whichever the sort
+# returns first and the twin is then leg-blocked. That is LD-96 working, but
+# a reader seeing one pair selected and its identical twin not will infer a
+# distinction the data never made.
+_bygap = {}
+for c in CANDS:
+    _bygap.setdefault(round(c['gap'], 4), []).append(c)
+_ties = []
+for c in PICKED:
+    _twins = [t for t in _bygap.get(round(c['gap'], 4), []) if t is not c]
+    for t in _twins:
+        _ties.append((c, t))
+if _ties:
+    A('  <div class="note flag">')
+    A('    <span class="lbl">\u26a0 AN ORDERING TIE-BREAK, NOT A '
+      'PREFERENCE</span>')
+    _txt = '; '.join(
+        '<strong>%s</strong> was taken over <strong>%s</strong> at the same '
+        'gap %s' % (c['pair'], t['pair'], sg(c['gap'])) for c, t in _ties)
+    A('    %s. <strong>Selection walks the list richest-gap-first and the '
+      'first pair consumes its legs</strong> (LD-96), so the twin is blocked '
+      'by leg reuse, not by a weaker read. <strong>Nothing in the data '
+      'preferred one over the other</strong> \u2014 read them as '
+      'interchangeable.' % _txt)
+    A('  </div>')
+
+A('  <p><strong>Conviction is the score gap, not the category</strong> \u2014 '
+  'a RISK OFF pair is not inherently better than a RISK ON one. Tier 1 is '
+  'STRONG vs WEAK; tier 2 is STRONG vs NEUTRAL or NEUTRAL vs WEAK. '
+  '<strong>All 28 currency combinations are eligible</strong>, each returned '
+  'in the symbol the market quotes with the direction carrying the bias.</p>')
+A('')
+A('  <h3>What the calibrator changed in the set</h3>')
+A('  <div class="scroll">')
+A('  <table>')
+A('    <thead><tr><th>Basis</th><th>Pairs</th></tr></thead>')
+A('    <tbody>')
+A('      <tr><td class="zero">Base only</td><td class="mono">%s</td></tr>'
+  % ' \u00b7 '.join('%s %s' % (c['pair'], c['direction']) for c in BPICK))
+A('      <tr class="sel"><td><strong>+ calibrator</strong></td>'
+  '<td class="mono"><strong>%s</strong></td></tr>'
+  % ' \u00b7 '.join('%s %s' % (c['pair'], c['direction']) for c in PICKED))
+A('    </tbody>')
+A('  </table>')
+A('  </div>')
+bp = set('%s %s' % (c['pair'], c['direction']) for c in BPICK)
+fp = set('%s %s' % (c['pair'], c['direction']) for c in PICKED)
+gone, new = sorted(bp - fp), sorted(fp - bp)
+if gone or new:
+    A('  <p><strong>The calibrator changed the set.</strong> %s%s</p>'
+      % (('<strong>Out: %s.</strong> ' % ', '.join(gone)) if gone else '',
+         ('<strong>In: %s.</strong>' % ', '.join(new)) if new else ''))
+else:
+    A('  <p><strong>The calibrator did not change the set this week</strong> '
+      '\u2014 it re-ranked the board without altering which pairs qualify.</p>')
+A('</section>')
+A('<section>')
+A('  <h2>\u00a72 The board</h2>')
 A('  <p class="sub">FINAL = base + calibrator</p>')
 A('  <div class="scroll">')
 A('  <table>')
@@ -199,11 +296,8 @@ A('  <p><strong>%d of 8 currencies move band</strong> (%d take a non-zero '
   'readily</strong>, which is what a calibrator is for.</p>'
   % (len(moved), changed, spread))
 A('</section>')
-
-# ------------------------------------------------------------------ 2
-A('')
 A('<section>')
-A('  <h2>\u00a72 The calibrator</h2>')
+A('  <h2>\u00a73 The calibrator</h2>')
 A('  <p class="sub">The day is the unit, not the category.</p>')
 A('  <p>One question per currency per day \u2014 <em>is this currency positive '
   'or negative on Monday?</em> <strong>A currency with three releases on '
@@ -310,64 +404,63 @@ for d in DAYS:
             A('  <p>Day score <strong>%s</strong>.</p>' % sg(val))
 A('</section>')
 
-# ------------------------------------------------------------------ 3
+
+# F-110 - SECTION 4 IS NOW GENERATED. It used to be hand-written in the page
+# shell, so the first splice that replaced the body deleted it silently -
+# taking the VINTAGE DISCLOSURE with it. A back-dated edition that does not
+# say which vintage it used is precisely what the repo's rules forbid.
 A('')
 A('<section>')
-A('  <h2>\u00a73 The pairs</h2>')
-A('  <p class="sub">Risk category is an output, not a forecast.</p>')
-non = len([c for c in CANDS if c['category'] == 'RISK ON'])
-noff = len([c for c in CANDS if c['category'] == 'RISK OFF'])
-nei = len([c for c in CANDS if c['category'] == 'EITHER'])
-A('  <p>Of the <strong>%d permitted pairings, %d are RISK ON, %d RISK OFF '
-  'and %d EITHER</strong>. Nothing here predicts the regime \u2014 the roles '
-  'present in each band decide which categories can be filled.</p>'
-  % (len(CANDS), non, noff, nei))
+A('  <h2>\u00a74 Method and limits</h2>')
+A('  <p class="sub">What this report can and cannot see.</p>')
 A('  <div class="scroll">')
 A('  <table>')
-A('    <thead><tr><th>Pair</th><th>Dir</th><th>Category</th>'
-  '<th class="num">Tier</th><th class="num">Gap</th>'
-  '<th>Long / short</th></tr></thead>')
+A('    <thead><tr><th>Term</th><th>Range</th><th>Source</th></tr></thead>')
 A('    <tbody>')
-for c in CANDS:
-    sel = c in PICKED
-    A('      <tr%s><td class="ccy">%s</td><td>%s</td><td>%s</td>'
-      '<td class="num">%d</td><td class="num %s">%s</td>'
-      '<td>%s over %s</td></tr>'
-      % (' class="sel"' if sel else '', c['pair'], c['direction'],
-         c['category'], c['tier'], 'pos' if sel else '',
-         sg(c['gap']), c['long'], c['short']))
+_lim = sum(ft.WEIGHT.values())
+_nm = {6: 'six', 7: 'seven', 8: 'eight'}.get(len(ft.WEIGHT), str(len(ft.WEIGHT)))
+A('      <tr><td>Base</td><td class="mono">\u2212%d \u2026 +%d</td>'
+  '<td>%s fact tables, <code>%s</code>, %d of %d cells</td></tr>'
+  % (_lim, _lim, _nm, MONTH, scored, total))
+A('      <tr><td>Calibrator</td><td class="mono">\u22125 \u2026 +5</td>'
+  '<td><strong>%d scheduled rows, %d scorable, %d with a TE consensus'
+  '</strong></td></tr>' % (len(ROWS), n_scor, n_cons))
+A('      <tr class="sel"><td><strong>FINAL</strong></td>'
+  '<td class="mono"><strong>\u2212%d \u2026 +%d</strong></td>'
+  '<td>the sum</td></tr>' % (_lim + 5, _lim + 5))
 A('    </tbody>')
 A('  </table>')
 A('  </div>')
-A('  <p><strong>Conviction is the score gap, not the category</strong> \u2014 '
-  'a RISK OFF pair is not inherently better than a RISK ON one. Tier 1 is '
-  'STRONG vs WEAK; tier 2 is STRONG vs NEUTRAL or NEUTRAL vs WEAK. '
-  '<strong>All 28 currency combinations are eligible</strong>, each returned '
-  'in the symbol the market quotes with the direction carrying the bias.</p>')
 A('')
-A('  <h3>What the calibrator changed in the set</h3>')
+A('  <div class="note flag">')
+A('    <span class="lbl">\u26a0 VINTAGE</span>')
+A('    <strong>Built as of Sunday 6 September.</strong> The fact tables hold '
+  'what was knowable then \u2014 rows that printed Mon 7 or Tue 8 are held at '
+  'their earlier values.<br><br>'
+  'Releases up to Friday 4 September stay: a Sunday report legitimately sees '
+  'Friday\'s prints.<br><br>'
+  '<strong>Leaving the Mon/Tue prints in would have been a backtest '
+  'contaminated with hindsight.</strong> An analysis asking <em>what was '
+  'knowable then</em> must use the vintage available then, and say which it '
+  'used. This one says.')
+A('  </div>')
+A('')
+A('  <h3>What is not here</h3>')
 A('  <div class="scroll">')
 A('  <table>')
-A('    <thead><tr><th>Basis</th><th>Pairs</th></tr></thead>')
+A('    <thead><tr><th>Absent</th><th>Reason</th></tr></thead>')
 A('    <tbody>')
-A('      <tr><td class="zero">Base only</td><td class="mono">%s</td></tr>'
-  % ' \u00b7 '.join('%s %s' % (c['pair'], c['direction']) for c in BPICK))
-A('      <tr class="sel"><td><strong>+ calibrator</strong></td>'
-  '<td class="mono"><strong>%s</strong></td></tr>'
-  % ' \u00b7 '.join('%s %s' % (c['pair'], c['direction']) for c in PICKED))
+A('      <tr><td>Gold, BTC</td><td><strong>Removed</strong> \u2014 forex '
+  'focus</td></tr>')
+A('      <tr><td>Entry references, falsifiers, charts</td>'
+  '<td><strong>No price data in this edition</strong></td></tr>')
+A('      <tr><td>News, rate-path commentary</td><td>LD-97 \u2014 the weekly '
+  'is the decision</td></tr>')
+A('      <tr><td>Lot sizes, entries, stops, targets</td>'
+  '<td><strong>LD-4 \u2014 no money path</strong></td></tr>')
 A('    </tbody>')
 A('  </table>')
 A('  </div>')
-bp = set('%s %s' % (c['pair'], c['direction']) for c in BPICK)
-fp = set('%s %s' % (c['pair'], c['direction']) for c in PICKED)
-gone, new = sorted(bp - fp), sorted(fp - bp)
-if gone or new:
-    A('  <p><strong>The calibrator changed the set.</strong> %s%s</p>'
-      % (('<strong>Out: %s.</strong> ' % ', '.join(gone)) if gone else '',
-         ('<strong>In: %s.</strong>' % ', '.join(new)) if new else ''))
-else:
-    A('  <p><strong>The calibrator did not change the set this week</strong> '
-      '\u2014 it re-ranked the board without altering which pairs qualify.</p>')
 A('</section>')
 
 io.open(SP + 'body.html', 'w', encoding='utf-8', newline=NL).write(NL.join(o))
