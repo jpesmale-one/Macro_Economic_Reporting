@@ -569,6 +569,32 @@ question, and do not proceed on "probably fine".
 **A request that is right about the DATA can still be wrong for THIS
 EDITION.** That is the failure mode this rule exists for.
 
+### LD-114 - THE CHECK APPLIES TO MY OWN CLAIMS FIRST
+
+**Jeff, 2026-09-10:** *"can you be more careful next time on your statement
+and make sure you fact check things first before you recommend?"*
+
+**THE FAILURE WAS SEQUENCING, NOT CARE.** On 2026-09-10 I stated *"AUDNZD
+fell 11.6 pips on AUD's GDP day"*, built an argument on it, and put a
+recommendation on top. Jeff asked me to check it. The check took **three
+tool calls** and showed the pair rose **+111.6 pips** (F-106). The
+verification was cheap and available the whole time - I simply ran it AFTER
+the claim instead of before.
+
+**LD-103 WAS BEING APPLIED ASYMMETRICALLY.** I was checking JEFF's requests
+and not my own assertions. **His get a second reader. Mine do not.**
+
+| Before I state it | The check |
+|---|---|
+| **A price attribution** | Convert the release timestamp into the FEED's bar convention and NAME the containing bar. If I cannot, say "I have not verified which bar holds the release" - never assert a direction |
+| **A recommendation** | Name what it rests on. If the load-bearing evidence is unverified, LABEL IT as such - a recommendation whose basis is invisible cannot be audited |
+| **My own intermediate output** | A label I generated is NOT evidence. F-106 happened because I printed "Wed 02 Sep" from my own formatting and read it back as a fact about the trading day |
+| **A causal story** | Decompose before attributing. Two fabricated narratives (Rio Tinto, "CHF weakened") died on exactly this |
+
+**THE TELL: a conclusion that arrives before its verification.** If I am
+already writing the sentence that uses a number, and have not yet run the
+check that would falsify it, the order is wrong.
+
 ---
 ## 8c. `Idea_dump/` IS AMENDABLE WITH CONSENT — AND A LOGIC FIX GOES TO
 ## THE ROOT (LD-105)
