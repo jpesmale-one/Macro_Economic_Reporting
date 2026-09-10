@@ -237,13 +237,13 @@ footer p{max-width:none}
     </div>
     <div class="pair">
       <span class="rank">2</span>
-      <span class="sym">AUDCHF<span class="bias short">SHORT</span></span>
+      <span class="sym">AUDCHF/NZDCHF<span class="bias short">SHORT</span></span>
       <span class="gap">+5.59</span>
       <span class="legs"><span class="cat">RISK OFF</span> &nbsp;long CHF <strong>+6.09</strong> · short AUD <strong>+0.50</strong></span>
     </div>
     <div class="pair">
       <span class="rank">3</span>
-      <span class="sym">NZDJPY<span class="bias short">SHORT</span></span>
+      <span class="sym">NZDJPY/AUDJPY<span class="bias short">SHORT</span></span>
       <span class="gap">+3.35</span>
       <span class="legs"><span class="cat">RISK OFF</span> &nbsp;long JPY <strong>+3.85</strong> · short NZD <strong>+0.50</strong></span>
     </div>
@@ -256,7 +256,7 @@ footer p{max-width:none}
 <section>
   <h2>§1 The pairs</h2>
   <p class="sub">Risk category is an output, not a forecast.</p>
-  <p>Of the <strong>16 permitted pairings, 3 are RISK ON, 8 RISK OFF and 5 EITHER</strong>. Nothing here predicts the regime — the roles present in each band decide which categories can be filled.</p>
+  <p>Of the <strong>14 permitted pairings, 3 are RISK ON, 6 RISK OFF and 5 EITHER</strong>. Nothing here predicts the regime — the roles present in each band decide which categories can be filled.</p>
 
   <h3>RISK ON <span class="wt">3 pairs · 1 selected</span></h3>
   <div class="scroll">
@@ -269,15 +269,13 @@ footer p{max-width:none}
     </tbody>
   </table>
   </div>
-  <h3>RISK OFF <span class="wt">8 pairs · 2 selected</span></h3>
+  <h3>RISK OFF <span class="wt">6 pairs · 2 selected</span></h3>
   <div class="scroll">
   <table>
     <thead><tr><th>Pair</th><th>Dir</th><th class="num">Tier</th><th class="num">Gap</th><th>Long / short</th></tr></thead>
     <tbody>
-      <tr class="sel"><td class="ccy">AUDCHF</td><td>SHORT</td><td class="num">1</td><td class="num pos">+5.59</td><td>CHF over AUD</td></tr>
-      <tr><td class="ccy">NZDCHF</td><td>SHORT</td><td class="num">1</td><td class="num ">+5.59</td><td>CHF over NZD</td></tr>
-      <tr><td class="ccy">AUDJPY</td><td>SHORT</td><td class="num">1</td><td class="num ">+3.35</td><td>JPY over AUD</td></tr>
-      <tr class="sel"><td class="ccy">NZDJPY</td><td>SHORT</td><td class="num">1</td><td class="num pos">+3.35</td><td>JPY over NZD</td></tr>
+      <tr class="sel"><td class="ccy">AUDCHF/NZDCHF</td><td>SHORT</td><td class="num">1</td><td class="num pos">+5.59</td><td>CHF over AUD</td></tr>
+      <tr class="sel"><td class="ccy">NZDJPY/AUDJPY</td><td>SHORT</td><td class="num">1</td><td class="num pos">+3.35</td><td>JPY over NZD</td></tr>
       <tr><td class="ccy">CADCHF</td><td>SHORT</td><td class="num">2</td><td class="num ">+3.49</td><td>CHF over CAD</td></tr>
       <tr><td class="ccy">GBPCHF</td><td>SHORT</td><td class="num">2</td><td class="num ">+3.24</td><td>CHF over GBP</td></tr>
       <tr><td class="ccy">CADJPY</td><td>SHORT</td><td class="num">2</td><td class="num ">+1.25</td><td>JPY over CAD</td></tr>
@@ -298,9 +296,8 @@ footer p{max-width:none}
     </tbody>
   </table>
   </div>
-  <div class="note flag">
-    <span class="lbl">⚠ AN ORDERING TIE-BREAK, NOT A PREFERENCE</span>
-    <strong>AUDCHF</strong> was taken over <strong>NZDCHF</strong> at the same gap +5.59; <strong>NZDJPY</strong> was taken over <strong>AUDJPY</strong> at the same gap +3.35. <strong>Selection walks the list richest-gap-first and the first pair consumes its legs</strong> (LD-96), so the twin is blocked by leg reuse, not by a weaker read. <strong>Nothing in the data preferred one over the other</strong> — read them as interchangeable.
+  <div class="note">
+    <strong>A slash means the legs scored identically and either expression carries the same read</strong> — <strong>AUDCHF/NZDCHF</strong> at gap +5.59; <strong>NZDJPY/AUDJPY</strong> at gap +3.35. <strong>They are alternatives, not additions</strong>: both share a leg, so taking both would hold one exposure twice, which is the correlation LD-96's leg-disjoint rule exists to prevent. <strong>The slot counts once.</strong>
   </div>
   <p><strong>Conviction is the score gap, not the category</strong> — a RISK OFF pair is not inherently better than a RISK ON one. Tier 1 is STRONG vs WEAK; tier 2 is STRONG vs NEUTRAL or NEUTRAL vs WEAK. <strong>All 28 currency combinations are eligible</strong>, each returned in the symbol the market quotes with the direction carrying the bias.</p>
 
@@ -432,40 +429,7 @@ footer p{max-width:none}
 </section>
 
 <section>
-  <h2>§4 Method and limits</h2>
-  <p class="sub">What this report can and cannot see.</p>
-  <div class="scroll">
-  <table>
-    <thead><tr><th>Term</th><th>Range</th><th>Source</th></tr></thead>
-    <tbody>
-      <tr><td>Base</td><td class="mono">−9 … +9</td><td>six fact tables, <code>Sep-26</code>, 77 of 77 cells</td></tr>
-      <tr><td>Calibrator</td><td class="mono">−5 … +5</td><td><strong>14 scheduled rows, 14 scorable, 7 with a TE consensus</strong></td></tr>
-      <tr class="sel"><td><strong>FINAL</strong></td><td class="mono"><strong>−14 … +14</strong></td><td>the sum</td></tr>
-    </tbody>
-  </table>
-  </div>
-
-  <div class="note flag">
-    <span class="lbl">⚠ VINTAGE</span>
-    <strong>Built as of Sunday 6 September.</strong> The fact tables hold what was knowable then — rows that printed Mon 7 or Tue 8 are held at their earlier values.<br><br>Releases up to Friday 4 September stay: a Sunday report legitimately sees Friday's prints.<br><br><strong>Leaving the Mon/Tue prints in would have been a backtest contaminated with hindsight.</strong> An analysis asking <em>what was knowable then</em> must use the vintage available then, and say which it used. This one says.
-  </div>
-
-  <h3>What is not here</h3>
-  <div class="scroll">
-  <table>
-    <thead><tr><th>Absent</th><th>Reason</th></tr></thead>
-    <tbody>
-      <tr><td>Gold, BTC</td><td><strong>Removed</strong> — forex focus</td></tr>
-      <tr><td>Entry references, falsifiers, charts</td><td><strong>No price data in this edition</strong></td></tr>
-      <tr><td>News, rate-path commentary</td><td>LD-97 — the weekly is the decision</td></tr>
-      <tr><td>Lot sizes, entries, stops, targets</td><td><strong>LD-4 — no money path</strong></td></tr>
-    </tbody>
-  </table>
-  </div>
-</section>
-
-<section>
-  <h2>§5 Every indicator, with its working</h2>
+  <h2>§4 Every indicator, with its working</h2>
   <p class="sub">77 rows — the evidence behind all 48 category scores.</p>
 
   <p><strong>Read a row left to right:</strong> the <em>actual</em> is measured against the <em>threshold</em>, which gives the binary <strong>+1 / 0 / −1</strong>. A category score is the <strong>mean of that currency's rows in it, times the category weight</strong>.</p>
@@ -1308,6 +1272,39 @@ footer p{max-width:none}
 
   <div class="note">
     <strong>Every cell above is the ACTUAL AS PUBLISHED, and the score beside it is DERIVED from it</strong> — so this table can be audited against the source without trusting a verdict anyone typed. <strong>Until 2026-09-09 the fact tables stored the verdict while the actual lived elsewhere</strong>, which is what produced F-91, F-94 and F-95: one release written into two places, with nothing keeping them in step. Storing the actual once removed that class of bug rather than guarding against it (LD-112).
+  </div>
+</section>
+
+<section>
+  <h2>§5 Method and limits</h2>
+  <p class="sub">What this report can and cannot see.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Term</th><th>Range</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Base</td><td class="mono">−9 … +9</td><td>six fact tables, <code>Sep-26</code>, 77 of 77 cells</td></tr>
+      <tr><td>Calibrator</td><td class="mono">−5 … +5</td><td><strong>14 scheduled rows, 14 scorable, 7 with a TE consensus</strong></td></tr>
+      <tr class="sel"><td><strong>FINAL</strong></td><td class="mono"><strong>−14 … +14</strong></td><td>the sum</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note flag">
+    <span class="lbl">⚠ VINTAGE</span>
+    <strong>Built as of Sunday 6 September.</strong> The fact tables hold what was knowable then — rows that printed Mon 7 or Tue 8 are held at their earlier values.<br><br>Releases up to Friday 4 September stay: a Sunday report legitimately sees Friday's prints.<br><br><strong>Leaving the Mon/Tue prints in would have been a backtest contaminated with hindsight.</strong> An analysis asking <em>what was knowable then</em> must use the vintage available then, and say which it used. This one says.
+  </div>
+
+  <h3>What is not here</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Absent</th><th>Reason</th></tr></thead>
+    <tbody>
+      <tr><td>Gold, BTC</td><td><strong>Removed</strong> — forex focus</td></tr>
+      <tr><td>Entry references, falsifiers, charts</td><td><strong>No price data in this edition</strong></td></tr>
+      <tr><td>News, rate-path commentary</td><td>LD-97 — the weekly is the decision</td></tr>
+      <tr><td>Lot sizes, entries, stops, targets</td><td><strong>LD-4 — no money path</strong></td></tr>
+    </tbody>
+  </table>
   </div>
 </section>
 

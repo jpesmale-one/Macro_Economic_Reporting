@@ -141,6 +141,36 @@ def candidates(scores=None, band=None):
     return out
 
 
+def tied_with(cands, pick):
+    """Every candidate carrying pick's exact gap - its equivalent expressions.
+
+    LD-121. Jeff, 2026-09-10: "Instead of dropping 1, propose both instead.
+    Something like AUDCHF/NZDCHF".
+
+    A tie happens when two currencies score identically, so the pairs against
+    a common leg carry the same gap. AUD and NZD both at +0.50 make AUDCHF and
+    NZDCHF both +5.59. Choosing between them on sort order asserts a
+    preference the data does not contain.
+
+    THESE ARE ALTERNATIVES, NOT ADDITIONS. Both share the CHF leg, so taking
+    both would be one CHF exposure held twice - the correlation that EF-3
+    measured and LD-96's leg-disjoint rule exists to prevent. The slot counts
+    once; the label names every way to express it.
+    """
+    g = round(pick['gap'], 4)
+    return [c for c in cands
+            if round(c['gap'], 4) == g and c is not pick
+            and (c['long'] == pick['long'] or c['short'] == pick['short'])]
+
+
+def label(cands, pick):
+    """'AUDCHF/NZDCHF' when a pick has equivalents, else 'AUDCHF'."""
+    twins = tied_with(cands, pick)
+    if not twins:
+        return pick['pair']
+    return '/'.join([pick['pair']] + [t['pair'] for t in twins])
+
+
 def select(cands=None, max_pairs=None):
     """Leg-disjoint pick, richest gap first (LD-96).
 

@@ -101,7 +101,7 @@ out = []
 A = out.append
 
 A('<section>')
-A('  <h2>\u00a75 Every indicator, with its working</h2>')
+A('  <h2>\u00a74 Every indicator, with its working</h2>')
 # F-105b: hardcoded, and stale the moment GDP landed - this said 78 rows
 # while rendering 85. A count in prose is a figure; figures are derived.
 A('  <p class="sub">%d rows \u2014 the evidence behind all %d category '

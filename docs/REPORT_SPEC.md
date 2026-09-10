@@ -3143,3 +3143,54 @@ nothing at all.** Nothing flagged it because there was nothing there to flag.
 `ft.WEIGHT` rather than typed.
 
 ---
+
+## LD-121 - A TIE IS PROPOSED AS BOTH PAIRS, ONE SLOT
+
+**Jeff, 2026-09-10, on F-109:** *"Instead of dropping 1, propose both
+instead. Something like AUDCHF/NZDCHF"*
+
+**He is right, and it fixes the defect at its source.** The gap is identical
+because the two legs scored identically. Picking one on sort order asserted a
+preference the data never contained; **naming both says what is true** — either
+expression carries the same read.
+
+This week: **AUDCHF/NZDCHF** at +5.59 and **NZDJPY/AUDJPY** at +3.35.
+
+### They are ALTERNATIVES, not ADDITIONS — and this had to be checked
+
+Measured before building it: proposing both **breaks leg-disjointness** —
+CHF, AUD, NZD and JPY each get used twice.
+
+**AUDCHF and NZDCHF are ONE CHF exposure written two ways.** Taking both would
+hold that exposure twice, which is the correlation **EF-3 measured** and
+**LD-96's leg-disjoint rule exists to prevent**. So the slot **counts once**,
+and the page says so rather than leaving a reader to infer it.
+
+`pair_select.tied_with()` requires a SHARED LEG, not merely an equal gap — two
+unrelated pairs that happen to tie are not alternative expressions of one view.
+
+**The twin no longer renders as its own row.** NZDCHF was appearing twice —
+inside the combined label and again beneath it — which reads as four pairs
+when the model produced three. Category counts now describe what the tables
+actually show (RISK OFF 6, not 8), so one page carries one number for one
+thing.
+
+---
+
+## LD-122 - §4 AND §5 INTERCHANGED
+
+**Jeff, 2026-09-10:** *"Interchange §4 and §5"*
+
+Order is now: The set → §1 The pairs → §2 The board → §3 The calibrator →
+**§4 Every indicator, with its working** → **§5 Method and limits**.
+
+The indicator evidence now sits directly after the sections that consumed it,
+and **the limits close the report** — the last thing read is what the analysis
+could not see.
+
+Note for the next editor: the two sections come from **different generators**
+(`gen_audit.py` emits §4, `gen_page.py` emits §5), so the swap needed the
+assembler to splice the indicator block AHEAD of Method rather than append it.
+Renumbering alone would have left them in the old physical order.
+
+---

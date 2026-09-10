@@ -64,7 +64,7 @@ for i, c in enumerate(PICKED, 1):
     A('    <div class="pair%s">' % (' top' if i == 1 else ''))
     A('      <span class="rank">%d</span>' % i)
     A('      <span class="sym">%s<span class="bias %s">%s</span></span>'
-      % (c['pair'], c['direction'].lower(), c['direction']))
+      % (ps.label(CANDS, c), c['direction'].lower(), c['direction']))
     A('      <span class="gap%s">%s</span>'
       % (' big' if i == 1 else '', sg(c['gap'])))
     A('      <span class="legs"><span class="cat">%s</span> &nbsp;long %s '
@@ -115,21 +115,39 @@ A('</section>')
 A('<section>')
 A('  <h2>\u00a71 The pairs</h2>')
 A('  <p class="sub">Risk category is an output, not a forecast.</p>')
-non = len([c for c in CANDS if c['category'] == 'RISK ON'])
-noff = len([c for c in CANDS if c['category'] == 'RISK OFF'])
-nei = len([c for c in CANDS if c['category'] == 'EITHER'])
+# LD-121: count what the TABLES show. Tied twins fold into one row, so
+# counting raw candidates here would print "8 RISK OFF" above a table
+# listing 6 - two numbers on one page describing the same thing.
+_fold = set()
+for _p in PICKED:
+    for _t in ps.tied_with(CANDS, _p):
+        _fold.add(id(_t))
+_shown = [c for c in CANDS if id(c) not in _fold]
+non = len([c for c in _shown if c['category'] == 'RISK ON'])
+noff = len([c for c in _shown if c['category'] == 'RISK OFF'])
+nei = len([c for c in _shown if c['category'] == 'EITHER'])
+
 A('  <p>Of the <strong>%d permitted pairings, %d are RISK ON, %d RISK OFF '
   'and %d EITHER</strong>. Nothing here predicts the regime \u2014 the roles '
   'present in each band decide which categories can be filled.</p>'
-  % (len(CANDS), non, noff, nei))
+  % (non + noff + nei, non, noff, nei))
 A('')
 # LD-120 - ONE TABLE PER RISK CATEGORY. Jeff, 2026-09-10: "create a table for
 # each category Risk On, Risk Off, Either just so the pairs are segragated and
 # easy to spot". The categories are an OUTPUT of which roles sit in which band
 # (LD-99), so grouping by them shows what the week actually permits - a band
 # holding no safe haven simply produces no RISK OFF table.
+# LD-121: a twin folded into a selected row must NOT also render as its own
+# row. NZDCHF was appearing twice - once inside "AUDCHF/NZDCHF" and again
+# beneath it - which reads as four pairs when the model produced three.
+_folded = set()
+for _p in PICKED:
+    for _t in ps.tied_with(CANDS, _p):
+        _folded.add(id(_t))
+
 for _cat in ('RISK ON', 'RISK OFF', 'EITHER'):
-    _rows = [c for c in CANDS if c['category'] == _cat]
+    _rows = [c for c in CANDS
+             if c['category'] == _cat and id(c) not in _folded]
     if not _rows:
         A('  <h3>%s</h3>' % _cat)
         A('  <p class="note">No pairing this week produces a %s pair \u2014 '
@@ -149,38 +167,31 @@ for _cat in ('RISK ON', 'RISK OFF', 'EITHER'):
         A('      <tr%s><td class="ccy">%s</td><td>%s</td>'
           '<td class="num">%d</td><td class="num %s">%s</td>'
           '<td>%s over %s</td></tr>'
-          % (' class="sel"' if s else '', c['pair'], c['direction'],
+          % (' class="sel"' if s else '', (ps.label(CANDS, c) if s else c['pair']), c['direction'],
              c['tier'], 'pos' if s else '', sg(c['gap']), c['long'],
              c['short']))
     A('    </tbody>')
     A('  </table>')
     A('  </div>')
-# F-109 - NAME AN ORDERING TIE-BREAK RATHER THAN LET IT READ AS CONVICTION.
-# When two candidates carry the SAME gap, selection takes whichever the sort
-# returns first and the twin is then leg-blocked. That is LD-96 working, but
-# a reader seeing one pair selected and its identical twin not will infer a
-# distinction the data never made.
-_bygap = {}
-for c in CANDS:
-    _bygap.setdefault(round(c['gap'], 4), []).append(c)
-_ties = []
-for c in PICKED:
-    _twins = [t for t in _bygap.get(round(c['gap'], 4), []) if t is not c]
-    for t in _twins:
-        _ties.append((c, t))
+# LD-121 - A TIE IS PROPOSED AS BOTH PAIRS, ONE SLOT. Jeff, 2026-09-10:
+# "Instead of dropping 1, propose both instead. Something like AUDCHF/NZDCHF".
+# The gap is identical because the two legs scored identically, so choosing
+# between them on sort order asserted a preference the data never had.
+_ties = [(c, ps.tied_with(CANDS, c)) for c in PICKED]
+_ties = [(c, t) for c, t in _ties if t]
 if _ties:
-    A('  <div class="note flag">')
-    A('    <span class="lbl">\u26a0 AN ORDERING TIE-BREAK, NOT A '
-      'PREFERENCE</span>')
+    A('  <div class="note">')
     _txt = '; '.join(
-        '<strong>%s</strong> was taken over <strong>%s</strong> at the same '
-        'gap %s' % (c['pair'], t['pair'], sg(c['gap'])) for c, t in _ties)
-    A('    %s. <strong>Selection walks the list richest-gap-first and the '
-      'first pair consumes its legs</strong> (LD-96), so the twin is blocked '
-      'by leg reuse, not by a weaker read. <strong>Nothing in the data '
-      'preferred one over the other</strong> \u2014 read them as '
-      'interchangeable.' % _txt)
+        '<strong>%s</strong> at gap %s' % (ps.label(CANDS, c), sg(c['gap']))
+        for c, t in _ties)
+    A('    <strong>A slash means the legs scored identically and either '
+      'expression carries the same read</strong> \u2014 %s. '
+      '<strong>They are alternatives, not additions</strong>: both share a '
+      'leg, so taking both would hold one exposure twice, which is the '
+      'correlation LD-96\'s leg-disjoint rule exists to prevent. '
+      '<strong>The slot counts once.</strong>' % _txt)
     A('  </div>')
+
 
 A('  <p><strong>Conviction is the score gap, not the category</strong> \u2014 '
   'a RISK OFF pair is not inherently better than a RISK ON one. Tier 1 is '
@@ -411,7 +422,7 @@ A('</section>')
 # say which vintage it used is precisely what the repo's rules forbid.
 A('')
 A('<section>')
-A('  <h2>\u00a74 Method and limits</h2>')
+A('  <h2>\u00a75 Method and limits</h2>')
 A('  <p class="sub">What this report can and cannot see.</p>')
 A('  <div class="scroll">')
 A('  <table>')
