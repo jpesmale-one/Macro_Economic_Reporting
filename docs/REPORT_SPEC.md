@@ -3559,3 +3559,64 @@ move.** CADJPY +0.41 → +215.4. AUDJPY +3.35 → +225.9.
    weeks of data now exist. That decomposition is the next concrete step.
 
 ---
+
+## LD-128 — GRADE A BIAS BY WHETHER IT REACHED A TYPICAL DAY'S RANGE
+
+**Jeff, 2026-09-13:** *"to really determine if the market really favors our
+bias is not by the closing price of each day. Instead we need to determine
+first what is the average daily pips movement of each pairs each day. Then if
+we hit that for the day in our bias then it's already a win... A trader will
+not wait for a market reversal before closing the trade."*
+
+**He is right, and the close is measuring the wrong thing.** A read that runs
+117 pips its way and finishes at +48 is graded a partial win by the close,
+when the market in fact did everything the read asked. **The close measures
+when you stopped looking, not whether the bias described the day.**
+
+### The scope line (LD-4)
+
+This computes an **observation** — how far a pair typically travels, and
+whether the bias covered it. It sets no target, entry, exit or stop.
+*"Did the move reach a typical day's range"* asks about the **read**;
+*"take profit at one ATR"* asks about the **trade**, and that sentence does
+not get written here.
+
+### Method
+
+**ATR(14) from sessions ENDING BEFORE the graded week.** Using the week's own
+bars to build its yardstick is hindsight — the F-83 / CHF-vintage shape.
+
+**Favourable excursion is measured from THAT DAY'S open**, not Monday's. A
+bias is a claim that stands each day it is held; a pair already 100 pips
+onside should not be credited twice for the same distance.
+
+### The 7–11 Sep week, regraded
+
+| Pair | Gap | ATR(14) | Best day | × ATR | Verdict |
+|---|---|---|---|---|---|
+| EURUSD | +6.69 | 46.2 | +30.6 | 0.66× | no |
+| EURAUD | +5.88 | 69.6 | **+117.4** | **1.69×** | **WIN** |
+| AUDCHF | +5.59 | 34.4 | +30.9 | 0.90× | no — *missed by 3.5 pips* |
+| **AUDJPY** | **+3.35** | 78.9 | **+112.3** | **1.42×** | **WIN — twice** |
+
+**2 of 4**, the same count as close-to-close and the same two pairs — but the
+reasoning is now sound rather than coincidental. **AUDJPY reached a full
+session's travel on two separate days.** AUDCHF came within 3.5 pips of a
+win it was never credited for.
+
+At **0.75 ATR** it becomes 3 of 4; at **0.50 ATR**, 4 of 4.
+
+### *** IT DID NOT RESCUE THE RANKING ***
+
+**Conviction vs best-day-as-a-fraction-of-ATR: rho −0.40** — identical to the
+close-based figure. Normalising for volatility does not fix it: **the widest
+gap (EURUSD, +6.69) produced the smallest ATR-relative move (0.66×), and the
+narrowest (AUDJPY, +3.35) produced 1.42×.**
+
+**This strengthens the finding rather than softening it.** A fairer yardstick
+that still ranks backwards means the problem is in the scoring, not in how
+the outcome was measured.
+
+`pipelines/atr_grade.py`.
+
+---
