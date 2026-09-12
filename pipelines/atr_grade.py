@@ -65,6 +65,22 @@ sys.path.insert(0, HERE)
 #
 # WHY NOT LOWER. 0.50 graded 4 of 4 that week - every bias "won", which makes
 # the measure useless. A yardstick that never fails is not measuring.
+#
+# *** THIS IS A DAY TARGET, NOT A SWING TARGET. *** Jeff read 0.75 as "closer
+# to Swing, the middle ground". It is not, and the distinction matters for how
+# the grade is read. 0.75 of a DAILY range is BY CONSTRUCTION a day-sized move,
+# and the tape agrees: on 7-11 Sep all three winners reached it WITHIN A SINGLE
+# SESSION, measured from that session's own open. None needed a multi-day hold.
+#
+# For contrast, a genuinely swing-sized target - 0.75 of a WEEKLY range, taking
+# the standard sqrt(5) scaling - is roughly 2.2x larger:
+#
+#     EURUSD   day 35 pips    swing ~78
+#     AUDJPY   day 59 pips    swing ~132
+#
+# So the grade answers "did the bias deliver a normal day's travel", which is
+# the right question for an intraday trader. It does NOT answer "would a swing
+# hold have paid", and must not be read as though it did.
 TARGET = 0.75
 
 

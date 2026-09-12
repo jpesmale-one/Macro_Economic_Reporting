@@ -3662,3 +3662,31 @@ the daily frame is wrong for this trader and the grading should move to a
 session window.
 
 ---
+
+### Addendum to LD-129 — 0.75 ATR is a DAY target, not a swing target
+
+**Jeff, 2026-09-13:** *"I guess it's more closer to Swing. which I think is the
+middle ground"*
+
+**Measured, and it is not.** 0.75 of a **daily** range is by construction a
+day-sized move, and the tape confirms it: on 7–11 Sep **all three winners
+reached the target within a single session**, from that session's own open.
+None required a multi-day hold.
+
+A genuinely swing-sized target — 0.75 of a *weekly* range, using the standard
+√5 scaling — is about **2.2× larger**:
+
+| Pair | Day target (set) | Swing equivalent |
+|---|---|---|
+| EURUSD | **35 pips** | ~78 |
+| EURAUD | **52 pips** | ~117 |
+| AUDCHF | **26 pips** | ~58 |
+| AUDJPY | **59 pips** | ~132 |
+
+**Why this matters for reading the grade.** It answers *"did the bias deliver a
+normal day's travel"* — the right question for an intraday trader. It does
+**not** answer *"would a swing hold have paid"*, and must not be read as
+though it did. AUDJPY makes the gap concrete: **59 pips reached Monday at
+16:00 PHT, but +225.9 available to a hold through Friday.**
+
+---
