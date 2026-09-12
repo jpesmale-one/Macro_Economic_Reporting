@@ -3485,3 +3485,77 @@ labelled "NOISE, NOT A VIEW" — peaked at +215.4 under r1; AUDJPY at +3.35
 peaked at +203.0 under r4.
 
 ---
+
+## RETROSPECTIVE — week of 7–11 September 2026 (COMPLETE)
+
+Sealed set, graded Monday 7 Sep open → Friday 11 Sep close.
+
+| Pair | Bias | Gap | MFE | MAE | CLOSE | Covers |
+|---|---|---|---|---|---|---|
+| EURUSD | LONG | +6.69 | +41.0 | −44.2 | **−14.1** | RISK ON / EUR |
+| EURAUD | LONG | +5.88 | +99.4 | −47.1 | **+48.6** | EITHER |
+| AUDCHF | SHORT | +5.59 | +18.3 | −28.5 | **−24.1** | RISK OFF / CHF |
+| **AUDJPY** | SHORT | **+3.35** | **+225.9** | −29.9 | **+221.6** | **JPY** |
+
+**2 of 4 closed in profit. Net +232.0 pips.** Sum of MFE +384.6, sum of MAE −149.7.
+
+### AUDJPY was the week, and it was the LOWEST-conviction pair
+
+**+221.6 pips — more than the other three combined by a factor of 25.** It was
+positive at **every single daily close**: +88.1, +117.5, +147.9, +176.7, +221.6.
+No drawdown after Monday.
+
+**It is in the set only because Jeff asked why JPY was missing** (LD-126). Under
+the previous rule it did not exist.
+
+Its catalysts were JPY beats, not AUD weakness — **Machine Tool Orders 64.7% vs
+43.0% forecast** on Wednesday, Reuters Tankan 21 vs 15.
+
+### *** THE BOARD DID NOT RANK REALISED STRENGTH: rho +0.00 ***
+
+Measured vs USD, Monday open → Friday close:
+
+| CCY | Board | Actual | Board rank | Actual rank |
+|---|---|---|---|---|
+| EUR | +6.38 | −0.12% | 1 | 2 |
+| CHF | +6.09 | **−0.81%** | 2 | **4** |
+| JPY | +3.85 | **+1.59%** | 3 | **1** |
+| AUD | +0.50 | −0.42% | 4 | 3 |
+
+**board: EUR > CHF > JPY > AUD    actual: JPY > EUR > AUD > CHF**
+
+**Every one of the four is in the wrong position.** CHF — ranked second
+strongest — was the **weakest** currency of the four. JPY — ranked third — was
+the **strongest by a wide margin**.
+
+**This is a deeper finding than the pair-level rho.** The pairs could be
+mis-ranked by pairing luck; the board being uncorrelated with realised strength
+means **the scoring itself did not describe the week**.
+
+### Conviction ranking: the THIRD inverted week
+
+| Week / rule | rho (peak) | rho (close) |
+|---|---|---|
+| r1 gap-first | −0.80 | −0.80 |
+| r4 mid-week | −0.20 | −0.20 |
+| **r4 final** | **−0.40** | **−0.40** |
+
+**LD-111's threshold is met on the pair level: three consecutive inverted
+readings.** The rule says investigate rather than wait — *"I don't have that
+much of time and capital for prolonged trial and error."*
+
+**THE CONSISTENT SHAPE ACROSS ALL THREE: the narrowest gap produced the largest
+move.** CADJPY +0.41 → +215.4. AUDJPY +3.35 → +225.9.
+
+### What to investigate first, on evidence
+
+1. **Is CHF's score wrong, or is CHF's score right and price ignoring it?** CHF
+   scored +6.09 on strong Production/Spending/Trade and fell 0.81%. Its rate
+   score is +0.09 — nearly nothing — while SNB sits at 0.00%.
+2. **JPY scored +3.85 and led the board in reality.** Its calibrator was +2.00,
+   the largest on the board, driven by GDP and Machine Tool Orders. **The
+   calibrator may be the part that works and the base the part that does not.**
+3. **Test base-only vs calibrator-only ranking against realised strength.** Two
+   weeks of data now exist. That decomposition is the next concrete step.
+
+---
