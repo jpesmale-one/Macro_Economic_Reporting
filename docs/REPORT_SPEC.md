@@ -3620,3 +3620,45 @@ the outcome was measured.
 `pipelines/atr_grade.py`.
 
 ---
+
+## LD-129 — THE TARGET IS 0.75 ATR, AND THE DAILY FRAME SUITS INTRADAY BETTER THAN EXPECTED
+
+**Jeff, 2026-09-13:** *"let's set to 0.75 ATR target for now. Do you think its
+more aligned with Day Trading? cause I'm trading intraday only"*
+
+### Why 0.75
+
+| Target | 7–11 Sep result | |
+|---|---|---|
+| 1.00 ATR | 2 of 4 | AUDCHF left at **0.90×** — 3.5 pips short of a day it had earned |
+| **0.75 ATR** | **3 of 4** | |
+| 0.50 ATR | 4 of 4 | **every bias "won" — a yardstick that never fails is not measuring** |
+
+### The intraday question, answered from the tape
+
+**The 0.75 is not what makes this intraday-aligned — the session boundary is,
+and it turned out to favour him.** An OANDA day runs **05:00 PHT → 05:00 PHT**,
+spanning Asia, London *and* New York. A move delivered at 03:00 PHT would score
+a win on a daily bar the trader slept through.
+
+**Checked on the tape rather than assumed.** AUDJPY's Monday session reached
+0.75 ATR at **16:00 PHT — the London open** — in a single hour that dropped
+109 pips (112.354 → 111.266). **Not the New York small hours.**
+
+**That is inside a Philippine trading day.** The move the model called was
+reachable while awake, which is the thing that actually matters for intraday
+use — not the target fraction.
+
+### The honest limit
+
+**One pair, one session.** Whether the favourable move generally lands in the
+Asia/London window or in the NY small hours is answerable — every hourly bar
+is available — but has not been measured across the set. **Until it is, "this
+suits intraday" is supported by one observation, not established.**
+
+**The concrete next step:** add a session-band column to `atr_grade` — *when*
+the target was reached, not just whether. If moves cluster after 22:00 PHT,
+the daily frame is wrong for this trader and the grading should move to a
+session window.
+
+---

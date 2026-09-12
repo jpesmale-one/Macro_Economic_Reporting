@@ -55,6 +55,19 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
 
+# LD-129 - THE TARGET IS 0.75 ATR. Jeff, 2026-09-13: "let's set to 0.75 ATR
+# target for now."
+#
+# WHY NOT 1.0. A full ATR in ONE session is a demanding bar - it asks the day
+# to deliver its entire typical range in a single direction. On the 7-11 Sep
+# week, 1.0 graded 2 of 4 and left AUDCHF at 0.90x, three and a half pips
+# short of a day it had effectively earned. At 0.75 it is 3 of 4.
+#
+# WHY NOT LOWER. 0.50 graded 4 of 4 that week - every bias "won", which makes
+# the measure useless. A yardstick that never fails is not measuring.
+TARGET = 0.75
+
+
 def pip_factor(pair):
     """JPY crosses quote to 3 decimals; everything else to 5."""
     return 100 if pair.endswith('JPY') else 10000
@@ -78,7 +91,7 @@ def atr(bars, n=14, factor=10000):
     return sum(trs) / len(trs) if trs else None
 
 
-def grade_day(bias, day_open, high, low, factor, atr_pips, target=1.0):
+def grade_day(bias, day_open, high, low, factor, atr_pips, target=TARGET):
     """(favourable, adverse, fraction_of_atr, hit) for one session.
 
     Both excursions are measured from THAT DAY'S OPEN and returned as
@@ -93,7 +106,7 @@ def grade_day(bias, day_open, high, low, factor, atr_pips, target=1.0):
     return fav, adv, frac, frac >= target
 
 
-def grade_week(pair, bias, week_bars, atr_pips, target=1.0):
+def grade_week(pair, bias, week_bars, atr_pips, target=TARGET):
     """[(label, fav, adv, frac, hit)] plus a week verdict.
 
     week_bars: [(label, open, high, low)] in session order.
@@ -108,7 +121,7 @@ def grade_week(pair, bias, week_bars, atr_pips, target=1.0):
     return rows, any(r[4] for r in rows), best
 
 
-def report(pair, bias, gap, week_bars, atr_pips, target=1.0):
+def report(pair, bias, gap, week_bars, atr_pips, target=TARGET):
     rows, hit, best = grade_week(pair, bias, week_bars, atr_pips, target)
     print('%-8s %-6s gap %+5.2f   ATR(14) %.0f pips   target %.2f ATR'
           % (pair, bias, gap, atr_pips, target))
