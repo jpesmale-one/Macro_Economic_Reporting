@@ -3690,3 +3690,81 @@ though it did. AUDJPY makes the gap concrete: **59 pips reached Monday at
 16:00 PHT, but +225.9 available to a hold through Friday.**
 
 ---
+
+## F-114 — WHY CHF SCORED +6.09 AND WAS THE WEEK'S WEAKEST CURRENCY
+
+**Jeff, 2026-09-13:** *"What is making the CHF weak despite having good data?"*
+
+Decomposed rather than explained. **Three findings, and a fourth hypothesis
+that did not survive.**
+
+### 1 — CHF's data was ALREADY PRICED before the week began
+
+Every print behind the +5.09 released **before Monday's open**:
+
+| Release | When (PHT) | Actual | Forecast |
+|---|---|---|---|
+| Retail Sales YoY | Tue **1 Sep** 14:30 | 2.3% | 2.0% |
+| Procure.ch Mfg PMI | Tue **1 Sep** 15:30 | **57.1** | 52.8 |
+| Inflation Rate YoY | Thu **3 Sep** 14:30 | 0.8% | 0.6% |
+| Unemployment Rate | Mon 7 Sep 15:00 | 3% | 3.0% — **inline, no surprise** |
+
+**The only CHF row landing inside the traded week printed exactly at
+forecast.** The base was describing news the market had already absorbed
+four to six days earlier. **A base score is a statement about the past; it
+carries no claim that the market has not finished reacting.**
+
+**Contrast JPY**, which led the board at +1.59%: its beats landed *inside* the
+week — GDP 0.4 vs 0.3 on Tuesday, Machine Tool Orders **64.7 vs 43.0** on
+Wednesday. **JPY's calibrator was +2.00, the largest on the board. CHF's was
++1.00.**
+
+### 2 — CHF is the thinnest currency on the board
+
+| CCY | Rows | CCY | Rows |
+|---|---|---|---|
+| USD | 13 | NZD | 10 |
+| JPY | 11 | GBP | 9 |
+| AUD | 11 | EUR / CAD | 8 |
+| | | **CHF** | **7** |
+
+**Four of CHF's six categories are a single row.** Production, Trade,
+Employment and Inflation each rest on one indicator, so **one print moves
+2.00 points with nothing to average against it.** The Procure.ch PMI alone
+*is* CHF's entire Production score.
+
+### 3 — The rate term cannot say anything about CHF
+
+**SNB policy rate is 0.00%.** REALISED scores +0.00 because there is no rate
+to reward; PATH scores +0.00 because no move is priced. **Total rate score
++0.09 — second lowest on the board** — while EUR gets +0.375 for the same
+"no surprise" state simply by having a positive rate.
+
+### 4 — THE CARRY HYPOTHESIS, TESTED AND REJECTED
+
+The obvious story: CHF at 0.00% is the cheapest funding currency, so being
+long it is structurally expensive, and the model prices **no carry at all**.
+
+**It does not hold:**
+
+| CCY | Rate | Realised |
+|---|---|---|
+| **CHF** | 0.00% | **−0.81%** — weakest |
+| **JPY** | 1.00% | **+1.59%** — strongest |
+
+**Two lowest-yielders, opposite outcomes.** If funding-currency status drove
+the week, JPY should have been weak too. **Carry is a real blind spot in the
+model, but it is not what happened here.**
+
+### The answer
+
+**CHF's score was right about the data and wrong about the week.** Strong
+prints that had already been traded, spread across the thinnest row-count on
+the board, with a rate term structurally unable to contribute. **JPY had the
+same "good data" reading but its data was still arriving.**
+
+This is the same conclusion the retrospective's decomposition reached from
+the other direction — **calibrator rho +0.80, base rho +0.00** — and CHF is
+the clearest single case of it.
+
+---
