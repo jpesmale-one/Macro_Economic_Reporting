@@ -3768,3 +3768,71 @@ the other direction — **calibrator rho +0.80, base rho +0.00** — and CHF is
 the clearest single case of it.
 
 ---
+
+## F-115 — THE MARKET'S ANSWER ON CHF, AND A CORRECTION TO F-114
+
+**Jeff, 2026-09-13:** *"how about the sentiments online about CHF? what do the
+outside world think about CHF why its weak despite having good results?"*
+
+### What the outside world says
+
+**One explanation, repeated across desks: CHF is not being traded as a safe
+haven any more. It is being traded as a funding currency.**
+
+| Source | Reading |
+|---|---|
+| OCBC | *"Soft profile sustained on SNB stance"* — preferred funding currency for carry trades, EUR/CHF target 0.94 |
+| ING | *"SNB on hold view boosts funding role"* |
+| Reuters | Investors set sights on the franc for carry trades **after yen intervention** |
+| Swiss Bankers Association | **All** respondents expect SNB to hold 0% through year-end; first hike priced **June 2027** |
+
+**The SNB is not defending the franc — it is comfortable with a weaker one**,
+to protect exporters and ward off deflation, and has said it will intervene
+against *appreciation*. **Good Swiss data does not change any of that**, which
+is exactly why strong prints produced a falling currency.
+
+### *** THIS CORRECTS F-114, WHERE I REJECTED THE CARRY HYPOTHESIS ***
+
+**F-114 said:** CHF at 0.00% was weakest and JPY at 1.00% was strongest, so
+two lowest-yielders with opposite outcomes means carry did not drive the week.
+
+**That test was wrong, and the error is in treating the two as independent.**
+Reuters reports carry traders **rotating their funding short OUT of JPY and
+INTO CHF** after intervention made shorting the yen dangerous.
+
+**The two moves have ONE cause:**
+
+- **JPY strengthened** because funding shorts were being **closed**
+- **CHF weakened** because those same shorts **moved there**
+
+**A rotation produces exactly the pattern I read as a refutation.** I checked
+whether both low-yielders fell together — the wrong test, because a rotation
+moves one leg up and the other down by construction.
+
+**What survives from F-114:** CHF's data was already priced (all prints landed
+1–3 Sep), CHF is the thinnest currency on the board at 7 rows, and its rate
+term is structurally unable to contribute at a 0.00% policy rate. Those stand.
+**What does not: the conclusion that carry was not the mechanism.**
+
+### What this means for the model — and why it is not a new input
+
+**The mechanism the model cannot see is POSITIONING, not carry.** Even a carry
+term would have scored CHF the same all year; what changed in this specific
+week was *where the funding short sat*, which is a flow fact, not a rate fact.
+
+**LD-23 blocks scoring it.** Carry-trade positioning has no numeric series
+published for all eight currencies on equal terms — it is desk commentary, and
+scoring it means reading prose, which is what killed the CB-tone proposal
+(F-102).
+
+**Where it legitimately belongs is the retrospective**, as the explanation for
+why a well-scored currency fell. That is what the *"what are the catalysts"*
+question exists for, and it answered it here.
+
+**The honest limit:** this is a plausible, well-sourced narrative that fits the
+week's price. **It is not verified against positioning data** — CFTC COT or
+similar — and this repo has twice published narratives that fitted the numbers
+and were wrong (the Rio Tinto and "CHF weakened" fabrications). **Treat it as
+the market's stated view, not as established mechanism.**
+
+---
