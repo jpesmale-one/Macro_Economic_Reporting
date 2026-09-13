@@ -51,6 +51,27 @@ _NOT = (
                                                    # 4 Sep 20:30 PHT - NEXT
                                                    # WEEK's window (LD-66).
     ('Non Farm Payrolls', 'benchmark'),
+    # F-119 - A QUALIFIER WORD IN THE EVENT IS INVISIBLE TO SUBSET MATCHING.
+    # Jeff, 2026-09-13: "I'm not seeing NZD inflation data being released on
+    # Sept 18. They release inflation and employment data on a quarterly
+    # basis so I don't think it is this month".
+    #
+    # He was right. 'Inflation Rate YoY' tokenises to {inflation, rate, yoy}
+    # and NZ's 'FOOD inflation yoy aug' contains all three - the extra word
+    # narrows the SERIES but cannot fail a subset test. The row scored +1 on
+    # a food-price print standing in for a headline CPI that does not exist
+    # this month: NZ publishes CPI QUARTERLY, next on 20 Oct.
+    #
+    # This is LD-59's rule ("NEVER fuzzy-match indicator names") reaching a
+    # case the token matcher still let through. Two more were found by
+    # testing every inflation-ish name in the archive rather than fixing only
+    # the reported one:
+    ('Inflation Rate YoY', 'food inflation'),      # NZ food prices
+    ('Inflation Rate YoY', 'core inflation'),      # core is its own series
+    ('Inflation Rate YoY', 'ex-food and energy'),  # JP core-core
+    ('Inflation Rate MoM', 'food inflation'),
+    ('Inflation Rate MoM', 'core inflation'),
+    ('Inflation Rate YoY Final', 'core inflation'),
 )
 
 # National releases that must never satisfy a EUR-aggregate whitelist row.

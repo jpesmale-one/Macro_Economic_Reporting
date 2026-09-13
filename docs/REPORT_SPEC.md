@@ -4131,3 +4131,58 @@ is defined in all three theme states (bare `:root`, `prefers-color-scheme`, and
 `[data-theme="dark"]`), so the highlight survives every theme.
 
 ---
+
+## F-119 — A QUALIFIER WORD IN THE EVENT IS INVISIBLE TO SUBSET MATCHING
+
+**Jeff, 2026-09-13, with a screenshot:** *"I'm not seeing NZD inflation data
+being released on Sept 18. They release inflation and employment data on a
+quarterly basis so I don't think it is this month"*
+
+**He was right, and the row was a fabrication.** Our whitelist row
+`Inflation Rate YoY` had bound to TE's **`food inflation yoy aug`**.
+
+`Inflation Rate YoY` tokenises to `{inflation, rate, yoy}`, and
+`food inflation yoy aug` contains all three. **An extra word in the event
+NARROWS the series but cannot fail a subset test.** NZ publishes CPI
+**quarterly** — the next one is 20 Oct — so the calibrator was scoring a
+food-price print in place of a headline CPI that does not exist this month.
+
+**This is LD-59 reaching a case the token matcher still let through**, the
+same shape as `goods trade balance` → Balance of Trade (F-37).
+
+### Testing every inflation name found TWO MORE
+
+I tested every inflation-ish event in the archive rather than fixing only the
+reported row:
+
+| TE event | Bound to | |
+|---|---|---|
+| NZ `food inflation yoy aug` | Inflation Rate YoY | **FALSE** |
+| JP `core inflation rate yoy aug` | Inflation Rate YoY | **FALSE** |
+| JP `inflation rate ex-food and energy yoy` | Inflation Rate YoY | **FALSE** |
+| EA `core inflation rate yoy final aug` | Inflation Rate YoY Final | **FALSE** |
+
+Blocked via `_NOT`; genuine rows (CA, CH, EA, JP headline CPI) still bind.
+
+### *** IT CHANGED THE BOARD AND THE SET ***
+
+| | Was | Now |
+|---|---|---|
+| **EUR** Inflation Rate YoY Final | `core…` fcst **2.4%** → −1 | `inflation rate yoy final` fcst **3.3%** → **+1** |
+| EUR calibrator / FINAL | −2.00 / +3.50 | **0.00 / +5.50** |
+| **NZD** Inflation Rate YoY | food print → +1 | **no row — CPI is quarterly** |
+| NZD calibrator / FINAL | +2.50 / +2.00 | **+2.00 / +1.50** |
+
+**Set: EURAUD LONG +4.00, AUDCHF SHORT +2.59, GBPAUD LONG +1.69.** EUR now
+tops the board rather than sitting third, and the widest gap doubled from
++2.59 to +4.00.
+
+**Calibrator rows 21 → 20; high-impact flags 7 → 6.**
+
+**The guards could not catch this.** R-37 compares the fact tables to
+`score_model`; R-38 compares thresholds to the spec. **Neither reads the
+calendar**, so a row matched to the wrong TE event passes both — it is
+internally consistent and externally wrong. Jeff reading the actual calendar
+is what found it, twice now (F-67, F-119).
+
+---
