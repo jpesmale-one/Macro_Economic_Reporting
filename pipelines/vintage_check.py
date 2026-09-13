@@ -51,14 +51,52 @@ CCY = {'US': 'USD', 'EA': 'EUR', 'GB': 'GBP', 'JP': 'JPY',
 # held value is correct rather than stale.
 NO_HELD = ('GDP Growth Rate QoQ',)          # LD-117: calibrator-only
 
+# F-123 - A VALUE THAT REPEATS HIDES A STALE VINTAGE.
+#
+# Jeff, 2026-09-14: "USD Inflation Rate YoY -- This is stale"
+#
+# He was right, and every guard in this repo said otherwise. US CPI printed
+# Aug/26 at 3.4% on 11 Sep. We held Jul/26 at 3.4%. THE VALUES ARE IDENTICAL,
+# so a comparison on value alone reports no staleness - and R-40, R-41 and
+# R-37's vintage section all compare on value alone.
+#
+#     WE WERE NOT HOLDING THE RIGHT NUMBER. WE WERE HOLDING AN OLD
+#     NUMBER THAT HAPPENED TO MATCH.
+#
+# The difference is not cosmetic. CPI at 3.4% after 3.5% is FALLING; at 3.4%
+# after 3.4% it has STOPPED falling, and the threshold is ">2% & falling".
+# Same cell, opposite story. Seven more rows carried the same defect (AUD Job
+# Ads, AUD Building Permits, AUD NAB, CHF Consumer Confidence, CHF
+# Unemployment, JPY Machine Tool Orders, NZD Business NZ PMI) - all flagged by
+# R-37 as VINTAGE and all read past by me because the values matched.
+#
+# So the check is on (value, reference month), never value alone.
+MONTHS = {'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6,
+          'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12}
+
+
+def te_month(event):
+    """The reference month TE names in an event title, e.g. '... yoy aug'."""
+    for w in reversed(str(event).lower().replace('/', ' ').split()):
+        if w[:3] in MONTHS and len(w) <= 4:
+            return MONTHS[w[:3]]
+    return None
+
+
+def our_month(ref):
+    """The reference month we record, e.g. 'Aug/26' or 'Jun/26 (Q)'."""
+    m = str(ref).strip().lower()[:3]
+    return MONTHS.get(m)
+
 
 def stale(since, until=None):
     """[(ccy, row, held, released, date, te_event)] for rows we hold stale."""
-    names, held = {}, {}
+    names, held, refs = {}, {}, {}
     for cat, iso, name, a, p, ref, thr, v in sm.ROWS:
         c = sm.LABEL[iso]
         names.setdefault(c, []).append(name)
         held[(c, name)] = a
+        refs[(c, name)] = ref
 
     found = {}
     for f in sorted(glob.glob(os.path.join(
@@ -92,8 +130,15 @@ def stale(since, until=None):
     for (c, n), (ds, act, raw) in sorted(found.items()):
         if n in NO_HELD:
             continue
+        # F-123: value AND vintage. A repeated value is not freshness.
         if held.get((c, n)) != act:
             out.append((c, n, held.get((c, n)), act, ds, raw))
+            continue
+        tm, om = te_month(raw), our_month(refs.get((c, n), ''))
+        if tm and om and tm > om:
+            out.append((c, n, '%s (%s)' % (held.get((c, n)), refs.get((c, n))),
+                        '%s (%s)' % (act, raw.split()[-1][:3].title()),
+                        ds, raw))
     return out, len(found)
 
 

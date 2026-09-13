@@ -95,8 +95,10 @@ _rev = 1
 if os.path.exists(OUT):
     for _l in io.open(OUT, encoding='utf-8').read()[:600].splitlines():
         if _l.startswith('revision: r'):
+            # NOT split('r') - that splits on the 'r' in "revision" and
+            # yields 'evision:', so every rebuild silently stayed at r1.
             try:
-                _rev = int(_l.split('r')[1].strip()) + 1
+                _rev = int(_l.split(':', 1)[1].strip().lstrip('rR')) + 1
             except ValueError:
                 pass
             break
