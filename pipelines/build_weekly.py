@@ -22,6 +22,14 @@ import score_model as _sm
 # LD-132 - the threshold each calibrator row is graded against.
 THR = dict(((_sm.LABEL[_r[1]], _r[2]), _r[6]) for _r in _sm.ROWS)
 
+# LD-134 - high-impact categories, flagged as a caution (never a weight).
+HIGH_IMPACT = ('Employment', 'Inflation', 'Interest_Rate', 'GDP')
+CAT = dict(((_sm.LABEL[_r[1]], _r[2]), _r[0]) for _r in _sm.ROWS)
+
+
+def hot(ccy, name):
+    return CAT.get((ccy, name)) in HIGH_IMPACT
+
 CAP = sorted(glob.glob('data/raw/calendar/2026-09-13_*_cal_full.json'))[-1]
 START, END = '2026-09-14', '2026-09-18'
 
@@ -242,8 +250,12 @@ for r in sorted(ROWS, key=lambda x: (x['day'] or dt.date.max, x['when'] is None,
     # LD-132: publish the THRESHOLD alongside the score - the rule that
     # produced it, so a +1 can be checked rather than taken on trust.
     _thr = THR.get((r['ccy'], r['name']), '\u2014')
-    A('| %s | %s | %s | %s | %s | `%s` | %s |'
+    # LD-134: mark high-impact rows (Employment, Inflation, Interest Rate,
+    # GDP) as a caution. No score changes - the calibrator is unaffected.
+    _hi = hot(r['ccy'], r['name'])
+    A('| %s | %s | %s%s | %s | %s | `%s` | %s |'
       % (_when, r['ccy'], r['name'],
+         ' **\u26a0 HIGH**' if _hi else '',
          r['prev'] or '\u2014', rng or '\u2014', _thr, sc))
 A('')
 A('**%d of %d rows are scorable, and %d carry a real TE consensus.** '

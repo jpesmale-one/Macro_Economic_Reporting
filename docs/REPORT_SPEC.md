@@ -4082,3 +4082,52 @@ Averaging over the scorable rows only is the same rule the fact tables already
 use: an empty cell drops out of the numerator **and** the divisor.
 
 ---
+
+## LD-134 — HIGH-IMPACT ROWS ARE HIGHLIGHTED AS A CAUTION
+
+**Jeff, 2026-09-13:** *"These are High Impact news can you Highlight these rows
+so I can be reminded of the schedule of these news? Next time let's highlight
+Employment, Inflation, Interest Rate, and GDP news on the board as a form of
+caution"*
+
+**The category rule reproduces his list exactly** — the seven rows he named are
+precisely the Employment / Inflation / Interest Rate / GDP rows in the week, so
+the rule is his list generalised rather than a separate judgement.
+
+| Day (PHT) | Row | Category |
+|---|---|---|
+| Mon 14 20:30 | CAD Inflation Rate YoY | Inflation |
+| Tue 15 14:00 | GBP Claimant Count Change | Employment |
+| Wed 16 14:00 | GBP Inflation Rate YoY | Inflation |
+| Thu 17 06:45 | NZD GDP Growth Rate QoQ | GDP |
+| Thu 17 17:00 | EUR Inflation Rate YoY Final | Inflation |
+| Fri 18 06:45 | NZD Inflation Rate YoY | Inflation |
+| Fri 18 07:30 | JPY Inflation Rate YoY | Inflation |
+
+**7 of 21 rows. Thursday and Friday carry two each.**
+
+### *** A CAUTION, NOT A WEIGHT ***
+
+**The flag changes no score and no ranking.** The calibrator still treats every
+row identically — the day is the unit (LD-98) — and the board is unchanged at
+CHF +4.09, EUR +3.50, GBP +3.19. It marks which days carry event risk before
+the week starts; it does not assert those rows matter more to the model.
+
+That distinction is deliberate. **Weighting these categories would contradict
+LD-98 outright**, and the one time a category was weighted for importance
+rather than evidence (GDP in the base, LD-113) it was withdrawn a day later for
+ranking nothing.
+
+### How it is derived
+
+**The category comes from `score_model`, which already classifies every row.**
+Nothing restates a list of "important" indicators — a row that moves category
+moves its flag automatically, and there is no second list to drift out of sync
+(the F-96/97/98 shape).
+
+**Colour:** the `--warn` hue the flag notes already use, **never the accent** —
+an accent-coloured row reads as *selected*, which these are not. `--warn-soft`
+is defined in all three theme states (bare `:root`, `prefers-color-scheme`, and
+`[data-theme="dark"]`), so the highlight survives every theme.
+
+---

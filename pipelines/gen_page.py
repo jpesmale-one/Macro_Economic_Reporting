@@ -21,6 +21,28 @@ import score_model as _sm
 # there rather than restated.
 THR = dict(((_sm.LABEL[_r[1]], _r[2]), _r[6]) for _r in _sm.ROWS)
 
+# LD-134 - HIGH-IMPACT ROWS ARE FLAGGED AS A CAUTION. Jeff, 2026-09-13:
+# "These are High Impact news can you Highlight these rows so I can be
+# reminded of the schedule of these news? Next time let's highlight
+# Employment, Inflation, Interest Rate, and GDP news on the board as a form
+# of caution".
+#
+# THE FLAG IS A CAUTION, NOT A WEIGHT. It changes no score and no ranking -
+# the calibrator still treats every row identically (LD-98, the day is the
+# unit). It marks the rows that move price hardest so a reader knows which
+# days carry event risk before the week starts.
+#
+# The category comes from score_model, which already classifies every row -
+# so a row moving category moves its flag automatically, and nothing here
+# restates a list that could drift (the F-96/97/98 shape).
+HIGH_IMPACT = ('Employment', 'Inflation', 'Interest_Rate', 'GDP')
+CAT = dict(((_sm.LABEL[_r[1]], _r[2]), _r[0]) for _r in _sm.ROWS)
+
+
+def hot(ccy, name):
+    """True when this row is one of the high-impact categories (LD-134)."""
+    return CAT.get((ccy, name)) in HIGH_IMPACT
+
 SP = ('C:/Users/jpesm/AppData/Local/Temp/claude/'
       'c--Users-jpesm-OneDrive-Documents-GitHub/'
       '16c8f514-dc2c-4587-b6a0-4fa0ff0b7ba8/scratchpad/')
@@ -468,16 +490,42 @@ for r in ROWS:
              else ('%s \u2014' % r['day'].strftime('%a %d')
                    if r.get('day') else 'no time'))
     _thr = THR.get((r['ccy'], r['name']), '\u2014')
-    A('      <tr><td class="mono">%s</td><td class="ccy">%s</td><td>%s</td>'
+    # LD-134: mark the high-impact rows so event risk is visible before
+    # the week starts. Style only - no score changes.
+    _hi = hot(r['ccy'], r['name'])
+    A('      <tr%s><td class="mono">%s</td><td class="ccy">%s</td>'
+      '<td>%s%s</td>'
       '<td class="num v">%s</td><td class="num v">%s</td>'
       '<td class="dim sm">%s</td>%s</tr>'
-      % (_when, r['ccy'], r['name'],
+      % (' class="hot"' if _hi else '', _when, r['ccy'],
+         r['name'], ' <span class="tag-hi">HIGH</span>' if _hi else '',
          (r['prev'] or '\u2014').replace('-', '\u2212'),
          (rng or '\u2014').replace('-', '\u2212'),
          _thr.replace('<', '&lt;').replace('>', '&gt;'), sc))
 A('    </tbody>')
 A('  </table>')
 A('  </div>')
+# LD-134 - name the high-impact days up front, so the caution is readable
+# without scanning 21 rows.
+_hi_rows = [r for r in ROWS if hot(r['ccy'], r['name'])]
+if _hi_rows:
+    _by = {}
+    for _r in _hi_rows:
+        _by.setdefault(_r['day'], []).append(_r)
+    A('  <div class="note flag">')
+    A('    <span class="lbl">\u26a0 HIGH-IMPACT RELEASES THIS WEEK</span>')
+    A('    <strong>%d of %d rows are Employment, Inflation, Interest Rate '
+      'or GDP</strong> \u2014 the categories that move price hardest. '
+      'They are highlighted in the table above. <strong>This is a caution, '
+      'not a weight</strong>: the calibrator scores every row identically '
+      '(LD-98). %s'
+      % (len(_hi_rows), len(ROWS),
+         ' '.join('<strong>%s:</strong> %s.'
+                  % (_d.strftime('%a %d') if _d else 'undated',
+                     ', '.join('%s %s' % (x['ccy'], x['name']) for x in _v))
+                  for _d, _v in sorted(_by.items(),
+                                       key=lambda z: z[0] or __import__('datetime').date.max))))
+    A('  </div>')
 # LD-133 - a row TE has DATED but not TIMED is provisional. Jeff,
 # 2026-09-13: "if this changes schedule then let's revisit the report".
 # Name it, so a reschedule is noticed rather than silently re-weighting
