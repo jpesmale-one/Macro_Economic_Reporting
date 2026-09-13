@@ -159,6 +159,13 @@ python pipelines/test_guards.py          # 8 real regressions must all block
 python pipelines/test_phtime.py          # R-39 - EVERY TIME IS PHT (UTC+8)
 python pipelines/vintage_check.py        # R-40 - is any row STALE against a
                                          # release we already captured? (F-120)
+python pipelines/coverage_check.py       # R-41 - WHICH ROWS CANNOT WE VERIFY?
+                                         # R-40 passes by SILENCE on a row it
+                                         # has never seen a print for. This
+                                         # counts those and RAISES anything we
+                                         # held and failed to match, with the
+                                         # candidate event text. Jeff rules on
+                                         # identity - the repo never does.
 python pipelines/test_pricing.py         # R-26 - 20 hand-graded pricing cases
 python pipelines/test_surprise.py        # R-36 - a decision moves price by its SURPRISE (LD-90)
 python pipelines/release_week.py --due   # LD-83 - due this week, absent from capture
