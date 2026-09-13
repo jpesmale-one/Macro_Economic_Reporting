@@ -84,7 +84,23 @@ A('title: Week of 14&ndash;18 September 2026 &middot; WEEKLY &middot; '
 # inherits the PREVIOUS edition's identity - this build stamped r5/SEALED
 # on a report Jeff had never seen. STATE.md is the authority on the
 # CURRENT edition, and this is not it until the manifest is updated.
-A('revision: r1')
+# LD-130 vs LD-131. r1 is right for a NEW edition. This edition already
+# PUBLISHED at r1, and F-121 then changed its conclusions - GBP went
+# +4.19 -> +8.19 and took the top slot - so the rebuild is a REVISION of
+# a report Jeff has already read, not a new one. Reading the existing
+# file's revision keeps the two rules from fighting: new editions still
+# start at r1 (nothing on disk to read), a rebuild advances.
+OUT = 'reports/2026/Q3/2026-09-13_weekly.md'
+_rev = 1
+if os.path.exists(OUT):
+    for _l in io.open(OUT, encoding='utf-8').read()[:600].splitlines():
+        if _l.startswith('revision: r'):
+            try:
+                _rev = int(_l.split('r')[1].strip()) + 1
+            except ValueError:
+                pass
+            break
+A('revision: r%d' % _rev)
 A('seal: UNSEALED')
 A('type: WEEKLY')
 A('eyebrow: Macro Economic Reporting &middot; the REVAMPED weekly &mdash; '
@@ -475,7 +491,7 @@ A('**Next: the 14\u201318 Sep selection, at the weekend** \u2014 Jeff, 2026-09-0
   'scorable rows instead of 13 of 20.**')
 A('')
 
-p = 'reports/2026/Q3/2026-09-13_weekly.md'
+p = OUT
 io.open(p, 'w', encoding='utf-8', newline='').write(NL.join(out))
 print('wrote %s (%d lines)' % (p, len(out)))
 print()

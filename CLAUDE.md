@@ -159,6 +159,14 @@ python pipelines/test_guards.py          # 8 real regressions must all block
 python pipelines/test_phtime.py          # R-39 - EVERY TIME IS PHT (UTC+8)
 python pipelines/vintage_check.py        # R-40 - is any row STALE against a
                                          # release we already captured? (F-120)
+python pipelines/shell_check.py <page.html>  # R-43 - DOES THE HAND-WRITTEN
+                                         # SHELL STILL AGREE WITH THE BODY?
+                                         # gen_page writes the BODY; <header>,
+                                         # the chips and the dek are preserved
+                                         # verbatim by every splice, so a
+                                         # rebuild leaves them describing the
+                                         # PREVIOUS edition (F-122). Run it on
+                                         # the assembled page before publishing.
 python pipelines/capture_gap.py --raise  # R-42 - DID A RELEASE FALL THROUGH A
                                          # GAP BETWEEN CAPTURES? The TE
                                          # calendar is a ROLLING WINDOW and
