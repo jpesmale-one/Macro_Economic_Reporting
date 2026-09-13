@@ -478,6 +478,23 @@ for r in ROWS:
 A('    </tbody>')
 A('  </table>')
 A('  </div>')
+# LD-133 - a row TE has DATED but not TIMED is provisional. Jeff,
+# 2026-09-13: "if this changes schedule then let's revisit the report".
+# Name it, so a reschedule is noticed rather than silently re-weighting
+# a day.
+_untimed = [r for r in ROWS if r['when'] is None and r['day']]
+if _untimed:
+    A('  <div class="note flag">')
+    A('    <span class="lbl">\u26a0 SCHEDULED WITHOUT A TIME</span>')
+    A('    <strong>%s.</strong> TE has published the DATE but not the '
+      'clock, so it is counted on its day (LD-98 \u2014 the day is the '
+      'unit) with no time of its own. <strong>If TE moves it to another '
+      'day this report needs revisiting</strong> \u2014 a reschedule '
+      'changes which day it scores.'
+      % ', '.join('%s %s is set for %s'
+                  % (r['ccy'], r['name'], r['day'].strftime('%a %d %b'))
+                  for r in _untimed))
+    A('  </div>')
 A('  <p><strong>%d of %d rows are scorable, and %d carry a real TE '
   'consensus.</strong> That is the value of building on Sunday rather than '
   'a week out \u2014 the same pipeline run against 14\u201318 Sep could score '
@@ -504,19 +521,32 @@ for d in DAYS:
         A('    <tbody>')
         for r in keep + drop:
             k = r in keep
-            A('      <tr%s><td>%s</td><td class="mono">%s</td>'
-              '<td class="num %s">%s</td><td>%s</td></tr>'
+            # F-118: an UNSCORABLE row reaching a collision table crashed
+            # cls(None). It can now, because LD-133 gives a dated-but-untimed
+            # row a day - NZD Global Dairy Trade joins Tuesday's group with
+            # no consensus to grade. It is shown with an em-dash and marked
+            # "not scored", never dropped from the table (F-36).
+            _s = r['score']
+            _cell = ('<td class="num dash">—</td>' if _s is None
+                     else '<td class="num %s">%s</td>'
+                     % (cls(_s), sg(_s, '%+d') if _s else '0'))
+            A('      <tr%s><td>%s</td><td class="mono">%s</td>%s<td>%s</td></tr>'
               % (' class="sel"' if k else '', r['name'],
-                 (r['raw'] or '')[-3:].upper(), cls(r['score']),
-                 sg(r['score'], '%+d') if r['score'] else '0',
+                 (r['raw'] or '')[-3:].upper(), _cell,
                  '<strong>KEPT</strong>' if k else
-                 '<span class="zero">dropped</span>'))
+                 ('<span class="zero">not scored</span>' if _s is None
+                  else '<span class="zero">dropped</span>')))
         A('    </tbody>')
         A('  </table>')
         A('  </div>')
         kv = sum(r['score'] for r in keep) / float(len(keep))
-        alls = keep + drop
-        av = sum(r['score'] for r in alls) / float(len(alls))
+        # F-118: only SCORABLE rows can be averaged. An unscorable row
+        # (LD-133, dated but untimed) has no score to share, so it is
+        # excluded from the arithmetic rather than counted as zero - which
+        # would drag the comparison toward neutral on an absence (F-73).
+        alls = [r for r in keep + drop if r['score'] is not None]
+        av = (sum(r['score'] for r in alls) / float(len(alls))
+              if alls else 0.0)
         if rule == 'latest month' and abs(kv - av) > 0.01:
             A('  <div class="note flag"><span class="lbl">\u26a0 THE RULE '
               'CHANGES THE NUMBER</span>Sharing all %d rows would give '

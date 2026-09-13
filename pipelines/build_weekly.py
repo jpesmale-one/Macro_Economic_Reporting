@@ -275,13 +275,26 @@ for _d in _days:
         for _r in _keep + _drop:
             _kept = _r in _keep
             _mon = (_r['raw'] or '')[-3:].upper()
-            _sc = '**%+d**' % _r['score'] if _r['score'] else '0'
+            # F-118: an unscorable row shows an em-dash, not a 0 - a 0 is a
+            # NEUTRAL verdict and this row has no verdict at all.
+            _sc = ('—' if _r['score'] is None
+                   else ('**%+d**' % _r['score'] if _r['score'] else '0'))
             A('| %s | %s | %s | %s |'
               % (_r['name'], '**%s**' % _mon if _kept else _mon, _sc,
-                 '**KEPT**' if _kept else 'dropped'))
+                 '**KEPT**' if _kept else
+                 ('not scored' if _r['score'] is None else 'dropped')))
         A('')
-        _kv = sum(r['score'] for r in _keep) / float(len(_keep))
-        _all = _keep + _drop
+        # F-118: only SCORABLE rows can be averaged (LD-133).
+        # F-118: only SCORABLE rows can be averaged. An unscorable row
+        # (LD-133 - dated but untimed) has no score to share, so it is
+        # excluded from the arithmetic rather than counted as zero, which
+        # would drag the comparison toward neutral on an absence (F-73).
+        _sk = [r for r in _keep if r['score'] is not None]
+        _sa = [r for r in _keep + _drop if r['score'] is not None]
+        if not _sk or not _sa:
+            continue
+        _kv = sum(r['score'] for r in _sk) / float(len(_sk))
+        _all = _sa
         _av = sum(r['score'] for r in _all) / float(len(_all))
         A('**Day score %+.2f.**' % _val)
         if _rule == 'latest month' and abs(_kv - _av) > 0.01:

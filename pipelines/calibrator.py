@@ -218,6 +218,21 @@ def score_row(ccy, name, rec):
     return {'GOOD': 1, 'NEUTRAL': 0, 'BAD': -1}.get(v)
 
 
+def _date_only(s):
+    """TE's date string -> a date, or None (LD-133).
+
+    Used when a row has a DATE but no TIME. No timezone shift is applied:
+    with no clock there is nothing to convert, and inventing a time to
+    convert would be F-107's shape - a guessed value that looks real. TE
+    dates its untimed rows by the local session they belong to.
+    """
+    try:
+        y, m, d = (int(x) for x in str(s).split('-'))
+        return dt.date(y, m, d)
+    except Exception:
+        return None
+
+
 def week_rows(capture, start, end):
     """Every whitelist row in the window, with its score and reference month."""
     raw = json.load(io.open(capture, encoding='utf-8'))
@@ -232,8 +247,22 @@ def week_rows(capture, start, end):
     out = []
     for when, ccy, name, rawev, d in list(timed) + list(untimed):
         rec = idx.get((d, ccy, rawev), {})
+        # LD-133 - A ROW WITH A DATE BUT NO TIME STILL HAS A DAY.
+        # Jeff, 2026-09-13, on NZD Global Dairy Trade: "release date is Sept
+        # 15 but no time yet. let's put it to Sept 15 Tuesday even without
+        # time we're looking at the Day result anyway."
+        #
+        # `day` was derived from `when`, which only exists when TE publishes
+        # a TIME. So a row TE had dated 2026-09-15 fell out of the calibrator
+        # entirely - day None means it joins no day group and scores nothing.
+        # THE DAY IS THE UNIT (LD-98), and the day was known all along.
+        #
+        # The date comes from TE's own row (`d`), so this is not an
+        # assumption - it is the field we were already ignoring. A row with
+        # NEITHER date nor time still yields None and is published as such.
+        _day = when.date() if when else _date_only(d)
         out.append(dict(when=when, ccy=ccy, name=name, raw=rawev,
-                        day=when.date() if when else None,
+                        day=_day,
                         month=ref_month(rawev), score=score_row(ccy, name, rec),
                         cons=(rec.get('consensus') or '').strip(),
                         fcst=(rec.get('forecast') or '').strip(),

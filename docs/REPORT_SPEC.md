@@ -4032,3 +4032,53 @@ Applied to both the markdown and the HTML. §4 already carried a Threshold
 column; §3 now matches it.
 
 ---
+
+## LD-133 — A ROW WITH A DATE BUT NO TIME STILL HAS A DAY
+
+**Jeff, 2026-09-13:** *"NZD Global Dairy Trade — This might be rescheduled.
+release date is Sept 15 but no time yet. let's put it to Sept 15 Tuesday even
+without time we're looking at the Day result anyway. But if this changes
+schedule then let's revisit the report"*
+
+**He is right, and this was a real defect rather than a presentation choice.**
+`day` was derived from `when`, which only exists when TE publishes a **time**.
+So a row TE had already dated `2026-09-15` came through as `day=None` and **fell
+out of the calibrator entirely** — no day group, no score, invisible to the
+day-is-the-unit model (LD-98).
+
+**The day was known all along.** TE's own `date` field carried it; the code was
+ignoring the field it already had. `_date_only()` now supplies it, and applies
+**no timezone shift** — with no clock there is nothing to convert, and inventing
+a time to convert would be F-107's shape: a guessed value that looks real.
+
+**The row still scores nothing** — TE publishes no consensus or forecast for it
+— so it drops out of Tuesday's day score rather than diluting it. **NZD's
+calibrator is unchanged at +2.50 and the board does not move.** What changed is
+that the row is now *visible on its day* instead of silently absent.
+
+**The reschedule flag Jeff asked for** now prints wherever a dated-but-untimed
+row exists, naming it and its day: *"If TE moves it to another day this report
+needs revisiting — a reschedule changes which day it scores."*
+
+---
+
+## F-118 — AN UNSCORABLE ROW IN A COLLISION TABLE BROKE THREE THINGS
+
+LD-133 put the Dairy row into Tuesday's group, and **three call sites assumed
+every row in a group has a score**:
+
+| Where | Failure |
+|---|---|
+| `gen_page` collision table | `cls(None)` → `'>' not supported between NoneType and int` |
+| `gen_page` sharing arithmetic | `sum()` over a `None` |
+| `build_weekly` sharing arithmetic | same |
+
+**All three now exclude unscorable rows from the ARITHMETIC while keeping them
+in the TABLE** — the row shows an em-dash and *"not scored"*, never a `0`.
+**A 0 is a NEUTRAL verdict; this row has no verdict at all**, and printing one
+would assert something the data does not say (F-73's shape).
+
+Averaging over the scorable rows only is the same rule the fact tables already
+use: an empty cell drops out of the numerator **and** the divisor.
+
+---
