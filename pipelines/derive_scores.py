@@ -126,6 +126,42 @@ def band(actual, thr):
     return 0
 
 
+# LD-137 - A ">Prev" ROW IS COMPUTED, NOT HAND-GRADED.
+#
+# Jeff, 2026-09-14: "AUD NAB Business Confidence - Why did we score this as
+# neutral 0?"
+#
+# Because nothing computed it. band() cannot parse '>Prev', so every such row
+# fell through to a HAND-WRITTEN verdict in the fact table. NAB printed -8
+# after -6 - a FALL, plainly BAD under '>Prev' - and sat at NEUTRAL. An audit
+# of all 34 Prev-relative rows found a second: CHF Unemployment 3% after 3%
+# stored BAD, where Idea_dump says in terms "No change is Neutral".
+#
+#     34 ROWS WERE GRADED BY EYE. TWO WERE WRONG. NOTHING COULD SEE IT.
+#
+# Same structural hole as LD-136's inflation rows, and the same fix: state
+# the rule in code so the fact table is checkable rather than trusted.
+def prev_score(actual, previous, thr):
+    """+1 / 0 / -1 for a '>Prev' or '<Prev' threshold, else None.
+
+    Idea_dump is explicit on the boundary, for both directions:
+    "Actual > Previous is Good, Actual < Previous is Bad. NO CHANGE IS
+    NEUTRAL." A flat print is neutral here - unlike LD-136's inflation rule,
+    where flat carries information because it is measured against a TARGET
+    rather than against itself.
+    """
+    t = (thr or '').strip().lower()
+    if not (t.startswith('>prev') or t.startswith('<prev')):
+        return None
+    a, p = sm._num(actual), sm._num(previous)
+    if a is None or p is None:
+        return None
+    if a == p:
+        return 0
+    up = a > p
+    return (1 if up else -1) if t.startswith('>') else (-1 if up else 1)
+
+
 def score_row(cat, ccy, indicator, actual):
     """The derived score for one cell, or None if it cannot be graded."""
     if not (actual or '').strip():
@@ -144,6 +180,9 @@ def score_row(cat, ccy, indicator, actual):
         sc = inflation_score(actual, prev)
         if sc is not None:
             return sc
+    sc = prev_score(actual, prev, thr)
+    if sc is not None:
+        return sc
     b = band(actual, thr)
     if b is not None:
         return b

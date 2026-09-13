@@ -10,7 +10,7 @@ Sep-26,Employment,AUD,Unemployment Rate,4.5%,-1
 Sep-26,Employment,NZD,Unemployment Rate,5.6%,-1
 Sep-26,Employment,CAD,Employment Change,-41.7K,-1
 Sep-26,Employment,CAD,Unemployment Rate,6.4%,0
-Sep-26,Employment,CHF,Unemployment Rate,3%,-1
+Sep-26,Employment,CHF,Unemployment Rate,3%,0
 Sep-26,Inflation,USD,Inflation Rate YoY,3.4%,1
 Sep-26,Inflation,EUR,Inflation Rate YoY Final,2.9%,1
 Sep-26,Inflation,GBP,Inflation Rate YoY,2.9%,1
@@ -58,7 +58,7 @@ Sep-26,Spending,JPY,Household Spending YoY,-3.6%,-1
 Sep-26,Spending,JPY,Retail Sales YoY,4.0%,1
 Sep-26,Spending,AUD,Building Permits YoY Final,9%,1
 Sep-26,Spending,AUD,Household Spending YoY,7.0%,1
-Sep-26,Spending,AUD,NAB Business Confidence,-8,0
+Sep-26,Spending,AUD,NAB Business Confidence,-8,-1
 Sep-26,Spending,AUD,Westpac Consumer Conf Change,-5.2%,-1
 Sep-26,Spending,NZD,ANZ Business Confidence,53.7,-1
 Sep-26,Spending,NZD,ANZ Roy Morgan Consumer Conf,98.0,-1

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""R-44 - LD-136, THE INFLATION RULE, AS EXECUTABLE CASES.
+"""R-44 - LD-136 (inflation) AND LD-137 (>Prev), AS EXECUTABLE CASES.
 
 Jeff, 2026-09-14: "we need to change the inflation scoring to this
 Actual > 2% and Actual >= Previous is Good. Higher chance of Interest Rate
@@ -65,6 +65,23 @@ CASES = [
 ]
 
 
+# LD-137 - (actual, previous, threshold, expected, what it is)
+PREV_CASES = [
+    ('-8', '-6', '>Prev', -1, 'AUD NAB: -8 after -6 is a FALL (the bug)'),
+    ('-6', '-8', '>Prev', 1, 'the same pair the other way'),
+    ('3%', '3%', '<Prev', 0, 'CHF unemployment: NO CHANGE IS NEUTRAL'),
+    ('4.1%', '4.1%', '<Prev', 0, 'flat is neutral in both directions'),
+    ('4.5%', '4.4%', '<Prev', -1, 'unemployment rising is BAD'),
+    ('2.4%', '2.5%', '<Prev', 1, 'unemployment falling is GOOD'),
+    ('-$88.6B', '-$71.2B', '>Prev', -1, 'F-124: deficit WIDENING is BAD'),
+    ('$-88.6B', '-$71.2B', '>Prev', -1, 'same, sign on the other side'),
+    ('162K', '-23K', '>Prev', 1, 'payrolls back above zero'),
+    ('-', '-6', '>Prev', None, 'no actual - ungraded'),
+    ('-8', '', '>Prev', None, 'no previous - ungraded'),
+    ('-8', '-6', '>0.5%', None, 'not a Prev threshold - not our business'),
+]
+
+
 def main():
     bad = 0
     print('R-44 INFLATION RULE (LD-136)')
@@ -78,6 +95,19 @@ def main():
             bad += 1
         print('  %-8s %-8s %-6s %-6s %s%s'
               % (a or "''", p or "''", want, got, note,
+                 '' if ok else '   *** FAIL'))
+
+    print()
+    print('  LD-137 - the >Prev rule')
+    print('  %-10s %-10s %-8s %-6s %-6s %s'
+          % ('ACTUAL', 'PREV', 'THR', 'WANT', 'GOT', 'CASE'))
+    for a, p, thr, want, note in PREV_CASES:
+        got = ds.prev_score(a, p, thr)
+        ok = got == want
+        if not ok:
+            bad += 1
+        print('  %-10s %-10s %-8s %-6s %-6s %s%s'
+              % (a or "''", p or "''", thr, want, got, note,
                  '' if ok else '   *** FAIL'))
 
     # Every inflation row in the fact table must agree with the rule.
@@ -97,10 +127,25 @@ def main():
         print('    every inflation row matches LD-136')
 
     print()
+    print('  fact table vs the >Prev rule:')
+    nbad = 0
+    for cat, iso, name, act, prev, ref, thr, v in sm.ROWS:
+        sc = ds.prev_score(act, prev, thr)
+        if sc is None:
+            continue
+        if V.get(sc) != v:
+            bad += 1
+            nbad += 1
+            print('    *** %-4s %-26s stored %-8s rule says %s'
+                  % (sm.LABEL[iso], name[:26], v, V.get(sc)))
+    if not nbad:
+        print('    every >Prev row matches LD-137')
+
+    print()
     if bad:
         print('*** %d FAILURE(S)' % bad)
         return 1
-    print('  %d cases pass' % len(CASES))
+    print('  %d cases pass' % (len(CASES) + len(PREV_CASES)))
     return 0
 
 

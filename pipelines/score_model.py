@@ -104,7 +104,7 @@ ROWS = [
  ("Spending","AU","Household Spending YoY","7.0%","6.0%","Jul/26",">0.5%","GOOD"),
  ("Spending","AU","Building Permits YoY Final","9%","9.5%","Jul/26",">0.5%","GOOD"),
  ("Spending","AU","Westpac Consumer Conf Change","-5.2%","6%","Sep/26",">Prev","BAD"),
- ("Spending","AU","NAB Business Confidence","-8","-6","Aug/26",">Prev","NEUTRAL"),
+ ("Spending","AU","NAB Business Confidence","-8","-6","Aug/26",">Prev","BAD"),
  ("Spending","NZ","Building Permits MoM","-4.3%","-3.6%","Jul/26",">0.5%","BAD"),
  ("Spending","NZ","Electronic Retail Card Spending YoY","3.4%","1.3%","Jul/26",">0.5%","GOOD"),
  ("Spending","NZ","ANZ Business Confidence","53.7","56.1","Aug/26",">Prev","BAD"),
@@ -155,7 +155,7 @@ ROWS = [
  # not silently substitute a different rule.
  ("Employment","CA","Employment Change","-41.7K","75.1K","Aug/26","hdl<0 BAD (LD-57); FT/PT split unsourced","BAD"),
  ("Employment","CH","Non Farm Payrolls","5.698M","5.537M","Q2/26",">Prev","GOOD"),
- ("Employment","CH","Unemployment Rate","3%","3%","Aug/26","<Prev","BAD"),
+ ("Employment","CH","Unemployment Rate","3%","3%","Aug/26","<Prev","NEUTRAL"),
  # ---------------- INFLATION (w=3) ----------------
  ("Inflation","US","Inflation Rate YoY","3.4%","3.4%","Aug/26","vs 2% target & Prev","GOOD"),
  ("Inflation","EA","Inflation Rate YoY Final","2.9%","2.8%","Jul/26","vs 2% target & Prev","GOOD"),
@@ -257,11 +257,38 @@ _NUM = re.compile(r'-?[0-9][0-9,]*\.?[0-9]*')
 
 
 def _num(v):
-    """First number in a cell. '5.0%' -> 5.0, 'A$1,929M' -> 1929.0, '-' -> None."""
+    """First number in a cell. '5.0%' -> 5.0, 'A$1,929M' -> 1929.0, '-' -> None.
+
+    *** F-124 - A MINUS SIGN BEFORE THE CURRENCY MARK WAS DROPPED.
+    Jeff, 2026-09-14, asking why AUD NAB scored 0, which surfaced an audit of
+    every >Prev row. '-$88.6B' parsed as +88.6 while '$-88.6B' parsed as
+    -88.6 - the same figure, opposite sign, depending purely on which side of
+    the dollar sign TE put the minus.
+
+        US Balance of Trade   held '-$88.6B'   parsed +88.6
+                              prev '-$71.2B'   parsed +71.2
+                              => "88.6 > 71.2, improving" - EXACTLY BACKWARDS
+
+    The stored verdict was BAD and correct, so nothing was mis-scored: every
+    >Prev row falls through to its hand-written verdict (band() cannot parse
+    '>Prev'), and the hand grading was right. The bug sat in the parser,
+    waiting for the day something actually computed on it - which is what my
+    own audit script did, and it promptly reported a false mismatch.
+
+    A sign that depends on symbol placement is a trap for the next caller, so
+    it is fixed at the source rather than worked around per site.
+    """
     if v is None:
         return None
-    m = _NUM.search(str(v).replace(',', ''))
-    return float(m.group(0)) if m else None
+    t = str(v).replace(',', '')
+    m = _NUM.search(t)
+    if not m:
+        return None
+    x = float(m.group(0))
+    # A '-' anywhere before the first digit is a sign, whatever sits between.
+    if x >= 0 and '-' in t[:m.start()]:
+        x = -x
+    return x
 
 
 def _clamp(x):
