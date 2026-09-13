@@ -4003,3 +4003,32 @@ and added a 0.1% consensus. The range is now entirely positive, so it scores
 forecast did.**
 
 ---
+
+## LD-132 — §3 PUBLISHES THE THRESHOLD EACH ROW WAS GRADED AGAINST
+
+**Jeff, 2026-09-13:** *"can you put on the threshold also for this section? so
+I know the scoring"*
+
+**§3 showed the score without the rule that produced it.** A `+1` could not be
+checked against anything — the reader had to trust it, or go find the rule in
+`score_model`. **The threshold IS the reason the row scored what it did**, so
+it belongs on the same line.
+
+| When (PHT) | CCY | Indicator | Previous | Cons / Fcst | **Threshold** | Score |
+|---|---|---|---|---|---|---|
+| Tue 15 14:00 | GBP | Claimant Count Change | −11K | 8.3K – −5.0K | **`<0 (LD-58)`** | −1 |
+| Wed 16 07:50 | JPY | Balance of Trade | ¥−634.5B | ¥−1052.6B … | **`>Prev`** | −1 |
+| Mon 14 12:30 | JPY | Industrial Production YoY Final | 4.9% | 4.1% | **`>0.5%`** | +1 |
+
+**The GBP row is the case that shows why it matters.** Claimant Count is graded
+`<0` — the SIGN is the signal, not the change (LD-58) — so an expected **+8.3K**
+scores −1. Without the threshold on the line, that reads as arbitrary.
+
+**The rule is read from `score_model.ROWS`, never restated.** score_model owns
+the rule; the calibrator only applies it, so a threshold change reaches the
+page automatically and cannot drift (the F-96/97/98 shape).
+
+Applied to both the markdown and the HTML. §4 already carried a Threshold
+column; §3 now matches it.
+
+---

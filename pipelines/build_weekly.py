@@ -17,6 +17,10 @@ NL = chr(10)
 import fact_tables as ft
 import pair_select as ps
 import calibrator as cal
+import score_model as _sm
+
+# LD-132 - the threshold each calibrator row is graded against.
+THR = dict(((_sm.LABEL[_r[1]], _r[2]), _r[6]) for _r in _sm.ROWS)
 
 CAP = sorted(glob.glob('data/raw/calendar/2026-09-13_*_cal_full.json'))[-1]
 START, END = '2026-09-14', '2026-09-18'
@@ -219,9 +223,10 @@ A('**A dash is a day with no scheduled whitelist row.**%s'
 A('')
 A('### Every scheduled row, and how it scored')
 A('')
-A('| When (PHT) | CCY | Indicator | Previous | Cons / Fcst | Score |')
-A('|---|---|---|---|---|---|')
-for r in sorted(ROWS, key=lambda x: x['when'] or dt.datetime.max):
+A('| When (PHT) | CCY | Indicator | Previous | Cons / Fcst | Threshold | Score |')
+A('|---|---|---|---|---|---|---|')
+for r in sorted(ROWS, key=lambda x: (x['day'] or dt.date.max, x['when'] is None,
+                                  x['when'].strftime('%H:%M') if x['when'] else '')):
     rng = r['cons'] if r['cons'] else ''
     if r['fcst'] and r['fcst'] != r['cons']:
         rng = ('%s \u2013 %s' % (rng, r['fcst'])) if rng else r['fcst']
@@ -234,9 +239,12 @@ for r in sorted(ROWS, key=lambda x: x['when'] or dt.datetime.max):
     _when = (r['when'].strftime('%a %d %H:%M') if r['when']
              else ('%s \u2014' % r['day'].strftime('%a %d')
                    if r.get('day') else 'no time'))
-    A('| %s | %s | %s | %s | %s | %s |'
+    # LD-132: publish the THRESHOLD alongside the score - the rule that
+    # produced it, so a +1 can be checked rather than taken on trust.
+    _thr = THR.get((r['ccy'], r['name']), '\u2014')
+    A('| %s | %s | %s | %s | %s | `%s` | %s |'
       % (_when, r['ccy'], r['name'],
-         r['prev'] or '\u2014', rng or '\u2014', sc))
+         r['prev'] or '\u2014', rng or '\u2014', _thr, sc))
 A('')
 A('**%d of %d rows are scorable, and %d carry a real TE consensus.** '
   '**That is the value of building on Sunday rather than a week out** \u2014 '

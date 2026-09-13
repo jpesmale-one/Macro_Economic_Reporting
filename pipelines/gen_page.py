@@ -14,6 +14,12 @@ NL = chr(10)
 import fact_tables as ft
 import pair_select as ps
 import calibrator as cal
+import score_model as _sm
+
+# LD-132 - the threshold each calibrator row is graded against. score_model
+# owns the rule; the calibrator only applies it, so the rule is read from
+# there rather than restated.
+THR = dict(((_sm.LABEL[_r[1]], _r[2]), _r[6]) for _r in _sm.ROWS)
 
 SP = ('C:/Users/jpesm/AppData/Local/Temp/claude/'
       'c--Users-jpesm-OneDrive-Documents-GitHub/'
@@ -439,9 +445,13 @@ A('')
 A('  <h3>Every scheduled row, and how it scored</h3>')
 A('  <div class="scroll">')
 A('  <table>')
+# LD-132 - Jeff, 2026-09-13: "can you put on the threshold also for this
+# section? so I know the scoring". The score was shown without the RULE that
+# produced it, so a +1 could not be checked against anything. The threshold
+# is the whole reason the row scored what it did.
 A('    <thead><tr><th>When (PHT)</th><th>CCY</th><th>Indicator</th>'
   '<th class="num">Previous</th><th class="num">Cons / Fcst</th>'
-  '<th class="num">Score</th></tr></thead>')
+  '<th>Threshold</th><th class="num">Score</th></tr></thead>')
 A('    <tbody>')
 for r in ROWS:
     rng = r['cons'] or ''
@@ -457,11 +467,14 @@ for r in ROWS:
     _when = (r['when'].strftime('%a %d %H:%M') if r['when']
              else ('%s \u2014' % r['day'].strftime('%a %d')
                    if r.get('day') else 'no time'))
+    _thr = THR.get((r['ccy'], r['name']), '\u2014')
     A('      <tr><td class="mono">%s</td><td class="ccy">%s</td><td>%s</td>'
-      '<td class="num v">%s</td><td class="num v">%s</td>%s</tr>'
+      '<td class="num v">%s</td><td class="num v">%s</td>'
+      '<td class="dim sm">%s</td>%s</tr>'
       % (_when, r['ccy'], r['name'],
          (r['prev'] or '\u2014').replace('-', '\u2212'),
-         (rng or '\u2014').replace('-', '\u2212'), sc))
+         (rng or '\u2014').replace('-', '\u2212'),
+         _thr.replace('<', '&lt;').replace('>', '&gt;'), sc))
 A('    </tbody>')
 A('  </table>')
 A('  </div>')
