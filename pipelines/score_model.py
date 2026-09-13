@@ -103,7 +103,7 @@ ROWS = [
  ("Spending","JP","Retail Sales YoY","4.0%","0.6%","Jul/26",">0.5%","GOOD"),
  ("Spending","AU","Household Spending YoY","7.0%","6.0%","Jul/26",">0.5%","GOOD"),
  ("Spending","AU","Building Permits YoY Final","9%","8.9%","Jun/26",">0.5%","GOOD"),
- ("Spending","AU","Westpac Consumer Conf Change","6.0%","4.1%","Aug/26",">Prev","GOOD"),
+ ("Spending","AU","Westpac Consumer Conf Change","-5.2%","6%","Sep/26",">Prev","BAD"),
  ("Spending","AU","NAB Business Confidence","-8","-6","Jul/26",">Prev","NEUTRAL"),
  ("Spending","NZ","Building Permits MoM","-4.3%","-3.6%","Jul/26",">0.5%","BAD"),
  ("Spending","NZ","Electronic Retail Card Spending YoY","3.4%","1.3%","Jul/26",">0.5%","GOOD"),

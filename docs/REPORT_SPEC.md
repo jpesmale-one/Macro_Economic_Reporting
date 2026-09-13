@@ -4186,3 +4186,56 @@ internally consistent and externally wrong. Jeff reading the actual calendar
 is what found it, twice now (F-67, F-119).
 
 ---
+
+## F-120 — THE VINTAGE REFRESH USED ITS OWN MATCHER AND MISSED A RELEASE (R-40)
+
+**Jeff, 2026-09-13:** *"AUD Westpac Consumer Conf Change -- We already have
+latest data of this. in the previous report it is also in the calibrator so we
+should be reflecting the new values now"*
+
+**He was right.** Westpac printed **−5.2% on 8 Sep** and the fact table still
+held **6.0% from Aug/26**.
+
+### Why the 13 Sep refresh missed it
+
+That refresh was a **one-off script that matched names with a plain substring
+test**. `'westpac consumer conf change'` is not a substring of
+`'westpac consumer confidence change sep'` — **CONF vs CONFIDENCE**.
+`week_ahead.match()` normalises exactly that abbreviation (F-64) and would
+have found it; the script reimplemented matching instead of calling it.
+
+> **A vintage check that disagrees with the scorer about what a row IS will
+> always miss rows.**
+
+### What it cost
+
+| | Was | Now |
+|---|---|---|
+| Westpac row | 6.0% → **GOOD** | −5.2% → **BAD** |
+| AUD Spending | +1.50 | **+0.50** |
+| AUD final | +1.50 (tied with NZD) | **+0.50, alone at the bottom** |
+| Widest gap | +4.00 | **+5.00** |
+
+**Set: EURAUD LONG +5.00, AUDCHF SHORT +3.59, GBPAUD LONG +2.69.** Same three
+pairs, every gap a point wider — AUD being genuinely weakest sharpens all of
+them.
+
+### R-40 — `pipelines/vintage_check.py`
+
+**It calls `week_ahead.match()`**, the same matcher the calibrator and the
+edition use. Not a second opinion about row identity — there is one opinion,
+and this asks it.
+
+**Why it is a guard rather than a script.** R-37 compares the fact tables to
+`score_model`; R-38 compares thresholds to the spec. **Both verify the repo
+against itself and pass happily on week-old data.** This is the only check
+that asks whether what we hold is what the world last published.
+
+**Proven by reintroducing the bug:** exit 1 with the stale value, exit 0
+restored. Wired into the pre-edition routine.
+
+**This is the third defect in this edition that only Jeff could catch** — F-119
+(a food-price print standing in for CPI), F-120 (a stale row), and the LD-133
+untimed row. **Every one was invisible to a repo that only checks itself.**
+
+---
