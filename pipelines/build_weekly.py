@@ -10,7 +10,7 @@ four rows that printed Mon 7 / Tue 8 reverted to their Aug-26 values. The
 five that printed on or before Friday 4 Sep stay: a Sunday report sees
 Friday's releases.
 """
-import io, os, sys, glob, datetime as dt
+import io, os, re, sys, glob, datetime as dt
 os.chdir(r'c:/Users/jpesm/OneDrive/Documents/GitHub/Macro_Economic_Reporting')
 sys.path.insert(0, os.path.join(os.getcwd(), 'pipelines'))
 NL = chr(10)
@@ -56,6 +56,10 @@ MOVER = max(ORDER, key=lambda c: (
 n_cons = len([r for r in ROWS if r['cons']])
 n_scor = len([r for r in ROWS if r['score'] is not None])
 
+# LD-130 - the published pages, so the repo copy carries its own pointers.
+ARTIFACT = 'https://claude.ai/code/artifact/2d7fcf52-02e2-4b24-829f-8c61dd55cc07'
+RETRO = 'https://claude.ai/code/artifact/3d04fa75-c91a-48c5-9b06-bbdd21c790a4'
+
 out = []
 A = out.append
 
@@ -63,8 +67,15 @@ A('<!--edition')
 A('date: 2026-09-06')
 A('title: Week of 7&ndash;11 September 2026 &middot; WEEKLY &middot; '
   'Sunday 6 Sep')
-A('revision: r1')
-A('seal: UNSEALED')
+# LD-130 - REVISION AND SEAL COME FROM STATE.md, never typed. Both had gone
+# stale: the header still read r1/UNSEALED after five revisions and Jeff's
+# seal on 2026-09-10 - the F-104 shape, furniture nobody regenerates.
+# STATE.md's header is the ONLY authority on edition identity (CLAUDE.md 0.6).
+_hdr = io.open('STATE.md', encoding='utf-8').read()[:1200]
+_ed = _hdr.split('date:')[0]
+_m = re.search(r'\(\s*(r\d+)', _ed)
+A('revision: %s' % (_m.group(1) if _m else 'r1'))
+A('seal: %s' % ('SEALED' if 'SEALED' in _ed else 'UNSEALED'))
 A('type: WEEKLY')
 A('eyebrow: Macro Economic Reporting &middot; the REVAMPED weekly &mdash; '
   'selection for the 7&ndash;11 Sep cycle')
@@ -72,14 +83,24 @@ A('chip: <b>%d pairs</b> &middot; base &plus; calibrator' % len(PICKED))
 A('chip: <b>%s %s</b> &middot; gap <b>%+.2f</b>'
   % (BEST['pair'], BEST['direction'], BEST['gap']))
 A('chip: <b class="dn">%d of %d rows scorable</b>' % (n_scor, len(ROWS)))
+# LD-130 - Jeff, 2026-09-13: "can you put the URL of our report in the weekly
+# MD file as well? so If I close it I know where I can open it again".
+# THE MARKDOWN IS THE DURABLE COPY - it lives in the repo and survives every
+# session, while the URL had only ever lived in conversation. Closing the tab
+# lost the only pointer to the published page.
+A('url: %s' % ARTIFACT)
 A('-->')
+A('')
+A('> **Published page** &middot; %s' % ARTIFACT)
+A('> **Retrospective** &middot; %s' % RETRO)
 A('')
 A('<!--exec-->')
 A('')
+_nm = {6: 'six', 7: 'seven', 8: 'eight'}.get(len(ft.WEIGHT), str(len(ft.WEIGHT)))
 A('**Selection for the 7\u201311 September cycle, built Sunday 6 September.** '
-  'This is the first weekly on the complete revamped model \u2014 six fact '
+  'This is the first weekly on the complete revamped model \u2014 %s fact '
   'tables, leading indicators at weight 2, a day-scored week-ahead '
-  'calibrator, and no room or event-risk gate anywhere in selection.')
+  'calibrator, and no room or event-risk gate anywhere in selection.' % _nm)
 A('')
 A('**THE SET:**')
 A('')
@@ -125,14 +146,15 @@ for c in ORDER:
       % (BAND[c], bold, ft.ROLE[c], F[c]['base'], cs, F[c]['total'],
          d['leading'], d['confirming']))
 A('')
-A('**`FINAL = base + calibrator`.** **Base spans \u22129 .. +9** from the six '
-  'fact tables (`%s`, %d of %d cells scored); **the calibrator spans '
-  '\u22125 .. +5** from the five trading days ahead.' % (MONTH, scored, total))
+_lim2 = sum(ft.WEIGHT.values())
+A('**`FINAL = base + calibrator`.** **Base spans \u2212%d .. +%d** from the '
+  '%s fact tables (`%s`, %d of %d cells scored); **the calibrator spans '
+  '\u22125 .. +5** from the five trading days ahead.'
+  % (_lim2, _lim2, _nm, MONTH, scored, total))
 A('')
-A('**Category weights are in the BASE only: Production, Spending and Trade '
-  'weigh 2** (leading), **Employment, Inflation and Interest Rate weigh 1** '
-  '(confirming). **The calibrator has no weights** \u2014 the day is the unit '
-  '(LD-98).')
+A('**Category weights are in the BASE only: %s weigh 2** (leading), '
+  '**%s weigh 1** (confirming). **The calibrator has no weights** \u2014 '
+  'the day is the unit (LD-98).' % (' \u00b7 '.join(sorted(c.replace('_',' ') for c in ft.LEADING)), ' \u00b7 '.join(sorted(c.replace('_',' ') for c in ft.CONFIRMING))))
 A('')
 _sizes = [len([c for c in ORDER if BAND[c] == b])
           for b in ('STRONG', 'NEUTRAL', 'WEAK')]
@@ -352,8 +374,12 @@ A('## \u00a74 \u2014 Method and limits')
 A('')
 A('| Term | Range | Source |')
 A('|---|---|---|')
-A('| Base | \u22129 .. +9 | six fact tables, `%s`, %d of %d cells'
-  % (MONTH, scored, total) + ' |')
+# LD-130: 'six fact tables' and the -9..+9 were typed, and GDP leaving the
+# base on 2026-09-10 made both wrong. Derive from the weight table.
+_nm = {6: 'six', 7: 'seven', 8: 'eight'}.get(len(ft.WEIGHT), str(len(ft.WEIGHT)))
+_lim = sum(ft.WEIGHT.values())
+A('| Base | \u2212%d .. +%d | %s fact tables, `%s`, %d of %d cells'
+  % (_lim, _lim, _nm, MONTH, scored, total) + ' |')
 A('| Calibrator | \u22125 .. +5 | **%d scheduled rows, %d scorable, %d with '
   'a TE consensus** |' % (len(ROWS), n_scor, n_cons))
 A('| **FINAL** | \u221214 .. +14 | the sum |')

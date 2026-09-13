@@ -3882,3 +3882,39 @@ no discrimination — the same defect that removed GDP from the base (LD-117):
 numeric series for all eight currencies on equal terms.
 
 ---
+
+## LD-130 — THE MARKDOWN CARRIES THE ARTIFACT URL, AND ITS HEADER STOPS LYING
+
+**Jeff, 2026-09-13:** *"can you put the URL of our report in the weekly MD file
+as well? so If I close it I know where I can open it again"*
+
+**The markdown is the durable copy.** It lives in the repo and survives every
+session; the URL had only ever lived in conversation, so closing the tab lost
+the only pointer to the published page. Both links now sit in the edition
+header and as a visible block at the top:
+
+```
+url: https://claude.ai/code/artifact/2d7fcf52-...
+> Published page  · https://claude.ai/code/artifact/2d7fcf52-...
+> Retrospective   · https://claude.ai/code/artifact/3d04fa75-...
+```
+
+### Four stale hand-typed values fixed at the same time
+
+**All four were the F-104 shape — furniture nobody regenerates:**
+
+| Was | Now | Why it was wrong |
+|---|---|---|
+| `revision: r1` | **`r5`** | read from STATE.md — five revisions had landed |
+| `seal: UNSEALED` | **`SEALED`** | Jeff sealed it 2026-09-10 |
+| "six fact tables" ×3 | derived from `ft.WEIGHT` | GDP joined then left the base (LD-113/117) |
+| "Production, Spending and Trade… Employment, Inflation and Interest Rate" | derived from `ft.LEADING` / `ft.CONFIRMING` | would not survive any category change |
+
+**Revision and seal now read from STATE.md**, which CLAUDE.md §0.6 names as the
+only authority on edition identity. **The header was asserting a fact the
+manifest already contradicted.**
+
+**Proven derived, not coincidental:** re-adding GDP to `ft.WEIGHT` makes the
+prose read *"seven fact tables, −10 … +10"* without any edit.
+
+---
