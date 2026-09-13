@@ -52,6 +52,57 @@ def _rule(ccy, indicator):
     return None
 
 
+# LD-136 - THE INFLATION RULE IS A TARGET TEST, NOT A DIRECTION TEST.
+#
+# Jeff, 2026-09-14: "Actual > 2% and Actual >= Previous is Good. Higher chance
+# of Interest Rate Hike, Actual > 2% and Actual < Previous is Neutral.
+# Probability to hold of the current Interest Rate, Actual < 2% and Actual <=
+# Previous is Bad. Higher chance of Interest Rate Cut, Actual < 2% and Actual >
+# Previous is Neutral. Probability to hold of the current Interest Rate."
+#
+# His reasoning, verbatim: "The target inflation is 2%, if the previous
+# inflation is above 2% and the latest release shows inflation is not going
+# down then it is a hawkish tone. Higher chance of increasing interest rate."
+#
+#     INFLATION IS SCORED FOR WHAT IT DOES TO THE POLICY RATE,
+#     NOT FOR WHETHER IT IS "GOOD FOR THE ECONOMY".
+#
+# That is why above-target-and-sticky is GOOD for the CURRENCY: it forces the
+# central bank hawkish. The old thresholds read ">2% & falling" -> GOOD, which
+# scored the ECONOMY's comfort rather than the RATE PATH, and is backwards for
+# a currency-strength model.
+#
+# *** THE EQUALS CASE IS THE POINT OF THE AMENDMENT. Idea_dump already carried
+# a near-identical rule using strict > and <. Jeff's amendment moves the
+# boundary to >= and <=, and that is precisely the case that prompted it:
+# USD CPI printed 3.4% after 3.4%. Flat above target is NOT relief - the bank
+# has not won yet - so it reads GOOD, not NEUTRAL. Confirmed by Jeff
+# 2026-09-14 when asked which boundary stands.
+INFLATION_TARGET = 2.0
+
+
+def inflation_score(actual, previous, target=INFLATION_TARGET):
+    """LD-136. +1 / 0 / -1 from the print, its previous, and the 2% target.
+
+        above target, not falling   -> +1  hike risk
+        above target, falling       ->  0  hold
+        below target, not rising    -> -1  cut risk
+        below target, rising        ->  0  hold
+
+    Returns None when either side is unreadable - never a guessed 0, so a
+    missing previous shows up as ungraded rather than as a neutral verdict.
+    """
+    a, p = sm._num(actual), sm._num(previous)
+    if a is None or p is None:
+        return None
+    if a > target:
+        return 1 if a >= p else 0
+    if a < target:
+        return -1 if a <= p else 0
+    # Exactly at target: the bank has hit its mandate, no pressure either way.
+    return 0
+
+
 def band(actual, thr):
     """LEVEL threshold -> +1 / 0 / -1 (F-92).
 
@@ -89,6 +140,10 @@ def score_row(cat, ccy, indicator, actual):
     if r is None:
         return None
     thr, verdict, prev = r
+    if cat == 'Inflation':
+        sc = inflation_score(actual, prev)
+        if sc is not None:
+            return sc
     b = band(actual, thr)
     if b is not None:
         return b

@@ -4239,3 +4239,52 @@ restored. Wired into the pre-edition routine.
 untimed row. **Every one was invisible to a repo that only checks itself.**
 
 ---
+
+---
+
+## LD-136 — INFLATION IS SCORED AGAINST THE 2% TARGET, NOT ITS OWN DIRECTION
+
+**Jeff, 2026-09-14:** *"we need to change the inflation scoring to this — Actual
+> 2% and Actual >= Previous is Good. Higher chance of Interest Rate Hike, Actual
+> 2% and Actual < Previous is Neutral. Probability to hold of the current
+Interest Rate, Actual < 2% and Actual <= Previous is Bad. Higher chance of
+Interest Rate Cut, Actual < 2% and Actual > Previous is Neutral. Probability to
+hold of the current Interest Rate."*
+
+**His reasoning, which is the part that generalises:** *"The target inflation is
+2%, if the previous inflation is above 2% and the latest release shows inflation
+is not going down then it is a hawkish tone. Higher chance of increasing interest
+rate."*
+
+| Where the print sits | vs Previous | Score | Why |
+|---|---|---|---|
+| **above 2%** | `>=` — not falling | **+1 GOOD** | hike risk — hawkish |
+| **above 2%** | `<` — falling | 0 NEUTRAL | bank is winning, hold |
+| **below 2%** | `<=` — not rising | **−1 BAD** | cut risk — dovish |
+| **below 2%** | `>` — rising | 0 NEUTRAL | heading home, hold |
+| exactly 2% | any | 0 NEUTRAL | mandate met |
+
+    INFLATION IS SCORED FOR WHAT IT DOES TO THE POLICY RATE,
+    NOT FOR WHETHER IT IS COMFORTABLE FOR THE ECONOMY.
+
+The rule it replaced read `>2% & falling` → **GOOD**. That scores the *economy's*
+comfort, and for a **currency-strength** model it is backwards: falling inflation
+removes the pressure to hike, which is bearish for the currency.
+
+**THE BOUNDARY IS THE AMENDMENT.** `Idea_dump/Macro_economic_indicators.txt`
+already carried a near-identical rule using strict `>` and `<`. This amendment
+moves it to `>=` and `<=`, and that is exactly the case that prompted it: **USD
+CPI printed 3.4% after 3.4%.** Flat above target is not relief — the bank has not
+won — so it reads GOOD, not NEUTRAL. Confirmed by Jeff when asked which boundary
+stands. The original wording is preserved inline in `Idea_dump/` per LD-105.
+
+**THE OLD RULE WAS NEVER IMPLEMENTED.** `band()` cannot parse `>2% & falling`, so
+every inflation row fell through to a **hand-written verdict** in the fact table —
+eight rows graded by eye with nothing checking them. `derive_scores.inflation_score()`
+now computes it and **R-44 (`test_inflation.py`)** holds 16 cases plus a check
+that every fact-table row agrees with the rule.
+
+**IMPACT.** Only **USD flipped** (NEUTRAL → GOOD); the other seven hand-written
+verdicts already agreed with the new rule. **USD base +0.69 → +1.69**, moving it
+above AUD. The set did not change: GBPAUD LONG +8.69, EURAUD LONG +5.00,
+AUDCHF SHORT +3.59.

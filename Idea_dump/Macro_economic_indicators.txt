@@ -198,52 +198,148 @@ Forward Looking Macro-Economic Indicators:
 	5. Inflation - Rate at which the general price of Goods and Services rises causing the Purchasing Power of money to fall. It is the main driver for interest rate decision. Ideal Inflation Rate = 2%
 		a. US
 			i. Inflation Rate YoY
-				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
-				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
-				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
-				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+				1) Actual > 2% and Actual >= Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual < Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual <= Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual > Previous is Neutral. Probability to hold of the current Interest Rate
+				   [AMENDED 2026-09-14 - LD-136. Jeff: "The target inflation is 2%, if the
+				    previous inflation is above 2% and the latest release shows inflation is
+				    not going down then it is a hawkish tone. Higher chance of increasing
+				    interest rate." The boundary moved from strict > / < to >= / <=, so a
+				    FLAT print is no longer neutral: flat above target is GOOD (the bank has
+				    not won yet), flat below target is BAD. Prompted by USD CPI printing 3.4%
+				    after 3.4%.
+				    ORIGINAL WORDING, preserved per LD-105:
+				      1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				      2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				      3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				      4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate]
 		b. EA
 			i. Inflation Rate YoY Final
-				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
-				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
-				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
-				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+				1) Actual > 2% and Actual >= Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual < Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual <= Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual > Previous is Neutral. Probability to hold of the current Interest Rate
+				   [AMENDED 2026-09-14 - LD-136. Jeff: "The target inflation is 2%, if the
+				    previous inflation is above 2% and the latest release shows inflation is
+				    not going down then it is a hawkish tone. Higher chance of increasing
+				    interest rate." The boundary moved from strict > / < to >= / <=, so a
+				    FLAT print is no longer neutral: flat above target is GOOD (the bank has
+				    not won yet), flat below target is BAD. Prompted by USD CPI printing 3.4%
+				    after 3.4%.
+				    ORIGINAL WORDING, preserved per LD-105:
+				      1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				      2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				      3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				      4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate]
 		c. CA
 			i. Inflation Rate YoY
-				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
-				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
-				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
-				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+				1) Actual > 2% and Actual >= Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual < Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual <= Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual > Previous is Neutral. Probability to hold of the current Interest Rate
+				   [AMENDED 2026-09-14 - LD-136. Jeff: "The target inflation is 2%, if the
+				    previous inflation is above 2% and the latest release shows inflation is
+				    not going down then it is a hawkish tone. Higher chance of increasing
+				    interest rate." The boundary moved from strict > / < to >= / <=, so a
+				    FLAT print is no longer neutral: flat above target is GOOD (the bank has
+				    not won yet), flat below target is BAD. Prompted by USD CPI printing 3.4%
+				    after 3.4%.
+				    ORIGINAL WORDING, preserved per LD-105:
+				      1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				      2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				      3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				      4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate]
 		d. AU
 			i. Inflation Rate YoY
-				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
-				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
-				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
-				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+				1) Actual > 2% and Actual >= Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual < Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual <= Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual > Previous is Neutral. Probability to hold of the current Interest Rate
+				   [AMENDED 2026-09-14 - LD-136. Jeff: "The target inflation is 2%, if the
+				    previous inflation is above 2% and the latest release shows inflation is
+				    not going down then it is a hawkish tone. Higher chance of increasing
+				    interest rate." The boundary moved from strict > / < to >= / <=, so a
+				    FLAT print is no longer neutral: flat above target is GOOD (the bank has
+				    not won yet), flat below target is BAD. Prompted by USD CPI printing 3.4%
+				    after 3.4%.
+				    ORIGINAL WORDING, preserved per LD-105:
+				      1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				      2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				      3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				      4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate]
 		e. NZ - Inflation data of NZ is QoQ which is already late
 			i. Inflation Rate YoY
-				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
-				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
-				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
-				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+				1) Actual > 2% and Actual >= Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual < Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual <= Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual > Previous is Neutral. Probability to hold of the current Interest Rate
+				   [AMENDED 2026-09-14 - LD-136. Jeff: "The target inflation is 2%, if the
+				    previous inflation is above 2% and the latest release shows inflation is
+				    not going down then it is a hawkish tone. Higher chance of increasing
+				    interest rate." The boundary moved from strict > / < to >= / <=, so a
+				    FLAT print is no longer neutral: flat above target is GOOD (the bank has
+				    not won yet), flat below target is BAD. Prompted by USD CPI printing 3.4%
+				    after 3.4%.
+				    ORIGINAL WORDING, preserved per LD-105:
+				      1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				      2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				      3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				      4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate]
 		f. JP
 			i. Inflation Rate YoY
-				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
-				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
-				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
-				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+				1) Actual > 2% and Actual >= Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual < Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual <= Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual > Previous is Neutral. Probability to hold of the current Interest Rate
+				   [AMENDED 2026-09-14 - LD-136. Jeff: "The target inflation is 2%, if the
+				    previous inflation is above 2% and the latest release shows inflation is
+				    not going down then it is a hawkish tone. Higher chance of increasing
+				    interest rate." The boundary moved from strict > / < to >= / <=, so a
+				    FLAT print is no longer neutral: flat above target is GOOD (the bank has
+				    not won yet), flat below target is BAD. Prompted by USD CPI printing 3.4%
+				    after 3.4%.
+				    ORIGINAL WORDING, preserved per LD-105:
+				      1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				      2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				      3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				      4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate]
 		g. GB
 			i. Inflation Rate YoY
-				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
-				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
-				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
-				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+				1) Actual > 2% and Actual >= Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual < Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual <= Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual > Previous is Neutral. Probability to hold of the current Interest Rate
+				   [AMENDED 2026-09-14 - LD-136. Jeff: "The target inflation is 2%, if the
+				    previous inflation is above 2% and the latest release shows inflation is
+				    not going down then it is a hawkish tone. Higher chance of increasing
+				    interest rate." The boundary moved from strict > / < to >= / <=, so a
+				    FLAT print is no longer neutral: flat above target is GOOD (the bank has
+				    not won yet), flat below target is BAD. Prompted by USD CPI printing 3.4%
+				    after 3.4%.
+				    ORIGINAL WORDING, preserved per LD-105:
+				      1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				      2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				      3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				      4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate]
 		h. CH
 			i. Inflation Rate YoY
-				1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
-				2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
-				3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
-				4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate
+				1) Actual > 2% and Actual >= Previous is Good. Higher chance of Interest Rate Hike
+				2) Actual > 2% and Actual < Previous is Neutral. Probability to hold of the current Interest Rate
+				3) Actual < 2% and Actual <= Previous is Bad. Higher chance of Interest Rate Cut
+				4) Actual < 2% and Actual > Previous is Neutral. Probability to hold of the current Interest Rate
+				   [AMENDED 2026-09-14 - LD-136. Jeff: "The target inflation is 2%, if the
+				    previous inflation is above 2% and the latest release shows inflation is
+				    not going down then it is a hawkish tone. Higher chance of increasing
+				    interest rate." The boundary moved from strict > / < to >= / <=, so a
+				    FLAT print is no longer neutral: flat above target is GOOD (the bank has
+				    not won yet), flat below target is BAD. Prompted by USD CPI printing 3.4%
+				    after 3.4%.
+				    ORIGINAL WORDING, preserved per LD-105:
+				      1) Actual > 2% and Actual > Previous is Good. Higher chance of Interest Rate Hike
+				      2) Actual > 2% and Actual <= Previous is Neutral. Probability to hold of the current Interest Rate
+				      3) Actual < 2% and Actual < Previous is Bad. Higher chance of Interest Rate Cut
+				      4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate]
 	
 	6. Interest Rate - Used to control inflation. The core indicator which tells the strength of a currency
 		a. US

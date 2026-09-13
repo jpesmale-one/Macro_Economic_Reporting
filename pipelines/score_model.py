@@ -157,14 +157,14 @@ ROWS = [
  ("Employment","CH","Non Farm Payrolls","5.698M","5.537M","Q2/26",">Prev","GOOD"),
  ("Employment","CH","Unemployment Rate","3%","3%","Aug/26","<Prev","BAD"),
  # ---------------- INFLATION (w=3) ----------------
- ("Inflation","US","Inflation Rate YoY","3.4%","3.4%","Aug/26",">2% & falling","NEUTRAL"),
- ("Inflation","EA","Inflation Rate YoY Final","2.9%","2.8%","Jul/26",">2% & rising","GOOD"),
- ("Inflation","GB","Inflation Rate YoY","2.9%","2.6%","Jul/26",">2% & rising","GOOD"),
- ("Inflation","JP","Inflation Rate YoY","1.9%","1.6%","Jul/26","<2% & rising","NEUTRAL"),
- ("Inflation","AU","Inflation Rate YoY","3.5%","3.8%","Jul/26",">2% & falling","NEUTRAL"),
- ("Inflation","NZ","Inflation Rate YoY","4.1%","3.1%","Jun/26 (Q)",">2% & rising","GOOD"),
- ("Inflation","CA","Inflation Rate YoY","3.0%","2.8%","Jul/26",">2% & rising","GOOD"),
- ("Inflation","CH","Inflation Rate YoY","0.8%","0.4%","Aug/26","<2% & rising","NEUTRAL"),
+ ("Inflation","US","Inflation Rate YoY","3.4%","3.4%","Aug/26","vs 2% target & Prev","GOOD"),
+ ("Inflation","EA","Inflation Rate YoY Final","2.9%","2.8%","Jul/26","vs 2% target & Prev","GOOD"),
+ ("Inflation","GB","Inflation Rate YoY","2.9%","2.6%","Jul/26","vs 2% target & Prev","GOOD"),
+ ("Inflation","JP","Inflation Rate YoY","1.9%","1.6%","Jul/26","vs 2% target & Prev","NEUTRAL"),
+ ("Inflation","AU","Inflation Rate YoY","3.5%","3.8%","Jul/26","vs 2% target & Prev","NEUTRAL"),
+ ("Inflation","NZ","Inflation Rate YoY","4.1%","3.1%","Jun/26 (Q)","vs 2% target & Prev","GOOD"),
+ ("Inflation","CA","Inflation Rate YoY","3.0%","2.8%","Jul/26","vs 2% target & Prev","GOOD"),
+ ("Inflation","CH","Inflation Rate YoY","0.8%","0.4%","Aug/26","vs 2% target & Prev","NEUTRAL"),
 ]
 
 CCYS = ["US","EA","GB","JP","AU","NZ","CA","CH"]

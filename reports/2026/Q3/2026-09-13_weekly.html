@@ -238,6 +238,22 @@ footer p{max-width:none}
 </header>
 
 <div class="note rev">
+  <strong>r4 &middot; 14 Sep</strong> &mdash; <strong>inflation scoring changed (LD-136).</strong>
+  It is now scored against the <strong>2% target</strong>, not its own direction:
+  above 2% and <em>not falling</em> is <strong>GOOD</strong> (hike risk), above 2% and
+  falling is NEUTRAL, below 2% and <em>not rising</em> is <strong>BAD</strong> (cut risk),
+  below 2% and rising is NEUTRAL. Jeff&#39;s reasoning &mdash; <em>&ldquo;if the previous
+  inflation is above 2% and the latest release shows inflation is not going down
+  then it is a hawkish tone.&rdquo;</em> The old rule scored <code>&gt;2% &amp; falling</code>
+  as GOOD, which reads the economy&#39;s comfort rather than the rate path, and is
+  backwards for a currency model. <strong>Only USD flipped</strong> (NEUTRAL &rarr; GOOD,
+  on 3.4% after 3.4%); the other seven already agreed. <strong>USD +0.69 &rarr;
+  +1.69</strong>, above AUD. <strong>The set did not change.</strong> The old rule was
+  never actually executed &mdash; eight rows were hand-graded; R-44 now runs 16 cases
+  against the code.
+</div>
+
+<div class="note rev">
   <strong>r3 &middot; 14 Sep</strong> &mdash; eight rows carried a stale <strong>reference
   month</strong> while showing the right-looking number. US CPI is the clearest:
   Aug/26 printed <strong>3.4%</strong> and we held Jul/26 <strong>3.4%</strong> &mdash;
@@ -309,23 +325,23 @@ footer p{max-width:none}
   <table>
     <thead><tr><th>Category</th><th>Representative</th><th>Dir</th><th class="num">Gap</th><th>Long / short</th><th>In the set?</th></tr></thead>
     <tbody>
-      <tr><td><span class="cat">RISK ON</span></td><td class="ccy">GBPUSD</td><td>LONG</td><td class="num ">+6.50</td><td>GBP over USD</td><td><span class="zero">crowded out</span></td></tr>
+      <tr><td><span class="cat">RISK ON</span></td><td class="ccy">GBPJPY</td><td>LONG</td><td class="num ">+6.33</td><td>GBP over JPY</td><td><span class="zero">crowded out</span></td></tr>
       <tr class="sel"><td><span class="cat">RISK OFF</span></td><td class="ccy">AUDCHF</td><td>SHORT</td><td class="num pos">+3.59</td><td>CHF over AUD</td><td><strong>yes</strong></td></tr>
       <tr class="sel"><td><span class="cat">EITHER</span></td><td class="ccy">GBPAUD</td><td>LONG</td><td class="num pos">+8.69</td><td>GBP over AUD</td><td><strong>yes</strong></td></tr>
     </tbody>
   </table>
   </div>
-  <p><strong>RISK ON carries +6.50 and is not in the set</strong> — leg-disjoint selection allows each currency once. <strong>That is a leg conflict, not a weak read</strong>: the pairs it would need were built on currencies an earlier, wider pair had already taken (LD-96).</p>
+  <p><strong>RISK ON carries +6.33 and is not in the set</strong> — leg-disjoint selection allows each currency once. <strong>That is a leg conflict, not a weak read</strong>: the pairs it would need were built on currencies an earlier, wider pair had already taken (LD-96).</p>
 
   <h3>RISK ON <span class="wt">4 pairs · 0 selected</span></h3>
   <div class="scroll">
   <table>
     <thead><tr><th>Pair</th><th>Dir</th><th class="num">Tier</th><th class="num">Gap</th><th>Long / short</th></tr></thead>
     <tbody>
-      <tr><td class="ccy">GBPUSD</td><td>LONG</td><td class="num">2</td><td class="num ">+6.50</td><td>GBP over USD</td></tr>
       <tr><td class="ccy">GBPJPY</td><td>LONG</td><td class="num">2</td><td class="num ">+6.33</td><td>GBP over JPY</td></tr>
-      <tr><td class="ccy">EURUSD</td><td>LONG</td><td class="num">2</td><td class="num ">+2.81</td><td>EUR over USD</td></tr>
+      <tr><td class="ccy">GBPUSD</td><td>LONG</td><td class="num">2</td><td class="num ">+5.50</td><td>GBP over USD</td></tr>
       <tr><td class="ccy">EURJPY</td><td>LONG</td><td class="num">2</td><td class="num ">+2.65</td><td>EUR over JPY</td></tr>
+      <tr><td class="ccy">EURUSD</td><td>LONG</td><td class="num">2</td><td class="num ">+1.81</td><td>EUR over USD</td></tr>
     </tbody>
   </table>
   </div>
@@ -337,12 +353,12 @@ footer p{max-width:none}
       <tr class="sel"><td class="ccy">AUDCHF</td><td>SHORT</td><td class="num">1</td><td class="num pos">+3.59</td><td>CHF over AUD</td></tr>
       <tr><td class="ccy">NZDCHF</td><td>SHORT</td><td class="num">1</td><td class="num ">+2.59</td><td>CHF over NZD</td></tr>
       <tr><td class="ccy">CADCHF</td><td>SHORT</td><td class="num">1</td><td class="num ">+2.49</td><td>CHF over CAD</td></tr>
+      <tr><td class="ccy">AUDUSD</td><td>SHORT</td><td class="num">2</td><td class="num ">+3.19</td><td>USD over AUD</td></tr>
       <tr><td class="ccy">AUDJPY</td><td>SHORT</td><td class="num">2</td><td class="num ">+2.35</td><td>JPY over AUD</td></tr>
-      <tr><td class="ccy">AUDUSD</td><td>SHORT</td><td class="num">2</td><td class="num ">+2.19</td><td>USD over AUD</td></tr>
+      <tr><td class="ccy">NZDUSD</td><td>SHORT</td><td class="num">2</td><td class="num ">+2.19</td><td>USD over NZD</td></tr>
+      <tr><td class="ccy">USDCAD</td><td>LONG</td><td class="num">2</td><td class="num ">+2.08</td><td>USD over CAD</td></tr>
       <tr><td class="ccy">NZDJPY</td><td>SHORT</td><td class="num">2</td><td class="num ">+1.35</td><td>JPY over NZD</td></tr>
       <tr><td class="ccy">CADJPY</td><td>SHORT</td><td class="num">2</td><td class="num ">+1.25</td><td>JPY over CAD</td></tr>
-      <tr><td class="ccy">NZDUSD</td><td>SHORT</td><td class="num">2</td><td class="num ">+1.19</td><td>USD over NZD</td></tr>
-      <tr><td class="ccy">USDCAD</td><td>LONG</td><td class="num">2</td><td class="num ">+1.08</td><td>USD over CAD</td></tr>
     </tbody>
   </table>
   </div>
@@ -384,8 +400,8 @@ footer p{max-width:none}
       <tr><td><span class="band s">STRONG</span></td><td class="ccy">GBP</td><td>Cyclical</td><td class="num">+8.19</td><td class="num pos">+1.00</td><td class="num pos">+9.19</td><td class="num">+6.00</td><td class="num">+2.19</td></tr>
       <tr><td><span class="band s">STRONG</span></td><td class="ccy">EUR</td><td>Cyclical</td><td class="num">+5.50</td><td class="num zero">+0.00</td><td class="num pos">+5.50</td><td class="num">+5.00</td><td class="num">+0.50</td></tr>
       <tr><td><span class="band s">STRONG</span></td><td class="ccy">CHF</td><td>Safe haven</td><td class="num">+5.09</td><td class="num neg">−1.00</td><td class="num pos">+4.09</td><td class="num">+6.00</td><td class="num">−0.91</td></tr>
+      <tr><td><span class="band n">NEUTRAL</span></td><td class="ccy">USD</td><td>Safe haven</td><td class="num">+1.69</td><td class="num pos">+2.00</td><td class="num pos">+3.69</td><td class="num">+0.00</td><td class="num">+1.69</td></tr>
       <tr><td><span class="band n">NEUTRAL</span></td><td class="ccy">JPY</td><td>Safe haven</td><td class="num">+1.85</td><td class="num pos">+1.00</td><td class="num pos">+2.85</td><td class="num">+0.67</td><td class="num">+1.19</td></tr>
-      <tr><td><span class="band n">NEUTRAL</span></td><td class="ccy">USD</td><td>Safe haven</td><td class="num">+0.69</td><td class="num pos">+2.00</td><td class="num pos">+2.69</td><td class="num">+0.00</td><td class="num">+0.69</td></tr>
       <tr><td><span class="band w">WEAK</span></td><td class="ccy">CAD</td><td>Commodity</td><td class="num">+2.61</td><td class="num neg">−1.00</td><td class="num pos">+1.61</td><td class="num">+2.00</td><td class="num">+0.61</td></tr>
       <tr><td><span class="band w">WEAK</span></td><td class="ccy">NZD</td><td>Commodity</td><td class="num">−0.50</td><td class="num pos">+2.00</td><td class="num pos">+1.50</td><td class="num">−1.00</td><td class="num">+0.50</td></tr>
       <tr><td><span class="band w">WEAK</span></td><td class="ccy">AUD</td><td>Commodity</td><td class="num">+0.50</td><td class="num zero">+0.00</td><td class="num pos">+0.50</td><td class="num">+0.50</td><td class="num">+0.00</td></tr>
@@ -405,11 +421,11 @@ footer p{max-width:none}
   <table>
     <thead><tr><th>CCY</th><th class="num">Base</th><th class="num">Calib</th><th class="num">Final</th><th>Effect</th></tr></thead>
     <tbody>
-      <tr class="sel"><td class="ccy">USD</td><td class="num">+0.69 <span class="zero">(#6)</span></td><td class="num pos">+2.00</td><td class="num">+2.69 <span class="zero">(#5)</span></td><td><strong>WEAK → NEUTRAL</strong></td></tr>
+      <tr class="sel"><td class="ccy">USD</td><td class="num">+1.69 <span class="zero">(#6)</span></td><td class="num pos">+2.00</td><td class="num">+3.69 <span class="zero">(#4)</span></td><td><strong>WEAK → NEUTRAL</strong></td></tr>
       <tr><td class="ccy">NZD</td><td class="num">−0.50 <span class="zero">(#8)</span></td><td class="num pos">+2.00</td><td class="num">+1.50 <span class="zero">(#7)</span></td><td>stays WEAK</td></tr>
       <tr><td class="ccy">GBP</td><td class="num">+8.19 <span class="zero">(#1)</span></td><td class="num pos">+1.00</td><td class="num">+9.19 <span class="zero">(#1)</span></td><td>stays STRONG</td></tr>
       <tr><td class="ccy">CHF</td><td class="num">+5.09 <span class="zero">(#3)</span></td><td class="num neg">−1.00</td><td class="num">+4.09 <span class="zero">(#3)</span></td><td>stays STRONG</td></tr>
-      <tr><td class="ccy">JPY</td><td class="num">+1.85 <span class="zero">(#5)</span></td><td class="num pos">+1.00</td><td class="num">+2.85 <span class="zero">(#4)</span></td><td>stays NEUTRAL</td></tr>
+      <tr><td class="ccy">JPY</td><td class="num">+1.85 <span class="zero">(#5)</span></td><td class="num pos">+1.00</td><td class="num">+2.85 <span class="zero">(#5)</span></td><td>stays NEUTRAL</td></tr>
       <tr class="sel"><td class="ccy">CAD</td><td class="num">+2.61 <span class="zero">(#4)</span></td><td class="num neg">−1.00</td><td class="num">+1.61 <span class="zero">(#6)</span></td><td><strong>NEUTRAL → WEAK</strong></td></tr>
     </tbody>
   </table>
@@ -427,8 +443,8 @@ footer p{max-width:none}
       <tr><td class="ccy">GBP</td><td class="num dash">—</td><td class="num neg">−1.00</td><td class="num pos">+1.00</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num pos">+1.00</td></tr>
       <tr><td class="ccy">EUR</td><td class="num dash">—</td><td class="num zero">+0.00</td><td class="num neg">−1.00</td><td class="num pos">+1.00</td><td class="num dash">—</td><td class="num zero">+0.00</td></tr>
       <tr><td class="ccy">CHF</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num neg">−1.00</td><td class="num dash">—</td><td class="num neg">−1.00</td></tr>
-      <tr><td class="ccy">JPY</td><td class="num pos">+1.00</td><td class="num dash">—</td><td class="num neg">−1.00</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num pos">+1.00</td></tr>
       <tr><td class="ccy">USD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num pos">+2.00</td></tr>
+      <tr><td class="ccy">JPY</td><td class="num pos">+1.00</td><td class="num dash">—</td><td class="num neg">−1.00</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num pos">+1.00</td></tr>
       <tr><td class="ccy">CAD</td><td class="num zero">+0.00</td><td class="num dash">—</td><td class="num neg">−1.00</td><td class="num dash">—</td><td class="num dash">—</td><td class="num neg">−1.00</td></tr>
       <tr><td class="ccy">NZD</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num zero">+0.00</td><td class="num pos">+2.00</td></tr>
       <tr><td class="ccy">AUD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num zero">+0.00</td></tr>
@@ -443,22 +459,22 @@ footer p{max-width:none}
     <thead><tr><th>When (PHT)</th><th>CCY</th><th>Indicator</th><th class="num">Previous</th><th class="num">Cons / Fcst</th><th>Threshold</th><th class="num">Score</th></tr></thead>
     <tbody>
       <tr><td class="mono">Mon 14 12:30</td><td class="ccy">JPY</td><td>Industrial Production YoY Final</td><td class="num v">4.9%</td><td class="num v">4.1%</td><td class="dim sm">&gt;0.5%</td><td class="num pos">+1</td></tr>
-      <tr class="hot"><td class="mono">Mon 14 20:30</td><td class="ccy">CAD</td><td>Inflation Rate YoY <span class="tag-hi">HIGH</span></td><td class="num v">3%</td><td class="num v">3.0%</td><td class="dim sm">&gt;2% & rising</td><td class="num zero">0</td></tr>
+      <tr class="hot"><td class="mono">Mon 14 20:30</td><td class="ccy">CAD</td><td>Inflation Rate YoY <span class="tag-hi">HIGH</span></td><td class="num v">3%</td><td class="num v">3.0%</td><td class="dim sm">vs 2% target & Prev</td><td class="num zero">0</td></tr>
       <tr><td class="mono">Tue 15 06:45</td><td class="ccy">NZD</td><td>Electronic Retail Card Spending YoY</td><td class="num v">3.4%</td><td class="num v">3.0%</td><td class="dim sm">&gt;0.5%</td><td class="num pos">+1</td></tr>
       <tr class="hot"><td class="mono">Tue 15 14:00</td><td class="ccy">GBP</td><td>Claimant Count Change <span class="tag-hi">HIGH</span></td><td class="num v">−11K</td><td class="num v">8.3K – −5.0K</td><td class="dim sm">&lt;0 (LD-58)</td><td class="num neg">−1</td></tr>
       <tr><td class="mono">Tue 15 17:00</td><td class="ccy">EUR</td><td>Balance of Trade</td><td class="num v">€8.6B</td><td class="num v">€3.7B – €14.4B</td><td class="dim sm">&gt;Prev</td><td class="num zero">0</td></tr>
       <tr><td class="mono">Tue 15 —</td><td class="ccy">NZD</td><td>Global Dairy Trade Price Index</td><td class="num v">0.9%</td><td class="num v">—</td><td class="dim sm">&gt;0.5%</td><td class="num dash">—</td></tr>
       <tr><td class="mono">Wed 16 07:50</td><td class="ccy">JPY</td><td>Balance of Trade</td><td class="num v">¥−634.5B</td><td class="num v">¥−1052.6B – ¥−850.0B</td><td class="dim sm">&gt;Prev</td><td class="num neg">−1</td></tr>
       <tr><td class="mono">Wed 16 07:50</td><td class="ccy">JPY</td><td>Machinery Orders YoY</td><td class="num v">16.9%</td><td class="num v">15.3% – 12.0%</td><td class="dim sm">&gt;0.5%</td><td class="num pos">+1</td></tr>
-      <tr class="hot"><td class="mono">Wed 16 14:00</td><td class="ccy">GBP</td><td>Inflation Rate YoY <span class="tag-hi">HIGH</span></td><td class="num v">2.9%</td><td class="num v">3.1%</td><td class="dim sm">&gt;2% & rising</td><td class="num pos">+1</td></tr>
+      <tr class="hot"><td class="mono">Wed 16 14:00</td><td class="ccy">GBP</td><td>Inflation Rate YoY <span class="tag-hi">HIGH</span></td><td class="num v">2.9%</td><td class="num v">3.1%</td><td class="dim sm">vs 2% target & Prev</td><td class="num pos">+1</td></tr>
       <tr><td class="mono">Wed 16 17:00</td><td class="ccy">EUR</td><td>Industrial Production YoY</td><td class="num v">0.1%</td><td class="num v">−0.4% – −0.3%</td><td class="dim sm">&gt;0.5%</td><td class="num neg">−1</td></tr>
       <tr><td class="mono">Wed 16 20:30</td><td class="ccy">CAD</td><td>Building Permits MoM</td><td class="num v">18.5%</td><td class="num v">−5.8% – −5.6%</td><td class="dim sm">&gt;0.5%</td><td class="num neg">−1</td></tr>
       <tr><td class="mono">Wed 16 20:30</td><td class="ccy">USD</td><td>Retail Sales YoY</td><td class="num v">5%</td><td class="num v">4.3%</td><td class="dim sm">&gt;0.5%</td><td class="num pos">+1</td></tr>
       <tr class="hot"><td class="mono">Thu 17 06:45</td><td class="ccy">NZD</td><td>GDP Growth Rate QoQ <span class="tag-hi">HIGH</span></td><td class="num v">0.8%</td><td class="num v">0.1%</td><td class="dim sm">&gt;0 range (LD-117)</td><td class="num pos">+1</td></tr>
       <tr><td class="mono">Thu 17 14:00</td><td class="ccy">CHF</td><td>Balance of Trade</td><td class="num v">CHF8.1B</td><td class="num v">CHF7.5B</td><td class="dim sm">&gt;Prev</td><td class="num neg">−1</td></tr>
-      <tr class="hot"><td class="mono">Thu 17 17:00</td><td class="ccy">EUR</td><td>Inflation Rate YoY Final <span class="tag-hi">HIGH</span></td><td class="num v">2.9%</td><td class="num v">3.3%</td><td class="dim sm">&gt;2% & rising</td><td class="num pos">+1</td></tr>
+      <tr class="hot"><td class="mono">Thu 17 17:00</td><td class="ccy">EUR</td><td>Inflation Rate YoY Final <span class="tag-hi">HIGH</span></td><td class="num v">2.9%</td><td class="num v">3.3%</td><td class="dim sm">vs 2% target & Prev</td><td class="num pos">+1</td></tr>
       <tr><td class="mono">Fri 18 06:45</td><td class="ccy">NZD</td><td>Balance of Trade</td><td class="num v">NZ$−1.95B</td><td class="num v">NZ$−1.275B – NZ$−2.3B</td><td class="dim sm">&gt;Prev</td><td class="num zero">0</td></tr>
-      <tr class="hot"><td class="mono">Fri 18 07:30</td><td class="ccy">JPY</td><td>Inflation Rate YoY <span class="tag-hi">HIGH</span></td><td class="num v">2%</td><td class="num v">2.1%</td><td class="dim sm">&lt;2% & rising</td><td class="num pos">+1</td></tr>
+      <tr class="hot"><td class="mono">Fri 18 07:30</td><td class="ccy">JPY</td><td>Inflation Rate YoY <span class="tag-hi">HIGH</span></td><td class="num v">2%</td><td class="num v">2.1%</td><td class="dim sm">vs 2% target & Prev</td><td class="num pos">+1</td></tr>
       <tr><td class="mono">Fri 18 14:00</td><td class="ccy">GBP</td><td>Retail Sales Ex Fuel YoY</td><td class="num v">2.3%</td><td class="num v">2.5%</td><td class="dim sm">&gt;0.5%</td><td class="num pos">+1</td></tr>
       <tr><td class="mono">Fri 18 21:15</td><td class="ccy">USD</td><td>Industrial Production YoY</td><td class="num v">1.1%</td><td class="num v">1.0%</td><td class="dim sm">&gt;0.5%</td><td class="num pos">+1</td></tr>
       <tr><td class="mono">Fri 18 21:15</td><td class="ccy">USD</td><td>Manufacturing Production YoY</td><td class="num v">1.2%</td><td class="num v">1.1%</td><td class="dim sm">&gt;0.5%</td><td class="num pos">+1</td></tr>
@@ -1145,7 +1161,7 @@ footer p{max-width:none}
   </div>
 
   <h3>Inflation <span class="wt">weight 1 · confirming</span></h3>
-  <p class="cnt">8 rows — 4 good · 4 neutral · 0 bad</p>
+  <p class="cnt">8 rows — 5 good · 3 neutral · 0 bad</p>
   <div class="scroll">
   <table class="ind">
     <thead><tr><th>CCY</th><th>Indicator</th><th class="num">Actual</th><th class="num">Previous</th><th>Ref</th><th>Threshold</th><th class="num">Score</th><th class="num">Category</th></tr></thead>
@@ -1156,7 +1172,7 @@ footer p{max-width:none}
         <td class="num v">0.8%</td>
         <td class="num v dim">0.4%</td>
         <td class="dim sm">Aug/26</td>
-        <td class="dim sm">&lt;2% &amp; rising</td>
+        <td class="dim sm">vs 2% target &amp; Prev</td>
         <td class="num zero">0</td>
         <td class="num zero tot" rowspan="1">+0.00</td>
       </tr>
@@ -1166,7 +1182,7 @@ footer p{max-width:none}
         <td class="num v">2.9%</td>
         <td class="num v dim">2.8%</td>
         <td class="dim sm">Jul/26</td>
-        <td class="dim sm">&gt;2% &amp; rising</td>
+        <td class="dim sm">vs 2% target &amp; Prev</td>
         <td class="num pos">+1</td>
         <td class="num pos tot" rowspan="1">+1.00</td>
       </tr>
@@ -1176,7 +1192,7 @@ footer p{max-width:none}
         <td class="num v">2.9%</td>
         <td class="num v dim">2.6%</td>
         <td class="dim sm">Jul/26</td>
-        <td class="dim sm">&gt;2% &amp; rising</td>
+        <td class="dim sm">vs 2% target &amp; Prev</td>
         <td class="num pos">+1</td>
         <td class="num pos tot" rowspan="1">+1.00</td>
       </tr>
@@ -1186,7 +1202,7 @@ footer p{max-width:none}
         <td class="num v">3.5%</td>
         <td class="num v dim">3.8%</td>
         <td class="dim sm">Jul/26</td>
-        <td class="dim sm">&gt;2% &amp; falling</td>
+        <td class="dim sm">vs 2% target &amp; Prev</td>
         <td class="num zero">0</td>
         <td class="num zero tot" rowspan="1">+0.00</td>
       </tr>
@@ -1196,7 +1212,7 @@ footer p{max-width:none}
         <td class="num v">3.0%</td>
         <td class="num v dim">2.8%</td>
         <td class="dim sm">Jul/26</td>
-        <td class="dim sm">&gt;2% &amp; rising</td>
+        <td class="dim sm">vs 2% target &amp; Prev</td>
         <td class="num pos">+1</td>
         <td class="num pos tot" rowspan="1">+1.00</td>
       </tr>
@@ -1206,9 +1222,9 @@ footer p{max-width:none}
         <td class="num v">3.4%</td>
         <td class="num v dim">3.4%</td>
         <td class="dim sm">Aug/26</td>
-        <td class="dim sm">&gt;2% &amp; falling</td>
-        <td class="num zero">0</td>
-        <td class="num zero tot" rowspan="1">+0.00</td>
+        <td class="dim sm">vs 2% target &amp; Prev</td>
+        <td class="num pos">+1</td>
+        <td class="num pos tot" rowspan="1">+1.00</td>
       </tr>
       <tr class="grp">
         <td class="ccy">JPY</td>
@@ -1216,7 +1232,7 @@ footer p{max-width:none}
         <td class="num v">1.9%</td>
         <td class="num v dim">1.6%</td>
         <td class="dim sm">Jul/26</td>
-        <td class="dim sm">&lt;2% &amp; rising</td>
+        <td class="dim sm">vs 2% target &amp; Prev</td>
         <td class="num zero">0</td>
         <td class="num zero tot" rowspan="1">+0.00</td>
       </tr>
@@ -1226,7 +1242,7 @@ footer p{max-width:none}
         <td class="num v">4.1%</td>
         <td class="num v dim">3.1%</td>
         <td class="dim sm q" title="Quarterly series - this is its cadence, not a stale row">Jun/26 (Q)</td>
-        <td class="dim sm">&gt;2% &amp; rising</td>
+        <td class="dim sm">vs 2% target &amp; Prev</td>
         <td class="num pos">+1</td>
         <td class="num pos tot" rowspan="1">+1.00</td>
       </tr>
@@ -1345,7 +1361,7 @@ footer p{max-width:none}
       <tr><td class="ccy">GBP</td><td class="num pos">+2.00</td><td class="num pos">+2.00</td><td class="num pos">+2.00</td><td class="num pos">+1.00</td><td class="num pos">+1.00</td><td class="num pos">+0.19</td><td class="num pos tot">+8.19</td></tr>
       <tr><td class="ccy">AUD</td><td class="num pos">+2.00</td><td class="num pos">+0.50</td><td class="num neg">-2.00</td><td class="num zero">+0.00</td><td class="num zero">+0.00</td><td class="num zero">+0.00</td><td class="num pos tot">+0.50</td></tr>
       <tr><td class="ccy">CAD</td><td class="num pos">+2.00</td><td class="num pos">+2.00</td><td class="num neg">-2.00</td><td class="num neg">-0.50</td><td class="num pos">+1.00</td><td class="num pos">+0.11</td><td class="num pos tot">+2.61</td></tr>
-      <tr><td class="ccy">USD</td><td class="num pos">+1.50</td><td class="num pos">+0.50</td><td class="num neg">-2.00</td><td class="num pos">+0.50</td><td class="num zero">+0.00</td><td class="num pos">+0.19</td><td class="num pos tot">+0.69</td></tr>
+      <tr><td class="ccy">USD</td><td class="num pos">+1.50</td><td class="num pos">+0.50</td><td class="num neg">-2.00</td><td class="num pos">+0.50</td><td class="num pos">+1.00</td><td class="num pos">+0.19</td><td class="num pos tot">+1.69</td></tr>
       <tr><td class="ccy">JPY</td><td class="num pos">+2.00</td><td class="num pos">+0.67</td><td class="num neg">-2.00</td><td class="num pos">+1.00</td><td class="num zero">+0.00</td><td class="num pos">+0.19</td><td class="num pos tot">+1.85</td></tr>
       <tr><td class="ccy">NZD</td><td class="num pos">+2.00</td><td class="num neg">-1.00</td><td class="num neg">-2.00</td><td class="num neg">-1.00</td><td class="num pos">+1.00</td><td class="num pos">+0.50</td><td class="num neg tot">-0.50</td></tr>
     </tbody>

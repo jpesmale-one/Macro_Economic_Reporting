@@ -156,6 +156,9 @@ python pipelines/audit_schedule.py       # R-30 - actual vs its own release time
 python pipelines/audit_times.py <md>     # R-32 - VERIFY THE TIME FIRST (F-77)
 python pipelines/freshness.py            # LD-54 - revisions + stalled series
 python pipelines/test_guards.py          # 8 real regressions must all block
+python pipelines/test_inflation.py       # R-44 - LD-136, inflation scored vs the
+                                         # 2% TARGET, not its own direction.
+                                         # 16 cases + every fact-table row.
 python pipelines/test_phtime.py          # R-39 - EVERY TIME IS PHT (UTC+8)
 python pipelines/vintage_check.py        # R-40 - is any row STALE against a
                                          # release we already captured? (F-120)
