@@ -18,8 +18,8 @@ import fact_tables as ft
 import pair_select as ps
 import calibrator as cal
 
-CAP = sorted(glob.glob('data/raw/calendar/2026-09-08_*_cal_full.json'))[-1]
-START, END = '2026-09-07', '2026-09-11'
+CAP = sorted(glob.glob('data/raw/calendar/2026-09-13_*_cal_full.json'))[-1]
+START, END = '2026-09-14', '2026-09-18'
 
 F = ps.final_scores(CAP, START, END)
 SC = dict((c, F[c]['total']) for c in F)
@@ -57,28 +57,26 @@ n_cons = len([r for r in ROWS if r['cons']])
 n_scor = len([r for r in ROWS if r['score'] is not None])
 
 # LD-130 - the published pages, so the repo copy carries its own pointers.
-ARTIFACT = 'https://claude.ai/code/artifact/2d7fcf52-02e2-4b24-829f-8c61dd55cc07'
+ARTIFACT = 'https://claude.ai/code/artifact/0e388632-c401-4a21-abe2-d2c7149a630d'
 RETRO = 'https://claude.ai/code/artifact/3d04fa75-c91a-48c5-9b06-bbdd21c790a4'
 
 out = []
 A = out.append
 
 A('<!--edition')
-A('date: 2026-09-06')
-A('title: Week of 7&ndash;11 September 2026 &middot; WEEKLY &middot; '
-  'Sunday 6 Sep')
-# LD-130 - REVISION AND SEAL COME FROM STATE.md, never typed. Both had gone
-# stale: the header still read r1/UNSEALED after five revisions and Jeff's
-# seal on 2026-09-10 - the F-104 shape, furniture nobody regenerates.
-# STATE.md's header is the ONLY authority on edition identity (CLAUDE.md 0.6).
-_hdr = io.open('STATE.md', encoding='utf-8').read()[:1200]
-_ed = _hdr.split('date:')[0]
-_m = re.search(r'\(\s*(r\d+)', _ed)
-A('revision: %s' % (_m.group(1) if _m else 'r1'))
-A('seal: %s' % ('SEALED' if 'SEALED' in _ed else 'UNSEALED'))
+A('date: 2026-09-13')
+A('title: Week of 14&ndash;18 September 2026 &middot; WEEKLY &middot; '
+  'Sunday 13 Sep')
+# LD-131 - A NEW EDITION STARTS AT r1 AND UNSEALED. Reading STATE.md was
+# right while rebuilding ONE edition (LD-130), but on a NEW week it
+# inherits the PREVIOUS edition's identity - this build stamped r5/SEALED
+# on a report Jeff had never seen. STATE.md is the authority on the
+# CURRENT edition, and this is not it until the manifest is updated.
+A('revision: r1')
+A('seal: UNSEALED')
 A('type: WEEKLY')
 A('eyebrow: Macro Economic Reporting &middot; the REVAMPED weekly &mdash; '
-  'selection for the 7&ndash;11 Sep cycle')
+  'selection for the 14&ndash;18 Sep cycle')
 A('chip: <b>%d pairs</b> &middot; base &plus; calibrator' % len(PICKED))
 A('chip: <b>%s %s</b> &middot; gap <b>%+.2f</b>'
   % (BEST['pair'], BEST['direction'], BEST['gap']))
@@ -88,17 +86,19 @@ A('chip: <b class="dn">%d of %d rows scorable</b>' % (n_scor, len(ROWS)))
 # THE MARKDOWN IS THE DURABLE COPY - it lives in the repo and survives every
 # session, while the URL had only ever lived in conversation. Closing the tab
 # lost the only pointer to the published page.
-A('url: %s' % ARTIFACT)
+if ARTIFACT:
+    A('url: %s' % ARTIFACT)
 A('-->')
 A('')
-A('> **Published page** &middot; %s' % ARTIFACT)
-A('> **Retrospective** &middot; %s' % RETRO)
+if ARTIFACT:
+    A('> **Published page** &middot; %s' % ARTIFACT)
+A("> **Last week&#39;s retrospective** &middot; %s" % RETRO)
 A('')
 A('<!--exec-->')
 A('')
 _nm = {6: 'six', 7: 'seven', 8: 'eight'}.get(len(ft.WEIGHT), str(len(ft.WEIGHT)))
-A('**Selection for the 7\u201311 September cycle, built Sunday 6 September.** '
-  'This is the first weekly on the complete revamped model \u2014 %s fact '
+A('**Selection for the 14\u201318 September cycle, built Sunday 13 September.** '
+  'The second weekly on the revamped model \u2014 %s fact '
   'tables, leading indicators at weight 2, a day-scored week-ahead '
   'calibrator, and no room or event-risk gate anywhere in selection.' % _nm)
 A('')
@@ -227,8 +227,15 @@ for r in sorted(ROWS, key=lambda x: x['when'] or dt.datetime.max):
         rng = ('%s \u2013 %s' % (rng, r['fcst'])) if rng else r['fcst']
     sc = ('**%+d**' % r['score']) if r['score'] else (
         '0' if r['score'] == 0 else '\u2014')
+    # F-116: a row can have NO published time - NZD Global Dairy Trade is
+    # scheduled by TE without one. The old code called .strftime() on None
+    # and killed the whole build. NO EVENT IS EVER DROPPED (F-36): the row
+    # is published with its day and an explicit "no time", never hidden.
+    _when = (r['when'].strftime('%a %d %H:%M') if r['when']
+             else ('%s \u2014' % r['day'].strftime('%a %d')
+                   if r.get('day') else 'no time'))
     A('| %s | %s | %s | %s | %s | %s |'
-      % (r['when'].strftime('%a %d %H:%M'), r['ccy'], r['name'],
+      % (_when, r['ccy'], r['name'],
          r['prev'] or '\u2014', rng or '\u2014', sc))
 A('')
 A('**%d of %d rows are scorable, and %d carry a real TE consensus.** '
@@ -435,7 +442,7 @@ A('**Next: the 14\u201318 Sep selection, at the weekend** \u2014 Jeff, 2026-09-0
   'scorable rows instead of 13 of 20.**')
 A('')
 
-p = 'reports/2026/Q3/2026-09-06_weekly.md'
+p = 'reports/2026/Q3/2026-09-13_weekly.md'
 io.open(p, 'w', encoding='utf-8', newline='').write(NL.join(out))
 print('wrote %s (%d lines)' % (p, len(out)))
 print()

@@ -18,8 +18,8 @@ import calibrator as cal
 SP = ('C:/Users/jpesm/AppData/Local/Temp/claude/'
       'c--Users-jpesm-OneDrive-Documents-GitHub/'
       '16c8f514-dc2c-4587-b6a0-4fa0ff0b7ba8/scratchpad/')
-CAP = sorted(glob.glob('data/raw/calendar/2026-09-08_*_cal_full.json'))[-1]
-START, END = '2026-09-07', '2026-09-11'
+CAP = sorted(glob.glob('data/raw/calendar/2026-09-13_*_cal_full.json'))[-1]
+START, END = '2026-09-14', '2026-09-18'
 
 F = ps.final_scores(CAP, START, END)
 SC = dict((c, F[c]['total']) for c in F)
@@ -42,7 +42,17 @@ WHY = dict((id(x), w) for x, w in SETROWS)
 LEGACY = ps.select(CANDS)
 OVERLAP = ps.leg_overlap(PICKED)
 CALD = cal.calibrate(CAP, START, END)
-ROWS = sorted(cal.week_rows(CAP, START, END), key=lambda r: r['when'])
+# F-116: a row can have NO published time (NZD Global Dairy Trade). Sorting
+# on `when` directly raises on None; dropping such rows would be F-36, where
+# a sort silently discarded events. Sort by day, then untimed LAST within
+# the day, then by clock - and keep every row.
+def _order(r):
+    return (r['day'] or dt.date.max,
+            1 if r['when'] is None else 0,
+            r['when'].strftime('%H:%M') if r['when'] else '')
+
+
+ROWS = sorted(cal.week_rows(CAP, START, END), key=_order)
 B = ft.base_scores()
 BSC = dict((c, F[c]['base']) for c in F)
 BBAND, BORDER = ft.bands(BSC)
@@ -54,7 +64,7 @@ FRANK = dict((c, i + 1) for i, c in enumerate(ORDER))
 n_cons = len([r for r in ROWS if r['cons']])
 n_scor = len([r for r in ROWS if r['score'] is not None])
 BEST = PICKED[0]
-DAYS = [dt.date(2026, 9, d) for d in (7, 8, 9, 10, 11)]
+DAYS = [dt.date(2026, 9, d) for d in (14, 15, 16, 17, 18)]
 BANDCLS = {'STRONG': 's', 'NEUTRAL': 'n', 'WEAK': 'w'}
 
 
@@ -441,9 +451,15 @@ for r in ROWS:
     sc = ('<td class="num %s">%s</td>' % (cls(s), sg(s, '%+d'))
           if s else '<td class="num zero">0</td>') if s is not None \
         else '<td class="num dash">\u2014</td>'
+    # F-116: TE schedules some rows with NO time (NZD Global Dairy Trade).
+    # Calling .strftime() on None killed the build; dropping the row would
+    # be F-36. Publish it with its day and an explicit "no time".
+    _when = (r['when'].strftime('%a %d %H:%M') if r['when']
+             else ('%s \u2014' % r['day'].strftime('%a %d')
+                   if r.get('day') else 'no time'))
     A('      <tr><td class="mono">%s</td><td class="ccy">%s</td><td>%s</td>'
       '<td class="num v">%s</td><td class="num v">%s</td>%s</tr>'
-      % (r['when'].strftime('%a %d %H:%M'), r['ccy'], r['name'],
+      % (_when, r['ccy'], r['name'],
          (r['prev'] or '\u2014').replace('-', '\u2212'),
          (rng or '\u2014').replace('-', '\u2212'), sc))
 A('    </tbody>')

@@ -139,7 +139,11 @@ ROWS = {
     # realised term still pays for the level, the surprise pays nothing.
     'NZ': ('2.75%', +1.0, 4.1, True,  'HIKED 2 Sep to 2.75%, exactly on consensus - fully priced, NZD -108 pips (LD-90)', 0.0, 2.50, None),
     'US': ('3.50-3.75%', 0.0, 3.4, False, 'CPI as proxy; the Fed targets PCE', None, 3.75, 4.00),
-    'EA': ('2.40%', 0.0, 2.9, True,  'HICP final', None, 2.40, 2.65),
+    # ECB HIKED 10 Sep 2026 to 2.65%, exactly on the 2.65% consensus - the
+    # same shape as NZD above, so SURPRISE scores 0.00 (LD-90): a fully
+    # priced hike is not news. REALISED now pays +1.0 for having moved.
+    # PATH is None - the next meeting is beyond TE's horizon (F-102).
+    'EA': ('2.65%', +1.0, 2.9, True,  'HIKED 10 Sep to 2.65%, exactly on consensus - fully priced (LD-90). HICP final', 0.0, 2.65, None),
     'GB': ('3.75%', 0.0, 2.9, True,  '', None, 3.75, 3.75),
     'JP': ('1.00%', 0.0, 1.9, True,  'Jul/26 print, released 07:30 PHT 21 Aug', None, 1.00, 1.25),
     'AU': ('4.35%', 0.0, 3.8, False, '', None, 4.35, 4.35),

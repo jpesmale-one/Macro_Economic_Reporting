@@ -8,9 +8,9 @@
   "n_seen": 1
  },
  "EUR": {
-  "last": null,
-  "last_rate": null,
-  "days_since": null,
+  "last": "2026-09-10",
+  "last_rate": "2.65%",
+  "days_since": 3,
   "next": null,
   "next_forecast": null,
   "n_seen": 1
@@ -42,7 +42,7 @@
  "NZD": {
   "last": "2026-09-02",
   "last_rate": "2.75%",
-  "days_since": 8,
+  "days_since": 11,
   "next": null,
   "next_forecast": null,
   "n_seen": 1
@@ -50,7 +50,7 @@
  "CAD": {
   "last": "2026-09-02",
   "last_rate": "2.25%",
-  "days_since": 8,
+  "days_since": 11,
   "next": null,
   "next_forecast": null,
   "n_seen": 1

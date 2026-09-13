@@ -4,15 +4,15 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-09-06 (r5, WEEKLY, *** SEALED 2026-09-10 by Jeff *** -
-         selection for the 7-11 Sep cycle, built on SUNDAY 6 SEP VINTAGE.
-         Jeff: "report is looking good. let's sealed this report then let's
-         see the progress on Sunday")
-date: 2026-09-06
-data_asof: 2026-09-06 vintage (calendar captured 2026-09-08 23:26, 828 rows;
-           TE reconciled 23:27, 0 unmatched. Fact tables ROLLED BACK to what
-           was knowable on Sunday - 4 rows that printed Mon 7 / Tue 8
-           reverted to Aug-26. NO PRICE DATA)
+edition: 2026-09-13 (r1, WEEKLY, UNSEALED - selection for the 14-18 Sep
+         cycle, built on SUNDAY 13 SEP VINTAGE)
+date: 2026-09-13
+data_asof: 2026-09-13 vintage (calendar captured 2026-09-13 12:09, 784 rows,
+           coverage complete. SEVEN whitelist rows refreshed for prints that
+           landed 7-11 Sep, plus the ECB's 10 Sep hike to 2.65%.)
+artifact: https://claude.ai/code/artifact/0e388632-c401-4a21-abe2-d2c7149a630d
+prev_edition: 2026-09-06 (r5, SEALED 2026-09-10)
+           https://claude.ai/code/artifact/2d7fcf52-02e2-4b24-829f-8c61dd55cc07
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse

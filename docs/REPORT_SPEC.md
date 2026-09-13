@@ -3918,3 +3918,88 @@ manifest already contradicted.**
 prose read *"seven fact tables, −10 … +10"* without any edit.
 
 ---
+
+## F-116 / F-117 — TWO DEFECTS THE NEW WEEK EXPOSED
+
+### F-116 — a calendar row can have NO published time, and it killed the build
+
+**NZD Global Dairy Trade Price Index** is scheduled by TE without a time.
+`r['when']` is `None`, and three places called `.strftime()` on it —
+`build_weekly`, `gen_page`'s row builder, and `gen_page`'s sort. **The whole
+edition failed to generate.**
+
+**The fix is NOT to drop the row — that would be F-36**, where a sort silently
+discarded events. Untimed rows now publish with their day and an explicit
+"no time", and sort to the end of that day. **No event is ever dropped.**
+
+Twenty of 21 rows scored this week; the unscorable one is visible in §3
+rather than missing from it.
+
+### F-117 — publishing a new edition OVERWROTE the sealed one
+
+The 14–18 Sep page was written to the same scratchpad filename as the 7–11 Sep
+page, so the publish went to **the sealed edition's URL**. The sealed 7–11
+page was replaced by the new week's content.
+
+**Recovered from git** — the repo copy had also been overwritten by the
+assembler, so `git checkout` was the only clean source. **That is exactly why
+a sealed edition is committed.**
+
+**Two rules now hold:**
+- **A new edition gets a NEW file path**, and therefore a new URL. A sealed
+  edition's URL is never republished with different content.
+- **`assemble.py` writes to the CURRENT edition's file**, never the previous
+  one.
+
+---
+
+## LD-131 — A NEW EDITION STARTS AT r1 AND UNSEALED
+
+LD-130 had the markdown read `revision`/`seal` from STATE.md, which is right
+when **rebuilding one edition**. On a **new week** it inherits the previous
+edition's identity — this build stamped **`r5 / SEALED`** on a report Jeff had
+never seen.
+
+**STATE.md is the authority on the CURRENT edition, and a fresh build is not
+it until the manifest is advanced.** New editions now emit `r1 / UNSEALED`.
+
+---
+
+## EDITION 2026-09-13 — the week of 14–18 September
+
+**Board:**
+
+| Band | | | |
+|---|---|---|---|
+| STRONG | CHF +4.09 | EUR +3.50 | GBP +3.19 |
+| NEUTRAL | JPY +2.85 | USD +2.69 | |
+| WEAK | NZD +2.00 | CAD +1.61 | AUD +1.50 |
+
+**The set — 3 pairs, and RISK ON goes unfilled:**
+
+| Pair | Bias | Gap | Covers |
+|---|---|---|---|
+| AUDCHF | SHORT | +2.59 | RISK OFF · CHF |
+| EURAUD | LONG | +2.00 | EITHER · EUR |
+| GBPAUD | LONG | +1.69 | GBP |
+
+**NO RISK ON PAIR QUALIFIES, and that is the rule working.** RISK ON needs a
+cyclical or commodity currency STRONG against a safe haven WEAK. **Both safe
+havens (JPY, USD) sit in NEUTRAL**, so every RISK ON candidate is tier 2 —
+EURUSD +0.81, EURJPY +0.65, GBPUSD +0.50, GBPJPY +0.33. **Tier-1-only means
+the category goes unfilled rather than padding the set with a thin read
+(LD-125).**
+
+**AUD is short in all three pairs** — the concentration note fires.
+
+**Vintage:** seven whitelist rows refreshed for prints that landed 7–11 Sep,
+plus **the ECB's 10 Sep hike to 2.65%**, exactly on consensus and therefore
+scoring SURPRISE 0.00 (LD-90) — the same shape as NZD's 2 Sep hike. EUR's rate
+score rises to +0.500.
+
+**NZD GDP flipped:** TE revised the 17 Sep forecast from **−0.1% to +0.1%**
+and added a 0.1% consensus. The range is now entirely positive, so it scores
+**+1** rather than the −1 recorded on 10 Sep. **The rule did not change; the
+forecast did.**
+
+---
