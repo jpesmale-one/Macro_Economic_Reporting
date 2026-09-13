@@ -170,6 +170,15 @@ python pipelines/shell_check.py <page.html>  # R-43 - DOES THE HAND-WRITTEN
                                          # rebuild leaves them describing the
                                          # PREVIOUS edition (F-122). Run it on
                                          # the assembled page before publishing.
+python pipelines/indicator_pages.py --refresh  # R-45 - EVERY ROW vs ITS TE
+                                         # INDICATOR PAGE. R-40/R-41 check
+                                         # against the CAPTURE and can only
+                                         # see ~30 of 70 rows; the calendar is
+                                         # a rolling window. This reads the
+                                         # per-indicator release history and
+                                         # verifies all 70 - value AND vintage.
+                                         # ANSWERS "do I have to check each
+                                         # item myself?" with no.
 python pipelines/capture_gap.py --raise  # R-42 - DID A RELEASE FALL THROUGH A
                                          # GAP BETWEEN CAPTURES? The TE
                                          # calendar is a ROLLING WINDOW and
