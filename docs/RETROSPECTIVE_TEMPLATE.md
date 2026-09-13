@@ -40,9 +40,38 @@ reviews a WEEK, is written once a week, and answers a different question:
 | | Question |
 |---|---|
 | **2a** | The selection process — how did we decide on the pairs? What factors formed the bias? |
-| **2b** | Day by day from Monday's open to the close: how did the market move? Did it go our way? **Do we know WHY it did or did not — in FOREX, GOLD and BTC lenses?** |
+| **2b** | Day by day: **did the market FAVOUR the bias?** Score each session against **0.75 of that pair's typical daily range** (LD-128/129), not the close. **Do we know WHY it did or did not?** |
 | **2c** | How can we improve so we can **foresee** where the market wants to go? |
 | **2d** | What best practices do we continue? |
+
+### 2b is graded on a DAY'S RANGE, not the close (LD-128/129, amended 2026-09-13)
+
+**Jeff, 2026-09-13:** *"we need to determine first what is the average daily
+pips movement of each pairs each day. Then if we hit that for the day in our
+bias then it's already a win... A trader will not wait for a market reversal
+before closing the trade."*
+
+| | |
+|---|---|
+| **Target** | **0.75 × ATR(14)**, per pair |
+| **ATR window** | the sessions **ENDING BEFORE** the graded week — never its own bars |
+| **Measured from** | **that session's own open**, not Monday's |
+| **A day counts** | favourable excursion ≥ target |
+| **A week counts** | at least one such day |
+
+**Why it changed a verdict on first use:** AUDCHF closed the week at −24.1 and
+reads as a clean loss. It reached **0.90×** on Thursday — the market travelled
+nine-tenths of a normal day in the called direction. **The close was measuring
+when we stopped looking.**
+
+**Publish the grid, not just the count.** Five columns of `×ATR` per pair shows
+whether a win was one lucky session or a sustained read — AUDJPY hit on **3 of
+5 days**, which the weekly figure cannot say.
+
+**Scope (LD-4):** this is an observation about how far price travelled, never
+an instruction to exit there.
+
+---
 
 **Close with an honest verdict** — the reference edition's was *"the process
 improved a great deal and the analysis was mostly wrong. Both are true and they
