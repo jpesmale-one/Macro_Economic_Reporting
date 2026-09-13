@@ -3836,3 +3836,49 @@ and were wrong (the Rio Tinto and "CHF weakened" fabrications). **Treat it as
 the market's stated view, not as established mechanism.**
 
 ---
+
+## SNB RATE HISTORY — and why "0% is hurting CHF" is only half the mechanism
+
+**Jeff, 2026-09-13:** *"so meaning CHF having 0% interest rate is hurting the
+currency.. When did it start cutting their interest rate to 0?"*
+
+### The date
+
+**19 June 2025**, effective 20 June — the SNB cut by 0.25pp to **0%**, its
+**sixth consecutive reduction** from 1.75% since March 2024. Cited reasons:
+easing inflation pressure (May CPI **−0.1%**, the first fall in four years)
+and a weakening global outlook. The SNB explicitly left the door open to
+negative rates.
+
+**The rate has been 0% ever since — roughly 15 months.**
+
+Our own capture archive cannot show this: it begins 2026-08-17 and holds only
+the forward row (SNB 24 Sep, forecast 0%, previous 0%). **The date is sourced
+externally and labelled as such.**
+
+### *** THE DISTINCTION THAT MATTERS FOR THE MODEL ***
+
+**0% is a STANDING CONDITION, not an event.** It has been true for 451 days,
+through weeks when CHF rose and weeks when it fell. **It therefore cannot
+explain why CHF fell in THIS week while scoring +6.09.**
+
+| | |
+|---|---|
+| **Precondition** | 0% makes CHF *eligible* as a funding currency — true since June 2025 |
+| **Event** | JPY intervention rotated carry shorts **into** CHF — new in this week |
+
+**A standing condition explains a level; an event explains a change.** Reading
+"0% is hurting CHF" as the cause conflates the two — the rate is why CHF *can*
+be the funding leg, not why the flow arrived when it did.
+
+### Why this does not become a scored input
+
+**A term for "policy rate is zero" would score CHF identically every week for
+15 months** and would have been just as negative in weeks CHF rallied. It adds
+no discrimination — the same defect that removed GDP from the base (LD-117):
+**a category that says the same thing every week ranks nothing.**
+
+**The discriminating variable is positioning, which LD-23 blocks** (F-115): no
+numeric series for all eight currencies on equal terms.
+
+---
