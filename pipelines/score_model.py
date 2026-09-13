@@ -62,8 +62,8 @@ ROWS = [
  # production row on the board. The row itself still grades BAD, because
  # -0.2% IS below zero - what changes is that a POSITIVE forecast now
  # scores positively in the calibrator instead of being graded bad.
- ("Production","GB","Industrial Production YoY","-0.2%","1.0%","Jun/26",">0.5%","BAD"),
- ("Production","GB","Manufacturing Production YoY","0.5%","2.0%","Jun/26",">0.5%","NEUTRAL"),
+ ("Production","GB","Industrial Production YoY","0.6%","-0.2%","Jul/26",">0.5%","GOOD"),
+ ("Production","GB","Manufacturing Production YoY","2.6%","0.5%","Jul/26",">0.5%","GOOD"),
  ("Production","JP","Industrial Production YoY Final","4.9%","-2.1%","Jun/26",">0.5%","GOOD"),
  ("Production","JP","Machinery Orders YoY","16.9%","-1.9%","Jun/26",">0.5%","GOOD"),
  ("Production","JP","Machine Tool Orders YoY","64.7%","50.4%","Jul/26",">0.5%","GOOD"),
@@ -118,7 +118,7 @@ ROWS = [
  # FLIPS GOOD -> BAD. Beating a -$90B consensus is not the test.
  ("Trade","US","Balance of Trade","-$88.6B","-$71.2B","Jul/26",">Prev","BAD"),
  ("Trade","EA","Balance of Trade","EUR8.60B","EUR-9.00B","Jun/26",">Prev","GOOD"),
- ("Trade","GB","Balance of Trade","GBP-5.54B","GBP-3.46B","Jun/26",">Prev","BAD"),
+ ("Trade","GB","Balance of Trade","GBP-3.45B","GBP-5.54B","Jul/26",">Prev","GOOD"),
  ("Trade","JP","Balance of Trade","JPY-634.5B","JPY-409.9B","Jul/26",">Prev","BAD"),
  # F-98: spec line 141 - all eight Balance of Trade rows are ">Prev".
  # A$1.923B is BELOW the A$2.341B previous, so this FLIPS GOOD -> BAD.

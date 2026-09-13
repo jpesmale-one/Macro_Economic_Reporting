@@ -159,6 +159,16 @@ python pipelines/test_guards.py          # 8 real regressions must all block
 python pipelines/test_phtime.py          # R-39 - EVERY TIME IS PHT (UTC+8)
 python pipelines/vintage_check.py        # R-40 - is any row STALE against a
                                          # release we already captured? (F-120)
+python pipelines/capture_gap.py --raise  # R-42 - DID A RELEASE FALL THROUGH A
+                                         # GAP BETWEEN CAPTURES? The TE
+                                         # calendar is a ROLLING WINDOW and
+                                         # each COUNTRY PAGE has its own reach.
+                                         # A row that prints while no capture
+                                         # can see it is gone from the calendar
+                                         # forever - recover it from the TE
+                                         # INDICATOR page and record it in
+                                         # data/raw/calendar/RECOVERED.md.
+                                         # ALSO SAYS WHEN THE NEXT CAPTURE IS DUE.
 python pipelines/coverage_check.py       # R-41 - WHICH ROWS CANNOT WE VERIFY?
                                          # R-40 passes by SILENCE on a row it
                                          # has never seen a print for. This
