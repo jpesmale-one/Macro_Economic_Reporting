@@ -987,7 +987,7 @@ might matter.
 | **P2 RECOMPUTED** | **PASS** — every move, week total, range position and falsifier margin recomputed from final bars |
 | **Seal** | **UNSEALED.** Saturday closes a FULL-seal week (LD-12) — the week's seal awaits Jeff (P3) |
 
-**The week's retrospective is a SEPARATE WEEKLY ARTIFACT** (LD-70), not a section here — *Week One Retrospective*, 23–29 Aug, covering the build and the market analysis with the day-by-day record in three lenses.
+**The week's retrospective is a SEPARATE WEEKLY ARTIFACT** (LD-70), not a section here &mdash; [2026-08-29_retro.md](2026-08-29_retro.md), https://claude.ai/code/artifact/eeabb1a3-f7d9-41a1-8cf9-e0af35c20c21 — *Week One Retrospective*, 23–29 Aug, covering the build and the market analysis with the day-by-day record in three lenses.
 
 **Next:** **Sunday's WEEKEND PREP edition** — roll §4.0's window to **31 Aug –
 4 Sep** (LD-66), rebuild the calendar capture to include **CHF and NZD**

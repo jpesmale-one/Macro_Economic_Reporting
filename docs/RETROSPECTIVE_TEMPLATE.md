@@ -1,3 +1,15 @@
+> **LD-138 - WHERE A RETROSPECTIVE LIVES.** Jeff, 2026-09-14: "by the way where
+> are you storing the retrospective reports?" They were not stored. Two
+> retrospectives - Week One (29 Aug) and The Week JPY Carried (13 Sep) - existed
+> ONLY as published artifacts, with no source file ever committed; the 29 Aug
+> edition did not even record its URL.
+>
+> A retrospective is a REPORT ABOUT A WEEK, so it lives beside the edition it
+> grades: `reports/<year>/<quarter>/<YYYY-MM-DD>_retro.md`, with the `.html`
+> alongside it. **Write it to the repo FIRST and publish from it**, the same way
+> every edition is built - never scratchpad-to-artifact with nothing kept.
+> `docs/` is for spec and process, not output.
+
 # WEEKLY RETROSPECTIVE — template, locked 2026-08-30 (LD-70)
 
 **Jeff, 2026-08-30:** *"I like the Retrospective report we created yesterday.
