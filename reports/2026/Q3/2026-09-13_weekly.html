@@ -1,6 +1,44 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.note.rev{background:#fffaf0;border:1px solid #e8d9b8;border-left:3px solid #c8922a;
-padding:12px 14px;margin:14px 0 4px;font-size:13px;line-height:1.55;border-radius:3px}
-.note.rev strong{font-weight:600}
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+/* ---- revision log (LD-139) -------------------------------------------
+   Jeff, 2026-09-14: "I don't like this in the top. we can place it under
+   section 5 Methods and Limits. plus change the background I can barely
+   read it"
+
+   Two defects, one cause. The notes were hardcoded #fffaf0 on light ink
+   tokens - in DARK MODE that is near-white paper under light-grey text,
+   which is what he could not read. Everything else on this page draws
+   from the theme tokens; these did not, because I wrote them inline in a
+   hurry across five revisions.
+
+   And five stacked banners pushed the actual report below the fold. A
+   revision log is PROVENANCE, not the lede - it belongs with the method,
+   and collapsed, so the current reading opens first. */
+.revlog{margin:26px 0 0}
+.revlog > summary{
+  cursor:pointer; list-style:none;
+  font:600 11px/1 "IBM Plex Mono",ui-monospace,monospace;
+  letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3);
+  padding:9px 0; border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  display:flex; align-items:center; gap:9px;
+}
+.revlog > summary::-webkit-details-marker{display:none}
+.revlog > summary::before{
+  content:"B8"; color:var(--accent); font-size:13px;
+  transition:transform .15s ease; display:inline-block;
+}
+.revlog[open] > summary::before{transform:rotate(90deg)}
+.revlog > summary:hover{color:var(--ink-2)}
+.revlog .inner{padding:16px 0 0}
+.note.rev{
+  background:var(--card); color:var(--ink-2);
+  border:1px solid var(--rule); border-left:2px solid var(--accent);
+  padding:13px 16px; margin:0 0 10px;
+  font-size:13px; line-height:1.6; border-radius:0 3px 3px 0;
+}
+.note.rev:last-child{margin-bottom:0}
+.note.rev strong{font-weight:600; color:var(--ink)}
+.note.rev code{font-size:.92em; color:var(--ink-2)}
 </style></head><body>
 <title>Week of 14-18 September</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -236,73 +274,6 @@ footer p{max-width:none}
     <span class="chip q">UNSEALED</span>
   </div>
 </header>
-
-<div class="note rev">
-  <strong>r6 &middot; 14 Sep</strong> &mdash; <strong>LD-136 now applies to the calibrator
-  too.</strong> It had reached the base only; the calibrator has its own scorer, and
-  an inflation row fell through it to the surprise-vs-consensus test.
-  <strong>CAD CPI (tonight, Mon 14 20:30 PHT) expects 3.0% after 3.0%</strong> &mdash; no
-  surprise, so it scored NEUTRAL, while the base calls flat-above-target GOOD.
-  <em>The same rule, the same currency, the same edition, two answers.</em> Now
-  <strong>+1</strong>. <strong>CAD calibrator &minus;1.00 &rarr; 0.00</strong>, final
-  <strong>+1.61 &rarr; +2.61</strong>. GBP, EUR and JPY already reached +1 by another
-  route and are unchanged. <strong>The set did not change.</strong> R-44 now asserts
-  both scorers agree on every inflation row in the live capture.
-</div>
-
-<div class="note rev">
-  <strong>r5 &middot; 14 Sep</strong> &mdash; Jeff asked why AUD NAB Business Confidence
-  scored 0. It should not have: <strong>&minus;8 after &minus;6 is a fall</strong>, plainly BAD
-  under <code>&gt;Prev</code>. Nothing computed it &mdash; <code>band()</code> cannot parse
-  <code>&gt;Prev</code>, so <strong>all 34 Prev-relative rows fell through to a
-  hand-written verdict</strong>. The audit found a second error (CHF Unemployment 3%
-  after 3% stored BAD, where the rule says <em>&ldquo;no change is neutral&rdquo;</em>) and a
-  parser bug: <code>&minus;$88.6B</code> read as <strong>+88.6</strong> because the minus sat
-  before the currency mark. <strong>AUD +0.50 &rarr; 0.00</strong> (alone at the bottom),
-  <strong>CHF +5.09 &rarr; +6.09</strong> (now second). Same three pairs, wider gaps &mdash;
-  AUDCHF <strong>+3.59 &rarr; +5.09</strong>. LD-137 computes the rule; R-44 runs 28 cases.
-</div>
-
-<div class="note rev">
-  <strong>r4 &middot; 14 Sep</strong> &mdash; <strong>inflation scoring changed (LD-136).</strong>
-  It is now scored against the <strong>2% target</strong>, not its own direction:
-  above 2% and <em>not falling</em> is <strong>GOOD</strong> (hike risk), above 2% and
-  falling is NEUTRAL, below 2% and <em>not rising</em> is <strong>BAD</strong> (cut risk),
-  below 2% and rising is NEUTRAL. Jeff&#39;s reasoning &mdash; <em>&ldquo;if the previous
-  inflation is above 2% and the latest release shows inflation is not going down
-  then it is a hawkish tone.&rdquo;</em> The old rule scored <code>&gt;2% &amp; falling</code>
-  as GOOD, which reads the economy&#39;s comfort rather than the rate path, and is
-  backwards for a currency model. <strong>Only USD flipped</strong> (NEUTRAL &rarr; GOOD,
-  on 3.4% after 3.4%); the other seven already agreed. <strong>USD +0.69 &rarr;
-  +1.69</strong>, above AUD. <strong>The set did not change.</strong> The old rule was
-  never actually executed &mdash; eight rows were hand-graded; R-44 now runs 16 cases
-  against the code.
-</div>
-
-<div class="note rev">
-  <strong>r3 &middot; 14 Sep</strong> &mdash; eight rows carried a stale <strong>reference
-  month</strong> while showing the right-looking number. US CPI is the clearest:
-  Aug/26 printed <strong>3.4%</strong> and we held Jul/26 <strong>3.4%</strong> &mdash;
-  identical values, so every value-based guard passed. But 3.4% after 3.5% is
-  <em>falling</em>; 3.4% after 3.4% has <strong>stopped falling</strong>, and the
-  threshold reads <code>&gt;2% &amp; falling</code>. Same cell, opposite story. Also
-  corrected: AUD Job Ads, AUD Building Permits, AUD NAB, CHF Consumer Confidence,
-  CHF Unemployment, JPY Machine Tool Orders, NZD Business NZ PMI.
-  <strong>No score and no pair changed</strong> &mdash; the board stands. R-40 now
-  compares vintage as well as value.
-</div>
-
-<div class="note rev">
-  <strong>r2 &middot; 13 Sep</strong> &mdash; three GBP releases from Fri 11 Sep were missing
-  from the board. The TE calendar is a rolling window and each country page has
-  its own reach; GBP&#39;s had already moved past the 11th when we captured on the
-  13th, so those releases were never in a capture at all. Recovered from the TE
-  indicator pages &mdash; Industrial Production YoY <strong>0.6%</strong>,
-  Manufacturing Production YoY <strong>2.6%</strong>, Balance of Trade
-  <strong>&minus;3.45B</strong>. <strong>GBP moved +4.19 &rarr; +8.19 and took the top slot
-  from EUR</strong>, so the leading pair changed from EURAUD to GBPAUD. R-42 now
-  measures each capture&#39;s per-country reach and reports when the next is due.
-</div>
 
 <section>
   <h2>The set</h2>
@@ -1429,4 +1400,72 @@ footer p{max-width:none}
     </tbody>
   </table>
   </div>
+
+  <details class="revlog">
+    <summary>Revision log &mdash; r2 to r6, 13&ndash;14 Sep</summary>
+    <div class="inner">
+    <div class="note rev">
+  <strong>r6 &middot; 14 Sep</strong> &mdash; <strong>LD-136 now applies to the calibrator
+  too.</strong> It had reached the base only; the calibrator has its own scorer, and
+  an inflation row fell through it to the surprise-vs-consensus test.
+  <strong>CAD CPI (tonight, Mon 14 20:30 PHT) expects 3.0% after 3.0%</strong> &mdash; no
+  surprise, so it scored NEUTRAL, while the base calls flat-above-target GOOD.
+  <em>The same rule, the same currency, the same edition, two answers.</em> Now
+  <strong>+1</strong>. <strong>CAD calibrator &minus;1.00 &rarr; 0.00</strong>, final
+  <strong>+1.61 &rarr; +2.61</strong>. GBP, EUR and JPY already reached +1 by another
+  route and are unchanged. <strong>The set did not change.</strong> R-44 now asserts
+  both scorers agree on every inflation row in the live capture.
+</div>
+    <div class="note rev">
+  <strong>r5 &middot; 14 Sep</strong> &mdash; Jeff asked why AUD NAB Business Confidence
+  scored 0. It should not have: <strong>&minus;8 after &minus;6 is a fall</strong>, plainly BAD
+  under <code>&gt;Prev</code>. Nothing computed it &mdash; <code>band()</code> cannot parse
+  <code>&gt;Prev</code>, so <strong>all 34 Prev-relative rows fell through to a
+  hand-written verdict</strong>. The audit found a second error (CHF Unemployment 3%
+  after 3% stored BAD, where the rule says <em>&ldquo;no change is neutral&rdquo;</em>) and a
+  parser bug: <code>&minus;$88.6B</code> read as <strong>+88.6</strong> because the minus sat
+  before the currency mark. <strong>AUD +0.50 &rarr; 0.00</strong> (alone at the bottom),
+  <strong>CHF +5.09 &rarr; +6.09</strong> (now second). Same three pairs, wider gaps &mdash;
+  AUDCHF <strong>+3.59 &rarr; +5.09</strong>. LD-137 computes the rule; R-44 runs 28 cases.
+</div>
+    <div class="note rev">
+  <strong>r4 &middot; 14 Sep</strong> &mdash; <strong>inflation scoring changed (LD-136).</strong>
+  It is now scored against the <strong>2% target</strong>, not its own direction:
+  above 2% and <em>not falling</em> is <strong>GOOD</strong> (hike risk), above 2% and
+  falling is NEUTRAL, below 2% and <em>not rising</em> is <strong>BAD</strong> (cut risk),
+  below 2% and rising is NEUTRAL. Jeff&#39;s reasoning &mdash; <em>&ldquo;if the previous
+  inflation is above 2% and the latest release shows inflation is not going down
+  then it is a hawkish tone.&rdquo;</em> The old rule scored <code>&gt;2% &amp; falling</code>
+  as GOOD, which reads the economy&#39;s comfort rather than the rate path, and is
+  backwards for a currency model. <strong>Only USD flipped</strong> (NEUTRAL &rarr; GOOD,
+  on 3.4% after 3.4%); the other seven already agreed. <strong>USD +0.69 &rarr;
+  +1.69</strong>, above AUD. <strong>The set did not change.</strong> The old rule was
+  never actually executed &mdash; eight rows were hand-graded; R-44 now runs 16 cases
+  against the code.
+</div>
+    <div class="note rev">
+  <strong>r3 &middot; 14 Sep</strong> &mdash; eight rows carried a stale <strong>reference
+  month</strong> while showing the right-looking number. US CPI is the clearest:
+  Aug/26 printed <strong>3.4%</strong> and we held Jul/26 <strong>3.4%</strong> &mdash;
+  identical values, so every value-based guard passed. But 3.4% after 3.5% is
+  <em>falling</em>; 3.4% after 3.4% has <strong>stopped falling</strong>, and the
+  threshold reads <code>&gt;2% &amp; falling</code>. Same cell, opposite story. Also
+  corrected: AUD Job Ads, AUD Building Permits, AUD NAB, CHF Consumer Confidence,
+  CHF Unemployment, JPY Machine Tool Orders, NZD Business NZ PMI.
+  <strong>No score and no pair changed</strong> &mdash; the board stands. R-40 now
+  compares vintage as well as value.
+</div>
+    <div class="note rev">
+  <strong>r2 &middot; 13 Sep</strong> &mdash; three GBP releases from Fri 11 Sep were missing
+  from the board. The TE calendar is a rolling window and each country page has
+  its own reach; GBP&#39;s had already moved past the 11th when we captured on the
+  13th, so those releases were never in a capture at all. Recovered from the TE
+  indicator pages &mdash; Industrial Production YoY <strong>0.6%</strong>,
+  Manufacturing Production YoY <strong>2.6%</strong>, Balance of Trade
+  <strong>&minus;3.45B</strong>. <strong>GBP moved +4.19 &rarr; +8.19 and took the top slot
+  from EUR</strong>, so the leading pair changed from EURAUD to GBPAUD. R-42 now
+  measures each capture&#39;s per-country reach and reports when the next is due.
+</div>
+    </div>
+  </details>
 </section>

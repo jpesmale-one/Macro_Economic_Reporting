@@ -4288,3 +4288,35 @@ that every fact-table row agrees with the rule.
 verdicts already agreed with the new rule. **USD base +0.69 → +1.69**, moving it
 above AUD. The set did not change: GBPAUD LONG +8.69, EURAUD LONG +5.00,
 AUDCHF SHORT +3.59.
+
+---
+
+## LD-139 — A REVISION LOG IS PROVENANCE, NOT THE LEDE
+
+**Jeff, 2026-09-14:** *"I don't like this in the top. we can place it under
+section 5 Methods and Limits. plus change the background I can barely read it"*
+
+Two defects with one cause. By r6 there were **five revision banners stacked
+above the report**, so the actual reading — the set, the board — opened below the
+fold. And they were styled with **hardcoded `#fffaf0` on the light ink tokens**,
+which in **dark mode** renders near-white paper under light-grey text. That is
+what he could not read.
+
+    EVERY OTHER ELEMENT ON THE PAGE DRAWS FROM THE THEME TOKENS.
+    THESE DID NOT, BECAUSE I WROTE THEM INLINE, IN A HURRY,
+    FIVE TIMES RUNNING.
+
+**The rule.** Revision notes go **at the end of §5 Method and limits**, inside a
+collapsed `<details class="revlog">`, and take their colours from `--card`,
+`--rule`, `--accent`, `--ink-2` like everything else. Newest first. The current
+reading opens first; the history is one click away for anyone who wants it.
+
+**Why it kept happening.** The notes live in the **hand-written shell**, which
+`gen_page.py` does not produce and every splice preserves verbatim (F-122). So
+there is no generator to fix — this is a convention, and it is recorded here
+because the shell is the one part of the page nothing regenerates.
+
+**The dark-mode half generalises beyond revision notes:** any element added to
+the shell in a hurry is a candidate for the same defect, and the page is only
+ever reviewed in one theme at a time. A hardcoded hex in the shell should be
+treated as a bug on sight.
