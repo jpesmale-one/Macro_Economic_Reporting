@@ -1,6 +1,15 @@
 # -*- coding: utf-8 -*-
 """R-44 - LD-136 (inflation) AND LD-137 (>Prev), AS EXECUTABLE CASES.
 
+*** THE RULE MUST HOLD IN BOTH SCORERS. Jeff, 2026-09-14: "We should apply
+the new scoring now for the calibrator news events". LD-136 reached the BASE
+via derive_scores and stopped there - the calibrator has its own score_row(),
+and an inflation row fell through it to market_pricing(), which grades a
+SURPRISE vs consensus instead. CAD expected 3.0% after 3.0%: no surprise, so
+NEUTRAL, while the base called flat-above-target GOOD. THE SAME RULE, THE SAME
+CURRENCY, THE SAME EDITION, TWO ANSWERS. The last check below asserts both
+scorers agree on every inflation row in the live capture.
+
 Jeff, 2026-09-14: "we need to change the inflation scoring to this
 Actual > 2% and Actual >= Previous is Good. Higher chance of Interest Rate
 Hike, Actual > 2% and Actual < Previous is Neutral. Probability to hold of the
@@ -140,6 +149,32 @@ def main():
                   % (sm.LABEL[iso], name[:26], v, V.get(sc)))
     if not nbad:
         print('    every >Prev row matches LD-137')
+
+    # LD-136 must hold in the CALIBRATOR too, not only the base.
+    print()
+    print('  calibrator vs derive_scores on this weeks inflation rows:')
+    try:
+        import glob
+        import calibrator as cal
+        caps = sorted(glob.glob(os.path.join(
+            os.path.dirname(HERE), 'data/raw/calendar/*_cal_full.json')))
+        if caps:
+            n = nbad2 = 0
+            for r in cal.week_rows(caps[-1], '2026-09-14', '2026-09-18'):
+                if r['name'] not in cal.INFLATION_NAMES:
+                    continue
+                exp = r['cons'] or r['fcst']
+                want = ds.inflation_score(exp, r['prev'])
+                n += 1
+                if want != r['score']:
+                    bad += 1
+                    nbad2 += 1
+                    print('    *** %-4s %-26s calibrator %s, rule %s'
+                          % (r['ccy'], r['name'][:26], r['score'], want))
+            if n and not nbad2:
+                print('    %d row(s) checked - both scorers agree' % n)
+    except Exception as e:
+        print('    (skipped: %s)' % e)
 
     print()
     if bad:

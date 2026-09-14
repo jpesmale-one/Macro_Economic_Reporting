@@ -158,6 +158,7 @@ def level_test(thr, expected):
 # almost always positive, which would recreate the defect that got GDP
 # thrown out of the base: a category that says GOOD for everyone ranks no
 # one.
+INFLATION_NAMES = ('Inflation Rate YoY', 'Inflation Rate YoY Final')
 GDP_NAME = 'GDP Growth Rate QoQ'
 
 
@@ -210,6 +211,33 @@ def score_row(ccy, name, rec):
     thr = THR.get((ccy, name))
     # the expected print is the midpoint of the cons-fcst range
     expected = (hi + lo) / 2.0
+
+    # LD-136 IN THE CALIBRATOR TOO.
+    #
+    # Jeff, 2026-09-14, on CAD Inflation Rate YoY landing Mon 14 20:30 PHT:
+    # "We should apply the new scoring now for the calibrator news events"
+    #
+    # LD-136 reached the BASE via derive_scores and stopped there. The
+    # calibrator has its own scorer, and an inflation row arriving here hit
+    # level_test() with the threshold string 'vs 2% target & Prev', got None,
+    # and fell through to market_pricing() - which grades a SURPRISE vs
+    # consensus, a different question entirely.
+    #
+    #     CAD expects 3.0% after 3.0%. No surprise, so market_pricing
+    #     said NEUTRAL. Under LD-136 flat ABOVE TARGET is GOOD - the
+    #     bank has not won yet. The base and the calibrator disagreed
+    #     about the same rule on the same currency in the same edition.
+    #
+    # ONE RULE, ONE IMPLEMENTATION. The calibrator asks it of the EXPECTED
+    # print rather than a released one - that is the only difference, and it
+    # is the calibrator's whole nature (Jeff: "we're trading the expectations
+    # not the result"). Calling derive_scores keeps a second copy of the rule
+    # from drifting, which is exactly how F-120 happened.
+    if name in INFLATION_NAMES:
+        import derive_scores as _ds
+        sc = _ds.inflation_score('%s' % expected, '%s' % prev)
+        if sc is not None:
+            return sc
 
     v = level_test(thr, expected)
     if v is None:
