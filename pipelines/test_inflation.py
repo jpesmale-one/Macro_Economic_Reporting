@@ -185,6 +185,31 @@ def main():
               % (act or "''", cons or "''", prev or "''", want, got, note,
                  '' if ok else '   *** FAIL'))
 
+    # LD-140 precedence, including the case that would destroy signal.
+    print()
+    print('  LD-140 - day precedence')
+    _rows = [
+        ([{'name': _cal.RATE_NAME, 'score': 1, 'month': (0, 9)},
+          {'name': 'Employment Change', 'score': -1, 'month': (0, 9)}],
+         1.0, 'a rate decision outranks a same-month row'),
+        ([{'name': _cal.RATE_NAME, 'score': 0, 'month': (0, 8)},
+          {'name': 'Retail Sales YoY', 'score': 1, 'month': (0, 9)}],
+         0.0, 'it outranks a LATER month too - that is the LD-98 exception'),
+        ([{'name': _cal.RATE_NAME, 'score': None, 'month': (0, 9)},
+          {'name': 'Employment Change', 'score': 1, 'month': (0, 8)}],
+         1.0, 'UNSCORABLE rate row must NOT seize and blank the day (F-73)'),
+        ([{'name': 'Employment Change', 'score': 1, 'month': (0, 9)},
+          {'name': 'Retail Sales YoY', 'score': -1, 'month': (0, 8)}],
+         1.0, 'no rate row - LD-119 reference month, untouched'),
+    ]
+    for rows_, want_, note in _rows:
+        got_ = _cal.day_score(rows_)[0]
+        ok = (got_ == want_)
+        if not ok:
+            bad += 1
+        print('    %-6s want %-6s %s%s'
+              % (got_, want_, note, '' if ok else '   *** FAIL'))
+
     # LD-136 must hold in the CALIBRATOR too, not only the base.
     print()
     print('  calibrator vs derive_scores on this weeks inflation rows:')
