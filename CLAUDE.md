@@ -218,8 +218,17 @@ drawing you did not create** (LD-5). **R-23 fails the render if you skip it**
 — which happened on 2026-08-30, when three pairs were selected and nothing
 was drawn.
 
-**Starting TradingView (F-9 - the recipe, not just the file name).** The
-MCP's own `tv_launch` FAILS on this machine: it falls back to a local MSIX
+**Starting TradingView (F-9 - the recipe, not just the file name).**
+
+> **NEVER CALL `tv_launch`. IT IS DOCUMENTED AS BROKEN ON THIS MACHINE AND
+> CALLING IT WASTES MINUTES EVERY TIME.** On 2026-09-19 I called it THREE
+> times, watched the process die three times exactly as described below, then
+> graded a retrospective on Yahoo bars instead of OANDA - which cost that
+> retro its pip comparability with every previous week. Jeff: *"Everytime you
+> can't connect with TradingView, you can relaunch it using the command I
+> shared before."* The command is four lines down. Run it FIRST.
+
+The MCP's own `tv_launch` FAILS on this machine: it falls back to a local MSIX
 copy (`msix_local_copy: true`), the process exits immediately, and nothing
 ever listens on 9222. Launch it through the AUMID instead:
 
