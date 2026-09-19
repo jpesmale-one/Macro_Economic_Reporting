@@ -379,6 +379,13 @@ def pht(date, t):
     return d + datetime.timedelta(hours=8)
 
 
+# LD-140 - the synthetic whitelist name a rate decision carries through the
+# calibrator. It is not in score_model.ROWS (that is the BASE fact table, and
+# LD-140 is calibrator-only by Jeff's choice on 2026-09-19), so it needs a
+# name of its own that scorers can test for.
+RATE_NAME = 'Interest Rate Decision'
+
+
 def whitelist_events(capture_path, start, end):
     """Whitelist events in [start, end] (ISO dates), oldest first.
 
@@ -410,7 +417,30 @@ def whitelist_events(capture_path, start, end):
         if not ccy:
             continue
         ev = (e.get('event') or '').lower()
-        hit = match(ev, wl.get(ccy, []), e.get('iso'))
+        # LD-140 - AN INTEREST RATE DECISION IS A CALIBRATOR ROW.
+        #
+        # Jeff, 2026-09-19: "we need to prioritize Interest Rate in the
+        # calibrator in the succeeding report over other indicators."
+        #
+        # F-126: three central banks moved inside 14-18 Sep, all three were
+        # in the capture we built the edition from, and the calibrator scored
+        # none of them - not because they were outranked but because they were
+        # ABSENT. Rate decisions are not in score_model.ROWS, so match() could
+        # never return them.
+        #
+        # LD-23 bars an input that cannot be sourced for all eight on equal
+        # terms. A decision carries actual-vs-consensus like every other row,
+        # published for all eight, so it meets LD-23 on its own terms.
+        #
+        # is_decision() is REUSED, not reimplemented: it already handles TE's
+        # short-form/long-form naming (F-73) and excludes speeches, minutes
+        # and press conferences. F-120 happened because a second matcher
+        # disagreed with the scorer about what a row IS.
+        import decision_history as dh
+        if dh.is_decision(e.get('iso'), e.get('event')):
+            hit = RATE_NAME
+        else:
+            hit = match(ev, wl.get(ccy, []), e.get('iso'))
         if not hit:
             continue
         key = (ccy, hit)

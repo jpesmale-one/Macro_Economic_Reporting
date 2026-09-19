@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""R-44 - LD-136 (inflation) AND LD-137 (>Prev), AS EXECUTABLE CASES.
+"""R-44 - LD-136 (inflation), LD-137 (>Prev) AND LD-140 (rate), AS CASES.
 
 *** THE RULE MUST HOLD IN BOTH SCORERS. Jeff, 2026-09-14: "We should apply
 the new scoring now for the calibrator news events". LD-136 reached the BASE
@@ -91,6 +91,26 @@ PREV_CASES = [
 ]
 
 
+# LD-140 - (actual, consensus, prev, expected, what it is)
+# A rate decision scores its SURPRISE once released, and its EXPECTED MOVE
+# before release. LD-90 governs both: fully priced is ZERO.
+RATE_CASES = [
+    # --- released: actual vs consensus ---------------------------------
+    ('4%',    '4%',    '3.75%', 0,  'Fed 16 Sep: HIKED but exactly priced'),
+    ('3.75%', '3.75%', '3.75%', 0,  'BoE 17 Sep: held, exactly priced'),
+    ('1.25%', '1.25%', '1%',    0,  'BoJ 18 Sep: hiked, exactly priced'),
+    ('4.25%', '4%',    '3.75%', 1,  'hawkish surprise - hiked MORE than priced'),
+    ('3.75%', '4%',    '3.75%', -1, 'dovish surprise - held when a hike was priced'),
+    # --- before release: consensus vs standing rate --------------------
+    (None,    '4%',    '3.75%', 1,  'a hike is EXPECTED - forward-looking branch'),
+    (None,    '3.75%', '3.75%', 0,  'a hold is expected - no move, no score'),
+    (None,    '2.5%',  '2.75%', -1, 'a cut is expected'),
+    # --- unreadable ----------------------------------------------------
+    (None,    None,    '3.75%', None, 'no consensus - ungraded, never a guessed 0'),
+    (None,    '4%',    None,    None, 'no standing rate - ungraded'),
+]
+
+
 def main():
     bad = 0
     print('R-44 INFLATION RULE (LD-136)')
@@ -150,14 +170,35 @@ def main():
     if not nbad:
         print('    every >Prev row matches LD-137')
 
+    print()
+    print('  LD-140 - the rate-decision rule')
+    print('  %-8s %-8s %-8s %-6s %-6s %s'
+          % ('ACTUAL', 'CONS', 'PREV', 'WANT', 'GOT', 'CASE'))
+    import calibrator as _cal
+    for act, cons, prev, want, note in RATE_CASES:
+        rec = {'actual': act, 'consensus': cons, 'previous': prev}
+        got = _cal.score_row('USD', _cal.RATE_NAME, rec)
+        ok = got == want
+        if not ok:
+            bad += 1
+        print('  %-8s %-8s %-8s %-6s %-6s %s%s'
+              % (act or "''", cons or "''", prev or "''", want, got, note,
+                 '' if ok else '   *** FAIL'))
+
     # LD-136 must hold in the CALIBRATOR too, not only the base.
     print()
     print('  calibrator vs derive_scores on this weeks inflation rows:')
     try:
         import glob
         import calibrator as cal
+        # PIN THE EDITION'S OWN CAPTURE. caps[-1] is whatever was captured
+        # most recently, and its ~30-day window MOVES - after the 19 Sep
+        # capture this check silently fell from 4 inflation rows to 2 and
+        # still reported "both scorers agree". A check whose sample shrinks
+        # without saying so is the F-36 shape (count what you drop).
         caps = sorted(glob.glob(os.path.join(
-            os.path.dirname(HERE), 'data/raw/calendar/*_cal_full.json')))
+            os.path.dirname(HERE),
+            'data/raw/calendar/2026-09-13_*_cal_full.json')))
         if caps:
             n = nbad2 = 0
             for r in cal.week_rows(caps[-1], '2026-09-14', '2026-09-18'):
@@ -171,7 +212,11 @@ def main():
                     nbad2 += 1
                     print('    *** %-4s %-26s calibrator %s, rule %s'
                           % (r['ccy'], r['name'][:26], r['score'], want))
-            if n and not nbad2:
+            if n < 4:
+                bad += 1
+                print('    *** ONLY %d INFLATION ROW(S) IN SAMPLE - expected 4.'
+                      % n)
+            elif not nbad2:
                 print('    %d row(s) checked - both scorers agree' % n)
     except Exception as e:
         print('    (skipped: %s)' % e)
@@ -180,7 +225,7 @@ def main():
     if bad:
         print('*** %d FAILURE(S)' % bad)
         return 1
-    print('  %d cases pass' % (len(CASES) + len(PREV_CASES)))
+    print('  %d cases pass' % (len(CASES) + len(PREV_CASES) + len(RATE_CASES)))
     return 0
 
 

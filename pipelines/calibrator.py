@@ -159,6 +159,7 @@ def level_test(thr, expected):
 # thrown out of the base: a category that says GOOD for everyone ranks no
 # one.
 INFLATION_NAMES = ('Inflation Rate YoY', 'Inflation Rate YoY Final')
+RATE_NAME = wa.RATE_NAME          # LD-140
 GDP_NAME = 'GDP Growth Rate QoQ'
 
 
@@ -203,6 +204,31 @@ def score_row(ccy, name, rec):
 
     hi = cons if fcst is None else max(cons, fcst)
     lo = cons if fcst is None else min(cons, fcst)
+
+    # LD-140 - A RATE DECISION SCORES ITS SURPRISE, IN BASIS POINTS.
+    #
+    #     actual > consensus  -> +1   hawkish surprise
+    #     actual = consensus  ->  0   fully priced (LD-90)
+    #     actual < consensus  -> -1   dovish surprise
+    #
+    # LD-90 IS HONOURED, NOT WEAKENED. A decision landing exactly on
+    # consensus scores ZERO, because the market already holds it. Every
+    # September 2026 decision did exactly that - Fed 4.00% vs 4.00%, BoE
+    # 3.75% vs 3.75%, BoJ 1.25% vs 1.25% - which is why this rule would NOT
+    # have rescued the 14-18 Sep board. That was stated in the proposal
+    # before approval rather than discovered afterwards.
+    #
+    # BEFORE THE RELEASE there is no actual, so the row scores on the
+    # EXPECTED move instead: consensus vs the standing rate (`prev`). A hike
+    # that is fully priced still scores 0 - the currency already holds it.
+    if name == RATE_NAME:
+        act = num(rec.get('actual'))
+        if act is not None and cons is not None:
+            return 1 if act > cons else (-1 if act < cons else 0)
+        # forward-looking: is the DECISION itself expected to move the rate?
+        if cons is not None and prev is not None:
+            return 1 if cons > prev else (-1 if cons < prev else 0)
+        return None
 
     # LD-117: GDP scores the RANGE, not a threshold and not a surprise.
     if name == GDP_NAME:
@@ -347,6 +373,31 @@ def day_score(rows):
     scored = [r for r in rows if r['score'] is not None]
     if not scored:
         return None, 'unscorable', [], list(rows)
+
+    # LD-140 - AN INTEREST RATE DECISION WINS ITS DAY OUTRIGHT.
+    #
+    # Jeff, 2026-09-19, choosing the narrowest of two forms offered: RATE
+    # ONLY. GDP keeps competing on reference month exactly as LD-119 says -
+    # "if GDP release date have other Indicator release which have more
+    # latest data then we still focus on that one Rather than the GDP."
+    #
+    # *** THIS IS THE FIRST EXCEPTION TO LD-98 ("the day is the unit, no
+    # weights") AND IT IS A REAL CONTRADICTION, NOT AN EXTENSION.
+    #
+    # The justification is NOT that rate decisions are more important in the
+    # abstract - that reasoning produced LD-113 (GDP weighted in the base)
+    # and was withdrawn in a day for ranking nothing. It is that a rate
+    # decision SETS THE PRICE OF THE CURRENCY ITSELF, which is the quantity
+    # the board is trying to rank. Every other row is evidence ABOUT where
+    # that price is heading.
+    #
+    # WITHDRAWAL CONDITION, recorded with the rule: if this ranks nothing by
+    # the 21-25 Sep retrospective, it comes out. LD-113 is the precedent.
+    rate = [r for r in scored if r['name'] == RATE_NAME]
+    if rate:
+        val = sum(r['score'] for r in rate) / float(len(rate))
+        return (val, 'rate decision' if len(rate) == 1 else 'rate shared',
+                rate, [r for r in rows if r not in rate])
 
     dated = [r for r in scored if r['month'] is not None]
     if dated:

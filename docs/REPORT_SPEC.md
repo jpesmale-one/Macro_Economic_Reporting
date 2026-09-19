@@ -4320,3 +4320,74 @@ because the shell is the one part of the page nothing regenerates.
 the shell in a hurry is a candidate for the same defect, and the page is only
 ever reviewed in one theme at a time. A hardcoded hex in the shell should be
 treated as a bug on sight.
+
+---
+
+## LD-140 — AN INTEREST RATE DECISION WINS ITS DAY
+
+**Jeff, 2026-09-19:** *"we need to prioritize Interest Rate in the calibrator in
+the succeeding report over other indicators. We can do Interest Rate > GDP > All
+Others."* Offered two forms, he chose **rate-only** and **calibrator-only**.
+
+**THE FAILURE IT FIXES (F-126).** Three central banks moved inside 14–18 Sep —
+all three visible in the capture the edition was built from, with consensus and
+previous on file. The calibrator scored 20 rows that week and none of them, not
+because they were outranked but because **rate decisions are not in
+`score_model.ROWS`**, so `match()` could never return them. The Fed hiked to
+4.00%, USD finished +0.74% — the only currency up — and we ranked it 4th.
+
+**LD-23 IS SATISFIED ON ITS OWN TERMS.** A decision carries `actual − consensus`
+like every other row, published for all eight. The rule bars inputs that *cannot*
+be sourced equally; this one can. `decision_history.is_decision()` is **reused,
+not reimplemented** — F-120 happened because a second matcher disagreed with the
+scorer about what a row is.
+
+### The rule
+
+```
+released:    actual > consensus  → +1      actual = consensus → 0 (LD-90)
+             actual < consensus  → −1
+before it:   consensus > standing rate → +1   equal → 0   below → −1
+precedence:  a rate decision WINS ITS DAY; everything else keeps
+             reference-month precedence (LD-119 untouched)
+```
+
+### What it contradicts, stated plainly
+
+**LD-98 — "the day is the unit, no weights."** First exception, and a real
+contradiction. The justification is *not* that rate decisions matter more in the
+abstract — that reasoning produced LD-113 and was withdrawn in a day. It is that
+**a rate decision sets the price of the currency itself**, the quantity the board
+ranks; every other row is evidence *about* where that price is heading.
+
+**LD-134 — "a caution, not a weight."** The high-impact flag deliberately changed
+no score. This changes one, for one row type.
+
+### Measured effect, and a correction to the proposal
+
+The proposal predicted all three September decisions would score **0** because
+each landed on consensus. **That was right about the released branch and wrong
+about which branch fires.** At build time there is no actual, so the
+forward-looking branch runs and scores the *expected* move:
+
+| | Score | Why |
+|---|---:|---|
+| USD Thu 17 | **+1** | consensus 4% vs standing 3.75% — a hike was expected |
+| GBP Thu 17 | 0 | consensus 3.75% = standing — a hold |
+| JPY Fri 18 | **+1** | consensus 1.25% vs standing 1% |
+
+**USD calibrator +2.00 → +3.00, final +3.69 → +4.69.** The set did not change.
+
+| | Before | After |
+|---|---:|---:|
+| rho calibrator | −0.24 | **−0.10** |
+| rho final | +0.02 | +0.02 |
+
+**The calibrator improved and the board did not.** That is one week, and it is
+not enough to call this working.
+
+### Withdrawal condition, recorded with the rule
+
+**If LD-140 ranks nothing by the 21–25 Sep retrospective, it comes out.** LD-113
+is the precedent: a category weighted for importance rather than measured
+evidence lasted one day.
