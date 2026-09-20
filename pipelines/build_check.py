@@ -174,6 +174,42 @@ def s8_dates():
     return True, 'no pinned dates; window %s..%s' % (start, end)
 
 
+def s9_page_fresh():
+    """F-134: is the PUBLISHED page built from the CURRENT fact tables?
+
+    Jeff, 2026-09-21: "have we reflected all changes now to the report?" -
+    and the answer was no. USD Retail Sales had been corrected AFTER the last
+    publish, so the live page carried 5% while the repo held 6%.
+
+    Nothing could answer that question without re-reading the HTML by hand,
+    which I did badly twice before diffing the generated section instead. So
+    this compares every HELD value against the repo's published .html. A
+    value the page does not contain means the page is behind the data.
+
+    It is a CONTAINMENT test, not a cell-by-cell parse - the table markup has
+    grouped rows that a naive parser mis-reads (I produced 64 false "stale"
+    rows trying). Containment cannot say WHERE a value is, only that it is
+    absent, which is the question being asked.
+    """
+    import score_model as sm
+    page = os.path.join(REPO, 'reports/2026/Q3/2026-09-20_weekly.html')
+    if not os.path.exists(page):
+        return True, '(no published page yet)'
+    live = io.open(page, encoding='utf-8').read()
+    miss = []
+    for cat, iso, name, act, prev, ref, thr, v in sm.ROWS:
+        if name == 'GDP Growth Rate QoQ' or not (act or '').strip():
+            continue
+        esc = (act.replace('&', '&amp;').replace('<', '&lt;')
+                  .replace('$', '$'))
+        if act not in live and esc not in live:
+            miss.append('%s %s=%s' % (sm.LABEL[iso], name[:22], act))
+    if miss:
+        return False, ('published page is BEHIND the fact tables - %d value(s) '
+                       'absent: %s' % (len(miss), '; '.join(miss[:4])))
+    return True, 'every held value appears on the published page'
+
+
 STEPS = [
     ('1', 'capture is fresh (<=3 days)', s1_capture),
     ('2', 'no release lost to a gap (R-42)', s2_gaps),
@@ -183,6 +219,7 @@ STEPS = [
     ('6', 'policy rates match rate_model (LD-142)', s6_rates),
     ('7', 'one selector everywhere (F-127)', s7_selectors),
     ('8', 'no renderer pins a stale date (F-130)', s8_dates),
+    ('9', 'published page matches the data (F-134)', s9_page_fresh),
 ]
 
 PAGE_STEPS = """
