@@ -2,7 +2,7 @@ Month,Category,Currency,Indicator,Actual,Score
 Sep-26,Employment,USD,Non Farm Payrolls,162K,1
 Sep-26,Employment,USD,Unemployment Rate,4.1%,0
 Sep-26,Employment,EUR,Unemployment Rate,6.4%,-1
-Sep-26,Employment,GBP,Claimant Count Change,-11K,1
+Sep-26,Employment,GBP,Claimant Count Change,27.8K,-1
 Sep-26,Employment,JPY,Unemployment Rate,2.4%,1
 Sep-26,Employment,AUD,ANZ-Indeed Job Ads MoM,2.5%,1
 Sep-26,Employment,AUD,Employment Change,"-15.8K (FT +16.3K, PT -32.2K)",0
@@ -36,13 +36,13 @@ Sep-26,Production,EUR,S&P Global Mfg PMI Final,52.7,1
 Sep-26,Production,GBP,Industrial Production YoY,0.6%,1
 Sep-26,Production,GBP,Manufacturing Production YoY,2.6%,1
 Sep-26,Production,GBP,S&P Global Mfg PMI Final,51.7,1
-Sep-26,Production,JPY,Industrial Production YoY Final,4.9%,1
+Sep-26,Production,JPY,Industrial Production YoY Final,3.9%,1
 Sep-26,Production,JPY,Machine Tool Orders YoY,64.7%,1
 Sep-26,Production,JPY,Machinery Orders YoY,11.2%,1
 Sep-26,Production,JPY,S&P Global Mfg PMI Final,54.9,1
 Sep-26,Production,AUD,S&P Global Mfg PMI Final,52.0,1
 Sep-26,Production,NZD,Business NZ PMI,53.1,1
-Sep-26,Production,NZD,Global Dairy Trade Price Index,0.9%,1
+Sep-26,Production,NZD,Global Dairy Trade Price Index,-1.1%,-1
 Sep-26,Production,CAD,S&P Global Mfg PMI,53.0,1
 Sep-26,Production,CHF,Procure.ch-UBS Mfg PMI,57.1,1
 Sep-26,Spending,USD,Building Permits MoM Final,4.3%,1
@@ -63,15 +63,15 @@ Sep-26,Spending,AUD,Westpac Consumer Conf Change,-5.2%,-1
 Sep-26,Spending,NZD,ANZ Business Confidence,53.7,-1
 Sep-26,Spending,NZD,ANZ Roy Morgan Consumer Conf,98.0,-1
 Sep-26,Spending,NZD,Building Permits MoM,-4.3%,-1
-Sep-26,Spending,NZD,Electronic Retail Card Spending YoY,3.4%,1
+Sep-26,Spending,NZD,Electronic Retail Card Spending YoY,0.2%,0
 Sep-26,Spending,CAD,Building Permits MoM,-17.3%,-1
 Sep-26,Spending,CAD,Retail Sales YoY,5.2%,1
 Sep-26,Spending,CHF,Consumer Confidence,-33,1
 Sep-26,Spending,CHF,Retail Sales YoY,2.3%,1
 Sep-26,Trade,USD,Balance of Trade,-$88.6B,-1
-Sep-26,Trade,EUR,Balance of Trade,EUR8.6B,1
+Sep-26,Trade,EUR,Balance of Trade,EUR14.2B,1
 Sep-26,Trade,GBP,Balance of Trade,GBP-3.45B,1
-Sep-26,Trade,JPY,Balance of Trade,JPY-634.5B,1
+Sep-26,Trade,JPY,Balance of Trade,JPY-1105.6B,-1
 Sep-26,Trade,AUD,Balance of Trade,A$1.923B,-1
 Sep-26,Trade,NZD,Balance of Trade,NZ$-1.349B,1
 Sep-26,Trade,CAD,Balance of Trade,C$0.77B,-1

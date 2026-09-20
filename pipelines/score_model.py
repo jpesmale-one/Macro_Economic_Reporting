@@ -64,13 +64,13 @@ ROWS = [
  # scores positively in the calibrator instead of being graded bad.
  ("Production","GB","Industrial Production YoY","0.6%","-0.2%","Jul/26",">0.5%","GOOD"),
  ("Production","GB","Manufacturing Production YoY","2.6%","0.5%","Jul/26",">0.5%","GOOD"),
- ("Production","JP","Industrial Production YoY Final","4.9%","4.1%","Jul/26",">0.5%","GOOD"),
+ ("Production","JP","Industrial Production YoY Final","3.9%","4.9%","Jul/26",">0.5%","GOOD"),
  ("Production","JP","Machinery Orders YoY","11.2%","16.9%","Jul/26",">0.5%","GOOD"),
  ("Production","JP","Machine Tool Orders YoY","64.7%","50.4%","Aug/26",">0.5%","GOOD"),
  ("Production","JP","S&P Global Mfg PMI Final","54.9","54.5","Aug/26",">50.5","GOOD"),
  ("Production","AU","S&P Global Mfg PMI Final","52.0","52.0","Aug/26",">50.5","GOOD"),
  ("Production","NZ","Business NZ PMI","53.1","54.3","Aug/26",">50.5","GOOD"),
- ("Production","NZ","Global Dairy Trade Price Index","0.9%","2.3%","Sep/26",">0.5%","GOOD"),
+ ("Production","NZ","Global Dairy Trade Price Index","-1.1%","0.9%","Sep/26",">0.5%","BAD"),
  ("Production","CA","S&P Global Mfg PMI","53.0","53.5","Aug/26",">50.5","GOOD"),
  ("Production","CH","Procure.ch-UBS Mfg PMI","57.1","53.2","Aug/26",">50.5","GOOD"),
  # LD-102: CHF Industrial Production YoY REMOVED 2026-09-09 on Jeff's
@@ -106,7 +106,7 @@ ROWS = [
  ("Spending","AU","Westpac Consumer Conf Change","-5.2%","6%","Sep/26",">Prev","BAD"),
  ("Spending","AU","NAB Business Confidence","-8","-6","Aug/26",">Prev","BAD"),
  ("Spending","NZ","Building Permits MoM","-4.3%","-3.6%","Jul/26",">0.5%","BAD"),
- ("Spending","NZ","Electronic Retail Card Spending YoY","3.4%","1.3%","Jul/26",">0.5%","GOOD"),
+ ("Spending","NZ","Electronic Retail Card Spending YoY","0.2%","3.4%","Aug/26",">0.5%","NEUTRAL"),
  ("Spending","NZ","ANZ Business Confidence","53.7","56.1","Aug/26",">Prev","BAD"),
  ("Spending","NZ","ANZ Roy Morgan Consumer Conf","98.0","99.3","Aug/26",">Prev","BAD"),
  ("Spending","CA","Retail Sales YoY","5.2%","5.9%","Jun/26",">0.5%","GOOD"),
@@ -117,9 +117,9 @@ ROWS = [
  # F-98: spec line 132. -$88.6B is a WIDER deficit than -$71.2B, so this
  # FLIPS GOOD -> BAD. Beating a -$90B consensus is not the test.
  ("Trade","US","Balance of Trade","-$88.6B","-$71.2B","Jul/26",">Prev","BAD"),
- ("Trade","EA","Balance of Trade","EUR8.6B","EUR3.7B","Jul/26",">Prev","GOOD"),
+ ("Trade","EA","Balance of Trade","EUR14.2B","EUR7.2B","Jul/26",">Prev","GOOD"),
  ("Trade","GB","Balance of Trade","GBP-3.45B","GBP-5.54B","Jul/26",">Prev","GOOD"),
- ("Trade","JP","Balance of Trade","JPY-634.5B","JPY-1052.6B","Aug/26",">Prev","GOOD"),
+ ("Trade","JP","Balance of Trade","JPY-1105.6B","JPY-638.3B","Aug/26",">Prev","BAD"),
  # F-98: spec line 141 - all eight Balance of Trade rows are ">Prev".
  # A$1.923B is BELOW the A$2.341B previous, so this FLIPS GOOD -> BAD.
  # It only read GOOD because it beat a low consensus, which is not the
@@ -134,7 +134,7 @@ ROWS = [
  ("Employment","US","Non Farm Payrolls","162K","-23K","Aug/26",">Prev","GOOD"),
  ("Employment","US","Unemployment Rate","4.1%","4.1%","Aug/26","<Prev","NEUTRAL"),
  ("Employment","EA","Unemployment Rate","6.4%","6.3%","Jul/26","<Prev","BAD"),
- ("Employment","GB","Claimant Count Change","-11K","8.3K","Aug/26","<0 (LD-58)","GOOD"),
+ ("Employment","GB","Claimant Count Change","27.8K","-11.8K","Aug/26","<0 (LD-58)","BAD"),
  ("Employment","JP","Unemployment Rate","2.4%","2.5%","Jul/26","<Prev","GOOD"),
  ("Employment","AU","ANZ-Indeed Job Ads MoM","2.5%","1.9%","Aug/26",">0.5%","GOOD"),
  ("Employment","AU","Employment Change","-15.8K (FT +16.3K, PT -32.2K)","76.3K (FT +29.3K, PT +47.0K)","Jul/26","hdl BAD; FT NEUTRAL (LD-57); PT GOOD","NEUTRAL"),
