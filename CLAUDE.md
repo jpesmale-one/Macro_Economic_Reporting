@@ -107,6 +107,39 @@ and read the top one.
 
 ---
 
+## 0a-ii. THE WEEKLY BUILD FLOW — `build_check.py` (R-46)
+
+**Jeff, 2026-09-21:** *"Should we create a report build process flow so that
+when the next refresh comes we can prevent this mismatches?"*
+
+```
+python pipelines/build_check.py
+```
+
+**Run it FIRST, every Sunday, before building anything.** It runs eight checks
+in dependency order and STOPS at the first failure. It does not build and it
+never writes to the fact tables — it reports, and you decide.
+
+| # | Check | The failure it exists for |
+|---|---|---|
+| 1 | capture ≤3 days old | F-121 — the TE window rotates, releases vanish |
+| 2 | no release lost to a gap (R-42) | F-121 |
+| 3 | every row vs TE, **`--refresh`** (R-45) | **F-132 — without the flag it reads a week-old cache and reports OK** |
+| 4 | held values vs capture (R-37/R-40) | F-120, F-123 |
+| 5 | scoring rules (R-44) | LD-136/137/142 |
+| 6 | policy rates match `rate_model` | LD-142 — a decision changes the rate and nothing watched it |
+| 7 | one selector everywhere | F-127 — MD and HTML published different sets |
+| 8 | no renderer pins a stale date | F-130 — the calibrator grid on last week's days |
+
+**Why a script and not a list.** This file already listed ~20 guards, and in
+three weeks that list failed three times the same way: *the step was there and
+I ran it slightly wrong.* A checklist that cannot check itself is a wish.
+
+**After assembling the page**, `shell_check.py <page>` (R-43) — it needs the
+file, so it is not in the eight. Then the four page checks the script prints.
+
+---
+
 ## 0b. THE PIPELINE IS THE PROTOCOL (read before building any edition)
 
 **Do not hand-write anything a generator produces.** Three findings landed

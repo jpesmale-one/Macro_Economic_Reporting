@@ -1,0 +1,228 @@
+# -*- coding: utf-8 -*-
+"""R-46 - THE WEEKLY BUILD FLOW, AS A RUNNABLE CHECKLIST.
+
+Jeff, 2026-09-21: "Should we create a report build process flow so that when
+the next refresh comes we can prevent this mismatches? It's something that you
+can follow every weekly report build so that it is more systematic and
+standard"
+
+WHY A SCRIPT AND NOT A DOCUMENT. CLAUDE.md already lists ~20 guards to run
+before an edition. That list is a DOCUMENT, and in the three weeks it has
+existed it failed three times in the same way:
+
+    F-132  R-45 run WITHOUT --refresh, so it validated today's fact table
+           against a week-old cached page and reported OK
+    F-130  gen_page's DAYS left pinned to last week while START/END moved
+    F-127  build_weekly on ps.select() while gen_page used ps.the_set()
+
+Every one of those was "the step was listed and I ran it slightly wrong".
+A checklist that cannot check itself is a wish. This runs the steps, in
+order, and stops at the first one that fails.
+
+    python pipelines/build_check.py            # before building
+    python pipelines/build_check.py --page X   # also check an assembled page
+
+WHAT IT DELIBERATELY DOES NOT DO. It does not BUILD anything and it does not
+WRITE to the fact tables. It reports, and a human decides. R-45's own
+docstring explains why: a slug that resolves to the wrong series would
+rewrite good data with a plausible number, and that failure is invisible
+from inside the repo.
+"""
+import io
+import os
+import re
+import sys
+import glob
+import subprocess
+import datetime as dt
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(HERE)
+sys.path.insert(0, HERE)
+
+import phtime as pt
+
+
+def _py(*args):
+    """Run a pipeline module, return (exit_code, output)."""
+    r = subprocess.run([sys.executable] + list(args), cwd=REPO,
+                       capture_output=True, text=True,
+                       env=dict(os.environ, PYTHONIOENCODING='utf-8'))
+    return r.returncode, (r.stdout or '') + (r.stderr or '')
+
+
+def window():
+    """The Mon-Fri window this build is for, from today's PHT date."""
+    d = dt.datetime.now(pt.PHT).date()
+    mon = d + dt.timedelta(days=(7 - d.weekday()) % 7 or 7)
+    if d.weekday() == 6:                      # Sunday build -> tomorrow
+        mon = d + dt.timedelta(days=1)
+    return mon.isoformat(), (mon + dt.timedelta(days=4)).isoformat()
+
+
+# ---------------------------------------------------------------- steps ---
+# Each step: (id, label, callable -> (ok, detail)). Order matters: data is
+# refreshed and verified BEFORE anything is built from it.
+
+def s1_capture():
+    """The capture must be fresh, or the week's own releases are missing."""
+    caps = sorted(glob.glob(os.path.join(
+        REPO, 'data/raw/calendar/*_cal_full.json')))
+    if not caps:
+        return False, 'no capture at all'
+    m = re.search(r'(\d{4}-\d{2}-\d{2})_', os.path.basename(caps[-1]))
+    taken = dt.datetime.strptime(m.group(1), '%Y-%m-%d').date()
+    age = (dt.datetime.now(pt.PHT).date() - taken).days
+    if age > 3:
+        return False, ('newest capture is %s, %d days old - the TE window '
+                       'has rotated (F-121). Run capture_calendar.py --write'
+                       % (taken, age))
+    return True, 'newest capture %s (%d days old)' % (taken, age)
+
+
+def s2_gaps():
+    """R-42: did a release print while no capture could see it?"""
+    code, out = _py(os.path.join(HERE, 'capture_gap.py'), '--raise')
+    lost = re.search(r'\*\*\* (\d+) ROW\(S\) CANNOT BE RECOVERED', out)
+    if lost:
+        return False, ('%s row(s) lost to a capture gap - recover from the '
+                       'indicator page and record in RECOVERED.md'
+                       % lost.group(1))
+    return True, 'no release fell through a gap'
+
+
+def s3_indicator_pages():
+    """R-45 WITH --refresh. F-132: without it this reads a stale cache."""
+    code, out = _py(os.path.join(HERE, 'indicator_pages.py'), '--refresh')
+    bad = re.search(r'\*\*\* (\d+) ROW\(S\) DISAGREE WITH TE', out)
+    cov = re.search(r'TRUE COVERAGE: (\d+) of (\d+)', out)
+    detail = cov.group(0) if cov else 'coverage unknown'
+    if bad:
+        return False, '%s row(s) disagree with TE. %s' % (bad.group(1), detail)
+    return True, detail
+
+
+def s4_vintage():
+    """R-37/R-40: held values vs what we have captured, value AND month."""
+    for mod, name in ((('audit_evidence.py',), 'R-37'),
+                      (('vintage_check.py',), 'R-40')):
+        code, out = _py(os.path.join(HERE, mod[0]))
+        if code != 0 or re.search(r'\*\*\*', out):
+            n = re.search(r'(\d+) problem', out)
+            return False, '%s reports %s' % (name, n.group(0) if n else 'a problem')
+    return True, 'R-37 and R-40 clean'
+
+
+def s5_rules():
+    """R-44: every scoring rule, and both scorers agreeing."""
+    code, out = _py(os.path.join(HERE, 'test_inflation.py'))
+    if code != 0:
+        n = re.search(r'\*\*\* (\d+) FAILURE', out)
+        return False, 'R-44 %s' % (n.group(0) if n else 'failed')
+    n = re.search(r'(\d+) cases pass', out)
+    return True, n.group(0) if n else 'passed'
+
+
+def s6_rates():
+    """LD-142: the fact table's rate cells must equal rate_model's.
+
+    A central bank decision changes the policy rate, and on 2026-09-21 the
+    fact table still held USD at 3.50-3.75% and JPY at 1.00% - both pre-hike,
+    days after the decisions. Nothing was watching the rate itself.
+    """
+    import rate_model as rm
+    import fact_tables as ft
+    import csv
+    L = {'US': 'USD', 'EA': 'EUR', 'GB': 'GBP', 'JP': 'JPY',
+         'AU': 'AUD', 'NZ': 'NZD', 'CA': 'CAD', 'CH': 'CHF'}
+    want = dict((L[i], r[0]) for i, r in rm.ROWS.items())
+    fp = os.path.join(REPO, 'data/macro_indicators/'
+                            'Interest_Rate_Macro_Indicators.csv')
+    rows = list(csv.reader(io.open(fp, encoding='utf-8')))
+    ci = rows[0].index(ft.latest_month())
+    bad = [(r[0].strip(), r[ci], want[r[0].strip()])
+           for r in rows[1:]
+           if r[0].strip() in want and r[ci] != want[r[0].strip()]]
+    if bad:
+        return False, ', '.join('%s cell=%s model=%s' % b for b in bad)
+    return True, 'all 8 rate cells match rate_model'
+
+
+def s7_selectors():
+    """F-127: build_weekly and gen_page must use the SAME selector."""
+    src = io.open(os.path.join(HERE, 'build_weekly.py'),
+                  encoding='utf-8').read()
+    if re.search(r'^PICKED = ps\.select\(', src, re.M):
+        return False, ('build_weekly uses ps.select() - the LEG-DISJOINT rule '
+                       'LD-126 repealed - while gen_page uses the_set()')
+    return True, 'both on ps.the_set() (LD-126)'
+
+
+def s8_dates():
+    """F-130: no renderer may pin a date the window has moved past."""
+    start, end = window()
+    bad = []
+    for f in ('gen_page.py', 'gen_audit.py', 'build_weekly.py'):
+        src = io.open(os.path.join(HERE, f), encoding='utf-8').read()
+        for m in re.finditer(r"'(\d{4}-\d{2}-\d{2})'\s*,\s*'(\d{4}-\d{2}-\d{2})'", src):
+            if m.group(1) != start or m.group(2) != end:
+                bad.append('%s: %s..%s' % (f, m.group(1), m.group(2)))
+        for m in re.finditer(r'dt\.date\(\d{4},\s*\d+,\s*\d+\)', src):
+            bad.append('%s: literal %s' % (f, m.group(0)))
+    if bad:
+        return False, ('window is %s..%s but: %s' % (start, end, '; '.join(bad)))
+    return True, 'no pinned dates; window %s..%s' % (start, end)
+
+
+STEPS = [
+    ('1', 'capture is fresh (<=3 days)', s1_capture),
+    ('2', 'no release lost to a gap (R-42)', s2_gaps),
+    ('3', 'every row vs TE, refreshed (R-45)', s3_indicator_pages),
+    ('4', 'held values vs capture (R-37/R-40)', s4_vintage),
+    ('5', 'scoring rules (R-44)', s5_rules),
+    ('6', 'policy rates match rate_model (LD-142)', s6_rates),
+    ('7', 'one selector everywhere (F-127)', s7_selectors),
+    ('8', 'no renderer pins a stale date (F-130)', s8_dates),
+]
+
+PAGE_STEPS = """
+AFTER ASSEMBLING THE PAGE, run these by hand - they need the file:
+
+    python pipelines/shell_check.py <page.html>    R-43: header chip, pair
+                                                   count, calibrator day
+                                                   columns vs the window
+
+THEN, BEFORE PUBLISHING:
+    - the .wrap div is closed (F-129 - the splice drops last week's closer)
+    - the header eyebrow, h1 and dek name THIS week (F-122)
+    - section count is 6 and every table tag balances
+"""
+
+
+def main():
+    start, end = window()
+    print('R-46 BUILD CHECK   for the %s .. %s edition' % (start, end))
+    print()
+    failed = None
+    for sid, label, fn in STEPS:
+        try:
+            ok, detail = fn()
+        except Exception as e:
+            ok, detail = False, 'raised %s: %s' % (type(e).__name__, e)
+        print('  %s  %-40s %s' % ('PASS' if ok else 'FAIL', label, detail))
+        if not ok and failed is None:
+            failed = (sid, label)
+    print()
+    if failed:
+        print('*** STOP AT STEP %s - %s' % failed)
+        print('    Fix it before building. A later step built on bad data')
+        print('    produces a page where every number is internally')
+        print('    consistent and wrong (F-130, F-127).')
+        return 1
+    print('  all %d checks pass - safe to build' % len(STEPS))
+    print(PAGE_STEPS)
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
