@@ -439,16 +439,16 @@ footer p{max-width:none}
   <p>One question per currency per day — <em>is this currency positive or negative on Monday?</em> <strong>A currency with three releases on Tuesday scores Tuesday once</strong>, so a crowded calendar cannot outvote the macro base by accident.</p>
   <div class="scroll">
   <table>
-    <thead><tr><th>CCY</th><th class="num">Mon 14</th><th class="num">Tue 15</th><th class="num">Wed 16</th><th class="num">Thu 17</th><th class="num">Fri 18</th><th class="num">Week</th></tr></thead>
+    <thead><tr><th>CCY</th><th class="num">Mon 21</th><th class="num">Tue 22</th><th class="num">Wed 23</th><th class="num">Thu 24</th><th class="num">Fri 25</th><th class="num">Week</th></tr></thead>
     <tbody>
-      <tr><td class="ccy">GBP</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num neg">−1.00</td></tr>
+      <tr><td class="ccy">GBP</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num neg">−1.00</td><td class="num neg">−1.00</td></tr>
       <tr><td class="ccy">EUR</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num zero">+0.00</td></tr>
       <tr><td class="ccy">JPY</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num zero">+0.00</td></tr>
       <tr><td class="ccy">NZD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num zero">+0.00</td></tr>
-      <tr><td class="ccy">CHF</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num zero">+0.00</td></tr>
-      <tr><td class="ccy">CAD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+1.00</td></tr>
-      <tr><td class="ccy">USD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num neg">−1.00</td></tr>
-      <tr><td class="ccy">AUD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+0.50</td></tr>
+      <tr><td class="ccy">CHF</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num zero">+0.00</td><td class="num dash">—</td><td class="num zero">+0.00</td></tr>
+      <tr><td class="ccy">CAD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num dash">—</td><td class="num pos">+1.00</td></tr>
+      <tr><td class="ccy">USD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num neg">−1.00</td><td class="num zero">+0.00</td><td class="num neg">−1.00</td></tr>
+      <tr><td class="ccy">AUD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+0.50</td><td class="num dash">—</td><td class="num pos">+0.50</td></tr>
     </tbody>
   </table>
   </div>
@@ -476,6 +476,17 @@ footer p{max-width:none}
   <p><strong>7 of 7 rows are scorable, and 6 carry a real TE consensus.</strong> That is the value of building on Sunday rather than a week out — the same pipeline run against 14–18 Sep could score only 13 of 20, because <strong>TE publishes consensus close to the release</strong>.</p>
 
   <h3>The collision rules, from this run</h3>
+  <p><strong>Thu 24, AUD — 2 rows, RULE 2 — same month, shared.</strong></p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Row</th><th>Ref</th><th class="num">Score</th><th>Kept?</th></tr></thead>
+    <tbody>
+      <tr class="sel"><td>Employment Change</td><td class="mono">AUG</td><td class="num pos">+1</td><td><strong>KEPT</strong></td></tr>
+      <tr class="sel"><td>Unemployment Rate</td><td class="mono">AUG</td><td class="num zero">0</td><td><strong>KEPT</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Day score <strong>+0.50</strong>.</p>
 </section>
 
 <section>

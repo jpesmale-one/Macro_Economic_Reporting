@@ -108,6 +108,21 @@ def check(path):
     if m and int(m.group(1)) != n:
         bad.append(('pair count', m.group(0), '%d pairs' % n))
 
+    # F-130 - THE CALIBRATOR GRID'S DAY COLUMNS MUST BE THIS WEEK'S.
+    # gen_page pinned DAYS to a literal [14..18] while START/END had moved to
+    # 21-25, so every cell missed its lookup and printed a dash - under
+    # correct non-zero week totals. Jeff caught it by reading the page.
+    # The header row is cheap to check and the failure is silent otherwise.
+    import datetime as _dt
+    want = [(_dt.date(*(int(x) for x in START.split('-')))
+             + _dt.timedelta(days=i)).strftime('%a %d').replace(' 0', ' ')
+            for i in range(5)]
+    grid = re.search(r'The day is the unit.{0,3000}', html, re.S)
+    if grid:
+        got = re.findall(r'<th[^>]*>([A-Z][a-z]{2} \d{1,2})</th>', grid.group(0))
+        if got and got[:5] != want:
+            bad.append(('calibrator days', ' '.join(got[:5]), ' '.join(want)))
+
     return bad, (pair, gap, n)
 
 

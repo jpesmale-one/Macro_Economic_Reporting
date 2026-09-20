@@ -92,7 +92,27 @@ FRANK = dict((c, i + 1) for i, c in enumerate(ORDER))
 n_cons = len([r for r in ROWS if r['cons']])
 n_scor = len([r for r in ROWS if r['score'] is not None])
 BEST = PICKED[0]
-DAYS = [dt.date(2026, 9, d) for d in (14, 15, 16, 17, 18)]
+# *** F-130 - THE CALIBRATOR GRID WAS PINNED TO LAST WEEK'S DATES.
+#
+# Jeff, 2026-09-20, on the published 21-25 Sep page: "we don't have anything
+# on this?" - the grid showed MON 14 ... FRI 18 with every cell a dash, while
+# the WEEK column beside it carried real non-zero totals.
+#
+# DAYS was a literal [14,15,16,17,18] while START/END had already moved to
+# 21-25. Every lookup missed, so every cell printed a dash - and the page
+# then explained the emptiness with a confident footnote ("EUR and JPY and
+# NZD have no rows at all this week"), which was FALSE.
+#
+#     THE NUMBERS WERE RIGHT AND THE GRID THEY WERE PLOTTED ON WAS WRONG.
+#
+# That is F-111/F-122's class again: an OUTPUT defect that survives because
+# everything it is computed from is correct. START and END were already in
+# scope two lines up; the window must be derived, never restated.
+DAYS = [dt.date(*(int(x) for x in START.split('-'))) + dt.timedelta(days=i)
+        for i in range(5)]
+assert DAYS[-1].isoformat() == END, (
+    'calibrator grid %s..%s does not match the edition window %s..%s'
+    % (DAYS[0], DAYS[-1], START, END))
 BANDCLS = {'STRONG': 's', 'NEUTRAL': 'n', 'WEAK': 'w'}
 
 
