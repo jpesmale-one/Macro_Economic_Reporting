@@ -75,7 +75,8 @@ SLUG = {
     'Industrial Production YoY': 'industrial-production',
     'Manufacturing Production YoY': 'manufacturing-production',
     'Industrial Production YoY Final': 'industrial-production',
-    'Machinery Orders YoY': 'machinery-orders',
+    # F-132: the YoY series has its own page; /machinery-orders is MoM.
+    'Machinery Orders YoY': 'machinery-orders-yoy',
     'Machine Tool Orders YoY': 'machine-tool-orders',
     'Non Farm Payrolls': 'non-farm-payrolls',
     'Unemployment Rate': 'unemployment-rate',
@@ -94,6 +95,9 @@ SLUG = {
     'Household Spending YoY': 'household-spending',
     'Durable Goods Ex Transp MoM': 'durable-goods-orders-ex-transportation',
     'ANZ-Indeed Job Ads MoM': 'job-advertisements',
+    # Probed and confirmed to return a release table, 2026-09-21.
+    'ANZ Business Confidence': 'business-confidence',
+    'ANZ Roy Morgan Consumer Conf': 'consumer-confidence',
     'Westpac Consumer Conf Change': 'consumer-confidence',
     'S&P Global Mfg PMI Final': 'manufacturing-pmi',
 }
@@ -186,6 +190,13 @@ def latest(text, name, today=None):
     want = set(re.sub(r'[^a-z0-9 ]', ' ', name.lower()).split())
     want -= {'the', 'of', 'rate', 'index'}
     is_final = 'final' in want
+    # *** F-132 - THE TRANSFORM IS PART OF THE SERIES, LIKE 'Final' IS.
+    # 'Retail Sales Ex Fuel YoY' matched the MoM row on the same page and
+    # 'Machinery Orders YoY' matched Machinery Orders MoM. Both were then
+    # reported as UNIT - a harmless presentation difference - when the value
+    # belonged to a DIFFERENT SERIES. Exactly F-37 and the Final/Prel fix,
+    # one axis over.
+    xform = ({'yoy'} & want) or ({'mom'} & want) or ({'qoq'} & want)
     best = None
     for d, tm, series, mon, act, prev in releases(text):
         got = set(re.sub(r'[^a-z0-9 ]', ' ', series.lower()).split())
@@ -193,6 +204,10 @@ def latest(text, name, today=None):
         # is never satisfied by one.
         if is_final != ('final' in got):
             continue
+        if xform:
+            other = {'yoy', 'mom', 'qoq'} - xform
+            if (xform & got) != xform or (other & got):
+                continue
         if not is_final and ('prel' in got or 'flash' in got):
             continue
         if not want or len(want & got) < max(1, len(want) - 1):
@@ -237,7 +252,17 @@ def sweep(only=None, refresh=False):
         if ours and theirs and theirs > ours:
             verdict = 'STALE'
         elif not same_val:
-            verdict = 'UNIT' if (ours and theirs and ours == theirs)                 else 'DIFFERS'
+            # *** F-132b - 'SAME MONTH, DIFFERENT NUMBER' IS NOT A UNIT
+            # DIFFERENCE WHEN BOTH SIDES ARE PLAIN PERCENTAGES. USD Retail
+            # Sales YoY held 5% while the page said 6% for the same August,
+            # and it was filed under UNIT - the bucket the report tells Jeff
+            # to ignore. UNIT exists for a genuine transform mismatch (MoM %
+            # vs a level in millions); two percentages that disagree are a
+            # wrong value.
+            _pct = ('%' in str(act)) and ('%' in str(pact))
+            verdict = ('DIFFERS' if _pct
+                       else ('UNIT' if (ours and theirs and ours == theirs)
+                             else 'DIFFERS'))
         else:
             verdict = 'OK'
         out.append((ccy, name, act, ref, url,
@@ -287,8 +312,34 @@ if __name__ == '__main__':
                   % (ccy, name[:30], held, page[2]))
         print()
 
+    # *** F-133 - "NO PAGE" WAS REPORTED AS A DEAD END WHEN MOST OF THOSE
+    # ROWS ARE VERIFIABLE FROM THE CAPTURE. 21 rows had no indicator page,
+    # and the report told Jeff to "check by hand" - but 15 of them are
+    # matched by R-40/R-41 against a captured print. Reporting 49 of 70
+    # verified, when the true figure across both sources is 64 of 70,
+    # overstates the blind spot and buries the SIX rows that really have
+    # no check at all.
+    try:
+        import coverage_check as _cc
+        _ver, _st, _fmt, _noev, _unm = _cc.scan()
+        _cap = set((c, n) for c, n, cat, a, act, ds, ev in _ver + _fmt)
+        _both = [r for r in none if (r[0], r[1]) in _cap]
+        _dark = [r for r in none if (r[0], r[1]) not in _cap]
+        if _both:
+            print('NO INDICATOR PAGE, BUT VERIFIED AGAINST A CAPTURED PRINT')
+            print('  (R-40/R-41 cover these - they are not unchecked)')
+            for ccy, name, held, ref, url, page, verdict in sorted(_both):
+                print('  %-4s %-34s held %s' % (ccy, name[:34], held))
+            print()
+        none = _dark
+        print('  TRUE COVERAGE: %d of %d rows checked by one source or the'
+              ' other.' % (len(ok) + len(unit) + len(_both), len(rows)))
+        print()
+    except Exception as _e:
+        print('  (capture cross-check unavailable: %s)' % _e)
+
     if none and '--stale' not in sys.argv:
-        print('NO PAGE - the URL slug did not resolve to a release table.')
+        print('NO PAGE AND NO CAPTURED PRINT - genuinely unchecked.')
         print('  These need a SLUG entry in indicator_pages.py, or a hand check.')
         for ccy, name, held, ref, url, page, verdict in none:
             print('  %-4s %-32s %s' % (ccy, name[:32], url))

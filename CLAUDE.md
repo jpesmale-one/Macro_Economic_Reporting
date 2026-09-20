@@ -170,7 +170,10 @@ python pipelines/shell_check.py <page.html>  # R-43 - DOES THE HAND-WRITTEN
                                          # rebuild leaves them describing the
                                          # PREVIOUS edition (F-122). Run it on
                                          # the assembled page before publishing.
-python pipelines/indicator_pages.py --refresh  # R-45 - EVERY ROW vs ITS TE
+python pipelines/indicator_pages.py --refresh  # R-45
+#   *** ALWAYS --refresh. F-132: without it R-45 reads the CACHED page and
+#   validates today's fact table against a week-old snapshot, reporting OK.
+#   That is how USD Retail Sales sat wrong through two clean sweeps. - EVERY ROW vs ITS TE
                                          # INDICATOR PAGE. R-40/R-41 check
                                          # against the CAPTURE and can only
                                          # see ~30 of 70 rows; the calendar is

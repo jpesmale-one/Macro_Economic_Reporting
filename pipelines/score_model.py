@@ -81,7 +81,7 @@ ROWS = [
  # 2.00 points.
  # ---------------- SPENDING (w=1) ----------------
  ("Spending","US","Building Permits MoM Final","4.3%","-2.6%","Jul/26",">0.5%","GOOD"),
- ("Spending","US","Retail Sales YoY","5%","4.3%","Aug/26",">0.5%","GOOD"),
+ ("Spending","US","Retail Sales YoY","6%","5.03%","Aug/26",">0.5%","GOOD"),
  ("Spending","US","CB Consumer Confidence","89.4","90.2","Aug/26",">Prev","BAD"),
  ("Spending","US","Personal Spending MoM","0.2%","0.3%","Jul/26",">0.5%","NEUTRAL"),
  # F-96: I changed the RULE while updating the VALUE in F-94. This row
