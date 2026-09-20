@@ -51,25 +51,28 @@ import score_model as sm
 
 # (actual, previous, expected, what it is)
 CASES = [
-    # --- above target -------------------------------------------------
-    ('3.4%', '3.4%', 1, 'FLAT above target - the amendment itself (USD CPI)'),
-    ('3.4%', '3.5%', 0, 'falling above target - bank is winning, hold'),
-    ('2.9%', '2.6%', 1, 'rising above target - hawkish'),
-    ('4.1%', '3.1%', 1, 'rising hard above target'),
-    ('2.1%', '2.1%', 1, 'flat just above target still counts'),
+    # --- above the 2.5% ceiling ---------------------------------------
+    ('3.4%', '3.4%', 1, 'FLAT above ceiling - USD CPI, LD-136 amendment'),
+    ('3.4%', '3.5%', 0, 'falling above ceiling - bank winning, hold'),
+    ('2.9%', '2.6%', 1, 'rising above ceiling - hawkish'),
+    ('4.1%', '3.1%', 1, 'rising hard above ceiling'),
+    ('2.6%', '2.5%', 1, 'just over the ceiling, rising'),
     ('3.0%', '2.8%', 1, 'CAD case'),
-    # --- below target -------------------------------------------------
-    ('1.5%', '1.8%', -1, 'falling below target - cut risk'),
-    ('1.5%', '1.5%', -1, 'FLAT below target - stuck under, still cut risk'),
-    ('1.9%', '1.6%', 0, 'rising below target - heading home, hold'),
-    ('0.8%', '0.4%', 0, 'CHF: rising from near-zero, still under target'),
-    # --- exactly at target --------------------------------------------
-    ('2.0%', '2.0%', 0, 'at target, flat - mandate met'),
-    ('2.0%', '2.4%', 0, 'arrived at target from above'),
-    ('2.0%', '1.7%', 0, 'arrived at target from below'),
+    # --- LD-143: inside the 1.5-2.5 corridor, NOTHING is signed -------
+    ('1.9%', '1.9%', 0, 'JPY flat at 1.9 - THE LD-143 CASE'),
+    ('2.4%', '2.1%', 0, 'rising INSIDE the corridor - silenced deliberately'),
+    ('1.7%', '1.9%', 0, 'falling INSIDE the corridor - silenced deliberately'),
+    ('2.5%', '2.75%', 0, 'exactly on the ceiling is INSIDE'),
+    ('1.5%', '1.25%', 0, 'exactly on the floor is INSIDE'),
+    ('2.0%', '2.0%', 0, 'at target, flat'),
+    # --- below the 1.5% floor -----------------------------------------
+    ('1.4%', '1.5%', -1, 'just under the floor, falling - cut risk'),
+    ('1.2%', '1.2%', -1, 'FLAT below the floor - stuck under, cut risk'),
+    ('1.4%', '1.2%', 0, 'rising below the floor - heading home, hold'),
+    ('0.8%', '0.4%', 0, 'CHF rising from near-zero, still under the floor'),
     # --- unreadable ---------------------------------------------------
     ('', '2.0%', None, 'no actual - ungraded, never a guessed 0'),
-    ('2.5%', '', None, 'no previous - ungraded, never a guessed 0'),
+    ('2.5%', '', None, 'no previous - ungraded'),
     ('n/a', '2.0%', None, 'unparseable actual'),
 ]
 

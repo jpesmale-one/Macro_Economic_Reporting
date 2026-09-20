@@ -157,14 +157,14 @@ ROWS = [
  ("Employment","CH","Non Farm Payrolls","5.698M","5.537M","Q2/26",">Prev","GOOD"),
  ("Employment","CH","Unemployment Rate","3%","3%","Aug/26","<Prev","NEUTRAL"),
  # ---------------- INFLATION (w=3) ----------------
- ("Inflation","US","Inflation Rate YoY","3.4%","3.4%","Aug/26","vs 2% target & Prev","GOOD"),
- ("Inflation","EA","Inflation Rate YoY Final","3.2%","2.9%","Aug/26","vs 2% target & Prev","GOOD"),
- ("Inflation","GB","Inflation Rate YoY","3.1%","2.9%","Aug/26","vs 2% target & Prev","GOOD"),
- ("Inflation","JP","Inflation Rate YoY","1.9%","1.9%","Aug/26","vs 2% target & Prev","BAD"),
- ("Inflation","AU","Inflation Rate YoY","3.5%","3.8%","Jul/26","vs 2% target & Prev","NEUTRAL"),
- ("Inflation","NZ","Inflation Rate YoY","4.1%","3.1%","Jun/26 (Q)","vs 2% target & Prev","GOOD"),
- ("Inflation","CA","Inflation Rate YoY","3%","3.0%","Aug/26","vs 2% target & Prev","GOOD"),
- ("Inflation","CH","Inflation Rate YoY","0.8%","0.4%","Aug/26","vs 2% target & Prev","NEUTRAL"),
+ ("Inflation","US","Inflation Rate YoY","3.4%","3.4%","Aug/26","1.5-2.5 corridor & Prev","GOOD"),
+ ("Inflation","EA","Inflation Rate YoY Final","3.2%","2.9%","Aug/26","1.5-2.5 corridor & Prev","GOOD"),
+ ("Inflation","GB","Inflation Rate YoY","3.1%","2.9%","Aug/26","1.5-2.5 corridor & Prev","GOOD"),
+ ("Inflation","JP","Inflation Rate YoY","1.9%","1.9%","Aug/26","1.5-2.5 corridor & Prev","NEUTRAL"),
+ ("Inflation","AU","Inflation Rate YoY","3.5%","3.8%","Jul/26","1.5-2.5 corridor & Prev","NEUTRAL"),
+ ("Inflation","NZ","Inflation Rate YoY","4.1%","3.1%","Jun/26 (Q)","1.5-2.5 corridor & Prev","GOOD"),
+ ("Inflation","CA","Inflation Rate YoY","3%","3.0%","Aug/26","1.5-2.5 corridor & Prev","GOOD"),
+ ("Inflation","CH","Inflation Rate YoY","0.8%","0.4%","Aug/26","1.5-2.5 corridor & Prev","NEUTRAL"),
 ]
 
 CCYS = ["US","EA","GB","JP","AU","NZ","CA","CH"]

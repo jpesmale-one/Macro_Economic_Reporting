@@ -4465,3 +4465,55 @@ is never negative in this set, so no sign is parsed at all.
 the precedent. The specific thing to check: does CHF's negative score track its
 realised weakness, and does JPY's 0 stop the model reading a priced hike as
 strength?
+
+---
+
+## LD-143 — THE 1.5–2.5% CORRIDOR APPLIES TO INFLATION TOO
+
+**Jeff, 2026-09-21**, on JPY CPI 1.9% after 1.9%: *"This should be Neutral since
+1.9 is in between 1.5 to 2.5"*.
+
+LD-136 pivoted on the single **2% point**, so 1.9% flat read as *below target and
+not rising* → **BAD**. But 1.9% is within a rounding error of the mandate;
+calling it a cut risk **asserts a precision the number does not carry.**
+
+**LD-142 had introduced the corridor for the policy rate one day earlier. This
+makes both categories use ONE IDENTICAL BAND** — worth more than either rule
+alone, because the same 1.9% now reads the same way whether it arrives as a CPI
+print or as a policy rate.
+
+```
+above 2.5, not falling  -> +1 GOOD      hike risk
+above 2.5, falling      ->  0 NEUTRAL
+1.5 - 2.5, any direction->  0 NEUTRAL   no compulsion either way
+below 1.5, not rising   -> -1 BAD       cut risk
+below 1.5, rising       ->  0 NEUTRAL
+```
+
+### What it silences, chosen deliberately
+
+The corridor neutralises prints between 2.0 and 2.5 that LD-136 scored:
+
+| | LD-136 | LD-143 |
+|---|---|---|
+| CPI 2.4% after 2.1% | GOOD | **NEUTRAL** |
+| CPI 1.7% after 1.9% | BAD | **NEUTRAL** |
+
+Asked whether that was intended, Jeff took the **full corridor** over a narrower
+*"neutral only when flat or moving toward 2%"* variant. **The band is the signal;
+direction only decides the sign outside it.**
+
+### Impact
+
+**JPY Inflation BAD → NEUTRAL**, base **+1.00 → +2.00**, band **WEAK → NEUTRAL**
+— which drops **EURJPY** from the set, leaving three pairs: EURAUD LONG +5.10,
+GBPAUD LONG +4.50, AUDCHF SHORT +1.20.
+
+The threshold label changes from `vs 2% target & Prev` to `1.5-2.5 corridor & Prev`.
+R-44 grows to 31 cases, including both corridor edges and the two silenced cases.
+
+### Withdrawal condition
+
+**If the corridor ranks nothing by the 12–16 Oct retrospective, narrow it or
+revert to LD-136.** The specific risk: a band 1 point wide covers the range most
+developed-market CPI sits in, so it may neutralise the category into silence.

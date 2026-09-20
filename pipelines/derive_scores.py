@@ -80,6 +80,31 @@ def _rule(ccy, indicator):
 # 2026-09-14 when asked which boundary stands.
 INFLATION_TARGET = 2.0
 
+# LD-143 - THE 1.5-2.5% CORRIDOR REACHES INFLATION TOO.
+#
+# Jeff, 2026-09-21, on JPY CPI 1.9% after 1.9%: "This should be Neutral since
+# 1.9 is in between 1.5 to 2.5".
+#
+# LD-136 pivoted on the single 2% POINT, so 1.9% flat read as "below target
+# and not rising" -> BAD. But 1.9% is within a rounding error of the mandate;
+# calling it a cut risk asserts a precision the number does not carry.
+#
+# LD-142 had already introduced the corridor for the POLICY RATE a day
+# earlier. This makes the two categories use ONE IDENTICAL BAND, which is
+# worth more than either rule alone: the same 1.9% now reads the same way
+# whether it arrives as a CPI print or as a policy rate.
+#
+# *** WHAT IT ALSO SILENCES, AND JEFF CHOSE THIS DELIBERATELY. The corridor
+# neutralises prints between 2.0 and 2.5 that LD-136 scored:
+#
+#     CPI 2.4% after 2.1%   GOOD -> NEUTRAL   (rising, but inside)
+#     CPI 1.7% after 1.9%   BAD  -> NEUTRAL   (falling, but inside)
+#
+# Asked whether that was intended, he took the full corridor over a narrower
+# "neutral only when flat or moving toward 2%" variant. The band is the
+# signal; direction only decides the sign OUTSIDE it.
+LOW, HIGH = 1.5, 2.5
+
 
 def inflation_score(actual, previous, target=INFLATION_TARGET):
     """LD-136. +1 / 0 / -1 from the print, its previous, and the 2% target.
@@ -95,11 +120,11 @@ def inflation_score(actual, previous, target=INFLATION_TARGET):
     a, p = sm._num(actual), sm._num(previous)
     if a is None or p is None:
         return None
-    if a > target:
+    if a > HIGH:
         return 1 if a >= p else 0
-    if a < target:
+    if a < LOW:
         return -1 if a <= p else 0
-    # Exactly at target: the bank has hit its mandate, no pressure either way.
+    # LD-143: inside the corridor, no compulsion either way.
     return 0
 
 
