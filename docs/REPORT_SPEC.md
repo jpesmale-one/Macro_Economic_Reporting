@@ -4391,3 +4391,77 @@ not enough to call this working.
 **If LD-140 ranks nothing by the 21–25 Sep retrospective, it comes out.** LD-113
 is the precedent: a category weighted for importance rather than measured
 evidence lasted one day.
+
+---
+
+## LD-142 — THE RATE ROW SCORES THE POLICY RATE, NOT A PROXY FOR IT
+
+**Jeff, 2026-09-21**, after flagging the Fed and BoJ rows as wrong:
+
+```
+1) Actual > 2.5% and Actual >= Previous is Good. Higher chance of a hike
+2) Actual > 2.5% and Actual <  Previous is Neutral. Probability to hold
+3) Actual < 1.5% and Actual <= Previous is Bad. Higher chance of a cut
+4) Actual < 1.5% and Actual >  Previous is Neutral. Probability to hold
+5) Actual between 1.5% and 2.5% is Neutral
+```
+
+**It is LD-136's shape moved from CPI to the policy rate, plus one addition he
+made deliberately: a NEUTRAL CORRIDOR.** LD-136 pivots on a single 2% point, so
+a print either side is immediately signed. Here **1.5–2.5% is explicitly
+no-signal** — a rate inside it is neither restrictive nor accommodative.
+
+### What it replaces
+
+**LD-140** scored consensus-vs-standing — whether a move was *expected*. On
+18 Sep that read **JPY +1 for a priced hike in the week the yen fell 1.58%**,
+worst of the eight. Under LD-142 the same decision scores **0**: 1.25% is still
+below the 1.5% floor, so a bank hiking *into* the corridor from underneath is not
+yet hawkish. **Retired, not kept alongside** — Jeff chose replace, so a decision
+is scored once.
+
+**`expected()`** scored CPI against each country's mandate band. That was a proxy
+for the rate tone, and the real quantity is now read directly. Dropping it also
+removes a double count: **CPI already reaches the board through Inflation at
+weight 1 under LD-136.**
+
+**`surprise`** stays dropped (2026-09-20): *"by the time we capture the data its
+already past."*
+
+### Weights
+
+| Term | Weight |
+|---|---:|
+| realised | 0.20 |
+| **level** | **0.40** |
+| path | 0.40 |
+
+### The category under LD-142
+
+| CCY | Rate | Prev | Level | Score |
+|---|---|---|---:|---:|
+| NZD | 2.75% | 2.50% | +1 | +1.00 |
+| USD | 4.00% | 3.75% | +1 | +1.00 |
+| EUR | 2.65% | 2.40% | +1 | +1.00 |
+| GBP | 3.75% | 3.75% | +1 | +0.40 |
+| AUD | 4.35% | 4.35% | +1 | +0.40 |
+| **JPY** | **1.25%** | 1.00% | **0** | +0.33 |
+| CAD | 2.25% | 2.25% | 0 | +0.00 |
+| **CHF** | **0.00%** | 0.00% | **−1** | **−0.40** |
+
+**Stale policy rates refreshed in the same change** — USD was still `3.50-3.75%`
+and JPY `1.00%`, both pre-hike. R-37's rate-cell check caught them.
+
+### A parsing trap worth keeping
+
+`3.50-3.75%` read as **−3.75** on the first attempt, because the hyphen in a
+range parsed as a minus sign — putting the Fed below the 1.5% floor and scoring
+the world's most restrictive major central bank as a **cut risk**. A policy rate
+is never negative in this set, so no sign is parsed at all.
+
+### Withdrawal condition
+
+**If this ranks nothing by the 12–16 Oct retrospective, it comes out.** LD-113 is
+the precedent. The specific thing to check: does CHF's negative score track its
+realised weakness, and does JPY's 0 stop the model reading a priced hike as
+strength?

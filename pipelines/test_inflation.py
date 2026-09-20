@@ -91,23 +91,33 @@ PREV_CASES = [
 ]
 
 
-# LD-140 - (actual, consensus, prev, expected, what it is)
-# A rate decision scores its SURPRISE once released, and its EXPECTED MOVE
-# before release. LD-90 governs both: fully priced is ZERO.
-RATE_CASES = [
-    # --- released: actual vs consensus ---------------------------------
-    ('4%',    '4%',    '3.75%', 0,  'Fed 16 Sep: HIKED but exactly priced'),
-    ('3.75%', '3.75%', '3.75%', 0,  'BoE 17 Sep: held, exactly priced'),
-    ('1.25%', '1.25%', '1%',    0,  'BoJ 18 Sep: hiked, exactly priced'),
-    ('4.25%', '4%',    '3.75%', 1,  'hawkish surprise - hiked MORE than priced'),
-    ('3.75%', '4%',    '3.75%', -1, 'dovish surprise - held when a hike was priced'),
-    # --- before release: consensus vs standing rate --------------------
-    (None,    '4%',    '3.75%', 1,  'a hike is EXPECTED - forward-looking branch'),
-    (None,    '3.75%', '3.75%', 0,  'a hold is expected - no move, no score'),
-    (None,    '2.5%',  '2.75%', -1, 'a cut is expected'),
-    # --- unreadable ----------------------------------------------------
-    (None,    None,    '3.75%', None, 'no consensus - ungraded, never a guessed 0'),
-    (None,    '4%',    None,    None, 'no standing rate - ungraded'),
+# LD-140's case block is RETIRED. It tested consensus-vs-standing, which
+# LD-142 replaced on 2026-09-21 - the rule no longer exists, so cases for it
+# would be testing nothing. The DAY PRECEDENCE half of LD-140 survives and is
+# still tested below; only the scoring half went.
+RATE_CASES = []
+
+
+# LD-142 - (rate, previous, expected, what it is)
+RATE_LEVEL_CASES = [
+    # --- above the 2.5% ceiling ---------------------------------------
+    ('4.00%', '3.75%', 1, 'USD hiked 17 Sep - above corridor, rising'),
+    ('3.75%', '3.75%', 1, 'GBP hawkish hold - above corridor, FLAT still counts'),
+    ('2.75%', '2.50%', 1, 'NZD above corridor, rising'),
+    ('3.50%', '3.75%', 0, 'above corridor but CUTTING - hold, not hawkish'),
+    # --- below the 1.5% floor -----------------------------------------
+    ('0.00%', '0.00%', -1, 'CHF at zero, flat - cut risk'),
+    ('1.25%', '1.00%', 0, 'JPY HIKED 18 Sep but still BELOW 1.5 - the correction'),
+    ('1.00%', '1.25%', -1, 'below floor and falling'),
+    # --- inside the corridor ------------------------------------------
+    ('2.25%', '2.25%', 0, 'CAD inside 1.5-2.5 - no compulsion either way'),
+    ('2.00%', '1.50%', 0, 'rising hard but still inside the corridor'),
+    ('1.50%', '1.25%', 0, 'exactly on the floor is INSIDE'),
+    ('2.50%', '2.75%', 0, 'exactly on the ceiling is INSIDE'),
+    # --- parsing -------------------------------------------------------
+    ('3.50-3.75%', '3.50%', 1, 'a RANGE takes its top - the hyphen is not a minus'),
+    (None, '2.00%', None, 'no rate - ungraded, never a guessed 0'),
+    ('2.00%', None, None, 'no previous - ungraded'),
 ]
 
 
@@ -170,19 +180,20 @@ def main():
     if not nbad:
         print('    every >Prev row matches LD-137')
 
-    print()
-    print('  LD-140 - the rate-decision rule')
-    print('  %-8s %-8s %-8s %-6s %-6s %s'
-          % ('ACTUAL', 'CONS', 'PREV', 'WANT', 'GOT', 'CASE'))
     import calibrator as _cal
-    for act, cons, prev, want, note in RATE_CASES:
-        rec = {'actual': act, 'consensus': cons, 'previous': prev}
-        got = _cal.score_row('USD', _cal.RATE_NAME, rec)
+
+    print()
+    print('  LD-142 - the rate-level rule')
+    print('  %-12s %-10s %-6s %-6s %s'
+          % ('RATE', 'PREV', 'WANT', 'GOT', 'CASE'))
+    import rate_model as _rm
+    for a, p_, want, note in RATE_LEVEL_CASES:
+        got = _rm.level_score(a, p_)
         ok = got == want
         if not ok:
             bad += 1
-        print('  %-8s %-8s %-8s %-6s %-6s %s%s'
-              % (act or "''", cons or "''", prev or "''", want, got, note,
+        print('  %-12s %-10s %-6s %-6s %s%s'
+              % (a or "''", p_ or "''", want, got, note,
                  '' if ok else '   *** FAIL'))
 
     # LD-140 precedence, including the case that would destroy signal.

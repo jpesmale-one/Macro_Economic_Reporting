@@ -222,12 +222,22 @@ def score_row(ccy, name, rec):
     # EXPECTED move instead: consensus vs the standing rate (`prev`). A hike
     # that is fully priced still scores 0 - the currency already holds it.
     if name == RATE_NAME:
-        act = num(rec.get('actual'))
-        if act is not None and cons is not None:
-            return 1 if act > cons else (-1 if act < cons else 0)
-        # forward-looking: is the DECISION itself expected to move the rate?
-        if cons is not None and prev is not None:
-            return 1 if cons > prev else (-1 if cons < prev else 0)
+        # *** LD-142 RETIRED LD-140's TEST. Jeff, 2026-09-21, on the Fed and
+        # BoJ rows: "This needs correction", and then set a rule that scores
+        # the RATE LEVEL against a 1.5-2.5% neutral corridor.
+        #
+        # LD-140 scored consensus-vs-standing - whether a move was EXPECTED.
+        # On 18 Sep that read JPY +1 for a priced hike while the yen fell
+        # 1.58%, worst of the eight. Under LD-142 the same decision is 0:
+        # 1.25% is still below the 1.5% floor, so hiking INTO the corridor
+        # from underneath is not yet hawkish.
+        #
+        # ONE RULE, ONE QUANTITY. Jeff chose replace over keep-both, so the
+        # decision is scored ONCE - by rate_model's LEVEL term in the base -
+        # and the calibrator no longer scores it a second time. The row still
+        # ENTERS the calibrator (it keeps its day precedence, so a decision
+        # day is not carried by a lesser row) but contributes no score of its
+        # own.
         return None
 
     # LD-117: GDP scores the RANGE, not a threshold and not a surprise.

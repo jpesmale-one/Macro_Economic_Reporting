@@ -101,8 +101,12 @@ the SNB's own 0-2% mandate. Each bank is judged against its own target.
 # SURPRISE; one whose next meeting is beyond TE's horizon has no PATH. The
 # divisor is the sum of the weights that actually apply, so a missing term
 # neither scores zero nor penalises the currency for the absence.
-TERM_WEIGHT = {'realised': 0.20, 'expected': 0.30,
-               'surprise': 0.20, 'path': 0.30}
+# LD-142 weights. SURPRISE removed (Jeff 2026-09-20: "by the time we capture
+# the data its already past") and EXPECTED - the CPI-vs-mandate proxy -
+# replaced by LEVEL, which reads the policy rate directly. That also removes
+# a double count: CPI already reaches the board through Inflation at weight 1.
+TERM_WEIGHT = {'realised': 0.20, 'level': 0.40, 'path': 0.40,
+               'expected': 0.30, 'surprise': 0.20}   # last two: legacy, unused
 
 # F-100 (2026-09-09) - W_RATE IS A PRE-REVAMP LEFTOVER AND IS NOW 1.
 #
@@ -137,27 +141,97 @@ ROWS = {
     # NZD 2026-09-02: hiked to 2.75% exactly on consensus and FELL 108
     # pips. A fully-priced hike is not news, so it scores 0.00 - the
     # realised term still pays for the level, the surprise pays nothing.
-    'NZ': ('2.75%', +1.0, 4.1, True,  'HIKED 2 Sep to 2.75%, exactly on consensus - fully priced, NZD -108 pips (LD-90)', 0.0, 2.50, None),
-    'US': ('3.50-3.75%', 0.0, 3.4, False, 'CPI as proxy; the Fed targets PCE', None, 3.75, 4.00),
+    'NZ': ('2.75%', +1.0, 4.1, True,  'HIKED 2 Sep to 2.75%, exactly on consensus - fully priced, NZD -108 pips (LD-90)', 0.0, 2.50, None, '2.50%'),
+    'US': ('4.00%', +1.0, 3.4, False, 'HIKED 17 Sep to 4.00%, on consensus; projections raised 3.6%->4.1%', 0.0, 4.00, None, '3.75%'),
     # ECB HIKED 10 Sep 2026 to 2.65%, exactly on the 2.65% consensus - the
     # same shape as NZD above, so SURPRISE scores 0.00 (LD-90): a fully
     # priced hike is not news. REALISED now pays +1.0 for having moved.
     # PATH is None - the next meeting is beyond TE's horizon (F-102).
-    'EA': ('2.65%', +1.0, 2.9, True,  'HIKED 10 Sep to 2.65%, exactly on consensus - fully priced (LD-90). HICP final', 0.0, 2.65, None),
-    'GB': ('3.75%', 0.0, 2.9, True,  '', None, 3.75, 3.75),
-    'JP': ('1.00%', 0.0, 1.9, True,  'Jul/26 print, released 07:30 PHT 21 Aug', None, 1.00, 1.25),
-    'AU': ('4.35%', 0.0, 3.8, False, '', None, 4.35, 4.35),
+    'EA': ('2.65%', +1.0, 2.9, True,  'HIKED 10 Sep to 2.65%, exactly on consensus - fully priced (LD-90). HICP final', 0.0, 2.65, None, '2.40%'),
+    'GB': ('3.75%', 0.0, 2.9, True,  'HELD 17 Sep at 3.75%, 3 of 9 voting to HIKE - hawkish hold', 0.0, 3.75, 3.75, '3.75%'),
+    'JP': ('1.25%', +1.0, 1.9, True,  'HIKED 18 Sep to 1.25%, on consensus, split 7-2 - yen FELL 1.58% that week', 0.0, 1.25, None, '1.00%'),
+    'AU': ('4.35%', 0.0, 3.8, False, 'HELD - highest policy rate in the group', None, 4.35, 4.35, '4.35%'),
     # LD-90: BoC HELD 2 Sep at 2.25%, exactly on consensus. A fully-priced
     # hold is not news either - the surprise term pays 0.00 rather than
     # being absent. NZD's row already recorded this; CAD's did not.
-    'CA': ('2.25%', 0.0, 3.0, True,  'HELD 2 Sep at 2.25%, exactly on consensus - fully priced, CAD +53 pips (LD-90)', 0.0, 2.25, None),
+    'CA': ('2.25%', 0.0, 3.0, True,  'HELD 2 Sep at 2.25%, exactly on consensus - fully priced, CAD +53 pips (LD-90)', 0.0, 2.25, None, '2.25%'),
     # F-88: this row still carried 0.4% FALLING after CHF inflation
     # printed 0.8% RISING on 3 Sep. Section 2.5 updated on that print and
     # 2.6 did not, so the same indicator drove two categories in opposite
     # directions in one edition. Inside-band and rising is +0.25, not
     # -0.25 - a 0.75 swing on a weight-3 category.
-    'CH': ('0.00%', 0.0, 0.8, True,  'Aug/26 print, 0.8% vs 0.5% consensus - inside the SNB 0-2% band and RISING', None, 0.00, 0.00),
+    'CH': ('0.00%', 0.0, 0.8, True,  'Aug/26 print, 0.8% vs 0.5% consensus - inside the SNB 0-2% band and RISING', None, 0.00, 0.00, '0.00%'),
 }
+
+
+# LD-142 - THE RATE ROW SCORES WHERE THE RATE IS, AGAINST A NEUTRAL CORRIDOR.
+#
+# Jeff, 2026-09-21:
+#   1) Actual > 2.5% and Actual >= Previous is Good. Higher chance of a hike
+#   2) Actual > 2.5% and Actual <  Previous is Neutral. Probability to hold
+#   3) Actual < 1.5% and Actual <= Previous is Bad. Higher chance of a cut
+#   4) Actual < 1.5% and Actual >  Previous is Neutral. Probability to hold
+#   5) Actual between 1.5% and 2.5% is Neutral
+#
+# THE SHAPE IS LD-136's, MOVED FROM CPI TO THE POLICY RATE, with one
+# addition Jeff made deliberately: a NEUTRAL CORRIDOR. LD-136 pivots on a
+# single 2% point, so a print either side is immediately signed. Here
+# 1.5-2.5% is explicitly no-signal - a rate inside the corridor is neither
+# restrictive nor accommodative, and the bank is not compelled either way.
+#
+# WHAT IT REPLACES, AND WHY.
+#
+#   LD-140 scored consensus-vs-standing - whether a move was EXPECTED. That
+#   is a different quantity, and on 18 Sep it read JPY +1 for a priced hike
+#   while the yen fell 1.58%, the worst of the eight. Jeff: "This needs
+#   correction". Under LD-142 the same decision scores 0: 1.25% is still
+#   BELOW the 1.5% floor, so a bank hiking INTO the corridor from underneath
+#   is not yet hawkish. LD-140's test is retired, not kept alongside - one
+#   rule, one quantity, no double count of the same decision.
+#
+#   expected() scored CPI against each country's own mandate band. That was
+#   a PROXY for the rate tone, and the real quantity is now read directly.
+#   Dropping it also removes a double count: CPI already reaches the board
+#   through the Inflation category at weight 1 under LD-136.
+#
+# SURPRISE stays dropped - Jeff, 2026-09-20: "the surprise won't matter here
+# anymore. because by the time we capture the data its already past."
+HIGH, LOW = 2.5, 1.5
+
+
+def level_score(actual, previous):
+    """LD-142. +1 / 0 / -1 from the policy rate and the one before it.
+
+    Returns None when either side is unreadable - never a guessed 0, so a
+    missing previous shows as ungraded rather than as a neutral verdict.
+    """
+    a, p = _num(actual), _num(previous)
+    if a is None or p is None:
+        return None
+    if a > HIGH:
+        return 1 if a >= p else 0
+    if a < LOW:
+        return -1 if a <= p else 0
+    return 0                      # inside the corridor: no compulsion either way
+
+
+def _num(v):
+    r"""A rate string -> float. '3.50-3.75%' takes the TOP of the range, which
+    is the rate actually in force (the Fed's upper bound).
+
+    *** THE HYPHEN IN A RANGE IS NOT A MINUS SIGN. The first version matched
+    r'-?\d+\.?\d*' and read '3.50-3.75' as [3.50, -3.75], returning MINUS
+    3.75 - which put the Fed below the 1.5% floor and scored the world's
+    most restrictive major central bank as a CUT RISK. A policy rate is
+    never negative in this set, so no sign is parsed at all.
+    """
+    import re as _re
+    if v is None:
+        return None
+    if isinstance(v, (int, float)):
+        return float(v)
+    m = _re.findall(r'\d+\.?\d*', str(v).replace('%', ''))
+    return float(m[-1]) if m else None
 
 
 def expected(ccy, cpi, rising):
@@ -215,17 +289,25 @@ def compute():
         rate, real, cpi, ris, note = row[:5]
         surp = row[5] if len(row) > 5 else None
         cur, fcst = (row[6], row[7]) if len(row) > 7 else (None, None)
+        prev_rate = row[8] if len(row) > 8 else None
         exp, why = expected(ccy, cpi, ris)
         path, bp, path_why = path_score(cur, fcst)
+        # LD-142 - the LEVEL term replaces expected() and LD-140's
+        # consensus-vs-standing test. See level_score() for Jeff's five rules
+        # and for what each replaced rule was measuring instead.
+        lvl = level_score(rate, prev_rate)
+        why = ('%s%% vs the %s-%s%% corridor, prev %s'
+               % (rate.replace('%', ''), LOW, HIGH, prev_rate or '?'))
         # LD-109: weighted, renormalised over the terms that exist.
-        terms = {'realised': real, 'expected': exp,
-                 'surprise': surp, 'path': path}
+        # SURPRISE dropped (Jeff 2026-09-20), EXPECTED replaced by LEVEL.
+        terms = {'realised': real, 'level': lvl, 'path': path}
         live = dict((k, v) for k, v in terms.items() if v is not None)
         wsum = sum(TERM_WEIGHT[k] for k in live)
         raw = (sum(v * TERM_WEIGHT[k] for k, v in live.items()) / wsum
                if wsum else 0.0)
         out[ccy] = {'weights': dict((k, TERM_WEIGHT[k]) for k in live),
                     'rate': rate, 'realised': real, 'expected': exp,
+                    'level': lvl, 'prev_rate': prev_rate,
                     'surprise': surp, 'path': path, 'path_bp': bp,
                     'path_why': path_why, 'forecast': fcst,
                     'raw': raw, 'score': raw * W_RATE,

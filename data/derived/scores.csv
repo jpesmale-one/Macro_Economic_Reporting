@@ -19,14 +19,14 @@ Sep-26,Inflation,AUD,Inflation Rate YoY,3.5%,0
 Sep-26,Inflation,NZD,Inflation Rate YoY,4.1%,1
 Sep-26,Inflation,CAD,Inflation Rate YoY,3%,1
 Sep-26,Inflation,CHF,Inflation Rate YoY,0.8%,0
-Sep-26,Interest_Rate,USD,Fed Interest Rate Decision,3.50-3.75%,0.187
-Sep-26,Interest_Rate,EUR,ECB Interest Rate Decision,2.65%,0.5
-Sep-26,Interest_Rate,GBP,BoE Interest Rate Decision,3.75%,0.187
-Sep-26,Interest_Rate,JPY,BoJ Interest Rate Decision,1.00%,0.187
-Sep-26,Interest_Rate,AUD,RBA Interest Rate Decision,4.35%,0.0
-Sep-26,Interest_Rate,NZD,RBNZ Interest Rate Decision,2.75%,0.5
-Sep-26,Interest_Rate,CAD,BoC Interest Rate Decision,2.25%,0.107
-Sep-26,Interest_Rate,CHF,SNB Interest Rate Decision,0.00%,0.094
+Sep-26,Interest_Rate,USD,Fed Interest Rate Decision,4.00%,1.0
+Sep-26,Interest_Rate,EUR,ECB Interest Rate Decision,2.65%,1.0
+Sep-26,Interest_Rate,GBP,BoE Interest Rate Decision,3.75%,0.4
+Sep-26,Interest_Rate,JPY,BoJ Interest Rate Decision,1.25%,0.333
+Sep-26,Interest_Rate,AUD,RBA Interest Rate Decision,4.35%,0.4
+Sep-26,Interest_Rate,NZD,RBNZ Interest Rate Decision,2.75%,1.0
+Sep-26,Interest_Rate,CAD,BoC Interest Rate Decision,2.25%,0.0
+Sep-26,Interest_Rate,CHF,SNB Interest Rate Decision,0.00%,-0.4
 Sep-26,Production,USD,Durable Goods Ex Transp MoM,0.4%,0
 Sep-26,Production,USD,ISM Manufacturing PMI,54.6,1
 Sep-26,Production,USD,Industrial Production YoY,1.4%,1
