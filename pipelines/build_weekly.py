@@ -30,14 +30,31 @@ CAT = dict(((_sm.LABEL[_r[1]], _r[2]), _r[0]) for _r in _sm.ROWS)
 def hot(ccy, name):
     return CAT.get((ccy, name)) in HIGH_IMPACT
 
-CAP = sorted(glob.glob('data/raw/calendar/2026-09-13_*_cal_full.json'))[-1]
-START, END = '2026-09-14', '2026-09-18'
+CAP = sorted(glob.glob('data/raw/calendar/2026-09-20_*_cal_full.json'))[-1]
+START, END = '2026-09-21', '2026-09-25'
 
 F = ps.final_scores(CAP, START, END)
 SC = dict((c, F[c]['total']) for c in F)
 BAND, ORDER = ft.bands(SC)
 CANDS = ps.candidates(SC, BAND)
-PICKED = ps.select(CANDS)
+# *** F-127 - TWO SELECTORS, TWO DIFFERENT SETS.
+#
+# build_weekly used ps.select() - the LEG-DISJOINT rule - while gen_page.py
+# used ps.the_set(), which is LD-126. On 2026-09-20 they disagreed outright:
+#
+#     ps.select()  GBPAUD, EURUSD, CADJPY          (3 pairs, leg-disjoint)
+#     the_set()    GBPAUD, GBPUSD, EURAUD, AUDJPY  (4 pairs, LD-126)
+#
+# The MD and the HTML would have published DIFFERENT SETS for the same
+# edition, each internally consistent. LD-126 dropped leg-disjointness
+# deliberately ("one tier-1 read per category AND per strong currency"), so
+# the_set() is the authority and select() is the superseded rule.
+#
+# The same shape as F-122: one artefact regenerated, another left on an old
+# path, and every number in both of them correct.
+SEL = ps.the_set(CANDS, BAND, SC)
+PICKED = [p for p, _ in SEL]
+WHY = dict((p['pair'], why) for p, why in SEL)
 CALD = cal.calibrate(CAP, START, END)
 ROWS = cal.week_rows(CAP, START, END)
 MONTH = ft.latest_month()
@@ -46,7 +63,7 @@ b = ft.base_scores(MONTH)
 
 BSC = dict((c, F[c]['base']) for c in F)
 BBAND, BORDER = ft.bands(BSC)
-BPICK = ps.select(ps.candidates(BSC, BBAND))
+BPICK = [p for p, _ in ps.the_set(ps.candidates(BSC, BBAND), BBAND, BSC)]
 
 TOP = ORDER[0]
 BOT = ORDER[-1]
@@ -69,16 +86,16 @@ n_cons = len([r for r in ROWS if r['cons']])
 n_scor = len([r for r in ROWS if r['score'] is not None])
 
 # LD-130 - the published pages, so the repo copy carries its own pointers.
-ARTIFACT = 'https://claude.ai/code/artifact/0e388632-c401-4a21-abe2-d2c7149a630d'
-RETRO = 'https://claude.ai/code/artifact/3d04fa75-c91a-48c5-9b06-bbdd21c790a4'
+ARTIFACT = 'https://claude.ai/artifact/Kn6pz8LXzpqkUReW1ffQgj'
+RETRO = 'https://claude.ai/artifact/3f6EQtV44iGu7QoWiDtpFc'
 
 out = []
 A = out.append
 
 A('<!--edition')
-A('date: 2026-09-13')
-A('title: Week of 14&ndash;18 September 2026 &middot; WEEKLY &middot; '
-  'Sunday 13 Sep')
+A('date: 2026-09-20')
+A('title: Week of 21&ndash;25 September 2026 &middot; WEEKLY &middot; '
+  'Sunday 20 Sep')
 # LD-131 - A NEW EDITION STARTS AT r1 AND UNSEALED. Reading STATE.md was
 # right while rebuilding ONE edition (LD-130), but on a NEW week it
 # inherits the PREVIOUS edition's identity - this build stamped r5/SEALED
@@ -90,7 +107,7 @@ A('title: Week of 14&ndash;18 September 2026 &middot; WEEKLY &middot; '
 # a report Jeff has already read, not a new one. Reading the existing
 # file's revision keeps the two rules from fighting: new editions still
 # start at r1 (nothing on disk to read), a rebuild advances.
-OUT = 'reports/2026/Q3/2026-09-13_weekly.md'
+OUT = 'reports/2026/Q3/2026-09-20_weekly.md'
 _rev = 1
 if os.path.exists(OUT):
     for _l in io.open(OUT, encoding='utf-8').read()[:600].splitlines():
@@ -106,7 +123,7 @@ A('revision: r%d' % _rev)
 A('seal: UNSEALED')
 A('type: WEEKLY')
 A('eyebrow: Macro Economic Reporting &middot; the REVAMPED weekly &mdash; '
-  'selection for the 14&ndash;18 Sep cycle')
+  'selection for the 21&ndash;25 Sep cycle')
 A('chip: <b>%d pairs</b> &middot; base &plus; calibrator' % len(PICKED))
 A('chip: <b>%s %s</b> &middot; gap <b>%+.2f</b>'
   % (BEST['pair'], BEST['direction'], BEST['gap']))
@@ -127,7 +144,7 @@ A('')
 A('<!--exec-->')
 A('')
 _nm = {6: 'six', 7: 'seven', 8: 'eight'}.get(len(ft.WEIGHT), str(len(ft.WEIGHT)))
-A('**Selection for the 14\u201318 September cycle, built Sunday 13 September.** '
+A('**Selection for the 14\u201318 September cycle, built Sunday 20 September.** '
   'The second weekly on the revamped model \u2014 %s fact '
   'tables, leading indicators at weight 2, a day-scored week-ahead '
   'calibrator, and no room or event-risk gate anywhere in selection.' % _nm)
@@ -383,9 +400,22 @@ used = set()
 for c in PICKED:
     used.add(c['long'])
     used.add(c['short'])
-A('**%d pairs. %d currencies used; %s unused.** No currency is used twice '
-  '(LD-19), and **no rule forced a third pair** (LD-96).'
-  % (len(PICKED), len(used), ' '.join(sorted(set(ft.CCYS) - used))))
+# F-128 - THE PAGE ASSERTED LD-19 AFTER LD-126 REPEALED IT.
+# This line said "No currency is used twice (LD-19)" on an edition where
+# GBP appears twice and AUD three times. LD-126 dropped leg-disjointness
+# deliberately; the sentence survived the rule it described. An overlap is
+# now a DISCLOSURE, not a violation - the same flagged note pair_select
+# already returns.
+_ov = ps.leg_overlap(PICKED)
+A('**%d pairs. %d currencies used; %s unused.** %s **No rule forced a '
+  'particular number** (LD-96).'
+  % (len(PICKED), len(used), ' '.join(sorted(set(ft.CCYS) - used)),
+     ('**%s** appears in more than one pair (%s) — LD-126 covers every '
+      'category and every strong currency, so legs may repeat; the set is '
+      'that many reads on overlapping exposure, not independent ones.'
+      % (', '.join('%s×%d' % (k, v) for k, v in sorted(_ov.items())),
+         'leg overlap')) if _ov else
+     'No currency is used twice this week.'))
 A('')
 _last = PICKED[-1]
 if len(PICKED) > 1 and _last['gap'] < 2.0:

@@ -44,9 +44,32 @@ sys.path.insert(0, HERE)
 import fact_tables as ft
 import pair_select as ps
 
-CAP = sorted(glob.glob(os.path.join(
-    REPO, 'data/raw/calendar/2026-09-13_*_cal_full.json')))
-START, END = '2026-09-14', '2026-09-18'
+# *** THE GUARD MUST FOLLOW THE EDITION, NOT A PINNED DATE. On 2026-09-20
+# this compared the new 21-25 Sep page against the 13 Sep capture and the
+# 14-18 window, then reported the PAGE as wrong. A guard that hard-codes the
+# edition it was written for starts lying the moment the next one is built -
+# and it lies in the most damaging direction, by blaming correct output.
+#
+# The newest capture and the window it covers are both derivable; nothing
+# here needs a literal date.
+_caps = sorted(glob.glob(os.path.join(
+    REPO, 'data/raw/calendar/*_cal_full.json')))
+CAP = _caps
+
+
+def _window():
+    """The Mon-Fri window the newest capture is the Sunday build for."""
+    import datetime as _dt
+    import re as _re
+    m = _re.search(r'(\d{4})-(\d{2})-(\d{2})_', os.path.basename(_caps[-1]))
+    d = _dt.date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+    mon = d + _dt.timedelta(days=(7 - d.weekday()) % 7 or 7)
+    if d.weekday() == 6:                 # Sunday build -> tomorrow
+        mon = d + _dt.timedelta(days=1)
+    return mon.isoformat(), (mon + _dt.timedelta(days=4)).isoformat()
+
+
+START, END = _window()
 
 
 def expected():
