@@ -20,7 +20,7 @@
 <body>
     <script>(function(){var c=localStorage.getItem('IsDarkMode')==='true';if(c)document.body.classList.add('dark-theme');window.IsDarkMode=c;})();</script>
     <form method="post" action="/euro-area/manufacturing-pmi" id="aspnetForm">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="1Y/LAOzq2hob0zz+mWKpuANpAcDLWhnvr0Mk7a4LSG4pMnXHOV5cXb2h49AZHXCY1VB2uOSBXw320UdYm3LENvazKWM=" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="6A+5nm2jK8/oJJ6y9E7ez0c6wO188iGtAW9wQR2YlMjQC8pLFaOR1iLvKsDNFWXvUZXSsRJm2JeYdSW16jMdmjHafv8=" />
 
 <script type="text/javascript" language="Javascript">var TEChartSettings = '{"labels":false}'; console.log('TEChartSettings:', TEChartSettings);</script><script type="text/javascript" language="Javascript">var isCopyright = true;</script><script type="text/javascript" language="Javascript">var TESymbol = 'EUROAREAMANPMI'; console.log('TESymbol:', TESymbol);var TELanguage = ''; console.log('TELanguage:', TELanguage);TELastUpdate = '202609010815'; console.log('TELastUpdate:', TELastUpdate);TEChart = 'EC'; console.log('TEChart:', TEChart);var TEAlertsName= 'Euro Area Manufacturing PMI'; console.log('TEAlertsName:', TEAlertsName);</script><script type="text/javascript" language="Javascript">TEChartUrl = 'https://d3fy651gv2fhd3.cloudfront.net/charts/euro-area-manufacturing-pmi.png?s=euroareamanpmi&v=202609010815V20230410';TECountry = 'Euro Area';TECategory = 'Manufacturing PMI';TEType = 'te';TEFrequency = 'Monthly';TEForecast =   [52.70,50.40,50.70,51.00];</script>
 <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="9ED6FB81" />
@@ -2483,11 +2483,11 @@ var TEIsBot = /bot|crawl|spider|slurp|lighthouse|headless|preview|scrapy|python-
         else if (TE_URL.indexOf("/forecast/commodity") > -1) TEChannels = ['commodities', 'calendar'];
         else if (TE_URL.indexOf("/currency") > -1 || TE_URL.indexOf("/stock-market") > -1 || TE_URL.indexOf("/commodity/") > -1 || TE_URL.indexOf("/government-bond-yield") > -1) TEChannels = ['market', 'calendar'];
         else if (TE_URL.split(':').length == 2) TEChannels = ['calendar', 'market'];
-        console.log('IO EPOCH: 1790126794'); console.log('IO IP: 8.153.92.4, 64.252.67.76'); console.log('IO URL: /euro-area/manufacturing-pmi');console.log('IO TOKEN: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlcG9jaCI6MTc5MDEyNjc5NCwiaXAiOiI4LjE1My45Mi40LCA2NC4yNTIuNjcuNzYiLCJ1cmwiOiIvZXVyby1hcmVhL21hbnVmYWN0dXJpbmctcG1pIn0.Os_iiWnPb-ZNtZNXnmWMB84BB2RoJJG97UIH6CN0jUk');
+        console.log('IO EPOCH: 1790127011'); console.log('IO IP: 120.29.79.111, 64.252.67.76'); console.log('IO URL: /euro-area/manufacturing-pmi');console.log('IO TOKEN: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlcG9jaCI6MTc5MDEyNzAxMSwiaXAiOiIxMjAuMjkuNzkuMTExLCA2NC4yNTIuNjcuNzYiLCJ1cmwiOiIvZXVyby1hcmVhL21hbnVmYWN0dXJpbmctcG1pIn0.GZSNYf7rlk5ZNKSKfy7hK796OOEBkjjUmzxmv54p8kw');
         socket = io.connect(socket_url, {
             withCredentials: true, // Needed for ELB Cookies Stickyness
             
-            auth: { token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlcG9jaCI6MTc5MDEyNjc5NCwiaXAiOiI4LjE1My45Mi40LCA2NC4yNTIuNjcuNzYiLCJ1cmwiOiIvZXVyby1hcmVhL21hbnVmYWN0dXJpbmctcG1pIn0.Os_iiWnPb-ZNtZNXnmWMB84BB2RoJJG97UIH6CN0jUk', url: TE_URL }
+            auth: { token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlcG9jaCI6MTc5MDEyNzAxMSwiaXAiOiIxMjAuMjkuNzkuMTExLCA2NC4yNTIuNjcuNzYiLCJ1cmwiOiIvZXVyby1hcmVhL21hbnVmYWN0dXJpbmctcG1pIn0.GZSNYf7rlk5ZNKSKfy7hK796OOEBkjjUmzxmv54p8kw', url: TE_URL }
         });
         socket.on('connect', function () {
 

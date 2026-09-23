@@ -52,7 +52,24 @@ def _py(*args):
 
 
 def window():
-    """The Mon-Fri window this build is for, from today's PHT date."""
+    """The Mon-Fri window this build is for.
+
+    *** F-136 - THE CHECKER MUST FOLLOW THE EDITION, NOT THE CALENDAR.
+    The first version derived the window from today alone: any non-Sunday
+    build was assumed to target NEXT week. Run on Wednesday 23 Sep it
+    demanded 28 Sep-02 Oct and failed the renderers for being on the CURRENT
+    edition's 21-25 Sep - blaming correct code, which is the same shape as
+    R-43's own F-130 fix.
+
+    STATE.md's header is the authority on edition identity (CLAUDE.md
+    section 0), so read the live edition's window from the renderer and only
+    fall back to the calendar when there is nothing to read.
+    """
+    src = io.open(os.path.join(HERE, 'gen_page.py'), encoding='utf-8').read()
+    m = re.search(r"START, END = '(\d{4}-\d{2}-\d{2})', '(\d{4}-\d{2}-\d{2})'",
+                  src)
+    if m:
+        return m.group(1), m.group(2)
     d = dt.datetime.now(pt.PHT).date()
     mon = d + dt.timedelta(days=(7 - d.weekday()) % 7 or 7)
     if d.weekday() == 6:                      # Sunday build -> tomorrow
@@ -162,6 +179,8 @@ def s8_dates():
     """F-130: no renderer may pin a date the window has moved past."""
     start, end = window()
     bad = []
+    # Every renderer must agree with gen_page (the window authority above)
+    # and none may carry a hardcoded dt.date literal.
     for f in ('gen_page.py', 'gen_audit.py', 'build_weekly.py'):
         src = io.open(os.path.join(HERE, f), encoding='utf-8').read()
         for m in re.finditer(r"'(\d{4}-\d{2}-\d{2})'\s*,\s*'(\d{4}-\d{2}-\d{2})'", src):
