@@ -4,7 +4,7 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-09-20 (r6, WEEKLY, UNSEALED - selection for the 21-25 Sep
+edition: 2026-09-20 (r7, WEEKLY, UNSEALED - selection for the 21-25 Sep
          cycle, built on SUNDAY 20 SEP VINTAGE)
 date: 2026-09-20
 data_asof: 2026-09-20 vintage (calendar captured 2026-09-20 08:17. SEVENTEEN

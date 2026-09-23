@@ -210,6 +210,34 @@ def s9_page_fresh():
     return True, 'every held value appears on the published page'
 
 
+def s10_high_impact():
+    """F-135: every HIGH_IMPACT category must actually be flaggable.
+
+    Jeff, 2026-09-23: "This should be highlighted as well as High Impact
+    news" - the SNB decision was rendering as an ordinary row.
+
+    LD-134 names Employment, Inflation, Interest Rate and GDP. The flag
+    resolved a row's category through score_model, but LD-140 gives a rate
+    decision a SYNTHETIC name that lives in rate_model - so the ONE CATEGORY
+    THE RULE NAMES EXPLICITLY was the only one that could never light up.
+    Three central bank decisions passed through 14-18 Sep unmarked.
+
+    This asserts a real row from each listed category is flagged, so a
+    category that becomes unreachable fails here rather than in print.
+    """
+    import gen_page as gp
+    import score_model as sm
+    probes = {}
+    for cat, iso, name, a, p_, ref, thr, v in sm.ROWS:
+        probes.setdefault(cat, (sm.LABEL[iso], name))
+    probes['Interest_Rate'] = ('CHF', gp.wa.RATE_NAME)
+    dark = [c for c in gp.HIGH_IMPACT
+            if c in probes and not gp.hot(*probes[c])]
+    if dark:
+        return False, ('high-impact but never flagged: %s' % ', '.join(dark))
+    return True, 'all %d high-impact categories flag (LD-134)' % len(gp.HIGH_IMPACT)
+
+
 STEPS = [
     ('1', 'capture is fresh (<=3 days)', s1_capture),
     ('2', 'no release lost to a gap (R-42)', s2_gaps),
@@ -220,6 +248,7 @@ STEPS = [
     ('7', 'one selector everywhere (F-127)', s7_selectors),
     ('8', 'no renderer pins a stale date (F-130)', s8_dates),
     ('9', 'published page matches the data (F-134)', s9_page_fresh),
+    ('10', 'high-impact rows can flag (F-135)', s10_high_impact),
 ]
 
 PAGE_STEPS = """

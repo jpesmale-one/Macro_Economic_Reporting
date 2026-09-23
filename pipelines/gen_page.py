@@ -15,6 +15,7 @@ import fact_tables as ft
 import pair_select as ps
 import calibrator as cal
 import score_model as _sm
+import week_ahead as wa
 
 # LD-132 - the threshold each calibrator row is graded against. score_model
 # owns the rule; the calibrator only applies it, so the rule is read from
@@ -40,7 +41,24 @@ CAT = dict(((_sm.LABEL[_r[1]], _r[2]), _r[0]) for _r in _sm.ROWS)
 
 
 def hot(ccy, name):
-    """True when this row is one of the high-impact categories (LD-134)."""
+    """True when this row is one of the high-impact categories (LD-134).
+
+    *** F-135 - THE ONE CATEGORY THE RULE NAMES WAS THE ONLY ONE NEVER
+    FLAGGED. Jeff, 2026-09-23, on the SNB decision: "This should be
+    highlighted as well as High Impact news".
+
+    LD-134 lists Employment, Inflation, INTEREST RATE and GDP. But CAT is
+    built from score_model.ROWS, and LD-140 gives a rate decision the
+    SYNTHETIC name 'Interest Rate Decision' - a row that lives in
+    rate_model, not score_model. So CAT.get(('CHF', 'Interest Rate
+    Decision')) returned None, hot() returned False, and every central bank
+    decision rendered as an ordinary row.
+
+    Three central banks moved in 14-18 Sep and not one was marked as event
+    risk on the page, which is precisely the caution LD-134 exists to give.
+    """
+    if name == wa.RATE_NAME:
+        return 'Interest_Rate' in HIGH_IMPACT
     return CAT.get((ccy, name)) in HIGH_IMPACT
 
 SP = ('C:/Users/jpesm/AppData/Local/Temp/claude/'
