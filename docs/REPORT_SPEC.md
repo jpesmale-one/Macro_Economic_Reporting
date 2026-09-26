@@ -4517,3 +4517,57 @@ R-44 grows to 31 cases, including both corridor edges and the two silenced cases
 **If the corridor ranks nothing by the 12–16 Oct retrospective, narrow it or
 revert to LD-136.** The specific risk: a band 1 point wide covers the range most
 developed-market CPI sits in, so it may neutralise the category into silence.
+
+---
+
+## LD-144 — A CALIBRATOR DAY IS WORTH 0.2, NOT 1.0
+
+**Jeff, 2026-09-27:** *"I think the 1 point score per day is moving the ranking
+too much. Let's change it to 0.2 per day for our next iteration."*
+
+A currency with three scoring days could swing **±3.00** against a base spanning
+**−9..+9** — one busy calendar week moving a currency a third of the board's
+range on *expectations alone*.
+
+**The 21–25 Sep edition is the case.** Measured against realised strength:
+
+| Ranking by | rho |
+|---|---:|
+| Base only | **+0.29** |
+| Final at **1.0**/day (published) | **+0.12** |
+| Final at **0.2**/day (LD-144) | **+0.29** |
+
+**The calibrator was actively destroying a ranking board.** At 0.2 the final
+recovers the base's full ranking instead of subtracting from it.
+
+**THE DAY IS STILL THE UNIT (LD-98).** This changes only what a day is *worth*.
+`day_score()` is untouched — rule 1 (latest reference month wins the day), rule 2
+(same month shares it) and LD-140's rate precedence all stand. Only the running
+total is scaled, and `days` still carries the raw ±1 so the page shows what each
+day said.
+
+**Not a withdrawal of the calibrator.** It still breaks ties and still moves a
+currency that has a genuinely loaded week — just by a tenth of what it did.
+
+### Withdrawal condition
+
+If 0.2 makes the calibrator so quiet that it never changes a set, it is doing
+nothing and should either be re-weighted or removed. Check at the 12–16 Oct
+retrospective: **did any pairing change because of it?**
+
+---
+
+## LD-5 AMENDED — THE CHART IS OURS TO DRIVE
+
+**Jeff, 2026-09-27:** *"OANDA is your playground. As long as you're opening that
+symbol in OANDA you can remove all my drawings. Make sure we get the technical
+analysis and prices from TradingView. We need to be looking at the same source."*
+
+The original wording was *"never clear a drawing you did not create"*. **I
+over-read it into "do not touch the chart at all"** and fell back to Yahoo daily
+bars for **two consecutive retrospectives** (14–18 and 21–25 Sep), costing both
+their comparability with every OANDA week before them.
+
+**Prices and technicals come from TradingView. Yahoo is not a fallback** — if
+TradingView will not start, say so and stop rather than silently switching
+source. The point is that Jeff and the report read the same tape.

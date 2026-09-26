@@ -249,10 +249,25 @@ python pipelines/render_edition.py <md>  # 17 guards run before a byte is writte
 **On a SELECTING edition (Sunday), one more thing is REQUIRED before the
 render: CHART EVERY PAIR** (LD-79). Entry reference, falsifier, and the
 structure it is aiming into — on the `OANDA:` daily chart, labelled, with
-entity IDs recorded in §4.3. **Check `draw_list` first and never clear a
-drawing you did not create** (LD-5). **R-23 fails the render if you skip it**
-— which happened on 2026-08-30, when three pairs were selected and nothing
-was drawn.
+entity IDs recorded in §4.3. **R-23 fails the render if you skip it** — which
+happened on 2026-08-30, when three pairs were selected and nothing was drawn.
+
+> **LD-5 AMENDED 2026-09-27 — THE CHART IS YOURS TO DRIVE.** Jeff:
+> *"OANDA is your playground. As long as you're opening that symbol in OANDA
+> you can remove all my drawings. Make sure we get the technical analysis and
+> prices from TradingView. We need to be looking at the same source."*
+>
+> **Change the symbol, change the timeframe, clear drawings — all fine, on an
+> `OANDA:` symbol.** The old wording was *"never clear a drawing you did not
+> create"*, and I over-read it into *"do not touch the chart at all"*: on
+> 2026-09-26 I found eight of Jeff's drawings, left the chart alone and graded
+> the retrospective on **Yahoo daily bars instead of OANDA** — for the second
+> week running. That cost two retrospectives their comparability with every
+> OANDA week before them (F-106).
+>
+> **PRICES AND TECHNICALS COME FROM TRADINGVIEW. Yahoo is not a fallback** —
+> if TradingView will not start, say so and stop, rather than silently
+> switching source. The point is that Jeff and the report read the same tape.
 
 **Starting TradingView (F-9 - the recipe, not just the file name).**
 

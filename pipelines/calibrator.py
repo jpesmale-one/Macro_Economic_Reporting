@@ -431,8 +431,30 @@ def day_score(rows):
     return val, rule, keep, drop
 
 
+# LD-144 - A DAY IS WORTH 0.2, NOT 1.0.
+#
+# Jeff, 2026-09-27: "I think the 1 point score per day is moving the ranking
+# too much. Let's change it to 0.2 per day for our next iteration."
+#
+# A currency with three scoring days could swing +/-3.00 against a base that
+# spans -9..+9, so one busy calendar week could move a currency a third of
+# the board's full range on expectations alone. The 21-25 Sep edition is the
+# case: the base ranked at +0.29 against realised strength and the FINAL at
+# +0.12 - the calibrator (-0.29) actively pulled a ranking board down.
+#
+# THE DAY IS STILL THE UNIT (LD-98). This changes only what a day is WORTH.
+# Rule 1 (latest reference month wins the day), rule 2 (same month shares it)
+# and LD-140's rate precedence are all untouched - day_score() is not
+# modified. Only the running total is scaled.
+DAY_WEIGHT = 0.2
+
+
 def calibrate(capture, start, end):
-    """{ccy: {'total', 'days': {date: (score, rule, kept, dropped)}}}."""
+    """{ccy: {'total', 'days': {date: (score, rule, kept, dropped)}}}.
+
+    `days` holds the RAW per-day score (+1/0/-1) so the page can show what
+    each day said; `total` is the LD-144-weighted sum.
+    """
     rows = week_rows(capture, start, end)
     by = collections.defaultdict(lambda: collections.defaultdict(list))
     for r in rows:
@@ -447,7 +469,7 @@ def calibrate(capture, start, end):
             if val is None:
                 continue
             days[d] = (val, rule, keep, drop)
-            tot += val
+            tot += val * DAY_WEIGHT
         out[c] = {'total': tot, 'days': days}
     return out
 
