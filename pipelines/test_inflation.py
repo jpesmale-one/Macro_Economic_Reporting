@@ -312,6 +312,38 @@ def main():
     else:
         print('    precedence holds - the decision carries its day')
 
+    # The rate row must RENDER its rule and its score, not an em-dash.
+    # Jeff, 2026-09-27: "please update this with the rule and score for the
+    # interest rate". The engine scored it -1 while the page printed a dash
+    # in BOTH columns, because week_rows() was called WITHOUT the base band
+    # by the renderers and WITH it by calibrate() - one row, two answers.
+    _t = cal.rate_rule_text('AUD', '4.6%', '4.6%', '4.35%',
+                            {'AUD': 'WEAK'})
+    if 'HIKE' not in _t or 'WEAK' not in _t:
+        bad += 1
+        print('    *** RULE TEXT MISSING: %r' % _t)
+    else:
+        print('    rule text renders: %s' % _t)
+
+    # week_rows() must default the band itself - a renderer calling it bare
+    # must not get None where calibrate() gets -1.
+    try:
+        import glob as _g
+        _caps = sorted(_g.glob('data/raw/calendar/*_cal_full.json'))
+        if _caps:
+            _rr = [r for r in cal.week_rows(_caps[-1], '2026-09-28',
+                                            '2026-10-02')
+                   if r['name'] == cal.RATE_NAME]
+            if _rr and _rr[0]['score'] is None:
+                bad += 1
+                print('    *** week_rows() called bare scores the rate row '
+                      'None - the page will print a dash (LD-146)')
+            elif _rr:
+                print('    week_rows() bare scores the rate row %+d'
+                      % _rr[0]['score'])
+    except Exception as e:
+        print('    (bare week_rows check skipped: %s)' % e)
+
     print()
     if bad:
         print('*** %d FAILURE(S)' % bad)

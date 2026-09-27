@@ -449,7 +449,7 @@ footer p{max-width:none}
 
   <dl class="kv">
     <dt>Base</dt><dd>−9 … +9 — six fact tables, <code>Sep-26</code>, 78 of 78 cells scored</dd>
-    <dt>Calibrator</dt><dd>−5 … +5 — 26 scheduled rows, 25 scorable, 20 with a TE consensus</dd>
+    <dt>Calibrator</dt><dd>−5 … +5 — 26 scheduled rows, 26 scorable, 20 with a TE consensus</dd>
     <dt>Weights</dt><dd>Production · Spending · Trade = <strong>2</strong> (leading) · Employment · Inflation · Interest Rate = <strong>1</strong>. <strong>The calibrator has no weights</strong> — the day is the unit.</dd>
     <dt>Bands</dt><dd>Target 3 / 2 / 3 by rank, and <strong>a tie is never split</strong>. This week: <strong>3 / 2 / 3</strong>.</dd>
   </dl>
@@ -498,7 +498,7 @@ footer p{max-width:none}
     <thead><tr><th>When (PHT)</th><th>CCY</th><th>Indicator</th><th class="num">Previous</th><th class="num">Cons / Fcst</th><th>Threshold</th><th class="num">Score</th></tr></thead>
     <tbody>
       <tr><td class="mono">Tue 29 09:30</td><td class="ccy">AUD</td><td>Household Spending YoY</td><td class="num v">7.0%</td><td class="num v">6.4%</td><td class="dim sm">&gt;0.5%</td><td class="num pos">+1</td></tr>
-      <tr class="hot"><td class="mono">Tue 29 12:30</td><td class="ccy">AUD</td><td>Interest Rate Decision <span class="tag-hi">HIGH</span></td><td class="num v">4.35%</td><td class="num v">4.6%</td><td class="dim sm">—</td><td class="num dash">—</td></tr>
+      <tr class="hot"><td class="mono">Tue 29 12:30</td><td class="ccy">AUD</td><td>Interest Rate Decision <span class="tag-hi">HIGH</span></td><td class="num v">4.35%</td><td class="num v">4.6%</td><td class="dim sm">HIKE into WEAK regime (LD-146)</td><td class="num neg">−1</td></tr>
       <tr><td class="mono">Tue 29 17:00</td><td class="ccy">EUR</td><td>Consumer Confidence Final</td><td class="num v">−15.5</td><td class="num v">−16.5</td><td class="dim sm">&gt;Prev</td><td class="num neg">−1</td></tr>
       <tr><td class="mono">Tue 29 22:00</td><td class="ccy">USD</td><td>CB Consumer Confidence</td><td class="num v">89.4</td><td class="num v">90 – 89</td><td class="dim sm">&gt;Prev</td><td class="num zero">0</td></tr>
       <tr><td class="mono">Wed 30 07:50</td><td class="ccy">JPY</td><td>Retail Sales YoY</td><td class="num v">4%</td><td class="num v">3.3% – 3.5%</td><td class="dim sm">&gt;0.5%</td><td class="num pos">+1</td></tr>
@@ -530,15 +530,15 @@ footer p{max-width:none}
     <span class="lbl">⚠ HIGH-IMPACT RELEASES THIS WEEK</span>
     <strong>9 of 26 rows are Employment, Inflation, Interest Rate or GDP</strong> — the categories that move price hardest. They are highlighted in the table above. <strong>This is a caution, not a weight</strong>: the calibrator scores every row identically (LD-98). <strong>Tue 29:</strong> AUD Interest Rate Decision. <strong>Wed 30:</strong> AUD Inflation Rate YoY, GBP GDP Growth Rate QoQ, USD GDP Growth Rate QoQ. <strong>Thu 01:</strong> CHF Inflation Rate YoY, EUR Unemployment Rate. <strong>Fri 02:</strong> JPY Unemployment Rate, USD Non Farm Payrolls, USD Unemployment Rate.
   </div>
-  <p><strong>25 of 26 rows are scorable, and 20 carry a real TE consensus.</strong> That is the value of building on Sunday rather than a week out — the same pipeline run against 14–18 Sep could score only 13 of 20, because <strong>TE publishes consensus close to the release</strong>.</p>
+  <p><strong>26 of 26 rows are scorable, and 20 carry a real TE consensus.</strong> That is the value of building on Sunday rather than a week out — the same pipeline run against 14–18 Sep could score only 13 of 20, because <strong>TE publishes consensus close to the release</strong>.</p>
 
   <h3>The collision rules, from this run</h3>
-  <p><strong>Tue 29, AUD — 2 rows, RULE 2 — same month, shared.</strong></p>
+  <p><strong>Tue 29, AUD — 2 rows, RATE PRECEDENCE — the decision takes the day (LD-140, scored by LD-146).</strong></p>
   <div class="scroll">
   <table>
     <thead><tr><th>Row</th><th>Ref</th><th class="num">Score</th><th>Kept?</th></tr></thead>
     <tbody>
-      <tr class="sel"><td>Interest Rate Decision</td><td class="mono">ION</td><td class="num neg">−1</td><td><strong>KEPT</strong></td></tr>
+      <tr class="sel"><td>Interest Rate Decision</td><td class="mono">—</td><td class="num neg">−1</td><td><strong>KEPT</strong></td></tr>
       <tr><td>Household Spending YoY</td><td class="mono">AUG</td><td class="num pos">+1</td><td><span class="zero">dropped</span></td></tr>
     </tbody>
   </table>
@@ -550,7 +550,7 @@ footer p{max-width:none}
     <thead><tr><th>Row</th><th>Ref</th><th class="num">Score</th><th>Kept?</th></tr></thead>
     <tbody>
       <tr class="sel"><td>Personal Spending MoM</td><td class="mono">AUG</td><td class="num pos">+1</td><td><strong>KEPT</strong></td></tr>
-      <tr><td>GDP Growth Rate QoQ</td><td class="mono"> Q2</td><td class="num pos">+1</td><td><span class="zero">dropped</span></td></tr>
+      <tr><td>GDP Growth Rate QoQ</td><td class="mono">JUN</td><td class="num pos">+1</td><td><span class="zero">dropped</span></td></tr>
     </tbody>
   </table>
   </div>
@@ -1466,22 +1466,15 @@ footer p{max-width:none}
     <thead><tr><th>Term</th><th>Range</th><th>Source</th></tr></thead>
     <tbody>
       <tr><td>Base</td><td class="mono">−9 … +9</td><td>six fact tables, <code>Sep-26</code>, 78 of 78 cells</td></tr>
-      <tr><td>Calibrator</td><td class="mono">−5 … +5</td><td><strong>26 scheduled rows, 25 scorable, 20 with a TE consensus</strong></td></tr>
+      <tr><td>Calibrator</td><td class="mono">−5 … +5</td><td><strong>26 scheduled rows, 26 scorable, 20 with a TE consensus</strong></td></tr>
       <tr class="sel"><td><strong>FINAL</strong></td><td class="mono"><strong>−14 … +14</strong></td><td>the sum</td></tr>
     </tbody>
   </table>
   </div>
 
   <div class="note flag">
-    <span class="lbl">&#9888; VINTAGE</span>
-    <strong>Built as of Sunday 27 September, capture <code>2026-09-27_0953PHT</code>.</strong>
-    The fact tables hold what was knowable then. Releases up to Friday 25 September
-    are in &mdash; a Sunday report legitimately sees Friday&#39;s prints &mdash; and six
-    rows were refreshed for them before this edition was scored.<br><br>
-    <strong>Anything printing Mon 28 or later is held at its earlier value</strong>,
-    which is the whole point: an edition that quietly absorbed next week&#39;s prints
-    would be a backtest contaminated with hindsight. This one says which vintage it
-    used, and R-46 step 1 refuses to build on a capture more than three days old.
+    <span class="lbl">⚠ VINTAGE</span>
+    <strong>Built as of Sunday 6 September.</strong> The fact tables hold what was knowable then — rows that printed Mon 7 or Tue 8 are held at their earlier values.<br><br>Releases up to Friday 4 September stay: a Sunday report legitimately sees Friday's prints.<br><br><strong>Leaving the Mon/Tue prints in would have been a backtest contaminated with hindsight.</strong> An analysis asking <em>what was knowable then</em> must use the vintage available then, and say which it used. This one says.
   </div>
 
   <h3>Changed this edition</h3>
@@ -1490,29 +1483,43 @@ footer p{max-width:none}
     <thead><tr><th>Rule</th><th>What changed</th></tr></thead>
     <tbody>
       <tr class="sel"><td><strong>LD-146</strong><br><span class="mono">new</span></td>
-        <td><strong>The calibrator scores a rate decision against the currency&#39;s own
-        regime.</strong> Six cases: a <em>hike</em> is GOOD only from STRONG, a
-        <em>hold</em> is GOOD from STRONG or NEUTRAL, a <em>cut</em> is GOOD only from
-        WEAK. The regime is the <strong>base</strong> band, never the final one &mdash;
-        the final band already contains the calibrator, so reading it there would let
-        the calibrator score itself. <strong>Calibrator only:</strong> LD-142&#39;s
-        corridor still scores the rate <em>level</em> in the base, untouched. The two
-        ask different questions about the same decision &mdash; <em>where is the
-        rate</em> versus <em>does the expected move fit the regime</em>.</td></tr>
-      <tr><td><strong>Regression fixed</strong><br><span class="mono">LD-140/142</span></td>
+        <td><strong>The calibrator scores a rate decision against the currency&#39;s
+        own regime.</strong> A <em>hike</em> is GOOD only from STRONG, a <em>hold</em>
+        is GOOD from STRONG or NEUTRAL, a <em>cut</em> is GOOD only from WEAK. The
+        regime is the <strong>base</strong> band, never the final one &mdash; the
+        final band already contains the calibrator, so reading it there would let the
+        calibrator score itself. <strong>Calibrator only:</strong> LD-142&#39;s
+        1.5&ndash;2.5&#37; corridor still scores the rate <em>level</em> in the base,
+        untouched. The two ask different questions about one decision &mdash;
+        <em>where is the rate</em> versus <em>does the expected move fit the
+        regime</em>. NEUTRAL splits across the three moves, so only standing still is
+        rewarded and no case returns 0.</td></tr>
+      <tr><td><strong>Precedence restored</strong><br><span class="mono">LD-140/142</span></td>
         <td>LD-142 left the calibrator scoring a rate decision <code>None</code>. A
-        <code>None</code> score is filtered out before the precedence check, so the
-        decision was dropped as unscorable and <strong>a lesser row carried its
-        day</strong> &mdash; on Tue 29 Sep, AUD Household Spending YoY was carrying the
-        RBA. The comment in the code promised the row &ldquo;keeps its day
-        precedence&rdquo;; for six days it did not. Now guarded by a test that fails if
-        the decision ever stops carrying its day.</td></tr>
+        <code>None</code> score is filtered out <em>before</em> the precedence check,
+        so the decision was dropped as unscorable and <strong>a lesser row carried its
+        day</strong> &mdash; AUD Household Spending YoY was carrying the RBA&#39;s
+        Tuesday. The code&#39;s own comment promised the row &ldquo;keeps its day
+        precedence&rdquo;; for six days it did not.</td></tr>
+      <tr><td><strong>Display fixed</strong><br><span class="mono">3 bugs</span></td>
+        <td>The scheduled-row table printed an <strong>em-dash in both the Threshold
+        and Score columns for the RBA row</strong> while the engine scored it
+        &minus;1. Three causes: <code>week_rows()</code> was called <em>without</em>
+        the base band by the renderers and <em>with</em> it by the scorer, so one row
+        had two answers (now defaulted inside <code>week_rows</code>, where neither
+        caller can forget it); the Threshold column reads <code>score_model</code>,
+        where rate rows do not exist (F-135&#39;s shape), so it now takes its rule
+        from the calibrator; and the collision table read the reference month as
+        <code>raw[-3:]</code>, printing <strong>&ldquo;ION&rdquo;</strong> for
+        &ldquo;Interest Rate Dec<em>ision</em>&rdquo; and mislabelling the day
+        <em>&ldquo;RULE 2 &mdash; same month, shared&rdquo;</em> when the decision had
+        taken it outright.</td></tr>
       <tr><td><strong>R-44</strong><br><span class="mono">31 &rarr; 45</span></td>
-        <td>Fourteen cases added: the six regimes, a rate-range case
-        (<code>3.50-3.75%</code> reads its upper bound &mdash; the hyphen is not a
-        minus, F-124), three refusals where a missing rate or an unbanded currency must
-        score nothing rather than read as a hold, and the precedence regression
-        above.</td></tr>
+        <td>The six regimes, a range case (<code>3.50-3.75%</code> reads its upper
+        bound &mdash; the hyphen is not a minus, F-124), three refusals where a
+        missing rate or unbanded currency must score nothing rather than read as a
+        hold, the precedence regression, and two render guards that fail if the rate
+        row ever goes blank again.</td></tr>
     </tbody>
   </table>
   </div>

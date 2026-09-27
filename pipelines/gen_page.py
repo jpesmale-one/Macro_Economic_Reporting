@@ -550,7 +550,15 @@ for r in ROWS:
     _when = (r['when'].strftime('%a %d %H:%M') if r['when']
              else ('%s \u2014' % r['day'].strftime('%a %d')
                    if r.get('day') else 'no time'))
-    _thr = THR.get((r['ccy'], r['name']), '\u2014')
+    # LD-146 - a rate row has no score_model threshold (that is F-135's
+    # shape), so its RULE comes from the calibrator instead of an em-dash.
+    # Jeff, 2026-09-27: "please update this with the rule and score for the
+    # interest rate". The score was already -1 in the engine while the page
+    # printed a dash in BOTH columns - the report contradicting its model.
+    if r['name'] == cal.RATE_NAME:
+        _thr = cal.rate_rule_text(r['ccy'], r['cons'], r['fcst'], r['prev'])
+    else:
+        _thr = THR.get((r['ccy'], r['name']), '\u2014')
     # LD-134: mark the high-impact rows so event risk is visible before
     # the week starts. Style only - no score changes.
     _hi = hot(r['ccy'], r['name'])
@@ -610,6 +618,26 @@ A('  <p><strong>%d of %d rows are scorable, and %d carry a real TE '
   'only 13 of 20, because <strong>TE publishes consensus close to the '
   'release</strong>.</p>' % (n_scor, len(ROWS), n_cons))
 A('')
+# LD-146 - kept in step with build_weekly.py. Two renderers that disagree
+# about a rule name is F-127's defect at a smaller scale.
+_RULE_LABEL = {
+    'latest month': 'RULE 1 — latest month wins',
+    'shared': 'RULE 2 — same month, shared',
+    'single': 'RULE 2 — same month, shared',
+    'rate decision': 'RATE PRECEDENCE — the decision takes the day (LD-140, scored by LD-146)',
+    'rate shared': 'RATE PRECEDENCE — two decisions share the day (LD-140, scored by LD-146)',
+}
+
+
+def _refmon(raw):
+    """The reference month cell. NOT raw[-3:] - that read the last three
+    characters of the event name, so 'Interest Rate Decision' printed its
+    month as 'ION'. A decision is not FOR a month, so it shows an
+    em-dash."""
+    _m = cal.ref_month(raw)
+    return cal.MONTHS[_m[1] - 1].upper() if _m else '—'
+
+
 A('  <h3>The collision rules, from this run</h3>')
 for d in DAYS:
     for c in ORDER:
@@ -621,8 +649,7 @@ for d in DAYS:
             continue
         A('  <p><strong>%s, %s \u2014 %d rows, %s.</strong></p>'
           % (d.strftime('%a %d').replace(' 0', ' '), c, len(keep) + len(drop),
-             'RULE 1 \u2014 latest month wins' if rule == 'latest month'
-             else 'RULE 2 \u2014 same month, shared'))
+             _RULE_LABEL.get(rule, 'RULE 2 — same month, shared')))
         A('  <div class="scroll">')
         A('  <table>')
         A('    <thead><tr><th>Row</th><th>Ref</th><th class="num">Score</th>'
@@ -641,7 +668,7 @@ for d in DAYS:
                      % (cls(_s), sg(_s, '%+d') if _s else '0'))
             A('      <tr%s><td>%s</td><td class="mono">%s</td>%s<td>%s</td></tr>'
               % (' class="sel"' if k else '', r['name'],
-                 (r['raw'] or '')[-3:].upper(), _cell,
+                 _refmon(r['raw']), _cell,
                  '<strong>KEPT</strong>' if k else
                  ('<span class="zero">not scored</span>' if _s is None
                   else '<span class="zero">dropped</span>')))

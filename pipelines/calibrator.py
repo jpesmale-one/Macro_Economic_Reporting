@@ -367,6 +367,27 @@ def score_row(ccy, name, rec, base_band=None):
     return {'GOOD': 1, 'NEUTRAL': 0, 'BAD': -1}.get(v)
 
 
+def rate_rule_text(ccy, cons, fcst, prev, base_band=None):
+    """LD-146 - the RULE that produced a rate row's score, for the table.
+
+    The Threshold column is built from score_model's THR, and rate rows do
+    not exist there - so the RBA row rendered an em-dash where its rule
+    belongs (the F-135 shape: LD-134 named Interest Rate, but hot() resolved
+    through score_model and three CB decisions passed unmarked).
+
+    Jeff, 2026-09-27: "please update this with the rule and score for the
+    interest rate". A score with no visible rule cannot be checked, which is
+    exactly why LD-132 put this column on the table in the first place.
+    """
+    if base_band is None:
+        _b = ft.base_scores()
+        base_band = ft.bands(dict((c, _b[c]['total']) for c in _b))[0]
+    sc, mv, rg = rate_score(ccy, cons, fcst, prev, base_band)
+    if mv is None or rg is None:
+        return 'vs regime (LD-146) - not gradable'
+    return '%s into %s regime (LD-146)' % (mv, rg)
+
+
 def _date_only(s):
     """TE's date string -> a date, or None (LD-133).
 
@@ -384,6 +405,16 @@ def _date_only(s):
 
 def week_rows(capture, start, end, base_band=None):
     """Every whitelist row in the window, with its score and reference month."""
+    # LD-146 needs the BASE regime to score a rate row. Defaulting it HERE
+    # rather than at each call site is deliberate: gen_page and build_weekly
+    # both call week_rows() bare to RENDER the table, and calibrate() called
+    # it with the band to SCORE. So the same row scored -1 in the engine and
+    # rendered as an em-dash on the page - the report contradicting its own
+    # model. One default, one answer (the F-127 lesson).
+    if base_band is None:
+        _b = ft.base_scores()
+        base_band = ft.bands(dict((c, _b[c]['total']) for c in _b))[0]
+
     raw = json.load(io.open(capture, encoding='utf-8'))
     ISO = {'US': 'USD', 'GB': 'GBP', 'EA': 'EUR', 'JP': 'JPY',
            'CH': 'CHF', 'CA': 'CAD', 'AU': 'AUD', 'NZ': 'NZD'}
@@ -544,13 +575,6 @@ def calibrate(capture, start, end, base_band=None):
     `days` holds the RAW per-day score (+1/0/-1) so the page can show what
     each day said; `total` is the LD-144-weighted sum.
     """
-    if base_band is None:
-        # LD-146 needs the BASE regime, never the final one - the final band
-        # already contains the calibrator, so reading it here would let the
-        # calibrator score itself.
-        _b = ft.base_scores()
-        base_band = ft.bands(
-            dict((c, _b[c]['total']) for c in _b))[0]
     rows = week_rows(capture, start, end, base_band)
     by = collections.defaultdict(lambda: collections.defaultdict(list))
     for r in rows:

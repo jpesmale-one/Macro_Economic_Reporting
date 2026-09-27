@@ -284,7 +284,14 @@ for r in sorted(ROWS, key=lambda x: (x['day'] or dt.date.max, x['when'] is None,
                    if r.get('day') else 'no time'))
     # LD-132: publish the THRESHOLD alongside the score - the rule that
     # produced it, so a +1 can be checked rather than taken on trust.
-    _thr = THR.get((r['ccy'], r['name']), '\u2014')
+    # LD-146 - the rate row has no score_model threshold, so its RULE comes
+    # from the calibrator. Kept identical to gen_page: F-127 was two
+    # selectors publishing two different sets, and a threshold column that
+    # disagreed between the MD and the HTML is the same defect, smaller.
+    if r['name'] == cal.RATE_NAME:
+        _thr = cal.rate_rule_text(r['ccy'], r['cons'], r['fcst'], r['prev'])
+    else:
+        _thr = THR.get((r['ccy'], r['name']), '\u2014')
     # LD-134: mark high-impact rows (Employment, Inflation, Interest Rate,
     # GDP) as a caution. No score changes - the calibrator is unaffected.
     _hi = hot(r['ccy'], r['name'])
@@ -302,6 +309,18 @@ A('')
 A('### The collision rules, generated from the run')
 A('')
 _days = sorted(set(r['day'] for r in ROWS if r['day']))
+# LD-146 - a THIRD rule can now win a day, so the label is a lookup rather
+# than a two-way if/else. The old form silently reported the RBA's Tuesday
+# as "RULE 2 - same month, shared" when the decision had taken the day
+# outright under rate precedence - a wrong rule name on a correct score.
+_RULE_LABEL = {
+    'latest month': 'RULE 1 — latest month wins',
+    'shared': 'RULE 2 — same month, shared',
+    'single': 'RULE 2 — same month, shared',
+    'rate decision': 'RATE PRECEDENCE — the decision takes the day (LD-140, scored by LD-146)',
+    'rate shared': 'RATE PRECEDENCE — two decisions share the day (LD-140, scored by LD-146)',
+}
+
 for _d in _days:
     for _c in ORDER:
         _e = CALD[_c]['days'].get(_d)
@@ -314,14 +333,19 @@ for _d in _days:
           % (_d.strftime('%a %-d') if os.name != 'nt'
              else _d.strftime('%a %d').replace(' 0', ' '), _c,
              len(_keep) + len(_drop),
-             'RULE 1 \u2014 latest month wins' if _rule == 'latest month'
-             else 'RULE 2 \u2014 same month, shared'))
+             _RULE_LABEL.get(_rule, 'RULE 2 — same month, shared')))
         A('')
         A('| Row | Ref month | Score | Kept? |')
         A('|---|---|---|---|')
         for _r in _keep + _drop:
             _kept = _r in _keep
-            _mon = (_r['raw'] or '')[-3:].upper()
+            # *** NOT (raw)[-3:]. That read the last three characters of
+            # the event string, so 'Interest Rate Decision' rendered its
+            # month as 'ION' - a garbage value in a real column, on the
+            # one row LD-146 was added to explain. ref_month() is the
+            # parser the collision rules themselves use; use it here too.
+            _m = cal.ref_month(_r['raw'])
+            _mon = cal.MONTHS[_m[1] - 1].upper() if _m else '—'
             # F-118: an unscorable row shows an em-dash, not a 0 - a 0 is a
             # NEUTRAL verdict and this row has no verdict at all.
             _sc = ('—' if _r['score'] is None
