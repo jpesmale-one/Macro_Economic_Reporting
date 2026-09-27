@@ -5234,3 +5234,55 @@ F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT TO
 #   2.1-2.5 ONLY; 2.6 Interest Rate comes from rate_model and must be carried,
 #   and R-7 caught its absence immediately. FIX: assemble editions from a FILE,
 #   never from a heredoc containing markdown.
+
+### LD-146 - A RATE DECISION IS SCORED AGAINST THE CURRENCY'S REGIME (2026-09-27)
+
+Jeff: "Interest rate decision will overturn everything on that day. And since
+the market moves in expectation, an interest rate hike on a weak economy can be
+perceived as Bad. This is because the market already know that the effect of
+this hike will bring down inflation so they will already priced in weeks
+before. So we based the score on the currency's regime (based on the base
+score) and the interest rate expectation."
+
+    HIKE + weak or neutral    -> BAD
+    HIKE + strong             -> GOOD
+    HOLD + strong or neutral  -> GOOD
+    HOLD + weak               -> BAD
+    CUT  + weak               -> GOOD
+    CUT  + strong or neutral  -> BAD
+
+*** CALIBRATOR ONLY. Jeff, same session: "this is only for the calibrator just
+to be clear." LD-142's corridor still scores the rate LEVEL in the base and is
+untouched. Two questions about one decision:
+
+    BASE (LD-142)        WHERE IS THE RATE?    level vs 1.5-2.5
+    CALIBRATOR (LD-146)  DOES THE MOVE FIT?    expectation vs regime
+
+This is not LD-140 restored. LD-140 scored the SURPRISE (cons vs standing) and
+LD-142 retired it. LD-146 scores the expected MOVE, and the regime decides its
+sign - the same hike is +1 from STRONG and -1 from WEAK.
+
+THE REGIME IS THE BASE BAND, NEVER THE FINAL BAND. The final band already
+contains the calibrator, so reading it there would let the calibrator score
+itself. On this edition the two disagree on three of eight currencies, so the
+distinction changes answers rather than being cosmetic.
+
+NEUTRAL IS NOT A FREE PASS - it splits across the three moves (BAD on a hike,
+GOOD on a hold, BAD on a cut). Only standing still is rewarded, and no
+combination returns 0.
+
+REGRESSION FIXED WITH IT. Under LD-142 the rate row scored None, which
+day_score() filters out BEFORE the precedence check - so the decision was
+dropped as unscorable and a lesser row carried its day. On Tue 29 Sep AUD
+Household Spending YoY was carrying the RBA. The code's own comment promised
+the row "keeps its day precedence"; for six days it did not. Now guarded.
+
+LIVE EFFECT: AUD is WEAK in the base (+0.07) into an RBA hike priced
+4.35 -> 4.60, so Tuesday scores -1 and carries. AUD cal +0.20 -> -0.20, final
++0.27 -> -0.13. Set unchanged, gaps widened: GBPAUD +6.53 -> +6.93.
+
+WITHDRAWAL CONDITION: if by the 12-16 Oct retrospective no rate decision has
+changed a pairing, or the regime term is reading backwards against realised
+strength, it comes out. LD-113 and LD-140 are both precedents for a rule that
+ranked nothing.
+

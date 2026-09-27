@@ -163,6 +163,93 @@ RATE_NAME = wa.RATE_NAME          # LD-140
 GDP_NAME = 'GDP Growth Rate QoQ'
 
 
+# LD-146 - A RATE DECISION IS SCORED AGAINST THE CURRENCY'S OWN REGIME.
+#
+# Jeff, 2026-09-27: "Interest rate decision will overturn everything on that
+# day. And since the market moves in expectation, an interest rate hike on a
+# weak economy can be perceived as Bad. This is because the market already
+# know that the effect of this hike will bring down inflation so they will
+# already priced in weeks before."
+#
+# *** THIS IS A CALIBRATOR RULE ONLY. Jeff, same session: "this is only for
+# the calibrator just to be clear." rate_model's LEVEL term in the base is
+# untouched by LD-146 and keeps scoring the 1.5-2.5 corridor exactly as
+# LD-142 set it. The two are different questions about the same decision:
+#
+#     BASE (LD-142)      WHERE IS THE RATE?   level vs the corridor
+#     CALIBRATOR (LD-146) DOES THE EXPECTED MOVE FIT THE REGIME?
+#
+# So a decision is scored twice, but never for the same reason - which is
+# what LD-142's "one rule, one quantity" was protecting against. LD-142
+# retired LD-140's SURPRISE test (cons vs standing). LD-146 does not bring
+# it back: the move direction is only half the input, and the regime it
+# lands in decides the sign.
+#
+# THE REGIME IS THE BASE BAND, NOT THE FINAL BAND. Jeff: "based on the
+# currency's regime (based on the base score)". This is not a detail - the
+# FINAL band already contains the calibrator, so reading it here would let
+# the calibrator score itself. The base band is settled before this file
+# runs. On 28 Sep-2 Oct the two disagree on three of eight currencies
+# (CHF STRONG->NEUTRAL, JPY NEUTRAL->STRONG, USD NEUTRAL->WEAK), so the
+# distinction changes answers rather than being cosmetic.
+#
+# THE SIX CASES, in Jeff's words:
+#
+#     HIKE    + weak or neutral   -> BAD    hiking into weakness
+#     HIKE    + strong            -> GOOD   hiking from strength
+#     HOLD    + strong or neutral -> GOOD   no pressure to move
+#     HOLD    + weak              -> BAD    cannot afford to move
+#     CUT     + weak              -> GOOD   relief where it is needed
+#     CUT     + strong or neutral -> BAD    cutting away an advantage
+#
+# NEUTRAL SPLITS ACROSS THE THREE MOVES and that asymmetry is the rule's
+# content, not an oversight: a neutral currency is scored BAD on a hike,
+# GOOD on a hold, BAD on a cut. Only standing still is rewarded. There is
+# no case that returns 0 - every combination commits.
+HIKE, HOLD, CUT = 'HIKE', 'HOLD', 'CUT'
+
+REGIME_RATE = {
+    (HIKE, 'STRONG'): 1, (HIKE, 'NEUTRAL'): -1, (HIKE, 'WEAK'): -1,
+    (HOLD, 'STRONG'): 1, (HOLD, 'NEUTRAL'): 1, (HOLD, 'WEAK'): -1,
+    (CUT, 'STRONG'): -1, (CUT, 'NEUTRAL'): -1, (CUT, 'WEAK'): 1,
+}
+
+
+def rate_move(cons, fcst, prev):
+    """HIKE / HOLD / CUT from the EXPECTED rate against the standing one.
+
+    The expectation is cons where TE publishes one, else fcst (F-85). `prev`
+    is the standing rate. Returns None when either side is unreadable - a
+    missing expectation must not silently read as HOLD, which would score
+    a currency on an absence (the F-73 shape).
+
+    Uses rate_model._num so '3.50-3.75%' reads 3.75 and a leading minus is
+    not lost to a currency mark (F-124).
+    """
+    import rate_model as rm
+    exp = cons if (cons or '').strip() else fcst
+    a, b = rm._num(exp), rm._num(prev)
+    if a is None or b is None:
+        return None
+    if a > b:
+        return HIKE
+    if a < b:
+        return CUT
+    return HOLD
+
+
+def rate_score(ccy, cons, fcst, prev, base_band):
+    """LD-146 - (score, move, regime) or (None, move, regime).
+
+    `base_band` is {ccy: 'STRONG'|'NEUTRAL'|'WEAK'} from the BASE scores.
+    """
+    mv = rate_move(cons, fcst, prev)
+    rg = (base_band or {}).get(ccy)
+    if mv is None or rg is None:
+        return None, mv, rg
+    return REGIME_RATE.get((mv, rg)), mv, rg
+
+
 def gdp_score(lo, hi):
     """Jeff's range rule. Both bounds positive GOOD, both negative BAD,
     straddling zero NEUTRAL."""
@@ -176,7 +263,7 @@ def gdp_score(lo, hi):
 
 
 
-def score_row(ccy, name, rec):
+def score_row(ccy, name, rec, base_band=None):
     """+1 / 0 / -1 for one scheduled row, or None if unscorable.
 
     Grades WHAT IS EXPECTED TO PRINT against that indicator's own criterion.
@@ -222,23 +309,21 @@ def score_row(ccy, name, rec):
     # EXPECTED move instead: consensus vs the standing rate (`prev`). A hike
     # that is fully priced still scores 0 - the currency already holds it.
     if name == RATE_NAME:
-        # *** LD-142 RETIRED LD-140's TEST. Jeff, 2026-09-21, on the Fed and
-        # BoJ rows: "This needs correction", and then set a rule that scores
-        # the RATE LEVEL against a 1.5-2.5% neutral corridor.
+        # *** LD-146 SUPERSEDES THE 'return None' THAT STOOD HERE.
         #
-        # LD-140 scored consensus-vs-standing - whether a move was EXPECTED.
-        # On 18 Sep that read JPY +1 for a priced hike while the yen fell
-        # 1.58%, worst of the eight. Under LD-142 the same decision is 0:
-        # 1.25% is still below the 1.5% floor, so hiking INTO the corridor
-        # from underneath is not yet hawkish.
+        # LD-142 retired LD-140's surprise test and left the calibrator
+        # scoring a rate decision NOTHING. That had a consequence nobody
+        # chose: a None score is filtered out by day_score() before the
+        # precedence check can see it, so on 29 Sep 2026 AUD Household
+        # Spending YoY CARRIED THE RBA's DAY while the decision itself was
+        # dropped as unscorable. The comment here promised the row "keeps
+        # its day precedence"; the code did the opposite for six days.
         #
-        # ONE RULE, ONE QUANTITY. Jeff chose replace over keep-both, so the
-        # decision is scored ONCE - by rate_model's LEVEL term in the base -
-        # and the calibrator no longer scores it a second time. The row still
-        # ENTERS the calibrator (it keeps its day precedence, so a decision
-        # day is not carried by a lesser row) but contributes no score of its
-        # own.
-        return None
+        # LD-146 scores it against the currency's BASE regime. See the
+        # REGIME_RATE table above for the six cases.
+        return rate_score(ccy, (rec or {}).get('consensus'),
+                          (rec or {}).get('forecast'),
+                          (rec or {}).get('previous'), base_band)[0]
 
     # LD-117: GDP scores the RANGE, not a threshold and not a surprise.
     if name == GDP_NAME:
@@ -297,7 +382,7 @@ def _date_only(s):
         return None
 
 
-def week_rows(capture, start, end):
+def week_rows(capture, start, end, base_band=None):
     """Every whitelist row in the window, with its score and reference month."""
     raw = json.load(io.open(capture, encoding='utf-8'))
     ISO = {'US': 'USD', 'GB': 'GBP', 'EA': 'EUR', 'JP': 'JPY',
@@ -327,7 +412,7 @@ def week_rows(capture, start, end):
         _day = when.date() if when else _date_only(d)
         out.append(dict(when=when, ccy=ccy, name=name, raw=rawev,
                         day=_day,
-                        month=ref_month(rawev), score=score_row(ccy, name, rec),
+                        month=ref_month(rawev), score=score_row(ccy, name, rec, base_band),
                         cons=(rec.get('consensus') or '').strip(),
                         fcst=(rec.get('forecast') or '').strip(),
                         prev=(rec.get('previous') or '').strip()))
@@ -403,6 +488,10 @@ def day_score(rows):
     #
     # WITHDRAWAL CONDITION, recorded with the rule: if this ranks nothing by
     # the 21-25 Sep retrospective, it comes out. LD-113 is the precedent.
+    # LD-146 - THE RATE ROW NOW ALWAYS CARRIES A SCORE, so this check is
+    # reachable again. Under LD-142 it scored None, was filtered out by the
+    # `scored` comprehension above, and never reached here - which is how
+    # Household Spending came to carry the RBA's day on 29 Sep 2026.
     rate = [r for r in scored if r['name'] == RATE_NAME]
     if rate:
         val = sum(r['score'] for r in rate) / float(len(rate))
@@ -449,13 +538,20 @@ def day_score(rows):
 DAY_WEIGHT = 0.2
 
 
-def calibrate(capture, start, end):
+def calibrate(capture, start, end, base_band=None):
     """{ccy: {'total', 'days': {date: (score, rule, kept, dropped)}}}.
 
     `days` holds the RAW per-day score (+1/0/-1) so the page can show what
     each day said; `total` is the LD-144-weighted sum.
     """
-    rows = week_rows(capture, start, end)
+    if base_band is None:
+        # LD-146 needs the BASE regime, never the final one - the final band
+        # already contains the calibrator, so reading it here would let the
+        # calibrator score itself.
+        _b = ft.base_scores()
+        base_band = ft.bands(
+            dict((c, _b[c]['total']) for c in _b))[0]
+    rows = week_rows(capture, start, end, base_band)
     by = collections.defaultdict(lambda: collections.defaultdict(list))
     for r in rows:
         if r['day'] is not None:

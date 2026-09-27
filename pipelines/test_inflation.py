@@ -100,6 +100,30 @@ PREV_CASES = [
 # still tested below; only the scoring half went.
 RATE_CASES = []
 
+# LD-146 - THE SIX REGIME CASES, PLUS THE REFUSALS.
+#
+# (cons, fcst, prev, base_band, expected)  expected None = row does not score
+REGIME_CASES = [
+    # HIKE
+    ('4.6%', '4.6%', '4.35%', 'WEAK',    -1),   # AUD live, 29 Sep 2026
+    ('4.6%', '',     '4.35%', 'NEUTRAL', -1),
+    ('4.6%', '',     '4.35%', 'STRONG',  +1),
+    # HOLD - fully priced standing still
+    ('4.0%', '4.0%', '4.0%',  'STRONG',  +1),
+    ('4.0%', '',     '4.0%',  'NEUTRAL', +1),
+    ('4.0%', '',     '4.0%',  'WEAK',    -1),
+    # CUT
+    ('3.75%', '',    '4.0%',  'WEAK',    +1),
+    ('3.75%', '',    '4.0%',  'NEUTRAL', -1),
+    ('3.75%', '',    '4.0%',  'STRONG',  -1),
+    # F-124 shape: a range reads its UPPER bound, hyphen is not a minus
+    ('3.50-3.75%', '', '3.25-3.50%', 'STRONG', +1),
+    # REFUSALS - an absence must not read as HOLD (the F-73 shape)
+    ('',     '',     '4.0%',  'STRONG',  None),
+    ('4.0%', '',     '',      'STRONG',  None),
+    ('4.0%', '',     '4.0%',  None,      None),
+]
+
 
 # LD-142 - (rate, previous, expected, what it is)
 RATE_LEVEL_CASES = [
@@ -261,10 +285,39 @@ def main():
         print('    (skipped: %s)' % e)
 
     print()
+    print('  LD-146 - rate decision vs base regime')
+    _nb = 0
+    for cons, fcst, prev, rg, want in REGIME_CASES:
+        band = {'XXX': rg} if rg else {}
+        got, mv, _ = cal.rate_score('XXX', cons, fcst, prev, band)
+        if got != want:
+            bad += 1
+            _nb += 1
+            print('    *** cons=%-10s prev=%-10s %-8s -> %s, want %s'
+                  % (cons or '-', prev or '-', rg or '-', got, want))
+    if not _nb:
+        print('    %d case(s) pass - all six regimes + 3 refusals'
+              % len(REGIME_CASES))
+
+    # The rate row must WIN ITS DAY. This is the regression that LD-142
+    # created and nobody caught for six days: a None score was filtered out
+    # before the precedence check, so a lesser row carried the decision.
+    _rows = [{'name': cal.RATE_NAME, 'score': -1, 'month': (0, 9)},
+             {'name': 'Household Spending YoY', 'score': 1, 'month': (0, 9)}]
+    _v, _rule, _keep, _drop = cal.day_score(_rows)
+    if _v != -1 or [k['name'] for k in _keep] != [cal.RATE_NAME]:
+        bad += 1
+        print('    *** PRECEDENCE LOST: day scored %s via %s, kept %s'
+              % (_v, _rule, [k['name'] for k in _keep]))
+    else:
+        print('    precedence holds - the decision carries its day')
+
+    print()
     if bad:
         print('*** %d FAILURE(S)' % bad)
         return 1
-    print('  %d cases pass' % (len(CASES) + len(PREV_CASES) + len(RATE_CASES)))
+    print('  %d cases pass' % (len(CASES) + len(PREV_CASES) + len(RATE_CASES)
+                          + len(REGIME_CASES) + 1))
     return 0
 
 

@@ -193,6 +193,17 @@ def s8_dates():
     return True, 'no pinned dates; window %s..%s' % (start, end)
 
 
+def _edition_stamp():
+    """The Sunday this edition was BUILT, which names its page file.
+
+    The window starts Monday, so the page is stamped the day before it.
+    Derived, never written down (F-130, F-136, F-140).
+    """
+    start, _ = window()
+    d = dt.datetime.strptime(start, '%Y-%m-%d').date()
+    return (d - dt.timedelta(days=1)).isoformat()
+
+
 def s9_page_fresh():
     """F-134: is the PUBLISHED page built from the CURRENT fact tables?
 
@@ -211,7 +222,18 @@ def s9_page_fresh():
     absent, which is the question being asked.
     """
     import score_model as sm
-    page = os.path.join(REPO, 'reports/2026/Q3/2026-09-20_weekly.html')
+    # *** F-140 - THIS WAS PINNED TO 2026-09-20_weekly.html, LAST WEEK'S PAGE.
+    #
+    # The same shape as F-130 and F-136: a date written into a checker
+    # instead of derived. It passed on the 28 Sep-2 Oct V1 build only because
+    # the 21-25 Sep page happened to contain the same four values, and it
+    # FAILED against a correct page the moment those values were refreshed -
+    # reporting "the published page is behind" about a page it never read.
+    #
+    # A guard that names the wrong file does not weaken to a no-op; it
+    # accuses correct work. Derive from the window this build is FOR.
+    page = os.path.join(REPO, 'reports/2026/Q3/%s_weekly.html'
+                        % _edition_stamp())
     if not os.path.exists(page):
         return True, '(no published page yet)'
     live = io.open(page, encoding='utf-8').read()
