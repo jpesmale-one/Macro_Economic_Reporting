@@ -4,15 +4,15 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-09-20 (r7, WEEKLY, SEALED 2026-09-26 - graded 3/3, +218.5 pips - selection for the 21-25 Sep
-         cycle, built on SUNDAY 20 SEP VINTAGE)
-date: 2026-09-20
-data_asof: 2026-09-20 vintage (calendar captured 2026-09-20 08:17. SEVENTEEN
-           whitelist rows refreshed for prints that landed 14-18 Sep - nine
-           from the capture, eight recovered from TE indicator pages by R-45.)
-artifact: https://claude.ai/artifact/Kn6pz8LXzpqkUReW1ffQgj
-prev_edition: 2026-09-13 (r6, SEALED 2026-09-19 - graded 0/3)
-           https://claude.ai/code/artifact/0e388632-c401-4a21-abe2-d2c7149a630d
+edition: 2026-09-27 (r1, WEEKLY, UNSEALED - selection for the 28 Sep-2 Oct
+         cycle, built on SUNDAY 27 SEP VINTAGE)
+date: 2026-09-27
+data_asof: 2026-09-27 vintage (calendar captured 2026-09-27 09:53. SIX rows
+           refreshed for prints that landed 21-25 Sep, including the AUD
+           employment split FT -6.3K / PT +45.8K per LD-57.)
+artifact: https://claude.ai/artifact/DU6Y3sC2T6eoPRu7Jkx82T
+prev_edition: 2026-09-20 (r7, SEALED 2026-09-26 - graded 3/3, +144.8 pips)
+           https://claude.ai/artifact/Kn6pz8LXzpqkUReW1ffQgj
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse

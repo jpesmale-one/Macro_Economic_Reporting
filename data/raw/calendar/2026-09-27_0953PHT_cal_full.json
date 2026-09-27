@@ -1,0 +1,8772 @@
+[
+ {
+  "date": "2026-09-24",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "employment change aug",
+  "actual": "39.5K",
+  "previous": "-15.9K ®",
+  "consensus": "20K",
+  "forecast": "15.1K"
+ },
+ {
+  "date": "2026-09-24",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "full time employment chg aug",
+  "actual": "-6.3K",
+  "previous": "14.9K ®",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-24",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "unemployment rate aug",
+  "actual": "4.6%",
+  "previous": "4.5%",
+  "consensus": "4.5%",
+  "forecast": "4.5%"
+ },
+ {
+  "date": "2026-09-24",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "part time employment chg aug",
+  "actual": "45.8K",
+  "previous": "-30.8K ®",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-24",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "participation rate aug",
+  "actual": "67.1%",
+  "previous": "66.9%",
+  "consensus": "66.9%",
+  "forecast": "66.9%"
+ },
+ {
+  "date": "2026-09-24",
+  "time": "04:00 PM",
+  "iso": "CA",
+  "event": "2-year bond auction",
+  "actual": "3.470%",
+  "previous": "3.164%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-24",
+  "time": "07:15 AM",
+  "iso": "EA",
+  "event": "ecb schnabel speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-24",
+  "time": "07:30 AM",
+  "iso": "CH",
+  "event": "snb interest rate decision",
+  "actual": "0%",
+  "previous": "0%",
+  "consensus": "0%",
+  "forecast": "0%"
+ },
+ {
+  "date": "2026-09-24",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "ecb lane speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-24",
+  "time": "12:20 PM",
+  "iso": "CA",
+  "event": "cfib business barometer sep",
+  "actual": "47.9",
+  "previous": "57.7 ®",
+  "consensus": "",
+  "forecast": "53"
+ },
+ {
+  "date": "2026-09-24",
+  "time": "12:30 AM",
+  "iso": "JP",
+  "event": "s&p global manufacturing pmi flash sep",
+  "actual": "54.1",
+  "previous": "54.9",
+  "consensus": "55",
+  "forecast": "55.2"
+ },
+ {
+  "date": "2026-09-24",
+  "time": "12:30 AM",
+  "iso": "JP",
+  "event": "s&p global services pmi flash sep",
+  "actual": "51.6",
+  "previous": "52.5",
+  "consensus": "",
+  "forecast": "52.7"
+ },
+ {
+  "date": "2026-09-24",
+  "time": "12:30 AM",
+  "iso": "JP",
+  "event": "s&p global composite pmi flash sep",
+  "actual": "52.5",
+  "previous": "53.5",
+  "consensus": "",
+  "forecast": "54"
+ },
+ {
+  "date": "2026-09-24",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "retail sales ex autos mom jul",
+  "actual": "-0.7%",
+  "previous": "0.5%",
+  "consensus": "-0.5%",
+  "forecast": "-0.6%"
+ },
+ {
+  "date": "2026-09-24",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "retail sales mom final jul",
+  "actual": "-0.7%",
+  "previous": "0.6%",
+  "consensus": "-0.8%",
+  "forecast": "-0.8%"
+ },
+ {
+  "date": "2026-09-24",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "retail sales mom prel aug",
+  "actual": "1.3%",
+  "previous": "-0.7%",
+  "consensus": "",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-09-24",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "average weekly earnings yoy jul",
+  "actual": "3.2%",
+  "previous": "3.39% ®",
+  "consensus": "",
+  "forecast": "3.4%"
+ },
+ {
+  "date": "2026-09-24",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "manufacturing sales mom prel aug",
+  "actual": "1.1%",
+  "previous": "-0.4%",
+  "consensus": "",
+  "forecast": "-0.1%"
+ },
+ {
+  "date": "2026-09-24",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "retail sales yoy jul",
+  "actual": "5.1%",
+  "previous": "5.2%",
+  "consensus": "",
+  "forecast": "3.9%"
+ },
+ {
+  "date": "2026-09-25",
+  "time": "03:00 PM",
+  "iso": "CA",
+  "event": "budget balance jul",
+  "actual": "C$-4.77B",
+  "previous": "C$0.99B",
+  "consensus": "",
+  "forecast": "C$-2.4B"
+ },
+ {
+  "date": "2026-09-25",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "3-month bill auction",
+  "actual": "1.2555%",
+  "previous": "1.2067%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-25",
+  "time": "06:00 PM",
+  "iso": "EA",
+  "event": "ecb vujčić speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-25",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "loans to companies yoy aug",
+  "actual": "4.2%",
+  "previous": "4.4%",
+  "consensus": "",
+  "forecast": "4.5%"
+ },
+ {
+  "date": "2026-09-25",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "loans to households yoy aug",
+  "actual": "3.1%",
+  "previous": "3.1%",
+  "consensus": "3.2%",
+  "forecast": "3.2%"
+ },
+ {
+  "date": "2026-09-25",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "m3 money supply yoy aug",
+  "actual": "3.5%",
+  "previous": "3.4%",
+  "consensus": "3.5%",
+  "forecast": "3.4%"
+ },
+ {
+  "date": "2026-09-25",
+  "time": "12:15 PM",
+  "iso": "EA",
+  "event": "ecb buch speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-25",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "wholesale sales mom prel aug",
+  "actual": "-1.5%",
+  "previous": "0.3%",
+  "consensus": "",
+  "forecast": "0.2%"
+ },
+ {
+  "date": "2026-09-27",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "boj monetary policy meeting minutes",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "01:00 PM",
+  "iso": "FR",
+  "event": "12-month btf auction",
+  "actual": "",
+  "previous": "3.161%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "01:00 PM",
+  "iso": "FR",
+  "event": "3-month btf auction",
+  "actual": "",
+  "previous": "2.639%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "01:00 PM",
+  "iso": "FR",
+  "event": "6-month btf auction",
+  "actual": "",
+  "previous": "2.898%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "01:30 AM",
+  "iso": "CN",
+  "event": "industrial profits (ytd) yoy aug",
+  "actual": "",
+  "previous": "17.6%",
+  "consensus": "",
+  "forecast": "18.0%"
+ },
+ {
+  "date": "2026-09-28",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "dallas fed manufacturing index sep",
+  "actual": "",
+  "previous": "11.6",
+  "consensus": "",
+  "forecast": "1"
+ },
+ {
+  "date": "2026-09-28",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "3-month bill auction",
+  "actual": "",
+  "previous": "4.015%",
+  "consensus": "",
+  "forecast": "4.0999%"
+ },
+ {
+  "date": "2026-09-28",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "6-month bill auction",
+  "actual": "",
+  "previous": "4.155%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "boj jgb purchase",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "15-year bond auction",
+  "actual": "",
+  "previous": "2.35%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "industrial production mom aug",
+  "actual": "",
+  "previous": "2.3%",
+  "consensus": "",
+  "forecast": "1.0%"
+ },
+ {
+  "date": "2026-09-28",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "industrial production yoy aug",
+  "actual": "",
+  "previous": "6.8%",
+  "consensus": "",
+  "forecast": "6.0%"
+ },
+ {
+  "date": "2026-09-28",
+  "time": "05:30 PM",
+  "iso": "US",
+  "event": "fed barkin speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "07:40 AM",
+  "iso": "EA",
+  "event": "ecb machado speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "09:00 PM",
+  "iso": "KR",
+  "event": "business confidence sep",
+  "actual": "",
+  "previous": "81",
+  "consensus": "",
+  "forecast": "84"
+ },
+ {
+  "date": "2026-09-28",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "182-day t-bill auction",
+  "actual": "",
+  "previous": "7.70%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "273-day t-bill auction",
+  "actual": "",
+  "previous": "7.88%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "364-day t-bill auction",
+  "actual": "",
+  "previous": "7.95%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "91-day t-bill auction",
+  "actual": "",
+  "previous": "6.97%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "10:00 AM",
+  "iso": "GB",
+  "event": "boe ramsden speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "10:10 AM",
+  "iso": "EU",
+  "event": "2029 eu-bonds auction",
+  "actual": "",
+  "previous": "2.808%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "10:10 AM",
+  "iso": "EU",
+  "event": "2035 eu-bonds auction",
+  "actual": "",
+  "previous": "3.170%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "10:10 AM",
+  "iso": "EU",
+  "event": "2048 eu-bonds auction",
+  "actual": "",
+  "previous": "3.883%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-28",
+  "time": "10:30 AM",
+  "iso": "IN",
+  "event": "industrial production yoy aug",
+  "actual": "",
+  "previous": "6.7%",
+  "consensus": "6%",
+  "forecast": "5.5%"
+ },
+ {
+  "date": "2026-09-28",
+  "time": "10:30 AM",
+  "iso": "IN",
+  "event": "manufacturing production yoy aug",
+  "actual": "",
+  "previous": "7.3%",
+  "consensus": "",
+  "forecast": "5.9%"
+ },
+ {
+  "date": "2026-09-28",
+  "time": "11:01 PM",
+  "iso": "GB",
+  "event": "brc shop price inflation sep",
+  "actual": "",
+  "previous": "1.5%",
+  "consensus": "1.5%",
+  "forecast": "1.7%"
+ },
+ {
+  "date": "2026-09-28",
+  "time": "11:30 AM",
+  "iso": "BR",
+  "event": "current account aug",
+  "actual": "",
+  "previous": "$-8.11B",
+  "consensus": "",
+  "forecast": "$-6.2B"
+ },
+ {
+  "date": "2026-09-28",
+  "time": "11:30 AM",
+  "iso": "BR",
+  "event": "foreign direct investment aug",
+  "actual": "",
+  "previous": "$7.46B",
+  "consensus": "",
+  "forecast": "$6.8B"
+ },
+ {
+  "date": "2026-09-28",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "balance of trade aug",
+  "actual": "",
+  "previous": "$-0.848B",
+  "consensus": "",
+  "forecast": "$-0.1B"
+ },
+ {
+  "date": "2026-09-28",
+  "time": "",
+  "iso": "BR",
+  "event": "bcb focus market readout",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "01:00 PM",
+  "iso": "US",
+  "event": "s&p/case-shiller home price yoy jul",
+  "actual": "",
+  "previous": "2.1%",
+  "consensus": "2.2%",
+  "forecast": "2.0%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "01:00 PM",
+  "iso": "US",
+  "event": "house price index jul",
+  "actual": "",
+  "previous": "442.5",
+  "consensus": "",
+  "forecast": "442.9"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "01:00 PM",
+  "iso": "US",
+  "event": "house price index mom jul",
+  "actual": "",
+  "previous": "0%",
+  "consensus": "0.1%",
+  "forecast": "0.1%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "01:00 PM",
+  "iso": "US",
+  "event": "house price index yoy jul",
+  "actual": "",
+  "previous": "2.3%",
+  "consensus": "",
+  "forecast": "2.2%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "01:00 PM",
+  "iso": "US",
+  "event": "s&p/case-shiller home price mom jul",
+  "actual": "",
+  "previous": "0.4%",
+  "consensus": "",
+  "forecast": "0.2%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "01:20 PM",
+  "iso": "US",
+  "event": "ny fed bill purchases 1 to 4 months",
+  "actual": "",
+  "previous": "",
+  "consensus": "$3.892 billion",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "household spending mom aug",
+  "actual": "",
+  "previous": "1.1%",
+  "consensus": "",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "household spending yoy aug",
+  "actual": "",
+  "previous": "7.0%",
+  "consensus": "",
+  "forecast": "6.4%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "01:35 AM",
+  "iso": "NZ",
+  "event": "1-year bill auction",
+  "actual": "",
+  "previous": "3.61%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "01:35 AM",
+  "iso": "NZ",
+  "event": "3-month bill auction",
+  "actual": "",
+  "previous": "2.9025%",
+  "consensus": "",
+  "forecast": "2.9999%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "01:35 AM",
+  "iso": "NZ",
+  "event": "6-month bill auction",
+  "actual": "",
+  "previous": "3.14%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "jolts job openings aug",
+  "actual": "",
+  "previous": "7.271M",
+  "consensus": "7.23M",
+  "forecast": "7.24M"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "cb consumer confidence sep",
+  "actual": "",
+  "previous": "89.4",
+  "consensus": "90",
+  "forecast": "89"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "jolts job quits aug",
+  "actual": "",
+  "previous": "3.056M",
+  "consensus": "",
+  "forecast": "3.0M"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "dallas fed services index sep",
+  "actual": "",
+  "previous": "4.2",
+  "consensus": "",
+  "forecast": "1"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "dallas fed services revenues index sep",
+  "actual": "",
+  "previous": "6.6",
+  "consensus": "",
+  "forecast": "2"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "03:30 AM",
+  "iso": "SG",
+  "event": "export prices yoy aug",
+  "actual": "",
+  "previous": "13.1%",
+  "consensus": "",
+  "forecast": "15.3%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "03:30 AM",
+  "iso": "SG",
+  "event": "import prices yoy aug",
+  "actual": "",
+  "previous": "13.5%",
+  "consensus": "",
+  "forecast": "14.9%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "03:30 AM",
+  "iso": "SG",
+  "event": "ppi yoy aug",
+  "actual": "",
+  "previous": "33.4%",
+  "consensus": "",
+  "forecast": "35.0%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "03:30 PM",
+  "iso": "GB",
+  "event": "boe taylor speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "52-week bill auction",
+  "actual": "",
+  "previous": "3.980%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "6-week bill auction",
+  "actual": "",
+  "previous": "3.870%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "40-year jgb auction",
+  "actual": "",
+  "previous": "3.865%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "04:30 AM",
+  "iso": "AU",
+  "event": "rba interest rate decision",
+  "actual": "",
+  "previous": "4.35%",
+  "consensus": "4.6%",
+  "forecast": "4.6%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "05:00 AM",
+  "iso": "JP",
+  "event": "coincident index final jul",
+  "actual": "",
+  "previous": "118.9",
+  "consensus": "",
+  "forecast": "120.6"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "05:00 AM",
+  "iso": "JP",
+  "event": "leading economic index final jul",
+  "actual": "",
+  "previous": "116.2",
+  "consensus": "117.9",
+  "forecast": "117.9"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "mas 12-week bill auction",
+  "actual": "",
+  "previous": "1.75%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "mas 36-week bill auction",
+  "actual": "",
+  "previous": "1.77%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "mas 4-week bill auction",
+  "actual": "",
+  "previous": "1.67%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "fed goolsbee speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "05:30 AM",
+  "iso": "AU",
+  "event": "rba press conference",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "05:30 PM",
+  "iso": "US",
+  "event": "fed musalem speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "06:00 PM",
+  "iso": "US",
+  "event": "fed williams speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "07:00 AM",
+  "iso": "CH",
+  "event": "kof leading indicators sep",
+  "actual": "",
+  "previous": "106.7",
+  "consensus": "105.8",
+  "forecast": "107"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "07:00 AM",
+  "iso": "DE",
+  "event": "bundesbank president nagel speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "07:00 AM",
+  "iso": "EA",
+  "event": "ecb cipollone speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "inflation rate mom prel sep",
+  "actual": "",
+  "previous": "0.7%",
+  "consensus": "",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "inflation rate yoy prel sep",
+  "actual": "",
+  "previous": "4.3%",
+  "consensus": "4.7%",
+  "forecast": "4.7%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "core inflation rate yoy prel sep",
+  "actual": "",
+  "previous": "2.9%",
+  "consensus": "",
+  "forecast": "3.0%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "harmonised inflation rate mom prel sep",
+  "actual": "",
+  "previous": "0.7%",
+  "consensus": "",
+  "forecast": "0.8%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "harmonised inflation rate yoy prel sep",
+  "actual": "",
+  "previous": "4.6%",
+  "consensus": "",
+  "forecast": "4.9%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "retail sales mom aug",
+  "actual": "",
+  "previous": "-0.9%",
+  "consensus": "",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "retail sales yoy aug",
+  "actual": "",
+  "previous": "-0.3%",
+  "consensus": "",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "economic confidence index sep",
+  "actual": "",
+  "previous": "100.6",
+  "consensus": "",
+  "forecast": "100.6"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "07:00 PM",
+  "iso": "AR",
+  "event": "current account q2",
+  "actual": "",
+  "previous": "$-1651M",
+  "consensus": "",
+  "forecast": "$-1500.0M"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "08:00 AM",
+  "iso": "IT",
+  "event": "industrial sales mom jul",
+  "actual": "",
+  "previous": "-1%",
+  "consensus": "",
+  "forecast": "0.5%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "08:00 AM",
+  "iso": "IT",
+  "event": "industrial sales yoy jul",
+  "actual": "",
+  "previous": "3.1%",
+  "consensus": "",
+  "forecast": "2.9%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "08:30 AM",
+  "iso": "GB",
+  "event": "boe consumer credit aug",
+  "actual": "",
+  "previous": "£2.006B",
+  "consensus": "",
+  "forecast": "£1.9B"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "08:30 AM",
+  "iso": "GB",
+  "event": "mortgage approvals aug",
+  "actual": "",
+  "previous": "56.05K",
+  "consensus": "58K",
+  "forecast": "57.0K"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "08:30 AM",
+  "iso": "GB",
+  "event": "mortgage lending aug",
+  "actual": "",
+  "previous": "£4.29B",
+  "consensus": "",
+  "forecast": "£4.5B"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "08:30 AM",
+  "iso": "GB",
+  "event": "m4 money supply mom aug",
+  "actual": "",
+  "previous": "-0.3%",
+  "consensus": "0.1%",
+  "forecast": "-0.1%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "08:30 AM",
+  "iso": "GB",
+  "event": "net lending to individuals mom aug",
+  "actual": "",
+  "previous": "£6.3B",
+  "consensus": "£6.2B",
+  "forecast": "£6.4B"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "08:30 PM",
+  "iso": "US",
+  "event": "api crude oil stock change sep/25",
+  "actual": "",
+  "previous": "1.786M",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "09:00 AM",
+  "iso": "CN",
+  "event": "current account final q2",
+  "actual": "",
+  "previous": "$184.3B",
+  "consensus": "",
+  "forecast": "$195.1B"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "economic sentiment sep",
+  "actual": "",
+  "previous": "98.4",
+  "consensus": "99",
+  "forecast": "98.5"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "consumer confidence final sep",
+  "actual": "",
+  "previous": "-15.5",
+  "consensus": "-16.5",
+  "forecast": "-16.5"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "consumer inflation expectations sep",
+  "actual": "",
+  "previous": "33.0",
+  "consensus": "",
+  "forecast": "40"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "industrial sentiment sep",
+  "actual": "",
+  "previous": "-5.3",
+  "consensus": "-5",
+  "forecast": "-4.8"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "selling price expectations sep",
+  "actual": "",
+  "previous": "16.4",
+  "consensus": "",
+  "forecast": "25"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "services sentiment sep",
+  "actual": "",
+  "previous": "5.8",
+  "consensus": "",
+  "forecast": "5.1"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "09:00 AM",
+  "iso": "GB",
+  "event": "treasury gilt 2036 auction",
+  "actual": "",
+  "previous": "5.155%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "09:00 AM",
+  "iso": "IT",
+  "event": "ppi mom aug",
+  "actual": "",
+  "previous": "2.4%",
+  "consensus": "",
+  "forecast": "0.7%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "09:00 AM",
+  "iso": "IT",
+  "event": "ppi yoy aug",
+  "actual": "",
+  "previous": "7.8%",
+  "consensus": "",
+  "forecast": "9.1%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "09:10 AM",
+  "iso": "IT",
+  "event": "10-year btp auction",
+  "actual": "",
+  "previous": "4.10%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "09:10 AM",
+  "iso": "IT",
+  "event": "5-year btp auction",
+  "actual": "",
+  "previous": "3.44%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "2038 bond auction",
+  "actual": "",
+  "previous": "8.939%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "2039 bond auction",
+  "actual": "",
+  "previous": "9.041%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "2042 bond auction",
+  "actual": "",
+  "previous": "9.200%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "10:00 AM",
+  "iso": "ES",
+  "event": "business confidence sep",
+  "actual": "",
+  "previous": "-3.9",
+  "consensus": "",
+  "forecast": "-3.5"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "10:00 AM",
+  "iso": "FR",
+  "event": "unemployment benefit claims aug",
+  "actual": "",
+  "previous": "21.5K",
+  "consensus": "",
+  "forecast": "15.0K"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "10:00 AM",
+  "iso": "FR",
+  "event": "jobseekers total aug",
+  "actual": "",
+  "previous": "3143K",
+  "consensus": "",
+  "forecast": "3158.0K"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "11:00 AM",
+  "iso": "BR",
+  "event": "igp-m inflation mom sep",
+  "actual": "",
+  "previous": "-0.22%",
+  "consensus": "",
+  "forecast": "0.6%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "11:00 PM",
+  "iso": "KR",
+  "event": "industrial production mom aug",
+  "actual": "",
+  "previous": "0.2%",
+  "consensus": "",
+  "forecast": "0.5%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "11:00 PM",
+  "iso": "KR",
+  "event": "industrial production yoy aug",
+  "actual": "",
+  "previous": "3.6%",
+  "consensus": "",
+  "forecast": "4.0%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "11:00 PM",
+  "iso": "KR",
+  "event": "retail sales mom aug",
+  "actual": "",
+  "previous": "-2.4%",
+  "consensus": "",
+  "forecast": "3.0%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "11:01 PM",
+  "iso": "GB",
+  "event": "car production yoy aug",
+  "actual": "",
+  "previous": "-10.6%",
+  "consensus": "",
+  "forecast": "-8.0%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "11:30 AM",
+  "iso": "BR",
+  "event": "bank lending mom aug",
+  "actual": "",
+  "previous": "0.3%",
+  "consensus": "",
+  "forecast": "0.5%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "industrial production mom prel aug",
+  "actual": "",
+  "previous": "-0.2%",
+  "consensus": "1.7%",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "retail sales yoy aug",
+  "actual": "",
+  "previous": "4%",
+  "consensus": "3.3%",
+  "forecast": "3.5%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "industrial production yoy prel aug",
+  "actual": "",
+  "previous": "3.9%",
+  "consensus": "",
+  "forecast": "3.7%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "retail sales mom aug",
+  "actual": "",
+  "previous": "2.4%",
+  "consensus": "",
+  "forecast": "-1.0%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "12:00 PM",
+  "iso": "BR",
+  "event": "unemployment rate aug",
+  "actual": "",
+  "previous": "5.3%",
+  "consensus": "",
+  "forecast": "5.3%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "gdp mom jul",
+  "actual": "",
+  "previous": "0.3%",
+  "consensus": "0%",
+  "forecast": "0.0%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "gdp mom prel aug",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": "0.2%"
+ },
+ {
+  "date": "2026-09-29",
+  "time": "12:55 PM",
+  "iso": "US",
+  "event": "redbook yoy sep/26",
+  "actual": "",
+  "previous": "7.6%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-29",
+  "time": "",
+  "iso": "BR",
+  "event": "net payrolls aug",
+  "actual": "",
+  "previous": "58.57K",
+  "consensus": "",
+  "forecast": "80.0K"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:00 PM",
+  "iso": "CH",
+  "event": "snb quarterly bulletin",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "building permits mom prel aug",
+  "actual": "",
+  "previous": "-3.6%",
+  "consensus": "-0.9%",
+  "forecast": "-2.0%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "inflation rate mom aug",
+  "actual": "",
+  "previous": "1%",
+  "consensus": "",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "inflation rate yoy aug",
+  "actual": "",
+  "previous": "3.5%",
+  "consensus": "4.1%",
+  "forecast": "4.0%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "rba trimmed mean cpi mom aug",
+  "actual": "",
+  "previous": "0.5%",
+  "consensus": "",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "rba trimmed mean cpi yoy aug",
+  "actual": "",
+  "previous": "3.6%",
+  "consensus": "",
+  "forecast": "3.7%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "building permits yoy prel aug",
+  "actual": "",
+  "previous": "9%",
+  "consensus": "",
+  "forecast": "12.5%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "cpi aug",
+  "actual": "",
+  "previous": "103.07",
+  "consensus": "",
+  "forecast": "103.5"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "housing credit mom aug",
+  "actual": "",
+  "previous": "0.5%",
+  "consensus": "",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "private house approvals mom prel aug",
+  "actual": "",
+  "previous": "-4.2%",
+  "consensus": "",
+  "forecast": "-0.7%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "private sector credit mom aug",
+  "actual": "",
+  "previous": "0.6%",
+  "consensus": "0.5%",
+  "forecast": "0.5%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "private sector credit yoy aug",
+  "actual": "",
+  "previous": "8.4%",
+  "consensus": "",
+  "forecast": "8.3%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "rba weighted median cpi mom aug",
+  "actual": "",
+  "previous": "0.4%",
+  "consensus": "",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "rba weighted median cpi yoy aug",
+  "actual": "",
+  "previous": "3.6%",
+  "consensus": "",
+  "forecast": "3.7%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "CN",
+  "event": "nbs manufacturing pmi sep",
+  "actual": "",
+  "previous": "49.8",
+  "consensus": "50.1",
+  "forecast": "50"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "CN",
+  "event": "nbs non manufacturing pmi sep",
+  "actual": "",
+  "previous": "49.0",
+  "consensus": "49.3",
+  "forecast": "49.6"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:30 AM",
+  "iso": "CN",
+  "event": "nbs general pmi sep",
+  "actual": "",
+  "previous": "49.5",
+  "consensus": "",
+  "forecast": "50.1"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:45 AM",
+  "iso": "CN",
+  "event": "ratingdog manufacturing pmi sep",
+  "actual": "",
+  "previous": "51.5",
+  "consensus": "51.6",
+  "forecast": "51.5"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:45 AM",
+  "iso": "CN",
+  "event": "ratingdog services pmi sep",
+  "actual": "",
+  "previous": "51.4",
+  "consensus": "51.1",
+  "forecast": "51.7"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:45 AM",
+  "iso": "CN",
+  "event": "ratingdog composite pmi sep",
+  "actual": "",
+  "previous": "52.1",
+  "consensus": "",
+  "forecast": "52.3"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "01:45 PM",
+  "iso": "US",
+  "event": "chicago pmi sep",
+  "actual": "",
+  "previous": "47.1",
+  "consensus": "51.3",
+  "forecast": "46.9"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "02:00 AM",
+  "iso": "SG",
+  "event": "bank lending aug",
+  "actual": "",
+  "previous": "S$939.1B",
+  "consensus": "",
+  "forecast": "S$945.0B"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "02:01 PM",
+  "iso": "AU",
+  "event": "cotality dwelling prices mom sep",
+  "actual": "",
+  "previous": "-0.9%",
+  "consensus": "",
+  "forecast": "-0.9%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia crude oil stocks change sep/25",
+  "actual": "",
+  "previous": "2.969M",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia gasoline stocks change sep/25",
+  "actual": "",
+  "previous": "-1.686M",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia crude oil imports change sep/25",
+  "actual": "",
+  "previous": "0.369M",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia cushing crude oil stocks change sep/25",
+  "actual": "",
+  "previous": "2.266M",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia distillate fuel production change sep/25",
+  "actual": "",
+  "previous": "-0.068M",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia distillate stocks change sep/25",
+  "actual": "",
+  "previous": "-0.428M",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia gasoline production change sep/25",
+  "actual": "",
+  "previous": "-0.054M",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia heating oil stocks change sep/25",
+  "actual": "",
+  "previous": "0.346M",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia refinery crude runs change sep/25",
+  "actual": "",
+  "previous": "-0.519M",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "17-week bill auction",
+  "actual": "",
+  "previous": "4.135%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "2-year jgb auction",
+  "actual": "",
+  "previous": "1.708%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "03:45 PM",
+  "iso": "EA",
+  "event": "ecb schnabel speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "04:00 PM",
+  "iso": "RU",
+  "event": "unemployment rate aug",
+  "actual": "",
+  "previous": "2.3%",
+  "consensus": "2.2%",
+  "forecast": "2.3%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "04:00 PM",
+  "iso": "RU",
+  "event": "business confidence sep",
+  "actual": "",
+  "previous": "-1.0",
+  "consensus": "",
+  "forecast": "-1"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "04:00 PM",
+  "iso": "RU",
+  "event": "corporate profits jul",
+  "actual": "",
+  "previous": "RUB11.70T",
+  "consensus": "",
+  "forecast": "RUB 13.0T"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "04:00 PM",
+  "iso": "RU",
+  "event": "real wage growth yoy jul",
+  "actual": "",
+  "previous": "3.4%",
+  "consensus": "2.4%",
+  "forecast": "2.7%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "04:00 PM",
+  "iso": "RU",
+  "event": "retail sales yoy aug",
+  "actual": "",
+  "previous": "5.3%",
+  "consensus": "5.6%",
+  "forecast": "5.3%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "quarterly grain stocks - corn sep",
+  "actual": "",
+  "previous": "5.29B",
+  "consensus": "1.91B",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "quarterly grain stocks - soy sep",
+  "actual": "",
+  "previous": "1.06B",
+  "consensus": "0.33B",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "quarterly grain stocks - wheat sep",
+  "actual": "",
+  "previous": "0.92B",
+  "consensus": "1.83B",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "05:00 AM",
+  "iso": "JP",
+  "event": "housing starts yoy aug",
+  "actual": "",
+  "previous": "8.2%",
+  "consensus": "7%",
+  "forecast": "8.0%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "05:00 AM",
+  "iso": "JP",
+  "event": "construction orders yoy aug",
+  "actual": "",
+  "previous": "-13.4%",
+  "consensus": "",
+  "forecast": "-12.0%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "05:30 PM",
+  "iso": "US",
+  "event": "fed barkin speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:00 AM",
+  "iso": "DE",
+  "event": "retail sales mom aug",
+  "actual": "",
+  "previous": "-3.4%",
+  "consensus": "1.4%",
+  "forecast": "1.5%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:00 AM",
+  "iso": "DE",
+  "event": "retail sales yoy aug",
+  "actual": "",
+  "previous": "-2.5%",
+  "consensus": "",
+  "forecast": "-1.0%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:00 AM",
+  "iso": "DE",
+  "event": "import prices mom aug",
+  "actual": "",
+  "previous": "0.2%",
+  "consensus": "0.1%",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:00 AM",
+  "iso": "DE",
+  "event": "import prices yoy aug",
+  "actual": "",
+  "previous": "6.8%",
+  "consensus": "",
+  "forecast": "7.7%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "current account q2",
+  "actual": "",
+  "previous": "£-22.1B",
+  "consensus": "£-25.6B",
+  "forecast": "£ -23.0B"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "nationwide housing prices mom sep",
+  "actual": "",
+  "previous": "0.2%",
+  "consensus": "0.2%",
+  "forecast": "0.1%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "nationwide housing prices yoy sep",
+  "actual": "",
+  "previous": "1.6%",
+  "consensus": "",
+  "forecast": "1.5%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "business investment qoq final q2",
+  "actual": "",
+  "previous": "0.9%",
+  "consensus": "1.7%",
+  "forecast": "1.7%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "business investment yoy final q2",
+  "actual": "",
+  "previous": "-1.3%",
+  "consensus": "0.8%",
+  "forecast": "0.8%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "gdp growth rate qoq final q2",
+  "actual": "",
+  "previous": "0.6%",
+  "consensus": "0.4%",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "gdp growth rate yoy final q2",
+  "actual": "",
+  "previous": "0.9%",
+  "consensus": "1.2%",
+  "forecast": "1.2%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:00 AM",
+  "iso": "SA",
+  "event": "unemployment rate q2",
+  "actual": "",
+  "previous": "3.1%",
+  "consensus": "",
+  "forecast": "3.50%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:00 AM",
+  "iso": "ZA",
+  "event": "m3 money supply yoy aug",
+  "actual": "",
+  "previous": "8.57%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:00 AM",
+  "iso": "ZA",
+  "event": "private sector credit yoy aug",
+  "actual": "",
+  "previous": "7.41%",
+  "consensus": "",
+  "forecast": "7.1%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "inflation rate yoy prel sep",
+  "actual": "",
+  "previous": "2.4%",
+  "consensus": "",
+  "forecast": "2.8%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "inflation rate mom prel sep",
+  "actual": "",
+  "previous": "0.7%",
+  "consensus": "-0.5%",
+  "forecast": "-0.6%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "harmonised inflation rate mom prel sep",
+  "actual": "",
+  "previous": "0.7%",
+  "consensus": "",
+  "forecast": "-0.6%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "harmonised inflation rate yoy prel sep",
+  "actual": "",
+  "previous": "2.6%",
+  "consensus": "",
+  "forecast": "3.1%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "household consumption mom aug",
+  "actual": "",
+  "previous": "0.5%",
+  "consensus": "0%",
+  "forecast": "0.1%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "ppi mom aug",
+  "actual": "",
+  "previous": "1.1%",
+  "consensus": "",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "ppi yoy aug",
+  "actual": "",
+  "previous": "3.4%",
+  "consensus": "",
+  "forecast": "4.1%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "07:00 AM",
+  "iso": "EA",
+  "event": "ecb non-monetary policy meeting",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "balance of trade final aug",
+  "actual": "",
+  "previous": "$-7.34B",
+  "consensus": "$-5.24B",
+  "forecast": "$-5.24B"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "unemployment rate aug",
+  "actual": "",
+  "previous": "8.1%",
+  "consensus": "",
+  "forecast": "8.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "exports final aug",
+  "actual": "",
+  "previous": "$25.6B",
+  "consensus": "$23.5B",
+  "forecast": "$23.5B"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "imports final aug",
+  "actual": "",
+  "previous": "$32.9B",
+  "consensus": "$28.7B",
+  "forecast": "$28.7B"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "participation rate aug",
+  "actual": "",
+  "previous": "52.5%",
+  "consensus": "",
+  "forecast": "52.7%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "07:55 AM",
+  "iso": "DE",
+  "event": "unemployed persons sep",
+  "actual": "",
+  "previous": "2.996M",
+  "consensus": "",
+  "forecast": "3M"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "07:55 AM",
+  "iso": "DE",
+  "event": "unemployment change sep",
+  "actual": "",
+  "previous": "4K",
+  "consensus": "2K",
+  "forecast": "5.0K"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "07:55 AM",
+  "iso": "DE",
+  "event": "unemployment rate sep",
+  "actual": "",
+  "previous": "6.4%",
+  "consensus": "6.4%",
+  "forecast": "6.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "CH",
+  "event": "economic sentiment index sep",
+  "actual": "",
+  "previous": "12.1",
+  "consensus": "",
+  "forecast": "13"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "baden wuerttemberg cpi mom sep",
+  "actual": "",
+  "previous": "0.1%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "baden wuerttemberg cpi yoy sep",
+  "actual": "",
+  "previous": "2.6%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "bavaria cpi mom sep",
+  "actual": "",
+  "previous": "0.2%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "bavaria cpi yoy sep",
+  "actual": "",
+  "previous": "2.9%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "brandenburg cpi mom sep",
+  "actual": "",
+  "previous": "0.3%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "brandenburg cpi yoy sep",
+  "actual": "",
+  "previous": "3.1%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "hesse cpi mom sep",
+  "actual": "",
+  "previous": "0.3%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "hesse cpi yoy sep",
+  "actual": "",
+  "previous": "3%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "north rhine westphalia cpi mom sep",
+  "actual": "",
+  "previous": "0.2%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "north rhine westphalia cpi yoy sep",
+  "actual": "",
+  "previous": "2.9%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "saxony cpi mom sep",
+  "actual": "",
+  "previous": "0.1%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "DE",
+  "event": "saxony cpi yoy sep",
+  "actual": "",
+  "previous": "2.9%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "ES",
+  "event": "current account jul",
+  "actual": "",
+  "previous": "€2.41B",
+  "consensus": "",
+  "forecast": "€3.0B"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "IT",
+  "event": "business confidence sep",
+  "actual": "",
+  "previous": "89.9",
+  "consensus": "",
+  "forecast": "89.1"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "08:00 AM",
+  "iso": "IT",
+  "event": "consumer confidence sep",
+  "actual": "",
+  "previous": "94.5",
+  "consensus": "",
+  "forecast": "94.1"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "09:00 AM",
+  "iso": "IT",
+  "event": "inflation rate yoy prel sep",
+  "actual": "",
+  "previous": "3.3%",
+  "consensus": "",
+  "forecast": "3.8%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "09:00 AM",
+  "iso": "IT",
+  "event": "inflation rate mom prel sep",
+  "actual": "",
+  "previous": "0.5%",
+  "consensus": "0%",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "09:00 AM",
+  "iso": "IT",
+  "event": "harmonised inflation rate mom prel sep",
+  "actual": "",
+  "previous": "0.1%",
+  "consensus": "",
+  "forecast": "1.5%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "09:00 AM",
+  "iso": "IT",
+  "event": "harmonised inflation rate yoy prel sep",
+  "actual": "",
+  "previous": "3.2%",
+  "consensus": "",
+  "forecast": "3.5%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "09:10 PM",
+  "iso": "US",
+  "event": "fed goolsbee speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "09:30 AM",
+  "iso": "DE",
+  "event": "10-year bund auction",
+  "actual": "",
+  "previous": "3.39%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "09:30 AM",
+  "iso": "GB",
+  "event": "boe financial policy committee record",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "ppi mom aug",
+  "actual": "",
+  "previous": "-1%",
+  "consensus": "",
+  "forecast": "0.8%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "ppi yoy aug",
+  "actual": "",
+  "previous": "5.7%",
+  "consensus": "",
+  "forecast": "6.0%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "09:45 PM",
+  "iso": "NZ",
+  "event": "building permits mom aug",
+  "actual": "",
+  "previous": "-4.3%",
+  "consensus": "",
+  "forecast": "0.9%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "10:00 PM",
+  "iso": "US",
+  "event": "fed kashkari speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "10:30 AM",
+  "iso": "IN",
+  "event": "government budget value aug",
+  "actual": "",
+  "previous": "INR-4551.4B",
+  "consensus": "",
+  "forecast": "INR-5700.0B"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba 30-year mortgage rate sep/25",
+  "actual": "",
+  "previous": "7.12%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage applications sep/25",
+  "actual": "",
+  "previous": "-1.5%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage market index sep/25",
+  "actual": "",
+  "previous": "227.3",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage refinance index sep/25",
+  "actual": "",
+  "previous": "611.0",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba purchase index sep/25",
+  "actual": "",
+  "previous": "154.9",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:00 PM",
+  "iso": "AU",
+  "event": "s&p global manufacturing pmi final sep",
+  "actual": "",
+  "previous": "52.0",
+  "consensus": "49.3",
+  "forecast": "49.3"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:30 AM",
+  "iso": "BR",
+  "event": "gross debt to gdp aug",
+  "actual": "",
+  "previous": "82.5%",
+  "consensus": "",
+  "forecast": "83.0%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:30 AM",
+  "iso": "BR",
+  "event": "nominal budget balance aug",
+  "actual": "",
+  "previous": "BRL-97.6B",
+  "consensus": "",
+  "forecast": "BRL-120.0B"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "tankan large manufacturers index q3",
+  "actual": "",
+  "previous": "22",
+  "consensus": "25",
+  "forecast": "23"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "boj summary of opinions",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "foreign bond investment sep/19",
+  "actual": "",
+  "previous": "¥1082.9B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "foreign bond investment sep/26",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "stock investment by foreigners sep/26",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "stock investment by foreigners sep/19",
+  "actual": "",
+  "previous": "¥-1522.8B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "tankan large all industry capex q3",
+  "actual": "",
+  "previous": "11.5%",
+  "consensus": "12.3%",
+  "forecast": "5.0%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "tankan large manufacturing outlook q3",
+  "actual": "",
+  "previous": "17",
+  "consensus": "22",
+  "forecast": "18"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "tankan large non-manufacturing index q3",
+  "actual": "",
+  "previous": "37",
+  "consensus": "36",
+  "forecast": "35"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "tankan non-manufacturing outlook q3",
+  "actual": "",
+  "previous": "28",
+  "consensus": "30",
+  "forecast": "23"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "tankan small manufacturers index q3",
+  "actual": "",
+  "previous": "9",
+  "consensus": "11",
+  "forecast": "10"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:00 AM",
+  "iso": "NZ",
+  "event": "anz business confidence sep",
+  "actual": "",
+  "previous": "53.7",
+  "consensus": "",
+  "forecast": "55.1"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:00 PM",
+  "iso": "BR",
+  "event": "ppi mom aug",
+  "actual": "",
+  "previous": "-0.83%",
+  "consensus": "",
+  "forecast": "-0.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:00 PM",
+  "iso": "BR",
+  "event": "ppi yoy aug",
+  "actual": "",
+  "previous": "1.94%",
+  "consensus": "",
+  "forecast": "2.0%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:00 PM",
+  "iso": "DE",
+  "event": "inflation rate yoy prel sep",
+  "actual": "",
+  "previous": "2.9%",
+  "consensus": "",
+  "forecast": "3.1%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:00 PM",
+  "iso": "DE",
+  "event": "inflation rate mom prel sep",
+  "actual": "",
+  "previous": "0.2%",
+  "consensus": "0.5%",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:00 PM",
+  "iso": "DE",
+  "event": "harmonised inflation rate mom prel sep",
+  "actual": "",
+  "previous": "0.2%",
+  "consensus": "",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:00 PM",
+  "iso": "DE",
+  "event": "harmonised inflation rate yoy prel sep",
+  "actual": "",
+  "previous": "2.9%",
+  "consensus": "",
+  "forecast": "3.1%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:00 PM",
+  "iso": "IN",
+  "event": "external debt q2",
+  "actual": "",
+  "previous": "$762.8B",
+  "consensus": "",
+  "forecast": "$775.0B"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:00 PM",
+  "iso": "ZA",
+  "event": "balance of trade aug",
+  "actual": "",
+  "previous": "ZAR20.14B",
+  "consensus": "",
+  "forecast": "ZAR 3.5B"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:15 PM",
+  "iso": "US",
+  "event": "adp employment change sep",
+  "actual": "",
+  "previous": "38K",
+  "consensus": "70K",
+  "forecast": "49.0K"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "core pce price index mom aug",
+  "actual": "",
+  "previous": "0.2%",
+  "consensus": "0.3%",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "gdp growth rate qoq final q2",
+  "actual": "",
+  "previous": "2.1%",
+  "consensus": "1.6%",
+  "forecast": "1.5%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "personal income mom aug",
+  "actual": "",
+  "previous": "0.4%",
+  "consensus": "0.4%",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "personal spending mom aug",
+  "actual": "",
+  "previous": "0.2%",
+  "consensus": "0.8%",
+  "forecast": "0.6%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "gdp price index qoq final q2",
+  "actual": "",
+  "previous": "3.6%",
+  "consensus": "6.4%",
+  "forecast": "6.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "goods trade balance adv aug",
+  "actual": "",
+  "previous": "$-118.8B",
+  "consensus": "$-108.5B",
+  "forecast": "$-90.0B"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "pce price index mom aug",
+  "actual": "",
+  "previous": "0.2%",
+  "consensus": "0.4%",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "pce price index yoy aug",
+  "actual": "",
+  "previous": "3.7%",
+  "consensus": "",
+  "forecast": "3.8%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "retail inventories ex autos mom adv aug",
+  "actual": "",
+  "previous": "0.8%",
+  "consensus": "",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "wholesale inventories mom adv aug",
+  "actual": "",
+  "previous": "1.3%",
+  "consensus": "1.1%",
+  "forecast": "0.7%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "core pce price index yoy aug",
+  "actual": "",
+  "previous": "3.3%",
+  "consensus": "3.4%",
+  "forecast": "3.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "core pce prices qoq final q2",
+  "actual": "",
+  "previous": "4.4%",
+  "consensus": "3.6%",
+  "forecast": "3.6%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "corporate profits qoq final q2",
+  "actual": "",
+  "previous": "0.5%",
+  "consensus": "8.2%",
+  "forecast": "8.2%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "gdp sales qoq final q2",
+  "actual": "",
+  "previous": "1.9%",
+  "consensus": "2.2%",
+  "forecast": "2.2%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "pce prices qoq final q2",
+  "actual": "",
+  "previous": "4.6%",
+  "consensus": "5.3%",
+  "forecast": "5.3%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "real consumer spending qoq final q2",
+  "actual": "",
+  "previous": "0.5%",
+  "consensus": "3.4%",
+  "forecast": "3.4%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "real personal spending mom aug",
+  "actual": "",
+  "previous": "0.0%",
+  "consensus": "",
+  "forecast": "0.1%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "",
+  "iso": "RU",
+  "event": "m2 money supply yoy aug",
+  "actual": "",
+  "previous": "13.0%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-09-30",
+  "time": "",
+  "iso": "SA",
+  "event": "m3 money supply yoy aug",
+  "actual": "",
+  "previous": "8.2%",
+  "consensus": "",
+  "forecast": "8.0%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "",
+  "iso": "SA",
+  "event": "private bank lending yoy aug",
+  "actual": "",
+  "previous": "5.6%",
+  "consensus": "",
+  "forecast": "5.5%"
+ },
+ {
+  "date": "2026-09-30",
+  "time": "",
+  "iso": "ZA",
+  "event": "budget balance aug",
+  "actual": "",
+  "previous": "ZAR-161.58B",
+  "consensus": "",
+  "forecast": "ZAR -50.0B"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "01:00 PM",
+  "iso": "BR",
+  "event": "s&p global manufacturing pmi sep",
+  "actual": "",
+  "previous": "46.3",
+  "consensus": "",
+  "forecast": "46.5"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "01:05 PM",
+  "iso": "US",
+  "event": "fed barkin speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "01:05 PM",
+  "iso": "US",
+  "event": "fed collins speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "01:05 PM",
+  "iso": "US",
+  "event": "fed schmid speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "01:10 PM",
+  "iso": "GB",
+  "event": "boe mills speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "balance of trade aug",
+  "actual": "",
+  "previous": "A$1.923B",
+  "consensus": "A$2.1B",
+  "forecast": "A$2.2B"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "exports mom aug",
+  "actual": "",
+  "previous": "-3.3%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "01:30 AM",
+  "iso": "AU",
+  "event": "imports mom aug",
+  "actual": "",
+  "previous": "-2.5%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "01:30 PM",
+  "iso": "CA",
+  "event": "s&p global manufacturing pmi sep",
+  "actual": "",
+  "previous": "53.0",
+  "consensus": "",
+  "forecast": "52.9"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "01:30 PM",
+  "iso": "EA",
+  "event": "ecb president lagarde speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "01:45 PM",
+  "iso": "US",
+  "event": "s&p global manufacturing pmi final sep",
+  "actual": "",
+  "previous": "53.9",
+  "consensus": "57.0",
+  "forecast": "57"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "ism manufacturing pmi sep",
+  "actual": "",
+  "previous": "54.6",
+  "consensus": "54.8",
+  "forecast": "54.7"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "ism manufacturing employment sep",
+  "actual": "",
+  "previous": "51.2",
+  "consensus": "",
+  "forecast": "51.5"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "construction spending mom aug",
+  "actual": "",
+  "previous": "-0.5%",
+  "consensus": "0.1%",
+  "forecast": "-0.3%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "ism manufacturing new orders sep",
+  "actual": "",
+  "previous": "53.7",
+  "consensus": "",
+  "forecast": "53.9"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "ism manufacturing prices sep",
+  "actual": "",
+  "previous": "71.1",
+  "consensus": "72",
+  "forecast": "71.3"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia natural gas stocks change sep/25",
+  "actual": "",
+  "previous": "53Bcf",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "03:00 PM",
+  "iso": "MX",
+  "event": "s&p global manufacturing pmi sep",
+  "actual": "",
+  "previous": "49.80",
+  "consensus": "",
+  "forecast": "50"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "03:30 PM",
+  "iso": "EA",
+  "event": "ecb schnabel speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "4-week bill auction",
+  "actual": "",
+  "previous": "3.850%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "8-week bill auction",
+  "actual": "",
+  "previous": "3.990%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "04:00 AM",
+  "iso": "ID",
+  "event": "balance of trade aug",
+  "actual": "",
+  "previous": "$0.13B",
+  "consensus": "",
+  "forecast": "$ 1.3B"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "04:00 AM",
+  "iso": "ID",
+  "event": "inflation rate yoy sep",
+  "actual": "",
+  "previous": "3.19%",
+  "consensus": "",
+  "forecast": "3.4%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "04:00 AM",
+  "iso": "ID",
+  "event": "core inflation rate yoy sep",
+  "actual": "",
+  "previous": "2.92%",
+  "consensus": "",
+  "forecast": "2.7%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "04:00 AM",
+  "iso": "ID",
+  "event": "exports yoy aug",
+  "actual": "",
+  "previous": "6.05%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "04:00 AM",
+  "iso": "ID",
+  "event": "imports yoy aug",
+  "actual": "",
+  "previous": "27.02%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "04:00 AM",
+  "iso": "ID",
+  "event": "inflation rate mom sep",
+  "actual": "",
+  "previous": "0.21%",
+  "consensus": "",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "15-year mortgage rate oct/01",
+  "actual": "",
+  "previous": "6.42%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "30-year mortgage rate oct/01",
+  "actual": "",
+  "previous": "7.03%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "05:00 AM",
+  "iso": "ID",
+  "event": "tourist arrivals yoy aug",
+  "actual": "",
+  "previous": "2.95%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "05:00 AM",
+  "iso": "IN",
+  "event": "hsbc manufacturing pmi final sep",
+  "actual": "",
+  "previous": "52.8",
+  "consensus": "55.7",
+  "forecast": "55.7"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "06:00 AM",
+  "iso": "RU",
+  "event": "s&p global manufacturing pmi sep",
+  "actual": "",
+  "previous": "48.8",
+  "consensus": "",
+  "forecast": "49"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "06:30 AM",
+  "iso": "AU",
+  "event": "commodity prices yoy sep",
+  "actual": "",
+  "previous": "15.5%",
+  "consensus": "",
+  "forecast": "15%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "06:30 AM",
+  "iso": "CH",
+  "event": "inflation rate yoy sep",
+  "actual": "",
+  "previous": "0.8%",
+  "consensus": "",
+  "forecast": "1.0%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "06:30 AM",
+  "iso": "CH",
+  "event": "retail sales yoy aug",
+  "actual": "",
+  "previous": "2.3%",
+  "consensus": "2.2%",
+  "forecast": "1.7%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "06:30 AM",
+  "iso": "CH",
+  "event": "inflation rate mom sep",
+  "actual": "",
+  "previous": "0.4%",
+  "consensus": "0%",
+  "forecast": "0.2%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "06:30 AM",
+  "iso": "CH",
+  "event": "retail sales mom aug",
+  "actual": "",
+  "previous": "0.1%",
+  "consensus": "",
+  "forecast": "-0.1%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "07:00 AM",
+  "iso": "EA",
+  "event": "ecb general council meeting",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "istanbul chamber of industry manufacturing pmi sep",
+  "actual": "",
+  "previous": "48.1",
+  "consensus": "",
+  "forecast": "49"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "07:15 AM",
+  "iso": "ES",
+  "event": "s&p global manufacturing pmi sep",
+  "actual": "",
+  "previous": "49.5",
+  "consensus": "50.2",
+  "forecast": "50.4"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "07:30 AM",
+  "iso": "CH",
+  "event": "procure.ch manufacturing pmi sep",
+  "actual": "",
+  "previous": "57.1",
+  "consensus": "56",
+  "forecast": "56.5"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "07:30 PM",
+  "iso": "US",
+  "event": "fed williams speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "07:45 AM",
+  "iso": "IT",
+  "event": "s&p global manufacturing pmi sep",
+  "actual": "",
+  "previous": "49.6",
+  "consensus": "49.9",
+  "forecast": "51.4"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "07:50 AM",
+  "iso": "FR",
+  "event": "s&p global manufacturing pmi final sep",
+  "actual": "",
+  "previous": "51.1",
+  "consensus": "50.3",
+  "forecast": "50.3"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "07:55 AM",
+  "iso": "DE",
+  "event": "s&p global manufacturing pmi final sep",
+  "actual": "",
+  "previous": "54.3",
+  "consensus": "53.8",
+  "forecast": "53.8"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "s&p global manufacturing pmi final sep",
+  "actual": "",
+  "previous": "52.7",
+  "consensus": "52.7",
+  "forecast": "52.7"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "08:00 AM",
+  "iso": "IT",
+  "event": "unemployment rate aug",
+  "actual": "",
+  "previous": "5.8%",
+  "consensus": "5.7%",
+  "forecast": "5.9%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "08:10 AM",
+  "iso": "EA",
+  "event": "ecb cipollone speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "08:30 AM",
+  "iso": "GB",
+  "event": "s&p global manufacturing pmi final sep",
+  "actual": "",
+  "previous": "51.7",
+  "consensus": "52",
+  "forecast": "52"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "08:30 PM",
+  "iso": "US",
+  "event": "fed balance sheet sep/30",
+  "actual": "",
+  "previous": "$6.748T",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "08:40 AM",
+  "iso": "ES",
+  "event": "10-year index-linked obligacion auction",
+  "actual": "",
+  "previous": "1.425%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "08:40 AM",
+  "iso": "ES",
+  "event": "10-year obligacion auction",
+  "actual": "",
+  "previous": "3.960%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "08:40 AM",
+  "iso": "ES",
+  "event": "20-year obligacion auction",
+  "actual": "",
+  "previous": "3.806%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "08:40 AM",
+  "iso": "ES",
+  "event": "2-year note auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "unemployment rate aug",
+  "actual": "",
+  "previous": "6.4%",
+  "consensus": "6.4%",
+  "forecast": "6.4%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "09:00 AM",
+  "iso": "FR",
+  "event": "2036 oat auction",
+  "actual": "",
+  "previous": "4.23%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "09:00 AM",
+  "iso": "FR",
+  "event": "2037 oat auction",
+  "actual": "",
+  "previous": "3.95%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "09:00 AM",
+  "iso": "FR",
+  "event": "2038 oat auction",
+  "actual": "",
+  "previous": "3.92%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "09:00 AM",
+  "iso": "FR",
+  "event": "2048 oat auction",
+  "actual": "",
+  "previous": "4.35%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "09:00 AM",
+  "iso": "ZA",
+  "event": "absa manufacturing pmi sep",
+  "actual": "",
+  "previous": "45.8",
+  "consensus": "",
+  "forecast": "48.8"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "09:00 PM",
+  "iso": "NZ",
+  "event": "anz roy morgan consumer confidence sep",
+  "actual": "",
+  "previous": "98.0",
+  "consensus": "",
+  "forecast": "98"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "09:30 AM",
+  "iso": "US",
+  "event": "challenger job cuts sep",
+  "actual": "",
+  "previous": "52.881K",
+  "consensus": "",
+  "forecast": "78.0K"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "10:45 PM",
+  "iso": "US",
+  "event": "fed logan speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "11:00 PM",
+  "iso": "KR",
+  "event": "inflation rate yoy sep",
+  "actual": "",
+  "previous": "3.1%",
+  "consensus": "",
+  "forecast": "3.3%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "11:00 PM",
+  "iso": "KR",
+  "event": "inflation rate mom sep",
+  "actual": "",
+  "previous": "0.2%",
+  "consensus": "",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "11:30 AM",
+  "iso": "TR",
+  "event": "foreign exchange reserves sep/25",
+  "actual": "",
+  "previous": "$62.808B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "unemployment rate aug",
+  "actual": "",
+  "previous": "2.4%",
+  "consensus": "2.4%",
+  "forecast": "2.4%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "jobs/applications ratio aug",
+  "actual": "",
+  "previous": "1.18",
+  "consensus": "1.18",
+  "forecast": "1.19"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "tokyo core cpi yoy sep",
+  "actual": "",
+  "previous": "1.8%",
+  "consensus": "2.4%",
+  "forecast": "1.9%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "tokyo cpi ex food and energy yoy sep",
+  "actual": "",
+  "previous": "2.0%",
+  "consensus": "",
+  "forecast": "2.1%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "tokyo cpi yoy sep",
+  "actual": "",
+  "previous": "1.9%",
+  "consensus": "",
+  "forecast": "2.3%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "monetary base yoy",
+  "actual": "",
+  "previous": "-15.7%",
+  "consensus": "-16.3%",
+  "forecast": "-16.0%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "12:00 AM",
+  "iso": "KR",
+  "event": "exports yoy sep",
+  "actual": "",
+  "previous": "68.7%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "12:00 AM",
+  "iso": "KR",
+  "event": "balance of trade sep",
+  "actual": "",
+  "previous": "$34.75B",
+  "consensus": "",
+  "forecast": "$ 47.4B"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "12:00 AM",
+  "iso": "KR",
+  "event": "imports yoy sep",
+  "actual": "",
+  "previous": "22.5%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "12:00 PM",
+  "iso": "GB",
+  "event": "boe mann speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "business confidence sep",
+  "actual": "",
+  "previous": "48.1",
+  "consensus": "",
+  "forecast": "48.2"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "12:30 AM",
+  "iso": "ID",
+  "event": "s&p global manufacturing pmi sep",
+  "actual": "",
+  "previous": "49.8",
+  "consensus": "",
+  "forecast": "50.3"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "12:30 AM",
+  "iso": "JP",
+  "event": "s&p global manufacturing pmi final sep",
+  "actual": "",
+  "previous": "54.9",
+  "consensus": "54.1",
+  "forecast": "55.2"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "12:30 AM",
+  "iso": "KR",
+  "event": "s&p global manufacturing pmi sep",
+  "actual": "",
+  "previous": "52.3",
+  "consensus": "",
+  "forecast": "54.9"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "12:30 AM",
+  "iso": "SG",
+  "event": "ura property index qoq prel q3",
+  "actual": "",
+  "previous": "0.5%",
+  "consensus": "",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "initial jobless claims sep/26",
+  "actual": "",
+  "previous": "197K",
+  "consensus": "199K",
+  "forecast": "195.0K"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "continuing jobless claims sep/19",
+  "actual": "",
+  "previous": "1719K",
+  "consensus": "",
+  "forecast": "1720.0K"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "jobless claims 4-week average sep/26",
+  "actual": "",
+  "previous": "202.25K",
+  "consensus": "",
+  "forecast": "199.0K"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "",
+  "iso": "AR",
+  "event": "tax revenue sep",
+  "actual": "",
+  "previous": "ARS20508B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "",
+  "iso": "ES",
+  "event": "new car sales yoy sep",
+  "actual": "",
+  "previous": "11.8%",
+  "consensus": "",
+  "forecast": "5.7%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "",
+  "iso": "IT",
+  "event": "new car registrations yoy sep",
+  "actual": "",
+  "previous": "3.2%",
+  "consensus": "",
+  "forecast": "2.0%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "",
+  "iso": "MX",
+  "event": "fiscal balance aug",
+  "actual": "",
+  "previous": "MXN-731.7B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-01",
+  "time": "",
+  "iso": "RU",
+  "event": "gdp yoy aug",
+  "actual": "",
+  "previous": "0.6%",
+  "consensus": "",
+  "forecast": "0.8%"
+ },
+ {
+  "date": "2026-10-01",
+  "time": "",
+  "iso": "ZA",
+  "event": "total new vehicle sales sep",
+  "actual": "",
+  "previous": "57.9K",
+  "consensus": "",
+  "forecast": "55.0K"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "01:00 PM",
+  "iso": "SG",
+  "event": "sipmm manufacturing pmi sep",
+  "actual": "",
+  "previous": "51.5",
+  "consensus": "",
+  "forecast": "51.5"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "factory orders mom aug",
+  "actual": "",
+  "previous": "0.9%",
+  "consensus": "-0.1%",
+  "forecast": "0.0%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "fed logan speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-02",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "factory orders ex transportation aug",
+  "actual": "",
+  "previous": "0.6%",
+  "consensus": "",
+  "forecast": "0.2%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "3-month bill auction",
+  "actual": "",
+  "previous": "1.2555%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-02",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "baker hughes oil rig count oct/02",
+  "actual": "",
+  "previous": "455",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-02",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "baker hughes total rigs count oct/02",
+  "actual": "",
+  "previous": "599",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-02",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "unemployment change sep",
+  "actual": "",
+  "previous": "44.419K",
+  "consensus": "17.6K",
+  "forecast": "19K"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "tourist arrivals yoy aug",
+  "actual": "",
+  "previous": "4.6%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-02",
+  "time": "07:30 AM",
+  "iso": "EA",
+  "event": "ecb cipollone speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-02",
+  "time": "07:30 AM",
+  "iso": "EA",
+  "event": "ecb vujčić speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-02",
+  "time": "08:00 AM",
+  "iso": "BR",
+  "event": "ipc-fipe inflation mom sep",
+  "actual": "",
+  "previous": "0.01%",
+  "consensus": "",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "08:00 AM",
+  "iso": "IT",
+  "event": "retail sales mom aug",
+  "actual": "",
+  "previous": "-0.4%",
+  "consensus": "-0.1%",
+  "forecast": "0.1%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "08:00 AM",
+  "iso": "IT",
+  "event": "retail sales yoy aug",
+  "actual": "",
+  "previous": "0.8%",
+  "consensus": "",
+  "forecast": "0.7%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "08:00 AM",
+  "iso": "WL",
+  "event": "fao food price index sep",
+  "actual": "",
+  "previous": "133.3",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-02",
+  "time": "08:30 AM",
+  "iso": "GB",
+  "event": "dmp 1y cpi expectations sep",
+  "actual": "",
+  "previous": "3.1%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-02",
+  "time": "08:30 AM",
+  "iso": "GB",
+  "event": "dmp 3m output price expectations sep",
+  "actual": "",
+  "previous": "3.8%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-02",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "inflation rate yoy flash sep",
+  "actual": "",
+  "previous": "3.2%",
+  "consensus": "3.5%",
+  "forecast": "3.4%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "core inflation rate yoy flash sep",
+  "actual": "",
+  "previous": "2.4%",
+  "consensus": "2.6%",
+  "forecast": "2.5%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "inflation rate mom flash sep",
+  "actual": "",
+  "previous": "0.4%",
+  "consensus": "",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "cpi flash sep",
+  "actual": "",
+  "previous": "103.69",
+  "consensus": "",
+  "forecast": "103.9"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "11:30 AM",
+  "iso": "IN",
+  "event": "bank loan growth yoy sep/15",
+  "actual": "",
+  "previous": "19.1%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-02",
+  "time": "11:30 AM",
+  "iso": "IN",
+  "event": "deposit growth yoy sep/15",
+  "actual": "",
+  "previous": "17.8%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-02",
+  "time": "11:30 AM",
+  "iso": "IN",
+  "event": "foreign exchange reserves sep/25",
+  "actual": "",
+  "previous": "$765.9B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-02",
+  "time": "12:00 PM",
+  "iso": "BR",
+  "event": "industrial production mom aug",
+  "actual": "",
+  "previous": "0.2%",
+  "consensus": "",
+  "forecast": "0.5%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "12:00 PM",
+  "iso": "BR",
+  "event": "industrial production yoy aug",
+  "actual": "",
+  "previous": "-0.5%",
+  "consensus": "",
+  "forecast": "0.9%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "non farm payrolls sep",
+  "actual": "",
+  "previous": "162K",
+  "consensus": "100K",
+  "forecast": "90.0K"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "unemployment rate sep",
+  "actual": "",
+  "previous": "4.1%",
+  "consensus": "4.2%",
+  "forecast": "4.1%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "average hourly earnings mom sep",
+  "actual": "",
+  "previous": "0.3%",
+  "consensus": "0.3%",
+  "forecast": "0.2%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "average hourly earnings yoy sep",
+  "actual": "",
+  "previous": "3.1%",
+  "consensus": "",
+  "forecast": "3.1%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "participation rate sep",
+  "actual": "",
+  "previous": "61.6%",
+  "consensus": "",
+  "forecast": "61.4%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "average weekly hours sep",
+  "actual": "",
+  "previous": "34.4",
+  "consensus": "34.3",
+  "forecast": "34.4"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "government payrolls sep",
+  "actual": "",
+  "previous": "35K",
+  "consensus": "",
+  "forecast": "15.0K"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "manufacturing payrolls sep",
+  "actual": "",
+  "previous": "16K",
+  "consensus": "",
+  "forecast": "10.0K"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "nonfarm payrolls private sep",
+  "actual": "",
+  "previous": "127K",
+  "consensus": "85K",
+  "forecast": "75.0K"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "u-6 unemployment rate sep",
+  "actual": "",
+  "previous": "7.7%",
+  "consensus": "",
+  "forecast": "7.7%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "",
+  "iso": "FR",
+  "event": "new car registrations yoy sep",
+  "actual": "",
+  "previous": "7.4%",
+  "consensus": "",
+  "forecast": "2.9%"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "",
+  "iso": "TR",
+  "event": "balance of trade prel sep",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": "$ -7.8B"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "",
+  "iso": "TR",
+  "event": "exports prel sep",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": "$ 23.2B"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "",
+  "iso": "TR",
+  "event": "imports prel sep",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": "$31.0B"
+ },
+ {
+  "date": "2026-10-02",
+  "time": "",
+  "iso": "US",
+  "event": "total vehicle sales sep",
+  "actual": "",
+  "previous": "16.8M",
+  "consensus": "16.6M",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-04",
+  "time": "10:00 PM",
+  "iso": "AU",
+  "event": "s&p global composite pmi final sep",
+  "actual": "",
+  "previous": "52.7",
+  "consensus": "50.80",
+  "forecast": "50.8"
+ },
+ {
+  "date": "2026-10-04",
+  "time": "10:00 PM",
+  "iso": "AU",
+  "event": "s&p global services pmi final sep",
+  "actual": "",
+  "previous": "53.2",
+  "consensus": "51.4",
+  "forecast": "51.4"
+ },
+ {
+  "date": "2026-10-04",
+  "time": "",
+  "iso": "BR",
+  "event": "general elections",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-04",
+  "time": "",
+  "iso": "OP",
+  "event": "opec and non-opec ministerial meeting",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "01:00 PM",
+  "iso": "BR",
+  "event": "s&p global services pmi sep",
+  "actual": "",
+  "previous": "50.5",
+  "consensus": "",
+  "forecast": "49.9"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "01:00 PM",
+  "iso": "BR",
+  "event": "s&p global composite pmi sep",
+  "actual": "",
+  "previous": "49.1",
+  "consensus": "",
+  "forecast": "48.5"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "01:00 PM",
+  "iso": "FR",
+  "event": "12-month btf auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "01:00 PM",
+  "iso": "FR",
+  "event": "3-month btf auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "01:00 PM",
+  "iso": "FR",
+  "event": "6-month btf auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "01:20 PM",
+  "iso": "US",
+  "event": "ny fed bill purchases 4 to 12 months",
+  "actual": "",
+  "previous": "",
+  "consensus": "$1.946 billion",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "01:30 PM",
+  "iso": "CA",
+  "event": "s&p global composite pmi sep",
+  "actual": "",
+  "previous": "47.8",
+  "consensus": "",
+  "forecast": "48.5"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "01:30 PM",
+  "iso": "CA",
+  "event": "s&p global services pmi sep",
+  "actual": "",
+  "previous": "46.8",
+  "consensus": "",
+  "forecast": "47.5"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "01:45 PM",
+  "iso": "US",
+  "event": "s&p global composite pmi final sep",
+  "actual": "",
+  "previous": "56.0",
+  "consensus": "",
+  "forecast": "58.4"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "01:45 PM",
+  "iso": "US",
+  "event": "s&p global services pmi final sep",
+  "actual": "",
+  "previous": "56.5",
+  "consensus": "",
+  "forecast": "58.7"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "ism services pmi sep",
+  "actual": "",
+  "previous": "55.4",
+  "consensus": "",
+  "forecast": "54"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "ism services business activity sep",
+  "actual": "",
+  "previous": "61.7",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "ism services employment sep",
+  "actual": "",
+  "previous": "47.8",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "ism services new orders sep",
+  "actual": "",
+  "previous": "60.9",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "ism services prices sep",
+  "actual": "",
+  "previous": "72.6",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "3-month bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "6-month bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "04:15 AM",
+  "iso": "SA",
+  "event": "riyad bank pmi sep",
+  "actual": "",
+  "previous": "53.8",
+  "consensus": "",
+  "forecast": "53.5"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "05:00 AM",
+  "iso": "JP",
+  "event": "consumer confidence sep",
+  "actual": "",
+  "previous": "35.5",
+  "consensus": "",
+  "forecast": "34"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "retail sales mom aug",
+  "actual": "",
+  "previous": "0.9%",
+  "consensus": "",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "retail sales yoy aug",
+  "actual": "",
+  "previous": "1.5%",
+  "consensus": "",
+  "forecast": "1.7%"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "06:00 AM",
+  "iso": "RU",
+  "event": "s&p global composite pmi sep",
+  "actual": "",
+  "previous": "50.6",
+  "consensus": "",
+  "forecast": "49.8"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "06:00 AM",
+  "iso": "RU",
+  "event": "s&p global services pmi sep",
+  "actual": "",
+  "previous": "51.3",
+  "consensus": "",
+  "forecast": "51.1"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "inflation rate mom sep",
+  "actual": "",
+  "previous": "1.84%",
+  "consensus": "",
+  "forecast": "3.0%"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "inflation rate yoy sep",
+  "actual": "",
+  "previous": "31.51%",
+  "consensus": "",
+  "forecast": "31.3%"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "ppi mom sep",
+  "actual": "",
+  "previous": "2.57%",
+  "consensus": "",
+  "forecast": "2.5%"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "07:00 AM",
+  "iso": "TR",
+  "event": "ppi yoy sep",
+  "actual": "",
+  "previous": "27.95%",
+  "consensus": "",
+  "forecast": "28%"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "07:15 AM",
+  "iso": "ES",
+  "event": "s&p global services pmi sep",
+  "actual": "",
+  "previous": "57.8",
+  "consensus": "",
+  "forecast": "57"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "07:15 AM",
+  "iso": "ES",
+  "event": "s&p global composite pmi sep",
+  "actual": "",
+  "previous": "55.8",
+  "consensus": "",
+  "forecast": "54.9"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "07:15 AM",
+  "iso": "ZA",
+  "event": "s&p global pmi sep",
+  "actual": "",
+  "previous": "50.5",
+  "consensus": "",
+  "forecast": "49.8"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "07:45 AM",
+  "iso": "IT",
+  "event": "s&p global services pmi sep",
+  "actual": "",
+  "previous": "55.2",
+  "consensus": "",
+  "forecast": "54.9"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "07:45 AM",
+  "iso": "IT",
+  "event": "s&p global composite pmi sep",
+  "actual": "",
+  "previous": "53.6",
+  "consensus": "",
+  "forecast": "52.9"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "07:50 AM",
+  "iso": "FR",
+  "event": "s&p global composite pmi final sep",
+  "actual": "",
+  "previous": "48.5",
+  "consensus": "51.2",
+  "forecast": "51.2"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "07:50 AM",
+  "iso": "FR",
+  "event": "s&p global services pmi final sep",
+  "actual": "",
+  "previous": "48.0",
+  "consensus": "51.4",
+  "forecast": "51.4"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "07:55 AM",
+  "iso": "DE",
+  "event": "s&p global composite pmi final sep",
+  "actual": "",
+  "previous": "51.8",
+  "consensus": "53.8",
+  "forecast": "53.8"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "07:55 AM",
+  "iso": "DE",
+  "event": "s&p global services pmi final sep",
+  "actual": "",
+  "previous": "49.7",
+  "consensus": "52.9",
+  "forecast": "52.9"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "s&p global composite pmi final sep",
+  "actual": "",
+  "previous": "52.0",
+  "consensus": "53.1",
+  "forecast": "53.1"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "s&p global services pmi final sep",
+  "actual": "",
+  "previous": "51.6",
+  "consensus": "53",
+  "forecast": "53"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "08:00 AM",
+  "iso": "GB",
+  "event": "new car sales yoy sep",
+  "actual": "",
+  "previous": "13.7%",
+  "consensus": "",
+  "forecast": "12.0%"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "08:30 AM",
+  "iso": "GB",
+  "event": "s&p global composite pmi final sep",
+  "actual": "",
+  "previous": "52.5",
+  "consensus": "51.7",
+  "forecast": "51.7"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "08:30 AM",
+  "iso": "GB",
+  "event": "s&p global services pmi final sep",
+  "actual": "",
+  "previous": "52.5",
+  "consensus": "51.7",
+  "forecast": "51.7"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "ppi mom aug",
+  "actual": "",
+  "previous": "1.6%",
+  "consensus": "",
+  "forecast": "0.9%"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "ppi yoy aug",
+  "actual": "",
+  "previous": "5.8%",
+  "consensus": "",
+  "forecast": "7.1%"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "09:00 PM",
+  "iso": "KR",
+  "event": "foreign exchange reserves sep",
+  "actual": "",
+  "previous": "$442.28B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "09:00 PM",
+  "iso": "NZ",
+  "event": "nzier business confidence q3",
+  "actual": "",
+  "previous": "8%",
+  "consensus": "",
+  "forecast": "15.0%"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "09:00 PM",
+  "iso": "NZ",
+  "event": "nzier capacity utilization q3",
+  "actual": "",
+  "previous": "90.8%",
+  "consensus": "",
+  "forecast": "89.9%"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "182-day t-bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "273-day t-bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "364-day t-bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "91-day t-bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "11:30 PM",
+  "iso": "AU",
+  "event": "westpac consumer confidence change oct",
+  "actual": "",
+  "previous": "-5.2%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "11:30 PM",
+  "iso": "AU",
+  "event": "westpac consumer confidence index oct",
+  "actual": "",
+  "previous": "84.4",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "12:00 AM",
+  "iso": "AU",
+  "event": "td-mi inflation gauge mom sep",
+  "actual": "",
+  "previous": "0.5%",
+  "consensus": "",
+  "forecast": "0.5%"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "gross fixed investment mom jul",
+  "actual": "",
+  "previous": "1.3%",
+  "consensus": "",
+  "forecast": "0.5%"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "gross fixed investment yoy jul",
+  "actual": "",
+  "previous": "7.7%",
+  "consensus": "",
+  "forecast": "5.0%"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "12:30 AM",
+  "iso": "JP",
+  "event": "s&p global composite pmi final sep",
+  "actual": "",
+  "previous": "53.5",
+  "consensus": "",
+  "forecast": "52.5"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "12:30 AM",
+  "iso": "JP",
+  "event": "s&p global services pmi final sep",
+  "actual": "",
+  "previous": "52.5",
+  "consensus": "",
+  "forecast": "51.6"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "12:30 AM",
+  "iso": "SG",
+  "event": "s&p global pmi sep",
+  "actual": "",
+  "previous": "59.4",
+  "consensus": "",
+  "forecast": "56.4"
+ },
+ {
+  "date": "2026-10-05",
+  "time": "",
+  "iso": "BR",
+  "event": "bcb focus market readout",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "",
+  "iso": "DE",
+  "event": "3-month bubill auction",
+  "actual": "",
+  "previous": "2.479%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-05",
+  "time": "",
+  "iso": "DE",
+  "event": "9-month bubill auction",
+  "actual": "",
+  "previous": "2.724%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "01:35 AM",
+  "iso": "NZ",
+  "event": "1-year bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "01:35 AM",
+  "iso": "NZ",
+  "event": "3-month bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "01:35 AM",
+  "iso": "NZ",
+  "event": "6-month bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "02:00 PM",
+  "iso": "CA",
+  "event": "ivey pmi s.a sep",
+  "actual": "",
+  "previous": "64.3",
+  "consensus": "",
+  "forecast": "53"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "rcm/tipp economic optimism index oct",
+  "actual": "",
+  "previous": "45.6",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "02:30 AM",
+  "iso": "KR",
+  "event": "2-year ktb auction",
+  "actual": "",
+  "previous": "3.779%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "6-week bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "10-year jgb auction",
+  "actual": "",
+  "previous": "2.995%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "05:00 AM",
+  "iso": "IN",
+  "event": "hsbc composite pmi final sep",
+  "actual": "",
+  "previous": "54.3",
+  "consensus": "",
+  "forecast": "56.5"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "05:00 AM",
+  "iso": "IN",
+  "event": "hsbc services pmi final sep",
+  "actual": "",
+  "previous": "54.1",
+  "consensus": "",
+  "forecast": "55.8"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "mas 12-week bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "05:00 AM",
+  "iso": "SG",
+  "event": "mas 4-week bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "3-year note auction",
+  "actual": "",
+  "previous": "4.474%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "06:00 AM",
+  "iso": "DE",
+  "event": "factory orders mom aug",
+  "actual": "",
+  "previous": "2.5%",
+  "consensus": "",
+  "forecast": "0.5%"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "06:00 PM",
+  "iso": "BR",
+  "event": "balance of trade sep",
+  "actual": "",
+  "previous": "$7.39B",
+  "consensus": "",
+  "forecast": "$ 4.6B"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "industrial production mom aug",
+  "actual": "",
+  "previous": "-0.4%",
+  "consensus": "",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "06:45 AM",
+  "iso": "FR",
+  "event": "budget balance aug",
+  "actual": "",
+  "previous": "€-145.9B",
+  "consensus": "",
+  "forecast": "€-160.2B"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "07:00 AM",
+  "iso": "CH",
+  "event": "unemployment rate sep",
+  "actual": "",
+  "previous": "3%",
+  "consensus": "",
+  "forecast": "2.8%"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "07:00 AM",
+  "iso": "ES",
+  "event": "industrial production yoy aug",
+  "actual": "",
+  "previous": "2.3%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "07:30 AM",
+  "iso": "DE",
+  "event": "s&p global construction pmi sep",
+  "actual": "",
+  "previous": "48.7",
+  "consensus": "",
+  "forecast": "48"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "07:30 AM",
+  "iso": "EA",
+  "event": "s&p global construction pmi sep",
+  "actual": "",
+  "previous": "43.0",
+  "consensus": "",
+  "forecast": "43"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "07:30 AM",
+  "iso": "FR",
+  "event": "s&p global construction pmi sep",
+  "actual": "",
+  "previous": "37.3",
+  "consensus": "",
+  "forecast": "39"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "07:30 AM",
+  "iso": "IT",
+  "event": "s&p global construction pmi sep",
+  "actual": "",
+  "previous": "41.7",
+  "consensus": "",
+  "forecast": "44"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "08:30 AM",
+  "iso": "GB",
+  "event": "s&p global construction pmi sep",
+  "actual": "",
+  "previous": "44.3",
+  "consensus": "",
+  "forecast": "45.5"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "08:30 PM",
+  "iso": "US",
+  "event": "api crude oil stock change oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "08:40 AM",
+  "iso": "ES",
+  "event": "12-month letras auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "08:40 AM",
+  "iso": "ES",
+  "event": "6-month letras auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "retail sales mom aug",
+  "actual": "",
+  "previous": "-0.6%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "retail sales yoy aug",
+  "actual": "",
+  "previous": "0.6%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "09:00 AM",
+  "iso": "GB",
+  "event": "index-linked treasury gilt 2035 auction",
+  "actual": "",
+  "previous": "1.725%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "09:30 AM",
+  "iso": "DE",
+  "event": "2-year schatz auction",
+  "actual": "",
+  "previous": "3.27%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "09:30 AM",
+  "iso": "ZA",
+  "event": "weekly bond auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "10:00 AM",
+  "iso": "US",
+  "event": "lmi logistics managers index sep",
+  "actual": "",
+  "previous": "66.6",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "10:00 PM",
+  "iso": "AU",
+  "event": "ai group industry index sep",
+  "actual": "",
+  "previous": "-3.5",
+  "consensus": "",
+  "forecast": "-4"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "10:00 PM",
+  "iso": "AU",
+  "event": "ai group construction index sep",
+  "actual": "",
+  "previous": "-6.9",
+  "consensus": "",
+  "forecast": "-7"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "10:00 PM",
+  "iso": "AU",
+  "event": "ai group manufacturing index sep",
+  "actual": "",
+  "previous": "-16.6",
+  "consensus": "",
+  "forecast": "-16"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "11:00 PM",
+  "iso": "JP",
+  "event": "reuters tankan index oct",
+  "actual": "",
+  "previous": "21",
+  "consensus": "",
+  "forecast": "23"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "11:00 PM",
+  "iso": "US",
+  "event": "fed logan speech",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "average cash earnings yoy aug",
+  "actual": "",
+  "previous": "4.7%",
+  "consensus": "",
+  "forecast": "4.9%"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "overtime pay yoy aug",
+  "actual": "",
+  "previous": "3.1%",
+  "consensus": "",
+  "forecast": "3.3%"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "12:00 PM",
+  "iso": "MX",
+  "event": "consumer confidence sep",
+  "actual": "",
+  "previous": "46.1",
+  "consensus": "",
+  "forecast": "44.9"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "12:15 PM",
+  "iso": "US",
+  "event": "adp employment change weekly",
+  "actual": "",
+  "previous": "20K",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "12:30 AM",
+  "iso": "AU",
+  "event": "anz-indeed job ads mom sep",
+  "actual": "",
+  "previous": "2.5%",
+  "consensus": "",
+  "forecast": "-1.3%"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "balance of trade aug",
+  "actual": "",
+  "previous": "C$0.77B",
+  "consensus": "",
+  "forecast": "C$1.4B"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "exports aug",
+  "actual": "",
+  "previous": "C$76.14B",
+  "consensus": "",
+  "forecast": "C$77.3B"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "imports aug",
+  "actual": "",
+  "previous": "C$75.37B",
+  "consensus": "",
+  "forecast": "C$75.9B"
+ },
+ {
+  "date": "2026-10-06",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "balance of trade aug",
+  "actual": "",
+  "previous": "$-88.6B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "exports aug",
+  "actual": "",
+  "previous": "$310.7B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "imports aug",
+  "actual": "",
+  "previous": "$399.3B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "12:55 PM",
+  "iso": "US",
+  "event": "redbook yoy oct/03",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "",
+  "iso": "JP",
+  "event": "foreign exchange reserves sep",
+  "actual": "",
+  "previous": "$1207.5B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "",
+  "iso": "NZ",
+  "event": "global dairy trade price index oct/06",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-06",
+  "time": "",
+  "iso": "WL",
+  "event": "global supply chain pressure index sep",
+  "actual": "",
+  "previous": "1.06",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "01:00 PM",
+  "iso": "US",
+  "event": "used car prices mom sep",
+  "actual": "",
+  "previous": "-0.9%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "01:00 PM",
+  "iso": "US",
+  "event": "used car prices yoy sep",
+  "actual": "",
+  "previous": "0.4%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia crude oil stocks change oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia gasoline stocks change oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia crude oil imports change oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia cushing crude oil stocks change oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia distillate fuel production change oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia distillate stocks change oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia gasoline production change oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia heating oil stocks change oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia refinery crude runs change oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "03:00 PM",
+  "iso": "US",
+  "event": "consumer inflation expectations sep",
+  "actual": "",
+  "previous": "3.6%",
+  "consensus": "",
+  "forecast": "3.1%"
+ },
+ {
+  "date": "2026-10-07",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "17-week bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "04:00 PM",
+  "iso": "CA",
+  "event": "2-year bond auction",
+  "actual": "",
+  "previous": "3.470%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "05:00 AM",
+  "iso": "JP",
+  "event": "coincident index prel aug",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": "119.7"
+ },
+ {
+  "date": "2026-10-07",
+  "time": "05:00 AM",
+  "iso": "JP",
+  "event": "leading economic index prel aug",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": "117.5"
+ },
+ {
+  "date": "2026-10-07",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "10-year note auction",
+  "actual": "",
+  "previous": "4.834%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "lloyds house price index mom sep",
+  "actual": "",
+  "previous": "-0.2%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "lloyds house price index yoy sep",
+  "actual": "",
+  "previous": "-0.4%",
+  "consensus": "",
+  "forecast": "0.5%"
+ },
+ {
+  "date": "2026-10-07",
+  "time": "06:00 PM",
+  "iso": "US",
+  "event": "fomc minutes",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "07:00 AM",
+  "iso": "CH",
+  "event": "foreign exchange reserves sep",
+  "actual": "",
+  "previous": "CHF770.07B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "07:00 PM",
+  "iso": "US",
+  "event": "consumer credit change aug",
+  "actual": "",
+  "previous": "$18.06B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "09:00 AM",
+  "iso": "GB",
+  "event": "bba mortgage rate sep",
+  "actual": "",
+  "previous": "6.58%",
+  "consensus": "",
+  "forecast": "6.6%"
+ },
+ {
+  "date": "2026-10-07",
+  "time": "09:00 AM",
+  "iso": "GB",
+  "event": "conventional gilt tender",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba 30-year mortgage rate oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage applications oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage market index oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage refinance index oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba purchase index oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "11:01 PM",
+  "iso": "GB",
+  "event": "rics house price balance sep",
+  "actual": "",
+  "previous": "-28",
+  "consensus": "",
+  "forecast": "-25.0%"
+ },
+ {
+  "date": "2026-10-07",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "current account aug",
+  "actual": "",
+  "previous": "¥2989B",
+  "consensus": "",
+  "forecast": "¥2910.0B"
+ },
+ {
+  "date": "2026-10-07",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "foreign bond investment oct/03",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "stock investment by foreigners oct/03",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "12:30 AM",
+  "iso": "AU",
+  "event": "building permits mom final aug",
+  "actual": "",
+  "previous": "-3.6%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "12:30 AM",
+  "iso": "AU",
+  "event": "building permits yoy final aug",
+  "actual": "",
+  "previous": "9%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-07",
+  "time": "12:30 AM",
+  "iso": "AU",
+  "event": "private house approvals mom final aug",
+  "actual": "",
+  "previous": "-4.2%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "01:20 PM",
+  "iso": "US",
+  "event": "ny fed bill purchases 1 to 4 months",
+  "actual": "",
+  "previous": "",
+  "consensus": "$3.891 billion",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "wholesale inventories mom aug",
+  "actual": "",
+  "previous": "1.3%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia natural gas stocks change oct/02",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "4-week bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "8-week bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "30-year jgb auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "6-month bill auction",
+  "actual": "",
+  "previous": "1.2887%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "15-year mortgage rate oct/08",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "30-year mortgage rate oct/08",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "05:00 AM",
+  "iso": "JP",
+  "event": "eco watchers survey current sep",
+  "actual": "",
+  "previous": "46.4",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "05:00 AM",
+  "iso": "JP",
+  "event": "eco watchers survey outlook sep",
+  "actual": "",
+  "previous": "48.3",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "30-year bond auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "08:30 PM",
+  "iso": "US",
+  "event": "fed balance sheet oct/07",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "11:30 AM",
+  "iso": "EA",
+  "event": "ecb monetary policy meeting accounts",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "household spending mom aug",
+  "actual": "",
+  "previous": "0.5%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "household spending yoy aug",
+  "actual": "",
+  "previous": "-3.6%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "12:00 AM",
+  "iso": "AU",
+  "event": "consumer inflation expectations oct",
+  "actual": "",
+  "previous": "4.9%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "initial jobless claims oct/03",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": "200.0K"
+ },
+ {
+  "date": "2026-10-08",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "continuing jobless claims sep/26",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "jobless claims 4-week average oct/03",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-08",
+  "time": "",
+  "iso": "EA",
+  "event": "eurogroup meeting",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-09",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "michigan consumer sentiment prel oct",
+  "actual": "",
+  "previous": "48.1",
+  "consensus": "",
+  "forecast": "48.6"
+ },
+ {
+  "date": "2026-10-09",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "michigan 5 year inflation expectations prel oct",
+  "actual": "",
+  "previous": "3.4%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-09",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "michigan consumer expectations prel oct",
+  "actual": "",
+  "previous": "46.3",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-09",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "michigan current conditions prel oct",
+  "actual": "",
+  "previous": "50.9",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-09",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "michigan inflation expectations prel oct",
+  "actual": "",
+  "previous": "4.6%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-09",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "3-month bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-09",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "wasde report",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-09",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "baker hughes oil rig count oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-09",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "baker hughes total rigs count oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-09",
+  "time": "06:00 AM",
+  "iso": "JP",
+  "event": "machine tool orders yoy sep",
+  "actual": "",
+  "previous": "64.7%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-09",
+  "time": "07:00 AM",
+  "iso": "CH",
+  "event": "consumer confidence sep",
+  "actual": "",
+  "previous": "-33",
+  "consensus": "",
+  "forecast": "-32"
+ },
+ {
+  "date": "2026-10-09",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "unemployment rate sep",
+  "actual": "",
+  "previous": "6.4%",
+  "consensus": "",
+  "forecast": "6.5%"
+ },
+ {
+  "date": "2026-10-09",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "employment change sep",
+  "actual": "",
+  "previous": "-41.7K",
+  "consensus": "",
+  "forecast": "65K"
+ },
+ {
+  "date": "2026-10-09",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "full time employment chg sep",
+  "actual": "",
+  "previous": "-35.9K",
+  "consensus": "",
+  "forecast": "38K"
+ },
+ {
+  "date": "2026-10-09",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "part time employment chg sep",
+  "actual": "",
+  "previous": "-5.8K",
+  "consensus": "",
+  "forecast": "27.0K"
+ },
+ {
+  "date": "2026-10-09",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "participation rate sep",
+  "actual": "",
+  "previous": "65%",
+  "consensus": "",
+  "forecast": "65.3%"
+ },
+ {
+  "date": "2026-10-09",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "average hourly wages yoy sep",
+  "actual": "",
+  "previous": "2%",
+  "consensus": "",
+  "forecast": "3.0%"
+ },
+ {
+  "date": "2026-10-12",
+  "time": "06:00 PM",
+  "iso": "US",
+  "event": "monthly budget statement sep",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-12",
+  "time": "11:01 PM",
+  "iso": "GB",
+  "event": "brc retail sales monitor yoy sep",
+  "actual": "",
+  "previous": "0.5%",
+  "consensus": "",
+  "forecast": "0.8%"
+ },
+ {
+  "date": "2026-10-12",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "bank lending yoy sep",
+  "actual": "",
+  "previous": "5.4%",
+  "consensus": "",
+  "forecast": "5.4%"
+ },
+ {
+  "date": "2026-10-12",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "ppi mom sep",
+  "actual": "",
+  "previous": "-0.2%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-12",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "ppi yoy sep",
+  "actual": "",
+  "previous": "7.6%",
+  "consensus": "",
+  "forecast": "8%"
+ },
+ {
+  "date": "2026-10-13",
+  "time": "01:35 AM",
+  "iso": "NZ",
+  "event": "1-year bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-13",
+  "time": "01:35 AM",
+  "iso": "NZ",
+  "event": "3-month bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-13",
+  "time": "01:35 AM",
+  "iso": "NZ",
+  "event": "6-month bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-13",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "existing home sales sep",
+  "actual": "",
+  "previous": "3.98M",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-13",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "existing home sales mom sep",
+  "actual": "",
+  "previous": "-2%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-13",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "3-month bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-13",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "6-month bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-13",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "6-week bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-13",
+  "time": "09:00 AM",
+  "iso": "GB",
+  "event": "long conventional gilt tender",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-13",
+  "time": "09:45 PM",
+  "iso": "NZ",
+  "event": "visitor arrivals yoy aug",
+  "actual": "",
+  "previous": "8.5%",
+  "consensus": "",
+  "forecast": "4.3%"
+ },
+ {
+  "date": "2026-10-13",
+  "time": "10:00 AM",
+  "iso": "US",
+  "event": "nfib business optimism index sep",
+  "actual": "",
+  "previous": "98.7",
+  "consensus": "",
+  "forecast": "96"
+ },
+ {
+  "date": "2026-10-13",
+  "time": "12:15 PM",
+  "iso": "US",
+  "event": "adp employment change weekly",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-13",
+  "time": "12:30 AM",
+  "iso": "AU",
+  "event": "nab business confidence sep",
+  "actual": "",
+  "previous": "-8",
+  "consensus": "",
+  "forecast": "-9"
+ },
+ {
+  "date": "2026-10-13",
+  "time": "12:30 AM",
+  "iso": "AU",
+  "event": "rba meeting minutes",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-13",
+  "time": "12:55 PM",
+  "iso": "US",
+  "event": "redbook yoy oct/10",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "17-week bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "5-year jgb auction",
+  "actual": "",
+  "previous": "2.239%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "04:00 PM",
+  "iso": "CA",
+  "event": "30-year bond auction",
+  "actual": "",
+  "previous": "4.201%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "06:00 PM",
+  "iso": "US",
+  "event": "fed beige book",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "08:30 PM",
+  "iso": "US",
+  "event": "api crude oil stock change oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "09:00 AM",
+  "iso": "CH",
+  "event": "bond auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "09:00 AM",
+  "iso": "GB",
+  "event": "new conventional gilt 2030",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba 30-year mortgage rate oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage applications oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage market index oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage refinance index oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba purchase index oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "machinery orders mom aug",
+  "actual": "",
+  "previous": "-3.7%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "machinery orders yoy aug",
+  "actual": "",
+  "previous": "11.2%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "foreign bond investment oct/10",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "stock investment by foreigners oct/10",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-14",
+  "time": "12:00 AM",
+  "iso": "AU",
+  "event": "westpac leading index mom sep",
+  "actual": "",
+  "previous": "0%",
+  "consensus": "",
+  "forecast": "-0.4%"
+ },
+ {
+  "date": "2026-10-14",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "building permits mom aug",
+  "actual": "",
+  "previous": "-17.3%",
+  "consensus": "",
+  "forecast": "2.7%"
+ },
+ {
+  "date": "2026-10-14",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "core inflation rate mom sep",
+  "actual": "",
+  "previous": "0.3%",
+  "consensus": "",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-10-14",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "core inflation rate yoy sep",
+  "actual": "",
+  "previous": "2.4%",
+  "consensus": "",
+  "forecast": "2.5%"
+ },
+ {
+  "date": "2026-10-14",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "inflation rate mom sep",
+  "actual": "",
+  "previous": "0.4%",
+  "consensus": "",
+  "forecast": "0.5%"
+ },
+ {
+  "date": "2026-10-14",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "inflation rate yoy sep",
+  "actual": "",
+  "previous": "3.4%",
+  "consensus": "",
+  "forecast": "3.7%"
+ },
+ {
+  "date": "2026-10-14",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "cpi sep",
+  "actual": "",
+  "previous": "334.98",
+  "consensus": "",
+  "forecast": "336.8"
+ },
+ {
+  "date": "2026-10-14",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "cpi s.a sep",
+  "actual": "",
+  "previous": "334.131",
+  "consensus": "",
+  "forecast": "335.8"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "01:30 PM",
+  "iso": "US",
+  "event": "retail sales mom sep",
+  "actual": "",
+  "previous": "1.2%",
+  "consensus": "",
+  "forecast": "0.1%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "01:30 PM",
+  "iso": "US",
+  "event": "retail sales ex autos mom sep",
+  "actual": "",
+  "previous": "1.4%",
+  "consensus": "",
+  "forecast": "-0.1%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "01:30 PM",
+  "iso": "US",
+  "event": "retail sales ex gas/autos mom sep",
+  "actual": "",
+  "previous": "1.2%",
+  "consensus": "",
+  "forecast": "0.2%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "01:30 PM",
+  "iso": "US",
+  "event": "retail sales yoy sep",
+  "actual": "",
+  "previous": "6%",
+  "consensus": "",
+  "forecast": "5.2%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "business inventories mom aug",
+  "actual": "",
+  "previous": "0.8%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "retail inventories ex autos mom aug",
+  "actual": "",
+  "previous": "0.8%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia natural gas stocks change oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "4-week bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "8-week bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:00 PM",
+  "iso": "CA",
+  "event": "5-year bond auction",
+  "actual": "",
+  "previous": "3.517%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "eia crude oil stocks change oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "eia gasoline stocks change oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "15-year mortgage rate oct/15",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "30-year mortgage rate oct/15",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "eia crude oil imports change oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "eia cushing crude oil stocks change oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "eia distillate fuel production change oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "eia distillate stocks change oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "eia gasoline production change oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "eia heating oil stocks change oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "eia refinery crude runs change oct/09",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "nopa crush report",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:30 AM",
+  "iso": "JP",
+  "event": "capacity utilization mom aug",
+  "actual": "",
+  "previous": "0.5%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:30 AM",
+  "iso": "JP",
+  "event": "industrial production mom final aug",
+  "actual": "",
+  "previous": "-0.2%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "04:30 AM",
+  "iso": "JP",
+  "event": "industrial production yoy final aug",
+  "actual": "",
+  "previous": "3.9%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "gdp mom aug",
+  "actual": "",
+  "previous": "0.4%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "gdp 3-month avg aug",
+  "actual": "",
+  "previous": "0.4%",
+  "consensus": "",
+  "forecast": "0.5%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "goods trade balance aug",
+  "actual": "",
+  "previous": "£-20.97B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "goods trade balance non-eu aug",
+  "actual": "",
+  "previous": "£-9.66B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "industrial production mom aug",
+  "actual": "",
+  "previous": "0.2%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "manufacturing production mom aug",
+  "actual": "",
+  "previous": "0.9%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "balance of trade aug",
+  "actual": "",
+  "previous": "£-3.450B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "construction output yoy aug",
+  "actual": "",
+  "previous": "-2.5%",
+  "consensus": "",
+  "forecast": "-2.3%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "gdp yoy aug",
+  "actual": "",
+  "previous": "1.6%",
+  "consensus": "",
+  "forecast": "1.7%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "industrial production yoy aug",
+  "actual": "",
+  "previous": "0.6%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "manufacturing production yoy aug",
+  "actual": "",
+  "previous": "2.6%",
+  "consensus": "",
+  "forecast": "2.0%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "06:30 AM",
+  "iso": "CH",
+  "event": "producer & import prices mom sep",
+  "actual": "",
+  "previous": "0.7%",
+  "consensus": "",
+  "forecast": "0.1%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "06:30 AM",
+  "iso": "CH",
+  "event": "producer & import prices yoy sep",
+  "actual": "",
+  "previous": "-0.7%",
+  "consensus": "",
+  "forecast": "-0.2%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "08:30 PM",
+  "iso": "US",
+  "event": "fed balance sheet oct/14",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "industrial production mom aug",
+  "actual": "",
+  "previous": "-0.1%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "industrial production yoy aug",
+  "actual": "",
+  "previous": "0%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "09:30 PM",
+  "iso": "NZ",
+  "event": "business nz pmi sep",
+  "actual": "",
+  "previous": "53.1",
+  "consensus": "",
+  "forecast": "54"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "09:45 PM",
+  "iso": "NZ",
+  "event": "electronic retail card spending mom sep",
+  "actual": "",
+  "previous": "-0.9%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "09:45 PM",
+  "iso": "NZ",
+  "event": "electronic retail card spending yoy sep",
+  "actual": "",
+  "previous": "0.2%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "09:45 PM",
+  "iso": "NZ",
+  "event": "food inflation yoy sep",
+  "actual": "",
+  "previous": "1.9%",
+  "consensus": "",
+  "forecast": "2.6%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "11:00 AM",
+  "iso": "GB",
+  "event": "niesr monthly gdp tracker sep",
+  "actual": "",
+  "previous": "0.5%",
+  "consensus": "",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 AM",
+  "iso": "AU",
+  "event": "employment change sep",
+  "actual": "",
+  "previous": "39.5K",
+  "consensus": "",
+  "forecast": "15.9K"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 AM",
+  "iso": "AU",
+  "event": "full time employment chg sep",
+  "actual": "",
+  "previous": "-6.3K",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 AM",
+  "iso": "AU",
+  "event": "unemployment rate sep",
+  "actual": "",
+  "previous": "4.6%",
+  "consensus": "",
+  "forecast": "4.6%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 AM",
+  "iso": "AU",
+  "event": "part time employment chg sep",
+  "actual": "",
+  "previous": "45.8K",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 AM",
+  "iso": "AU",
+  "event": "participation rate sep",
+  "actual": "",
+  "previous": "67.1%",
+  "consensus": "",
+  "forecast": "67.0%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "capacity utilization aug",
+  "actual": "",
+  "previous": "80.7%",
+  "consensus": "",
+  "forecast": "81.0%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "manufacturing sales mom final aug",
+  "actual": "",
+  "previous": "-0.4%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "new motor vehicle sales aug",
+  "actual": "",
+  "previous": "176.2K",
+  "consensus": "",
+  "forecast": "161.0K"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "wholesale sales mom final aug",
+  "actual": "",
+  "previous": "0.3%",
+  "consensus": "-1.5%",
+  "forecast": "-1.5%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "ppi mom sep",
+  "actual": "",
+  "previous": "0.4%",
+  "consensus": "",
+  "forecast": "0.5%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "core ppi mom sep",
+  "actual": "",
+  "previous": "0.2%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "initial jobless claims oct/10",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "ny empire state manufacturing index oct",
+  "actual": "",
+  "previous": "7.60",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "philadelphia fed manufacturing index oct",
+  "actual": "",
+  "previous": "37.8",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "retail sales control group mom sep",
+  "actual": "",
+  "previous": "1.4%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "continuing jobless claims oct/03",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": "1770.0K"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "core ppi yoy sep",
+  "actual": "",
+  "previous": "4.6%",
+  "consensus": "",
+  "forecast": "4.3%"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "jobless claims 4-week average oct/10",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "philly fed business conditions oct",
+  "actual": "",
+  "previous": "52.9",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "philly fed capex index oct",
+  "actual": "",
+  "previous": "37.10",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "philly fed employment oct",
+  "actual": "",
+  "previous": "11.8",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "philly fed new orders oct",
+  "actual": "",
+  "previous": "29.2",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "philly fed prices paid oct",
+  "actual": "",
+  "previous": "48.60",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "ppi sep",
+  "actual": "",
+  "previous": "157.411",
+  "consensus": "",
+  "forecast": "159.1"
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "ppi ex food, energy and trade mom sep",
+  "actual": "",
+  "previous": "0.3%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "ppi ex food, energy and trade yoy sep",
+  "actual": "",
+  "previous": "4.7%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-15",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "ppi yoy sep",
+  "actual": "",
+  "previous": "5.4%",
+  "consensus": "",
+  "forecast": "5.9%"
+ },
+ {
+  "date": "2026-10-16",
+  "time": "01:15 PM",
+  "iso": "US",
+  "event": "industrial production mom sep",
+  "actual": "",
+  "previous": "0%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "01:15 PM",
+  "iso": "US",
+  "event": "capacity utilization sep",
+  "actual": "",
+  "previous": "76.3%",
+  "consensus": "",
+  "forecast": "76.5%"
+ },
+ {
+  "date": "2026-10-16",
+  "time": "01:15 PM",
+  "iso": "US",
+  "event": "industrial production yoy sep",
+  "actual": "",
+  "previous": "1.4%",
+  "consensus": "",
+  "forecast": "0.6%"
+ },
+ {
+  "date": "2026-10-16",
+  "time": "01:15 PM",
+  "iso": "US",
+  "event": "manufacturing production mom sep",
+  "actual": "",
+  "previous": "-0.3%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "01:15 PM",
+  "iso": "US",
+  "event": "manufacturing production yoy sep",
+  "actual": "",
+  "previous": "0.9%",
+  "consensus": "",
+  "forecast": "1.3%"
+ },
+ {
+  "date": "2026-10-16",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "3-month bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "baker hughes oil rig count oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "baker hughes total rigs count oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "08:00 PM",
+  "iso": "US",
+  "event": "net long-term tic flows aug",
+  "actual": "",
+  "previous": "$-27.9B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "08:00 PM",
+  "iso": "US",
+  "event": "foreign bond investment aug",
+  "actual": "",
+  "previous": "$-3.6B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "08:00 PM",
+  "iso": "US",
+  "event": "overall net capital flows aug",
+  "actual": "",
+  "previous": "$83.7B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "balance of trade aug",
+  "actual": "",
+  "previous": "€14.2B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "core inflation rate yoy final sep",
+  "actual": "",
+  "previous": "2.4%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "cpi final sep",
+  "actual": "",
+  "previous": "103.69",
+  "consensus": "",
+  "forecast": "103.9"
+ },
+ {
+  "date": "2026-10-16",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "inflation rate mom final sep",
+  "actual": "",
+  "previous": "0.4%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "inflation rate yoy final sep",
+  "actual": "",
+  "previous": "3.2%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "11:00 AM",
+  "iso": "CA",
+  "event": "cfib business barometer oct",
+  "actual": "",
+  "previous": "47.9",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "12:15 PM",
+  "iso": "CA",
+  "event": "housing starts sep",
+  "actual": "",
+  "previous": "229K",
+  "consensus": "",
+  "forecast": "210.0K"
+ },
+ {
+  "date": "2026-10-16",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "foreign securities purchases aug",
+  "actual": "",
+  "previous": "C$20.65B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "foreign securities purchases by canadians aug",
+  "actual": "",
+  "previous": "C$-30.63B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "export prices mom sep",
+  "actual": "",
+  "previous": "0.6%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "import prices mom sep",
+  "actual": "",
+  "previous": "0.7%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "export prices yoy sep",
+  "actual": "",
+  "previous": "8.6%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-16",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "import prices yoy sep",
+  "actual": "",
+  "previous": "7.0%",
+  "consensus": "",
+  "forecast": "6.5%"
+ },
+ {
+  "date": "2026-10-16",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "ny fed services activity index oct",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-18",
+  "time": "09:30 PM",
+  "iso": "NZ",
+  "event": "composite nz pci sep",
+  "actual": "",
+  "previous": "52.5",
+  "consensus": "",
+  "forecast": "52.5"
+ },
+ {
+  "date": "2026-10-18",
+  "time": "09:30 PM",
+  "iso": "NZ",
+  "event": "services nz psi sep",
+  "actual": "",
+  "previous": "51.2",
+  "consensus": "",
+  "forecast": "50"
+ },
+ {
+  "date": "2026-10-18",
+  "time": "09:45 PM",
+  "iso": "NZ",
+  "event": "balance of trade sep",
+  "actual": "",
+  "previous": "NZ$-1.349B",
+  "consensus": "",
+  "forecast": "NZ$ -1.2B"
+ },
+ {
+  "date": "2026-10-18",
+  "time": "09:45 PM",
+  "iso": "NZ",
+  "event": "exports sep",
+  "actual": "",
+  "previous": "NZ$6.66B",
+  "consensus": "",
+  "forecast": "NZ$ 6.5B"
+ },
+ {
+  "date": "2026-10-18",
+  "time": "09:45 PM",
+  "iso": "NZ",
+  "event": "imports sep",
+  "actual": "",
+  "previous": "NZ$8B",
+  "consensus": "",
+  "forecast": "NZ$ 7.6B"
+ },
+ {
+  "date": "2026-10-19",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "nahb housing market index oct",
+  "actual": "",
+  "previous": "32",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-19",
+  "time": "02:30 PM",
+  "iso": "CA",
+  "event": "boc business outlook survey",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-19",
+  "time": "02:30 PM",
+  "iso": "CA",
+  "event": "boc survey of consumer expectations",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-19",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "3-month bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-19",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "6-month bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-19",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "52-week bill auction",
+  "actual": "",
+  "previous": "1.5749%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-19",
+  "time": "04:30 AM",
+  "iso": "JP",
+  "event": "tertiary industry index mom aug",
+  "actual": "",
+  "previous": "0.4%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-19",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "inflation rate yoy sep",
+  "actual": "",
+  "previous": "3%",
+  "consensus": "",
+  "forecast": "3.2%"
+ },
+ {
+  "date": "2026-10-19",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "core inflation rate yoy sep",
+  "actual": "",
+  "previous": "2.4%",
+  "consensus": "",
+  "forecast": "2.4%"
+ },
+ {
+  "date": "2026-10-19",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "inflation rate mom sep",
+  "actual": "",
+  "previous": "-0.1%",
+  "consensus": "",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-10-19",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "core inflation rate mom sep",
+  "actual": "",
+  "previous": "0.1%",
+  "consensus": "",
+  "forecast": "0.2%"
+ },
+ {
+  "date": "2026-10-19",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "cpi common yoy sep",
+  "actual": "",
+  "previous": "2.6%",
+  "consensus": "",
+  "forecast": "2.7%"
+ },
+ {
+  "date": "2026-10-19",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "cpi median yoy sep",
+  "actual": "",
+  "previous": "2%",
+  "consensus": "",
+  "forecast": "2.2%"
+ },
+ {
+  "date": "2026-10-19",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "cpi trimmed-mean yoy sep",
+  "actual": "",
+  "previous": "1.9%",
+  "consensus": "",
+  "forecast": "2.0%"
+ },
+ {
+  "date": "2026-10-20",
+  "time": "01:35 AM",
+  "iso": "NZ",
+  "event": "1-year bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "01:35 AM",
+  "iso": "NZ",
+  "event": "3-month bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "01:35 AM",
+  "iso": "NZ",
+  "event": "6-month bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "pending home sales mom sep",
+  "actual": "",
+  "previous": "0.3%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "pending home sales yoy sep",
+  "actual": "",
+  "previous": "-4.7%",
+  "consensus": "",
+  "forecast": "1.0%"
+ },
+ {
+  "date": "2026-10-20",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "6-week bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "03:35 AM",
+  "iso": "JP",
+  "event": "20-year jgb auction",
+  "actual": "",
+  "previous": "3.856%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "06:00 AM",
+  "iso": "CH",
+  "event": "balance of trade sep",
+  "actual": "",
+  "previous": "CHF5.6B",
+  "consensus": "",
+  "forecast": "CHF 4.9B"
+ },
+ {
+  "date": "2026-10-20",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "unemployment rate aug",
+  "actual": "",
+  "previous": "4.9%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "average earnings incl. bonus (3mo/yr) aug",
+  "actual": "",
+  "previous": "3.9%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "employment change aug",
+  "actual": "",
+  "previous": "67K",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "average earnings excl. bonus (3mo/yr) aug",
+  "actual": "",
+  "previous": "3.5%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "claimant count change sep",
+  "actual": "",
+  "previous": "27.8K",
+  "consensus": "",
+  "forecast": "20K"
+ },
+ {
+  "date": "2026-10-20",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "hmrc payrolls change sep",
+  "actual": "",
+  "previous": "-26K",
+  "consensus": "",
+  "forecast": "-15.0K"
+ },
+ {
+  "date": "2026-10-20",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "current account aug",
+  "actual": "",
+  "previous": "€36.5B",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "08:00 AM",
+  "iso": "EA",
+  "event": "current account s.a aug",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "08:30 PM",
+  "iso": "US",
+  "event": "api crude oil stock change oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "zew economic sentiment index oct",
+  "actual": "",
+  "previous": "25.8",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "09:00 AM",
+  "iso": "EA",
+  "event": "construction output yoy aug",
+  "actual": "",
+  "previous": "-2%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "09:00 AM",
+  "iso": "GB",
+  "event": "treasury gilt 2036 auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "balance of trade sep",
+  "actual": "",
+  "previous": "¥-1105.6B",
+  "consensus": "",
+  "forecast": "¥ -250B"
+ },
+ {
+  "date": "2026-10-20",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "exports yoy sep",
+  "actual": "",
+  "previous": "19.3%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "imports yoy sep",
+  "actual": "",
+  "previous": "28%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "12:15 PM",
+  "iso": "US",
+  "event": "adp employment change weekly",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "building permits prel sep",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": "1.36M"
+ },
+ {
+  "date": "2026-10-20",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "housing starts sep",
+  "actual": "",
+  "previous": "1.275M",
+  "consensus": "",
+  "forecast": "1.3M"
+ },
+ {
+  "date": "2026-10-20",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "building permits mom prel sep",
+  "actual": "",
+  "previous": "-2.1%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "housing starts mom sep",
+  "actual": "",
+  "previous": "-2.6%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "12:55 PM",
+  "iso": "US",
+  "event": "redbook yoy oct/17",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-20",
+  "time": "",
+  "iso": "NZ",
+  "event": "global dairy trade price index oct/20",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "02:00 AM",
+  "iso": "NZ",
+  "event": "credit card spending yoy sep",
+  "actual": "",
+  "previous": "3.5%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia crude oil stocks change oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia gasoline stocks change oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia crude oil imports change oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia cushing crude oil stocks change oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia distillate fuel production change oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia distillate stocks change oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia gasoline production change oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia heating oil stocks change oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia refinery crude runs change oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "17-week bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "20-year bond auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "inflation rate yoy sep",
+  "actual": "",
+  "previous": "3.1%",
+  "consensus": "",
+  "forecast": "3.4%"
+ },
+ {
+  "date": "2026-10-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "core inflation rate yoy sep",
+  "actual": "",
+  "previous": "2.6%",
+  "consensus": "",
+  "forecast": "2.7%"
+ },
+ {
+  "date": "2026-10-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "inflation rate mom sep",
+  "actual": "",
+  "previous": "0.5%",
+  "consensus": "",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-10-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "core inflation rate mom sep",
+  "actual": "",
+  "previous": "0.3%",
+  "consensus": "",
+  "forecast": "0.1%"
+ },
+ {
+  "date": "2026-10-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "ppi core output mom sep",
+  "actual": "",
+  "previous": "0.3%",
+  "consensus": "",
+  "forecast": "0.1%"
+ },
+ {
+  "date": "2026-10-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "ppi core output yoy sep",
+  "actual": "",
+  "previous": "2.7%",
+  "consensus": "",
+  "forecast": "2.8%"
+ },
+ {
+  "date": "2026-10-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "ppi input mom sep",
+  "actual": "",
+  "previous": "0.3%",
+  "consensus": "",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-10-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "ppi input yoy sep",
+  "actual": "",
+  "previous": "6.1%",
+  "consensus": "",
+  "forecast": "6.4%"
+ },
+ {
+  "date": "2026-10-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "ppi output mom sep",
+  "actual": "",
+  "previous": "0.7%",
+  "consensus": "",
+  "forecast": "0.4%"
+ },
+ {
+  "date": "2026-10-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "ppi output yoy sep",
+  "actual": "",
+  "previous": "3.7%",
+  "consensus": "",
+  "forecast": "4.0%"
+ },
+ {
+  "date": "2026-10-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "public sector net borrowing ex banks sep",
+  "actual": "",
+  "previous": "£-18.3B",
+  "consensus": "",
+  "forecast": "£-13.2B"
+ },
+ {
+  "date": "2026-10-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "retail price index mom sep",
+  "actual": "",
+  "previous": "0.6%",
+  "consensus": "",
+  "forecast": "0.3%"
+ },
+ {
+  "date": "2026-10-21",
+  "time": "06:00 AM",
+  "iso": "GB",
+  "event": "retail price index yoy sep",
+  "actual": "",
+  "previous": "3.4%",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "09:45 PM",
+  "iso": "NZ",
+  "event": "inflation rate qoq q3",
+  "actual": "",
+  "previous": "1.5%",
+  "consensus": "",
+  "forecast": "0.7%"
+ },
+ {
+  "date": "2026-10-21",
+  "time": "09:45 PM",
+  "iso": "NZ",
+  "event": "inflation rate yoy q3",
+  "actual": "",
+  "previous": "4.1%",
+  "consensus": "",
+  "forecast": "3.7%"
+ },
+ {
+  "date": "2026-10-21",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba 30-year mortgage rate oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage applications oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage market index oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba mortgage refinance index oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "11:00 AM",
+  "iso": "US",
+  "event": "mba purchase index oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "foreign bond investment oct/17",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-21",
+  "time": "11:50 PM",
+  "iso": "JP",
+  "event": "stock investment by foreigners oct/17",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "02:00 PM",
+  "iso": "EA",
+  "event": "consumer confidence flash oct",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "02:00 PM",
+  "iso": "US",
+  "event": "cb leading index mom sep",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "02:30 PM",
+  "iso": "US",
+  "event": "eia natural gas stocks change oct/16",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "03:00 PM",
+  "iso": "US",
+  "event": "kansas fed composite index oct",
+  "actual": "",
+  "previous": "14",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "03:00 PM",
+  "iso": "US",
+  "event": "kansas fed manufacturing index oct",
+  "actual": "",
+  "previous": "20",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "4-week bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "03:30 PM",
+  "iso": "US",
+  "event": "8-week bill auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "04:00 PM",
+  "iso": "CA",
+  "event": "2-year bond auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "15-year mortgage rate oct/22",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "04:00 PM",
+  "iso": "US",
+  "event": "30-year mortgage rate oct/22",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "05:00 PM",
+  "iso": "US",
+  "event": "5-year tips auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "07:30 AM",
+  "iso": "CH",
+  "event": "snb monetary policy meeting minutes",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "08:30 PM",
+  "iso": "US",
+  "event": "fed balance sheet oct/21",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "09:00 AM",
+  "iso": "GB",
+  "event": "index-linked treasury gilt 2031 auction",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "10:00 PM",
+  "iso": "AU",
+  "event": "s&p global manufacturing pmi flash oct",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "10:00 PM",
+  "iso": "AU",
+  "event": "s&p global services pmi flash oct",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "10:00 PM",
+  "iso": "AU",
+  "event": "s&p global composite pmi flash oct",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "11:01 PM",
+  "iso": "GB",
+  "event": "gfk consumer confidence oct",
+  "actual": "",
+  "previous": "-13",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "inflation rate yoy sep",
+  "actual": "",
+  "previous": "1.9%",
+  "consensus": "",
+  "forecast": "1.8%"
+ },
+ {
+  "date": "2026-10-22",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "core inflation rate yoy sep",
+  "actual": "",
+  "previous": "1.7%",
+  "consensus": "",
+  "forecast": "1.9%"
+ },
+ {
+  "date": "2026-10-22",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "inflation rate ex-food and energy yoy sep",
+  "actual": "",
+  "previous": "1.9%",
+  "consensus": "",
+  "forecast": "2%"
+ },
+ {
+  "date": "2026-10-22",
+  "time": "11:30 PM",
+  "iso": "JP",
+  "event": "inflation rate mom sep",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "ppi mom sep",
+  "actual": "",
+  "previous": "1.3%",
+  "consensus": "",
+  "forecast": "0.2%"
+ },
+ {
+  "date": "2026-10-22",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "ppi yoy sep",
+  "actual": "",
+  "previous": "13.5%",
+  "consensus": "",
+  "forecast": "12.8%"
+ },
+ {
+  "date": "2026-10-22",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "raw materials prices mom sep",
+  "actual": "",
+  "previous": "3.1%",
+  "consensus": "",
+  "forecast": "-1.2%"
+ },
+ {
+  "date": "2026-10-22",
+  "time": "12:30 PM",
+  "iso": "CA",
+  "event": "raw materials prices yoy sep",
+  "actual": "",
+  "previous": "22.8%",
+  "consensus": "",
+  "forecast": "20.0%"
+ },
+ {
+  "date": "2026-10-22",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "initial jobless claims oct/17",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "continuing jobless claims oct/10",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-22",
+  "time": "12:30 PM",
+  "iso": "US",
+  "event": "jobless claims 4-week average oct/17",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-23",
+  "time": "12:30 AM",
+  "iso": "JP",
+  "event": "s&p global manufacturing pmi flash oct",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-23",
+  "time": "12:30 AM",
+  "iso": "JP",
+  "event": "s&p global services pmi flash oct",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ },
+ {
+  "date": "2026-10-23",
+  "time": "12:30 AM",
+  "iso": "JP",
+  "event": "s&p global composite pmi flash oct",
+  "actual": "",
+  "previous": "",
+  "consensus": "",
+  "forecast": ""
+ }
+]

@@ -38,7 +38,7 @@ ROWS = [
  # GDP: above the line GOOD, below zero BAD, IN BETWEEN NEUTRAL. 0.4 is between.
  # F-92 was fixed in the calibrator and never reached the fact table; deriving
  # the score from the actual (LD-112) surfaced it on the first run.
- ("Production","US","Durable Goods Ex Transp MoM","0.4%","0.6%","Jul/26",">0.5%","NEUTRAL"),
+ ("Production","US","Durable Goods Ex Transp MoM","0.3%","0.7%","Aug/26",">0.5%","NEUTRAL"),
  # F-91: this row still held the JUL print after the AUG Final released
  # 1 Sep 08:00. Jeff caught it reading the audit view. The score does not
  # change - 52.7 and 51.9 are both above 50.5 - but the EVIDENCE was a
@@ -80,7 +80,7 @@ ROWS = [
  # ONE-ROW weight-2 category: Procure.ch PMI alone moves CHF by up to
  # 2.00 points.
  # ---------------- SPENDING (w=1) ----------------
- ("Spending","US","Building Permits MoM Final","4.3%","-2.6%","Jul/26",">0.5%","GOOD"),
+ ("Spending","US","Building Permits MoM Final","-2.1%","4.3%","Aug/26",">0.5%","BAD"),
  ("Spending","US","Retail Sales YoY","6%","5.03%","Aug/26",">0.5%","GOOD"),
  ("Spending","US","CB Consumer Confidence","89.4","90.2","Aug/26",">Prev","BAD"),
  ("Spending","US","Personal Spending MoM","0.2%","0.3%","Jul/26",">0.5%","NEUTRAL"),
@@ -93,7 +93,7 @@ ROWS = [
  # RESTATE ITS RULE.
  ("Spending","EA","Retail Sales YoY","0.6%","0.7%","Jul/26",">0.5%","GOOD"),
  ("Spending","EA","Consumer Confidence Final","-15.5","-15.9","Aug/26",">Prev","GOOD"),
- ("Spending","GB","GfK Consumer Confidence","-14","-17","Aug/26",">Prev","GOOD"),
+ ("Spending","GB","GfK Consumer Confidence","-13","-14","Sep/26",">Prev","GOOD"),
  ("Spending","GB","Retail Sales Ex Fuel YoY","2.7%","1.8%","Aug/26",">0.5%","GOOD"),
  # F-98: spec line 113 - ">0.5% Good, <0% Bad, between Neutral". Restored
  # from a consensus test I substituted during a sync. -3.6% is below 0,
@@ -109,7 +109,7 @@ ROWS = [
  ("Spending","NZ","Electronic Retail Card Spending YoY","0.2%","3.4%","Aug/26",">0.5%","NEUTRAL"),
  ("Spending","NZ","ANZ Business Confidence","53.7","56.1","Aug/26",">Prev","BAD"),
  ("Spending","NZ","ANZ Roy Morgan Consumer Conf","98.0","99.3","Aug/26",">Prev","BAD"),
- ("Spending","CA","Retail Sales YoY","5.2%","5.9%","Jun/26",">0.5%","GOOD"),
+ ("Spending","CA","Retail Sales YoY","5.1%","5.2%","Jul/26",">0.5%","GOOD"),
  ("Spending","CA","Building Permits MoM","-17.3%","18.3%","Jul/26",">0.5%","BAD"),
  ("Spending","CH","Consumer Confidence","-33","-35","Aug/26",">Prev","GOOD"),
  ("Spending","CH","Retail Sales YoY","2.3%","1.9%","Jul/26",">0.5%","GOOD"),
@@ -137,8 +137,8 @@ ROWS = [
  ("Employment","GB","Claimant Count Change","27.8K","-11.8K","Aug/26","<0 (LD-58)","BAD"),
  ("Employment","JP","Unemployment Rate","2.4%","2.5%","Jul/26","<Prev","GOOD"),
  ("Employment","AU","ANZ-Indeed Job Ads MoM","2.5%","1.9%","Aug/26",">0.5%","GOOD"),
- ("Employment","AU","Employment Change","-15.8K (FT +16.3K, PT -32.2K)","76.3K (FT +29.3K, PT +47.0K)","Jul/26","hdl BAD; FT NEUTRAL (LD-57); PT GOOD","NEUTRAL"),
- ("Employment","AU","Unemployment Rate","4.5%","4.4%","Jul/26","<Prev","BAD"),
+ ("Employment","AU","Employment Change","39.5K (FT -6.3K, PT +45.8K)","-15.9K","Aug/26","hdl BAD; FT NEUTRAL (LD-57); PT GOOD","BAD"),
+ ("Employment","AU","Unemployment Rate","4.6%","4.5%","Aug/26","<Prev","BAD"),
  ("Employment","NZ","Unemployment Rate","5.6%","5.4%","Jun/26 (Q)","<Prev","BAD"),
  ("Employment","CA","Unemployment Rate","6.4%","6.4%","Aug/26","<Prev","NEUTRAL"),
  # F-97: the same mistake, and worse - this row's threshold encoded

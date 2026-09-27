@@ -30,8 +30,8 @@ CAT = dict(((_sm.LABEL[_r[1]], _r[2]), _r[0]) for _r in _sm.ROWS)
 def hot(ccy, name):
     return CAT.get((ccy, name)) in HIGH_IMPACT
 
-CAP = sorted(glob.glob('data/raw/calendar/2026-09-20_*_cal_full.json'))[-1]
-START, END = '2026-09-21', '2026-09-25'
+CAP = sorted(glob.glob('data/raw/calendar/2026-09-27_*_cal_full.json'))[-1]
+START, END = '2026-09-28', '2026-10-02'
 
 F = ps.final_scores(CAP, START, END)
 SC = dict((c, F[c]['total']) for c in F)
@@ -86,16 +86,16 @@ n_cons = len([r for r in ROWS if r['cons']])
 n_scor = len([r for r in ROWS if r['score'] is not None])
 
 # LD-130 - the published pages, so the repo copy carries its own pointers.
-ARTIFACT = 'https://claude.ai/artifact/Kn6pz8LXzpqkUReW1ffQgj'
-RETRO = 'https://claude.ai/artifact/3f6EQtV44iGu7QoWiDtpFc'
+ARTIFACT = 'https://claude.ai/artifact/DU6Y3sC2T6eoPRu7Jkx82T'
+RETRO = 'https://claude.ai/artifact/4PNbyCZETwNq19pTjepWP1'
 
 out = []
 A = out.append
 
 A('<!--edition')
-A('date: 2026-09-20')
-A('title: Week of 21&ndash;25 September 2026 &middot; WEEKLY &middot; '
-  'Sunday 20 Sep')
+A('date: 2026-09-27')
+A('title: Week of 28 Sep&ndash;2 Octtember 2026 &middot; WEEKLY &middot; '
+  'Sunday 27 Sep')
 # LD-131 - A NEW EDITION STARTS AT r1 AND UNSEALED. Reading STATE.md was
 # right while rebuilding ONE edition (LD-130), but on a NEW week it
 # inherits the PREVIOUS edition's identity - this build stamped r5/SEALED
@@ -107,7 +107,7 @@ A('title: Week of 21&ndash;25 September 2026 &middot; WEEKLY &middot; '
 # a report Jeff has already read, not a new one. Reading the existing
 # file's revision keeps the two rules from fighting: new editions still
 # start at r1 (nothing on disk to read), a rebuild advances.
-OUT = 'reports/2026/Q3/2026-09-20_weekly.md'
+OUT = 'reports/2026/Q3/2026-09-27_weekly.md'
 _rev = 1
 if os.path.exists(OUT):
     for _l in io.open(OUT, encoding='utf-8').read()[:600].splitlines():
@@ -123,7 +123,7 @@ A('revision: r%d' % _rev)
 A('seal: UNSEALED')
 A('type: WEEKLY')
 A('eyebrow: Macro Economic Reporting &middot; the REVAMPED weekly &mdash; '
-  'selection for the 21&ndash;25 Sep cycle')
+  'selection for the 28 Sep&ndash;2 Oct cycle')
 A('chip: <b>%d pairs</b> &middot; base &plus; calibrator' % len(PICKED))
 A('chip: <b>%s %s</b> &middot; gap <b>%+.2f</b>'
   % (BEST['pair'], BEST['direction'], BEST['gap']))
@@ -144,7 +144,7 @@ A('')
 A('<!--exec-->')
 A('')
 _nm = {6: 'six', 7: 'seven', 8: 'eight'}.get(len(ft.WEIGHT), str(len(ft.WEIGHT)))
-A('**Selection for the 14\u201318 September cycle, built Sunday 20 September.** '
+A('**Selection for the 14\u201318 September cycle, built Sunday 27 September.** '
   'The second weekly on the revamped model \u2014 %s fact '
   'tables, leading indicators at weight 2, a day-scored week-ahead '
   'calibrator, and no room or event-risk gate anywhere in selection.' % _nm)

@@ -5,8 +5,8 @@ Sep-26,Employment,EUR,Unemployment Rate,6.4%,-1
 Sep-26,Employment,GBP,Claimant Count Change,27.8K,-1
 Sep-26,Employment,JPY,Unemployment Rate,2.4%,1
 Sep-26,Employment,AUD,ANZ-Indeed Job Ads MoM,2.5%,1
-Sep-26,Employment,AUD,Employment Change,"-15.8K (FT +16.3K, PT -32.2K)",0
-Sep-26,Employment,AUD,Unemployment Rate,4.5%,-1
+Sep-26,Employment,AUD,Employment Change,"39.5K (FT -6.3K, PT +45.8K)",-1
+Sep-26,Employment,AUD,Unemployment Rate,4.6%,-1
 Sep-26,Employment,NZD,Unemployment Rate,5.6%,-1
 Sep-26,Employment,CAD,Employment Change,-41.7K,-1
 Sep-26,Employment,CAD,Unemployment Rate,6.4%,0
@@ -28,7 +28,7 @@ Sep-26,Interest_Rate,AUD,RBA Interest Rate Decision,4.35%,0.4
 Sep-26,Interest_Rate,NZD,RBNZ Interest Rate Decision,2.75%,1.0
 Sep-26,Interest_Rate,CAD,BoC Interest Rate Decision,2.25%,0.0
 Sep-26,Interest_Rate,CHF,SNB Interest Rate Decision,0.00%,-0.4
-Sep-26,Production,USD,Durable Goods Ex Transp MoM,0.4%,0
+Sep-26,Production,USD,Durable Goods Ex Transp MoM,0.3%,0
 Sep-26,Production,USD,ISM Manufacturing PMI,54.6,1
 Sep-26,Production,USD,Industrial Production YoY,1.4%,1
 Sep-26,Production,USD,Manufacturing Production YoY,0.9%,1
@@ -46,13 +46,13 @@ Sep-26,Production,NZD,Business NZ PMI,53.1,1
 Sep-26,Production,NZD,Global Dairy Trade Price Index,-1.1%,-1
 Sep-26,Production,CAD,S&P Global Mfg PMI,53.0,1
 Sep-26,Production,CHF,Procure.ch-UBS Mfg PMI,57.1,1
-Sep-26,Spending,USD,Building Permits MoM Final,4.3%,1
+Sep-26,Spending,USD,Building Permits MoM Final,-2.1%,-1
 Sep-26,Spending,USD,CB Consumer Confidence,89.4,-1
 Sep-26,Spending,USD,Personal Spending MoM,0.2%,0
 Sep-26,Spending,USD,Retail Sales YoY,6%,1
 Sep-26,Spending,EUR,Consumer Confidence Final,-15.5,1
 Sep-26,Spending,EUR,Retail Sales YoY,0.6%,1
-Sep-26,Spending,GBP,GfK Consumer Confidence,-14,1
+Sep-26,Spending,GBP,GfK Consumer Confidence,-13,1
 Sep-26,Spending,GBP,Retail Sales Ex Fuel YoY,2.7%,1
 Sep-26,Spending,JPY,Consumer Confidence,35.5,1
 Sep-26,Spending,JPY,Household Spending YoY,-3.6%,-1
@@ -66,7 +66,7 @@ Sep-26,Spending,NZD,ANZ Roy Morgan Consumer Conf,98.0,-1
 Sep-26,Spending,NZD,Building Permits MoM,-4.3%,-1
 Sep-26,Spending,NZD,Electronic Retail Card Spending YoY,0.2%,0
 Sep-26,Spending,CAD,Building Permits MoM,-17.3%,-1
-Sep-26,Spending,CAD,Retail Sales YoY,5.2%,1
+Sep-26,Spending,CAD,Retail Sales YoY,5.1%,1
 Sep-26,Spending,CHF,Consumer Confidence,-33,1
 Sep-26,Spending,CHF,Retail Sales YoY,2.3%,1
 Sep-26,Trade,USD,Balance of Trade,-$88.6B,-1

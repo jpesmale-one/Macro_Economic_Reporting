@@ -130,8 +130,21 @@ def stale(since, until=None):
     for (c, n), (ds, act, raw) in sorted(found.items()):
         if n in NO_HELD:
             continue
-        # F-123: value AND vintage. A repeated value is not freshness.
-        if held.get((c, n)) != act:
+        # F-139 - A ROW THAT CARRIES ITS OWN SPLIT IS NOT STALE.
+        #
+        # AUD and CAD Employment Change store the headline AND the breakdown:
+        # "39.5K (FT -6.3K, PT +45.8K)". That is deliberate - LD-57 grades the
+        # FULL-TIME component, and F-138 was me reading the headline and
+        # missing that full time had gone negative. The split has to be
+        # visible in the cell.
+        #
+        # But R-40 compares strings exactly, so it read the annotated cell as
+        # different from TE's bare "39.5K" and called a correctly-refreshed
+        # row STALE. A guard that fires on its own house style teaches you to
+        # skip it - the F-120 lesson from the other direction.
+        _h = (held.get((c, n)) or '')
+        _same = (_h == act) or (act and _h.startswith(act + ' ('))
+        if not _same:
             out.append((c, n, held.get((c, n)), act, ds, raw))
             continue
         tm, om = te_month(raw), our_month(refs.get((c, n), ''))
