@@ -4571,3 +4571,52 @@ their comparability with every OANDA week before them.
 **Prices and technicals come from TradingView. Yahoo is not a fallback** — if
 TradingView will not start, say so and stop rather than silently switching
 source. The point is that Jeff and the report read the same tape.
+
+---
+
+## LD-145 — THE SET CARRIES ATR AND TARGET, NOT JUST GAP
+
+**Jeff, 2026-09-27:** *"on the next report for the selected pairs, lets put the
+ATR and Target as well. I believe we already putting the Gap there"*
+
+He was right on both counts. The three answer different questions:
+
+| | What it is | Source |
+|---|---|---|
+| **Gap** | the two currencies' board scores subtracted | **the model**, −9…+9, never price |
+| **ATR(14)** | what the pair normally moves, in pips | **price** |
+| **Target** | 0.75 × ATR — what a day must cover (LD-128) | derived |
+
+**Why Gap alone is not enough.** On 21–25 Sep the thinnest conviction in the set
+delivered as often as the widest:
+
+```
+EURAUD  gap +5.10   2 of 5 days at target
+GBPAUD  gap +4.50   1 of 5
+AUDCHF  gap +1.20   2 of 5
+```
+
+**And without ATR the retrospective's day-readings are not comparable.**
+1.06× on GBPAUD is **89 pips**; 1.40× on AUDCHF is **45**. A reader seeing only
+the multiples ranks those backwards.
+
+### Where the bars come from
+
+**TradingView, `OANDA:` symbols, daily — never Yahoo** (LD-5 as amended, F-137).
+`pair_atr.py` reads `data/raw/bars/<PAIR>.json`; it does not fetch, because the
+MCP chart tools are not callable from a script. The Sunday flow is:
+
+1. compute the set (board only, no price)
+2. per pair: `chart_set_symbol OANDA:<PAIR>` → `chart_set_timeframe D` →
+   `data_get_ohlcv` → save to `data/raw/bars/<PAIR>.json`
+3. `gen_page` renders Gap · ATR · Target
+
+**Session dating matters.** An OANDA daily bar opens **21:00 UTC**, so its epoch
+names the evening *before* the session it covers (F-106). `pair_atr.session()`
+adds 3h to land inside the session's own date.
+
+**ATR excludes the week being traded** — a yardstick built from the week it
+grades is hindsight (F-83).
+
+**R-46 step 11** fails the build when a selected pair has no bars, so the prompt
+arrives before publishing rather than as *"no bars"* on the page.

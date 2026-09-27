@@ -15,6 +15,7 @@ import fact_tables as ft
 import pair_select as ps
 import calibrator as cal
 import score_model as _sm
+import pair_atr as pa
 import week_ahead as wa
 
 # LD-132 - the threshold each calibrator row is graded against. score_model
@@ -164,6 +165,28 @@ for i, c in enumerate(PICKED, 1):
          c['short'], sg(SC[c['short']])))
     A('      <span class="legs"><span class="cat">covers</span> '
       '&nbsp;%s</span>' % ' \u00b7 '.join(WHY[id(c)]))
+    # LD-145 - Jeff, 2026-09-27: "on the next report for the selected
+    # pairs, lets put the ATR and Target as well. I believe we already
+    # putting the Gap there".
+    #
+    # GAP is the MODEL - a score difference on a -9..+9 board, never price.
+    # ATR is what the pair NORMALLY moves. TARGET is 0.75 x ATR, the
+    # distance a day must cover to count (LD-128). Without ATR the retro's
+    # day-readings are not comparable across pairs: 1.06x on GBPAUD is
+    # 89 pips, 1.40x on AUDCHF is 45.
+    #
+    # Bars come from TradingView/OANDA ONLY (LD-5 as amended, F-137). A pair
+    # with no bars says so rather than printing a guessed number.
+    _at = pa.atr_for(c['pair'], START)
+    if _at:
+        A('      <span class="legs"><span class="cat">range</span> '
+          '&nbsp;ATR(14) <strong>%.0f</strong> pips · '
+          '0.75 target <strong>%.0f</strong> pips</span>'
+          % (_at[0], _at[1]))
+    else:
+        A('      <span class="legs"><span class="cat">range</span> '
+          '&nbsp;<em>no bars — pull OANDA:%s from TradingView</em>'
+          '</span>' % c['pair'])
     A('    </div>')
 A('  </div>')
 A('')

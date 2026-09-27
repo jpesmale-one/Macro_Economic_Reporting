@@ -257,6 +257,40 @@ def s10_high_impact():
     return True, 'all %d high-impact categories flag (LD-134)' % len(gp.HIGH_IMPACT)
 
 
+def s11_pair_bars():
+    """LD-145: every SELECTED pair needs OANDA bars for its ATR and target.
+
+    Jeff asked for ATR and Target beside the Gap. Gap comes from the board
+    and always exists; ATR needs PRICE, and price must come from TradingView
+    (LD-5 as amended, F-137 - two retrospectives were graded on Yahoo bars
+    whose sessions are offset a day from OANDA's).
+
+    A pair with no bars renders "no bars - pull OANDA:<PAIR>". This fails
+    the build instead, so the prompt arrives BEFORE publishing rather than
+    on the page.
+    """
+    import glob as _g
+    import pair_atr as pa
+    import pair_select as ps
+    import fact_tables as ft
+    caps = sorted(_g.glob(os.path.join(
+        REPO, 'data/raw/calendar/*_cal_full.json')))
+    if not caps:
+        return True, '(no capture - skipped)'
+    start, end = window()
+    f = ps.final_scores(caps[-1], start, end)
+    sc = dict((c, f[c]['total']) for c in f)
+    band, _ = ft.bands(sc)
+    sel = ps.the_set(ps.candidates(sc, band), band, sc)
+    miss = [p['pair'] for p, _w in sel if not pa.atr_for(p['pair'], start)]
+    if miss:
+        return False, ('no OANDA bars for %s - pull from TradingView '
+                       '(chart_set_symbol OANDA:<PAIR>, timeframe D, '
+                       'data_get_ohlcv) and save to data/raw/bars/'
+                       % ', '.join(miss))
+    return True, 'all %d selected pairs have bars' % len(sel)
+
+
 STEPS = [
     ('1', 'capture is fresh (<=3 days)', s1_capture),
     ('2', 'no release lost to a gap (R-42)', s2_gaps),
@@ -268,6 +302,7 @@ STEPS = [
     ('8', 'no renderer pins a stale date (F-130)', s8_dates),
     ('9', 'published page matches the data (F-134)', s9_page_fresh),
     ('10', 'high-impact rows can flag (F-135)', s10_high_impact),
+    ('11', 'selected pairs have OANDA bars (LD-145)', s11_pair_bars),
 ]
 
 PAGE_STEPS = """

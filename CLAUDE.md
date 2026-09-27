@@ -130,6 +130,9 @@ never writes to the fact tables — it reports, and you decide.
 | 6 | policy rates match `rate_model` | LD-142 — a decision changes the rate and nothing watched it |
 | 7 | one selector everywhere | F-127 — MD and HTML published different sets |
 | 8 | no renderer pins a stale date | F-130 — the calibrator grid on last week's days |
+| 9 | published page matches the data | F-134 |
+| 10 | high-impact rows can flag | F-135 — Interest Rate named but unreachable |
+| 11 | **selected pairs have OANDA bars** | **LD-145 — ATR and Target need price, from TradingView only** |
 
 **Why a script and not a list.** This file already listed ~20 guards, and in
 three weeks that list failed three times the same way: *the step was there and
