@@ -268,8 +268,9 @@ footer p{max-width:none}
   <p class="dek">Selection for the 28 Sep&ndash;2 Oct cycle. <strong>Twenty-six
   scheduled rows &mdash; the heaviest calendar since the revamp</strong>, with the
   RBA, US GDP and Non Farm Payrolls all inside the week. The set carries ATR and
-  its 0.75 target for the first time (LD-145), and the calibrator scores a rate
-  decision against the currency&#39;s own regime for the first time (LD-146).</p>
+  its 0.75 target for the first time (LD-145), the calibrator scores a rate decision
+  against the currency&#39;s own regime for the first time (LD-146), and every
+  pair now discloses whether its swap pays or costs (LD-147).</p>
   <div class="chips">
     <span class="chip">4 pairs</span>
     <span class="chip">base + calibrator</span>
@@ -321,6 +322,7 @@ footer p{max-width:none}
       <span class="legs"><span class="cat">EITHER</span> &nbsp;long GBP <strong>+6.80</strong> · short AUD <strong>−0.13</strong></span>
       <span class="legs"><span class="cat">covers</span> &nbsp;EITHER · GBP</span>
       <span class="legs"><span class="cat">range</span> &nbsp;ATR(14) <strong>79</strong> pips · 0.75 target <strong>59</strong> pips</span>
+      <span class="legs"><span class="cat">swap</span> &nbsp;<strong class="neg">-0.85 pp</strong> — costs to hold <em>(on today’s AUD 4.60%, not the edition’s 4.35%)</em></span>
     </div>
     <div class="pair">
       <span class="rank">2</span>
@@ -329,6 +331,7 @@ footer p{max-width:none}
       <span class="legs"><span class="cat">EITHER</span> &nbsp;long EUR <strong>+6.00</strong> · short AUD <strong>−0.13</strong></span>
       <span class="legs"><span class="cat">covers</span> &nbsp;EUR</span>
       <span class="legs"><span class="cat">range</span> &nbsp;ATR(14) <strong>67</strong> pips · 0.75 target <strong>50</strong> pips</span>
+      <span class="legs"><span class="cat">swap</span> &nbsp;<strong class="neg">-1.95 pp</strong> — costs to hold <em>(on today’s AUD 4.60%, not the edition’s 4.35%)</em></span>
     </div>
     <div class="pair">
       <span class="rank">3</span>
@@ -337,6 +340,7 @@ footer p{max-width:none}
       <span class="legs"><span class="cat">RISK ON</span> &nbsp;long GBP <strong>+6.80</strong> · short USD <strong>+1.80</strong></span>
       <span class="legs"><span class="cat">covers</span> &nbsp;RISK ON</span>
       <span class="legs"><span class="cat">range</span> &nbsp;ATR(14) <strong>64</strong> pips · 0.75 target <strong>48</strong> pips</span>
+      <span class="legs"><span class="cat">swap</span> &nbsp;<strong class="neg">-0.25 pp</strong> — costs to hold</span>
     </div>
     <div class="pair">
       <span class="rank">4</span>
@@ -345,7 +349,14 @@ footer p{max-width:none}
       <span class="legs"><span class="cat">RISK OFF</span> &nbsp;long JPY <strong>+2.40</strong> · short AUD <strong>−0.13</strong></span>
       <span class="legs"><span class="cat">covers</span> &nbsp;RISK OFF · JPY</span>
       <span class="legs"><span class="cat">range</span> &nbsp;ATR(14) <strong>83</strong> pips · 0.75 target <strong>62</strong> pips</span>
+      <span class="legs"><span class="cat">swap</span> &nbsp;<strong class="neg">-3.35 pp</strong> — costs to hold <em>(on today’s AUD 4.60%, not the edition’s 4.35%)</em></span>
     </div>
+  </div>
+
+  <div class="note">
+    <strong>The swap line is the POLICY RATE DIFFERENTIAL in the direction of the bias, not a broker swap rate.</strong> A pair has two swaps with opposite signs; which one applies depends on the side, so it is computed per position. Brokers quote swaps in points per lot, set by their own funding and marked up — two brokers differ, and so do two accounts at one broker. What is shown is the economic force underneath that number, never the number itself.
+    <br><br><strong>⚠ All 4 selected pairs carry a NEGATIVE differential</strong> — every one of them costs something to hold. That is not a coincidence and it is not an argument against the set: the board ranks currencies on macro strength, and this week the strong ones (GBP 3.75%, EUR 2.65%, JPY 1.25%) mostly carry LOWER policy rates than the weak one (AUD 4.60%). <strong>Being macro-right and carry-negative at the same time is the normal shape of a divergence trade</strong>, and the cost is the price of holding it.
+    <br><br><strong>It moves nothing.</strong> LD-8 caps carry at a swing-ranking tiebreak, never a filter; this does not even tiebreak. The set, the gaps and the board are computed before it runs and do not consult it. It is disclosed so a reader holding a position for a week can see whether the week costs them anything — <strong>no lot sizes, no money figures (LD-4)</strong>.
   </div>
 
   <p><strong>GBPAUD LONG carries the widest gap on the board at +6.93</strong> — <strong>GBP is top at +6.80 and AUD is bottom at −0.13</strong>.</p>
@@ -1482,6 +1493,19 @@ footer p{max-width:none}
   <table>
     <thead><tr><th>Rule</th><th>What changed</th></tr></thead>
     <tbody>
+      <tr class="sel"><td><strong>LD-147</strong><br><span class="mono">new</span></td>
+        <td><strong>Every selected pair now shows whether the swap pays or costs
+        in the direction of the bias.</strong> Jeff: <em>&ldquo;Can we add here if
+        the Swap is +/- in the directional bias?&rdquo;</em> A pair has two swaps
+        with opposite signs, so it is computed per <em>position</em>: LONG XXXYYY
+        reads rate(XXX)&minus;rate(YYY), SHORT reads the reverse. It is the
+        <strong>policy rate differential</strong>, never a broker swap rate, and
+        it is shown as a sign and percentage points &mdash; <strong>no money
+        figure, no lot size (LD-4)</strong>. LD-8 caps carry at a tiebreak; this
+        does not even tiebreak, and the board is computed before it runs.
+        <strong>All four pairs read negative this week</strong>, which is the
+        normal shape of a divergence trade: the strong currencies carry the lower
+        policy rates.</td></tr>
       <tr class="sel"><td><strong>LD-146</strong><br><span class="mono">new</span></td>
         <td><strong>The calibrator scores a rate decision against the currency&#39;s
         own regime.</strong> A <em>hike</em> is GOOD only from STRONG, a <em>hold</em>

@@ -344,6 +344,41 @@ def main():
     except Exception as e:
         print('    (bare week_rows check skipped: %s)' % e)
 
+    # LD-147 - THE SWAP SIGN FOLLOWS THE SIDE, NOT THE PAIR.
+    print()
+    print('  LD-147 - swap sign in the direction of the bias')
+    import pair_swap as psw
+    _sw_cases = [
+        # (pair, side, expected sign) - GBP 3.75, AUD 4.60, JPY 1.25, USD 4.00
+        ('GBPAUD', 'LONG',  '-'),   # long the lower rate: costs
+        ('GBPAUD', 'SHORT', '+'),   # *** SAME PAIR, OTHER SIDE, OTHER SIGN
+        ('AUDJPY', 'LONG',  '+'),   # long the higher rate: earns
+        ('AUDJPY', 'SHORT', '-'),
+        ('GBPUSD', 'LONG',  '-'),
+    ]
+    _nb = 0
+    for _p, _sd, _want in _sw_cases:
+        _got = psw.sign(_p, _sd)
+        if _got != _want:
+            bad += 1
+            _nb += 1
+            print('    *** %s %-5s -> %s, want %s' % (_p, _sd, _got, _want))
+    # the two sides of one pair must never agree
+    if psw.sign('GBPAUD', 'LONG') == psw.sign('GBPAUD', 'SHORT'):
+        bad += 1
+        _nb += 1
+        print('    *** both sides of GBPAUD carry the SAME sign - the swap '
+              'is being read off the pair, not the position')
+    # LD-4: no money figure may appear in the disclosure
+    _txt = (psw.describe('AUDJPY', 'SHORT') or '')
+    if any(ch in _txt for ch in '$£€¥') or 'lot' in _txt.lower():
+        bad += 1
+        _nb += 1
+        print('    *** swap text carries a MONEY figure - LD-4: %r' % _txt)
+    if not _nb:
+        print('    %d case(s) pass - sign follows the side, no money path'
+              % (len(_sw_cases) + 2))
+
     print()
     if bad:
         print('*** %d FAILURE(S)' % bad)

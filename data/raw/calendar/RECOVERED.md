@@ -39,3 +39,46 @@ NZD | Electronic Retail Card Spending YoY | 2026-09-14 | 0.2% | https://tradinge
 NZD | Electronic Retail Card Spending YoY | 2026-09-15 | 0.2% | https://tradingeconomics.com/new-zealand/retail-sales-annual
 NZD | Global Dairy Trade Price Index | 2026-09-15 | -1.1% | https://tradingeconomics.com/new-zealand/global-dairy-trade-price-index
 USD | Retail Sales YoY | 2026-09-16 | 6% | https://tradingeconomics.com/united-states/retail-sales-annual
+
+## 2026-09-30 - HAND CHECK OF THE SIX ROWS R-45 CANNOT RESOLVE
+
+Jeff, 2026-09-30: "do we have stale data other than the ones released this
+week?" R-45's five STALE rows all released 29-30 Sep, so the answer turns
+entirely on the six rows the sweep reports as NO PAGE AND NO CAPTURED PRINT -
+the only rows where nothing in the repo can see a drift.
+
+Checked by hand against the live TE page, 2026-09-30:
+
+  USD  Non Farm Payrolls        162K  Aug/26  rel 4 Sep   MATCHES  next 2 Oct
+  NZD  Unemployment Rate        5.6%  Q2/26   rel 4 Aug   MATCHES  next 3 Nov
+  NZD  Inflation Rate YoY       4.1%  Q2/26   rel 20 Jul  MATCHES  next 21 Oct
+  NZD  Global Dairy Trade      -1.1%  15 Sep  rel 15 Sep  MATCHES  next 6 Oct
+  USD  CB Consumer Confidence   89.4  Aug/26              NOT VERIFIED
+  NZD  Electronic Retail Card    0.2% Aug/26              NOT VERIFIED
+
+*** TWO SLUGS ARE WRONG, AND THEY FAIL QUIETLY.
+
+  'CB Consumer Confidence' -> /united-states/consumer-confidence
+      That page is the UNIVERSITY OF MICHIGAN sentiment index (48.1 Sep/26),
+      a DIFFERENT SERIES from the Conference Board's. The slug resolves, the
+      page loads, and the number on it has nothing to do with our row. Had
+      the parser managed to read it we would have silently adopted 48.1 for
+      a row that holds 89.4 - a wrong value arriving through a working check.
+
+  'Electronic Retail Card Spending YoY' -> /new-zealand/retail-sales-annual
+      Returns LEVELS in NZD millions (7017.0 for Aug/26), not the YoY
+      percentage the row holds (0.2%). Same shape: right country, right
+      topic, wrong series and wrong unit.
+
+These are worse than NO PAGE. A missing page is honest about its blind spot;
+a wrong page that happens not to parse is a blind spot wearing a slug. NO
+PAGE is the only reason neither has caused a bad value yet.
+
+NZD Global Dairy: R-41 reports this STALE, and R-41 IS WRONG. We hold -1.1%
+(15 Sep), which TE confirms as the latest. R-41 compares against the newest
+CAPTURE, and the 1 Sep capture carries the older 0.9% print. The cell is
+current; the capture is not. Same false-positive class as F-139.
+
+ANSWER TO THE QUESTION: no stale data outside this week's releases, on 68 of
+70 rows. Two rows (CB Consumer Confidence, NZD Card Spending) remain
+unverifiable until their slugs are corrected.

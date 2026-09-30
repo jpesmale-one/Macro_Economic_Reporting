@@ -5235,6 +5235,56 @@ F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT TO
 #   and R-7 caught its absence immediately. FIX: assemble editions from a FILE,
 #   never from a heredoc containing markdown.
 
+### LD-147 - THE SWAP SIGN, IN THE DIRECTION OF THE BIAS (2026-09-30)
+
+Jeff: "Can we add here if the Swap is +/- in the directional bias?"
+
+A pair has TWO swaps with opposite signs; which applies depends on the SIDE.
+So it is computed per POSITION, not per pair:
+
+    LONG  XXXYYY  ->  rate(XXX) - rate(YYY)
+    SHORT XXXYYY  ->  rate(YYY) - rate(XXX)
+
+*** A SIGN AND PERCENTAGE POINTS, NEVER A MONEY FIGURE. LD-4 draws the line
+at position sizing, and "$4.20 a night on a mini lot" is a sizing input. A
+rate differential is a property of two currencies - the same class of fact as
+the policy rates already published in section 4. R-44 has a case that fails
+if a currency mark or the word "lot" ever appears in the disclosure.
+
+*** IT IS NOT A BROKER SWAP RATE. Brokers quote swaps in points per lot, set
+by their own funding and marked up; two brokers differ, and so do two accounts
+at one broker. What is computed is the POLICY RATE DIFFERENTIAL underneath
+that number. The page says so wherever it prints one - claiming otherwise
+would be F-107's shape, a plausible figure with no source behind it.
+
+IT MOVES NOTHING. LD-8 caps carry at a swing-ranking tiebreak, never a filter.
+This does not even tiebreak: the set, the gaps and the board are computed
+before it runs and do not consult it.
+
+THIS WEEK: all four pairs read NEGATIVE.
+
+    GBPAUD LONG  -0.85pp     GBPUSD LONG  -0.25pp
+    EURAUD LONG  -1.95pp     AUDJPY SHORT -3.35pp
+
+Not a coincidence and not an argument against the set: the board ranks on
+macro strength, and this week the strong currencies (GBP 3.75, EUR 2.65,
+JPY 1.25) carry LOWER policy rates than the weak one (AUD 4.60). Being
+macro-right and carry-negative at once is the normal shape of a divergence
+trade.
+
+THE SWAP READS THE LIVE RATE; THE BASE READS SUNDAY'S VINTAGE. Jeff chose to
+leave the 28 Sep-2 Oct edition on Sunday's vintage after the RBA hiked mid-
+week. That is right for a SCORE - absorbing Tuesday's hike would be hindsight.
+But a swap sign answers "does this cost me anything to hold RIGHT NOW", and a
+reader asking that on Wednesday means Wednesday's rate. So pair_swap.LIVE
+overlays AUD 4.60% and the page names both numbers: "(on today's AUD 4.60%,
+not the edition's 4.35%)". The two disagree ON PURPOSE, dated, never silent.
+
+*** THE OVERLAY IS A STOPGAP AND SHOULD DIE AT SUNDAY'S BUILD. Once
+rate_model holds 4.60%, the AUD entry in LIVE must be removed - an overlay
+that outlives its discrepancy becomes a second source of truth, which is the
+F-127 shape. R-47 (sweep the eight rate cells against TE) is the real fix.
+
 ### LD-146 - A RATE DECISION IS SCORED AGAINST THE CURRENCY'S REGIME (2026-09-27)
 
 Jeff: "Interest rate decision will overturn everything on that day. And since

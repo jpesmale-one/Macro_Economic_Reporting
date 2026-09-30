@@ -16,6 +16,7 @@ import pair_select as ps
 import calibrator as cal
 import score_model as _sm
 import pair_atr as pa
+import pair_swap as psw
 import week_ahead as wa
 
 # LD-132 - the threshold each calibrator row is graded against. score_model
@@ -187,8 +188,63 @@ for i, c in enumerate(PICKED, 1):
         A('      <span class="legs"><span class="cat">range</span> '
           '&nbsp;<em>no bars — pull OANDA:%s from TradingView</em>'
           '</span>' % c['pair'])
+    # LD-147 - DOES THE SWAP PAY OR COST IN THE DIRECTION WE ARE BIASED?
+    #
+    # Jeff, 2026-09-30: "Can we add here if the Swap is +/- in the
+    # directional bias?" A pair has two swaps with opposite signs; which
+    # applies depends on the SIDE, so this is computed per position.
+    #
+    # A SIGN AND A DIFFERENTIAL IN PERCENTAGE POINTS, never a money
+    # figure. LD-4 draws the line at position sizing, and "$4.20 a night
+    # on a mini lot" is a sizing input; a rate differential is a property
+    # of two currencies, the same class of fact as the rates in section 4.
+    # LD-8 already caps carry at a tiebreak - this does not even tiebreak.
+    _sw = psw.differential(c['pair'], c['direction'])
+    if _sw:
+        _d = _sw[0]
+        _cl = 'pos' if _d > 0 else ('neg' if _d < 0 else 'zero')
+        _wd = 'earns' if _d > 0 else ('costs' if _d < 0 else 'flat')
+        _ov = psw.overlaid(c['pair'])
+        A('      <span class="legs"><span class="cat">swap</span> '
+          '&nbsp;<strong class="%s">%+.2f pp</strong> — %s to hold'
+          '%s</span>'
+          % (_cl, _d, _wd,
+             (' <em>(on today’s %s %.2f%%, not the edition’s '
+              '%.2f%%)</em>' % (_ov[0][0], _ov[0][1], _ov[0][2]))
+             if _ov else ''))
     A('    </div>')
 A('  </div>')
+A('')
+# LD-147 - SAY WHAT THE SWAP LINE IS, AND WHAT IT IS NOT.
+_swaps = [psw.differential(c['pair'], c['direction']) for c in PICKED]
+_swaps = [x for x in _swaps if x]
+if _swaps:
+    _neg = [x for x in _swaps if x[0] < 0]
+    A('  <div class="note">')
+    A('    <strong>The swap line is the POLICY RATE DIFFERENTIAL in the '
+      'direction of the bias, not a broker swap rate.</strong> A pair has two '
+      'swaps with opposite signs; which one applies depends on the side, so it '
+      'is computed per position. Brokers quote swaps in points per lot, set by '
+      'their own funding and marked up — two brokers differ, and so do two '
+      'accounts at one broker. What is shown is the economic force underneath '
+      'that number, never the number itself.')
+    if len(_neg) == len(_swaps):
+        A('    <br><br><strong>⚠ All %d selected pairs carry a NEGATIVE '
+          'differential</strong> — every one of them costs something to '
+          'hold. That is not a coincidence and it is not an argument against '
+          'the set: the board ranks currencies on macro strength, and this '
+          'week the strong ones (GBP 3.75%%, EUR 2.65%%, JPY 1.25%%) mostly '
+          'carry LOWER policy rates than the weak one (AUD 4.60%%). '
+          '<strong>Being macro-right and carry-negative at the same time is '
+          'the normal shape of a divergence trade</strong>, and the cost is '
+          'the price of holding it.' % len(_swaps))
+    A('    <br><br><strong>It moves nothing.</strong> LD-8 caps carry at a '
+      'swing-ranking tiebreak, never a filter; this does not even tiebreak. '
+      'The set, the gaps and the board are computed before it runs and do not '
+      'consult it. It is disclosed so a reader holding a position for a week '
+      'can see whether the week costs them anything — <strong>no lot '
+      'sizes, no money figures (LD-4)</strong>.')
+    A('  </div>')
 A('')
 A('  <p><strong>%s %s carries the widest gap on the board at %s</strong> '
   '\u2014 <strong>%s is top at %s and %s is bottom at %s</strong>.</p>'
