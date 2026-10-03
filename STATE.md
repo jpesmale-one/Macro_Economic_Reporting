@@ -5440,6 +5440,51 @@ WITHDRAWAL CONDITION: if by the 12-16 Oct retrospective no rate decision has
 changed a pairing, or the regime term is reading backwards against realised
 strength, it comes out. LD-113 and LD-140 are both precedents for a rule that
 ranked nothing.
+# 2026-10-03 (close) - FREEZE ON SCORING LOGIC UNTIL 31 OCT.
+#
+#   Jeff: "No logic changes for the Weekly report this session. let's gather
+#   more data then reevaluate by the end of the month"
+#
+#   FOUR RULES LANDED IN ONE SESSION - LD-146, LD-147, LD-148, LD-149 - and
+#   between them they changed what a rate decision scores, what a pair
+#   discloses, what a session is called and what a WEEK VERDICT means. That
+#   is more change than the evidence can carry, and the freeze is the right
+#   response to it rather than a pause in momentum.
+#
+#   *** NO SCORING OR VERDICT CHANGE UNTIL THE 31 OCT REVIEW. Build the
+#   weekly editions and the retrospectives on the rules as they now stand.
+#   Data corrections, slug fixes, stale-rate fixes and display bugs are NOT
+#   logic changes and still land as normal.
+#
+#   WHAT THE REVIEW NEEDS, and it is all already measurable:
+#
+#     LD-146  has a rate decision CHANGED A PAIRING yet? It has not once
+#             (28 Sep-2 Oct: same four pairs with it and without it).
+#             Due 12-16 Oct. LD-113 and LD-140 are precedents for removal.
+#     LD-147  does carry-negative selection persist? One week says the board
+#             structurally picks lower-rate currencies; four weeks would say
+#             it is a property, not a coincidence.
+#     LD-148  is the BEATEN count tracking anything, or is it noise? 8 of 20
+#             on its first week.
+#     LD-149  is CONTESTED catching nearly everything or nearly nothing? The
+#             bands are fitted to ONE YEAR and ONE REGIME, on weeks that
+#             OVERLAP across pairs sharing a leg. Four live weeks is the
+#             first honest out-of-sample.
+#     rho     the BASE has beaten the FINAL two weeks running (+0.48/+0.17,
+#             +0.31/+0.26). A third would make the calibrator's weighting a
+#             real question rather than a watch item. NONE of these readings
+#             is significant at n=8 (needs ~+/-0.71).
+#
+#   CARRIED, NOT LOGIC, SO STILL DUE AT THE NEXT BUILD:
+#     - rate_model AUD still reads 4.35%; the RBA hiked to 4.60% on 29 Sep
+#     - R-47: nothing checks the eight rate cells against TE
+#     - two R-45 slugs point at the WRONG SERIES (CB Consumer Confidence ->
+#       Michigan; NZD Card Spending -> NZD millions). They fail safe ONLY
+#       because they do not parse
+#     - the section 4 terms column still prints "expected + surprise",
+#       retired by LD-142
+#     - pair_swap.LIVE must be DELETED once rate_model holds 4.60%
+
 # 2026-10-03 - RETROSPECTIVE, 28 SEP - 2 OCT. 4 of 4 pairs reached target on
 #   the WEAKEST BOARD in five weeks. Both halves are true and they measure
 #   different things.
