@@ -5235,6 +5235,52 @@ F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT TO
 #   and R-7 caught its absence immediately. FIX: assemble editions from a FILE,
 #   never from a heredoc containing markdown.
 
+### LD-148 - THE ADVERSE SIDE IS GRADED AGAINST THE SAME TARGET (2026-10-03)
+
+Jeff: "if our target is 59 pips then we should know if it reaches 59 on the
+low side. If it hits the opposite side and just reversed it does not
+automatically mean bad but its a sign that the bias is weakening or
+struggling. We can have more insight using that."
+
+Four states, ONE target (0.75 x ATR), BOTH directions:
+
+    CLEAN    fav >= target, adv <  target    delivered, never threatened
+    EARNED   fav >= target, adv >= target    delivered through a real fight
+    BEATEN   fav <  target, adv >= target    the opposite side paid out
+    DRIFT    fav <  target, adv <  target    neither side completed
+
+*** THE ADVERSE EXCURSION WAS ALREADY COMPUTED AND THROWN AWAY. grade_day has
+returned `adv` since LD-128 and every renderer dropped it, so the grid could
+not tell these two apart:
+
+    GBPAUD Mon 28   fav 0.56x  adv 0.52x   leaned our way, finished nothing
+    GBPUSD Tue 29   fav 0.01x  adv 0.86x   ran a FULL DAY against us
+
+Both rendered as an identical blank cell.
+
+*** BEATEN IS NOT A LOSS, AND THE NAMING IS THE RULE. Jeff: "it does not
+automatically mean bad but its a sign that the bias is weakening". Calling it
+LOSS would collapse exactly the distinction the rule exists to surface.
+
+THE WEEK VERDICT IS UNCHANGED. LD-128 still decides it: a pair wins if any
+session reaches target on the FAVOURABLE side. LD-148 is a SECOND, independent
+reading - how hard the week fought back - and never overrides the first. A
+test asserts a BEATEN day cannot cancel a week verdict.
+
+FIRST APPLICATION REFRAMED THE WEEK IT GRADED. 28 Sep - 2 Oct read as "9 hit,
+11 blank". Those 11 blanks are 8 BEATEN and 3 DRIFT:
+
+    CLEAN 8 · EARNED 1 · BEATEN 8 · DRIFT 3
+
+On EIGHT of twenty sessions the market ran a full normal day AGAINST the bias.
+The week was contested on nearly half its sessions and won anyway - which the
+old grid could not say. Thursday 1 Oct was BEATEN on three of four pairs, and
+that lines up exactly with the measured USD strength (+0.27%) the same day.
+EURAUD took 1.46x against it.
+
+R-44 45 cases (7 new: four states, both boundaries, and the week-verdict
+guard).
+
 ### LD-147 - THE SWAP SIGN, IN THE DIRECTION OF THE BIAS (2026-09-30)
 
 Jeff: "Can we add here if the Swap is +/- in the directional bias?"

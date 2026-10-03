@@ -159,7 +159,7 @@ footer p{max-width:none}
     <div class="tile"><span class="k">Directional</span><span class="v good">+150.2</span><span class="s">pips, summed</span></div>
     <div class="tile"><span class="k">Board rho</span><span class="v">+0.26</span><span class="s">final</span></div>
     <div class="tile"><span class="k">Base rho</span><span class="v">+0.31</span><span class="s">down from +0.48</span></div>
-    <div class="tile"><span class="k">Findings</span><span class="v">4</span><span class="s">all DISPLAY, not value</span></div>
+    <div class="tile"><span class="k">Contested</span><span class="v">8 / 20</span><span class="s">BEATEN sessions (LD-148)</span></div>
   </div>
 
   <div class="note win">
@@ -329,6 +329,85 @@ footer p{max-width:none}
       </tbody>
     </table></div>
     <p><strong>4 of 4 pairs, 9 target-reaching sessions out of 20.</strong></p>
+
+    <div class="note">
+      <span class="lbl">LD-148 &mdash; THE ADVERSE SIDE, SAME TARGET</span>
+      <strong>Jeff, 3 Oct:</strong> <em>&ldquo;if our target is 59 pips then we
+      should know if it reaches 59 on the low side. If it hits the opposite side
+      and just reversed it does not automatically mean bad but its a sign that
+      the bias is weakening or struggling.&rdquo;</em>
+      <br><br>
+      The adverse excursion was <strong>already being computed and thrown away at
+      render</strong>, so a session that drifted our way and one that was beaten
+      back looked identical. Four states, one target, both directions.
+    </div>
+
+    <div class="scroll"><table>
+      <thead><tr><th>State</th><th>Favourable</th><th>Adverse</th><th>Reading</th></tr></thead>
+      <tbody>
+        <tr><td><strong>CLEAN</strong></td><td>reached</td><td>did not</td><td>delivered, never threatened</td></tr>
+        <tr><td><strong>EARNED</strong></td><td>reached</td><td>reached</td><td>delivered through a real fight</td></tr>
+        <tr><td><strong>BEATEN</strong></td><td>did not</td><td>reached</td><td>the opposite side paid out</td></tr>
+        <tr><td><strong>DRIFT</strong></td><td>did not</td><td>did not</td><td>neither side completed</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="scroll"><table>
+      <thead><tr><th>Pair</th><th>Mon 28</th><th>Tue 29</th><th>Wed 30</th><th>Thu 1</th><th>Fri 2</th></tr></thead>
+      <tbody>
+        <tr><td><strong>GBPAUD</strong> LONG</td>
+          <td class="mono">DRIFT<br>0.56/0.52</td>
+          <td class="mono pos"><strong>CLEAN</strong><br>0.93/0.59</td>
+          <td class="mono pos"><strong>CLEAN</strong><br>2.02/0.40</td>
+          <td class="mono neg">BEATEN<br>0.28/0.90</td>
+          <td class="mono neg">BEATEN<br>0.36/0.93</td></tr>
+        <tr><td><strong>EURAUD</strong> LONG</td>
+          <td class="mono neg">BEATEN<br>0.12/0.86</td>
+          <td class="mono pos"><strong>CLEAN</strong><br>1.18/0.43</td>
+          <td class="mono pos"><strong>CLEAN</strong><br>1.32/0.54</td>
+          <td class="mono neg">BEATEN<br>0.27/1.46</td>
+          <td class="mono neg">BEATEN<br>0.45/1.27</td></tr>
+        <tr><td><strong>GBPUSD</strong> LONG</td>
+          <td class="mono">DRIFT<br>0.73/0.16</td>
+          <td class="mono neg">BEATEN<br>0.01/0.86</td>
+          <td class="mono pos"><strong>CLEAN</strong><br>1.27/0.11</td>
+          <td class="mono neg">BEATEN<br>0.10/1.33</td>
+          <td class="mono pos"><strong>CLEAN</strong><br>0.97/0.20</td></tr>
+        <tr><td><strong>AUDJPY</strong> SHORT</td>
+          <td class="mono neg">BEATEN<br>0.43/0.76</td>
+          <td class="mono pos"><strong>CLEAN</strong><br>0.98/0.25</td>
+          <td class="mono pos"><strong>CLEAN</strong><br>1.17/0.21</td>
+          <td class="mono pos"><strong>EARNED</strong><br>0.77/0.92</td>
+          <td class="mono">DRIFT<br>0.47/0.34</td></tr>
+      </tbody>
+    </table></div>
+
+    <p><strong>CLEAN 8 &middot; EARNED 1 &middot; BEATEN 8 &middot; DRIFT 3.</strong></p>
+
+    <div class="note fail">
+      <span class="lbl">&#9888; THIS REFRAMES THE WEEK</span>
+      The old grid said <strong>9 hit, 11 blank</strong>. Those 11 blanks are
+      <strong>8 BEATEN and only 3 DRIFT</strong> &mdash; on <strong>eight of the
+      twenty sessions the market ran a full normal day AGAINST the
+      bias</strong>. The week was not quietly favourable with some slow days. It
+      was <strong>contested on nearly half its sessions and won anyway.</strong>
+    </div>
+
+    <p><strong>BEATEN is not a loss, and the naming matters.</strong> Every pair
+    still closes as WIN &mdash; LD-128 is untouched, and a pair wins if any
+    session reaches target on the favourable side. LD-148 adds <em>how hard the
+    week fought back</em> as a second, independent reading.</p>
+
+    <p><strong>Thursday 1 Oct was BEATEN on three of four pairs</strong> &mdash;
+    the clearest single signal in the week, and it lines up exactly with the USD
+    strength measured below (+0.27%). <strong>EURAUD took 1.46&times;</strong>
+    against it that day: a day and a half of normal range, the wrong way.</p>
+
+    <p><strong>AUDJPY Thursday is the one EARNED session</strong> &mdash;
+    0.77&times; favourable <em>and</em> 0.92&times; adverse. It reached target
+    through a genuine fight rather than a quiet drift, which the old grid
+    rendered as an ordinary green cell indistinguishable from GBPAUD&rsquo;s
+    unthreatened 2.02&times;.</p>
 
     <p>Close-to-close, a different and less flattering question:</p>
     <div class="scroll"><table>

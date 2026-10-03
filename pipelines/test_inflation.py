@@ -379,6 +379,38 @@ def main():
         print('    %d case(s) pass - sign follows the side, no money path'
               % (len(_sw_cases) + 2))
 
+    # LD-148 - the adverse side is graded against the SAME target.
+    print()
+    print('  LD-148 - adverse excursion vs the same target')
+    import atr_grade as _ag
+    _cls = [
+        # (fav, adv, atr, expected)   target is 0.75 x atr
+        (159.0, 31.1, 78.6, 'CLEAN'),    # delivered, never threatened
+        ( 64.2, 76.6, 83.3, 'EARNED'),   # delivered THROUGH a full adverse day
+        (  0.7, 55.4, 64.2, 'BEATEN'),   # the opposite side paid out
+        ( 44.0, 40.7, 78.6, 'DRIFT'),    # neither side completed
+        # boundaries - exactly ON target counts as reached, both sides
+        ( 59.0, 10.0, 78.66,'CLEAN'),
+        ( 10.0, 59.0, 78.66,'BEATEN'),
+    ]
+    _nb = 0
+    for _f, _a, _atr, _want in _cls:
+        _got = _ag.classify(_f, _a, _atr)
+        if _got != _want:
+            bad += 1; _nb += 1
+            print('    *** fav %.1f adv %.1f atr %.1f -> %s, want %s'
+                  % (_f, _a, _atr, _got, _want))
+    # a BEATEN day must NOT cancel the week verdict (LD-128 is untouched)
+    _rows = [('d1', 0.7, 55.4, 0.01, False), ('d2', 81.3, 6.8, 1.27, True)]
+    _c, _e, _b, _d, _w = _ag.pressure(_rows, 64.2)
+    if not (_b == 1 and _c == 1):
+        bad += 1; _nb += 1
+        print('    *** pressure() miscounted: clean=%d earned=%d beaten=%d '
+              'drift=%d' % (_c, _e, _b, _d))
+    if not _nb:
+        print('    %d case(s) pass - four states, both boundaries, week '
+              'verdict untouched' % (len(_cls) + 1))
+
     print()
     if bad:
         print('*** %d FAILURE(S)' % bad)

@@ -122,6 +122,62 @@ def grade_day(bias, day_open, high, low, factor, atr_pips, target=TARGET):
     return fav, adv, frac, frac >= target
 
 
+# LD-148 - THE ADVERSE SIDE IS GRADED AGAINST THE SAME TARGET.
+#
+# Jeff, 2026-10-03: "if our target is 59 pips then we should know if it
+# reaches 59 on the low side. If it hits the opposite side and just reversed
+# it does not automatically mean bad but its a sign that the bias is weakening
+# or struggling. We can have more insight using that."
+#
+# THE ADVERSE EXCURSION WAS ALREADY COMPUTED AND THROWN AWAY. grade_day has
+# returned `adv` since LD-128 and every renderer dropped it, so the grid could
+# not tell a session that drifted our way from one that was beaten back:
+#
+#     GBPAUD Mon 28   fav 0.56x   adv 0.52x   -> leaned our way, finished nothing
+#     GBPUSD Tue 29   fav 0.01x   adv 0.86x   -> ran a full day AGAINST us
+#
+# Both rendered as an identical blank cell. That is the defect this closes.
+#
+# FIVE STATES, one target, both directions:
+#
+#     CLEAN     fav >= target, adv < target    delivered, never threatened
+#     EARNED    fav >= target, adv >= target   delivered through a real fight
+#     BEATEN    fav < target,  adv >= target   the OPPOSITE side paid out
+#     DRIFT     fav < target,  adv < target    neither side completed
+#
+# *** BEATEN IS NOT A LOSS AND THE NAMING MATTERS. Jeff: "it does not
+# automatically mean bad but its a sign that the bias is weakening". A session
+# that runs a full ATR against us and closes back near the open told us
+# something real - the bias is being contested - without the week being wrong.
+# Calling it LOSS would collapse exactly the distinction this rule exists to
+# surface.
+#
+# THE WEEK VERDICT IS UNCHANGED (LD-128): a pair wins if any session reaches
+# target on the favourable side. LD-148 adds a SECOND, independent reading -
+# how hard the week fought back - and never overrides the first.
+def classify(fav, adv, atr_pips, target=TARGET):
+    """'CLEAN' | 'EARNED' | 'BEATEN' | 'DRIFT' for one session."""
+    if not atr_pips:
+        return 'DRIFT'
+    f, a = fav / atr_pips, adv / atr_pips
+    if f >= target:
+        return 'EARNED' if a >= target else 'CLEAN'
+    return 'BEATEN' if a >= target else 'DRIFT'
+
+
+def pressure(rows, atr_pips, target=TARGET):
+    """(clean, earned, beaten, drift, worst_adverse_fraction) for a week.
+
+    `rows` is grade_week's output: [(label, fav, adv, frac, hit)].
+    """
+    n = {'CLEAN': 0, 'EARNED': 0, 'BEATEN': 0, 'DRIFT': 0}
+    worst = 0.0
+    for _, fav, adv, _, _ in rows:
+        n[classify(fav, adv, atr_pips, target)] += 1
+        worst = max(worst, (adv / atr_pips) if atr_pips else 0.0)
+    return n['CLEAN'], n['EARNED'], n['BEATEN'], n['DRIFT'], worst
+
+
 def grade_week(pair, bias, week_bars, atr_pips, target=TARGET):
     """[(label, fav, adv, frac, hit)] plus a week verdict.
 
