@@ -1,0 +1,494 @@
+<title>Four From Four, Thinner Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#FAF9F7; --card:#FFFFFE; --ink:#12151C; --ink-2:#4A515C;
+  --ink-3:#79818C; --rule:#E3E0D9; --rule-2:#CFCBC2;
+  --accent:#2F6B4F; --accent-soft:#E6F0EA;
+  --good:#3F7F5C; --good-soft:#E4F0E8;
+  --bad:#B4514D; --bad-soft:#FAE8E7;
+  --shadow:0 1px 2px rgba(18,21,28,.05), 0 6px 20px rgba(18,21,28,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#12151C; --card:#191D26; --ink:#EAEBED; --ink-2:#A5ACB7;
+    --ink-3:#767E8A; --rule:#252A34; --rule-2:#343B46;
+    --accent:#6FB287; --accent-soft:#16271E;
+    --good:#6FB287; --good-soft:#16271E;
+    --bad:#D2726E; --bad-soft:#2B1917;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#12151C; --card:#191D26; --ink:#EAEBED; --ink-2:#A5ACB7;
+  --ink-3:#767E8A; --rule:#252A34; --rule-2:#343B46;
+  --accent:#6FB287; --accent-soft:#16271E;
+  --good:#6FB287; --good-soft:#16271E;
+  --bad:#D2726E; --bad-soft:#2B1917;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font:400 16px/1.62 "IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+  margin:0; padding:0 18px 80px; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:780px; margin:0 auto}
+
+header{padding:44px 0 24px; border-bottom:2px solid var(--ink)}
+.eyebrow{
+  font:500 11px/1 "IBM Plex Mono",ui-monospace,monospace;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3);
+  margin:0 0 14px;
+}
+h1{
+  font:600 clamp(31px,7.2vw,46px)/1.06 Newsreader,Georgia,serif;
+  letter-spacing:-.018em; margin:0 0 10px; text-wrap:balance;
+}
+.dek{
+  font:400 clamp(16px,3.4vw,19px)/1.48 Newsreader,Georgia,serif;
+  color:var(--ink-2); margin:0; max-width:58ch; text-wrap:balance;
+}
+
+.score{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(118px,1fr));
+  gap:1px; background:var(--rule); border:1px solid var(--rule);
+  margin:26px 0 0;
+}
+.tile{background:var(--card); padding:13px 14px 14px}
+.tile .k{
+  font:500 10px/1.3 "IBM Plex Mono",monospace; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:7px;
+}
+.tile .v{
+  font:600 23px/1 "IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em; display:block;
+}
+.tile .s{font:400 11px/1.3 "IBM Plex Sans",sans-serif; color:var(--ink-3); display:block; margin-top:5px}
+.v.good{color:var(--good)} .v.bad{color:var(--bad)} .v.warn{color:var(--accent)}
+
+section{padding-top:42px}
+h2{
+  font:600 12px/1 "IBM Plex Mono",ui-monospace,monospace;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--accent);
+  margin:0 0 5px;
+}
+h2 + .sub{
+  font:400 clamp(20px,4.4vw,27px)/1.26 Newsreader,Georgia,serif;
+  margin:0 0 18px; text-wrap:balance; max-width:48ch;
+}
+h3{font:600 15px/1.35 "IBM Plex Sans",sans-serif; margin:30px 0 9px; letter-spacing:-.01em}
+h4{
+  font:600 11px/1 "IBM Plex Mono",monospace; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); margin:22px 0 8px;
+}
+p{margin:0 0 14px; max-width:66ch}
+strong{font-weight:600}
+em{font-style:italic; color:var(--ink-2)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.92em}
+
+.scroll{overflow-x:auto; margin:0 0 16px; -webkit-overflow-scrolling:touch}
+table{border-collapse:collapse; width:100%; min-width:max-content;
+  font:400 13.5px/1.42 "IBM Plex Sans",sans-serif}
+th{
+  font:600 10.5px/1.2 "IBM Plex Mono",monospace; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-3); text-align:left;
+  padding:0 13px 8px 0; border-bottom:1px solid var(--rule-2); white-space:nowrap;
+}
+td{padding:9px 13px 9px 0; border-bottom:1px solid var(--rule); white-space:nowrap; vertical-align:baseline}
+tbody tr:last-child td{border-bottom:none}
+.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; text-align:right}
+th.num{text-align:right}
+.pos{color:var(--good); font-weight:500}
+.neg{color:var(--bad); font-weight:500}
+.zero{color:var(--ink-3)}
+.ccy{font-family:"IBM Plex Mono",monospace; font-weight:600}
+tr.hi td{background:var(--accent-soft)}
+
+.note{border-left:2px solid var(--rule-2); padding:3px 0 3px 15px; margin:0 0 18px;
+  color:var(--ink-2); font-size:14.5px; max-width:66ch}
+.note strong{color:var(--ink)}
+.note.win{border-left-color:var(--good)}
+.note.fail{border-left-color:var(--bad)}
+.note .lbl{display:block; font:600 10.5px/1 "IBM Plex Mono",monospace;
+  letter-spacing:.11em; margin-bottom:7px; color:var(--ink-3)}
+.note.win .lbl{color:var(--good)}
+.note.fail .lbl{color:var(--bad)}
+
+ol.qa{margin:0; padding:0; list-style:none;
+  display:flex; flex-direction:column; gap:20px}
+ol.qa > li{padding-left:0}
+.q{font:600 13px/1.4 "IBM Plex Sans",sans-serif; color:var(--accent); margin:0 0 7px}
+.q .tag{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.06em;
+  color:var(--ink-3); margin-right:8px}
+
+pre.box{
+  font:500 12px/1.65 "IBM Plex Mono",monospace; background:var(--card);
+  border:1px solid var(--rule); border-left:2px solid var(--accent);
+  padding:13px 15px; margin:0 0 18px; overflow-x:auto; color:var(--ink-2);
+}
+pre.box b{color:var(--ink); font-weight:600}
+
+.verdict{border:1px solid var(--rule-2); background:var(--card);
+  padding:20px 22px; margin:14px 0 0; box-shadow:var(--shadow)}
+.verdict h3{margin-top:0}
+.verdict p:last-child{margin-bottom:0}
+
+footer{margin-top:46px; padding-top:20px; border-top:1px solid var(--rule);
+  font-size:13px; color:var(--ink-3)}
+footer p{max-width:none}
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Macro Economic Reporting &middot; Weekly retrospective &middot; 28 Sep &ndash; 2 Oct 2026</p>
+  <h1>Four from four, on a thinner board</h1>
+  <p class="dek">Every pair reached target and the board barely sorted the
+  currencies at all. The week was won on one AUD read expressed three times;
+  the one pair that was not an AUD expression closed at <strong>+6.7
+  pips</strong>.</p>
+
+  <div class="score">
+    <div class="tile"><span class="k">Biases favoured</span><span class="v good">4 / 4</span><span class="s">each reached 0.75 ATR</span></div>
+    <div class="tile"><span class="k">Pair-days</span><span class="v good">9 / 20</span><span class="s">at target</span></div>
+    <div class="tile"><span class="k">Directional</span><span class="v good">+150.2</span><span class="s">pips, summed</span></div>
+    <div class="tile"><span class="k">Board rho</span><span class="v">+0.26</span><span class="s">final</span></div>
+    <div class="tile"><span class="k">Base rho</span><span class="v">+0.31</span><span class="s">down from +0.48</span></div>
+    <div class="tile"><span class="k">Findings</span><span class="v">4</span><span class="s">all DISPLAY, not value</span></div>
+  </div>
+
+  <div class="note win">
+    <span class="lbl">THE VERDICT, BOTH HALVES</span>
+    <strong>The set did its job and the board did not.</strong> Four of four
+    pairs travelled at least 0.75 of a normal day in the called direction, three
+    of them on multiple sessions. Underneath it, EUR was ranked <strong>second
+    at +6.00</strong> and finished <strong>dead last</strong> on realised
+    strength.
+    <br><br>
+    <strong>Three of four pairs are short AUD.</strong> AUD fell, and that single
+    read carried the week. The method has still not been tested on a week where
+    its concentrated leg went the wrong way &mdash; 14&ndash;18 Sep was that
+    test, and it went 0-for-3.
+  </div>
+</header>
+
+<section>
+  <h2>1 &mdash; The report build</h2>
+
+  <div class="qa">
+    <p class="q">1a. What went well?</p>
+    <p><strong>R-46 ran first and stopped the build twice, correctly both
+    times</strong> &mdash; six rows from the prior week had not been loaded. That
+    is the checklist doing what it was built for after F-132.</p>
+    <p><strong>LD-146 and LD-147 both shipped inside the week they were asked
+    for</strong>, with tests, and neither broke anything downstream. R-44 went
+    <span class="mono">31 &rarr; 45</span> cases.</p>
+    <p><strong>The AUD employment split was load-bearing for the first time.</strong>
+    <span class="mono">39.5K (FT &minus;6.3K, PT +45.8K)</span> graded BAD on the
+    full-time leg per LD-57, and AUD did finish weak. One observation, not a
+    proof &mdash; but it is the first live week where the F-138 fix mattered.</p>
+  </div>
+
+  <div class="qa">
+    <p class="q">1b. What problems did we see and resolve?</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Finding</th><th>What it was</th></tr></thead>
+      <tbody>
+        <tr><td><strong>F-140</strong></td><td><strong>R-46 step 9 was reading
+          LAST WEEK&rsquo;S PAGE.</strong> Hardcoded
+          <span class="mono">2026-09-20_weekly.html</span>. It passed on V1 by
+          coincidence, then failed against a <em>correct</em> page once values
+          were refreshed. <strong>A guard that names the wrong file does not
+          weaken to a no-op &mdash; it accuses correct work.</strong></td></tr>
+        <tr><td><strong>The rate row printed a dash</strong></td><td>The engine
+          scored the RBA <span class="mono">&minus;1</span> while the page showed
+          <span class="mono">&mdash;</span> in <em>both</em> the Threshold and
+          Score columns. Three separate causes, all live on V3.</td></tr>
+        <tr><td><strong><span class="mono">raw[-3:]</span> read &ldquo;ION&rdquo;</strong></td>
+          <td>The collision table took the last three characters of the event
+          name as its reference month, so <em>Interest Rate Dec<strong>ision</strong></em>
+          printed <span class="mono">ION</span> &mdash; on the one row LD-146
+          exists to explain.</td></tr>
+        <tr><td><strong>Wrong rule name, correct score</strong></td><td>The
+          collision label was a two-way if/else that could only say RULE 1 or
+          RULE 2, so rate precedence rendered as <em>&ldquo;same month,
+          shared&rdquo;</em> when the decision had taken the day outright.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note">
+      <span class="lbl">THE THROUGH-LINE</span>
+      <strong>All four are DISPLAY defects on CORRECT data.</strong> The model
+      knew the right answer every time and the page said something else. That is
+      a new failure class here &mdash; the previous twelve findings were mostly
+      wrong <em>values</em> &mdash; and it is harder to catch because
+      <strong>no value check fires on it</strong>.
+    </div>
+  </div>
+
+  <div class="qa">
+    <p class="q">1c. What can we improve?</p>
+    <p><strong>1. Rate rows keep going invisible to the display layer.</strong>
+    Three findings in two weeks &mdash; <span class="mono">hot()</span> in F-135,
+    precedence in LD-146, the threshold column this week &mdash; one cause:
+    <strong>rate rows live in <span class="mono">rate_model</span> /
+    <span class="mono">week_ahead</span> while nearly every renderer resolves
+    through <span class="mono">score_model</span>.</strong> A row-level lookup
+    that knows both would kill the class instead of the instances.</p>
+
+    <p><strong>2. <span class="mono">rate_model</span> is hand-written and
+    nothing checks it against TE.</strong> The RBA hiked to 4.60% on 29 Sep; the
+    cell still reads 4.35%. R-46 step 6 verifies the <em>page</em> matches
+    <span class="mono">rate_model</span> &mdash; never that
+    <span class="mono">rate_model</span> matches the world. <strong>All eight
+    rates could drift and every guard would stay green.</strong> R-47 is the fix.</p>
+
+    <p><strong>3. Two R-45 slugs point at the wrong series.</strong>
+    <span class="mono">CB Consumer Confidence</span> &rarr; University of
+    Michigan (a different survey); <span class="mono">NZD Card Spending YoY</span>
+    &rarr; levels in NZD millions. Both report NO PAGE, and <strong>that is the
+    only reason neither has produced a bad value</strong> &mdash; had either
+    parsed, R-45 would have flagged our correct 89.4 as stale against
+    Michigan&rsquo;s 48.1.</p>
+
+    <p><strong>4. The &sect;4 terms column describes a retired model.</strong> It
+    prints <span class="mono">expected +0.50 + surprise +0.00</span>; LD-142
+    retired both in favour of <span class="mono">realised 0.2 &middot; level 0.4
+    &middot; path 0.4</span>. The scores are right and the working beside them is
+    a model we no longer run. <strong>A stale explanation on a correct number
+    cannot be caught by a value check.</strong></p>
+
+    <p><strong>5. The <span class="mono">pair_swap.LIVE</span> overlay must die
+    at the next build.</strong> Once <span class="mono">rate_model</span> holds
+    4.60%, the AUD entry has to go &mdash; an overlay that outlives its
+    discrepancy becomes a second source of truth (F-127&rsquo;s shape).</p>
+  </div>
+
+  <div class="qa">
+    <p class="q">1d. What do we continue?</p>
+    <p>Running <strong>R-46 first every Sunday</strong> &mdash; it has stopped a
+    bad build three weeks running. Writing the retrospective <strong>to the repo
+    before publishing</strong> (LD-138). <strong>Recording a withdrawal condition
+    with every new rule</strong>, so a rule that ranks nothing comes out instead
+    of accumulating. And <strong>doubting the check</strong> when it produces an
+    implausible finding &mdash; F-134 taught that; F-140 was the one-finding
+    version and I still doubted the page first.</p>
+  </div>
+</section>
+
+<section>
+  <h2>2 &mdash; The market analysis</h2>
+
+  <div class="qa">
+    <p class="q">2a. How did we decide on the pairs?</p>
+    <p>Four pairs, one tier-1 read per category and per strong currency (LD-126).</p>
+    <div class="scroll"><table>
+      <thead><tr><th>CCY</th><th class="num">BASE</th><th class="num">CAL</th><th class="num">FINAL</th></tr></thead>
+      <tbody>
+        <tr><td class="ccy">GBP</td><td class="num">+6.40</td><td class="num pos">+0.40</td><td class="num pos">+6.80</td></tr>
+        <tr><td class="ccy">EUR</td><td class="num">+6.00</td><td class="num zero">+0.00</td><td class="num pos">+6.00</td></tr>
+        <tr><td class="ccy">JPY</td><td class="num">+2.00</td><td class="num pos">+0.40</td><td class="num pos">+2.40</td></tr>
+        <tr><td class="ccy">CHF</td><td class="num">+2.10</td><td class="num pos">+0.10</td><td class="num pos">+2.20</td></tr>
+        <tr><td class="ccy">NZD</td><td class="num">+1.50</td><td class="num pos">+0.40</td><td class="num pos">+1.90</td></tr>
+        <tr><td class="ccy">USD</td><td class="num">+1.50</td><td class="num pos">+0.30</td><td class="num pos">+1.80</td></tr>
+        <tr><td class="ccy">CAD</td><td class="num">+0.50</td><td class="num pos">+0.20</td><td class="num pos">+0.70</td></tr>
+        <tr><td class="ccy">AUD</td><td class="num">+0.07</td><td class="num neg">&minus;0.20</td><td class="num neg">&minus;0.13</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>The concentration was disclosed, not discovered afterwards.</strong>
+    The page reported <strong>GBP &times;2, AUD &times;3</strong> leg overlap, and
+    the RBA warning named the risk before the week started.</p>
+  </div>
+
+  <div class="qa">
+    <p class="q">2b. Day by day &mdash; did the market favour the bias?</p>
+    <p>Target is <strong>0.75 &times; ATR(14)</strong>, ATR from sessions ending
+    <em>before</em> the week, measured from each session&rsquo;s own open
+    (LD-128/129).</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Pair</th><th class="num">ATR</th><th class="num">Target</th>
+        <th class="num">Mon 28</th><th class="num">Tue 29</th><th class="num">Wed 30</th>
+        <th class="num">Thu 1</th><th class="num">Fri 2</th><th>Week</th></tr></thead>
+      <tbody>
+        <tr><td><strong>GBPAUD</strong> LONG</td><td class="num">79</td><td class="num">59</td>
+          <td class="num">0.56&times;</td><td class="num pos">0.93&times;</td><td class="num pos">2.02&times;</td>
+          <td class="num">0.28&times;</td><td class="num">0.36&times;</td><td><strong>WIN</strong></td></tr>
+        <tr><td><strong>EURAUD</strong> LONG</td><td class="num">67</td><td class="num">50</td>
+          <td class="num">0.12&times;</td><td class="num pos">1.18&times;</td><td class="num pos">1.32&times;</td>
+          <td class="num">0.27&times;</td><td class="num">0.45&times;</td><td><strong>WIN</strong></td></tr>
+        <tr><td><strong>GBPUSD</strong> LONG</td><td class="num">64</td><td class="num">48</td>
+          <td class="num">0.73&times;</td><td class="num">0.01&times;</td><td class="num pos">1.27&times;</td>
+          <td class="num">0.10&times;</td><td class="num pos">0.97&times;</td><td><strong>WIN</strong></td></tr>
+        <tr><td><strong>AUDJPY</strong> SHORT</td><td class="num">83</td><td class="num">62</td>
+          <td class="num">0.43&times;</td><td class="num pos">0.98&times;</td><td class="num pos">1.17&times;</td>
+          <td class="num pos">0.77&times;</td><td class="num">0.47&times;</td><td><strong>WIN</strong></td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>4 of 4 pairs, 9 target-reaching sessions out of 20.</strong></p>
+
+    <p>Close-to-close, a different and less flattering question:</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Pair</th><th class="num">Week close</th><th class="num">MFE</th><th class="num">MAE</th></tr></thead>
+      <tbody>
+        <tr><td>GBPAUD</td><td class="num pos">+157.0</td><td class="num">+242.5</td><td class="num">&minus;40.7</td></tr>
+        <tr><td>EURAUD</td><td class="num neg">&minus;56.3</td><td class="num">+106.2</td><td class="num">&minus;93.3</td></tr>
+        <tr><td>GBPUSD</td><td class="num">+6.7</td><td class="num">+77.3</td><td class="num">&minus;53.0</td></tr>
+        <tr><td>AUDJPY</td><td class="num pos">+42.8</td><td class="num">+155.6</td><td class="num">&minus;63.2</td></tr>
+        <tr><td><strong>Sum</strong></td><td class="num pos"><strong>+150.2</strong></td><td></td><td></td></tr>
+      </tbody>
+    </table></div>
+    <div class="note">
+      <span class="lbl">EURAUD IS THIS WEEK&rsquo;S CASE FOR LD-128</span>
+      It reached <strong>1.32&times; on Wednesday</strong> &mdash; a third more
+      than a normal day in our direction &mdash; and still closed the week
+      <strong>&minus;56.3</strong>. The grid says the read was right and the week
+      gave it back. <strong>The close alone would say the read was wrong.</strong>
+    </div>
+
+    <p class="q">Why did it do that?</p>
+    <p><strong>Wednesday carried everything.</strong> All four pairs hit target on
+    30 Sep &mdash; their best session in every case but AUDJPY. That is <strong>AUD
+    Inflation at 4.1% against 3.5% prior</strong>, landing the morning after the
+    RBA hiked, and the market reading a central bank that had just tightened into
+    <em>accelerating</em> inflation as <strong>behind, not ahead</strong>.</p>
+
+    <p><strong>Thursday and Friday gave it back, and USD is why &mdash; but not in
+    the direction I first wrote.</strong></p>
+    <div class="scroll"><table>
+      <thead><tr><th>Session</th><th class="num">USD</th></tr></thead>
+      <tbody>
+        <tr><td>Thu 1 Oct</td><td class="num pos">+0.27%</td></tr>
+        <tr><td>Fri 2 Oct</td><td class="num neg">&minus;0.19%</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>USD ROSE on Thursday</strong>, against the ISM at 22:00 PHT, and
+    that is what broke GBPUSD LONG (0.10&times;, its worst session) while also
+    pressuring the AUD crosses through the dollar leg. Friday&rsquo;s NFP
+    (cons 100K vs 162K prior) reversed it and GBPUSD recovered to 0.97&times;
+    &mdash; just short of target, after the week&rsquo;s damage was done.</p>
+    <div class="note">
+      <span class="lbl">CORRECTED DURING THE BUILD</span>
+      The first draft said both days &ldquo;pulled USD&rdquo;. <strong>Only Friday
+      did.</strong> Thursday ran the other way, and a two-day story that gets one
+      day backwards is not an explanation.
+    </div>
+
+    <p><strong>The RBA hiked exactly as priced &mdash; 4.35% &rarr; 4.60% &mdash;
+    and AUD still fell.</strong> That is LD-90 working as written: a fully-priced
+    decision is not news. It is also the <strong>third consecutive week</strong>
+    where a priced hike was followed by the currency weakening (NZD 2 Sep, JPY
+    18 Sep, AUD 29 Sep).</p>
+  </div>
+
+  <div class="qa">
+    <p class="q">2c. How can we foresee better?</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Week</th><th class="num">rho (final)</th><th class="num">rho (base)</th></tr></thead>
+      <tbody>
+        <tr><td>31 Aug &ndash; 4 Sep</td><td class="num neg">&minus;0.40</td><td class="num">&mdash;</td></tr>
+        <tr><td>7 &ndash; 11 Sep</td><td class="num zero">+0.00</td><td class="num">&mdash;</td></tr>
+        <tr><td>14 &ndash; 18 Sep</td><td class="num">+0.02</td><td class="num">&mdash;</td></tr>
+        <tr><td>21 &ndash; 25 Sep</td><td class="num">+0.17</td><td class="num pos">+0.48</td></tr>
+        <tr><td><strong>28 Sep &ndash; 2 Oct</strong></td><td class="num"><strong>+0.26</strong></td><td class="num"><strong>+0.31</strong></td></tr>
+      </tbody>
+    </table></div>
+    <div class="note">
+      <span class="lbl">THE 21&ndash;25 SEP ROW IS THE CORRECTED ONE</span>
+      That retrospective was first graded on Yahoo bars and republished on OANDA
+      (F-137); the regrade moved base rho <span class="mono">+0.29 &rarr;
+      +0.48</span>. <strong>Quoting the superseded figure here would have made
+      this week look like an improvement on the base when it is the
+      opposite.</strong>
+    </div>
+    <p><strong>So the base FELL this week, +0.48 &rarr; +0.31</strong>, and it
+    still beats the final for the second week running. LD-144 cut the calibrator
+    to 0.2/day precisely because it was dragging the ranking down, and it is
+    <em>still</em> dragging &mdash; just less. <strong>The calibrator has never
+    once improved the ranking in five weeks.</strong></p>
+    <div class="note fail">
+      <span class="lbl">&#9888; NONE OF THIS IS STATISTICALLY MEANINGFUL</span>
+      With n=8, rho needs roughly <strong>&plusmn;0.71</strong> for p&lt;0.05.
+      <strong>Every reading in that table is indistinguishable from chance</strong>
+      &mdash; the 4 Sep retrospective said so first. Five weeks of consistent
+      direction is worth watching; it is not evidence, and treating +0.31 as
+      &ldquo;better than +0.26&rdquo; would be reading noise.
+    </div>
+
+    <p><strong>EUR is the single biggest ranking error.</strong> Ranked second at
+    +6.00, finished <strong>dead last</strong> at &minus;0.58%. Nothing in the
+    macro base saw it coming &mdash; worth a specific look before Sunday rather
+    than a general resolution to do better.</p>
+
+    <p><strong>LD-146 changed no pairing, and that is its withdrawal condition
+    speaking.</strong> The set with it and without it are <em>the same four
+    pairs</em>:</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Pair</th><th class="num">With LD-146</th><th class="num">Without</th></tr></thead>
+      <tbody>
+        <tr><td>GBPAUD</td><td class="num">+6.93</td><td class="num">+6.53</td></tr>
+        <tr><td>EURAUD</td><td class="num">+6.13</td><td class="num">+5.73</td></tr>
+        <tr><td>GBPUSD</td><td class="num">+5.00</td><td class="num">+5.00</td></tr>
+        <tr><td>AUDJPY</td><td class="num">+2.53</td><td class="num">+2.13</td></tr>
+      </tbody>
+    </table></div>
+    <p>The rule was <em>right about direction</em> &mdash; AUD was weak and the
+    hike did not rescue it. But <strong>it ranked nothing</strong>, and LD-113 and
+    LD-140 are both precedents for a rule withdrawn on exactly that.
+    <strong>One week is not a verdict</strong>; 12&ndash;16 Oct decides it, and the
+    condition is already recorded.</p>
+
+    <p><strong>LD-147&rsquo;s first outing was informative in a way I did not
+    expect.</strong> All four pairs carried negative swap, and the reason is
+    structural: the board ranks on macro strength, and this week the strong
+    currencies (GBP 3.75%, EUR 2.65%, JPY 1.25%) all carry <em>lower</em> policy
+    rates than the weak one (AUD 4.60%). <strong>A macro-divergence model will
+    systematically select carry-negative positions.</strong> Not a defect, not an
+    argument against the set &mdash; but a standing property of the method, and it
+    only became visible once the column existed.</p>
+  </div>
+
+  <div class="qa">
+    <p class="q">2d. What best practices do we continue?</p>
+    <p><strong>Grading on the day&rsquo;s range, not the close</strong> &mdash;
+    EURAUD is this week&rsquo;s proof. <strong>Disclosing leg overlap as
+    concentration</strong> rather than dressing it as diversification (F-128).
+    <strong>Naming the event risk before the week starts</strong> &mdash; the RBA
+    warning was on the page Sunday, so Tuesday was not a surprise. And
+    <strong>publishing the five-column grid</strong>, not a win/loss count:
+    AUDJPY hit on 3 of 5 days and GBPAUD on 2, which a weekly figure cannot tell
+    apart.</p>
+  </div>
+</section>
+
+<section>
+  <h2>What would change my mind</h2>
+  <div class="box">
+    <p><strong>On the calibrator:</strong> if 5&ndash;9 Oct shows the final
+    beating the base, LD-144&rsquo;s weighting is working and the trend reverses.
+    If the base wins a third time, the calibrator needs a harder look than a
+    weight change.</p>
+    <p><strong>On LD-146:</strong> if it changes a pairing by 16 Oct, it stays. If
+    it has still ranked nothing, it comes out &mdash; LD-113&rsquo;s precedent.</p>
+    <p><strong>On the set:</strong> four from four is a good week by the measure we
+    chose. It is also <strong>one AUD read expressed three times</strong>, and a
+    week where AUD had risen would have read very differently. <strong>The method
+    has still not been tested on a week where its concentrated leg went the wrong
+    way</strong> &mdash; 14&ndash;18 Sep was that test, and it went 0-for-3.</p>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Macro Economic Reporting</strong> &middot; weekly retrospective for
+  28 Sep &ndash; 2 Oct 2026 &middot; built 3 Oct 2026.
+  Bars: <span class="mono">OANDA</span> daily, read from TradingView at review
+  time (LD-5 as amended). Grading: 0.75 &times; ATR(14) from sessions ending
+  before the week, measured from each session&rsquo;s own open (LD-128/129).
+  <strong>Observations only &mdash; no entries, stops, targets or sizing
+  (LD-4).</strong></p>
+</footer>
+
+</div>

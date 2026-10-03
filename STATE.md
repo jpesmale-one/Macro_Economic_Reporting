@@ -5335,4 +5335,36 @@ WITHDRAWAL CONDITION: if by the 12-16 Oct retrospective no rate decision has
 changed a pairing, or the regime term is reading backwards against realised
 strength, it comes out. LD-113 and LD-140 are both precedents for a rule that
 ranked nothing.
+# 2026-10-03 - RETROSPECTIVE, 28 SEP - 2 OCT. 4 of 4 pairs reached target on
+#   the WEAKEST BOARD in five weeks. Both halves are true and they measure
+#   different things.
+#     Biases favoured  4/4      pair-days 9/20      directional +150.2 pips
+#     Board rho +0.26 (final)   Base rho +0.31 (DOWN from +0.48 corrected)
+#   THE WEEK WAS ONE AUD READ EXPRESSED THREE TIMES. GBPUSD, the only pair
+#   that is not an AUD expression, closed at +6.7 pips after hitting target
+#   twice. EUR ranked SECOND at +6.00 and finished DEAD LAST on realised
+#   strength - the single biggest ranking error.
+#   LD-146 CHANGED NO PAIRING. Same four pairs with it and without it; AUD
+#   moved +0.27 -> -0.13, widening every gap and reordering nothing. Right
+#   about direction, ranked nothing. 12-16 Oct decides it (LD-113/LD-140
+#   precedent).
+#   LD-147 FOUND A STANDING PROPERTY: all four pairs carried NEGATIVE swap,
+#   structurally - the board ranks on macro strength and the strong
+#   currencies carry LOWER policy rates than the weak one. A macro-divergence
+#   model will systematically select carry-negative positions. Only visible
+#   once the column existed.
+#   FOUR FINDINGS, ALL DISPLAY DEFECTS ON CORRECT DATA - a new failure class
+#   here, and harder to catch because no value check fires: F-140 (R-46 step 9
+#   read LAST WEEK'S page), the rate row printing a dash in both columns,
+#   raw[-3:] rendering "ION" for "Interest Rate Decision", and a two-way rule
+#   label calling rate precedence "same month, shared".
+#   CARRIED FORWARD: R-47 (nothing checks rate_model against TE - AUD still
+#   reads 4.35% after the 29 Sep hike to 4.60%); two R-45 slugs point at the
+#   WRONG SERIES (CB Consumer Confidence -> Michigan, NZD Card Spending ->
+#   NZD millions) and only fail safe because they do not parse; the SS4 terms
+#   column still prints "expected + surprise", retired by LD-142; and
+#   pair_swap.LIVE must be deleted once rate_model holds 4.60%.
+#   Retro: reports/2026/Q4/2026-10-03_retro.md/.html
+#   Artifact: https://claude.ai/artifact/WmE2JYF16PjYJj47gtomo8 (V1)
+
 
