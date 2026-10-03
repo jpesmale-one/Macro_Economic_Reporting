@@ -5235,6 +5235,65 @@ F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT TO
 #   and R-7 caught its absence immediately. FIX: assemble editions from a FILE,
 #   never from a heredoc containing markdown.
 
+### LD-149 - THE WEEK VERDICT IS THE RATIO OF SUMMED EXCURSIONS (2026-10-03)
+
+Jeff: "Our current criteria LD-128 'a pair wins if any session reaches target
+on the favourable side' is too forgiving. If we add all days high vs all days
+low then we can really tell if the pair has won or loss that week."
+
+    WEEK_RATIO = sum(favourable excursions) / sum(adverse excursions)
+
+    WIN        ratio >= 1.40
+    CONTESTED  0.70 - 1.40
+    LOSS       ratio <  0.70
+
+*** HE IS RIGHT AND THE NUMBER IS WORSE THAN THE HUNCH. Over 3192 pair-weeks -
+28 pairs, a year of OANDA daily bars, every week graded in BOTH directions -
+LD-128 fires on 69% OF RANDOM PAIR-WEEKS. A verdict that calls seven
+coin-flips in ten a WIN measures that markets move, not that the bias was
+right.
+
+*** THE BANDS ARE MEASURED, AND THE FIRST SET WAS NOT. I proposed 0.80/1.20 by
+eye; Jeff asked "how did you come up with this anyway?" and the honest answer
+was that I had not derived them. The measured distribution is monotonic over
+eleven bands, 1% positive below 0.60 and 99% above 1.60, and it moved BOTH
+boundaries:
+
+    0.70-0.80   17% closed positive   -> belongs with LOSS, so 0.80 was too high
+    1.20-1.30   78% closed positive   -> 1.40 is 97%, so 1.20 was too generous
+
+THE ASYMMETRY IS REAL (0.70 down, 1.40 up) and is not rounded for tidiness.
+
+OUT-OF-SAMPLE: fitted on the first half of the year, scored on the second.
+WIN 97.1% positive, LOSS 2.6%, CONTESTED 48.8% - matching in-sample within a
+point. My earlier 97% was ONE PAIR and IN-SAMPLE; this is the check that
+figure could not make.
+
+CONTESTED IS A RESULT, NOT AN ABSTENTION. At 48.8% it honestly reports "this
+week carried no information", which beats a WIN label wrong one time in five.
+
+LD-128 IS DEMOTED, NOT REPEALED. "Did any session hand us a complete day" is
+still published beside the verdict - a pair can post a 1.3x ratio from five
+mediocre sessions without ever offering a clean one.
+
+FIRST APPLICATION REVERSED THE WEEK'S HEADLINE. 28 Sep - 2 Oct was published
+as 4 of 4; under LD-149 it is 1 WIN, 3 CONTESTED, and the new rule agrees with
+the CLOSE on all four pairs while the old one disagreed on three:
+
+    AUDJPY SHORT  1.54  WIN          GBPUSD LONG  1.16  CONTESTED
+    GBPAUD LONG   1.24  CONTESTED    EURAUD LONG  0.73  CONTESTED (closed -56.3)
+
+REPRODUCIBLE, NOT TAKEN ON TRUST: the 28-pair sample is committed at
+data/raw/bars/calibration/ and pipelines/calibrate_bands.py re-runs the whole
+measurement. pipelines/pull_bars.py refreshes the sample over CDP (exportData
+is disabled in the desktop build, so it reads the series store directly).
+
+WITHDRAWAL CONDITION: if by the 31 Oct retrospective CONTESTED is catching
+nearly everything or nearly nothing, the boundaries move. One year is one
+regime, weeks overlap across pairs sharing a leg, and the bands are fitted to
+the CLOSE - so this validates "does the ratio describe the week", never "does
+the board predict the ratio".
+
 ### LD-148 - THE ADVERSE SIDE IS GRADED AGAINST THE SAME TARGET (2026-10-03)
 
 Jeff: "if our target is 59 pips then we should know if it reaches 59 on the

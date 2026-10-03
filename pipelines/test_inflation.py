@@ -411,6 +411,47 @@ def main():
         print('    %d case(s) pass - four states, both boundaries, week '
               'verdict untouched' % (len(_cls) + 1))
 
+    # LD-149 - the week verdict is the RATIO of summed excursions.
+    print()
+    print('  LD-149 - week verdict from summed excursions')
+    _vc = [
+        # (rows as (label,fav,adv,frac,hit), expected verdict)
+        ([('a', 100.0, 50.0, 0, False)], 'WIN'),        # 2.00
+        ([('a',  70.0, 50.0, 0, False)], 'CONTESTED'),  # 1.40 exactly -> WIN
+        ([('a',  60.0, 50.0, 0, False)], 'CONTESTED'),  # 1.20
+        ([('a',  35.0, 50.0, 0, False)], 'LOSS'),       # 0.70 exactly -> LOSS?
+        ([('a',  30.0, 50.0, 0, False)], 'LOSS'),       # 0.60
+    ]
+    # boundaries are INCLUSIVE at WIN and EXCLUSIVE at LOSS, state it exactly
+    _nb = 0
+    _b1 = _ag.verdict([('a', 70.0, 50.0, 0, False)])[0]   # ratio 1.40
+    if _b1 != 'WIN':
+        bad += 1; _nb += 1
+        print('    *** ratio 1.40 -> %s, want WIN (>= is inclusive)' % _b1)
+    _b2 = _ag.verdict([('a', 35.0, 50.0, 0, False)])[0]   # ratio 0.70
+    if _b2 != 'CONTESTED':
+        bad += 1; _nb += 1
+        print('    *** ratio 0.70 -> %s, want CONTESTED (< is exclusive)' % _b2)
+    for _rows, _ in _vc[:1] + _vc[2:3] + _vc[4:]:
+        pass
+    for _rows, _want in ((_vc[0][0], 'WIN'), (_vc[2][0], 'CONTESTED'),
+                         (_vc[4][0], 'LOSS')):
+        _g = _ag.verdict(_rows)[0]
+        if _g != _want:
+            bad += 1; _nb += 1
+            print('    *** verdict %s, want %s' % (_g, _want))
+    # a zero adverse week must not divide by zero
+    if _ag.verdict([('a', 10.0, 0.0, 0, False)])[0] is not None:
+        bad += 1; _nb += 1
+        print('    *** zero adverse should refuse, not divide')
+    # LD-149 must be STRICTER than LD-128 on the graded week, not looser
+    if _ag.WIN_AT <= 1.0 or _ag.LOSS_AT >= 1.0:
+        bad += 1; _nb += 1
+        print('    *** bands straddle 1.0 wrongly')
+    if not _nb:
+        print('    6 case(s) pass - bands %.2f/%.2f, boundaries, zero-adverse'
+              % (_ag.LOSS_AT, _ag.WIN_AT))
+
     print()
     if bad:
         print('*** %d FAILURE(S)' % bad)

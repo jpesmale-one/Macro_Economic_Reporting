@@ -1,4 +1,4 @@
-<title>Four From Four, Thinner Board</title>
+<title>One Win, Three Contested</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -147,14 +147,14 @@ footer p{max-width:none}
 
 <header>
   <p class="eyebrow">Macro Economic Reporting &middot; Weekly retrospective &middot; 28 Sep &ndash; 2 Oct 2026</p>
-  <h1>Four from four, on a thinner board</h1>
-  <p class="dek">Every pair reached target and the board barely sorted the
-  currencies at all. The week was won on one AUD read expressed three times;
+  <h1>One win, three contested</h1>
+  <p class="dek">Every pair reached target under the old rule and <strong>one
+  under the new one</strong>. The board barely sorted the currencies at all. The week was won on one AUD read expressed three times;
   the one pair that was not an AUD expression closed at <strong>+6.7
   pips</strong>.</p>
 
   <div class="score">
-    <div class="tile"><span class="k">Biases favoured</span><span class="v good">4 / 4</span><span class="s">each reached 0.75 ATR</span></div>
+    <div class="tile"><span class="k">LD-149 verdict</span><span class="v">1 WIN</span><span class="s">3 contested, 0 loss</span></div>
     <div class="tile"><span class="k">Pair-days</span><span class="v good">9 / 20</span><span class="s">at target</span></div>
     <div class="tile"><span class="k">Directional</span><span class="v good">+150.2</span><span class="s">pips, summed</span></div>
     <div class="tile"><span class="k">Board rho</span><span class="v">+0.26</span><span class="s">final</span></div>
@@ -164,9 +164,13 @@ footer p{max-width:none}
 
   <div class="note win">
     <span class="lbl">THE VERDICT, BOTH HALVES</span>
-    <strong>The set did its job and the board did not.</strong> Four of four
-    pairs travelled at least 0.75 of a normal day in the called direction, three
-    of them on multiple sessions. Underneath it, EUR was ranked <strong>second
+    <strong>Graded honestly, this was a thin week.</strong> Every pair offered at
+    least one complete day in the called direction &mdash; but summed across all
+    five sessions, only <strong>AUDJPY</strong> produced materially more
+    favourable travel than adverse. <strong>LD-149: 1 WIN, 3 CONTESTED, 0
+    LOSS.</strong>
+    <br><br>
+    Underneath it the board barely ranked at all: EUR was placed <strong>second
     at +6.00</strong> and finished <strong>dead last</strong> on realised
     strength.
     <br><br>
@@ -328,7 +332,74 @@ footer p{max-width:none}
           <td class="num pos">0.77&times;</td><td class="num">0.47&times;</td><td><strong>WIN</strong></td></tr>
       </tbody>
     </table></div>
-    <p><strong>4 of 4 pairs, 9 target-reaching sessions out of 20.</strong></p>
+    <p><strong>4 of 4 pairs, 9 target-reaching sessions out of 20 &mdash;
+    under the OLD rule.</strong></p>
+
+    <div class="note fail">
+      <span class="lbl">LD-149 &mdash; THE VERDICT IS NOW A RATIO, AND IT IS STRICTER</span>
+      <strong>Jeff, 3 Oct:</strong> <em>&ldquo;Our current criteria LD-128 &lsquo;a
+      pair wins if any session reaches target on the favourable side&rsquo; is too
+      forgiving. If we add all days high vs all days low then we can really tell if
+      the pair has won or loss that week.&rdquo;</em>
+      <br><br>
+      <strong>He is right, and the number is worse than the hunch.</strong> Measured
+      over <strong>3,192 pair-weeks</strong> &mdash; 28 pairs, a year of OANDA daily
+      bars, every week graded in both directions &mdash; <strong>LD-128 fires on 69%
+      of RANDOM pair-weeks.</strong> A verdict that calls seven coin-flips in ten a
+      WIN is measuring that markets move, not that the bias was right.
+    </div>
+
+    <p class="mono" style="text-align:center">WEEK_RATIO = &Sigma;(favourable) / &Sigma;(adverse)</p>
+
+    <div class="scroll"><table>
+      <thead><tr><th>Band</th><th>Verdict</th><th class="num">OOS % closing positive</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">&ge; 1.40</td><td><strong>WIN</strong></td><td class="num pos">97.1%</td></tr>
+        <tr><td class="mono">0.70 &ndash; 1.40</td><td><strong>CONTESTED</strong></td><td class="num">48.8%</td></tr>
+        <tr><td class="mono">&lt; 0.70</td><td><strong>LOSS</strong></td><td class="num neg">2.6%</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="note">
+      <span class="lbl">THE BANDS ARE MEASURED, NOT CHOSEN</span>
+      I first proposed 0.80/1.20 by eye. Jeff asked how I arrived at them and the
+      honest answer was that I had not &mdash; they were round numbers I liked.
+      <strong>The distribution across all 3,192 weeks is monotonic over eleven
+      bands</strong>: 1% closed positive below 0.60, 99% above 1.60. It says
+      <strong>0.80 is too high</strong> on the downside (0.70&ndash;0.80 is 17%
+      positive, which belongs with LOSS) and <strong>1.20 too generous</strong> on
+      the upside (78% positive, against 97% at 1.40).
+      <br><br>
+      <strong>Fitted on the first half of the year, scored on the second.</strong>
+      Out-of-sample matches in-sample within a point on every variant tested &mdash;
+      the check my first one-pair, in-sample figure could not make.
+    </div>
+
+    <div class="scroll"><table>
+      <thead><tr><th>Pair</th><th class="num">&Sigma; fav</th><th class="num">&Sigma; adv</th>
+        <th class="num">Ratio</th><th>LD-149</th><th>LD-128</th></tr></thead>
+      <tbody>
+        <tr><td><strong>AUDJPY</strong> SHORT</td><td class="num">317.8</td><td class="num">206.9</td>
+          <td class="num pos"><strong>1.54</strong></td><td class="pos"><strong>WIN</strong></td><td>WIN</td></tr>
+        <tr><td><strong>GBPAUD</strong> LONG</td><td class="num">326.3</td><td class="num">262.1</td>
+          <td class="num">1.24</td><td><strong>CONTESTED</strong></td><td>WIN</td></tr>
+        <tr><td><strong>GBPUSD</strong> LONG</td><td class="num">197.1</td><td class="num">170.4</td>
+          <td class="num">1.16</td><td><strong>CONTESTED</strong></td><td>WIN</td></tr>
+        <tr><td><strong>EURAUD</strong> LONG</td><td class="num">221.2</td><td class="num">303.3</td>
+          <td class="num neg">0.73</td><td><strong>CONTESTED</strong></td><td>WIN</td></tr>
+      </tbody>
+    </table></div>
+
+    <p><strong>1 WIN, 3 CONTESTED &mdash; not 4 of 4.</strong> That is the honest
+    reading of a week where 8 of 20 sessions were BEATEN. The old rule and the new
+    one <strong>disagree on three of four pairs</strong>, and the new one agrees
+    with the close on all four. <strong>EURAUD at 0.73 sits just above the LOSS
+    line</strong> &mdash; it closed &minus;56.3, and the old rule called it a WIN.</p>
+
+    <p><strong>LD-128 is demoted, not repealed.</strong> <em>&ldquo;Did any session
+    hand us a complete day&rdquo;</em> is still worth knowing and still published: a
+    pair can post a 1.3&times; ratio from five mediocre sessions without ever
+    offering a clean one, and those are different weeks.</p>
 
     <div class="note">
       <span class="lbl">LD-148 &mdash; THE ADVERSE SIDE, SAME TARGET</span>
@@ -552,11 +623,19 @@ footer p{max-width:none}
     weight change.</p>
     <p><strong>On LD-146:</strong> if it changes a pairing by 16 Oct, it stays. If
     it has still ranked nothing, it comes out &mdash; LD-113&rsquo;s precedent.</p>
-    <p><strong>On the set:</strong> four from four is a good week by the measure we
-    chose. It is also <strong>one AUD read expressed three times</strong>, and a
-    week where AUD had risen would have read very differently. <strong>The method
-    has still not been tested on a week where its concentrated leg went the wrong
-    way</strong> &mdash; 14&ndash;18 Sep was that test, and it went 0-for-3.</p>
+    <p><strong>On the set:</strong> under the rule we had on Saturday morning this
+    was four from four. Under the rule Jeff asked for the same afternoon it is
+    <strong>one win and three coin-flips</strong> &mdash; and the second reading is
+    the one that agrees with the closes. It is also <strong>one AUD read expressed
+    three times</strong>, and a week where AUD had risen would have read very
+    differently. <strong>The method has still not been tested on a week where its
+    concentrated leg went the wrong way</strong> &mdash; 14&ndash;18 Sep was that
+    test, and it went 0-for-3.</p>
+    <p><strong>On LD-149 itself:</strong> the bands are fitted to one year and one
+    regime, weeks overlap across pairs sharing a leg, and they predict the
+    <em>close</em> by construction. <strong>If by the 31 Oct retrospective
+    CONTESTED is catching nearly everything or nearly nothing, the boundaries
+    move.</strong></p>
   </div>
 </section>
 

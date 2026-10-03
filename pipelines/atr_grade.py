@@ -155,6 +155,99 @@ def grade_day(bias, day_open, high, low, factor, atr_pips, target=TARGET):
 # THE WEEK VERDICT IS UNCHANGED (LD-128): a pair wins if any session reaches
 # target on the favourable side. LD-148 adds a SECOND, independent reading -
 # how hard the week fought back - and never overrides the first.
+# LD-149 - THE WEEK VERDICT IS THE RATIO OF SUMMED EXCURSIONS.
+#
+# Jeff, 2026-10-03: "Our current criteria LD-128 'a pair wins if any session
+# reaches target on the favourable side' is too forgiving. If we add all days
+# high vs all days low then we can really tell if the pair has won or loss
+# that week."
+#
+# HE IS RIGHT, AND THE NUMBER IS WORSE THAN THE HUNCH. Measured over 3192
+# pair-weeks - 28 pairs, a year of OANDA daily bars, every week graded in BOTH
+# directions - LD-128's "any session reaches target" fires on 69% OF RANDOM
+# PAIR-WEEKS. A verdict that calls seven coin-flips in ten a WIN is measuring
+# that markets move, not that the bias was right.
+#
+#     WEEK_RATIO = sum(favourable excursions) / sum(adverse excursions)
+#
+# Both sums are over the five sessions, each measured from THAT session's own
+# open (LD-128's measurement rule is untouched - only the VERDICT changes).
+#
+# *** THE RATIO, NOT THE NET. Net pips are not comparable across pairs: a
+# GBPAUD week (ATR ~79) and a GBPUSD week (ATR ~64) producing the same net
+# are not the same result. The ratio is unitless, and its pooled median over
+# 3192 weeks is EXACTLY 1.000 - which is the sanity check that grading both
+# directions makes the null symmetric by construction.
+#
+# THE BANDS ARE MEASURED, NOT CHOSEN. I first proposed 0.80/1.20 by eye and
+# Jeff asked how I arrived at them. I had not - they were round numbers. The
+# distribution says otherwise:
+#
+#     RATIO BAND      N     % CLOSED POSITIVE    MEDIAN CLOSE
+#     < 0.60         738           1%              -96.5
+#     0.60 - 0.70    235           9%              -47.7
+#     0.70 - 0.80    223          17%              -30.1     <- belongs with LOSS
+#     0.80 - 0.90    204          27%              -23.8
+#     0.90 - 1.00    196          46%               -5.5
+#     1.00 - 1.10    179          53%               +4.9
+#     1.10 - 1.20    142          68%              +18.7
+#     1.20 - 1.30    140          78%              +24.9     <- 1.20 is too generous
+#     1.30 - 1.40    125          86%              +31.6
+#     1.40 - 1.60    219          89%              +43.7
+#     > 1.60         791          99%              +90.1
+#
+# Monotonic across all eleven bands, no reversals.
+#
+# OUT-OF-SAMPLE: fitted on the first half of the year, scored on the second.
+# WIN 97.1% positive, LOSS 2.6% positive, CONTESTED 48.8% - matching in-sample
+# within a point. The thresholds hold on data they never saw, which is the
+# check my first (in-sample, one-pair) 97% figure could not make.
+#
+# THE ASYMMETRY IS REAL AND IS NOT ROUNDED AWAY. 0.70 on the downside, 1.40 on
+# the upside. Tidying them to 0.80/1.20 costs accuracy in both directions.
+#
+# *** CONTESTED IS A RESULT, NOT A FAILURE TO DECIDE. At 48.8% positive it is
+# an honest "this week carried no information", which beats a WIN label that is
+# wrong one time in five.
+#
+# LD-128 IS NOT REPEALED - IT IS DEMOTED. "Did any session hand us a complete
+# day" is still worth knowing and still published beside the verdict: a pair
+# can post a 1.3x ratio from five mediocre sessions without ever offering a
+# clean one, and those are different weeks.
+#
+# WITHDRAWAL CONDITION, recorded with the rule: if by the 31 Oct retrospective
+# the CONTESTED band is catching nearly everything or nearly nothing, the
+# boundaries move. One year is one regime (2025-26), weeks overlap across
+# pairs sharing a leg, and the bands are fitted to the CLOSE - so this
+# validates "does the ratio describe the week", never "does the board predict
+# the ratio".
+LOSS_AT, WIN_AT = 0.70, 1.40
+
+# the measured sample behind the bands, so the page can cite it
+CALIB = {'pair_weeks': 3192, 'pairs': 28, 'window': '2025-08-28..2026-09-28',
+         'oos_win_pos': 97.1, 'oos_loss_pos': 2.6, 'oos_contested_pos': 48.8,
+         'ld128_fires_on_random': 69}
+
+
+def week_ratio(rows):
+    """sum(favourable) / sum(adverse) over grade_week's rows, or None."""
+    sf = sum(r[1] for r in rows)
+    sa = sum(r[2] for r in rows)
+    return (sf / sa) if sa > 0 else None
+
+
+def verdict(rows):
+    """('WIN'|'CONTESTED'|'LOSS'|None, ratio) for a week (LD-149)."""
+    r = week_ratio(rows)
+    if r is None:
+        return None, None
+    if r >= WIN_AT:
+        return 'WIN', r
+    if r < LOSS_AT:
+        return 'LOSS', r
+    return 'CONTESTED', r
+
+
 def classify(fav, adv, atr_pips, target=TARGET):
     """'CLEAN' | 'EARNED' | 'BEATEN' | 'DRIFT' for one session."""
     if not atr_pips:
