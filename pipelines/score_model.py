@@ -167,7 +167,7 @@ ROWS = [
  ("Employment","GB","Unemployment Rate","4.9%","4.9%","Jul/26","<Prev","NEUTRAL"),
  ("Employment","JP","Unemployment Rate","2.5%","2.5%","Aug/26","<Prev","NEUTRAL"),
  ("Employment","AU","ANZ-Indeed Job Ads MoM","2.5%","1.9%","Aug/26",">0.5%","GOOD"),
- ("Employment","AU","Employment Change","39.5K (FT -6.3K, PT +45.8K)","-15.9K","Aug/26","hdl BAD; FT NEUTRAL (LD-57); PT GOOD","BAD"),
+ ("Employment","AU","Employment Change","39.5K (FT -6.3K, PT +45.8K)","-15.9K","Aug/26","LD-151 three legs","NEUTRAL"),
  ("Employment","AU","Unemployment Rate","4.6%","4.5%","Aug/26","<Prev","BAD"),
  ("Employment","NZ","Unemployment Rate","5.6%","5.4%","Jun/26 (Q)","<Prev","BAD"),
  ("Employment","CA","Unemployment Rate","6.4%","6.4%","Aug/26","<Prev","NEUTRAL"),
@@ -183,7 +183,7 @@ ROWS = [
  # holds an actual for it. The threshold below names LD-57 as the
  # governing rule and records that the split is unsourced - it does
  # not silently substitute a different rule.
- ("Employment","CA","Employment Change","-41.7K","75.1K","Aug/26","hdl<0 BAD (LD-57); FT/PT split unsourced","BAD"),
+ ("Employment","CA","Employment Change","-41.7K (FT -35.9K, PT -5.8K)","75.1K","Aug/26","LD-151 three legs","BAD"),
  ("Employment","CH","Non Farm Payrolls","5.698M","5.537M","Q2/26",">Prev","GOOD"),
  ("Employment","CH","Unemployment Rate","3%","3%","Aug/26","<Prev","NEUTRAL"),
  # ---------------- INFLATION (w=3) ----------------
@@ -237,6 +237,74 @@ LABEL = {"US":"USD","EA":"EUR","GB":"GBP","JP":"JPY","AU":"AUD","NZ":"NZD","CA":
 #
 # FULL TIME STILL CARRIES MORE WEIGHT than the headline or part-time legs -
 # that is unchanged from the source and from LD-56.
+# LD-151 - EMPLOYMENT CHANGE IS GRADED ON ALL THREE LEGS (Jeff, 2026-10-04).
+#
+#   1) Actual > 0 and FT > 0 and PT > 0   -> GOOD
+#   2) Actual > 0 and FT < 0 and PT > 0   -> NEUTRAL
+#   3) Actual < 0 and FT > 0 and PT < 0   -> NEUTRAL
+#   4) Actual < 0 and FT < 0 and PT < 0   -> BAD
+#
+# *** THIS REPLACES full_time_grade's "vs PREVIOUS" TEST. LD-57 asked whether
+# full time BEAT ITS OWN LAST MONTH; LD-151 asks what the three legs SAY
+# TOGETHER, against zero. The prior month no longer enters it. That removes
+# the defect LD-58 fixed for Claimant Count and left standing here: a change
+# series read against its own prior change calls deceleration a decline.
+#
+# WHY THE SIGNS AND NOT THE SIZE. Jeff's AUD correction, 2026-09-26: "its
+# because the Full time employee actually fell from 15K to -6.3K. This shows
+# why we are giving higher weight to Full Time rather than just looking at the
+# Employment Change". A +39.5K headline that is ENTIRELY part time is not the
+# same event as +39.5K of full time work, and only the signs separate them.
+#
+# TWO CASES JEFF DID NOT LIST ARE POSSIBLE, and Actual = FT + PT decides which:
+#
+#       ACTUAL  FT  PT    status
+#         +     +   +     rule 1, GOOD
+#         +     +   -     NOT LISTED - possible (FT +50, PT -10)
+#         +     -   +     rule 2, NEUTRAL
+#         +     -   -     IMPOSSIBLE, two negatives cannot sum positive
+#         -     +   +     IMPOSSIBLE, two positives cannot sum negative
+#         -     +   -     rule 3, NEUTRAL
+#         -     -   +     NOT LISTED - possible (FT -50, PT +10)
+#         -     -   -     rule 4, BAD
+#
+# JEFF'S RULING on the two: FOLLOW THE FULL TIME LEG. (+,+,-) is GOOD and
+# (-,-,+) is BAD. That reads his four rules as "full time decides, part time
+# can only soften it" - rules 2 and 3 are exactly the softening cases, and
+# both of the unlisted ones have full time and the headline AGREEING.
+#
+# SO THE RULE IS: THE HEADLINE AND FULL TIME TOGETHER SET THE VERDICT, and a
+# part-time leg is only consulted when it is the thing dragging the headline
+# the other way.
+#
+#   headline and full time AGREE   -> that direction (GOOD if up, BAD if down)
+#   headline and full time DISAGREE-> NEUTRAL
+#
+# Rules 2 and 3 are exactly the disagreement cases; rules 1 and 4 and both
+# unlisted cases are the agreement cases. *** AN EARLIER DRAFT COLLAPSED THIS
+# TO "full time decides, part time softens", which returned NEUTRAL for the
+# two unlisted cases - the opposite of the ruling. The test below pins all six.
+#
+# APPLIES TO AUD AND CAD ONLY - the two currencies whose Employment Change TE
+# publishes with a full-time split. F-145: the CAD row claimed "FT/PT split
+# unsourced" and TE publishes it (Aug/26 FT -35.9K, PT -5.8K), so CAD was
+# being graded on the HEADLINE while AUD was graded on full time, for a stated
+# reason that was not true.
+def employment_grade(actual, full_time, part_time):
+    """LD-151. GOOD/NEUTRAL/BAD from the three legs, or None if unsourced.
+
+    None when any leg is missing - never a guessed verdict (F-73).
+    """
+    if actual is None or full_time is None or part_time is None:
+        return None
+    if full_time == 0 or actual == 0:
+        return "NEUTRAL"
+    up = actual > 0
+    if (full_time > 0) != up:            # headline and full time disagree
+        return "NEUTRAL"
+    return "GOOD" if up else "BAD"
+
+
 def full_time_grade(actual, previous):
     """Grade a Full Time Employment Change print. Returns GOOD/NEUTRAL/BAD."""
     if actual is None or previous is None:

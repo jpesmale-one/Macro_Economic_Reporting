@@ -148,6 +148,9 @@ RATE_LEVEL_CASES = [
 ]
 
 
+import score_model as _sm
+
+
 def main():
     bad = 0
     print('R-44 INFLATION RULE (LD-136)')
@@ -451,6 +454,42 @@ def main():
     if not _nb:
         print('    6 case(s) pass - bands %.2f/%.2f, boundaries, zero-adverse'
               % (_ag.LOSS_AT, _ag.WIN_AT))
+
+    # LD-151 - Employment Change on all three legs.
+    print()
+    print('  LD-151 - Employment Change, three legs')
+    _eg = [
+        # (actual, ft, pt, want, label)   Jeff's four rules, in his order
+        ( 50.0,  40.0,  10.0, 'GOOD',    'rule 1  all three up'),
+        ( 39.5,  -6.3,  45.8, 'NEUTRAL', 'rule 2  AUD Aug/26 live'),
+        (-15.8,  16.3, -32.2, 'NEUTRAL', 'rule 3  AUD Jul/26 live'),
+        (-41.7, -35.9,  -5.8, 'BAD',     'rule 4  CAD Aug/26 live'),
+        # the two he did not list - ruled 2026-10-04: follow the full time leg
+        ( 40.0,  50.0, -10.0, 'GOOD',    'unlisted (+,+,-)'),
+        (-40.0, -50.0,  10.0, 'BAD',     'unlisted (-,-,+)'),
+        # zeros and refusals
+        ( 10.0,   0.0,  10.0, 'NEUTRAL', 'full time flat'),
+        ( 10.0,  10.0,  None, None,      'part time unsourced -> no verdict'),
+        ( None,  10.0,  10.0, None,      'headline unsourced -> no verdict'),
+    ]
+    _nb = 0
+    for _a, _f, _p, _w, _lbl in _eg:
+        _g = _sm.employment_grade(_a, _f, _p)
+        if _g != _w:
+            bad += 1
+            _nb += 1
+            print('    *** %s: got %s want %s' % (_lbl, _g, _w))
+    # LD-151 must NOT consult the previous month - that was LD-57's test and
+    # it is the defect LD-58 fixed for Claimant Count (deceleration != decline)
+    import inspect as _insp
+    _src = _insp.getsource(_sm.employment_grade)
+    if 'previous' in _src:
+        bad += 1
+        _nb += 1
+        print('    *** employment_grade still references a previous month')
+    if not _nb:
+        print('    %d case(s) pass - four rules, two rulings, zeros, refusals'
+              % len(_eg))
 
     print()
     if bad:

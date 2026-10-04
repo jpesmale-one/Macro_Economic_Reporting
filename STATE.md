@@ -5238,6 +5238,53 @@ F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT TO
 #   and R-7 caught its absence immediately. FIX: assemble editions from a FILE,
 #   never from a heredoc containing markdown.
 
+### LD-151 - EMPLOYMENT CHANGE IS GRADED ON ALL THREE LEGS (2026-10-04)
+
+Jeff's rule, in his words:
+
+    1) Actual > 0 and Full Time > 0 and Part Time > 0  -> Good
+    2) Actual > 0 and Full Time < 0 and Part Time > 0  -> Neutral
+    3) Actual < 0 and Full Time > 0 and Part Time < 0  -> Neutral
+    4) Actual < 0 and Full Time < 0 and Part Time < 0  -> Bad
+
+*** THIS REPLACES LD-57's "vs PREVIOUS" TEST. LD-57 asked whether full time
+beat ITS OWN LAST MONTH. LD-151 asks what the three legs SAY TOGETHER, against
+zero. The prior month no longer enters it - which removes the exact defect
+LD-58 fixed for Claimant Count and left standing here: A CHANGE SERIES READ
+AGAINST ITS OWN PRIOR CHANGE CALLS DECELERATION A DECLINE.
+
+THE RULE COLLAPSES TO: headline and full time AGREE -> that direction;
+DISAGREE -> NEUTRAL. Jeff's four cases are that statement enumerated.
+
+TWO SIGN COMBINATIONS HE DID NOT LIST ARE POSSIBLE, and I asked rather than
+guessed. Jeff ruled: FOLLOW THE FULL TIME LEG.
+
+    (+,+,-)  headline up,   FT up,   PT down  -> GOOD
+    (-,-,+)  headline down, FT down, PT up    -> BAD
+
+TWO MORE ARE ARITHMETICALLY IMPOSSIBLE, since Actual = FT + PT: (+,-,-) and
+(-,+,+) would need two same-signed legs to sum the other way.
+
+*** MY FIRST IMPLEMENTATION GOT THE RULING BACKWARDS. I collapsed it to "full
+time decides, part time softens", which returned NEUTRAL for both unlisted
+cases - the opposite of what Jeff said. Caught by running the six cases before
+committing. R-44 now pins all of them.
+
+F-145 FOUND WHILE APPLYING IT: the CAD row's threshold read "FT/PT split
+unsourced" and TE PUBLISHES IT (Aug/26 FT -35.9K, PT -5.8K). So CAD was being
+graded on the HEADLINE while AUD was graded on full time, FOR A STATED REASON
+THAT WAS NOT TRUE. CAD now carries the split.
+
+EFFECT:
+    AUD Aug/26  39.5K (FT -6.3K, PT +45.8K)   BAD -> NEUTRAL   (rule 2)
+    CAD Aug/26 -41.7K (FT -35.9K, PT -5.8K)   BAD -> BAD       (rule 4)
+
+AUD Employment -0.33 -> 0.00, base -2.33 -> -2.00, still last. THE SET IS
+UNCHANGED; GBPJPY and EURAUD swap rank order.
+
+APPLIES TO AUD AND CAD ONLY - the two whose Employment Change TE publishes
+with a full-time split. R-44 45 cases, 9 new.
+
 ### F-144 / LD-150 - GBP GAINS AN UNEMPLOYMENT RATE (2026-10-04)
 
 Jeff: "Don't we have Unemployment Rate for GBP in the indicator list?" then
