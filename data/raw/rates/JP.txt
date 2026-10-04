@@ -1,0 +1,3 @@
+1.25%
+# https://tradingeconomics.com/japan/interest-rate
+# read 2026-10-04: 18 Sep hike from 1.00%

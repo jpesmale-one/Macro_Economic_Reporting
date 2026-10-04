@@ -72,12 +72,23 @@ import score_model as sm
 #
 # So the two disagree ON PURPOSE, and the report says which is which
 # wherever it prints one. An overlay, dated, never silent.
+# *** EMPTIED 2026-10-04 (F-142), AND THAT IS THE POINT OF IT.
+#
+# This held AUD 4.60 while rate_model still read 4.35, so the swap column
+# could show today's cost while the base stayed on Sunday's vintage. The
+# entry was recorded WITH its own expiry: "an overlay that outlives its
+# discrepancy becomes a second source of truth (F-127's shape)."
+#
+# rate_model now holds 4.60% and R-47 checks all eight cells against TE every
+# build, so the discrepancy this existed for cannot recur silently. KEEPING
+# the entry would be worse than never adding it - two places to look up one
+# rate, disagreeing the moment either moves.
+#
+# LEAVE THIS EMPTY unless a rate genuinely moves between a sealed edition and
+# the swap being read, and if one ever does, record its expiry in the same
+# breath as the value.
 LIVE = {
     # ccy: (rate, as_of, why)
-    'AUD': (4.60, '2026-09-29',
-            'RBA hiked 25bp to 4.60%, exactly as priced. rate_model still '
-            'holds 4.35% because the 28 Sep-2 Oct edition is sealed on '
-            "Sunday's vintage - it is corrected at the next build."),
 }
 
 # 'USD' -> 'US', the inverse of score_model.LABEL

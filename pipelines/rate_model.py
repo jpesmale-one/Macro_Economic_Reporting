@@ -150,7 +150,18 @@ ROWS = {
     'EA': ('2.65%', +1.0, 2.9, True,  'HIKED 10 Sep to 2.65%, exactly on consensus - fully priced (LD-90). HICP final', 0.0, 2.65, None, '2.40%'),
     'GB': ('3.75%', 0.0, 2.9, True,  'HELD 17 Sep at 3.75%, 3 of 9 voting to HIKE - hawkish hold', 0.0, 3.75, 3.75, '3.75%'),
     'JP': ('1.25%', +1.0, 1.9, True,  'HIKED 18 Sep to 1.25%, on consensus, split 7-2 - yen FELL 1.58% that week', 0.0, 1.25, None, '1.00%'),
-    'AU': ('4.35%', 0.0, 3.8, False, 'HELD - highest policy rate in the group', None, 4.35, 4.35, '4.35%'),
+    # RBA HIKED 29 Sep to 4.60%, exactly on the 4.60% consensus - its fourth
+    # hike this year and the highest Australian policy rate since 2011.
+    # REALISED pays +1.0 for having moved. LD-90 still applies to the market
+    # read: a fully-priced hike is not news, and AUD did finish the week weak.
+    #
+    # *** THIS CELL SAT AT 4.35% FOR FIVE DAYS AFTER THE DECISION (F-142).
+    # Jeff, 2026-10-04: "no we should be showing the latest data not the stale
+    # ones". I had deferred it as a "sealed vintage" change, which was wrong:
+    # the hike landed 29 Sep, BEFORE the Sunday 4 Oct build, so it is squarely
+    # inside what this edition may see. The vintage rule exists to keep NEXT
+    # week's prints out, never to keep LAST week's out.
+    'AU': ('4.60%', 1.0, 4.0, True, 'HIKED 29 Sep to 4.60%, exactly on consensus - fourth hike this year, highest since 2011', 0.0, 4.60, None, '4.35%'),
     # LD-90: BoC HELD 2 Sep at 2.25%, exactly on consensus. A fully-priced
     # hold is not news either - the surprise term pays 0.00 rather than
     # being absent. NZD's row already recorded this; CAD's did not.

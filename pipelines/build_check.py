@@ -204,6 +204,29 @@ def _edition_stamp():
     return (d - dt.timedelta(days=1)).isoformat()
 
 
+def s8b_rates_vs_te():
+    """R-47/F-142: does rate_model match the WORLD, not just the page?
+
+    Step 6 checks the page against rate_model. Nothing checked rate_model
+    against TE, so the RBA's 29 Sep hike sat unrecorded for five days through
+    a published edition and a published retrospective.
+    """
+    import rate_check as rc
+    rows = rc.compare()
+    stale = [r for r in rows if r[3] == 'STALE']
+    unv = [r for r in rows if r[3] == 'UNVERIFIED']
+    if stale:
+        return False, ('%d rate(s) STALE vs TE: %s'
+                       % (len(stale), ', '.join(
+                           '%s %s->%s' % (rc.LABEL[i], h, t)
+                           for i, h, t, _ in stale)))
+    if unv:
+        return False, ('%d rate(s) UNVERIFIED: %s'
+                       % (len(unv), ', '.join(rc.LABEL[i]
+                                              for i, _, _, _ in unv)))
+    return True, 'all 8 policy rates match TE'
+
+
 def s9_page_fresh():
     """F-134: is the PUBLISHED page built from the CURRENT fact tables?
 
@@ -232,8 +255,13 @@ def s9_page_fresh():
     #
     # A guard that names the wrong file does not weaken to a no-op; it
     # accuses correct work. Derive from the window this build is FOR.
-    page = os.path.join(REPO, 'reports/2026/Q3/%s_weekly.html'
-                        % _edition_stamp())
+    # F-140b - THE QUARTER WAS HARDCODED TOO. F-140 derived the DATE and left
+    # 'Q3' literal, so the first Q4 edition reported "no published page yet"
+    # about a page that exists. A half-derived path is still a pinned path.
+    _st = _edition_stamp()
+    _q = (int(_st[5:7]) - 1) // 3 + 1
+    page = os.path.join(REPO, 'reports/%s/Q%d/%s_weekly.html'
+                        % (_st[:4], _q, _st))
     if not os.path.exists(page):
         return True, '(no published page yet)'
     live = io.open(page, encoding='utf-8').read()
@@ -322,6 +350,7 @@ STEPS = [
     ('6', 'policy rates match rate_model (LD-142)', s6_rates),
     ('7', 'one selector everywhere (F-127)', s7_selectors),
     ('8', 'no renderer pins a stale date (F-130)', s8_dates),
+    ('8b', 'policy rates match TE (R-47/F-142)', s8b_rates_vs_te),
     ('9', 'published page matches the data (F-134)', s9_page_fresh),
     ('10', 'high-impact rows can flag (F-135)', s10_high_impact),
     ('11', 'selected pairs have OANDA bars (LD-145)', s11_pair_bars),

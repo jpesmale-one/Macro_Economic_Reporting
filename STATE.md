@@ -5238,6 +5238,53 @@ F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT TO
 #   and R-7 caught its absence immediately. FIX: assemble editions from a FILE,
 #   never from a heredoc containing markdown.
 
+### F-142 - THE AUD POLICY RATE SAT STALE FOR FIVE DAYS, AND I DEFERRED
+### THE FIX AFTER NAMING IT (2026-10-04)
+
+Jeff: "no we should be showing the latest data not the stale ones"
+
+The RBA hiked to 4.60% on 29 Sep. rate_model held 4.35% through a published
+edition AND a published retrospective. Nothing in the build noticed, because
+R-46 step 6 verifies the PAGE matches rate_model and nothing verified that
+rate_model matches the WORLD.
+
+*** THE RATE WAS IN **THREE** PLACES AND ALL THREE HAD TO BE FIXED:
+      rate_model.ROWS['AU']                         the model
+      Interest_Rate_Macro_Indicators.csv Oct-26     the fact table
+      pair_swap.LIVE                                an overlay added to
+                                                    paper over the first two
+
+*** AND I HAD ALREADY NAMED IT. On this same day I listed the stale cell in my
+own summary and left it, calling it "a data change to a sealed vintage". That
+was wrong on the facts: the decision landed 29 Sep, BEFORE the Sunday 4 Oct
+build, so it was always inside what this edition may see. THE VINTAGE RULE
+KEEPS NEXT WEEK'S PRINTS OUT, NEVER LAST WEEK'S. Naming a defect is not fixing
+it, and a named-but-unfixed defect reads as handled.
+
+EFFECT: AUD base +1.07 -> +1.67 (realised now pays for the hike), final +2.07,
+fourth on the board. THE SET IS UNCHANGED - AUD sits in NEUTRAL either way, so
+no tier-1 pairing moves. level_score is +1 on both 4.35 and 4.60 (above the
+2.5 ceiling and rising), so LD-142 was insulated; it was the REALISED term
+that was wrong.
+
+*** R-47 ADDED, AND IT IS NOW STEP 8b OF R-46. It reads all eight policy rates
+from a recorded TE read and fails the build on any mismatch. All eight verified
+2026-10-04: USD 4.00, EUR 2.65, GBP 3.75, JPY 1.25, AUD 4.60, NZD 2.75,
+CAD 2.25, CHF 0.00.
+
+pair_swap.LIVE IS NOW EMPTY, as its own comment required: "an overlay that
+outlives its discrepancy becomes a second source of truth". rate_model holds
+4.60% and R-47 guards it, so the overlay has nothing left to do.
+
+F-140b FOUND WHILE FIXING THIS: step 9's page path derived the DATE (F-140)
+but left 'Q3' HARDCODED, so the first Q4 edition reported "no published page
+yet" about a page that exists. A half-derived path is still a pinned path.
+
+WHY RATE ROWS KEEP ESCAPING: every data guard - R-37, R-40, R-41, R-45 - walks
+score_model.ROWS or the fact-table CSVs. Rate rows live in NEITHER. That is the
+same cause as F-135 (hot() could not see them) and LD-146 (day_score() dropped
+them). FOUR findings, one structural cause, and R-47 only covers the value.
+
 ### LD-149 - THE WEEK VERDICT IS THE RATIO OF SUMMED EXCURSIONS (2026-10-03)
 
 Jeff: "Our current criteria LD-128 'a pair wins if any session reaches target
