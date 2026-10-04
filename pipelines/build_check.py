@@ -227,6 +227,42 @@ def s8b_rates_vs_te():
     return True, 'all 8 policy rates match TE'
 
 
+def s8c_dark_rows():
+    """F-143: the rows no automated check reaches must still be READ.
+
+    R-45 fetches with curl, and several TE pages render their release table
+    client-side - so curl gets a shell with the right title and no data, and
+    the row reports NO PAGE. Worse, the old report counted a match against ANY
+    captured print as verified, including one five weeks old: AUD's PMI was
+    listed as checked on its AUGUST value while September's 49.6 went unseen.
+
+    dark_rows.READS is the hand-read ledger. This asserts two things: the
+    ledger agrees with the fact table, and no read is older than its cadence.
+    """
+    import dark_rows as dr
+    import fact_tables as ft
+    m = ft.latest_month()
+    held = {}
+    for cat in ('Production', 'Spending', 'Trade', 'Employment', 'Inflation'):
+        for r in ft.load(cat):
+            held[((r.get('Currency') or '').strip(),
+                  (r.get('Indicator') or '').strip())] = (r.get(m) or '').strip()
+    bad = [(c, n) for (c, n), (v, _r, _d, _s) in dr.READS.items()
+           if held.get((c, n)) is not None and held[(c, n)] != v]
+    if bad:
+        return False, ('%d ledger/table mismatch: %s'
+                       % (len(bad), ', '.join('%s %s' % x for x in bad)))
+    st = [x for x in dr.stale() if x[3] is not None]
+    if st:
+        return False, ('%d dark row(s) past their cadence: %s'
+                       % (len(st), ', '.join('%s %s (%dd)' % (c, n[:22], a)
+                                             for c, n, _d, a in st)))
+    never = [x for x in dr.stale() if x[3] is None]
+    return True, ('%d dark rows current, %d UNVERIFIABLE (bad slug): %s'
+                  % (len(dr.READS) - len(never), len(never),
+                     ', '.join('%s %s' % (c, n[:20]) for c, n, _d, _a in never)))
+
+
 def s9_page_fresh():
     """F-134: is the PUBLISHED page built from the CURRENT fact tables?
 
@@ -351,6 +387,7 @@ STEPS = [
     ('7', 'one selector everywhere (F-127)', s7_selectors),
     ('8', 'no renderer pins a stale date (F-130)', s8_dates),
     ('8b', 'policy rates match TE (R-47/F-142)', s8b_rates_vs_te),
+    ('8c', 'dark rows read and current (F-143)', s8c_dark_rows),
     ('9', 'published page matches the data (F-134)', s9_page_fresh),
     ('10', 'high-impact rows can flag (F-135)', s10_high_impact),
     ('11', 'selected pairs have OANDA bars (LD-145)', s11_pair_bars),

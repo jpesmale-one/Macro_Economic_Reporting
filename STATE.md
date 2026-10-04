@@ -5238,6 +5238,55 @@ F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT TO
 #   and R-7 caught its absence immediately. FIX: assemble editions from a FILE,
 #   never from a heredoc containing markdown.
 
+### F-143 - "VERIFIED AGAINST A CAPTURED PRINT" WAS NOT A CHECK (2026-10-04)
+
+Jeff: "PMIs are not updated. example AUD S&P Global Mfg PMI Final 52.0" - then
+"Do I need to check the data again 1 by 1?"
+
+AUD's PMI printed 49.6 on 30 Sep, the sharpest fall in 21 months and BELOW 50.
+We held 52.0. R-45 listed it under "NO INDICATOR PAGE, BUT VERIFIED AGAINST A
+CAPTURED PRINT - they are not unchecked", because it matched the AUGUST print
+in a 1 SEPTEMBER capture.
+
+*** MATCHING A MONTH-OLD PRINT PROVES NOTHING ABOUT THE LATEST ONE. A capture
+reaches ~26 days; an old match says the row was right a month ago. 24 rows were
+being counted as verified on captures up to five weeks stale.
+
+F-133 ADDED THAT BLOCK TO STOP OVERSTATING THE BLIND SPOT, AND IT THEN
+UNDERSTATED IT - which is worse. A row nobody checked appeared under a heading
+asserting it was checked. That is how a stale value survives three staleness
+checks and gets caught by the reader.
+
+TWO CAUSES, BOTH FIXED:
+  1. A capture match now only counts if the capture is <=21 days old. Honest
+     coverage drops from 63 to 57 of 70, and the report NAMES the rows whose
+     match is too old.
+  2. R-45 fetches with CURL, and several TE pages render their release table
+     CLIENT-SIDE - curl gets a 20KB shell with the right <title> and no data,
+     indistinguishable from a bad slug. The AUD, GBP, USD and NZD PMI pages are
+     all in this class.
+
+F-143b - pipelines/dark_rows.py IS THE LEDGER for rows no automated check
+reaches: value, reference month, READ_ON date and source, 10 rows. R-46 step 8c
+asserts it agrees with the fact table and that no read is past its cadence.
+TWO remain genuinely UNVERIFIABLE and are named as such: USD CB Consumer
+Confidence (slug -> U.Michigan, a different survey) and NZD Electronic Retail
+Card Spending (slug -> levels in NZD millions).
+
+*** THE SCORE WAS ALSO WRONG, AND R-44 DOES NOT COVER IT. The row stored GOOD
+on 49.6 against a ">50.5" LEVEL threshold. Under F-101's band - above the line
+GOOD, below the floor BAD, between NEUTRAL - a PMI below 50 is contraction and
+BAD. R-44 checks the inflation and >Prev rules only; LEVEL thresholds have no
+test. That gap is open.
+
+EFFECT: AUD Production rests on a SINGLE row, so the correction took the
+category to -2.00 and AUD from +1.67 to -2.33, fourth to LAST. The set changed
+completely - GBPCAD/GBPJPY/EURCAD/CADCHF became
+GBPAUD/EURAUD/GBPJPY/AUDCHF, short AUD three ways.
+
+BOTH OF TODAY'S DATA ERRORS WERE CAUGHT BY JEFF, NOT THE BUILD (F-142, F-143).
+R-46 is now THIRTEEN checks.
+
 ### F-142 - THE AUD POLICY RATE SAT STALE FOR FIVE DAYS, AND I DEFERRED
 ### THE FIX AFTER NAMING IT (2026-10-04)
 

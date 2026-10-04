@@ -68,7 +68,12 @@ ROWS = [
  ("Production","JP","Machinery Orders YoY","11.2%","16.9%","Jul/26",">0.5%","GOOD"),
  ("Production","JP","Machine Tool Orders YoY","64.7%","50.4%","Aug/26",">0.5%","GOOD"),
  ("Production","JP","S&P Global Mfg PMI Final","54.1","54.5","Sep/26",">50.5","GOOD"),
- ("Production","AU","S&P Global Mfg PMI Final","52.0","52.0","Aug/26",">50.5","GOOD"),
+ # F-143: 52.0 -> 49.6 (Sep/26, released 30 Sep) - the sharpest fall in
+ # 21 months and BELOW 50, which is contraction. Under F-101's band a
+ # level threshold reads: above the line GOOD, below the floor BAD, in
+ # between NEUTRAL. For a PMI the floor is 50, not zero. The only PMI in
+ # the set not in expansion.
+ ("Production","AU","S&P Global Mfg PMI Final","49.6","52.0","Sep/26",">50.5","BAD"),
  ("Production","NZ","Business NZ PMI","53.1","54.3","Aug/26",">50.5","GOOD"),
  ("Production","NZ","Global Dairy Trade Price Index","-1.1%","0.9%","Sep/26",">0.5%","BAD"),
  ("Production","CA","S&P Global Mfg PMI","51.5","53.5","Sep/26",">50.5","GOOD"),

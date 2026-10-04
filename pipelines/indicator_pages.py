@@ -41,6 +41,7 @@ the URL it read and the exact row text, and Jeff or I apply the change.
 """
 import io
 import os
+import datetime as dt
 import re
 import sys
 import time
@@ -322,7 +323,31 @@ if __name__ == '__main__':
     try:
         import coverage_check as _cc
         _ver, _st, _fmt, _noev, _unm = _cc.scan()
-        _cap = set((c, n) for c, n, cat, a, act, ds, ev in _ver + _fmt)
+        # *** F-143 - "VERIFIED AGAINST A CAPTURED PRINT" WAS NOT A CHECK.
+        #
+        # Jeff, 2026-10-04: "PMIs are not updated. example AUD S&P Global Mfg
+        # PMI Final 52.0" - and then "Do I need to check the data again 1 by
+        # 1?"
+        #
+        # AUD's PMI printed 49.6 on 30 Sep. This block reported it as VERIFIED
+        # because it matched a captured event - the AUGUST print, from a 1 SEP
+        # CAPTURE. A capture reaches ~26 days, so matching an OLD print proves
+        # only that the row was right a month ago.
+        #
+        # F-133 added this block to stop overstating the blind spot. It then
+        # understated it, which is worse: a row nobody checked was listed under
+        # a heading that says "they are not unchecked". That is how a stale
+        # value survives three staleness checks and gets caught by the reader.
+        #
+        # A CAPTURE MATCH ONLY COUNTS IF THE CAPTURE IS RECENT ENOUGH TO HAVE
+        # SEEN THE LATEST PRINT. Anything older is reported as what it is -
+        # unverified - and the number next to TRUE COVERAGE shrinks to match.
+        _FRESH_DAYS = 21
+        _cut = (dt.date.today() - dt.timedelta(days=_FRESH_DAYS)).isoformat()
+        _cap = set((c, n) for c, n, cat, a, act, ds, ev in _ver + _fmt
+                   if (ds or '') >= _cut)
+        _old = sorted(set((c, n) for c, n, cat, a, act, ds, ev in _ver + _fmt
+                          if (ds or '') < _cut))
         _both = [r for r in none if (r[0], r[1]) in _cap]
         _dark = [r for r in none if (r[0], r[1]) not in _cap]
         if _both:
@@ -330,6 +355,14 @@ if __name__ == '__main__':
             print('  (R-40/R-41 cover these - they are not unchecked)')
             for ccy, name, held, ref, url, page, verdict in sorted(_both):
                 print('  %-4s %-34s held %s' % (ccy, name[:34], held))
+            print()
+        if _old:
+            print('CAPTURE MATCH TOO OLD TO COUNT (>%d days) - NOT VERIFIED'
+                  % _FRESH_DAYS)
+            print('  (F-143: matching a month-old print proves nothing about'
+                  ' the latest one)')
+            for c, n in _old:
+                print('  %-4s %s' % (c, n[:40]))
             print()
         none = _dark
         print('  TRUE COVERAGE: %d of %d rows checked by one source or the'

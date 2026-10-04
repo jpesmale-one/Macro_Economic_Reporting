@@ -88,6 +88,7 @@ REFS = {
     ('NZ', 'ANZ Roy Morgan Consumer Conf'): 'Sep/26',
     ('US', 'ISM Manufacturing PMI'): 'Sep/26',
     ('GB', 'S&P Global Mfg PMI Final'): 'Sep/26',
+    ('AU', 'S&P Global Mfg PMI Final'): 'Sep/26',
 }
 
 
