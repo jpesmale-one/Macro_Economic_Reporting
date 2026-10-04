@@ -82,3 +82,65 @@ current; the capture is not. Same false-positive class as F-139.
 ANSWER TO THE QUESTION: no stale data outside this week's releases, on 68 of
 70 rows. Two rows (CB Consumer Confidence, NZD Card Spending) remain
 unverifiable until their slugs are corrected.
+
+## 2026-10-04 - THE 28 SEP - 2 OCT PRINTS, RECOVERED FOR THE Oct-26 ROLL
+
+R-42 raised 13 rows as "lost to a capture gap". NINE of them were already
+recovered this session from their TE INDICATOR pages via R-45 and rolled into
+Oct-26, which is the recovery R-42 asks for - the calendar window missed them,
+the indicator page did not.
+
+FOUR more were in R-42's list but not R-45's, because R-45 has no working slug
+for them. Checked by hand against the TE page that owns each one:
+
+  USD  ISM Manufacturing PMI     54.6 -> 54.5   Sep/26, rel 1 Oct   APPLIED
+       (the slug /united-states/ism-manufacturing-pmi does not carry the
+        history table; /united-states/business-confidence does)
+  GBP  S&P Global Mfg PMI Final  51.7 -> 51.9   Sep/26, rel 1 Oct   APPLIED
+       (lives at /united-kingdom/manufacturing-pmi)
+  USD  GDP Growth Rate QoQ       held '-', Q2/26, NEUTRAL           NO CHANGE
+  GBP  GDP Growth Rate QoQ       held '-', Q2/26, NEUTRAL           NO CHANGE
+       (both are LD-117 range rows carrying no actual; the Q3 print is not
+        due until late October)
+
+*** ONE ROW REMAINS GENUINELY UNRECOVERED, AND IT IS THE KNOWN BAD SLUG.
+
+  USD  CB Consumer Confidence    held 89.4 Aug/26
+
+It was scheduled Tue 29 Sep and almost certainly printed. We cannot read it,
+because 'CB Consumer Confidence' resolves to
+/united-states/consumer-confidence - the UNIVERSITY OF MICHIGAN sentiment
+index, a different survey by a different publisher on a different scale. Two
+other candidate URLs were tried today and neither carries the Conference
+Board history either.
+
+THE ROW IS HELD AT ITS AUGUST VALUE AND SAID TO BE SO. That is the F-73 rule:
+an absence we cannot see is a fact about OUR WINDOW, not about the world, and
+it is named rather than guessed. R-47 (sweep rate cells against TE) and the
+two broken slugs are both carried to the 31 Oct review.
+
+TWO ROWS R-41 FLAGS THAT ARE NOT STALE, both previously established:
+  AUD Employment Change  - the FT/PT annotation LD-57 requires (F-139)
+  NZD Global Dairy       - we hold the 15 Sep print; the 1 Sep CAPTURE is the
+                           stale half, not the cell
+
+### The ledger table R-42 actually parses
+
+`recovered()` reads PIPE-DELIMITED rows: `CCY | ROW | DATE | VALUE | SOURCE`.
+Every recovery before today was written as PROSE, so R-42 has been re-reporting
+closed issues since it was built - the exact "guard that keeps crying about a
+closed issue" its own docstring warns about.
+
+AUD | Household Spending YoY | 2026-09-29 | 6.8% | TE /australia/household-spending
+AUD | Inflation Rate YoY | 2026-09-30 | 4.0% | TE /australia/inflation-cpi
+EUR | Consumer Confidence Final | 2026-09-29 | -16.5 | TE /euro-area/consumer-confidence
+GBP | S&P Global Mfg PMI Final | 2026-10-01 | 51.9 | TE /united-kingdom/manufacturing-pmi
+JPY | Retail Sales YoY | 2026-09-30 | 2.7% | TE /japan/retail-sales-annual
+NZD | ANZ Business Confidence | 2026-09-30 | 51.9 | TE /new-zealand/business-confidence
+USD | ISM Manufacturing PMI | 2026-10-01 | 54.5 | TE /united-states/business-confidence
+USD | Non Farm Payrolls | 2026-10-02 | 29K | TE /united-states/non-farm-payrolls
+USD | Personal Spending MoM | 2026-09-30 | 0.9% | TE /united-states/personal-spending
+USD | Unemployment Rate | 2026-10-02 | 4.2% | TE /united-states/unemployment-rate
+GBP | GDP Growth Rate QoQ | 2026-09-30 | - | LD-117 range row, no actual, Q3 not due
+USD | GDP Growth Rate QoQ | 2026-09-30 | - | LD-117 range row, no actual, Q3 not due
+USD | CB Consumer Confidence | 2026-09-29 | 89.4 (HELD) | UNRECOVERED - slug resolves to U.Michigan, a different survey

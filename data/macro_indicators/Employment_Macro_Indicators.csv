@@ -1,14 +1,14 @@
 Currency,Indicator,Frequency,Aug-26,Sep-26,Oct-26
-USD,Non Farm Payrolls,Monthly,-23K,162K,
-USD,Unemployment Rate,Monthly,4.1%,4.1%,
-EUR,Unemployment Rate,Monthly,6.3%,6.4%,
-GBP,Claimant Count Change,Monthly,-11K,27.8K,
-JPY,Unemployment Rate,Monthly,2.4%,2.4%,
-AUD,ANZ-Indeed Job Ads MoM,Monthly,+0.8%,2.5%,
-AUD,Employment Change,Monthly,"-15.8K (FT +16.3K, PT -32.2K)","39.5K (FT -6.3K, PT +45.8K)",
-AUD,Unemployment Rate,Monthly,4.5%,4.6%,
-NZD,Unemployment Rate,Quarterly,5.6%,5.6%,
-CAD,Employment Change,Monthly,75.1K,-41.7K,
-CAD,Unemployment Rate,Monthly,6.4%,6.4%,
-CHF,Unemployment Rate,Monthly,3.0%,3%,
-CHF,Non Farm Payrolls,Quarterly,,5.698M,
+USD,Non Farm Payrolls,Monthly,-23K,162K,29K
+USD,Unemployment Rate,Monthly,4.1%,4.1%,4.2%
+EUR,Unemployment Rate,Monthly,6.3%,6.4%,6.4%
+GBP,Claimant Count Change,Monthly,-11K,27.8K,27.8K
+JPY,Unemployment Rate,Monthly,2.4%,2.4%,2.5%
+AUD,ANZ-Indeed Job Ads MoM,Monthly,+0.8%,2.5%,2.5%
+AUD,Employment Change,Monthly,"-15.8K (FT +16.3K, PT -32.2K)","39.5K (FT -6.3K, PT +45.8K)","39.5K (FT -6.3K, PT +45.8K)"
+AUD,Unemployment Rate,Monthly,4.5%,4.6%,4.6%
+NZD,Unemployment Rate,Quarterly,5.6%,5.6%,5.6%
+CAD,Employment Change,Monthly,75.1K,-41.7K,-41.7K
+CAD,Unemployment Rate,Monthly,6.4%,6.4%,6.4%
+CHF,Unemployment Rate,Monthly,3.0%,3%,3%
+CHF,Non Farm Payrolls,Quarterly,,5.698M,5.698M

@@ -1,0 +1,61 @@
+# -*- coding: utf-8 -*-
+"""THE ROWS THAT RE-PRINTED, FOR THE Oct-26 ROLL.
+
+Jeff, 2026-10-04: "Don't forget to refresh the macro data"
+
+Every value below was raised by R-45 (vs the TE indicator page), R-40 (vs the
+capture) or R-41, and cross-read against the TE page before landing here. The
+three checks overlap but do not agree exactly - R-45 sees all 70 rows through
+indicator pages, R-40/R-41 see only what a capture window reached - so the
+union is what gets refreshed and each row is confirmed on the page that owns
+it (LD-3: a calendar is a SCHEDULE authority, never a VALUE authority).
+
+*** TWO ROWS THE CHECKS RAISED AND ARE **NOT** REFRESHED, both known:
+
+  AUD Employment Change   R-41 calls '39.5K (FT -6.3K, PT +45.8K)' stale
+                          against TE's '39.5K'. It is not - that is F-139,
+                          a string compare against our own house style, and
+                          LD-57 requires the split. R-40 handles it.
+
+  NZD Global Dairy        R-41 compares against the newest CAPTURE, and the
+                          1 Sep capture carries the older 0.9% print. We hold
+                          -1.1% for 15 Sep, which the TE page confirms is
+                          still the latest. The CELL is current; the capture
+                          is not.
+
+THE HEADLINE OF THIS REFRESH: USD Non Farm Payrolls 162K -> 29K. Not a
+revision - the September print, released Fri 2 Oct, and a collapse against a
+100K consensus. USD Unemployment 4.1% -> 4.2% the same morning.
+"""
+
+# (CCY, Indicator) -> the actual AS PUBLISHED (LD-112 - store the print, let
+# derive_scores.py do the grading)
+UPDATES = {
+    # ---- EMPLOYMENT -------------------------------------------------------
+    ('USD', 'Non Farm Payrolls'):            '29K',      # Sep/26, rel 2 Oct
+    ('USD', 'Unemployment Rate'):            '4.2%',     # Sep/26, rel 2 Oct
+    ('EUR', 'Unemployment Rate'):            '6.4%',     # Aug/26, rel 1 Oct
+    ('JPY', 'Unemployment Rate'):            '2.5%',     # Aug/26, rel 1 Oct
+
+    # ---- INFLATION --------------------------------------------------------
+    ('AUD', 'Inflation Rate YoY'):           '4.0%',     # Aug/26, rel 30 Sep
+    ('CHF', 'Inflation Rate YoY'):           '1%',       # Sep/26, rel 1 Oct
+
+    # ---- SPENDING ---------------------------------------------------------
+    ('USD', 'Personal Spending MoM'):        '0.9%',     # Aug/26, rel 30 Sep
+    ('JPY', 'Retail Sales YoY'):             '2.7%',     # Aug/26, rel 29 Sep
+    ('CHF', 'Retail Sales YoY'):             '3.2%',     # Aug/26, rel 1 Oct
+    ('AUD', 'Household Spending YoY'):       '6.8%',     # Aug/26, rel 29 Sep
+    ('EUR', 'Consumer Confidence Final'):    '-16.5',    # Sep/26, rel 29 Sep
+    ('NZD', 'ANZ Business Confidence'):      '51.9',     # Sep/26, rel 30 Sep
+    ('NZD', 'ANZ Roy Morgan Consumer Conf'): '97.6',     # Sep/26, rel 2 Oct
+
+    # ---- TRADE ------------------------------------------------------------
+    ('AUD', 'Balance of Trade'):             'A$0.495B',  # Aug/26, rel 1 Oct
+
+    # ---- PRODUCTION (the Thu 1 Oct PMI sweep) -----------------------------
+    ('CAD', 'S&P Global Mfg PMI'):           '51.5',     # Sep/26, rel 1 Oct
+    ('CHF', 'Procure.ch-UBS Mfg PMI'):       '55.3',     # Sep/26, rel 1 Oct
+    ('EUR', 'S&P Global Mfg PMI Final'):     '52.9',     # Sep/26, rel 1 Oct
+    ('JPY', 'S&P Global Mfg PMI Final'):     '54.1',     # Sep/26, rel 1 Oct
+}

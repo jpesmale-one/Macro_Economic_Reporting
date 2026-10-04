@@ -4,14 +4,17 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-09-27 (r1, WEEKLY, UNSEALED - selection for the 28 Sep-2 Oct
-         cycle, built on SUNDAY 27 SEP VINTAGE)
-date: 2026-09-27
-data_asof: 2026-09-27 vintage (calendar captured 2026-09-27 09:53. SIX rows
-           refreshed for prints that landed 21-25 Sep, including the AUD
-           employment split FT -6.3K / PT +45.8K per LD-57.)
-artifact: https://claude.ai/artifact/DU6Y3sC2T6eoPRu7Jkx82T
-prev_edition: 2026-09-20 (r7, SEALED 2026-09-26 - graded 3/3, +144.8 pips)
+edition: 2026-10-04 (r1, WEEKLY, UNSEALED - selection for the 5-9 Oct
+         cycle, built on SUNDAY 4 OCT VINTAGE, Oct-26 fact-table column)
+date: 2026-10-04
+data_asof: 2026-10-04 vintage (calendar captured 2026-10-04 12:02. The
+           fact tables ROLLED INTO Oct-26 - 78 of 78 cells - with TWENTY
+           rows refreshed for prints that landed 28 Sep-2 Oct, headed by
+           USD Non Farm Payrolls 162K -> 29K and USD Unemployment 4.1% ->
+           4.2%.)
+artifact: https://claude.ai/artifact/J3fCpUHQfWPTxveaworD4c
+prev_edition: 2026-09-27 (r1 - graded 1 WIN / 3 CONTESTED under LD-149,
+           +150.2 pips, retro https://claude.ai/artifact/WmE2JYF16PjYJj47gtomo8)
            https://claude.ai/artifact/Kn6pz8LXzpqkUReW1ffQgj
 track: LEAN (no section-2 trigger has fired)
 
