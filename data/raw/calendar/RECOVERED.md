@@ -144,3 +144,22 @@ USD | Unemployment Rate | 2026-10-02 | 4.2% | TE /united-states/unemployment-rat
 GBP | GDP Growth Rate QoQ | 2026-09-30 | - | LD-117 range row, no actual, Q3 not due
 USD | GDP Growth Rate QoQ | 2026-09-30 | - | LD-117 range row, no actual, Q3 not due
 USD | CB Consumer Confidence | 2026-09-29 | 89.4 (HELD) | UNRECOVERED - slug resolves to U.Michigan, a different survey
+
+## 2026-10-04 - GBP UNEMPLOYMENT RATE ADDED TO THE WHITELIST (F-144)
+
+Jeff: "let's add Unemployment Rate for GBP with the same scoring with the rest"
+
+A newly added row has never passed through a capture window, so R-42 flags it
+on sight - correctly. The value comes from the TE indicator page, which is the
+VALUE authority (LD-3); the calendar only ever establishes schedule.
+
+GBP | Unemployment Rate | 2026-09-15 | 4.9% | TE /united-kingdom/unemployment-rate
+
+Jul/26 print, released 15 Sep, ONS rolling three-month rate. Flat at 4.9% for a
+fourth consecutive period, against a 5.0% consensus. Next print 20 Oct (Aug/26).
+
+Scored on the same rule as the other seven - threshold '<Prev', lower is
+better, economic-health channel (F-70). 4.9% = 4.9% is flat, so NEUTRAL.
+
+R-45 verifies it independently against the same page from this build onward,
+so this entry closes the gap for the one capture-less week only.

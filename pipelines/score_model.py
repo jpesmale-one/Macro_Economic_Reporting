@@ -140,6 +140,31 @@ ROWS = [
  ("Employment","US","Unemployment Rate","4.2%","4.1%","Sep/26","<Prev","BAD"),
  ("Employment","EA","Unemployment Rate","6.4%","6.3%","Aug/26","<Prev","BAD"),
  ("Employment","GB","Claimant Count Change","27.8K","-11.8K","Aug/26","<0 (LD-58)","BAD"),
+ # F-144 - GBP WAS THE ONLY CURRENCY OF THE EIGHT WITHOUT AN UNEMPLOYMENT RATE.
+ #
+ # Jeff, 2026-10-04: "Don't we have Unemployment Rate for GBP in the indicator
+ # list?" - and then "let's add Unemployment Rate for GBP with the same scoring
+ # with the rest". This is a CLOSED-SET AMENDMENT (F-3), which is Jeff's call.
+ #
+ # TWO REASONS IT MATTERED MORE THAN A MISSING ROW USUALLY DOES:
+ #
+ #   1. GBP's whole Employment category rested on Claimant Count alone, so that
+ #      one row swung the FULL category weight. Every other currency splits it
+ #      over one to three rows.
+ #   2. The two measure DIFFERENT THINGS. Claimant Count is a weekly
+ #      ADMINISTRATIVE count of benefit claims - noisy, revision-prone,
+ #      sensitive to eligibility rules. Unemployment Rate is the ILO SURVEY
+ #      measure the other seven are scored on. GBP's labour market was being
+ #      judged on a different instrument (LD-23: no input that cannot be
+ #      sourced for all eight on equal terms).
+ #
+ # SAME RULE AS THE OTHER SEVEN: threshold '<Prev', lower is better, and the
+ # channel is ECONOMIC HEALTH - direct to the currency, not through the bank
+ # (F-70). 4.9% vs 4.9% is flat, so NEUTRAL.
+ #
+ # ONS publishes a rolling 3-month rate; Jul/26 released 15 Sep, flat for the
+ # fourth consecutive period. Next print 20 Oct (Aug/26).
+ ("Employment","GB","Unemployment Rate","4.9%","4.9%","Jul/26","<Prev","NEUTRAL"),
  ("Employment","JP","Unemployment Rate","2.5%","2.5%","Aug/26","<Prev","NEUTRAL"),
  ("Employment","AU","ANZ-Indeed Job Ads MoM","2.5%","1.9%","Aug/26",">0.5%","GOOD"),
  ("Employment","AU","Employment Change","39.5K (FT -6.3K, PT +45.8K)","-15.9K","Aug/26","hdl BAD; FT NEUTRAL (LD-57); PT GOOD","BAD"),

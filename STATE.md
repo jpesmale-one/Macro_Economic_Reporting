@@ -5238,6 +5238,58 @@ F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT TO
 #   and R-7 caught its absence immediately. FIX: assemble editions from a FILE,
 #   never from a heredoc containing markdown.
 
+### F-144 / LD-150 - GBP GAINS AN UNEMPLOYMENT RATE (2026-10-04)
+
+Jeff: "Don't we have Unemployment Rate for GBP in the indicator list?" then
+"let's add Unemployment Rate for GBP with the same scoring with the rest"
+
+*** CLOSED-SET AMENDMENT (F-3) - JEFF'S CALL, MADE EXPLICITLY. The whitelist
+goes 78 -> 79 rows.
+
+GBP WAS THE ONLY CURRENCY OF THE EIGHT WITHOUT ONE:
+
+    USD  Non Farm Payrolls, Unemployment Rate
+    EUR  Unemployment Rate
+    GBP  Claimant Count Change          <- alone
+    JPY  Unemployment Rate
+    AUD  Job Ads, Employment Change, Unemployment Rate
+    NZD  Unemployment Rate
+    CAD  Unemployment Rate, Employment Change
+    CHF  Non Farm Payrolls, Unemployment Rate
+
+TWO REASONS IT MATTERED MORE THAN AN ABSENT ROW USUALLY DOES:
+
+  1. GBP's whole Employment category rested on ONE row, so Claimant Count
+     swung the FULL category weight. Every other currency splits it.
+  2. THE TWO MEASURE DIFFERENT THINGS. Claimant Count is a weekly
+     ADMINISTRATIVE count of benefit claims - noisy, revision-prone, sensitive
+     to eligibility rules. Unemployment Rate is the ILO SURVEY measure the
+     other seven are scored on. GBP's labour market was judged on a different
+     instrument, which is an LD-23 problem (no input that cannot be sourced
+     for all eight on equal terms), not a cosmetic gap.
+
+ADDED WITH THE IDENTICAL RULE: threshold '<Prev', lower is better, the
+ECONOMIC HEALTH channel (F-70 - direct to the currency, not through the bank).
+4.9% Jul/26, flat for a fourth consecutive period against a 5.0% consensus, so
+NEUTRAL. ONS rolling three-month rate; next print 20 Oct.
+
+EFFECT: GBP Employment -1.00 -> -0.50 (the NEUTRAL row dilutes the BAD one),
+base +6.40 -> +6.90. THE SET IS UNCHANGED - the GBP gaps widen.
+Coverage 79 of 79. R-45 verifies the row independently (OK 50 -> 51).
+
+R-42 flagged it on sight, correctly: a new row has never passed a capture
+window. Provenance recorded in RECOVERED.md; R-45 covers it from here.
+
+*** THE OPEN QUESTION THIS CAME FROM IS NOT CLOSED. Jeff: "we might need to
+give more weight to indicators with most recent reference month." EUR ranked
+SECOND and finished LAST last week, and the shape of it was that the STALE
+rows were GOOD (Trade Jul/26, Retail Sales Jul/26) while the FRESH rows were
+BAD (Consumer Confidence Sep/26, Unemployment Aug/26) - and the model averaged
+them. A VINTAGE WEIGHT is a scoring change and belongs at the 31 Oct review.
+It is MEASURABLE FIRST: five weeks of boards with reference months stored, so
+test whether stale-heavy currencies systematically underperform their rank
+before adopting anything.
+
 ### F-143 - "VERIFIED AGAINST A CAPTURED PRINT" WAS NOT A CHECK (2026-10-04)
 
 Jeff: "PMIs are not updated. example AUD S&P Global Mfg PMI Final 52.0" - then
