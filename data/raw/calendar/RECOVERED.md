@@ -163,3 +163,23 @@ better, economic-health channel (F-70). 4.9% = 4.9% is flat, so NEUTRAL.
 
 R-45 verifies it independently against the same page from this build onward,
 so this entry closes the gap for the one capture-less week only.
+
+## 2026-10-05 - JPY CONSUMER CONFIDENCE, SEP/26: OUT OF VINTAGE, HELD
+
+R-42 flags this because it is scheduled Mon 5 Oct and no capture reaches it.
+That is correct and it is NOT a gap to recover: THE PRINT LANDS INSIDE THE
+WEEK THIS EDITION GRADES, not before it.
+
+  held     35.5  Aug/26   (released 1 Sep, matches TE)
+  printed  35.5  Sep/26   5 Oct, vs 35.7 consensus
+
+*** THE EDITION STAYS ON SUNDAY 4 OCT VINTAGE. Absorbing a Monday print into a
+board built on Sunday is hindsight - the exact thing the vintage rule exists to
+prevent, and the mirror of F-142, where I wrongly withheld a print that had
+landed BEFORE the build. The rule keeps NEXT week's prints out and LAST week's
+in; this one is next week's.
+
+It is also the first row of the 5-9 Oct calendar, so it will be refreshed in
+the ordinary course at the 11 Oct build, where it belongs.
+
+JPY | Consumer Confidence | 2026-10-05 | 35.5 (Sep/26, HELD OUT) | TE /japan/consumer-confidence - prints inside the graded week, deliberately not applied

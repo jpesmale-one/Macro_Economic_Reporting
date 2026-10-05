@@ -184,7 +184,36 @@ ROWS = [
  # governing rule and records that the split is unsourced - it does
  # not silently substitute a different rule.
  ("Employment","CA","Employment Change","-41.7K (FT -35.9K, PT -5.8K)","75.1K","Aug/26","LD-151 three legs","BAD"),
- ("Employment","CH","Non Farm Payrolls","5.698M","5.537M","Q2/26",">Prev","GOOD"),
+# LD-152 - CHF NON FARM PAYROLLS REMOVED (Jeff, 2026-10-05).
+ #
+ # Jeff: "since this is a quarterly data for CHF we can remove this from the
+ # list". CLOSED-SET AMENDMENT (F-3) - his call. Whitelist 79 -> 78.
+ #
+ # THE SAME REASONING AS LD-102, which removed CHF Industrial Production YoY
+ # on 2026-09-09: "a quarterly series scores the SAME value for ~13
+ # consecutive weekly editions - a constant the currency carries whether or
+ # not anything happened - and can NEVER appear in the calibrator, which only
+ # sees the five days ahead. It contributed certainty it had not earned."
+ #
+ # *** LD-102 KEPT THREE OTHER QUARTERLY ROWS FOR A STRUCTURAL REASON, AND
+ # THAT REASON DOES NOT COVER THIS ONE. NZD Unemployment is the only row in
+ # NZD Employment, NZD Inflation the only row in NZD Inflation, SNB the only
+ # row in CHF Interest Rate - removing any of them EMPTIES a category, and an
+ # empty category scores 0.00, which reads NEUTRAL when the truth is UNKNOWN
+ # (the F-73 shape). CHF Employment has TWO rows, so Unemployment Rate
+ # survives and the category stays popul. This is the one quarterly row
+ # LD-102's logic covered and that was left standing.
+ #
+ # NOT TO BE CONFUSED WITH THE 2026-08-24 CORRECTION. That found this row
+ # carrying "+0.5% vs +0.2%" - PERCENTAGES BELONGING TO NO PUBLISHED SERIES,
+ # since the indicator is a level in millions - and fixed it to 5.537M. The
+ # row was corrected then, not removed; this is the removal.
+ #
+ # EFFECT: CHF Employment +0.50 -> 0.00 (Unemployment Rate alone, 3% = 3%,
+ # NEUTRAL). CHF base +2.10 -> +1.60.
+ #
+ # It was also one of the rows R-45 cannot verify - its slug does not resolve -
+ # and at Q2/26 it carried the OLDEST vintage on the board.
  ("Employment","CH","Unemployment Rate","3%","3%","Aug/26","<Prev","NEUTRAL"),
  # ---------------- INFLATION (w=3) ----------------
  ("Inflation","US","Inflation Rate YoY","3.4%","3.4%","Aug/26","1.5-2.5 corridor & Prev","GOOD"),

@@ -5238,6 +5238,60 @@ F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT TO
 #   and R-7 caught its absence immediately. FIX: assemble editions from a FILE,
 #   never from a heredoc containing markdown.
 
+### LD-152 - CHF NON FARM PAYROLLS REMOVED (2026-10-05)
+
+Jeff: "CHF Non Farm Payrolls -- didn't we removed this before?" then "since
+this is a quarterly data for CHF we can remove this from the list"
+
+*** HIS RECOLLECTION WAS HALF RIGHT AND THE HALF THAT WAS WRONG MATTERED. Two
+different CHF events, a fortnight apart:
+
+  2026-08-24  CHF NON FARM PAYROLLS was CORRECTED, not removed. The row
+              carried "+0.5% vs +0.2%" - PERCENTAGES BELONGING TO NO PUBLISHED
+              SERIES, since the indicator is a level in millions. Fixed to
+              5.537M. The fabricated percentages had also HIDDEN that Swiss
+              employment actually FELL quarter on quarter.
+  2026-09-09  LD-102 REMOVED CHF INDUSTRIAL PRODUCTION YoY, a different row,
+              for being quarterly.
+
+So one CHF row was removed and another corrected, and the memory merged them.
+Checking the record rather than answering from memory is what separated them.
+
+NOW REMOVED, ON LD-102's OWN REASONING: "a quarterly series scores the SAME
+value for ~13 consecutive weekly editions - a constant the currency carries
+whether or not anything happened - and can NEVER appear in the calibrator,
+which only sees the five days ahead."
+
+*** LD-102 KEPT THREE OTHER QUARTERLY ROWS AND THAT EXEMPTION NEVER COVERED
+THIS ONE. NZD Unemployment, NZD Inflation and the SNB decision are each the
+ONLY row in their category, so removing them EMPTIES it - and an empty
+category scores 0.00, which reads NEUTRAL when the truth is UNKNOWN (F-73).
+CHF Employment has TWO rows, so Unemployment Rate survives and the category
+stays populated. This was the one quarterly row LD-102's logic covered and
+that was left standing for a month.
+
+IT WAS ALSO one of the rows R-45 cannot verify (slug does not resolve) and at
+Q2/26 it carried THE OLDEST VINTAGE ON THE BOARD - the stale-data concern Jeff
+raised about EUR, in its most extreme form.
+
+EFFECT: CHF Employment +0.50 -> 0.00, base +2.10 -> +1.60. Whitelist 79 -> 78.
+THE SET IS UNCHANGED; AUDCHF's gap narrows +4.10 -> +3.60 as the short leg
+weakens.
+
+### JPY CONSUMER CONFIDENCE 5 OCT - HELD OUT ON PURPOSE (2026-10-05)
+
+R-42 flagged it: scheduled Mon 5 Oct, no capture reaches it. Correct, and NOT
+a gap to recover - THE PRINT LANDS INSIDE THE WEEK THIS EDITION GRADES.
+
+  held     35.5  Aug/26   released 1 Sep, matches TE
+  printed  35.5  Sep/26   5 Oct, vs 35.7 consensus
+
+Absorbing a Monday print into a board built on Sunday is hindsight. This is the
+MIRROR of F-142, where I wrongly withheld a print that had landed BEFORE the
+build: the rule keeps NEXT week's prints out and LAST week's in, and the test
+is which side of the build date the release falls on - never how recent it
+feels.
+
 ### LD-151 - EMPLOYMENT CHANGE IS GRADED ON ALL THREE LEGS (2026-10-04)
 
 Jeff's rule, in his words:
