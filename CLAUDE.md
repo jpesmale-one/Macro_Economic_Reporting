@@ -143,6 +143,56 @@ file, so it is not in the eight. Then the four page checks the script prints.
 
 ---
 
+## 0a-iii. THE DAILY REPORT - Tue to Fri (LD-156 .. LD-162)
+
+**Jeff, 2026-10-10:** *"its primary objective is to give explanation as to
+what moves the prices... Is it confirming to our Bias or not."*
+
+**NO DAILY ON MONDAY** - the weekly is Monday's baseline. `gen_daily.py`
+refuses on Mondays and weekends rather than rendering an empty page.
+
+```
+python pipelines/capture_calendar.py --write     # MUST be same-morning
+python pipelines/pull_bars.py EURUSD GBPUSD AUDUSD NZDUSD USDJPY USDCAD USDCHF
+python pipelines/pull_bars.py <the four selected pairs>
+python pipelines/daily_report.py                 # console, to read first
+python pipelines/gen_daily.py                    # the page
+```
+
+**THE CAPTURE MUST BE FROM THAT MORNING.** `releases_by_day()` reads ACTUALS
+and TE only carries one once a row has released, so yesterday's capture shows
+"nothing scheduled" for rows that printed. The report warns, but the warning
+is a last line of defence, not the plan.
+
+### Reading it, in the order the page answers the questions
+
+| Section | The question it settles |
+|---|---|
+| **The session, ranked** | who moved, and does it match the board |
+| **Was the move its own?** | **BROAD or NARROW** - is there a move to explain at all (LD-162) |
+| **What the market said** | tier 5, attributed commentary WITH LINKS (LD-158/159/160) |
+| **Against the weekly board** | the three widest rank gaps |
+| **The set, this session** | LD-148 state per pair |
+
+**CHECK BREADTH BEFORE HUNTING A CATALYST.** A NARROW move means the
+counterpart ran, not this currency - on 9 Oct six of eight "moves" were the
+AUD/JPY spread seen from different sides, and none of them needed a story.
+
+### Tier 5 sources, and which are reachable
+
+| Source | Status |
+|---|---|
+| Trading Economics | fetchable, per-currency pages |
+| investingLive | fetchable, one daily FX wrap covering every major |
+| CNBC | **403 to a direct fetch** - use WebSearch with `allowed_domains=['cnbc.com']` |
+| CNN Fear & Greed | **451, and the dataviz endpoint returns 418** - Jeff reads it, `record_regime()` stores it |
+
+**EVERY NOTE CARRIES ITS LINK (LD-159)** - `market_note.record()` refuses one
+without. And **silence stays a valid answer**: a currency no source explains
+keeps its UNEXPLAINED line rather than being filled in.
+
+---
+
 ## 0b. THE PIPELINE IS THE PROTOCOL (read before building any edition)
 
 **Do not hand-write anything a generator produces.** Three findings landed
