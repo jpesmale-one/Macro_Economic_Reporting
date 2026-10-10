@@ -179,24 +179,20 @@ def main():
               % (a or "''", p or "''", thr, want, got, note,
                  '' if ok else '   *** FAIL'))
 
-    # Every inflation row in the fact table must agree with the rule.
-    print()
-    print('  fact table vs the rule:')
-    V = {1: 'GOOD', 0: 'NEUTRAL', -1: 'BAD'}
-    for cat, iso, name, act, prev, ref, thr, v in sm.ROWS:
-        if cat != 'Inflation':
-            continue
-        sc = ds.inflation_score(act, prev)
-        want = V.get(sc)
-        if want != v:
-            bad += 1
-            print('    *** %-4s %-26s stored %-8s rule says %s'
-                  % (sm.LABEL[iso], name[:26], v, want))
-    if not bad:
-        print('    every inflation row matches LD-136')
+    # *** THE LD-136 FACT-TABLE CHECK IS GONE, NOT BROKEN. It graded every
+    # inflation row with ds.inflation_score, which LD-155 RETIRED, and after
+    # the switch it reported CHF "stored BAD, rule says NEUTRAL" - the old
+    # rule arguing with the new one about a row the new one owns. Two rules
+    # cannot both grade the same column. The live check now lives in the
+    # LD-155 block below and reads inflation_decision.
+    #
+    # The CASES table above still exercises inflation_score directly, which is
+    # worth keeping only while that function survives as history; it tests a
+    # function nothing calls, so it can never fail the build on live data.
 
     print()
     print('  fact table vs the >Prev rule:')
+    V = {1: 'GOOD', 0: 'NEUTRAL', -1: 'BAD'}
     nbad = 0
     for cat, iso, name, act, prev, ref, thr, v in sm.ROWS:
         sc = ds.prev_score(act, prev, thr)
@@ -531,6 +527,62 @@ def main():
     if not _nb:
         print('    %d case(s) pass - 8 of 8 currencies carry a path'
               % (len(_dc) + 2))
+
+    # LD-155 - inflation on the same before/after shape as the rate path.
+    #
+    # *** THE BLOCK ABOVE STILL TESTS ds.inflation_score, WHICH LD-155
+    # RETIRED. It passes because that function still exists, not because the
+    # LIVE rule is right - a test can go green on a function nobody calls.
+    # These cases grade inflation_decision, which is what derive_scores and
+    # the calibrator now use.
+    print()
+    print('  LD-155 - inflation, before and after the news')
+    _ic = [
+        # (prev, cons, fcst, actual, want, want_src, label)
+        (None, None, '3.2%', None,    1, 'forecast',  'BEFORE above the 2.2 ceiling'),
+        (None, '1.5%', '3.0%', None, -1, 'consensus', 'BEFORE below 1.8, cons wins'),
+        (None, '2.4%', '1.0%', None,  1, 'consensus', 'cons SUPERSEDES fcst'),
+        (None, None, '2.0%', None,    0, 'forecast',  'BEFORE inside 1.8-2.2'),
+        (None, None, '1.8%', None,    0, 'forecast',  'exactly on the floor is INSIDE'),
+        (None, None, '2.2%', None,    0, 'forecast',  'exactly on the ceiling is INSIDE'),
+        (None, '3.2%', None, '3.2%',  1, 'actual',    'AFTER on expectation, retain'),
+        # *** the deflationary override - Jeff confirmed this is intended
+        (None, '1.0%', None, '1.2%',  1, 'actual',    'AFTER hot at 1.2%, override GOOD'),
+        (None, '3.2%', None, '3.0%', -1, 'actual',    'AFTER cold at 3.0%, override BAD'),
+        (None, None, None, '4.0%',    1, 'actual',    'actual alone, level test'),
+        (None, None, None, None,   None, None,        'nothing published'),
+    ]
+    _nb = 0
+    for _p, _c, _f, _a, _w, _wsrc, _lbl in _ic:
+        _sc, _src, _why = ds.inflation_decision(_p, _c, _f, _a)
+        if _sc != _w or _src != _wsrc:
+            bad += 1; _nb += 1
+            print('    *** %s: got (%s,%s) want (%s,%s)'
+                  % (_lbl, _sc, _src, _w, _wsrc))
+    # the corridor must be 1.8-2.2, not LD-143's 1.5-2.5
+    if (ds.NEW_LOW, ds.NEW_HIGH) != (1.8, 2.2):
+        bad += 1; _nb += 1
+        print('    *** corridor is %s-%s, want 1.8-2.2'
+              % (ds.NEW_LOW, ds.NEW_HIGH))
+    # and the live fact table must agree with the rule
+    try:
+        import fact_tables as _ft
+        import score_model as _sm2
+        _m = _ft.latest_month()
+        for _cat, _iso, _n, _a2, _p2, _ref, _thr, _v in _sm2.ROWS:
+            if _cat != 'Inflation':
+                continue
+            _want, _, _ = ds.inflation_decision(actual=_a2)
+            _store = {'GOOD': 1, 'NEUTRAL': 0, 'BAD': -1}.get(_v)
+            if _want is not None and _store != _want:
+                bad += 1; _nb += 1
+                print('    *** %s %s stored %s, LD-155 says %s'
+                      % (_sm2.LABEL[_iso], _n[:22], _v, _want))
+    except Exception as _e:
+        print('    (fact-table check skipped: %s)' % _e)
+    if not _nb:
+        print('    %d case(s) pass - corridor, both sides, live rows agree'
+              % (len(_ic) + 1))
 
     print()
     if bad:

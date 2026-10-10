@@ -355,8 +355,13 @@ def score_row(ccy, name, rec, base_band=None):
     # not the result"). Calling derive_scores keeps a second copy of the rule
     # from drifting, which is exactly how F-120 happened.
     if name in INFLATION_NAMES:
+        # LD-155 - the calibrator is the BEFORE-THE-NEWS side by construction:
+        # it grades a row that has not released, so cons/fcst IS the
+        # expectation and the level test runs against it. ONE RULE, ONE
+        # IMPLEMENTATION (the F-120 lesson) - derive_scores owns it.
         import derive_scores as _ds
-        sc = _ds.inflation_score('%s' % expected, '%s' % prev)
+        sc, _src, _why = _ds.inflation_decision(
+            consensus=rec.get('consensus'), forecast=rec.get('forecast'))
         if sc is not None:
             return sc
 

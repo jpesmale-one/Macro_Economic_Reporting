@@ -216,14 +216,14 @@ ROWS = [
  # and at Q2/26 it carried the OLDEST vintage on the board.
  ("Employment","CH","Unemployment Rate","3%","3%","Aug/26","<Prev","NEUTRAL"),
  # ---------------- INFLATION (w=3) ----------------
- ("Inflation","US","Inflation Rate YoY","3.4%","3.4%","Aug/26","1.5-2.5 corridor & Prev","GOOD"),
- ("Inflation","EA","Inflation Rate YoY Final","3.2%","2.9%","Aug/26","1.5-2.5 corridor & Prev","GOOD"),
- ("Inflation","GB","Inflation Rate YoY","3.1%","2.9%","Aug/26","1.5-2.5 corridor & Prev","GOOD"),
- ("Inflation","JP","Inflation Rate YoY","1.9%","1.9%","Aug/26","1.5-2.5 corridor & Prev","NEUTRAL"),
- ("Inflation","AU","Inflation Rate YoY","4.0%","3.8%","Aug/26","1.5-2.5 corridor & Prev","GOOD"),
- ("Inflation","NZ","Inflation Rate YoY","4.1%","3.1%","Jun/26 (Q)","1.5-2.5 corridor & Prev","GOOD"),
- ("Inflation","CA","Inflation Rate YoY","3%","3.0%","Aug/26","1.5-2.5 corridor & Prev","GOOD"),
- ("Inflation","CH","Inflation Rate YoY","1%","0.4%","Sep/26","1.5-2.5 corridor & Prev","NEUTRAL"),
+ ("Inflation","US","Inflation Rate YoY","3.4%","3.4%","Aug/26","1.8-2.2 corridor (LD-155)","GOOD"),
+ ("Inflation","EA","Inflation Rate YoY Final","3.2%","2.9%","Aug/26","1.8-2.2 corridor (LD-155)","GOOD"),
+ ("Inflation","GB","Inflation Rate YoY","3.1%","2.9%","Aug/26","1.8-2.2 corridor (LD-155)","GOOD"),
+ ("Inflation","JP","Inflation Rate YoY","1.9%","1.9%","Aug/26","1.8-2.2 corridor (LD-155)","NEUTRAL"),
+ ("Inflation","AU","Inflation Rate YoY","4.0%","3.8%","Aug/26","1.8-2.2 corridor (LD-155)","GOOD"),
+ ("Inflation","NZ","Inflation Rate YoY","4.1%","3.1%","Jun/26 (Q)","1.8-2.2 corridor (LD-155)","GOOD"),
+ ("Inflation","CA","Inflation Rate YoY","3%","3.0%","Aug/26","1.8-2.2 corridor (LD-155)","GOOD"),
+ ("Inflation","CH","Inflation Rate YoY","1%","0.4%","Sep/26","1.8-2.2 corridor (LD-155)","BAD"),
 ]
 
 CCYS = ["US","EA","GB","JP","AU","NZ","CA","CH"]

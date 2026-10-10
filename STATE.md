@@ -5238,6 +5238,58 @@ F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT TO
 #   and R-7 caught its absence immediately. FIX: assemble editions from a FILE,
 #   never from a heredoc containing markdown.
 
+### LD-155 - INFLATION SCORED LIKE THE RATE PATH (2026-10-10)
+
+Jeff, same session as LD-154: "Actually Inflation needs to be scored like this
+as well."
+
+    BEFORE THE NEWS                  AFTER THE NEWS
+      Forecast > 2.2  = Good           Actual = Forecast = retain
+      Forecast < 1.8  = Bad            Actual > Forecast = override Good
+      1.8 - 2.2       = Neutral        Actual < Forecast = override Bad
+
+CONSENSUS SUPERSEDES FORECAST - "the same with IR we use Consensus over
+Forecast". `src` records which number scored the row.
+
+*** TWO CHANGES FROM LD-136/LD-143, BOTH RAISED BEFORE BUILDING AND BOTH
+CONFIRMED:
+
+  1. CORRIDOR NARROWS 1.5-2.5 -> 1.8-2.2.
+  2. THE PREVIOUS PRINT NO LONGER ENTERS IT. LD-136 (Jeff, 14 Sep) graded
+     DIRECTION - "if the previous inflation is above 2% and the latest release
+     shows inflation is not going down then it is a hawkish tone" - so 3.2%
+     after 3.5% scored 0, above target but FALLING. Under LD-155 the same
+     print scores +1 because only the LEVEL is read. LD-136's direction test
+     is RETIRED, and I said so explicitly rather than deleting a rule Jeff
+     wrote without flagging it.
+
+FIVE OF EIGHT HAND-BUILT CASES FLIP, none of them live this month - a quiet
+change today and a loud one the first time inflation turns.
+
+*** THE OVERRIDE IGNORES THE LEVEL AND THAT IS INTENDED. I asked directly: "a
+1.2% print beating a 1.0% forecast is still deflationary - is that intended?"
+Jeff: "yes, this is intended". Same reasoning as the rate path - the market
+trades the SURPRISE, and a hot print is hawkish relative to what was priced
+whatever the absolute level.
+
+LIVE EFFECT: ONE ROW. CHF 1.0% was NEUTRAL inside 1.5-2.5 and is now BAD below
+1.8. CHF Inflation +1.00 -> -1.00, base +1.60 -> +0.60, THIRD TO SIXTH on the
+board. Every other currency sits far enough above 2.2 to be unaffected.
+
+*** A FALSE GREEN CAUGHT WHILE TESTING. R-44 reported "45 cases pass" AFTER
+the switch, because its inflation block still graded ds.inflation_score - the
+function LD-155 retired. A test can go green on a function nothing calls. The
+block now reads inflation_decision, and when it did it immediately found CHF's
+stored verdict still on the old rule. The old LD-136 fact-table check was
+REMOVED rather than fixed: two rules cannot both grade the same column, and
+leaving it would have meant the old rule arguing with the new one forever.
+
+COVERAGE, same shape as LD-154b: TE publishes an inflation consensus only in
+the RELEASE WEEK, so BEFORE fires about one week in four per currency and
+AFTER governs the rest. The fact table stores the ACTUAL and no expectation,
+so derive_scores runs the after-the-news branch with the print as its own
+reading; the calibrator has cons/fcst and runs before-the-news.
+
 ### LD-154 - THE RATE PATH IS SCORED FROM THE SCHEDULED DECISION (2026-10-10)
 
 Jeff's rule:

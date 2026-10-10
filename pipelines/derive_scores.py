@@ -106,6 +106,85 @@ INFLATION_TARGET = 2.0
 LOW, HIGH = 1.5, 2.5
 
 
+# LD-155 - INFLATION IS SCORED LIKE THE RATE PATH: LEVEL FIRST, THEN THE
+# SURPRISE OVERRIDES IT (Jeff, 2026-10-10).
+#
+#   BEFORE THE NEWS                    AFTER THE NEWS
+#     expectation > 2.2  -> GOOD         actual = expectation -> retain
+#     expectation < 1.8  -> BAD          actual > expectation -> override GOOD
+#     1.8 .. 2.2         -> NEUTRAL      actual < expectation -> override BAD
+#
+# SAME SHAPE AS LD-154, deliberately - Jeff asked for both on the same day and
+# the two now read the same way. CONSENSUS SUPERSEDES FORECAST here too
+# ("the same with IR we use Consensus over Forecast"), and `src` records which
+# number scored the row so a rescore is visible rather than silent.
+#
+# *** TWO THINGS THIS CHANGES FROM LD-136/LD-143, BOTH DELIBERATE AND BOTH
+# CONFIRMED BY JEFF BEFORE BUILDING:
+#
+#   1. THE CORRIDOR NARROWS, 1.5-2.5 -> 1.8-2.2. Live effect today is ONE row:
+#      CHF at 1.0% was NEUTRAL inside 1.5-2.5 and is now BAD below 1.8. Every
+#      other currency sits far enough above 2.2 to be unaffected.
+#
+#   2. THE PREVIOUS PRINT NO LONGER ENTERS IT - LD-136's DIRECTION TEST IS
+#      RETIRED. LD-136 (Jeff, 14 Sep) said "if the previous inflation is above
+#      2% and the latest release shows inflation is not going down then it is
+#      a hawkish tone", so 3.2% after 3.5% scored 0 - above target but FALLING,
+#      the bank winning. Under LD-155 that same print scores +1, because only
+#      the level is read. Five of eight hand-built test cases flip; none of
+#      them is live this month, so this is a quiet change today and a loud one
+#      the first time inflation turns.
+#
+# *** THE OVERRIDE IGNORES THE LEVEL, AND JEFF CONFIRMED THAT IS INTENDED.
+# A 1.2% print beating a 1.0% expectation scores GOOD even though 1.2% is
+# deflationary by the level test. I raised it explicitly ("a 1.2% print
+# beating a 1.0% forecast is still deflationary") and he answered "yes, this
+# is intended". The reasoning is the same as the rate path: the market trades
+# the SURPRISE, and a hot print is hawkish relative to what was priced
+# whatever the absolute level.
+#
+# COVERAGE NOTE, and it is the same shape as LD-154b. TE publishes an
+# inflation consensus only in the RELEASE WEEK, so BEFORE-the-news fires
+# roughly one week in four per currency and AFTER-the-news governs the rest.
+# The last print carries until the next is scheduled - the standing state,
+# not stale data.
+NEW_LOW, NEW_HIGH = 1.8, 2.2
+
+
+def inflation_decision(previous=None, consensus=None, forecast=None,
+                       actual=None):
+    """LD-155 -> (score, src, label) or (None, None, why).
+
+    `src` is 'consensus', 'forecast' or 'actual'. None when nothing readable -
+    never a guessed 0 (F-73).
+    """
+    exp = sm._num(consensus) if (consensus or '').strip() else         sm._num(forecast)
+    src = 'consensus' if (consensus or '').strip() else (
+        'forecast' if (forecast or '').strip() else None)
+    a = sm._num(actual) if (actual or '').strip() else None
+
+    # with no expectation the actual IS the reading - the level test alone
+    if exp is None:
+        if a is None:
+            return None, None, 'no expectation and no actual'
+        exp, src = a, 'actual'
+
+    if exp > NEW_HIGH:
+        base, lbl = 1, 'expected %.2f%% above the %.1f ceiling' % (exp, NEW_HIGH)
+    elif exp < NEW_LOW:
+        base, lbl = -1, 'expected %.2f%% below the %.1f floor' % (exp, NEW_LOW)
+    else:
+        base, lbl = 0, 'expected %.2f%% inside %.1f-%.1f' % (exp, NEW_LOW, NEW_HIGH)
+
+    if a is None:
+        return base, src, 'BEFORE - ' + lbl
+    if a > exp:
+        return 1, 'actual', 'AFTER - %.2f%% beat the expected %.2f%%, override GOOD' % (a, exp)
+    if a < exp:
+        return -1, 'actual', 'AFTER - %.2f%% missed the expected %.2f%%, override BAD' % (a, exp)
+    return base, 'actual', 'AFTER - %.2f%% exactly as expected, retain' % a
+
+
 def inflation_score(actual, previous, target=INFLATION_TARGET):
     """LD-136. +1 / 0 / -1 from the print, its previous, and the 2% target.
 
@@ -202,7 +281,10 @@ def score_row(cat, ccy, indicator, actual):
         return None
     thr, verdict, prev = r
     if cat == 'Inflation':
-        sc = inflation_score(actual, prev)
+        # LD-155 replaces LD-136/LD-143 here. The fact table stores the ACTUAL
+        # and no expectation, so this is the after-the-news branch with the
+        # print as its own reading: the LEVEL test against 1.8-2.2.
+        sc, _src, _why = inflation_decision(actual=actual)
         if sc is not None:
             return sc
     sc = prev_score(actual, prev, thr)
