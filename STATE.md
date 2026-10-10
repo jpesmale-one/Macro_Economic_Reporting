@@ -5238,6 +5238,45 @@ F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT TO
 #   and R-7 caught its absence immediately. FIX: assemble editions from a FILE,
 #   never from a heredoc containing markdown.
 
+### LD-153 - "WHICH PAIRS ACTUALLY WON" IS A STANDING RETROSPECTIVE
+### SECTION, AND IT HAD BEEN DROPPED (2026-10-10)
+
+Jeff: "can you go to tradingview and look for the pairs that have won this
+week? Can we bring back this kind of analysis where we check that currency
+actually won this week"
+
+*** IT WAS A REGRESSION, NOT A GAP. The 19 Sep and 26 Sep retrospectives both
+carried a realised-vs-board ranking in the `realised: / board :` form. The 3 Oct
+and 10 Oct pages dropped it. Nothing broke - I simply stopped looking at it,
+and a view that is not printed is a view nobody checks.
+
+pipelines/week_winners.py measures ALL 28 CROSSES Monday open -> Friday close
+on OANDA daily bars, ranks them by distance travelled, and - the part that
+grades us - says for each mover WHICH CURRENCY WON and WHAT THE BOARD SAID
+ABOUT THAT LEG on Sunday.
+
+FIRST RUN, 5-9 OCT:
+
+    realised:  AUD > USD > CAD > NZD > GBP > CHF > JPY > EUR
+    board   :  GBP > EUR > CHF > NZD > USD > JPY > CAD > AUD
+
+    EIGHT OF THE TEN BIGGEST MOVES RAN AGAINST THE BOARD.
+    EURAUD 167.6 pips at 2.14x ATR - the largest single miss
+    Every AUD cross is in the top ten, every one our way round:
+      AUD beat EUR, GBP, JPY, NZD and CAD in the SAME WEEK.
+    The two it called right are GBPJPY and USDJPY - both short JPY, both
+    under half an ATR.
+
+*** WHAT THIS ADDS THAT RHO DOES NOT. rho says the ranking was inverted; this
+says WHERE, and the misses are NOT spread evenly. Eight of the ten movers have
+AUD or EUR as a leg and the board had that leg backwards every time. A rank
+correlation of -0.62 could have come from eight small scattered errors; IT CAME
+FROM TWO LARGE ONES. That is a different problem with a different fix.
+
+SCOPE (LD-4): observation only. It reports how far price travelled and whether
+our ranking agreed. A pair appearing here is NOT a trade we should have taken -
+the set is chosen on the board BEFORE the week, never on the outcome after it.
+
 ### LD-152 - CHF NON FARM PAYROLLS REMOVED (2026-10-05)
 
 Jeff: "CHF Non Farm Payrolls -- didn't we removed this before?" then "since
