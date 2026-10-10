@@ -5692,6 +5692,68 @@ WITHDRAWAL CONDITION: if by the 12-16 Oct retrospective no rate decision has
 changed a pairing, or the regime term is reading backwards against realised
 strength, it comes out. LD-113 and LD-140 are both precedents for a rule that
 ranked nothing.
+# 2026-10-10 - RETROSPECTIVE, 5-9 OCT. THE WORST WEEK THE MODEL HAS HAD.
+#
+#     LD-149  0 WIN · 2 CONTESTED · 2 LOSS       directional -245.0 pips
+#     LD-148  CLEAN 1 · EARNED 0 · BEATEN 7 · DRIFT 12
+#     rho     -0.619 FINAL, -0.619 BASE (identical)
+#
+#   *** AUD FINISHED FIRST OF EIGHT. WE RANKED IT LAST AND WERE SHORT IT THREE
+#   WAYS. A seven-rank miss, the largest the model has produced. This is the
+#   test 14-18 Sep was and 21-25 Sep was not - the concentrated leg went the
+#   wrong way, and the structure multiplied one error into three.
+#
+#   THE CONCENTRATION WAS DISCLOSED IN ADVANCE, with both precedents, and the
+#   page also said AUD had NO HIGH-IMPACT DATA SCHEDULED so the thesis rested
+#   on the prior week's prints. All correct, none of it helped.
+#
+#   WHY AUD ROSE - and it is nothing the model can see: US Treasury yields fell
+#   from 24-year peaks, the dollar weakened broadly, and RBA hike pricing fell
+#   to 30% for November. AUDUSD +0.37%, its first weekly gain in five. MONDAY
+#   DID MOST OF THE DAMAGE BEFORE ANY SCHEDULED RELEASE - three of four pairs
+#   BEATEN on day one, EURAUD at 1.74x ATR adverse. A positioning move.
+#
+#   LD-149 EARNED ITS FIRST OUT-OF-SAMPLE WEEK. Bands fitted on data ending
+#   28 Sep produced 0 WIN here, where LD-128 would have said 1-for-4.
+#   GBPAUD 0.55 and EURAUD 0.36 are clean LOSSes and both closed deeply
+#   negative.
+#
+#   A WRONG READ LOOKS DIFFERENT FROM A CONTESTED ONE, and the grid shows it:
+#   EURAUD's MFE this week was +6.3 PIPS across five sessions against 177 the
+#   other way. On 21-25 Sep the same pair reached 1.32x and still closed
+#   negative - right read, bad timing. The close alone cannot separate them.
+#
+#   SIX READINGS, MEAN ABOUT -0.10. The upward trend of the previous three
+#   weeks is gone. THE HONEST SUMMARY IS THAT THE BOARD HAS NO DEMONSTRATED
+#   RANKING SKILL, not that it is improving slowly. Still n=8, still needs
+#   +/-0.71 for significance.
+#
+#   TWO CONSECUTIVE EXTREME-RANK MISSES IN OPPOSITE DIRECTIONS: EUR #2 -> #8
+#   last week, AUD #8 -> #1 this week. The middle ranks are near noise either
+#   way; THE EXTREMES ARE WHAT THE SET TRADES and they have now been wrong
+#   twice running.
+#
+#   SINGLE-ROW CATEGORIES ARE NOW A MEASURED RISK. Four points of AUD's -2.00
+#   came from TWO ROWS - one PMI, one trade balance. LD-102 argued single-row
+#   categories were acceptable because they are the norm. PROPOSED TEST, data
+#   already held: do currencies whose base leans on one-row categories rank
+#   worse? If so the fix is DAMPING a thin category, not removing rows.
+#
+#   *** SEVEN SCORING CHANGES LANDED IN THE WEEK THE FREEZE COVERED (LD-146 to
+#   LD-152). Each was Jeff's call and each is defensible alone; together they
+#   mean this -0.62 cannot be attributed to any one of them. The 31 Oct review
+#   should REMOVE the rules that have ranked nothing rather than carry all
+#   seven forward.
+#
+#   FOUR FINDINGS: F-142 (AUD policy rate five days stale, R-47 added), F-143
+#   ("verified against a captured print" was not a check - coverage 63 -> 57 of
+#   70), F-144 (GBP had no Unemployment Rate), F-145 (CAD FT/PT split claimed
+#   unsourced and TE publishes it). *** BOTH STALE INPUTS WERE CAUGHT BY JEFF,
+#   NOT THE BUILD.
+#
+#   Retro: reports/2026/Q4/2026-10-10_retro.md/.html
+#   Artifact: https://claude.ai/artifact/3nD99pz1btuNpGnHCbnftk (V1)
+
 # 2026-10-03 (close) - FREEZE ON SCORING LOGIC UNTIL 31 OCT.
 #
 #   Jeff: "No logic changes for the Weekly report this session. let's gather
