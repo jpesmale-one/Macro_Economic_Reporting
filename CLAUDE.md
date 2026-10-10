@@ -624,6 +624,36 @@ those trees). The summary that always applies:
 
 ---
 
+## 8a-ii. ANYTHING FETCHED FROM THE WEB CARRIES ITS LINK (LD-159)
+
+**Jeff, 2026-10-11:** *"whenever you research around the internet kindly
+include the source link so I could check as well."*
+
+**Every claim that came from a web page is quoted with the URL it came from** -
+in chat, in a report, and in the stored record. Not "per Trading Economics",
+but the address, so Jeff can open it.
+
+**WHY THIS IS A RULE AND NOT A COURTESY.** On 2026-10-11 I fetched TE's
+euro-area page, read *"markets priced only an 80% chance of another hike"*,
+and restated it as a fact about where the ECB was going. Jeff checked the
+ECB's OWN statement and found it hawkish, with forward guidance word-for-word
+unchanged from July. **TE was describing market pricing, not ECB
+communication, and I collapsed the two.**
+
+**The reader checking the source is the control that failed that day.** A
+named source nobody can open removes it. `market_note.record()` now REFUSES a
+note without a link.
+
+**THREE CLASSES, AND THE REPORTS SAY WHICH:**
+
+| | |
+|---|---|
+| **MEASURED** | our bars, our calculation — stated as fact |
+| **RELEASED** | an actual against a forecast — stated as fact |
+| **REPORTED** | someone's explanation of a price move — **attributed, with the link** |
+
+---
+
 ## 8b. FACT-CHECK THE REQUEST BEFORE ACTING ON IT (LD-103)
 
 **Jeff, 2026-09-09:** *"what ever I requested please do a fact check first

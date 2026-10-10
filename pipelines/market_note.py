@@ -73,16 +73,30 @@ def _path(day):
     return os.path.join(STORE, '%s.json' % day)
 
 
-def record(day, ccy, note, source='Trading Economics'):
+def record(day, ccy, note, source='Trading Economics', url=None):
     """Store an attributed market note for one currency on one session.
 
-    `note` is the source's own words, trimmed. `source` is who said it and is
-    NEVER blank - a note without attribution is the failure this guards.
+    `note` is the source's own words, trimmed. `source` is who said it and
+    `url` is WHERE, and both are REQUIRED.
+
+    *** THE LINK IS NOT OPTIONAL. Jeff, 2026-10-11: "whenever you research
+    around the internet kindly include the source link so I could check as
+    well." A named source he cannot open is a claim he has to take on trust,
+    and this whole tier exists BECAUSE I once took TE's euro commentary on
+    trust and restated it as fact (LD-158). The reader checking the source is
+    the control that failed that day; a page without links removes it.
+
+    If no url is passed, PAGE[ccy] is used - it is the page a fetch would
+    have targeted. Raising on a missing one would be worse than useless here,
+    because the fallback is always correct for a TE currency note.
     """
     if not note or not str(note).strip():
         return False
     if not source or not str(source).strip():
-        raise ValueError('a market note MUST carry its source (see F-146)')
+        raise ValueError('a market note MUST carry its source (see LD-158)')
+    url = url or PAGE.get(ccy)
+    if not url:
+        raise ValueError('a market note MUST carry a checkable link (LD-159)')
     if not os.path.isdir(STORE):
         os.makedirs(STORE)
     p = _path(day)
@@ -90,8 +104,9 @@ def record(day, ccy, note, source='Trading Economics'):
     if os.path.exists(p):
         data = json.load(io.open(p, encoding='utf-8'))
     data[ccy] = {'note': str(note).strip(), 'source': str(source).strip(),
+                 'url': str(url).strip(),
                  'fetched': dt.date.today().isoformat()}
-    io.open(p, 'w', encoding='utf-8', newline='\n').write(
+    io.open(p, 'w', encoding='utf-8', newline=chr(10)).write(
         json.dumps(data, indent=1, ensure_ascii=False))
     return True
 
@@ -123,4 +138,5 @@ if __name__ == '__main__':
             print('    %-4s %s' % (c, u))
     for c, d in sorted(n.items()):
         print('  %-4s [%s, fetched %s]' % (c, d['source'], d['fetched']))
+        print('       %s' % d.get('url', '(no link)'))
         print('       %s' % d['note'][:200])

@@ -72,6 +72,9 @@ td{padding:9px 10px; border-bottom:1px solid var(--rule); vertical-align:top}
   letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);
   margin-bottom:7px}
 .scroll{overflow-x:auto}
+a.src{display:inline-block; margin-top:9px; color:var(--accent);
+  font:400 12px/1.4 "IBM Plex Mono",monospace; word-break:break-all}
+a.src:hover{text-decoration:underline}
 footer{margin-top:36px; padding-top:18px; border-top:1px solid var(--rule);
   font-size:12.5px; color:var(--ink-3)}
 @media(max-width:480px){ h1{font-size:27px} .wrap{padding-block:26px} }
@@ -177,8 +180,16 @@ def build(day):
             nd = mnotes.get(c)
             if not nd:
                 continue
+            # *** THE LINK IS RENDERED, NOT JUST STORED (LD-159). Jeff:
+            # "kindly include the source link so I could check as well." A
+            # named source he cannot open is a claim taken on trust, and this
+            # tier exists because trust in exactly this source failed once.
+            u = nd.get('url')
             A('<div class="note"><span class="lbl">%s &middot; %s</span>%s'
-              '</div>' % (c, esc(nd['source']), esc(nd['note'])))
+              '%s</div>'
+              % (c, esc(nd['source']), esc(nd['note']),
+                 ('<br><a href="%s" target="_blank" rel="noopener" '
+                  'class="src">%s</a>' % (esc(u), esc(u))) if u else ''))
 
     if board:
         A('<h2>Against the weekly board</h2>')

@@ -5292,6 +5292,24 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### LD-159 - ANYTHING FETCHED FROM THE WEB CARRIES ITS LINK (2026-10-11)
+
+Jeff: "whenever you research around the internet kindly include the source
+link so I could check as well."
+
+Every claim sourced from a web page is quoted WITH ITS URL - in chat, in the
+report, and in the stored record. market_note.record() REFUSES a note without
+one, and the page renders it as a clickable link under the quote.
+
+*** WHY IT IS A RULE. The reader checking the source is the control that
+failed on 2026-10-11, when I restated TE's euro-area MARKET PRICING commentary
+as a fact about ECB intent. Jeff checked the ECB's own statement - hawkish,
+guidance unchanged word-for-word from July - and found the claim wrong. A
+named source nobody can open removes the only check that caught it.
+
+Recorded in CLAUDE.md as section 8a-ii so it applies to every session, not
+just this report.
+
 ### LD-158 - TIER 5, WHAT THE MARKET SAID, ATTRIBUTED (2026-10-11)
 
 Jeff: "can't we find anything on the net? earlier I asked this question on the
