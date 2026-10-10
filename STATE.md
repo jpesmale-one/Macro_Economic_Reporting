@@ -5292,6 +5292,36 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### LD-156b - THE DAILY IS A PAGE, NOT CONSOLE OUTPUT (2026-10-11)
+
+Jeff: "then where can I see it if not in the web report?"
+
+A fair question and the answer was nowhere. I built the daily as console
+output, which lands in MY terminal and not in front of the person it is
+written for. pipelines/gen_daily.py renders the same numbers as a page, styled
+to match the weekly and the retrospective so the three read as one
+publication.
+
+WHERE IT LIVES: reports/<year>/<quarter>/daily/<YYYY-MM-DD>_daily.html, beside
+the weekly it grades, same rule as LD-138 put the retrospectives there.
+Published as its own artifact each morning.
+
+IT REFUSES ON MONDAY AND AT WEEKENDS rather than rendering an empty page - the
+weekly IS Monday's baseline (Jeff, LD-156).
+
+THE RENDERER NEVER RECOMPUTES. Board and set come from daily_report
+.load_edition(), which reads the PUBLISHED weekly .md. That is the fix for the
+bug recorded in LD-156, and the renderer inherits it rather than repeating it.
+
+THE PAGE LEADS WITH THE AVERAGE RANK GAP - how far the session ran from the
+board, in places. Near zero is a session that confirmed the bias; wide is the
+board and the market disagreeing. On 9 Oct it was 2.9 places with a worst of 7
+(AUD board #8, session #1).
+
+AND IT CARRIES THE UNEXPLAINED MOVERS IN THEIR OWN BLOCK, said plainly: "This
+is reported, not explained. Financial commentary always finds a reason; that
+is what makes it unreliable."
+
 ### LD-155 - INFLATION SCORED LIKE THE RATE PATH (2026-10-10)
 
 Jeff, same session as LD-154: "Actually Inflation needs to be scored like this
