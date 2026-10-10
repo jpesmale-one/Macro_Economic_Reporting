@@ -5238,6 +5238,60 @@ F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT TO
 #   and R-7 caught its absence immediately. FIX: assemble editions from a FILE,
 #   never from a heredoc containing markdown.
 
+### LD-156 - THE DAILY REPORT (2026-10-11)
+
+Jeff: "it's primary objective is to give explanation as to what moves the
+prices. Tuesday -- Show the Currency Rank based on Monday price movement. Is it
+confirming to our Bias or not. And then look for explanation or the catalyst
+for each of the Currencies movements... For Monday we should not create a daily
+report since the Weekly report is our baseline for Monday."
+
+pipelines/daily_report.py. Tue-Fri, graded on the PREVIOUS session.
+
+WHAT IT PRINTS: all eight currencies ranked by that session's move (open to
+close), each one's weekly board rank beside it, the catalyst that explains the
+move or an honest refusal, the biggest rank gaps against the board, and the
+set's LD-148 state for the day.
+
+*** THE PROBLEM IT EXISTS FOR, MEASURED. On 5-9 Oct we learned on SATURDAY
+that AUD had beaten the entire board. MONDAY ALONE did most of the damage -
+three of four pairs BEATEN on day one, before any scheduled release. And EUR's
+17-month low came at the end of FIVE CONSECUTIVE DOWN WEEKS, each reported as a
+fresh surprise.
+
+*** THE HONESTY RULE IS THE HARD PART. The report says NO SCHEDULED CATALYST
+when nothing we track released. Financial commentary always has an
+explanation; that is what makes it unreliable. On 9 Oct AUD rose 0.365% with
+nothing scheduled, and the report says so rather than inventing a reason.
+
+SCOPE (LD-4): observation only. "The bias is not confirming" is an
+observation; "so exit" is the money path. It does NOT re-rank or re-select -
+the weekly is the decision (LD-97), which is exactly why Monday has no daily.
+
+THREE BUGS FOUND BY RUNNING IT, ALL SILENT:
+
+  1. THE BOARD WAS BEING RECOMPUTED, not read. The first version called
+     ps.final_scores() live and produced a DIFFERENT SET from the published
+     one. A daily that silently re-ranks is not reporting on the bias, it is
+     replacing it, and the reader would grade pairs they never took.
+
+  2. THE MARKDOWN PARSE BOUND TO THE WRONG TABLE - twice. A positional row
+     regex picked up the CALIBRATOR table and put CHF at board #1 when it is
+     #6; a rank-marker regex caught only the five rows carrying "(#n)". Fixed
+     by anchoring on the SECTION HEADING and reading the rows under it.
+
+  3. *** catalysts() COMPARED A date TO A STRING, so every lookup returned
+     NOTHING. The report read "quiet, nothing scheduled" on a Friday carrying
+     SIXTEEN releases including the CAD employment collapse (-68.3K against
+     +65K forecast). A SILENT EMPTY IS THE ONE FAILURE THIS REPORT CANNOT
+     AFFORD - it does not look broken, it looks like calm.
+
+AND A GUARD FOR THE FOURTH: the daily needs a capture from THAT MORNING,
+because releases_by_day() reads ACTUALS and TE only carries one after the row
+releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
+for rows that printed. It now refuses quietly - printing the warning above the
+report rather than reporting confidently on absent data.
+
 ### LD-155 - INFLATION SCORED LIKE THE RATE PATH (2026-10-10)
 
 Jeff, same session as LD-154: "Actually Inflation needs to be scored like this
