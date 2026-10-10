@@ -164,6 +164,23 @@ def build(day):
     # explain. ATTRIBUTED, never stated as our own finding (LD-158).
     import market_note as mn
     mnotes = mn.notes(day)
+
+    # LD-161 - the risk regime, if recorded. A MEASURED INDEX, not commentary,
+    # so it sits above the quoted notes rather than among them.
+    reg = mn.regime(day)
+    if reg:
+        A('<div class="note warn"><span class="lbl">RISK REGIME &middot; %s'
+          '</span><strong>%s</strong><br>'
+          'Jeff, 3 Oct: <em>&ldquo;for the whole week we are at Fear Index. '
+          'meaning Safe Haven are the ones people were looking at&rdquo;</em> '
+          '&mdash; that week the three havens rose and all three commodity '
+          'currencies fell.%s</div>'
+          % (esc(reg['source']), esc(reg['note']),
+             ('<br><a href="%s" target="_blank" rel="noopener" class="src">'
+              '%s</a>' % (esc(reg.get('url')), esc(reg.get('url'))))
+             if reg.get('url') else ''))
+
+    mnotes = dict((k, v) for k, v in mnotes.items() if k != '_REGIME')
     if mnotes:
         A('<h2>What the market said</h2>')
         A('<div class="note warn"><span class="lbl">REPORTED, NOT MEASURED'

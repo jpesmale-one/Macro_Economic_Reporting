@@ -92,6 +92,33 @@ SOURCES = {
     },
     # not per-currency: one wrap covers the session for every major
     'investingLive': {'*': 'https://investinglive.com/'},
+    # LD-161 - Jeff's own reading list. CNBC carries the YIELD and
+    # RATE-EXPECTATION story, which is the gap every other source leaves:
+    # on 9 Oct it gave the 10y at 5.244%, the 2y at 4.789%, and CME FedWatch
+    # pricing 18% for October and 82% for December. None of that is on an
+    # economic calendar and it is the mechanism behind both the EUR and AUD
+    # misses this month.
+    'CNBC': {'*': 'https://www.cnbc.com/world/?region=world'},
+}
+
+# *** TWO OF JEFF'S SOURCES CANNOT BE FETCHED DIRECTLY, AND SAYING SO IS PART
+# OF THE RECORD RATHER THAN A FOOTNOTE:
+#
+#   CNBC            403 Forbidden to a direct fetch. REACHABLE BY SEARCH -
+#                   WebSearch with allowed_domains=['cnbc.com'] returns the
+#                   article text, so the source is usable, just not by URL.
+#   CNN Fear&Greed  451 Unavailable For Legal Reasons on the page, and the
+#                   production.dataviz.cnn.io graphdata endpoint answers
+#                   "418 I'm a teapot. You're a bot." It is NOT fetchable
+#                   from here at all today.
+#
+# data/raw/fng holds readings to 2026-09-04 and fng_block.py still renders
+# them, so the capability exists and the SOURCE is what has closed. Jeff
+# reads the page himself; the honest arrangement is that he pastes the
+# reading and record() stores it with his attribution, rather than the report
+# implying a fetch that did not happen.
+BLOCKED = {
+    'CNN Fear & Greed': 'https://edition.cnn.com/markets/fear-and-greed',
 }
 
 # kept for callers that predate SOURCES
@@ -151,6 +178,31 @@ def record(day, ccy, note, source='Trading Economics', url=None):
     io.open(p, 'w', encoding='utf-8', newline=chr(10)).write(
         json.dumps(data, indent=1, ensure_ascii=False))
     return True
+
+
+def record_regime(day, reading, label, source='CNN Fear & Greed',
+                  url='https://edition.cnn.com/markets/fear-and-greed'):
+    """Store the session's risk-regime reading - a NUMBER, not commentary.
+
+    LD-161. Fear & Greed is not an opinion about why a price moved; it is a
+    measured index, and it belongs in its own slot rather than among the
+    quoted notes. Jeff's own 3 Oct observation is the reason it earns a
+    place: "I just checked the Fear and Grid Index last week and for the
+    whole week we are at Fear Index. meaning Safe Haven are the ones people
+    were looking at" - and that week the three havens rose and all three
+    commodity currencies fell.
+
+    CNN BLOCKS AUTOMATED READS (451 on the page, 418 on the dataviz
+    endpoint), so this is stored from whatever Jeff reads off the page. It
+    carries his attribution and the link, exactly like any other source.
+    """
+    return record(day, '_REGIME', '%s - %s' % (reading, label), source, url)
+
+
+def regime(day):
+    """The session's risk-regime note, or None."""
+    v = note_for(day, '_REGIME')
+    return v[0] if v else None
 
 
 def notes(day):

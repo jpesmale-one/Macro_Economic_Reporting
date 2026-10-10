@@ -5292,6 +5292,50 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### LD-161 - JEFF'S OWN READING LIST ADDED, AND TWO OF IT IS BLOCKED
+### (2026-10-11)
+
+Jeff listed three more channels: cnbc.com/world, and CNN's Fear & Greed page
+(twice).
+
+*** CNBC IS THE MOST VALUABLE ADDITION SO FAR, because it carries the YIELD
+AND RATE-EXPECTATION story - the exact gap every other source leaves. On
+9 Oct it gave:
+
+    10y Treasury   5.244%     30y 5.60%     2y UP 3bp to 4.789%
+    10y and 30y both at their HIGHEST SINCE 2002 earlier that week
+    CME FedWatch: 18% chance of an October hike, 82% for December
+
+None of that is on an economic calendar, and it is the mechanism behind BOTH
+the EUR miss (ECB hawkish, euro falling five weeks) and the AUD miss (yields
+off 24-year peaks lifting AUD) this month. It is also, notably, the thing I
+said on 10 Oct we had no instrument for - CNBC via search IS an instrument,
+just not a scored one.
+
+*** TWO OF THE THREE CANNOT BE FETCHED, AND THAT IS RECORDED RATHER THAN
+WORKED AROUND SILENTLY:
+
+    CNBC            403 Forbidden to a direct fetch. REACHABLE BY SEARCH -
+                    WebSearch with allowed_domains=['cnbc.com'] returns the
+                    article text. The source is usable, just not by URL.
+    CNN Fear&Greed  451 on the page; production.dataviz.cnn.io graphdata
+                    answers "418 I'm a teapot. You're a bot." NOT FETCHABLE
+                    from here at all today.
+
+data/raw/fng holds readings to 2026-09-04 and fng_block.py still renders them,
+so the CAPABILITY exists and the SOURCE has closed. record_regime() stores a
+reading Jeff reads off the page himself, with his attribution and the link -
+rather than the report implying a fetch that did not happen.
+
+THE REGIME GETS ITS OWN SLOT, ABOVE THE QUOTED NOTES, because Fear & Greed is
+a MEASURED INDEX and not an opinion about why a price moved. Jeff's 3 Oct
+observation is why it earns one: "for the whole week we are at Fear Index.
+meaning Safe Haven are the ones people were looking at" - and that week the
+three havens rose and all three commodity currencies fell.
+
+THE 9 OCT DAILY NOW CARRIES SIX NOTES FROM THREE SOURCES. USD has two that do
+not contradict: investingLive on sentiment, CNBC on yields.
+
 ### LD-160 - MORE THAN ONE SOURCE FOR TIER 5 (2026-10-11)
 
 Jeff: "let's not limit our source to TE. there are other platforms like
