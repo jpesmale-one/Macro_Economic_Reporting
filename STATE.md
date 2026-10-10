@@ -5292,6 +5292,41 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### LD-160 - MORE THAN ONE SOURCE FOR TIER 5 (2026-10-11)
+
+Jeff: "let's not limit our source to TE. there are other platforms like
+investinglive.com which we may find something that could explain what is
+happening"
+
+*** AND TE IS THE SOURCE THAT ALREADY MISLED ME ONCE - its euro-area page
+described MARKET PRICING and I read it as ECB intent (LD-158). A second source
+does not make either one true; it makes DISAGREEMENT VISIBLE, which is the
+only protection a quoted opinion can have.
+
+MEASURED ON THE 9 OCT SESSION, the two are not interchangeable:
+
+  Trading Economics  per-currency pages. Good on the currency in question,
+                     silent on the rest - its NZD page admitted outright it
+                     had no driver for the day.
+  investingLive      a DAILY FX WRAP covering every major in one post, with
+                     the cross-market context TE's single-currency pages
+                     omit. It named three things TE and the calendar missed:
+                       CAD jobs -68.3K vs +9.2K expected, two-month loss 110K
+                       Michigan sentiment 46.3 from 48.1, below 47.8 est
+                       AUD as the dollar's WEAKEST counterpart that session
+
+THE 9 OCT DAILY NOW CARRIES FIVE NOTES FROM TWO SOURCES. AUD had been
+UNEXPLAINED by both the calendar and TE; investingLive explains it.
+
+STORAGE CHANGED FROM ONE NOTE TO A LIST PER CURRENCY. Overwriting would
+silently privilege whichever source was fetched last - the opposite of the
+point. Two commentaries that contradict each other both appear and the reader
+decides; we are not placed to arbitrate between two opinions about why a price
+moved.
+
+Every note still carries its own link (LD-159), and silence is still a valid
+answer: a currency no source explains keeps its UNEXPLAINED line.
+
 ### LD-159 - ANYTHING FETCHED FROM THE WEB CARRIES ITS LINK (2026-10-11)
 
 Jeff: "whenever you research around the internet kindly include the source

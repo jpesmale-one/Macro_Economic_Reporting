@@ -54,17 +54,48 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 STORE = os.path.join(REPO, 'data/raw/market_notes')
 
-# the TE currency page per currency - what a fetch should target
-PAGE = {
-    'USD': 'https://tradingeconomics.com/united-states/currency',
-    'EUR': 'https://tradingeconomics.com/euro-area/currency',
-    'GBP': 'https://tradingeconomics.com/united-kingdom/currency',
-    'JPY': 'https://tradingeconomics.com/japan/currency',
-    'AUD': 'https://tradingeconomics.com/australia/currency',
-    'NZD': 'https://tradingeconomics.com/new-zealand/currency',
-    'CAD': 'https://tradingeconomics.com/canada/currency',
-    'CHF': 'https://tradingeconomics.com/switzerland/currency',
+# LD-160 - MORE THAN ONE SOURCE, BECAUSE ONE SOURCE IS ONE POINT OF FAILURE.
+#
+# Jeff, 2026-10-11: "let's not limit our source to TE. there are other
+# platforms like investinglive.com which we may find something that could
+# explain what is happening"
+#
+# *** AND TE IS PRECISELY THE SOURCE THAT ALREADY MISLED ME ONCE - its
+# euro-area page described MARKET PRICING and I read it as ECB intent
+# (LD-158). A second source does not make either one true; it makes
+# DISAGREEMENT VISIBLE, which is the only protection a quoted opinion can
+# have.
+#
+# MEASURED ON THE 9 OCT SESSION, the two sources are not interchangeable:
+#
+#   TE      per-currency pages. Good on the currency in question, silent on
+#           the others - its NZD page admitted it had no driver for the day.
+#   invLive a DAILY FX WRAP covering every major in one post, with the
+#           cross-market context TE's single-currency pages omit. It named
+#           the CAD jobs miss (-68.3K vs +9.2K, two-month loss 110K), the
+#           Michigan sentiment drop, and AUD as the dollar's weakest
+#           counterpart - all three of which the calendar or TE missed.
+#
+# A NOTE MAY CARRY SEVERAL SOURCES. The page renders each with its own link,
+# and when two sources disagree that disagreement is SHOWN rather than
+# resolved - we are not in a position to arbitrate between two commentaries.
+SOURCES = {
+    'Trading Economics': {
+        'USD': 'https://tradingeconomics.com/united-states/currency',
+        'EUR': 'https://tradingeconomics.com/euro-area/currency',
+        'GBP': 'https://tradingeconomics.com/united-kingdom/currency',
+        'JPY': 'https://tradingeconomics.com/japan/currency',
+        'AUD': 'https://tradingeconomics.com/australia/currency',
+        'NZD': 'https://tradingeconomics.com/new-zealand/currency',
+        'CAD': 'https://tradingeconomics.com/canada/currency',
+        'CHF': 'https://tradingeconomics.com/switzerland/currency',
+    },
+    # not per-currency: one wrap covers the session for every major
+    'investingLive': {'*': 'https://investinglive.com/'},
 }
+
+# kept for callers that predate SOURCES
+PAGE = SOURCES['Trading Economics']
 
 
 def _path(day):
@@ -103,9 +134,20 @@ def record(day, ccy, note, source='Trading Economics', url=None):
     data = {}
     if os.path.exists(p):
         data = json.load(io.open(p, encoding='utf-8'))
-    data[ccy] = {'note': str(note).strip(), 'source': str(source).strip(),
-                 'url': str(url).strip(),
-                 'fetched': dt.date.today().isoformat()}
+    # LD-160 - a currency may carry SEVERAL notes, one per source. Storing
+    # a list rather than overwriting is what makes disagreement visible: two
+    # commentaries that contradict each other both appear, and the reader
+    # decides. Overwriting would silently privilege whichever was fetched
+    # last, which is the opposite of the point.
+    entry = {'note': str(note).strip(), 'source': str(source).strip(),
+             'url': str(url).strip(),
+             'fetched': dt.date.today().isoformat()}
+    cur = data.get(ccy)
+    if isinstance(cur, dict):          # migrate the old single-note shape
+        cur = [cur]
+    cur = [e for e in (cur or []) if e.get('source') != entry['source']]
+    cur.append(entry)
+    data[ccy] = cur
     io.open(p, 'w', encoding='utf-8', newline=chr(10)).write(
         json.dumps(data, indent=1, ensure_ascii=False))
     return True
@@ -123,7 +165,11 @@ def notes(day):
 
 
 def note_for(day, ccy):
-    return notes(day).get(ccy)
+    """[{note, source, url, fetched}] - ALWAYS a list, even for one note."""
+    v = notes(day).get(ccy)
+    if v is None:
+        return []
+    return [v] if isinstance(v, dict) else v
 
 
 if __name__ == '__main__':

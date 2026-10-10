@@ -10,5 +10,29 @@
   "source": "Trading Economics",
   "url": "https://tradingeconomics.com/new-zealand/currency",
   "fetched": "2026-10-11"
- }
+ },
+ "CAD": [
+  {
+   "note": "Canada September employment MISSED a +9.2K expectation with a 68.3K DECLINE; following August's -41.7K the two-month loss reaches 110K. USDCAD jumped from ~1.4232 before the report to ~1.4293 after, partly retraced, with the loonie still under pressure. The dollar finished strongest against CAD and JPY, about +0.25% each.",
+   "source": "investingLive",
+   "url": "https://investinglive.com/news/investinglive-americas-fx-news-wrap-9-oct-it-s-a-wrap-stocks-rebound-despite-weak-sentiment-canadian-dollar-falls-on-jobs-miss/",
+   "fetched": "2026-10-11"
+  }
+ ],
+ "AUD": [
+  {
+   "note": "The dollar finished mixed and was WEAKEST AGAINST THE AUSTRALIAN DOLLAR on the session.",
+   "source": "investingLive",
+   "url": "https://investinglive.com/news/investinglive-americas-fx-news-wrap-9-oct-it-s-a-wrap-stocks-rebound-despite-weak-sentiment-canadian-dollar-falls-on-jobs-miss/",
+   "fetched": "2026-10-11"
+  }
+ ],
+ "USD": [
+  {
+   "note": "Preliminary October University of Michigan consumer sentiment fell to 46.3 from 48.1, below the 47.8 estimate. Treasury curve flattened as consumers reported rising inflation expectations; all five major indices finished higher.",
+   "source": "investingLive",
+   "url": "https://investinglive.com/news/investinglive-americas-fx-news-wrap-9-oct-it-s-a-wrap-stocks-rebound-despite-weak-sentiment-canadian-dollar-falls-on-jobs-miss/",
+   "fetched": "2026-10-11"
+  }
+ ]
 }

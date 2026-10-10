@@ -177,19 +177,17 @@ def build(day):
         # *** NOT `d` - that is the session date four lines below, and
         # shadowing it crashed the footer with 'NoneType has no strftime'.
         for c in order:
-            nd = mnotes.get(c)
-            if not nd:
-                continue
-            # *** THE LINK IS RENDERED, NOT JUST STORED (LD-159). Jeff:
-            # "kindly include the source link so I could check as well." A
-            # named source he cannot open is a claim taken on trust, and this
-            # tier exists because trust in exactly this source failed once.
-            u = nd.get('url')
-            A('<div class="note"><span class="lbl">%s &middot; %s</span>%s'
-              '%s</div>'
-              % (c, esc(nd['source']), esc(nd['note']),
-                 ('<br><a href="%s" target="_blank" rel="noopener" '
-                  'class="src">%s</a>' % (esc(u), esc(u))) if u else ''))
+            # LD-160 - several sources per currency, each with its own link.
+            # Disagreement between commentaries is SHOWN, never resolved: we
+            # are not placed to arbitrate between two opinions about why a
+            # price moved.
+            for nd in mn.note_for(day, c):
+                u = nd.get('url')
+                A('<div class="note"><span class="lbl">%s &middot; %s</span>%s'
+                  '%s</div>'
+                  % (c, esc(nd['source']), esc(nd['note']),
+                     ('<br><a href="%s" target="_blank" rel="noopener" '
+                      'class="src">%s</a>' % (esc(u), esc(u))) if u else ''))
 
     if board:
         A('<h2>Against the weekly board</h2>')
