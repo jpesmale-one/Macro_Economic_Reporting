@@ -5292,6 +5292,46 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### LD-162 - BROAD OR NARROW: WAS THE MOVE ITS OWN? (2026-10-11)
+
+Jeff: "If we can't really find any catalyst for the move then it could just
+the strength or weakness of the currency it is paired with. we can take a look
+at that angle."
+
+*** HE IS RIGHT, AND IT GIVES "NO CATALYST" A SECOND ANSWER. Currency strength
+here is one currency against the other seven, so an average moves for two very
+different reasons:
+
+    BROAD   moved against nearly every counterpart - the currency did
+            something
+    NARROW  up against some, down against others - the AVERAGE moved because
+            SOMEONE ELSE ran
+
+9 OCT, AND THE WHOLE SESSION IS TWO CURRENCIES:
+
+    AUD +0.365%  BROAD, stronger against ALL SEVEN. A real move.
+    JPY -0.298%  BROAD, weaker against ALL SEVEN. A real move.
+    CHF +0.132%  NARROW - up vs 5, DOWN vs AUD and NZD. Most of its rank came
+                 from JPY (+0.44) and CAD (+0.35) being sold, not Swiss
+                 demand. Its own confidence print MISSED.
+    GBP +0.023%  NARROW - up vs 4, down vs 3. A near-zero average hiding
+                 +0.33 vs JPY and -0.34 vs AUD.
+    USD -0.013%  NARROW - up vs 3, down vs 4.
+    EUR -0.128%  NARROW - up vs 2, down vs 5.
+
+SO JPY BEING SOLD AGAINST EVERYTHING EXPLAINS THE TOP HALF OF THE BOARD
+without CHF, GBP or NZD needing a story of their own. Six of eight "moves"
+that day were mostly the AUD/JPY spread seen from different sides.
+
+*** A FIRST ATTEMPT AT THIS WAS USELESS AND IS WORTH RECORDING. I tried
+decomposing each move into "own" versus "borrowed" by subtracting the mean of
+the eight - but the mean is ~0 BY CONSTRUCTION, since strength is already
+measured against the basket. Every currency came back "mostly its OWN", which
+is arithmetic, not a finding. The leg-by-leg view is the one that answers the
+question.
+
+BEFORE REACHING FOR A CATALYST, CHECK WHETHER THERE IS A MOVE TO EXPLAIN.
+
 ### LD-161 - JEFF'S OWN READING LIST ADDED, AND TWO OF IT IS BLOCKED
 ### (2026-10-11)
 

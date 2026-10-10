@@ -160,6 +160,36 @@ def build(day):
           'any calendar: positioning, yields, or cross-asset flow.</div>'
           % ', '.join('%s %+.3f%%' % (c, s[c]) for c in big))
 
+    # LD-162 - BROAD OR NARROW. Added because Jeff asked the right question:
+    # "If we can't really find any catalyst for the move then it could just
+    # the strength or weakness of the currency it is paired with."
+    A('<h2>Was the move its own?</h2>')
+    A('<div class="note"><span class="lbl">BROAD vs NARROW</span>'
+      'Currency strength here is <strong>one currency against the other '
+      'seven</strong>, so an average can move for two very different '
+      'reasons. <strong>BROAD</strong> means it moved against nearly every '
+      'counterpart &mdash; the currency itself did something. '
+      '<strong>NARROW</strong> means it rose against some and fell against '
+      'others, and the average moved because <em>someone else</em> ran. '
+      '<strong>Before reaching for a catalyst, check whether there is a move '
+      'to explain.</strong></div>')
+    A('<div class="scroll"><table>')
+    A('<thead><tr><th>CCY</th><th class="num">Move</th><th>Breadth</th>'
+      '<th>Strongest against</th><th>Weakest against</th></tr></thead><tbody>')
+    for c in order:
+        b = dr.breadth(day, c)
+        if not b:
+            continue
+        up, n, lbl, best, worst = b
+        bc = 'pos' if 'BROAD' in lbl and s[c] > 0 else (
+            'neg' if 'BROAD' in lbl else '')
+        A('<tr><td class="ccy">%s</td><td class="num %s">%+.3f%%</td>'
+          '<td class="%s">%s</td>'
+          '<td class="mono">%s %+.2f</td><td class="mono">%s %+.2f</td></tr>'
+          % (c, cls(s[c]), s[c], bc, esc(lbl),
+             best[0], best[1], worst[0], worst[1]))
+    A('</tbody></table></div>')
+
     # TIER 5 - what the market said, for the currencies the calendar cannot
     # explain. ATTRIBUTED, never stated as our own finding (LD-158).
     import market_note as mn

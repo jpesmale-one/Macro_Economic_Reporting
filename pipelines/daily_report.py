@@ -323,3 +323,75 @@ if __name__ == '__main__':
         sys.exit(0)
     _b, _p = live_board()
     sys.exit(report(day, _b, _p))
+
+
+# LD-162 - BROAD OR NARROW? WHERE A CURRENCY'S MOVE ACTUALLY CAME FROM.
+#
+# Jeff, 2026-10-11: "If we can't really find any catalyst for the move then it
+# could just the strength or weakness of the currency it is paired with. we
+# can take a look at that angle."
+#
+# *** HE IS RIGHT AND IT CHANGES THE READING. Currency strength here is a
+# currency against the other seven, so a number like "CHF +0.132%" can mean
+# two completely different things:
+#
+#     BROAD   up against most or all counterparts - the currency itself moved
+#     NARROW  up against a few, down against others - the AVERAGE moved
+#             because one counterpart collapsed, not because this currency did
+#
+# ON 9 OCT the two cases sit side by side:
+#
+#     AUD  +0.365%   UP AGAINST ALL SEVEN. Genuinely bid, biggest vs JPY
+#                    (+0.68) - a real move with no catalyst we can see.
+#     CHF  +0.132%   up against FIVE, DOWN against AUD and NZD. Most of its
+#                    rank came from JPY (+0.44) and CAD (+0.35) being sold,
+#                    not from Swiss demand. Its own confidence print MISSED.
+#     GBP  +0.023%   up against four, DOWN against three. A near-zero average
+#                    hiding a +0.33 vs JPY and a -0.34 vs AUD.
+#
+# SO "NO CATALYST" HAS A SECOND ANSWER. Before reaching for commentary, ask
+# whether the currency moved at all or merely sat still while others ran.
+# JPY was DOWN AGAINST ALL SEVEN that session - which explains the top half
+# of the board without any of those currencies needing a story of their own.
+def legs(day, ccy):
+    """[(counterpart, % move of ccy against it)] for one session, best first.
+
+    Reads every cross we hold, signing each so a POSITIVE number always means
+    `ccy` strengthened against that counterpart.
+    """
+    import glob as _g
+    out = []
+    for f in _g.glob(os.path.join(TXT, '??????.txt')):
+        p = os.path.basename(f)[:-4]
+        if p[:3] not in CCYS or p[3:] not in CCYS:
+            continue
+        if ccy not in (p[:3], p[3:]):
+            continue
+        b = bars(p)
+        if not b:
+            continue
+        r = [x for x in b if x[0] == day]
+        if not r:
+            continue
+        _, o, _h, _l, c = r[0]
+        v = (c - o) / o * 100.0
+        out.append((p[3:], v) if p[:3] == ccy else (p[:3], -v))
+    return sorted(out, key=lambda x: -x[1])
+
+
+def breadth(day, ccy):
+    """(up, total, label, best, worst) - was the move broad or borrowed?"""
+    rows = legs(day, ccy)
+    if not rows:
+        return None
+    up = sum(1 for _, v in rows if v > 0)
+    n = len(rows)
+    if up == n:
+        lbl = 'BROAD - stronger against all %d' % n
+    elif up == 0:
+        lbl = 'BROAD - weaker against all %d' % n
+    elif up >= n - 1 or up <= 1:
+        lbl = 'mostly broad - %d of %d' % (max(up, n - up), n)
+    else:
+        lbl = 'NARROW - up vs %d, down vs %d' % (up, n - up)
+    return up, n, lbl, rows[0], rows[-1]
