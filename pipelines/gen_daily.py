@@ -125,9 +125,9 @@ def build(day):
       '<th class="num">Board</th><th>Catalyst</th></tr></thead><tbody>')
     for i, c in enumerate(order, 1):
         br = (brank.index(c) + 1) if board and c in brank else None
-        why = dr.explain(c, s[c], ev.get(c, []))
+        why = dr.explain(c, s[c], day=day)
         wc = ''
-        if 'NO SCHEDULED CATALYST' in why:
+        if 'UNEXPLAINED' in why:
             wc = ' class="neg"'
         elif 'AGAINST' in why:
             wc = ' class="neg"'
@@ -143,17 +143,18 @@ def build(day):
 
     # unexplained movers - the honest half
     big = [c for c in order
-           if abs(s[c]) >= 0.25 and 'NO SCHEDULED CATALYST' in
-           dr.explain(c, s[c], ev.get(c, []))]
+           if abs(s[c]) >= 0.25 and 'UNEXPLAINED' in
+           dr.explain(c, s[c], day=day)]
     if big:
-        A('<div class="note bad"><span class="lbl">&#9888; MOVED WITHOUT A '
-          'CATALYST WE TRACK</span>')
-        A('<strong>%s</strong> moved materially with nothing scheduled that '
-          'we follow. <strong>This is reported, not explained.</strong> '
-          'Financial commentary always finds a reason; that is what makes it '
-          'unreliable. The honest reading is that the move came from '
-          'something outside the whitelist &mdash; positioning, yields, or '
-          'flow.</div>'
+        A('<div class="note bad"><span class="lbl">&#9888; MOVED WITH '
+          'NOTHING ON THE CALENDAR</span>')
+        A('<strong>%s</strong> moved materially and <strong>the whole '
+          'captured calendar &mdash; not just our whitelist &mdash; carries '
+          'nothing for it that day.</strong> '
+          '<strong>This is reported, not explained.</strong> Financial '
+          'commentary always finds a reason, and that is exactly what makes '
+          'it unreliable. The honest reading is that the cause sits outside '
+          'any calendar: positioning, yields, or cross-asset flow.</div>'
           % ', '.join('%s %+.3f%%' % (c, s[c]) for c in big))
 
     if board:

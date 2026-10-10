@@ -144,28 +144,26 @@ def beat(actual, forecast):
     return 'INLINE'
 
 
-def explain(ccy, move, evs):
-    """A one-line read of why a currency moved, or an honest refusal.
+def explain(ccy, move, evs=None, day=None):
+    """One honest line on why a currency moved - THE WHOLE CALENDAR.
 
-    *** THE REFUSAL IS THE POINT. If nothing we track landed, the report says
-    NO SCHEDULED CATALYST rather than reaching for a narrative.
+    *** WAS LIMITED TO THE 78 WHITELIST ROWS, AND THAT ANSWERED THE WRONG
+    QUESTION. Jeff, 2026-10-11: "let's not limit it on the indicators we
+    tracked... if there's no news important to us happened on that day then my
+    question is why it is strong/weak? what could have caused it?"
+    The daily reported Monday 5 Oct as "nothing scheduled" for all eight
+    currencies while the captures held SIXTY-NINE ROWS for that date - four
+    ECB speeches, US ISM Services, euro-area PPI, the Australian inflation
+    gauge. We had the data and were filtering it away.
+    THE WHITELIST EXISTS TO SCORE, NOT TO EXPLAIN. LD-23 governs what may move
+    a NUMBER; nothing of the sort applies to asking what happened.
+    catalyst.py owns the four tiers now - surprise, CB speak, scheduled,
+    nothing - and this delegates to it.
     """
-    big = abs(move) >= 0.25
-    if not evs:
-        return ('NO SCHEDULED CATALYST - nothing we track released'
-                if big else 'quiet, nothing scheduled')
-    hits = []
-    for hhmm, name, act, fc in evs:
-        b = beat(act, fc)
-        if b in ('BEAT', 'MISS'):
-            hits.append('%s %s (%s vs %s)' % (name[:26], b, act, fc))
-    if not hits:
-        return ('%d release(s), all in line - move is NOT explained by them'
-                % len(evs)) if big else '%d release(s), all in line' % len(evs)
-    agree = [h for h in hits
-             if (('BEAT' in h) == (move > 0))]
-    tag = 'CONSISTENT' if agree else 'AGAINST the move'
-    return '%s | %s' % ('; '.join(hits[:2]), tag)
+    import catalyst as cat
+    if day is None:
+        return 'no session date supplied'
+    return cat.explain(day, ccy, move)
 
 
 def report(day, board=None, picks=None):
@@ -206,7 +204,7 @@ def report(day, board=None, picks=None):
     for i, c in enumerate(order, 1):
         br = ('#%d' % (brank.index(c) + 1)) if board and c in brank else '-'
         print('  %-4s %+8.3f%%  #%-4d %-7s %s'
-              % (c, s[c], i, br, explain(c, s[c], ev.get(c, []))[:68]))
+              % (c, s[c], i, br, explain(c, s[c], day=day)[:68]))
 
     if board:
         print()

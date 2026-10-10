@@ -5292,6 +5292,49 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### LD-157 - THE CATALYST READS THE WHOLE CALENDAR, NOT THE WHITELIST
+### (2026-10-11)
+
+Jeff: "let's not limit it on the indicators we tracked. the goal of this report
+is to find explanation if there's no news important to us happened on that day
+then my question is why it is strong/weak? what could have caused it? Answer
+this on the report always not just based on the indicators we tracked"
+
+*** THE MEASURED GAP. The daily reported Monday 5 Oct as "nothing scheduled"
+for ALL EIGHT currencies. The captures hold SIXTY-NINE ROWS for that date -
+FOUR ECB SPEECHES including Lane and Schnabel, US ISM Services, euro-area PPI,
+the Australian TD-MI inflation gauge, NZIER business confidence. WE HAD THE
+DATA AND WERE FILTERING IT AWAY, because releases_by_day() keeps only the 78
+whitelist rows.
+
+THE WHITELIST EXISTS TO SCORE, NOT TO EXPLAIN. LD-23 requires an input to be
+available for all eight on equal terms before it may move a NUMBER. Nothing of
+the sort applies to asking what happened: an ECB speech explains a euro move
+perfectly well without needing a Swiss counterpart.
+
+pipelines/catalyst.py - FOUR TIERS, strongest evidence first:
+
+  1. SURPRISE   a release whose actual beat or missed its forecast, ranked by
+                how far it missed. The only measurable tier.
+  2. CB SPEAK   speeches, minutes, testimony. NAMED, NEVER SCORED - we cannot
+                read tone (LD-107) but we can say who spoke.
+  3. SCHEDULED  anything else that landed, as context.
+  4. NOTHING    said plainly, WITH THE COUNT OF ROWS CHECKED, so the reader
+                knows the silence was looked for rather than assumed.
+
+EURO-AREA MEMBER DATA counts for EUR - German, French, Italian and Spanish
+rows reach the single currency.
+
+*** TIER 4 STAYS HONEST AND THAT IS THE POINT. "UNEXPLAINED - 35 rows landed
+that day, none for GBP. Cause is outside the calendar." A borrowed narrative
+would read better and be worth less; this is the discipline that kept the
+5-9 Oct retrospective truthful when TE's own commentary was not.
+
+A BUG FIXED EN ROUTE: the CB pattern matched institution NAMES, so "ny fed
+bill purchases" - an open market operation - was reported as a central banker
+speaking. It now matches the ACT of speaking. A catalyst line that misnames
+its evidence is worse than one that says nothing.
+
 ### LD-156b - THE DAILY IS A PAGE, NOT CONSOLE OUTPUT (2026-10-11)
 
 Jeff: "then where can I see it if not in the web report?"
