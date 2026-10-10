@@ -258,6 +258,165 @@ def expected(ccy, cpi, rising):
         else (-0.25, 'inside %s, falling' % band)
 
 
+# LD-154 - THE PATH TERM IS SCORED FROM THE SCHEDULED DECISION (Jeff,
+# 2026-10-10).
+#
+#   BEFORE THE NEWS            AFTER THE NEWS
+#     expectation > previous -> GOOD      actual = expectation -> retain
+#     expectation < previous -> BAD       actual > expectation -> override GOOD
+#     expectation = previous -> NEUTRAL   actual < expectation -> override BAD
+#
+# Jeff: "This way we can reflect the forward looking sentiment the soonest on
+# Before the news scenario and ride the decision on the After the news
+# scenario."
+#
+# *** WHAT IT FIXES, AND IT IS A LIVE DEFECT NOT A PREFERENCE. path carries
+# weight 0.40 - joint-largest in this model - and on 2026-10-10 it was EMPTY
+# FOR SIX OF EIGHT currencies. LD-109 renormalises missing terms away, so six
+# currencies were scored on realised+level over a 0.6 divisor while two scored
+# over 1.0, and the model's only forward-looking term was inert for 75% of the
+# board. The old path_score needed TE's `forecast` column populated for the
+# CURRENT week; this scores from the moment a decision is SCHEDULED.
+#
+# *** CONSENSUS SUPERSEDES FORECAST, AND THE ROW RESCORES WHEN IT APPEARS.
+# Jeff: "Forecast is fine to use but when consensus appeared we should rescore
+# it based on that." Measured over 140 rate rows in our captures, consensus is
+# present on only 42% and arrives a MEDIAN OF ~4 DAYS before the decision -
+# ECB 6 days, BoE 4, Fed 3, RBA 3. A consensus-only rule would therefore fire
+# about a week out, not from scheduling. Forecast fills the gap until the
+# market's own number exists, and `src` records which one scored it so the
+# page can show it and a rescore is visible rather than silent.
+#
+# THE AFTER-THE-NEWS HALF REPLACES WHAT `realised` DID BADLY. realised pays
+# +1 for having hiked at all, regardless of whether the hike was priced -
+# exactly what LD-90 exists to prevent ("a fully-priced decision moves
+# nothing"). Scoring the SURPRISE against the expectation asks the right
+# question, and a decision landing exactly on expectation now RETAINS its
+# before-the-news score instead of being re-paid for happening.
+#
+# *** THIS EXTENDS THE HORIZON BEYOND ONE WEEK, which no other term does. A
+# decision 25 days out scores today and keeps scoring until it lands. Jeff
+# accepted that explicitly: "this would require us to look the calendar ahead
+# of just 1 week. But at least we can account the change of expection the
+# soonest."
+# LD-154b - A CURRENCY WITH NO SCHEDULED DECISION CARRIES ITS LAST ONE.
+#
+# Jeff, 2026-10-10: "For the other currencies which are not yet scheduled for
+# IR decision of course we apply the After News score for them... Once their IR
+# schedule got updated then we can score them based on Before News scoring."
+#
+# *** THIS IS WHAT MAKES LD-154 REACH ALL EIGHT. Scored against the real 4 Oct
+# calendar the before-news half covered only THREE currencies - TE had the Fed
+# and ECB rows completely empty (no consensus, no forecast, ECB no previous
+# either) and no October row at all for GBP, AUD or CHF. A forward rule that
+# fires on three of eight is the LD-23 failure it was meant to fix.
+#
+# THE LAST DECISION IS NOT STALE DATA, IT IS THE STANDING STATE. A bank that
+# decided in September and has not scheduled October has not changed its mind;
+# the September result IS the current reading until a new expectation exists.
+# This is the opposite of the quarterly-row problem LD-102 removed, where a
+# value repeated because nothing was measured. Here the value repeats because
+# nothing has HAPPENED.
+#
+# SUPERSESSION IS AUTOMATIC: the moment TE schedules the next decision with a
+# consensus or forecast, decision_score() reads it and the row flips to
+# before-news. No separate rule, no manual switch - LAST holds the fallback
+# and the calendar wins whenever it has something to say.
+#
+# ALL FIVE ARE FULLY PRICED (actual == consensus), so every one RETAINS its
+# before-news score rather than being re-paid for happening - LD-90 intact.
+LABEL = {'US': 'USD', 'EA': 'EUR', 'GB': 'GBP', 'JP': 'JPY',
+         'AU': 'AUD', 'NZ': 'NZD', 'CA': 'CAD', 'CH': 'CHF'}
+
+# ccy -> (consensus, forecast) for the NEXT scheduled decision, read from the
+# capture by load_scheduled(). Empty until that runs, so compute() falls back
+# to LAST and the term is never blank.
+SCHEDULED = {}
+
+
+def load_scheduled(capture=None):
+    """Fill SCHEDULED from a TE capture. Returns how many rows it found."""
+    import glob as _g
+    import json as _j
+    import os as _os
+    if capture is None:
+        c = sorted(_g.glob(_os.path.join(
+            _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))),
+            'data/raw/calendar/*_cal_full.json')))
+        if not c:
+            return 0
+        capture = c[-1]
+    BANK = {'fed': 'USD', 'ecb': 'EUR', 'boe': 'GBP', 'boj': 'JPY',
+            'rba': 'AUD', 'rbnz': 'NZD', 'boc': 'CAD', 'snb': 'CHF'}
+    import io as _io
+    raw = _j.load(_io.open(capture, encoding='utf-8'))
+    rows = raw if isinstance(raw, list) else raw.get(
+        'rows', raw.get('events', []))
+    n = 0
+    for r in rows:
+        e = (r.get('event', '') or '').lower()
+        if 'interest rate decision' not in e:
+            continue
+        ccy = BANK.get(e.split()[0] if e.split() else '')
+        if not ccy:
+            continue
+        cons = (r.get('consensus') or '').strip()
+        fcst = (r.get('forecast') or '').strip()
+        if cons or fcst:
+            SCHEDULED[ccy] = (cons or None, fcst or None)
+            n += 1
+    return n
+
+
+LAST = {
+    # ccy: (actual, previous, consensus)   verified against rate_model.ROWS
+    'GBP': ('3.75%', '3.75%', '3.75%'),   # BoE 17 Sep HELD  -> retains NEUTRAL
+    'AUD': ('4.6%',  '4.35%', '4.6%'),    # RBA 29 Sep HIKED -> retains GOOD
+    'CHF': ('0%',    '0%',    '0%'),      # SNB 24 Sep HELD  -> retains NEUTRAL
+    'USD': ('4%',    '3.75%', '4%'),      # Fed 16 Sep HIKED -> retains GOOD
+    'EUR': ('2.65%', '2.4%',  '2.65%'),   # ECB 10 Sep HIKED -> retains GOOD
+}
+
+
+def standing_score(ccy):
+    """LD-154b - the last decision's score, for a currency with none ahead."""
+    r = LAST.get(ccy)
+    if not r:
+        return None, None, 'no last decision recorded'
+    a, p, c = r
+    return decision_score(p, c, None, a)
+
+
+def decision_score(previous, consensus=None, forecast=None, actual=None):
+    """LD-154 -> (score, src, label) or (None, None, why).
+
+    `src` is 'consensus', 'forecast' or 'actual' - whichever number scored
+    the row. None when nothing is readable: never a guessed 0 (F-73).
+    """
+    p = _num(previous)
+    exp = _num(consensus) if (consensus or '').strip() else _num(forecast)
+    src = 'consensus' if (consensus or '').strip() else (
+        'forecast' if (forecast or '').strip() else None)
+    if p is None or exp is None:
+        return None, None, 'no previous or expectation published'
+
+    if exp > p:
+        base, lbl = 1, 'expected HIKE %s -> %s' % (previous, consensus or forecast)
+    elif exp < p:
+        base, lbl = -1, 'expected CUT %s -> %s' % (previous, consensus or forecast)
+    else:
+        base, lbl = 0, 'expected HOLD at %s' % previous
+
+    a = _num(actual) if (actual or '').strip() else None
+    if a is None:
+        return base, src, 'BEFORE - ' + lbl
+    if a > exp:
+        return 1, 'actual', 'AFTER - %s beat the expected %s, override GOOD' % (actual, exp)
+    if a < exp:
+        return -1, 'actual', 'AFTER - %s missed the expected %s, override BAD' % (actual, exp)
+    return base, 'actual', 'AFTER - %s exactly as expected, retain' % actual
+
+
 def path_score(current, forecast):
     """(score, bp, label) for the expected path, or (None, None, ...).
 
@@ -302,7 +461,20 @@ def compute():
         cur, fcst = (row[6], row[7]) if len(row) > 7 else (None, None)
         prev_rate = row[8] if len(row) > 8 else None
         exp, why = expected(ccy, cpi, ris)
-        path, bp, path_why = path_score(cur, fcst)
+        # LD-154 replaces path_score's forecast-minus-current test. The
+        # calendar wins when it has a scheduled decision with a number;
+        # otherwise LD-154b carries the last decision forward, which is what
+        # takes this term from 3 of 8 to 8 of 8.
+        # *** THE BEFORE-NEWS TEST COMPARES AGAINST THE CURRENT RATE, NOT
+        # prev_rate. prev_rate is the rate BEFORE the LAST decision, so using
+        # it read NZD's 28 Oct forecast of 2.75% as "HIKE 2.50 -> 2.75" when
+        # 2.75% is already the standing rate and the forecast is a HOLD. Same
+        # for JPY. Caught by reading the output rather than the diff.
+        _sch = SCHEDULED.get(LABEL.get(ccy, ccy), (None, None))
+        path, psrc, path_why = decision_score(rate, _sch[0], _sch[1], None)
+        if path is None:
+            path, psrc, path_why = standing_score(LABEL.get(ccy, ccy))
+        bp = None
         # LD-142 - the LEVEL term replaces expected() and LD-140's
         # consensus-vs-standing test. See level_score() for Jeff's five rules
         # and for what each replaced rule was measuring instead.
@@ -321,6 +493,7 @@ def compute():
                     'level': lvl, 'prev_rate': prev_rate,
                     'surprise': surp, 'path': path, 'path_bp': bp,
                     'path_why': path_why, 'forecast': fcst,
+                    'path_src': psrc,
                     'raw': raw, 'score': raw * W_RATE,
                     'cpi': cpi, 'rising': ris, 'why': why, 'note': note,
                     'mandate': MANDATE[ccy]}

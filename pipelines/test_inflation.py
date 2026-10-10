@@ -491,6 +491,47 @@ def main():
         print('    %d case(s) pass - four rules, two rulings, zeros, refusals'
               % len(_eg))
 
+    # LD-154 - the rate path from the scheduled decision.
+    print()
+    print('  LD-154 - decision score, before and after the news')
+    import rate_model as _rm
+    _dc = [
+        # (prev, cons, fcst, actual, want_score, want_src, label)
+        ('4.00%', None,    '4.25%', None,   1, 'forecast',  'BEFORE hike, fcst'),
+        ('4.00%', None,    '4.00%', None,   0, 'forecast',  'BEFORE hold, fcst'),
+        ('4.00%', '3.75%', '4.00%', None,  -1, 'consensus', 'BEFORE cut, cons wins'),
+        ('4.00%', '4.25%', '3.75%', None,   1, 'consensus', 'cons SUPERSEDES fcst'),
+        ('4.00%', '4.25%', None, '4.25%',   1, 'actual',    'AFTER on expectation, retain'),
+        ('4.00%', '4.00%', None, '4.25%',   1, 'actual',    'AFTER beat, override GOOD'),
+        ('4.00%', '4.25%', None, '4.00%',  -1, 'actual',    'AFTER miss, override BAD'),
+        ('4.00%', None,    None,    None, None, None,       'nothing published'),
+    ]
+    _nb = 0
+    for _p, _c, _f, _a, _ws, _wsrc, _lbl in _dc:
+        _sc, _src, _why = _rm.decision_score(_p, _c, _f, _a)
+        if _sc != _ws or _src != _wsrc:
+            bad += 1; _nb += 1
+            print('    *** %s: got (%s,%s) want (%s,%s)'
+                  % (_lbl, _sc, _src, _ws, _wsrc))
+    # LD-154b - every currency must score a path, none may be None
+    _rm.load_scheduled()
+    _r = _rm.compute()
+    _blank = [_rm.LABEL[i] for i, d in _r.items() if d['path'] is None]
+    if _blank:
+        bad += 1; _nb += 1
+        print('    *** path still blank for: %s' % ', '.join(_blank))
+    # the before-news test must compare against the CURRENT rate, never the
+    # rate before the last decision - that read a HOLD as a HIKE
+    _bad_hold = [_rm.LABEL[i] for i, d in _r.items()
+                 if d.get('path_src') == 'forecast' and d['path'] == 1
+                 and 'HOLD' in (d['path_why'] or '')]
+    if _bad_hold:
+        bad += 1; _nb += 1
+        print('    *** a HOLD scored +1 for: %s' % ', '.join(_bad_hold))
+    if not _nb:
+        print('    %d case(s) pass - 8 of 8 currencies carry a path'
+              % (len(_dc) + 2))
+
     print()
     if bad:
         print('*** %d FAILURE(S)' % bad)

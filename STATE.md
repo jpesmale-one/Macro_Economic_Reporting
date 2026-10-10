@@ -5238,6 +5238,62 @@ F-39 - SUNDAY'S SECTION 1 FRAMED THE YEN INTERVENTION AS A STANDING THREAT TO
 #   and R-7 caught its absence immediately. FIX: assemble editions from a FILE,
 #   never from a heredoc containing markdown.
 
+### LD-154 - THE RATE PATH IS SCORED FROM THE SCHEDULED DECISION (2026-10-10)
+
+Jeff's rule:
+
+    BEFORE THE NEWS                    AFTER THE NEWS
+      Forecast > Previous = Good         Actual = Forecast = retain
+      Forecast < Previous = Bad          Actual > Forecast = override Good
+      Forecast = Previous = Neutral      Actual < Forecast = override Bad
+
+"This way we can reflect the forward looking sentiment the soonest on Before
+the news scenario and ride the decision on the After the news scenario."
+
+CONSENSUS SUPERSEDES FORECAST AND THE ROW RESCORES. Jeff: "Forecast is fine to
+use but when consensus appeared we should rescore it based on that." Measured
+over 140 rate rows in our captures, consensus is present on only 42% and
+arrives a MEDIAN ~4 DAYS ahead (ECB 6, BoE 4, Fed 3, RBA 3), so a
+consensus-only rule would fire a week out rather than from scheduling. `src`
+records which number scored the row so a rescore is visible, never silent.
+
+*** WHAT IT FIXES. path carried WEIGHT 0.40 - joint-largest - and was EMPTY
+FOR SIX OF EIGHT currencies. LD-109 renormalises a missing term away, so six
+currencies scored on realised+level over a 0.6 divisor while two scored over
+1.0, and the model's only forward-looking term was inert for 75% of the board.
+
+LD-154b - A CURRENCY WITH NO SCHEDULED DECISION CARRIES ITS LAST ONE. Jeff
+supplied all five. This is what takes the term from 3 of 8 to 8 OF 8: against
+the real 4 Oct calendar, TE had the Fed and ECB rows COMPLETELY EMPTY and no
+October row at all for GBP, AUD or CHF.
+
+    GBP 3.75/3.75/3.75  retains NEUTRAL     USD 4/3.75/4      retains GOOD
+    AUD 4.6/4.35/4.6    retains GOOD        EUR 2.65/2.4/2.65 retains GOOD
+    CHF 0/0/0           retains NEUTRAL
+
+All five are fully priced (actual == consensus) so every one RETAINS rather
+than being re-paid for happening - LD-90 intact. Supersession is automatic:
+the moment TE schedules the next decision with a number, the row flips to
+before-news.
+
+THE LAST DECISION IS NOT STALE DATA, IT IS THE STANDING STATE - the opposite
+of the quarterly-row problem LD-102 removed, where a value repeated because
+nothing was MEASURED. Here it repeats because nothing has HAPPENED.
+
+*** A BUG CAUGHT BY READING THE OUTPUT, NOT THE DIFF. The before-news test
+first compared against prev_rate - the rate BEFORE THE LAST DECISION - so
+NZD's 28 Oct forecast of 2.75% read as "HIKE 2.50 -> 2.75" when 2.75% is
+already standing and the forecast is a HOLD. Same for JPY. It now compares
+against the CURRENT rate, and R-44 asserts no HOLD ever scores +1.
+
+BOARD UNCHANGED - every rate score landed where it already was. R-44 45 cases.
+
+*** WHAT THIS DOES NOT FIX, SAID PLAINLY: TE's forward columns are SPARSE for
+rate decisions. LD-154 reads them better; it cannot populate them. The early
+forward-looking signal Jeff wants needs an input that exists CONTINUOUSLY for
+all eight - 2-year yields are the candidate, we already have the pipe, and
+measuring that is the 31 Oct item.
+
 ### LD-153 - "WHICH PAIRS ACTUALLY WON" IS A STANDING RETROSPECTIVE
 ### SECTION, AND IT HAD BEEN DROPPED (2026-10-10)
 
