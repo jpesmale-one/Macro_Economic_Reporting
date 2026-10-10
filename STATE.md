@@ -5292,6 +5292,55 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### LD-158 - TIER 5, WHAT THE MARKET SAID, ATTRIBUTED (2026-10-11)
+
+Jeff: "can't we find anything on the net? earlier I asked this question on the
+retro report and you gave an explanation on the AUD strength"
+
+He is right that I did. For the 5-9 Oct retrospective I fetched TE's currency
+page and it explained AUD's rise - US Treasury yields falling from 24-year
+peaks, the dollar weakening broadly, RBA hike pricing down to 30% for
+November. None of that is on any economic calendar and all of it was true.
+
+*** AND IN THE SAME SESSION I MISUSED EXACTLY THIS SOURCE. I fetched TE's
+euro-area page, read "markets priced only an 80% chance of another hike by
+year-end, down from at least three additional moves by March 2027", and
+restated it as a fact about where the ECB was going. JEFF CAUGHT IT: the ECB's
+own 10 Sep statement was HAWKISH and its forward guidance was UNCHANGED from
+July, word for word. TE was describing MARKET PRICING, not ECB communication,
+and I collapsed the two.
+
+SO TIER 5 EXISTS UNDER ONE RULE:
+
+    A FETCHED NOTE IS AN ATTRIBUTED QUOTE, NEVER A FINDING.
+
+pipelines/market_note.py refuses to store a note without a source
+(raises ValueError), and the page renders every one under a standing
+disclaimer: "Everything in this section is someone else's explanation of a
+price move, quoted with its source... useful for naming what a calendar
+cannot see - yields, positioning, politics - and worthless as evidence of
+causation. It never reaches the board."
+
+THE THREE CLASSES THE REPORT NOW DISTINGUISHES:
+
+    MEASURED   our bars, our calculation        stated as fact
+    RELEASED   an actual against a forecast     stated as fact
+    REPORTED   someone's explanation of a move  ATTRIBUTED, always
+
+FIRST USE, 9 Oct, on the two currencies the calendar could not explain:
+  GBP  oil easing and bond markets stabilising; Pill on inflation control,
+       Greene on 3.5% wage growth in 2027; a BoE hike priced for November.
+  NZD  no driver given for the session - and the page says so rather than
+       inventing one. It adds that the kiwi was on its SEVENTH CONSECUTIVE
+       WEEKLY DECLINE, which is context the calendar never shows.
+
+SILENCE REMAINS A VALID ANSWER. A currency with no recorded note still reports
+UNEXPLAINED; nothing is filled in by guesswork.
+
+A BUG FIXED EN ROUTE: the tier-5 loop bound `d = mnotes.get(c)` and shadowed
+the session date four lines above the footer, crashing the build with
+'NoneType has no strftime'. Renamed.
+
 ### LD-157 - THE CATALYST READS THE WHOLE CALENDAR, NOT THE WHITELIST
 ### (2026-10-11)
 

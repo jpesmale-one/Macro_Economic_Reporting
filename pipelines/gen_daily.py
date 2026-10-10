@@ -157,6 +157,29 @@ def build(day):
           'any calendar: positioning, yields, or cross-asset flow.</div>'
           % ', '.join('%s %+.3f%%' % (c, s[c]) for c in big))
 
+    # TIER 5 - what the market said, for the currencies the calendar cannot
+    # explain. ATTRIBUTED, never stated as our own finding (LD-158).
+    import market_note as mn
+    mnotes = mn.notes(day)
+    if mnotes:
+        A('<h2>What the market said</h2>')
+        A('<div class="note warn"><span class="lbl">REPORTED, NOT MEASURED'
+          '</span>'
+          'Everything in this section is <strong>someone else&rsquo;s '
+          'explanation of a price move</strong>, quoted with its source. '
+          'Commentary is written after the fact to explain a chart: useful '
+          'for naming what a calendar cannot see &mdash; yields, positioning, '
+          'politics &mdash; and <strong>worthless as evidence of '
+          'causation</strong>. It never reaches the board.</div>')
+        # *** NOT `d` - that is the session date four lines below, and
+        # shadowing it crashed the footer with 'NoneType has no strftime'.
+        for c in order:
+            nd = mnotes.get(c)
+            if not nd:
+                continue
+            A('<div class="note"><span class="lbl">%s &middot; %s</span>%s'
+              '</div>' % (c, esc(nd['source']), esc(nd['note'])))
+
     if board:
         A('<h2>Against the weekly board</h2>')
         gaps = sorted(((abs((brank.index(c) + 1) - (order.index(c) + 1)), c)
