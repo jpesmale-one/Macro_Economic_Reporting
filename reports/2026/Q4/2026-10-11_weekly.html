@@ -1324,15 +1324,15 @@ footer p{max-width:none}
   <p class="cnt">8 rows — 6 good · 1 neutral · 1 bad</p>
   <div class="scroll">
   <table class="ind">
-    <thead><tr><th>CCY</th><th>Indicator</th><th class="num">Actual</th><th class="num">Previous</th><th>Ref</th><th>Threshold</th><th class="num">Score</th><th class="num">Category</th></tr></thead>
+    <thead><tr><th>CCY</th><th>Indicator</th><th class="num">Print</th><th>Ref</th><th>vs 1.8&ndash;2.2 corridor</th><th>Scored from</th><th class="num">Score</th><th class="num">Category</th></tr></thead>
     <tbody>
       <tr class="grp">
         <td class="ccy">CHF</td>
         <td>Inflation Rate YoY</td>
         <td class="num v">1%</td>
-        <td class="num v dim">0.4%</td>
         <td class="dim sm">Sep/26</td>
-        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="dim sm">1.00% BELOW the 1.8% floor - cut risk</td>
+        <td class="dim sm">actual</td>
         <td class="num neg">−1</td>
         <td class="num neg tot" rowspan="1">-1.00</td>
       </tr>
@@ -1340,9 +1340,9 @@ footer p{max-width:none}
         <td class="ccy">EUR</td>
         <td>Inflation Rate YoY Final</td>
         <td class="num v">3.2%</td>
-        <td class="num v dim">2.9%</td>
         <td class="dim sm">Aug/26</td>
-        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="dim sm">3.20% ABOVE the 2.2% ceiling - hike risk</td>
+        <td class="dim sm">actual</td>
         <td class="num pos">+1</td>
         <td class="num pos tot" rowspan="1">+1.00</td>
       </tr>
@@ -1350,9 +1350,9 @@ footer p{max-width:none}
         <td class="ccy">GBP</td>
         <td>Inflation Rate YoY</td>
         <td class="num v">3.1%</td>
-        <td class="num v dim">2.9%</td>
         <td class="dim sm">Aug/26</td>
-        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="dim sm">3.10% ABOVE the 2.2% ceiling - hike risk</td>
+        <td class="dim sm">actual</td>
         <td class="num pos">+1</td>
         <td class="num pos tot" rowspan="1">+1.00</td>
       </tr>
@@ -1360,9 +1360,9 @@ footer p{max-width:none}
         <td class="ccy">AUD</td>
         <td>Inflation Rate YoY</td>
         <td class="num v">4.0%</td>
-        <td class="num v dim">3.8%</td>
         <td class="dim sm">Aug/26</td>
-        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="dim sm">4.00% ABOVE the 2.2% ceiling - hike risk</td>
+        <td class="dim sm">actual</td>
         <td class="num pos">+1</td>
         <td class="num pos tot" rowspan="1">+1.00</td>
       </tr>
@@ -1370,9 +1370,9 @@ footer p{max-width:none}
         <td class="ccy">CAD</td>
         <td>Inflation Rate YoY</td>
         <td class="num v">3%</td>
-        <td class="num v dim">3.0%</td>
         <td class="dim sm">Aug/26</td>
-        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="dim sm">3.00% ABOVE the 2.2% ceiling - hike risk</td>
+        <td class="dim sm">actual</td>
         <td class="num pos">+1</td>
         <td class="num pos tot" rowspan="1">+1.00</td>
       </tr>
@@ -1380,9 +1380,9 @@ footer p{max-width:none}
         <td class="ccy">USD</td>
         <td>Inflation Rate YoY</td>
         <td class="num v">3.4%</td>
-        <td class="num v dim">3.4%</td>
         <td class="dim sm">Aug/26</td>
-        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="dim sm">3.40% ABOVE the 2.2% ceiling - hike risk</td>
+        <td class="dim sm">actual</td>
         <td class="num pos">+1</td>
         <td class="num pos tot" rowspan="1">+1.00</td>
       </tr>
@@ -1390,9 +1390,9 @@ footer p{max-width:none}
         <td class="ccy">JPY</td>
         <td>Inflation Rate YoY</td>
         <td class="num v">1.9%</td>
-        <td class="num v dim">1.9%</td>
         <td class="dim sm">Aug/26</td>
-        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="dim sm">1.90% inside 1.8-2.2% - no compulsion</td>
+        <td class="dim sm">actual</td>
         <td class="num zero">0</td>
         <td class="num zero tot" rowspan="1">+0.00</td>
       </tr>
@@ -1400,15 +1400,16 @@ footer p{max-width:none}
         <td class="ccy">NZD</td>
         <td>Inflation Rate YoY</td>
         <td class="num v">4.1%</td>
-        <td class="num v dim">3.1%</td>
-        <td class="dim sm q" title="Quarterly series - this is its cadence, not a stale row">Jun/26 (Q)</td>
-        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="dim sm">Jun/26 (Q)</td>
+        <td class="dim sm">4.10% ABOVE the 2.2% ceiling - hike risk</td>
+        <td class="dim sm">actual</td>
         <td class="num pos">+1</td>
         <td class="num pos tot" rowspan="1">+1.00</td>
       </tr>
     </tbody>
   </table>
   </div>
+  <div class="note"><strong>Inflation is scored on WHERE THE PRINT SITS, not on which way it moved (LD-155).</strong> Above 2.2&#37; is GOOD &mdash; the bank is behind and a hike is the risk. Below 1.8&#37; is BAD. Inside the corridor is NEUTRAL: no compulsion either way.<br><br><strong>&#9888; THE PREVIOUS PRINT NO LONGER ENTERS IT</strong>, which is why this table does not show one. LD-136 graded <em>direction</em> &mdash; 3.2&#37; after 3.5&#37; scored 0, above target but falling &mdash; and LD-155 retired that test. Under the current rule <strong>3.2&#37; scores +1 whether it rose from 2.9&#37; or fell from 3.5&#37;</strong>. A Previous column beside the score would imply a rule that does not run.<br><br><strong>WHEN AN EXPECTATION EXISTS, THE SURPRISE OVERRIDES THE LEVEL.</strong> A print beating its consensus scores GOOD and one missing it scores BAD &mdash; even where the level says otherwise, because the market trades the surprise. The fact table holds no expectation, so these rows are scored on the level alone; the calibrator, which grades the week ahead, is where the before-the-news half runs. Consensus supersedes forecast the moment it is published, and the <em>Scored from</em> column names which it was.</div>
 
   <h3>Interest Rate <span class="wt">weight 1 · confirming</span></h3>
   <p class="cnt">8 rows — 5 good · 2 neutral · 1 bad</p>

@@ -5293,6 +5293,47 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### F-151 - THE INFLATION TABLE SHOWED A PREVIOUS COLUMN FOR A RULE THAT
+### DOES NOT READ ONE (2026-10-11)
+
+Jeff: "Lets fix Inflation table as well"
+
+The columns were CCY | Indicator | Actual | PREVIOUS | Ref | Threshold |
+Score | Category.
+
+*** LD-155 READS THE LEVEL AND NEVER LOOKS AT THE PRIOR PRINT. Confirmed by
+inspecting inflation_decision - the previous value is not referenced, and
+CHF 1% scores -1 whether the prior was 0.4% or 1.6%. But the table printed
+Previous beside the Score, so a reader comparing EUR's 3.2% against 2.9%
+would reasonably conclude the RISE is what scored it. It is not: 3.2% after
+3.5% scores the same +1.
+
+THIS IS THE DANGEROUS KIND OF STALE COLUMN - not blank, not obviously wrong,
+just implying a rule that was retired. LD-136's direction test went out with
+LD-155 and the column outlived it, exactly as the rate table's "Terms
+averaged" outlived realised/expected/surprise (F-149).
+
+THE COLUMNS ARE NOW WHAT THE RULE READS:
+
+    CCY | Indicator | Print | Ref | vs 1.8-2.2 corridor | Scored from |
+    Score | Category
+
+    CHF  1%     Sep/26  "1.00% BELOW the 1.8% floor - cut risk"      -1
+    EUR  3.2%   Aug/26  "3.20% ABOVE the 2.2% ceiling - hike risk"   +1
+    JPY  1.9%   Aug/26  "1.90% inside 1.8-2.2% - no compulsion"       0
+
+A SECOND FIX INSIDE THE FIRST: inflation_decision returned "exactly as
+expected, retain" for every fact-table row, because the table holds no
+expectation so the after-the-news branch runs with the print as its own
+reading. True of the code and useless to a reader, who wants to know WHERE
+THE PRINT SITS. The column now says that; the before/after wording belongs
+on the calibrator rows, which do carry an expectation.
+
+AND THE SECTION GAINED A FOOTNOTE it never had - the rate section has one and
+Inflation did not. It states the three bands, says plainly that the previous
+print no longer enters it and why the column is absent, and explains that
+when an expectation DOES exist the surprise overrides the level.
+
 ### F-150 - LD-154's BEFORE-THE-NEWS HALF NEVER REACHED AN EDITION,
 ### AND THREE CURRENCIES HAD NO LAST DECISION (2026-10-11)
 

@@ -163,6 +163,23 @@ for cat in CATS:
           '<th class="num">Path</th><th>What is expected</th>'
           '<th class="num">Score</th><th class="num">Category</th>'
           '</tr></thead>')
+    elif cat == 'Inflation':
+        # *** F-151 - PREVIOUS IMPLIED A RULE THAT NO LONGER RUNS. LD-155
+        # reads the LEVEL against the 1.8-2.2 corridor and never looks at
+        # the prior print; LD-136's direction test was retired with it. But
+        # the table still printed a Previous column beside the score, so a
+        # reader comparing 3.2% against 2.9% would reasonably conclude the
+        # rise is what scored it. It is not - 3.2% after 3.5% scores the
+        # same +1.
+        #
+        # The columns are now what the rule reads: the print, where it sits
+        # against the corridor, and which number scored the row (an actual,
+        # or a consensus/forecast when one is published).
+        A('    <thead><tr><th>CCY</th><th>Indicator</th>'
+          '<th class="num">Print</th><th>Ref</th>'
+          '<th>vs 1.8&ndash;2.2 corridor</th><th>Scored from</th>'
+          '<th class="num">Score</th><th class="num">Category</th>'
+          '</tr></thead>')
     else:
         A('    <thead><tr><th>CCY</th><th>Indicator</th>'
           '<th class="num">Actual</th>'
@@ -221,6 +238,39 @@ for cat in CATS:
                       % (cls, len(rs), sc))
                 A('      </tr>')
                 continue
+            if cat == 'Inflation':
+                import derive_scores as _ds
+                _act = v.get('actual', '')
+                _sc2, _src2, _why2 = _ds.inflation_decision(actual=_act)
+                # *** THE FACT TABLE HOLDS NO EXPECTATION, so
+                # inflation_decision runs its after-the-news branch with the
+                # print as its own reading and returns "exactly as expected,
+                # retain" - true of the code and useless to a reader, who
+                # wants to know WHERE THE PRINT SITS. Say that instead; the
+                # before/after wording belongs on the calibrator rows, which
+                # do carry an expectation.
+                _n2 = _ds.sm._num(_act)
+                if _n2 is None:
+                    _why2 = 'unreadable'
+                elif _n2 > _ds.NEW_HIGH:
+                    _why2 = ('%.2f%% ABOVE the %.1f%% ceiling - hike risk'
+                             % (_n2, _ds.NEW_HIGH))
+                elif _n2 < _ds.NEW_LOW:
+                    _why2 = ('%.2f%% BELOW the %.1f%% floor - cut risk'
+                             % (_n2, _ds.NEW_LOW))
+                else:
+                    _why2 = ('%.2f%% inside %.1f-%.1f%% - no compulsion'
+                             % (_n2, _ds.NEW_LOW, _ds.NEW_HIGH))
+                A('        <td class="num v">%s</td>' % esc(_act or '—'))
+                A('        <td class="dim sm">%s</td>' % esc(v.get('ref', '—')))
+                A('        <td class="dim sm">%s</td>' % esc(_why2))
+                A('        <td class="dim sm">%s</td>' % esc(_src2 or '—'))
+                A('        <td class="num %s">%s</td>' % (k, txt))
+                if first:
+                    A('        <td class="num %s tot" rowspan="%d">%+.2f</td>'
+                      % (cls, len(rs), sc))
+                A('      </tr>')
+                continue
             A('        <td class="num v">%s</td>' % esc(v.get('actual', '—')))
             A('        <td class="num v dim">%s</td>'
               % esc(v.get('prev', '—')))
@@ -241,6 +291,31 @@ for cat in CATS:
     A('    </tbody>')
     A('  </table>')
     A('  </div>')
+
+    if cat == 'Inflation':
+        A('  <div class="note"><strong>Inflation is scored on WHERE THE '
+          'PRINT SITS, not on which way it moved (LD-155).</strong> Above '
+          '2.2&#37; is GOOD &mdash; the bank is behind and a hike is the '
+          'risk. Below 1.8&#37; is BAD. Inside the corridor is NEUTRAL: no '
+          'compulsion either way.'
+          '<br><br>'
+          '<strong>&#9888; THE PREVIOUS PRINT NO LONGER ENTERS IT</strong>, '
+          'which is why this table does not show one. LD-136 graded '
+          '<em>direction</em> &mdash; 3.2&#37; after 3.5&#37; scored 0, '
+          'above target but falling &mdash; and LD-155 retired that test. '
+          'Under the current rule <strong>3.2&#37; scores +1 whether it rose '
+          'from 2.9&#37; or fell from 3.5&#37;</strong>. A Previous column '
+          'beside the score would imply a rule that does not run.'
+          '<br><br>'
+          '<strong>WHEN AN EXPECTATION EXISTS, THE SURPRISE OVERRIDES THE '
+          'LEVEL.</strong> A print beating its consensus scores GOOD and one '
+          'missing it scores BAD &mdash; even where the level says otherwise, '
+          'because the market trades the surprise. The fact table holds no '
+          'expectation, so these rows are scored on the level alone; the '
+          'calibrator, which grades the week ahead, is where the before-the-'
+          'news half runs. Consensus supersedes forecast the moment it is '
+          'published, and the <em>Scored from</em> column names which it '
+          'was.</div>')
 
     if cat == 'Interest_Rate':
         A('  <div class="note"><strong>A rate row is scored from TWO '
