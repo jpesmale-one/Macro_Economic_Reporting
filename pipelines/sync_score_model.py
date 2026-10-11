@@ -103,7 +103,61 @@ REFS = {
     ('AU', 'Building Permits YoY Final'): 'Aug/26',
     ('AU', 'Westpac Consumer Conf Change'): 'Oct/26',
     ('AU', 'S&P Global Mfg PMI Final'): 'Sep/26',
+    # *** F-152 - THE EIGHT INFLATION ROWS HAD NO VINTAGE ENTRY AT ALL, so
+    # ref_drift() reported "in step" on rows it had never been shown. A guard
+    # that only checks the rows it is handed cannot report a missing row, and
+    # Inflation is the ONE category where the vintage is load-bearing: EUR and
+    # AUD name a FINAL/revision series whose flash prints WEEKS EARLIER at a
+    # different number (F-29/F-37), so "which print is this" is not cosmetic.
+    #
+    # Jeff, 2026-10-11, on EUR reading 3.2% Aug/26: "WE already have a forecast
+    # for the September Inflation can you check?"
+    #
+    # He was right that the forecast exists - 3.8% consensus for Fri 16 Oct,
+    # the largest expected move on the board. It IS scored, in the calibrator,
+    # BEFORE-the-news (+1 from consensus). The Aug/26 vintage is also CORRECT:
+    # the August FINAL released 17 Sep at 3.2% and is our cell; the 3.8% is the
+    # September FLASH (2 Oct), a different series F-37 deliberately excludes;
+    # the September FINAL lands 16 Oct and has not printed. Verified at
+    # Eurostat, not off the calendar (LD-3).
+    #
+    # SO NOTHING WAS MIS-SCORED - but nothing was CHECKING either, and the
+    # fact table's own columns cannot settle it: roll_month copies a
+    # non-printing series forward, so EUR's Sep-26 and Oct-26 columns BOTH
+    # hold 3.2%, the August number. The build month is not the reference
+    # month, and `ref` is the only field that records which print it is.
+    ('US', 'Inflation Rate YoY'):       'Aug/26',  # Sep CPI rel 14 Oct
+    ('EA', 'Inflation Rate YoY Final'): 'Aug/26',  # Aug FINAL rel 17 Sep
+    ('GB', 'Inflation Rate YoY'):       'Aug/26',  # Sep CPI rel 21 Oct
+    ('JP', 'Inflation Rate YoY'):       'Aug/26',  # Sep CPI rel 22 Oct
+    ('AU', 'Inflation Rate YoY'):       'Aug/26',  # Sep CPI rel 28 Oct
+    ('NZ', 'Inflation Rate YoY'):       'Jun/26 (Q)',  # Q3 rel 21 Oct
+    ('CA', 'Inflation Rate YoY'):       'Aug/26',  # Sep CPI rel 19 Oct
+    ('CH', 'Inflation Rate YoY'):       'Sep/26',  # Sep CPI rel 1 Oct
 }
+
+
+def unwatched(cat='Inflation'):
+    """[(iso, indicator, ref)] rows of `cat` with NO entry in REFS.
+
+    F-152 - ref_drift() iterates the rows it was HANDED, so a row absent from
+    REFS is not reported as unchecked, it is simply skipped - and the guard
+    prints "in step", which reads as a pass. All eight Inflation rows sat in
+    that blind spot until 2026-10-11.
+
+    Inflation is the category where this matters most: EUR and AUD name a
+    FINAL/revision series whose FLASH prints weeks earlier at a materially
+    different number (EUR Sep: flash 3.8% on 2 Oct, final due 16 Oct), so a
+    wrong vintage silently swaps one series for another - exactly what F-29
+    and F-37 exist to prevent.
+
+    SILENCE IS NOT A PASS. This makes the gap itself a finding.
+    """
+    out = []
+    for c, iso, name, act, prev, ref, thr, v in sm.ROWS:
+        if c == cat and (iso, name) not in REFS:
+            out.append((iso, name, ref))
+    return out
 
 
 def ref_drift():
@@ -178,8 +232,18 @@ if __name__ == '__main__':
     for iso, name, old, new in rd:
         print('    %-4s %-34s %-12s -> %s'
               % (sm.LABEL[iso], name[:34], old, new))
+    # F-152 - report the rows NOTHING is watching, before claiming "in step".
+    uw = unwatched('Inflation')
+    print('  Inflation rows with no vintage watcher : %d' % len(uw))
+    for iso, name, ref in uw:
+        print('    *** %-4s %-34s ref=%s  UNCHECKED'
+              % (sm.LABEL[iso], name[:34], ref))
     if not d and not rd:
-        print('  in step - nothing to do')
+        print('  values and vintages in step - nothing to rewrite')
+        if uw:
+            print('  *** but %d Inflation row(s) are unwatched - add them to'
+                  ' REFS' % len(uw))
+            sys.exit(1)
         sys.exit(0)
     n = rewrite(dry)
     print()

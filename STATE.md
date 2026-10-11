@@ -5293,6 +5293,71 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### F-152 - THE FACT TABLE COULD NOT SHOW A FORECAST IT ALREADY HAD, AND
+### NOTHING WATCHED THE INFLATION VINTAGES (2026-10-11)
+
+Jeff, reading EUR at 3.2% against Aug/26: "WE already have a forecast for the
+September Inflation can you check?"
+
+HE WAS RIGHT THAT THE FORECAST EXISTS. The 2026-10-11 capture carries
+EA "inflation rate yoy final sep", Fri 16 Oct, previous 3.2% -> CONSENSUS
+3.8% - the largest expected move on the board this week, bigger than USD's
+3.4->3.6.
+
+*** THE SCORING WAS ALREADY CORRECT, TWICE OVER, and that is worth stating
+plainly before the findings:
+
+  - The CALIBRATOR grades it BEFORE-the-news: +1 from consensus, 3.80% above
+    the 2.2 ceiling (LD-155). EUR's Friday reads +1.00, sharing the day with
+    Balance of Trade under LD-98 Rule 1 (Sep beats Aug). It IS in the FINAL.
+  - The FACT TABLE's Aug/26 vintage is also RIGHT. Verified at Eurostat, not
+    off the calendar (LD-3):
+        Aug FINAL   rel 17 Sep = 3.2%   <- our cell
+        Sep FLASH   rel  2 Oct = 3.8%   <- DIFFERENT SERIES (F-37 excludes)
+        Sep FINAL   rel 16 Oct = ?      <- scheduled, has not printed
+    Our whitelist names "Inflation Rate YoY Final" deliberately (F-29), and
+    indicator_pages.py already refuses to let 'Final' match a flash.
+
+SO NOTHING WAS MIS-SCORED. Two real defects sat behind the question anyway.
+
+FINDING 1 - THE GUARD WAS BLIND TO ALL EIGHT INFLATION ROWS. ref_drift()
+iterates the rows it is HANDED via REFS, so a row with no REFS entry is not
+reported as unchecked - it is skipped, and the guard prints "in step", which
+reads as a pass. Inflation had NO entries at all. Inflation is the category
+where the vintage is load-bearing: EUR and AUD name a FINAL/revision series
+whose FLASH prints weeks earlier at a materially different number, so a wrong
+vintage silently swaps one series for another. Added all eight (each verified
+against the issuing agency's release date), and added unwatched(), which makes
+the ABSENCE itself a finding and exits 1. SILENCE IS NOT A PASS.
+
+Negative-tested both ways rather than trusting a green: removing EUR's watcher
+makes the guard name it UNCHECKED; setting the vintage wrong to Sep/26 makes
+ref_drift report it.
+
+FINDING 2 - AND THE READER COULD NOT SEE ANY OF THIS. The Inflation table
+showed EUR "actual" under Scored from, so a reader reasonably concludes
+nothing newer is known. The footnote described the calibrator in the abstract
+but never said a print for one of THESE VERY ROWS was hours away. _sched_note()
+now names them on the table:
+
+    AND A PRINT IS SCHEDULED THIS WEEK FOR 2 OF THESE ROWS.
+    USD 3.4% -> 3.6% (Wed 14 20:30, consensus, scores +1);
+    EUR 3.2% -> 3.8% (Fri 16 17:00, consensus, scores +1).
+
+THE REASON THIS MATTERS BEYOND THIS WEEK: the level and the expectation can
+DISAGREE. Both read +1 for EUR, so nothing moved - but a currency at 2.4% with
+a 2.0% consensus scores +1 on the level and 0 on the expectation, and only the
+calibrator would notice.
+
+*** AND A DATE BUG CAUGHT IN MY OWN FIX. The first cut of _sched_note used
+date.today() - weekday(), which on a SUNDAY build returns the week just ENDED
+(5-9 Oct) instead of the one being published (12-16 Oct) - the footnote
+rendered EMPTY and the except swallowed it. build_check.window() already owns
+this rule and gets it right (the F-140 fix: Sunday build -> tomorrow). A third
+copy of a date rule is exactly how F-140 happened; it now calls window().
+
+R-46 THIRTEEN OF THIRTEEN. R-44 45 cases. R-43 clean. V6.
+
 ### F-151 - THE INFLATION TABLE SHOWED A PREVIOUS COLUMN FOR A RULE THAT
 ### DOES NOT READ ONE (2026-10-11)
 

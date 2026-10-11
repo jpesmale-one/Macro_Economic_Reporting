@@ -59,6 +59,67 @@ RATE = rate_model.compute()
 CELL = {'1': ('pos', '+1'), '-1': ('neg', '\u22121'), '0': ('zero', '0')}
 
 
+def _sched_note():
+    """F-152 - NAME THE SCHEDULED PRINTS, so this table is not read as the
+    whole story.
+
+    Jeff, 2026-10-11, reading EUR at 3.2% against Aug/26: "WE already have a
+    forecast for the September Inflation can you check?"
+
+    He was right, and the table gave him no way to see it. The 3.8% consensus
+    for Fri 16 Oct IS scored - in the CALIBRATOR, before-the-news - but a
+    reader of THIS table sees only "actual" under Scored from and reasonably
+    concludes nothing newer is known. The footnote described the calibrator in
+    the abstract; it never said a print for one of these very rows was hours
+    away.
+
+    THE LEVEL AND THE EXPECTATION CAN DISAGREE, which is the real reason this
+    belongs on the page. Both read +1 for EUR this week, so nothing moved -
+    but a currency at 2.4% with a 2.0% consensus scores +1 on the level and 0
+    on the expectation, and only the calibrator would notice.
+
+    Degrades to '' on any failure: a footnote is not worth failing a build.
+    """
+    # *** READ THE EDITION'S WINDOW, DO NOT RECOMPUTE IT. The first cut used
+    # date.today() - weekday(), which on a SUNDAY build returns the week just
+    # ENDED (5-9 Oct) instead of the one being published (12-16 Oct), and the
+    # footnote silently rendered empty. build_check.week() already owns this
+    # rule and gets it right (the F-140 fix: Sunday build -> tomorrow); a
+    # third copy of a date rule is how F-140 happened in the first place.
+    try:
+        import build_check as _bc
+        import calibrator as _cb
+        _caps = sorted(glob.glob('data/raw/calendar/*_cal_full.json'))
+        if not _caps:
+            return ''
+        _s, _e = _bc.window()
+        _rows = _cb.week_rows(_caps[-1], _s, _e)
+        _names = _cb.INFLATION_NAMES
+    except Exception:
+        return ''
+    _bits = []
+    for r in sorted([x for x in _rows if x.get('name') in _names],
+                    key=lambda x: x['when']):
+        _c = (r.get('cons') or '').strip()
+        _f = (r.get('fcst') or '').strip()
+        _e, _w = (_c, 'consensus') if _c else (_f, 'forecast')
+        if not _e:
+            continue
+        _bits.append('<strong>%s %s &rarr; %s</strong> (%s, %s, scores %+d)'
+                     % (esc(r['ccy']), esc((r.get('prev') or '?').strip()),
+                        esc(_e), esc(r['when'].strftime('%a %d %H:%M')), _w,
+                        r.get('score') or 0))
+    if not _bits:
+        return ''
+    return ('<br><br><strong>AND A PRINT IS SCHEDULED THIS WEEK FOR %d OF '
+            'THESE ROWS.</strong> %s. Those expectations are scored in the '
+            'week-ahead table, not here &mdash; this table reports the LAST '
+            'print, which is the standing state until the next one lands. '
+            'Where the level and the expectation disagree, the calibrator '
+            'carries the forward read.'
+            % (len(_bits), '; '.join(_bits)))
+
+
 def esc(t):
     return t.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
@@ -315,7 +376,7 @@ for cat in CATS:
           'calibrator, which grades the week ahead, is where the before-the-'
           'news half runs. Consensus supersedes forecast the moment it is '
           'published, and the <em>Scored from</em> column names which it '
-          'was.</div>')
+          'was.' + _sched_note() + '</div>')
 
     if cat == 'Interest_Rate':
         A('  <div class="note"><strong>A rate row is scored from TWO '
