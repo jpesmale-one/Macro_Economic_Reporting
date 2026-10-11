@@ -266,7 +266,108 @@ def prev_score(actual, previous, thr):
     return (1 if up else -1) if t.startswith('>') else (-1 if up else 1)
 
 
-def score_row(cat, ccy, indicator, actual):
+# ---------------------------------------------------------------- LD-165 ---
+# THE BASE NEVER READ A FORWARD CONSENSUS, SO LD-155's BEFORE-THE-NEWS HALF
+# ONLY EVER RAN IN THE CALIBRATOR.
+#
+# Jeff, 2026-10-11: "in the TE calendar some Inflation already have
+# consensus/forecast on future dates. they should be now scored according to
+# that"
+#
+# LD-155 is a BEFORE/AFTER rule, exactly like LD-154 for rates. The AFTER half
+# reached the base (the level test, from the fact table's actual) and the
+# BEFORE half did not - score_row() called inflation_decision(actual=...) and
+# nothing else, so every base inflation row reported src='actual' even when a
+# consensus for that very series was sitting in the capture.
+#
+# *** THIS IS F-150 ALL OVER AGAIN, ONE CATEGORY ACROSS. There, LD-154's
+# before-the-news half never reached a published edition because nothing in
+# the build path called rate_model.load_scheduled(). Same shape here: the rule
+# was implemented, tested, and unreachable from the product. A rule that only
+# the calibrator applies is not the rule - it is half of it.
+#
+# SEVEN OF EIGHT CURRENCIES CARRY A FORWARD EXPECTATION right now (only CHF
+# has none, having printed 1 Oct):
+#
+#     USD 3.4 -> 3.6 (14 Oct)   EUR 3.2 -> 3.8 (16 Oct)
+#     CAD 3.0 -> 3.2 (19 Oct)   GBP 3.1 -> 3.4 (21 Oct)
+#     NZD 4.1 -> 3.7 (21 Oct)   JPY 1.9 -> 1.8 (22 Oct)
+#     AUD 4.0 -> 3.9 (28 Oct)
+#
+# Every one of them happens to score the SAME as its level today, so the board
+# does not move. THAT IS LUCK, NOT CORRECTNESS, and JPY proves it: the level
+# 1.9% and the expected 1.8% both read 0 only because NEW_LOW is inclusive.
+# A 0.01pp forecast revision to 1.79% flips JPY to -1. The board was one
+# rounding away from a score nothing would have explained.
+#
+# SERIES IDENTITY IS LOAD-BEARING HERE (F-29/F-37, LD-164). EA's row names the
+# FINAL, so this must match 'inflation rate yoy final sep' and never the
+# FLASH that prints two weeks earlier at a different number. The match is
+# built from the WHITELIST NAME, not a substring, so a flash cannot satisfy a
+# final row and a core print cannot satisfy a headline one.
+SCHED_INF = {}
+
+
+def load_inflation(capture=None):
+    """Fill SCHED_INF from a TE capture. Returns how many rows it found.
+
+    {ccy: (consensus, forecast, date, event)} for UNRELEASED rows of OUR
+    series only. A row with an actual is already history - the fact table
+    carries it - so only forward-dated expectations land here.
+    """
+    import glob as _g
+    import json as _j
+    import os as _os
+    import io as _io
+    import re as _re
+    if capture is None:
+        c = sorted(_g.glob(_os.path.join(REPO,
+                   'data/raw/calendar/*_cal_full.json')))
+        if not c:
+            return 0
+        capture = c[-1]
+    ISO = {'US': 'USD', 'EA': 'EUR', 'GB': 'GBP', 'JP': 'JPY',
+           'AU': 'AUD', 'NZ': 'NZD', 'CA': 'CAD', 'CH': 'CHF'}
+    # the whitelist's own name per currency - the authority on which series
+    # is ours (LD-164: EA names the FINAL, the other seven the headline)
+    WANT = {}
+    for _c, _i, _n, _a, _p, _r, _t, _v in sm.ROWS:
+        if _c == 'Inflation':
+            WANT[sm.LABEL[_i]] = _n
+    raw = _j.load(_io.open(capture, encoding='utf-8'))
+    rows = raw if isinstance(raw, list) else raw.get(
+        'rows', raw.get('events', []))
+    n = 0
+    for r in rows:
+        ccy = ISO.get(r.get('iso'))
+        if not ccy or ccy not in WANT:
+            continue
+        e = (r.get('event', '') or '').lower()
+        if not _re.match(r'^inflation rate yoy', e):
+            continue
+        if 'core' in e or 'mom' in e or 'qoq' in e:
+            continue
+        # *** FINAL IS PART OF THE SERIES IDENTITY (F-37). Our EA row names
+        # the FINAL; the FLASH is a different series at a different number.
+        if ('final' in e) != ('Final' in WANT[ccy]):
+            continue
+        if (r.get('actual') or '').strip():
+            continue            # released - the fact table owns it
+        cons = (r.get('consensus') or '').strip()
+        fcst = (r.get('forecast') or '').strip()
+        if not (cons or fcst):
+            continue
+        # earliest scheduled print wins - that is the NEXT one
+        prior = SCHED_INF.get(ccy)
+        if prior and prior[2] <= (r.get('date') or ''):
+            continue
+        SCHED_INF[ccy] = (cons or None, fcst or None,
+                          r.get('date') or '', e)
+        n += 1
+    return n
+
+
+def score_row(cat, ccy, indicator, actual, _autoload_inf=True):
     """The derived score for one cell, or None if it cannot be graded."""
     if not (actual or '').strip():
         return None
@@ -281,9 +382,27 @@ def score_row(cat, ccy, indicator, actual):
         return None
     thr, verdict, prev = r
     if cat == 'Inflation':
-        # LD-155 replaces LD-136/LD-143 here. The fact table stores the ACTUAL
-        # and no expectation, so this is the after-the-news branch with the
-        # print as its own reading: the LEVEL test against 1.8-2.2.
+        # LD-155 replaces LD-136/LD-143 here, and it is a BEFORE/AFTER rule.
+        # LD-165 - WHEN A PRINT IS SCHEDULED, THE EXPECTATION IS THE READING.
+        # Jeff: "in the TE calendar some Inflation already have consensus/
+        # forecast on future dates. they should be now scored according to
+        # that". The fact table's actual is the LAST print; where TE carries a
+        # consensus for the NEXT one, that is what the market is trading
+        # (Jeff, on the calibrator: "we're trading the expectations not the
+        # result"). Consensus supersedes forecast (LD-154/LD-163).
+        if _autoload_inf and not SCHED_INF:
+            try:
+                load_inflation()
+            except Exception:
+                pass
+        _s = SCHED_INF.get(ccy)
+        if _s:
+            sc, _src, _why = inflation_decision(
+                previous=actual, consensus=_s[0], forecast=_s[1])
+            if sc is not None:
+                return sc
+        # no scheduled print - the after-the-news branch, with the print as
+        # its own reading: the LEVEL test against 1.8-2.2.
         sc, _src, _why = inflation_decision(actual=actual)
         if sc is not None:
             return sc

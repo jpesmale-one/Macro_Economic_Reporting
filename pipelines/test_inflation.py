@@ -618,12 +618,124 @@ def main():
     if not _nb:
         print('    4 case(s) pass - two terms, and all 8 carry a last decision')
 
+    # ---- LD-165: the base reads a forward consensus -----------------------
+    # F-150's lesson, applied as a TEST RATHER THAN A HOPE: it is not enough
+    # that inflation_decision can do before-the-news, the BASE must actually
+    # take that path. R-44 passed for weeks while score_row() called
+    # inflation_decision(actual=...) and nothing else.
+    print()
+    print('  LD-165 - the base scores a scheduled print from its expectation')
+    _nc = 0
+    try:
+        import derive_scores as _di
+        _di.SCHED_INF.clear()
+        _found = _di.load_inflation()
+        if _found < 1:
+            bad += 1; _nc += 1
+            print('    *** load_inflation found no scheduled rows')
+
+        # 1. THE BASE MUST ACTUALLY TAKE THE SCHEDULED PATH.
+        #
+        # *** THE FIRST VERSION OF THIS CHECK WAS A FALSE GREEN, and it is
+        # worth keeping the reason. It compared score_row() against
+        # inflation_decision(the expectation) - but on 2026-10-11 every one of
+        # the seven expectations happens to score the SAME as its level, so
+        # the comparison passed even with the scheduled branch commented out.
+        # Verified by doing exactly that: the test still read 49 cases pass.
+        #
+        # A TEST THAT CANNOT FAIL IS NOT A TEST (the F-150 lesson, which is
+        # what this block exists to prevent in the first place). So PROBE THE
+        # PATH, not the value: feed a scheduled expectation that MUST score
+        # differently from the level and require the base to follow it.
+        _rows = [(c, i, n, a) for c, i, n, a, p2, r2, t2, v2 in sm.ROWS
+                 if c == 'Inflation']
+        _lev = 0
+        for _c2, _i2, _n2, _a2 in _rows:
+            _ccy = sm.LABEL[_i2]
+            if _ccy not in _di.SCHED_INF:
+                continue
+            _sg = _di.SCHED_INF[_ccy]
+            _want, _, _ = _di.inflation_decision(
+                previous=_a2, consensus=_sg[0], forecast=_sg[1])
+            _got = _di.score_row('Inflation', _ccy, _n2, _a2)
+            if _want != _got:
+                bad += 1; _nc += 1
+                print('    *** %s base scored %s, expectation says %s'
+                      % (_ccy, _got, _want))
+            _lev += 1
+        if not _lev:
+            bad += 1; _nc += 1
+            print('    *** no scheduled row reached the base')
+
+        # the discriminating probe: CHF's level is 1% (-1, below the floor).
+        # Plant a scheduled 3.0% for it - above the ceiling, +1. If the base
+        # still returns -1 it is ignoring SCHED_INF entirely.
+        _keep = dict(_di.SCHED_INF)
+        try:
+            _di.SCHED_INF['CHF'] = ('3.0%', '3.0%', '2026-12-01',
+                                    'inflation rate yoy nov')
+            _p = _di.score_row('Inflation', 'CHF', 'Inflation Rate YoY', '1%')
+            if _p != 1:
+                bad += 1; _nc += 1
+                print('    *** base ignores the scheduled print: CHF level'
+                      ' 1 pct with a 3.0 pct consensus scored %s, want +1'
+                      % _p)
+            # and with NO scheduled row it must fall back to the level
+            _di.SCHED_INF.pop('CHF', None)
+            _q = _di.score_row('Inflation', 'CHF', 'Inflation Rate YoY', '1%',
+                               _autoload_inf=False)
+            if _q != -1:
+                bad += 1; _nc += 1
+                print('    *** with no scheduled print CHF should fall back'
+                      ' to the level -1, got %s' % _q)
+        finally:
+            _di.SCHED_INF.clear()
+            _di.SCHED_INF.update(_keep)
+
+        # 2. SERIES IDENTITY - a FLASH must never satisfy a FINAL row, and a
+        # CORE print must never satisfy a headline one (F-29/F-37, LD-164).
+        import json as _j2
+        import os as _o2
+        import tempfile as _t2
+        import io as _io2
+        _fk = [{'date': '2026-12-31', 'iso': 'EA', 'time': '09:00 AM',
+                'event': 'inflation rate yoy flash dec', 'actual': '',
+                'previous': '3.8%', 'consensus': '9.9%', 'forecast': '9.9%'},
+               {'date': '2026-12-31', 'iso': 'US', 'time': '12:30 PM',
+                'event': 'core inflation rate yoy dec', 'actual': '',
+                'previous': '2.4%', 'consensus': '9.9%', 'forecast': '9.9%'}]
+        _fp = _o2.path.join(_t2.gettempdir(), 'r44_inf_cal_full.json')
+        _io2.open(_fp, 'w', encoding='utf-8').write(_j2.dumps(_fk))
+        _di.SCHED_INF.clear()
+        if _di.load_inflation(_fp) != 0:
+            bad += 1; _nc += 1
+            print('    *** a FLASH or CORE row satisfied one of our series')
+
+        # 3. a RELEASED row is history - the fact table owns it
+        _fk2 = [{'date': '2026-01-05', 'iso': 'CH', 'time': '07:30 AM',
+                 'event': 'inflation rate yoy dec', 'actual': '1.2%',
+                 'previous': '1%', 'consensus': '1.1%', 'forecast': '1.1%'}]
+        _io2.open(_fp, 'w', encoding='utf-8').write(_j2.dumps(_fk2))
+        _di.SCHED_INF.clear()
+        if _di.load_inflation(_fp) != 0:
+            bad += 1; _nc += 1
+            print('    *** a RELEASED row was taken as a forward expectation')
+
+        _di.SCHED_INF.clear()
+        _di.load_inflation()
+        if not _nc:
+            print('    6 case(s) pass - %d rows score from their expectation,'
+                  ' level fallback, flash/core/released refused' % _lev)
+    except Exception as _e2:
+        bad += 1
+        print('    *** LD-165 check failed: %s' % _e2)
+
     print()
     if bad:
         print('*** %d FAILURE(S)' % bad)
         return 1
     print('  %d cases pass' % (len(CASES) + len(PREV_CASES) + len(RATE_CASES)
-                          + len(REGIME_CASES) + 1))
+                          + len(REGIME_CASES) + 1 + 6))
     return 0
 
 

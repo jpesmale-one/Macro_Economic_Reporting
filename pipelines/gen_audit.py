@@ -310,6 +310,45 @@ for cat in CATS:
                 # wants to know WHERE THE PRINT SITS. Say that instead; the
                 # before/after wording belongs on the calibrator rows, which
                 # do carry an expectation.
+                # LD-165 - WHERE A PRINT IS SCHEDULED, THE EXPECTATION IS
+                # WHAT SCORED THE ROW, so the table must say so. Showing the
+                # level test beside a score derived from a consensus is the
+                # F-149/F-151 shape: a column describing a rule that did not
+                # run.
+                _sg = None
+                try:
+                    if not _ds.SCHED_INF:
+                        _ds.load_inflation()
+                    _sg = _ds.SCHED_INF.get(ccy)
+                except Exception:
+                    _sg = None
+                if _sg:
+                    _e2 = _sg[0] or _sg[1]
+                    _src2 = 'consensus' if _sg[0] else 'forecast'
+                    _ne = _ds.sm._num(_e2)
+                    if _ne is None:
+                        _why2 = 'unreadable'
+                    elif _ne > _ds.NEW_HIGH:
+                        _why2 = ('expects %s &mdash; ABOVE the %.1f%% ceiling'
+                                 ' - hike risk' % (_e2, _ds.NEW_HIGH))
+                    elif _ne < _ds.NEW_LOW:
+                        _why2 = ('expects %s &mdash; BELOW the %.1f%% floor'
+                                 ' - cut risk' % (_e2, _ds.NEW_LOW))
+                    else:
+                        _why2 = ('expects %s &mdash; inside %.1f-%.1f%% - no'
+                                 ' compulsion' % (_e2, _ds.NEW_LOW,
+                                                  _ds.NEW_HIGH))
+                    A('        <td class="num v">%s</td>' % esc(_act or '—'))
+                    A('        <td class="dim sm">%s</td>'
+                      % esc(v.get('ref', '—')))
+                    A('        <td class="dim sm">%s</td>' % _why2)
+                    A('        <td class="dim sm">%s</td>' % esc(_src2))
+                    A('        <td class="num %s">%s</td>' % (k, txt))
+                    if first:
+                        A('        <td class="num %s tot" rowspan="%d">%+.2f'
+                          '</td>' % (cls, len(rs), sc))
+                    A('      </tr>')
+                    continue
                 _n2 = _ds.sm._num(_act)
                 if _n2 is None:
                     _why2 = 'unreadable'

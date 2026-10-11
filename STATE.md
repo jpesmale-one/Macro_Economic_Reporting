@@ -5293,6 +5293,74 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### LD-165 - THE BASE NEVER READ A FORWARD CONSENSUS, SO LD-155's
+### BEFORE-THE-NEWS HALF ONLY EVER RAN IN THE CALIBRATOR (2026-10-11)
+
+Jeff: "where is the fix? in the TE calendar some Inflation already have
+consensus/forecast on future dates. they should be now scored according to
+that"
+
+HE WAS RIGHT AND MY PREVIOUS TWO ANSWERS MISSED IT. F-152 made the forward
+consensus VISIBLE in a footnote and I reported that as the fix. It was not -
+the footnote describes; the SCORE still came from the stale level. Jeff asked
+for the rows to be SCORED on the expectation, which is a different thing.
+
+*** THIS IS F-150 ONE CATEGORY ACROSS. There, LD-154's before-the-news half
+never reached a published edition because nothing in the build path called
+rate_model.load_scheduled() - the branch was implemented, tested, and
+unreachable from the product. IDENTICAL HERE: score_row() called
+inflation_decision(actual=...) and nothing else, so every base inflation row
+reported src='actual' even with a consensus for that very series in the
+capture. LD-155 is a BEFORE/AFTER rule and only the AFTER half was reachable.
+A rule that only the calibrator applies is half a rule.
+
+SEVEN OF EIGHT CARRY A FORWARD EXPECTATION (only CHF has none, printed 1 Oct):
+
+    USD 3.4 -> 3.6 (14 Oct, cons)   EUR 3.2 -> 3.8 (16 Oct, cons)
+    CAD 3.0 -> 3.2 (19 Oct)         GBP 3.1 -> 3.4 (21 Oct)
+    NZD 4.1 -> 3.7 (21 Oct)         JPY 1.9 -> 1.8 (22 Oct)
+    AUD 4.0 -> 3.9 (28 Oct)
+
+THE BOARD DOES NOT MOVE - every expectation scores the same as its level today,
+so GBP +7.00, EUR/CAD +4.00, CHF -1.50, AUD -2.00 all stand and the set is
+unchanged. *** THAT IS LUCK, NOT CORRECTNESS, AND JPY PROVES IT: level 1.9%
+and expected 1.8% both read 0 only because NEW_LOW is inclusive. A 0.01pp
+revision to 1.79% flips JPY to -1. The board was one rounding from a score
+nothing would have explained.
+
+load_inflation() follows rate_model.load_scheduled()'s shape rather than
+inventing a second pattern. SERIES IDENTITY IS LOAD-BEARING (F-29/F-37,
+LD-164): the match is built from THE WHITELIST'S OWN NAME, so EA's FINAL row
+can only be satisfied by 'inflation rate yoy final', never the FLASH that
+prints two weeks earlier at a different number. Core, MoM, QoQ and already-
+released rows are all refused. Earliest scheduled date wins - that is the NEXT
+print.
+
+AND THE TABLE NOW SAYS WHAT SCORED THE ROW: "expects 3.8% - ABOVE the 2.2%
+ceiling - hike risk" with Scored from = consensus. Showing the level test
+beside a score derived from a consensus would be the F-149/F-151 shape exactly
+- a column describing a rule that did not run.
+
+*** TWO FALSE GREENS CAUGHT WHILE TESTING THIS, both worth keeping:
+
+1. THE FIRST VERSION OF THE R-44 BLOCK COULD NOT FAIL. It compared
+   score_row() against inflation_decision(expectation) - but because all seven
+   expectations happen to agree with their level today, it passed with the
+   scheduled branch COMMENTED OUT. Verified by doing exactly that: still read
+   "49 cases pass". Now it probes the PATH: plant a 3.0% consensus against
+   CHF's 1% level (-1 vs +1) and require the base to follow it, plus the
+   no-scheduled-row fallback. Re-verified - disabling the branch now FAILS.
+
+2. A STALE __pycache__ COST ~20 MINUTES AND NEARLY A WRONG DIAGNOSIS. The .pyc
+   carried the same mtime as the source, so Python trusted it: inspect.
+   getsource showed the NEW code, a re-exec of that source returned +1, and
+   the imported module returned -1 on identical input. Bytecode compare proved
+   they differed. On OneDrive, mtime is not a reliable cache key - if a change
+   that is plainly in the source does not take effect, delete
+   pipelines/__pycache__ before doubting the logic.
+
+R-46 THIRTEEN OF THIRTEEN. R-44 51 cases. R-43 clean. V7.
+
 ### LD-164 - EA KEEPS Inflation Rate YoY Final, AND THE LAG IS A PRICE
 ### JEFF CHOSE TO PAY (2026-10-11)
 
