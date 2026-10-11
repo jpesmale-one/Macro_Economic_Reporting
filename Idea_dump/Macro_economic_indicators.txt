@@ -216,6 +216,24 @@ Forward Looking Macro-Economic Indicators:
 				      4) Actual < 2% and Actual >= Previous is Neutral. Probability to hold of the current Interest Rate]
 		b. EA
 			i. Inflation Rate YoY Final
+			   [CONFIRMED 2026-10-11 - LD-164. EA is the ONLY currency of the eight
+			    whose inflation row names a revision stage, and it is deliberate.
+			    Euro area HICP publishes TWICE for the same YoY series: a FLASH at
+			    month-end and a FINAL mid-following-month. THE REFERENCE IS YoY FOR
+			    ALL EIGHT (Jeff, 2026-10-11: "our inflation reference is YoY") -
+			    'Final' is not a different reference, it is the confirmed print of
+			    that same reference.
+			    Jeff asked whether to switch EA to the flash so it stops lagging the
+			    other seven, and ruled: "Keep YoY Final".
+			    THE COST IS ACCEPTED, NOT OVERLOOKED: EUR's cell sits up to ~2 weeks
+			    behind the other seven, because the Sep FINAL lands 16 Oct while the
+			    Sep FLASH was public on 2 Oct. The board therefore scores EUR off the
+			    August number for that window. The reason it is worth paying: the
+			    flash gets revised - Aug/26 went flash 3.3% -> final 3.2%, which
+			    would have moved our cell after the fact.
+			    F-152 makes the lag VISIBLE instead of silent: the Inflation table
+			    now names the pending print and its consensus, so a stale-looking
+			    EUR cell reads as a scheduled gap rather than an error.]
 				1) Actual > 2% and Actual >= Previous is Good. Higher chance of Interest Rate Hike
 				2) Actual > 2% and Actual < Previous is Neutral. Probability to hold of the current Interest Rate
 				3) Actual < 2% and Actual <= Previous is Bad. Higher chance of Interest Rate Cut

@@ -5293,6 +5293,48 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### LD-164 - EA KEEPS Inflation Rate YoY Final, AND THE LAG IS A PRICE
+### JEFF CHOSE TO PAY (2026-10-11)
+
+Jeff: "our inflation reference is YoY" ... "Keep YoY Final"
+
+I had answered his earlier question by explaining the FLASH/FINAL distinction,
+which was not what he asked about. His row was "EA Inflation Rate YoY Final
+SEP 3.2% 3.8% 3.8%" - the SEPTEMBER FINAL, our own series, due Fri 16 Oct with
+a 3.8% consensus. Not the flash. The explanation was about the wrong row.
+
+THE REFERENCE IS YoY FOR ALL EIGHT. 'Final' is not a different reference - it
+is the confirmed print of that same YoY series. Euro area HICP publishes twice:
+flash at month-end, final mid-following-month. EA is the only one of the eight
+with that split, and the only one whose row names a revision stage.
+
+*** AND Inflation Rate YoY Final IS JEFF'S OWN SPECIFICATION, not something
+inherited: Idea_dump/Macro_economic_indicators.txt, section 5.b, in his words.
+Every other currency reads 'Inflation Rate YoY'. I checked the spec before
+proposing a change rather than assuming the naming was ours (F-3 - the
+indicator list is a CLOSED SET and amendments are Jeff's call only).
+
+I put the trade-off to him rather than deciding it:
+
+    YoY Final (current)        vs    YoY (flash)
+    Sep lands Fri 16 Oct             already in, 2 Oct
+    no revision risk                 revised ~0.1pp (Aug 3.3 -> 3.2)
+    EUR ~2 weeks behind              in step with the other seven
+
+HE RULED: KEEP YoY Final. The cost is accepted, not overlooked - EUR's cell
+sits up to two weeks behind the other seven, so the board scores EUR off the
+August number until Friday. Worth paying because the flash gets revised, and
+Aug/26 proves it: flash 3.3% -> final 3.2% would have moved our cell after the
+fact.
+
+WHAT MAKES THE COST TOLERABLE IS F-152. The Inflation table now names the
+pending print and its consensus, so a stale-looking EUR cell reads as a
+SCHEDULED GAP rather than an error. The lag is visible instead of silent -
+which is the whole reason Jeff spotted it.
+
+Recorded in the spec under his own EA entry. No data or logic changed; R-46
+thirteen of thirteen.
+
 ### F-152 - THE FACT TABLE COULD NOT SHOW A FORECAST IT ALREADY HAD, AND
 ### NOTHING WATCHED THE INFLATION VINTAGES (2026-10-11)
 
