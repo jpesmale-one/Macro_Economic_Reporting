@@ -5293,6 +5293,51 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### F-149 - THE INTEREST RATE COLUMNS DESCRIBED A MODEL THAT NO LONGER
+### RUNS (2026-10-11)
+
+Jeff: "let's change the columns into a more sensible one"
+
+He was reading the section-4 Interest Rate table. It had NINE columns:
+
+    CCY | Bank | Rate | CPI | CPI trend | Terms averaged | Raw | Cell | Category
+
+*** "TERMS AVERAGED" WAS PRINTING RETIRED TERMS. Live rows read "realised
++1.00 + expected +0.50 + surprise +0.00" - all three retired, expected and
+surprise by LD-142 a month ago and realised by LD-163 the same day. Meanwhile
+LEVEL, which carries HALF THE SCORE, did not appear anywhere on the row.
+Three of eight rows named no live term at all.
+
+THE CPI COLUMNS WERE THE OLD expected() PROXY'S INPUTS and stopped feeding
+anything when LD-142 replaced it with the corridor test. They had been
+decorative for a month.
+
+*** SO A READER COULD NOT CHECK ANY RATE SCORE FROM ITS OWN ROW, which is the
+only reason section 4 exists. F-99 added the terms column for exactly that
+reason in September; the column survived and the terms it names did not.
+
+THE COLUMNS ARE NOW THE SCORE:
+
+    CCY | Bank | Rate | Level | vs corridor | Path | What is expected |
+    Score | Category
+
+    CHF  0.00%  -1  "0.00% vs the 1.5-2.5% corridor"  +0  "AFTER - 0%
+         exactly as expected, retain"  -0.50
+    EUR  2.65%  +1  "2.65% vs the 1.5-2.5% corridor"  +1  "AFTER - 2.65%
+         exactly as expected, retain"  +1.00
+
+(+1 + +1) / 2 = +1.00 - the arithmetic is on the row.
+
+THE FOOTNOTE WAS REWRITTEN TOO. It described FOUR terms at realised 20 /
+expected 30 / surprise 20 / path 30, none of which has been true since
+LD-142. It now states the two live terms, what each asks, and says plainly
+that the other three are retired and why.
+
+SAME SHAPE AS F-135 AND F-148: a rule changed and a renderer stayed bound to
+what the rule used to produce. Three instances now in six weeks, all in the
+rate model, all because rate rows live outside score_model where every guard
+looks.
+
 ### LD-163 - REALISED RETIRED FROM THE RATE MODEL (2026-10-11)
 
 Jeff: "yeah we should follow now the new IR scoring. the one I gave you. also

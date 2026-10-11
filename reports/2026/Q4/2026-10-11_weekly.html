@@ -1390,101 +1390,100 @@ footer p{max-width:none}
   <p class="cnt">8 rows — 5 good · 2 neutral · 1 bad</p>
   <div class="scroll">
   <table class="ind">
-    <thead><tr><th>CCY</th><th>Bank</th><th class="num">Rate</th><th class="num">CPI</th><th>CPI trend</th><th>Terms averaged</th><th class="num">Raw</th><th class="num">Cell</th><th class="num">Category</th></tr></thead>
+    <thead><tr><th>CCY</th><th>Bank</th><th class="num">Rate</th><th class="num">Level</th><th>vs corridor</th><th class="num">Path</th><th>What is expected</th><th class="num">Score</th><th class="num">Category</th></tr></thead>
     <tbody>
       <tr class="grp">
         <td class="ccy">CHF</td>
         <td>SNB Interest Rate Decision</td>
         <td class="num v">0.00%</td>
-        <td class="num v dim">CPI 0.8%</td>
-        <td class="dim sm">rising</td>
-        <td class="sm terms">expected +0.25 + path +0.00 (actual)<br><span class="wt2">path 50%</span></td>
+        <td class="num neg">-1</td>
+        <td class="dim sm">0.00% vs the 1.5-2.5% corridor, prev 0.00%</td>
+        <td class="num zero">+0</td>
+        <td class="dim sm">AFTER - 0% exactly as expected, retain [actual]</td>
         <td class="num v">-0.50</td>
-        <td class="num neg">-0.50</td>
         <td class="num neg tot" rowspan="1">-0.50</td>
       </tr>
       <tr class="grp">
         <td class="ccy">EUR</td>
         <td>ECB Interest Rate Decision</td>
         <td class="num v">2.65%</td>
-        <td class="num v dim">CPI 2.9%</td>
-        <td class="dim sm">rising</td>
-        <td class="sm terms">realised +1.00 + expected +0.50 + surprise +0.00 + path +1.00 (actual)<br><span class="wt2">path 50%</span></td>
-        <td class="num v">+1.00</td>
         <td class="num pos">+1</td>
+        <td class="dim sm">2.65% vs the 1.5-2.5% corridor, prev 2.40%</td>
+        <td class="num pos">+1</td>
+        <td class="dim sm">AFTER - 2.65% exactly as expected, retain [actual]</td>
+        <td class="num v">+1.00</td>
         <td class="num pos tot" rowspan="1">+1.00</td>
       </tr>
       <tr class="grp">
         <td class="ccy">GBP</td>
         <td>BoE Interest Rate Decision</td>
         <td class="num v">3.75%</td>
-        <td class="num v dim">CPI 2.9%</td>
-        <td class="dim sm">rising</td>
-        <td class="sm terms">expected +0.50 + surprise +0.00 + path +0.00 (actual)<br><span class="wt2">path 50%</span></td>
+        <td class="num pos">+1</td>
+        <td class="dim sm">3.75% vs the 1.5-2.5% corridor, prev 3.75%</td>
+        <td class="num zero">+0</td>
+        <td class="dim sm">AFTER - 3.75% exactly as expected, retain [actual]</td>
         <td class="num v">+0.50</td>
-        <td class="num pos">+0.50</td>
         <td class="num pos tot" rowspan="1">+0.50</td>
       </tr>
       <tr class="grp">
         <td class="ccy">AUD</td>
         <td>RBA Interest Rate Decision</td>
         <td class="num v">4.60%</td>
-        <td class="num v dim">CPI 4.0%</td>
-        <td class="dim sm">rising</td>
-        <td class="sm terms">realised +1.00 + expected +0.50 + surprise +0.00 + path +1.00 (actual)<br><span class="wt2">path 50%</span></td>
-        <td class="num v">+1.00</td>
         <td class="num pos">+1</td>
+        <td class="dim sm">4.60% vs the 1.5-2.5% corridor, prev 4.35%</td>
+        <td class="num pos">+1</td>
+        <td class="dim sm">AFTER - 4.6% exactly as expected, retain [actual]</td>
+        <td class="num v">+1.00</td>
         <td class="num pos tot" rowspan="1">+1.00</td>
       </tr>
       <tr class="grp">
         <td class="ccy">CAD</td>
         <td>BoC Interest Rate Decision</td>
         <td class="num v">2.25%</td>
-        <td class="num v dim">CPI 3.0%</td>
-        <td class="dim sm">rising</td>
-        <td class="sm terms">expected +0.25 + surprise +0.00<br><span class="wt2"></span></td>
+        <td class="num zero">+0</td>
+        <td class="dim sm">2.25% vs the 1.5-2.5% corridor, prev 2.25%</td>
+        <td class="num zero">—</td>
+        <td class="dim sm">no last decision recorded</td>
         <td class="num v">+0.00</td>
-        <td class="num zero">0</td>
         <td class="num zero tot" rowspan="1">+0.00</td>
       </tr>
       <tr class="grp">
         <td class="ccy">USD</td>
         <td>Fed Interest Rate Decision</td>
         <td class="num v">4.00%</td>
-        <td class="num v dim">CPI 3.4%</td>
-        <td class="dim sm">falling</td>
-        <td class="sm terms">realised +1.00 + surprise +0.00 + path +1.00 (actual)<br><span class="wt2">path 50%</span></td>
-        <td class="num v">+1.00</td>
         <td class="num pos">+1</td>
+        <td class="dim sm">4.00% vs the 1.5-2.5% corridor, prev 3.75%</td>
+        <td class="num pos">+1</td>
+        <td class="dim sm">AFTER - 4% exactly as expected, retain [actual]</td>
+        <td class="num v">+1.00</td>
         <td class="num pos tot" rowspan="1">+1.00</td>
       </tr>
       <tr class="grp">
         <td class="ccy">JPY</td>
         <td>BoJ Interest Rate Decision</td>
         <td class="num v">1.25%</td>
-        <td class="num v dim">CPI 1.9%</td>
-        <td class="dim sm">rising</td>
-        <td class="sm terms">realised +1.00 + surprise +0.00<br><span class="wt2"></span></td>
+        <td class="num zero">+0</td>
+        <td class="dim sm">1.25% vs the 1.5-2.5% corridor, prev 1.00%</td>
+        <td class="num zero">—</td>
+        <td class="dim sm">no last decision recorded</td>
         <td class="num v">+0.00</td>
-        <td class="num zero">0</td>
         <td class="num zero tot" rowspan="1">+0.00</td>
       </tr>
       <tr class="grp">
         <td class="ccy">NZD</td>
         <td>RBNZ Interest Rate Decision</td>
         <td class="num v">2.75%</td>
-        <td class="num v dim">CPI 4.1%</td>
-        <td class="dim sm">rising</td>
-        <td class="sm terms">realised +1.00 + expected +0.50 + surprise +0.00<br><span class="wt2"></span></td>
-        <td class="num v">+1.00</td>
         <td class="num pos">+1</td>
+        <td class="dim sm">2.75% vs the 1.5-2.5% corridor, prev 2.50%</td>
+        <td class="num zero">—</td>
+        <td class="dim sm">no last decision recorded</td>
+        <td class="num v">+1.00</td>
         <td class="num pos tot" rowspan="1">+1.00</td>
       </tr>
     </tbody>
   </table>
   </div>
-  <div class="note"><strong>The rate rows are scored from FOUR WEIGHTED TERMS, not from an actual against a threshold.</strong> <code>score = Σ(term × weight) / Σ(weight)</code> over the terms that exist — <strong>realised 20% · expected 30% · surprise 20% · path 30%</strong>. <strong>60% sits on the forward half</strong> (expected + path), which is the point of a model built to foresee a move rather than report one.</div>
-  <div class="note">A missing term <strong>drops out and the weights renormalise</strong> — a currency between meetings has no surprise, one whose next meeting is beyond the calendar horizon has no path. It is not scored 0, which would assert “no surprise” when the truth is that we cannot see one. The second line of each Terms cell shows the weights actually used.</div>
+  <div class="note"><strong>A rate row is scored from TWO WEIGHTED TERMS, not from an actual against a threshold.</strong> <code>score = (level + path) / 2</code>.<br><br><strong>LEVEL (LD-142)</strong> asks <em>where is the rate</em>: above the 2.5&#37; ceiling and rising scores +1, below the 1.5&#37; floor and falling scores &minus;1, inside the corridor scores 0 &mdash; no compulsion either way.<br><br><strong>PATH (LD-154)</strong> asks <em>what is expected next</em>. <strong>BEFORE</strong> a scheduled decision it reads the expectation against the current rate; <strong>AFTER</strong> it reads the actual against what was expected, and a fully-priced decision <em>retains</em> its score rather than being re-paid for happening (LD-90). Consensus supersedes forecast the moment it is published, and the bracket names which one scored the row. A currency with no decision in the calendar carries its last one forward (LD-154b) &mdash; that is what takes this term from 3 of 8 currencies to all 8.<br><br><strong>&#9888; realised, expected and surprise are RETIRED</strong> (LD-142, LD-163) and no longer appear. <code>realised</code> paid +1 for having hiked at all regardless of pricing, which double-counted what <code>path</code> already measures properly. A term that cannot be read is dropped from the average rather than scored 0 &mdash; scoring 0 would assert &ldquo;no move expected&rdquo; when the truth is that we cannot see one.</div>
 
   <h3>Reconciliation</h3>
   <p class="cnt">Every category score, summed to the board.</p>

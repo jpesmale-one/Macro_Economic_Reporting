@@ -64,51 +64,26 @@ def esc(t):
 
 
 def rate_detail(ccy):
-    """A rate row's evidence, with EVERY term that produced its score.
+    """(level, level_why, path, path_why, raw) for the Interest Rate row.
 
-    F-99: the table showed rate, CPI and mandate only - so after LD-107 both
-    USD and JPY scored +1 ENTIRELY on the expected-path term and the row
-    gave no hint why. Two of eight rows were unauditable, which is the exact
-    failure this section exists to prevent.
+    LD-163 left TWO terms, equally weighted:
+        level 0.50   where the rate sits vs the 1.5-2.5 corridor (LD-142)
+        path  0.50   what the next decision is expected to do (LD-154)
+
+    F-99's lesson still holds - a rate row is scored from TERMS, not from an
+    actual against a threshold, so the terms have to be on the row or the
+    score cannot be audited. What changed is WHICH terms, and the old
+    renderer never caught up.
     """
     d = RATE[ISO[ccy]]
-    lo, hi = d['mandate']
-    band = ('%g–%g%%' % (lo, hi)) if lo != hi else ('%g%%' % lo)
-    arrow = 'rising' if d['rising'] else 'falling'
-    bits = []
-    if d['realised']:
-        bits.append('realised %+.2f' % d['realised'])
-    if d['expected']:
-        bits.append('expected %+.2f' % d['expected'])
-    if d['surprise'] is not None:
-        bits.append('surprise %+.2f' % d['surprise'])
-    if d['path'] is not None:
-        # *** F-148 - path_bp IS NOW ALWAYS None. LD-154 replaced
-        # path_score's forecast-minus-current basis-point test with
-        # decision_score, which reports a SOURCE ('consensus' / 'forecast' /
-        # 'actual') rather than a bp distance, and set bp = None. This line
-        # still formatted it with %d and crashed the whole section-4 build on
-        # the first edition after LD-154 landed. A rule change that leaves a
-        # renderer reading a retired field is the F-135 shape; name the source
-        # instead, which is the thing LD-154 actually produces.
-        src = d.get('path_src')
-        if d.get('path_bp') is not None:
-            bits.append('path %+.2f (%+dbp)' % (d['path'], d['path_bp']))
-        else:
-            bits.append('path %+.2f (%s)' % (d['path'], src or 'LD-154'))
-    # LD-109: name the weight each live term carried, renormalised
-    w = d.get('weights', {})
-    tot = sum(w.values()) or 1.0
-    wtxt = ' · '.join('%s %.0f%%' % (k, w[k] / tot * 100)
-                          for k in ('realised', 'expected', 'surprise',
-                                    'path') if k in w)
-    why = d['why']
-    if d['path'] is not None:
-        why += ' · ' + d['path_why']
-    return dict(actual=d['rate'], prev='CPI %.1f%%' % d['cpi'],
-                ref=arrow, thr='mandate ' + band, verdict=why,
-                terms=' + '.join(bits) or 'all terms zero',
-                weights=wtxt, raw=d['score'])
+    lvl = d['level']
+    lw = d.get('why') or ''
+    pa = d['path']
+    pw = d.get('path_why') or ''
+    src = d.get('path_src')
+    if src and src not in pw:
+        pw = '%s [%s]' % (pw, src)
+    return lvl, lw, pa, pw, d['raw']
 
 
 out = []
@@ -173,10 +148,20 @@ for cat in CATS:
         # F-99: the rate rows are scored from four TERMS, not from an
         # actual against a threshold. Show the terms, or the score cannot
         # be audited - USD and JPY score +1 purely on the path.
+        # *** F-149 - THE COLUMNS DESCRIBED A MODEL THAT NO LONGER RUNS.
+        # "Terms averaged" was printing realised, expected and surprise -
+        # ALL THREE RETIRED (LD-142, LD-163) - while LEVEL, which carries
+        # half the score, did not appear at all. Three of eight rows named
+        # no live term. The CPI columns were the old expected() proxy's
+        # inputs and stopped feeding anything when LD-142 replaced it.
+        #
+        # THE COLUMNS NOW ARE THE SCORE: the two live terms, what each one
+        # read, and the result. A reader can check the arithmetic from the
+        # row, which is the whole point of this section.
         A('    <thead><tr><th>CCY</th><th>Bank</th><th class="num">Rate</th>'
-          '<th class="num">CPI</th><th>CPI trend</th>'
-          '<th>Terms averaged</th><th class="num">Raw</th>'
-          '<th class="num">Cell</th><th class="num">Category</th>'
+          '<th class="num">Level</th><th>vs corridor</th>'
+          '<th class="num">Path</th><th>What is expected</th>'
+          '<th class="num">Score</th><th class="num">Category</th>'
           '</tr></thead>')
     else:
         A('    <thead><tr><th>CCY</th><th>Indicator</th>'
@@ -212,6 +197,30 @@ for cat in CATS:
             A('      <tr%s>' % (' class="grp"' if first else ''))
             A('        <td class="ccy">%s</td>' % (ccy if first else ''))
             A('        <td>%s</td>' % esc(nm))
+            if cat == 'Interest_Rate':
+                # F-149 - the rate row has its own five columns now: the
+                # standing rate, then the TWO LIVE TERMS with what each one
+                # read, then the score. Nothing here is shared with the
+                # generic actual/previous/ref shape.
+                lvl, lw, pa, pw, raw = v
+                _d = RATE[ISO[ccy]]
+                A('        <td class="num v">%s</td>' % esc(_d['rate']))
+                A('        <td class="num %s">%s</td>'
+                  % ('pos' if (lvl or 0) > 0 else
+                     'neg' if (lvl or 0) < 0 else 'zero',
+                     '%+d' % lvl if lvl is not None else '—'))
+                A('        <td class="dim sm">%s</td>' % esc(lw))
+                A('        <td class="num %s">%s</td>'
+                  % ('pos' if (pa or 0) > 0 else
+                     'neg' if (pa or 0) < 0 else 'zero',
+                     '%+d' % pa if pa is not None else '—'))
+                A('        <td class="dim sm">%s</td>' % esc(pw))
+                A('        <td class="num v">%+.2f</td>' % raw)
+                if first:
+                    A('        <td class="num %s tot" rowspan="%d">%+.2f</td>'
+                      % (cls, len(rs), sc))
+                A('      </tr>')
+                continue
             A('        <td class="num v">%s</td>' % esc(v.get('actual', '—')))
             A('        <td class="num v dim">%s</td>'
               % esc(v.get('prev', '—')))
@@ -223,17 +232,7 @@ for cat in CATS:
               % (' q' if _q else '',
                  ' title="Quarterly series - this is its cadence, not a'
                  ' stale row"' if _q else '', esc(_ref)))
-            if cat == 'Interest_Rate':
-                # F-99: show the terms that were averaged, and the RAW score
-                # before it is flattened to +1/0/-1 - CHF's +0.25 and NZD's
-                # +1.50 both render as '+1' in the cell.
-                A('        <td class="sm terms">%s<br><span class="wt2">'
-                  '%s</span></td>'
-                  % (v.get('terms', ''), v.get('weights', '')))
-                A('        <td class="num v">%+.2f</td>' % v.get('raw', 0.0))
-            else:
-                A('        <td class="dim sm">%s</td>'
-                  % esc(v.get('thr', '—')))
+            A('        <td class="dim sm">%s</td>' % esc(v.get('thr', '—')))
             A('        <td class="num %s">%s</td>' % (k, txt))
             if first:
                 A('        <td class="num %s tot" rowspan="%d">%+.2f</td>'
@@ -244,20 +243,33 @@ for cat in CATS:
     A('  </div>')
 
     if cat == 'Interest_Rate':
-        A('  <div class="note"><strong>The rate rows are scored from FOUR '
+        A('  <div class="note"><strong>A rate row is scored from TWO '
           'WEIGHTED TERMS, not from an actual against a threshold.</strong> '
-          '<code>score = Σ(term × weight) / Σ(weight)</code> over the '
-          'terms that exist — <strong>realised 20% · expected 30% · '
-          'surprise 20% · path 30%</strong>. <strong>60% sits on the '
-          'forward half</strong> (expected + path), which is the point of a '
-          'model built to foresee a move rather than report one.</div>')
-        A('  <div class="note">A missing term <strong>drops out and the '
-          'weights renormalise</strong> — a currency between meetings has '
-          'no surprise, one whose next meeting is beyond the calendar '
-          'horizon has no path. It is not scored 0, which would assert '
-          '“no surprise” when the truth is that we cannot see one. The '
-          'second line of each Terms cell shows the weights actually '
-          'used.</div>')
+          '<code>score = (level + path) / 2</code>.'
+          '<br><br>'
+          '<strong>LEVEL (LD-142)</strong> asks <em>where is the rate</em>: '
+          'above the 2.5&#37; ceiling and rising scores +1, below the '
+          '1.5&#37; floor and falling scores &minus;1, inside the corridor '
+          'scores 0 &mdash; no compulsion either way.'
+          '<br><br>'
+          '<strong>PATH (LD-154)</strong> asks <em>what is expected '
+          'next</em>. <strong>BEFORE</strong> a scheduled decision it reads '
+          'the expectation against the current rate; <strong>AFTER</strong> '
+          'it reads the actual against what was expected, and a fully-priced '
+          'decision <em>retains</em> its score rather than being re-paid for '
+          'happening (LD-90). Consensus supersedes forecast the moment it is '
+          'published, and the bracket names which one scored the row. A '
+          'currency with no decision in the calendar carries its last one '
+          'forward (LD-154b) &mdash; that is what takes this term from 3 of '
+          '8 currencies to all 8.'
+          '<br><br>'
+          '<strong>&#9888; realised, expected and surprise are RETIRED</strong> '
+          '(LD-142, LD-163) and no longer appear. <code>realised</code> paid '
+          '+1 for having hiked at all regardless of pricing, which double-'
+          'counted what <code>path</code> already measures properly. A term '
+          'that cannot be read is dropped from the average rather than '
+          'scored 0 &mdash; scoring 0 would assert &ldquo;no move '
+          'expected&rdquo; when the truth is that we cannot see one.</div>')
 
 A('')
 A('  <h3>Reconciliation</h3>')
