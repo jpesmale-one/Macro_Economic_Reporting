@@ -1,7 +1,7 @@
 {
  "symbol": "OANDA:EURAUD",
  "timeframe": "D",
- "fetched": "2026-10-10",
+ "fetched": "2026-10-11",
  "bars": [
   {
    "time": 1786309200,

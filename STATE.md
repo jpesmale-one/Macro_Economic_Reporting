@@ -4,17 +4,18 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-10-04 (r1, WEEKLY, UNSEALED - selection for the 5-9 Oct
-         cycle, built on SUNDAY 4 OCT VINTAGE, Oct-26 fact-table column)
-date: 2026-10-04
-data_asof: 2026-10-04 vintage (calendar captured 2026-10-04 12:02. The
-           fact tables ROLLED INTO Oct-26 - 78 of 78 cells - with TWENTY
-           rows refreshed for prints that landed 28 Sep-2 Oct, headed by
-           USD Non Farm Payrolls 162K -> 29K and USD Unemployment 4.1% ->
-           4.2%.)
-artifact: https://claude.ai/artifact/J3fCpUHQfWPTxveaworD4c
-prev_edition: 2026-09-27 (r1 - graded 1 WIN / 3 CONTESTED under LD-149,
-           +150.2 pips, retro https://claude.ai/artifact/WmE2JYF16PjYJj47gtomo8)
+edition: 2026-10-11 (r1, WEEKLY, UNSEALED - selection for the 12-16 Oct
+         cycle, built on SUNDAY 11 OCT VINTAGE, Oct-26 fact-table column)
+date: 2026-10-11
+data_asof: 2026-10-11 vintage (calendar captured 2026-10-11 22:30.
+           THIRTY-FIVE rows refreshed for prints that landed 5-9 Oct,
+           headed by CAD Employment -41.7K -> -68.3K (FT -35.4K, PT
+           -32.9K) and CAD Balance of Trade C$0.79B -> C$4.2B.)
+artifact: https://claude.ai/artifact/VYdPphZ1WtGXuBUrfGtK9n
+prev_edition: 2026-10-04 (r1 - graded 0 WIN / 2 CONTESTED / 2 LOSS under
+           LD-149, -245.0 pips, rho -0.62, AUD finished FIRST of eight
+           while ranked last. Retro
+           https://claude.ai/artifact/3nD99pz1btuNpGnHCbnftk)
            https://claude.ai/artifact/Kn6pz8LXzpqkUReW1ffQgj
 track: LEAN (no section-2 trigger has fired)
 

@@ -30,8 +30,8 @@ CAT = dict(((_sm.LABEL[_r[1]], _r[2]), _r[0]) for _r in _sm.ROWS)
 def hot(ccy, name):
     return CAT.get((ccy, name)) in HIGH_IMPACT
 
-CAP = sorted(glob.glob('data/raw/calendar/2026-10-04_*_cal_full.json'))[-1]
-START, END = '2026-10-05', '2026-10-09'
+CAP = sorted(glob.glob('data/raw/calendar/2026-10-11_*_cal_full.json'))[-1]
+START, END = '2026-10-12', '2026-10-16'
 
 F = ps.final_scores(CAP, START, END)
 SC = dict((c, F[c]['total']) for c in F)
@@ -107,7 +107,7 @@ A('title: Week of 28 Sep&ndash;2 Octtember 2026 &middot; WEEKLY &middot; '
 # a report Jeff has already read, not a new one. Reading the existing
 # file's revision keeps the two rules from fighting: new editions still
 # start at r1 (nothing on disk to read), a rebuild advances.
-OUT = 'reports/2026/Q4/2026-10-04_weekly.md'
+OUT = 'reports/2026/Q4/2026-10-11_weekly.md'
 _rev = 1
 if os.path.exists(OUT):
     for _l in io.open(OUT, encoding='utf-8').read()[:600].splitlines():

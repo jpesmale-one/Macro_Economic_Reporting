@@ -31,6 +31,43 @@ revision - the September print, released Fri 2 Oct, and a collapse against a
 # (CCY, Indicator) -> the actual AS PUBLISHED (LD-112 - store the print, let
 # derive_scores.py do the grading)
 UPDATES = {
+    # ---- 2026-10-11 BUILD: prints that landed 5-9 Oct ---------------------
+    # Every value raised by R-45 against the TE indicator page and confirmed
+    # on the page that owns it (LD-3).
+    ('CAD', 'Employment Change'):   '-68.3K (FT -35.4K, PT -32.9K)',
+    ('CAD', 'Unemployment Rate'):   '6.5%',
+    ('CAD', 'Balance of Trade'):    'C$4.2B',
+    ('USD', 'Balance of Trade'):    '$-105.6B',
+    ('EUR', 'Retail Sales YoY'):    '0.8%',
+    ('JPY', 'Machine Tool Orders YoY'): '60.4%',
+    ('JPY', 'Household Spending YoY'):  '-3.1%',
+    ('JPY', 'Consumer Confidence'): '35.4',
+    ('CHF', 'Consumer Confidence'): '-36',
+    ('CHF', 'Unemployment Rate'):   '3%',
+    ('AUD', 'ANZ-Indeed Job Ads MoM'): '2.2%',
+    ('AUD', 'Building Permits YoY Final'): '10.3%',   # Aug/26, rel 7 Oct
+    ('AUD', 'Westpac Consumer Conf Change'): '-4.7%', # Oct/26, rel 5 Oct
+
+    # *** F-147 - A ROW DROPPED FROM THIS DICT IS SILENTLY REVERTED.
+    # roll_month copies the PREVIOUS column forward for every row it does not
+    # find here, so removing a corrected row does not leave it alone - it
+    # restores the pre-correction value from the month before. Three PMI
+    # fixes from the 2026-10-04 build (USD ISM 54.5, GBP 51.9, AUD 49.6) were
+    # overwritten by exactly that on the first roll after they landed, and
+    # AUD's is the one that took the board from +1.67 to -2.33.
+    #
+    # SO EVERY CORRECTION STAYS IN THIS DICT UNTIL ITS SERIES RE-PRINTS,
+    # not just in the week it was made.
+    ('USD', 'ISM Manufacturing PMI'):   '54.5',   # Sep/26, rel 1 Oct
+    ('GBP', 'S&P Global Mfg PMI Final'): '51.9',  # Sep/26, rel 1 Oct
+    ('AUD', 'S&P Global Mfg PMI Final'): '49.6',  # Sep/26, rel 30 Sep
+    # the RBA hike (F-142) is a CELL IN THE FACT TABLE TOO, and the roll
+    # reverted it for the same reason. R-46 step 6 caught it; this stops it
+    # recurring every Sunday.
+    ('AUD', 'RBA Interest Rate Decision'): '4.60%',
+
+    # ---- the 2026-10-04 build, kept for the record ------------------------
+
     # ---- EMPLOYMENT -------------------------------------------------------
     ('USD', 'Non Farm Payrolls'):            '29K',      # Sep/26, rel 2 Oct
     ('USD', 'Unemployment Rate'):            '4.2%',     # Sep/26, rel 2 Oct

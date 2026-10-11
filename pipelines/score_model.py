@@ -66,7 +66,7 @@ ROWS = [
  ("Production","GB","Manufacturing Production YoY","2.6%","0.5%","Jul/26",">0.5%","GOOD"),
  ("Production","JP","Industrial Production YoY Final","3.9%","4.9%","Jul/26",">0.5%","GOOD"),
  ("Production","JP","Machinery Orders YoY","11.2%","16.9%","Jul/26",">0.5%","GOOD"),
- ("Production","JP","Machine Tool Orders YoY","64.7%","50.4%","Aug/26",">0.5%","GOOD"),
+ ("Production","JP","Machine Tool Orders YoY","60.4%","50.4%","Sep/26",">0.5%","GOOD"),
  ("Production","JP","S&P Global Mfg PMI Final","54.1","54.5","Sep/26",">50.5","GOOD"),
  # F-143: 52.0 -> 49.6 (Sep/26, released 30 Sep) - the sharpest fall in
  # 21 months and BELOW 50, which is contraction. Under F-101's band a
@@ -96,19 +96,19 @@ ROWS = [
  # in between 0.5 - 0 is Neutral". 0.6% clears 0.5%, so BAD -> GOOD and
  # EUR Spending goes +0.00 -> +2.00. UPDATING A VALUE IS NOT LICENCE TO
  # RESTATE ITS RULE.
- ("Spending","EA","Retail Sales YoY","0.6%","0.7%","Jul/26",">0.5%","GOOD"),
+ ("Spending","EA","Retail Sales YoY","0.8%","0.7%","Aug/26",">0.5%","GOOD"),
  ("Spending","EA","Consumer Confidence Final","-16.5","-15.9","Sep/26",">Prev","BAD"),
  ("Spending","GB","GfK Consumer Confidence","-13","-14","Sep/26",">Prev","GOOD"),
  ("Spending","GB","Retail Sales Ex Fuel YoY","2.7%","1.8%","Aug/26",">0.5%","GOOD"),
  # F-98: spec line 113 - ">0.5% Good, <0% Bad, between Neutral". Restored
  # from a consensus test I substituted during a sync. -3.6% is below 0,
  # so BAD either way - the RULE was wrong, not the verdict.
- ("Spending","JP","Household Spending YoY","-3.6%","-3.3%","Jul/26",">0.5%","BAD"),
- ("Spending","JP","Consumer Confidence","35.5","34.9","Aug/26",">Prev","GOOD"),
+ ("Spending","JP","Household Spending YoY","-3.1%","-3.3%","Aug/26",">0.5%","BAD"),
+ ("Spending","JP","Consumer Confidence","35.4","34.9","Sep/26",">Prev","GOOD"),
  ("Spending","JP","Retail Sales YoY","2.7%","0.6%","Aug/26",">0.5%","GOOD"),
  ("Spending","AU","Household Spending YoY","6.8%","6.0%","Aug/26",">0.5%","GOOD"),
- ("Spending","AU","Building Permits YoY Final","9%","9.5%","Jul/26",">0.5%","GOOD"),
- ("Spending","AU","Westpac Consumer Conf Change","-5.2%","6%","Sep/26",">Prev","BAD"),
+ ("Spending","AU","Building Permits YoY Final","10.3%","9.5%","Aug/26",">0.5%","GOOD"),
+ ("Spending","AU","Westpac Consumer Conf Change","-4.7%","6%","Oct/26",">Prev","BAD"),
  ("Spending","AU","NAB Business Confidence","-8","-6","Aug/26",">Prev","BAD"),
  ("Spending","NZ","Building Permits MoM","-4.3%","-3.6%","Jul/26",">0.5%","BAD"),
  ("Spending","NZ","Electronic Retail Card Spending YoY","0.2%","3.4%","Aug/26",">0.5%","NEUTRAL"),
@@ -116,12 +116,12 @@ ROWS = [
  ("Spending","NZ","ANZ Roy Morgan Consumer Conf","97.6","99.3","Sep/26",">Prev","BAD"),
  ("Spending","CA","Retail Sales YoY","5.1%","5.2%","Jul/26",">0.5%","GOOD"),
  ("Spending","CA","Building Permits MoM","-17.3%","18.3%","Jul/26",">0.5%","BAD"),
- ("Spending","CH","Consumer Confidence","-33","-35","Aug/26",">Prev","GOOD"),
+ ("Spending","CH","Consumer Confidence","-36","-33","Sep/26",">Prev","BAD"),
  ("Spending","CH","Retail Sales YoY","3.2%","1.9%","Aug/26",">0.5%","GOOD"),
  # ---------------- TRADE (w=1) ----------------
  # F-98: spec line 132. -$88.6B is a WIDER deficit than -$71.2B, so this
  # FLIPS GOOD -> BAD. Beating a -$90B consensus is not the test.
- ("Trade","US","Balance of Trade","-$88.6B","-$71.2B","Jul/26",">Prev","BAD"),
+ ("Trade","US","Balance of Trade","$-105.6B","-$71.2B","Aug/26",">Prev","BAD"),
  ("Trade","EA","Balance of Trade","EUR14.2B","EUR7.2B","Jul/26",">Prev","GOOD"),
  ("Trade","GB","Balance of Trade","GBP-3.45B","GBP-5.54B","Jul/26",">Prev","GOOD"),
  ("Trade","JP","Balance of Trade","JPY-1105.6B","JPY-638.3B","Aug/26",">Prev","BAD"),
@@ -133,7 +133,7 @@ ROWS = [
  ("Trade","NZ","Balance of Trade","NZ$-1.349B","NZ$-2.118B","Aug/26",">Prev","GOOD"),
  # F-98: spec line 138. C$0.77B is below the C$4.2B previous - BAD under
  # either rule, but the rule is ">Prev".
- ("Trade","CA","Balance of Trade","C$0.77B","C$4.2B","Jul/26",">Prev","BAD"),
+ ("Trade","CA","Balance of Trade","C$4.2B","C$0.79B","Aug/26",">Prev","GOOD"),
  ("Trade","CH","Balance of Trade","CHF5.6B","CHF8.1B","Aug/26",">Prev","BAD"),
  # ---------------- EMPLOYMENT (w=2) ----------------
  ("Employment","US","Non Farm Payrolls","29K","-23K","Sep/26",">Prev","GOOD"),
@@ -166,11 +166,11 @@ ROWS = [
  # fourth consecutive period. Next print 20 Oct (Aug/26).
  ("Employment","GB","Unemployment Rate","4.9%","4.9%","Jul/26","<Prev","NEUTRAL"),
  ("Employment","JP","Unemployment Rate","2.5%","2.5%","Aug/26","<Prev","NEUTRAL"),
- ("Employment","AU","ANZ-Indeed Job Ads MoM","2.5%","1.9%","Aug/26",">0.5%","GOOD"),
+ ("Employment","AU","ANZ-Indeed Job Ads MoM","2.2%","1.9%","Sep/26",">0.5%","GOOD"),
  ("Employment","AU","Employment Change","39.5K (FT -6.3K, PT +45.8K)","-15.9K","Aug/26","LD-151 three legs","NEUTRAL"),
  ("Employment","AU","Unemployment Rate","4.6%","4.5%","Aug/26","<Prev","BAD"),
  ("Employment","NZ","Unemployment Rate","5.6%","5.4%","Jun/26 (Q)","<Prev","BAD"),
- ("Employment","CA","Unemployment Rate","6.4%","6.4%","Aug/26","<Prev","NEUTRAL"),
+ ("Employment","CA","Unemployment Rate","6.5%","6.4%","Sep/26","<Prev","BAD"),
  # F-97: the same mistake, and worse - this row's threshold encoded
  # LD-57, a LOCKED four-clause full-time/part-time rule with its own
  # function, and F-94 overwrote it with a bare consensus test without
@@ -183,7 +183,7 @@ ROWS = [
  # holds an actual for it. The threshold below names LD-57 as the
  # governing rule and records that the split is unsourced - it does
  # not silently substitute a different rule.
- ("Employment","CA","Employment Change","-41.7K (FT -35.9K, PT -5.8K)","75.1K","Aug/26","LD-151 three legs","BAD"),
+ ("Employment","CA","Employment Change","-68.3K (FT -35.4K, PT -32.9K)","-41.7K","Sep/26","LD-151 three legs","BAD"),
 # LD-152 - CHF NON FARM PAYROLLS REMOVED (Jeff, 2026-10-05).
  #
  # Jeff: "since this is a quarterly data for CHF we can remove this from the
@@ -214,7 +214,7 @@ ROWS = [
  #
  # It was also one of the rows R-45 cannot verify - its slug does not resolve -
  # and at Q2/26 it carried the OLDEST vintage on the board.
- ("Employment","CH","Unemployment Rate","3%","3%","Aug/26","<Prev","NEUTRAL"),
+ ("Employment","CH","Unemployment Rate","3%","3%","Sep/26","<Prev","NEUTRAL"),
  # ---------------- INFLATION (w=3) ----------------
  ("Inflation","US","Inflation Rate YoY","3.4%","3.4%","Aug/26","1.8-2.2 corridor (LD-155)","GOOD"),
  ("Inflation","EA","Inflation Rate YoY Final","3.2%","2.9%","Aug/26","1.8-2.2 corridor (LD-155)","GOOD"),

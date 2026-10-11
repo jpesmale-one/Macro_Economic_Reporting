@@ -88,6 +88,20 @@ REFS = {
     ('NZ', 'ANZ Roy Morgan Consumer Conf'): 'Sep/26',
     ('US', 'ISM Manufacturing PMI'): 'Sep/26',
     ('GB', 'S&P Global Mfg PMI Final'): 'Sep/26',
+    # 2026-10-11 build: prints that landed 5-9 Oct
+    ('CA', 'Employment Change'): 'Sep/26',
+    ('CA', 'Unemployment Rate'): 'Sep/26',
+    ('CA', 'Balance of Trade'): 'Aug/26',
+    ('US', 'Balance of Trade'): 'Aug/26',
+    ('EA', 'Retail Sales YoY'): 'Aug/26',
+    ('JP', 'Machine Tool Orders YoY'): 'Sep/26',
+    ('JP', 'Household Spending YoY'): 'Aug/26',
+    ('JP', 'Consumer Confidence'): 'Sep/26',
+    ('CH', 'Consumer Confidence'): 'Sep/26',
+    ('CH', 'Unemployment Rate'): 'Sep/26',
+    ('AU', 'ANZ-Indeed Job Ads MoM'): 'Sep/26',
+    ('AU', 'Building Permits YoY Final'): 'Aug/26',
+    ('AU', 'Westpac Consumer Conf Change'): 'Oct/26',
     ('AU', 'S&P Global Mfg PMI Final'): 'Sep/26',
 }
 

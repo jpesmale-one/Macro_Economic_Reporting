@@ -83,7 +83,19 @@ def rate_detail(ccy):
     if d['surprise'] is not None:
         bits.append('surprise %+.2f' % d['surprise'])
     if d['path'] is not None:
-        bits.append('path %+.2f (%+dbp)' % (d['path'], d['path_bp']))
+        # *** F-148 - path_bp IS NOW ALWAYS None. LD-154 replaced
+        # path_score's forecast-minus-current basis-point test with
+        # decision_score, which reports a SOURCE ('consensus' / 'forecast' /
+        # 'actual') rather than a bp distance, and set bp = None. This line
+        # still formatted it with %d and crashed the whole section-4 build on
+        # the first edition after LD-154 landed. A rule change that leaves a
+        # renderer reading a retired field is the F-135 shape; name the source
+        # instead, which is the thing LD-154 actually produces.
+        src = d.get('path_src')
+        if d.get('path_bp') is not None:
+            bits.append('path %+.2f (%+dbp)' % (d['path'], d['path_bp']))
+        else:
+            bits.append('path %+.2f (%s)' % (d['path'], src or 'LD-154'))
     # LD-109: name the weight each live term carried, renormalised
     w = d.get('weights', {})
     tot = sum(w.values()) or 1.0

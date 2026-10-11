@@ -183,3 +183,36 @@ It is also the first row of the 5-9 Oct calendar, so it will be refreshed in
 the ordinary course at the 11 Oct build, where it belongs.
 
 JPY | Consumer Confidence | 2026-10-05 | 35.5 (Sep/26, HELD OUT) | TE /japan/consumer-confidence - prints inside the graded week, deliberately not applied
+
+## 2026-10-11 - THE 5-9 OCT PRINTS
+
+R-42 raised 7 rows as lost to a capture gap. All are recovered from their TE
+indicator pages via R-45 and rolled into Oct-26.
+
+AUD | ANZ-Indeed Job Ads MoM | 2026-10-06 | 2.2% | TE /australia/job-advertisements
+AUD | Westpac Consumer Conf Change | 2026-10-06 | -4.7% | TE /australia/consumer-confidence
+AUD | Building Permits YoY Final | 2026-10-07 | 10.3% | TE /australia/building-permits
+CAD | Balance of Trade | 2026-10-06 | C$4.2B | TE /canada/balance-of-trade
+CHF | Unemployment Rate | 2026-10-06 | 3% | TE /switzerland/unemployment-rate
+EUR | Retail Sales YoY | 2026-10-06 | 0.8% | TE /euro-area/retail-sales-annual
+USD | Balance of Trade | 2026-10-06 | $-105.6B | TE /united-states/balance-of-trade
+NZD | Global Dairy Trade Price Index | 2026-10-06 | -1.1% (HELD) | auction scheduled, TE carries no actual
+
+*** F-147 - THE ROLL REVERTED FOUR CORRECTIONS FROM LAST WEEK.
+
+roll_month copies the PREVIOUS column forward for every row NOT in
+refresh_rows.UPDATES. So a row corrected one week and dropped from the dict
+the next is not left alone - it is RESTORED to its pre-correction value.
+
+Reverted on this roll, all caught by R-45/R-46 rather than by reading:
+    USD ISM Manufacturing PMI   54.5 -> 54.6
+    GBP S&P Global Mfg PMI Fin  51.9 -> 51.7
+    AUD S&P Global Mfg PMI Fin  49.6 -> 52.0   <- the one that moved the board
+    AUD RBA Interest Rate       4.60% -> 4.35% (F-142 again)
+
+AUD's PMI is the expensive one: 49.6 is BELOW 50 and scores BAD, 52.0 scores
+GOOD, and AUD's Production category rests on that SINGLE ROW. The revert would
+have taken AUD from -2.00 back to +1.67 and changed the set.
+
+THE RULE: a correction stays in UPDATES until its series re-prints, not just
+in the week it was made.
