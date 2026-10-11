@@ -1,10 +1,10 @@
 Month,Category,Currency,Indicator,Actual,Score
-Oct-26,Employment,USD,Non Farm Payrolls,29K,1
+Oct-26,Employment,USD,Non Farm Payrolls,29K,-1
 Oct-26,Employment,USD,Unemployment Rate,4.2%,-1
-Oct-26,Employment,EUR,Unemployment Rate,6.4%,-1
+Oct-26,Employment,EUR,Unemployment Rate,6.4%,0
 Oct-26,Employment,GBP,Claimant Count Change,27.8K,-1
 Oct-26,Employment,GBP,Unemployment Rate,4.9%,0
-Oct-26,Employment,JPY,Unemployment Rate,2.5%,0
+Oct-26,Employment,JPY,Unemployment Rate,2.5%,-1
 Oct-26,Employment,AUD,ANZ-Indeed Job Ads MoM,2.2%,1
 Oct-26,Employment,AUD,Employment Change,"39.5K (FT -6.3K, PT +45.8K)",0
 Oct-26,Employment,AUD,Unemployment Rate,4.6%,-1
@@ -54,13 +54,13 @@ Oct-26,Spending,EUR,Consumer Confidence Final,-16.5,-1
 Oct-26,Spending,EUR,Retail Sales YoY,0.8%,1
 Oct-26,Spending,GBP,GfK Consumer Confidence,-13,1
 Oct-26,Spending,GBP,Retail Sales Ex Fuel YoY,2.7%,1
-Oct-26,Spending,JPY,Consumer Confidence,35.4,1
+Oct-26,Spending,JPY,Consumer Confidence,35.4,-1
 Oct-26,Spending,JPY,Household Spending YoY,-3.1%,-1
 Oct-26,Spending,JPY,Retail Sales YoY,2.7%,1
 Oct-26,Spending,AUD,Building Permits YoY Final,10.3%,1
 Oct-26,Spending,AUD,Household Spending YoY,6.8%,1
 Oct-26,Spending,AUD,NAB Business Confidence,-8,-1
-Oct-26,Spending,AUD,Westpac Consumer Conf Change,-4.7%,-1
+Oct-26,Spending,AUD,Westpac Consumer Conf Change,-4.7%,1
 Oct-26,Spending,NZD,ANZ Business Confidence,51.9,-1
 Oct-26,Spending,NZD,ANZ Roy Morgan Consumer Conf,97.6,-1
 Oct-26,Spending,NZD,Building Permits MoM,-4.3%,-1

@@ -5293,6 +5293,82 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### F-154 / R-48 - THE CSV WAS RIGHT; score_model.ROWS IS A HAND-WRITTEN
+### SECOND COPY AND prev HAD DRIFTED ON 26 ROWS (2026-10-12)
+
+Jeff found two bad rows by eye, then found the ROOT CAUSE I had missed:
+
+  "JPY Consumer Confidence -- can you verify in TE the previous seems to be
+   having a different value"
+  "CHF Procure.ch-UBS Mfg PMI 55.3 53.2 Sep/26 -- scan the report fully.
+   I saw another error. EVERY WEEK WE ARE FACING THE SAME ISSUE AGAIN AND
+   AGAIN"
+  Then, selecting the CSV line: "What's bugging me is that in CVS file the
+   numbers are correct. look at this
+       CHF,Procure.ch-UBS Mfg PMI,Monthly,57.1,57.1,55.3
+   Then why are you printing a different value in the report?"
+
+*** HIS LAST QUESTION IS THE FINDING. The CSV held 57.1 in the prior column -
+the correct previous - while score_model held 53.2. I HAD JUST SPENT A WHOLE
+PASS VERIFYING THAT VALUE AGAINST TE PAGES when it was sitting in the adjacent
+column of the file the board already reads. My R-48 got the right answer by an
+unnecessarily roundabout route and I reported the diagnosis as "prev has no
+authority" when the authority was there all along.
+
+THIS IS F-141 A THIRD TIME. F-141 fixed the ACTUAL drifting out of step with
+the CSVs, F-141b fixed the REF month, and prev was the third field nobody
+watched - because sync_score_model's own header says the CSVs "do NOT carry
+prev". TRUE OF A COLUMN WITH THAT NAME, FALSE OF THE DATA: the previous print
+is the column to the left. I had read that header as a constraint rather than
+as the bug it was describing.
+
+*** BUT THE NAIVE RULE IS WRONG, WHICH IS WHY R-48 DERIVES RATHER THAN COPIES.
+roll_month copies a non-printing series forward, so the prior column is often
+the SAME print:
+
+    CHF Balance of Trade   Aug CHF8.1B | Sep CHF5.6B | Oct CHF5.6B
+                                              ^^^^^^^^^^^^^^^ same print
+
+Reading Sep as "previous" compares a print to ITSELF and scores a false
+NEUTRAL. Measured: of the 12 rows where the prior column disagreed with
+score_model, TEN WERE CARRIED DUPLICATES. The rule is LAST DISTINCT VALUE,
+and None when the three-month window holds none.
+
+AND THE CSV IS NOT THE ONLY AUTHORITY EITHER. It stores the print AS FIRST
+PUBLISHED (LD-112); TE revises. USD NFP's August print is 162K in the CSV and
+133K on TE today - both score -1 against 29K, so the SCORE is robust and the
+difference is provenance. R-48 therefore reads BOTH: THE CSV FOR THE VINTAGE
+CHAIN (which print is the previous one) AND TE FOR THE VALUE (LD-3). A
+same-month disagreement is a REVISION and is listed explicitly in REVISED{}
+rather than silenced; a wrong-MONTH prev fails and stops the build.
+
+THE THREE ROWS SCORING OFF A WRONG MONTH:
+
+    USD Non Farm Payrolls    held -23K   = JULY's print      +1 -> -1
+    AUD Westpac Consumer Conf held 6%    = SEP's previous     -1 -> +1
+    JPY Consumer Confidence  held 34.9   = AUG's previous     +1 -> -1
+  plus JPY Unemployment (2.5->2.4, 0 -> -1) and EUR Unemployment (revision).
+
+*** AND THE SET CHANGED. USD +2.10 -> +1.10 (NFP), AUD -2.30 -> -1.30
+(Westpac), JPY +0.87 -> -1.47, EUR +4.00 -> +5.00.
+
+    was: GBPAUD +9.37, GBPCHF +8.57, EURAUD +7.30, CADCHF +5.70
+    now: GBPCHF +8.57, GBPAUD +8.37, EURCHF +6.50, CADCHF +5.70
+
+EURAUD OUT, EURCHF IN. EURCHF had no bar file, so 45 daily bars were pulled
+from OANDA:EURCHF via TradingView (LD-5 as amended - never Yahoo) and trimmed
+to the SAME 45-bar window every other pair carries, so the ATR(14) basis is
+identical across the set (LD-128/129). Verified first and last timestamps
+match GBPCHF exactly.
+
+A SECOND HAND-MAINTAINED COLUMN SURFACED ON THE WAY: score_model's VERDICT
+field still read GOOD/BAD/NEUTRAL from the old prev, so fixing prev made R-44
+fail. It is a THIRD copy of what the rule derives. Corrected the affected
+rows; why a derived value is stored at all goes to the 31 Oct review, with the
+structural question of retiring score_model.ROWS in favour of the CSVs.
+
+R-46 FOURTEEN OF FOURTEEN. R-44 51 cases. R-43 clean. V9.
+
 ### LD-165 - THE BASE NEVER READ A FORWARD CONSENSUS, SO LD-155's
 ### BEFORE-THE-NEWS HALF ONLY EVER RAN IN THE CALIBRATOR (2026-10-11)
 

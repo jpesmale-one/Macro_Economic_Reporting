@@ -130,6 +130,29 @@ def s4_vintage():
     return True, 'R-37 and R-40 clean'
 
 
+def s4b_prev():
+    """R-48 - no row scores off a wrong `previous`.
+
+    Jeff, 2026-10-12: "Every week we are facing the same issue again and
+    again". He is right, and the reason is that NOTHING OWNED prev.
+    refresh_rows advances the actual, roll_month rolls the CSV columns,
+    sync_score_model copies the actual and the ref month - and prev keeps
+    whatever it held when the row was last hand-edited, one vintage behind.
+    A recurring defect with no guard recurs by design.
+    """
+    import prev_check as pv
+    bad, unv = pv.audit()
+    scoring = [b for b in bad if b[4] != b[5]]
+    if scoring:
+        return False, '%d row(s) scoring off a wrong previous: %s' % (
+            len(scoring), ', '.join('%s %s' % (b[0], b[1][:18])
+                                    for b in scoring[:3]))
+    if bad:
+        return True, ('%d cosmetic prev mismatch(es), 0 scoring, %d unverified'
+                      % (len(bad), len(unv)))
+    return True, 'every matchable prev agrees with TE, %d unverified' % len(unv)
+
+
 def s5_rules():
     """R-44: every scoring rule, and both scorers agreeing."""
     code, out = _py(os.path.join(HERE, 'test_inflation.py'))
@@ -382,6 +405,7 @@ STEPS = [
     ('2', 'no release lost to a gap (R-42)', s2_gaps),
     ('3', 'every row vs TE, refreshed (R-45)', s3_indicator_pages),
     ('4', 'held values vs capture (R-37/R-40)', s4_vintage),
+    ('4b', 'prev vs TE, no wrong scoring (R-48)', s4b_prev),
     ('5', 'scoring rules (R-44)', s5_rules),
     ('6', 'policy rates match rate_model (LD-142)', s6_rates),
     ('7', 'one selector everywhere (F-127)', s7_selectors),
