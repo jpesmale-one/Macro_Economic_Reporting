@@ -397,6 +397,26 @@ LAST = {
     'CHF': ('0%',    '0%',    '0%'),      # SNB 24 Sep HELD  -> retains NEUTRAL
     'USD': ('4%',    '3.75%', '4%'),      # Fed 16 Sep HIKED -> retains GOOD
     'EUR': ('2.65%', '2.4%',  '2.65%'),   # ECB 10 Sep HIKED -> retains GOOD
+
+    # *** THE LAST THREE, FROM THE BANKS THEMSELVES (2026-10-11).
+    # Jeff: "For this one I have given you links to Central Banks you can
+    # check there for their previous releases." These three reported
+    # "no last decision recorded" and were scoring only because TE happened
+    # to publish a forecast - if that column emptied they would have blanked,
+    # which is the LD-23 failure LD-154b exists to prevent.
+    #
+    # Each verified at the ISSUING AGENCY, not a calendar (LD-3 - a calendar
+    # is a SCHEDULE authority, never a VALUE authority):
+    #   JPY  boj.or.jp/mopo/mpmdeci/mpr_2026/k260918a.pdf
+    #        "無担保コールレート...１．２５％程度" - 1.25%, vote 7-2, 18 Sep
+    #   CAD  bankofcanada.ca/2026/09/fad-press-release-2026-09-02/
+    #        "The Bank of Canada today held its target for the overnight
+    #        rate at 2.25%"
+    #   NZD  rbnz.govt.nz/monetary-policy/monetary-policy-decisions
+    #        25bp increase to 2.75% on 2 Sep, agreed by consensus
+    'JPY': ('1.25%', '1.00%', '1.25%'),   # BoJ 18 Sep HIKED -> retains GOOD
+    'CAD': ('2.25%', '2.25%', '2.25%'),   # BoC  2 Sep HELD  -> retains NEUTRAL
+    'NZD': ('2.75%', '2.50%', '2.75%'),   # RBNZ 2 Sep HIKED -> retains GOOD
 }
 
 
@@ -460,7 +480,7 @@ def path_score(current, forecast):
     return -0.5, bp, 'DOVISH - a cut is priced'
 
 
-def compute():
+def compute(_autoload=True):
     """REALISED + EXPECTED + SURPRISE (LD-90).
 
     Jeff, 2026-09-02, after the RBNZ hiked exactly on consensus and NZD fell
@@ -476,6 +496,23 @@ def compute():
     is left out of the average entirely rather than counted as zero, which
     would assert the market was unsurprised.
     """
+    # *** F-150 - load_scheduled() WAS NEVER CALLED IN THE BUILD PATH, so
+    # SCHEDULED stayed empty and every currency fell through to LD-154b's
+    # last-decision fallback. LD-154's BEFORE-THE-NEWS half - the whole point
+    # of the rule - never reached a published edition. Only the TESTS called
+    # it, which is why R-44 passed while the board scored something else:
+    # the test and the renderer were running different code.
+    #
+    # On 11 Oct that meant JPY scored +0.50 on its September hike when the
+    # live reading is 0.00 (a HOLD expected 30 Oct), and the same for NZD
+    # and CAD. A guard that exercises a path the product does not take is
+    # not a guard.
+    if _autoload and not SCHEDULED:
+        try:
+            load_scheduled()
+        except Exception:
+            pass
+
     out = {}
     for ccy, row in ROWS.items():
         rate, real, cpi, ris, note = row[:5]

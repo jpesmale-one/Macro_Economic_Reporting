@@ -606,8 +606,17 @@ def main():
             bad += 1; _nb += 1
             print('    *** %s scores %+.2f on level 0 / path 0'
                   % (_rm.LABEL[i], d['raw']))
+    # LD-154b - EVERY currency must have a recorded last decision, so the
+    # path term never depends on TE happening to publish a forecast. JPY,
+    # NZD and CAD reported "no last decision recorded" on 11 Oct and were
+    # scoring only because the forecast column was populated.
+    _miss = [c for c in ('USD', 'EUR', 'GBP', 'JPY', 'AUD', 'NZD', 'CAD',
+                         'CHF') if _rm.standing_score(c)[0] is None]
+    if _miss:
+        bad += 1; _nb += 1
+        print('    *** no last decision recorded for: %s' % ', '.join(_miss))
     if not _nb:
-        print('    3 case(s) pass - two terms, level 0.5 + path 0.5')
+        print('    4 case(s) pass - two terms, and all 8 carry a last decision')
 
     print()
     if bad:

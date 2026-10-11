@@ -5293,6 +5293,48 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### F-150 - LD-154's BEFORE-THE-NEWS HALF NEVER REACHED AN EDITION,
+### AND THREE CURRENCIES HAD NO LAST DECISION (2026-10-11)
+
+Jeff: "no last decision recorded -- For this one I have given you links to
+Central Banks you can check there for their previous releases"
+
+TWO FAULTS, FOUND BY FOLLOWING HIS POINT.
+
+*** 1. load_scheduled() WAS NEVER CALLED IN THE BUILD PATH. It reads the next
+decision out of the capture into SCHEDULED, and ONLY THE TESTS called it. So
+R-44 exercised the scheduled-decision branch while the board quietly scored
+LD-154b's last-decision fallback instead - the test and the renderer were
+running DIFFERENT CODE, and the test passed on the branch the product never
+took.
+
+LD-154's BEFORE-THE-NEWS HALF - the whole point of the rule Jeff specified -
+had never reached a published edition. compute() now loads the calendar
+itself.
+
+    JPY  scored +0.50 on its September hike; live reading 0.00
+         (HOLD expected 30 Oct). Same shape for NZD and CAD.
+
+*** 2. JPY, NZD AND CAD HAD NO RECORDED LAST DECISION. standing_score()
+returned None for all three, so they were scoring ONLY because TE happened to
+publish a forecast - if that column emptied they would have blanked, which is
+the LD-23 failure LD-154b exists to prevent.
+
+FILLED FROM THE BANKS THEMSELVES, not a calendar (LD-3 - a calendar is a
+SCHEDULE authority, never a VALUE authority):
+
+    JPY  1.25%, 18 Sep, vote 7-2
+         boj.or.jp/mopo/mpmdeci/mpr_2026/k260918a.pdf
+    CAD  held 2.25%, 2 Sep
+         bankofcanada.ca/2026/09/fad-press-release-2026-09-02/
+    NZD  2.75%, 2 Sep, 25bp by consensus
+         rbnz.govt.nz/monetary-policy/monetary-policy-decisions
+
+EFFECT: JPY base +1.17 -> +0.67, NZD +1.50 -> +1.00. THE SET IS UNCHANGED.
+
+R-44 now asserts ALL EIGHT carry a last decision, so the fallback can never
+silently depend on TE's forecast column again.
+
 ### F-149 - THE INTEREST RATE COLUMNS DESCRIBED A MODEL THAT NO LONGER
 ### RUNS (2026-10-11)
 
