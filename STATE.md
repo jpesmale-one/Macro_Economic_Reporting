@@ -5293,6 +5293,42 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### LD-163 - REALISED RETIRED FROM THE RATE MODEL (2026-10-11)
+
+Jeff: "yeah we should follow now the new IR scoring. the one I gave you. also
+for the Inflation"
+
+*** KEEPING realised ALONGSIDE LD-154 SCORED THE SAME EVENT TWICE. realised
+paid +1 for having hiked AT ALL, regardless of whether the hike was priced -
+which is exactly what LD-90 exists to prevent ("a fully-priced decision moves
+nothing"). LD-154's AFTER-THE-NEWS half asks the question properly: actual
+against expectation, with a fully-priced decision RETAINING its before-news
+score rather than being re-paid for happening.
+
+On 11 Oct the September hikes were paying USD, EUR and AUD through `realised`
+while `path` separately reported them as fully priced and worth nothing extra.
+JPY WAS THE CLEAREST CASE: +0.20 of its score came purely from having hiked,
+on a level of 0 and a path of 0 - a currency scoring positive on a decision
+the market had entirely absorbed.
+
+TWO TERMS NOW, EQUALLY WEIGHTED:
+    level 0.50   WHERE IS THE RATE?       vs the 1.5-2.5 corridor (LD-142)
+    path  0.50   WHAT IS EXPECTED NEXT?   LD-154 before/after
+
+THE RETIRED WEIGHTS ARE SET TO 0.0 RATHER THAN DELETED, so a stale caller
+fails loudly instead of silently scoring zero - realised (LD-163), expected
+and surprise (LD-142).
+
+INFLATION WAS ALREADY ON THE MATCHING RULE. All eight rows verified against
+LD-155 this build; nothing to change there.
+
+EFFECT: JPY base +1.00 -> +0.67, CHF -1.40 -> -1.50, GBP +6.90 -> +7.00,
+NZD and GBP each shift 0.10. THE SET IS UNCHANGED - CAD and EUR now tie at
++4.00 on the base and the gaps widen slightly.
+
+R-44 45 cases, three new: realised must not be a live term, TERM_WEIGHT must
+read 0, and a currency with level 0 and path 0 must score 0 - the JPY case.
+
 ### LD-162 - BROAD OR NARROW: WAS THE MOVE ITS OWN? (2026-10-11)
 
 Jeff: "If we can't really find any catalyst for the move then it could just

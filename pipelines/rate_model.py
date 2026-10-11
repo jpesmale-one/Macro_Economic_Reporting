@@ -105,8 +105,30 @@ the SNB's own 0-2% mandate. Each bank is judged against its own target.
 # the data its already past") and EXPECTED - the CPI-vs-mandate proxy -
 # replaced by LEVEL, which reads the policy rate directly. That also removes
 # a double count: CPI already reaches the board through Inflation at weight 1.
-TERM_WEIGHT = {'realised': 0.20, 'level': 0.40, 'path': 0.40,
-               'expected': 0.30, 'surprise': 0.20}   # last two: legacy, unused
+# LD-163 - REALISED RETIRED. Jeff, 2026-10-11: "we should follow now the new
+# IR scoring. the one I gave you."
+#
+# realised paid +1 for having hiked AT ALL, regardless of whether the hike was
+# priced - which is precisely what LD-90 exists to prevent ("a fully-priced
+# decision moves nothing"). LD-154's AFTER-THE-NEWS half asks the same
+# question properly: actual against expectation, with a fully-priced decision
+# RETAINING its before-news score rather than being re-paid for happening.
+#
+# KEEPING BOTH MEANT SCORING THE SAME EVENT TWICE. On 11 Oct the September
+# hikes were paying USD, EUR and AUD through `realised` while `path` was
+# separately reporting them as fully priced and worth nothing extra. JPY was
+# the clearest case: +0.20 of its score came from having hiked, with a level
+# of 0 and a path of 0 - a currency scoring positive on a decision the market
+# had entirely absorbed.
+#
+# TWO TERMS NOW, EQUALLY WEIGHTED, asking two different questions:
+#     level 0.50   WHERE IS THE RATE?            vs the 1.5-2.5 corridor
+#     path  0.50   WHAT IS EXPECTED NEXT?        LD-154 before/after
+TERM_WEIGHT = {'level': 0.50, 'path': 0.50,
+               # retired, kept so a stale caller fails loudly rather than
+               # silently scoring zero: realised (LD-163), expected and
+               # surprise (LD-142)
+               'realised': 0.0, 'expected': 0.0, 'surprise': 0.0}
 
 # F-100 (2026-09-09) - W_RATE IS A PRE-REVAMP LEFTOVER AND IS NOW 1.
 #
@@ -483,7 +505,10 @@ def compute():
                % (rate.replace('%', ''), LOW, HIGH, prev_rate or '?'))
         # LD-109: weighted, renormalised over the terms that exist.
         # SURPRISE dropped (Jeff 2026-09-20), EXPECTED replaced by LEVEL.
-        terms = {'realised': real, 'level': lvl, 'path': path}
+        # LD-163 - realised is no longer a term. It is still carried in the
+        # output dict so the audit page can show what it WOULD have paid,
+        # but it does not enter the average.
+        terms = {'level': lvl, 'path': path}
         live = dict((k, v) for k, v in terms.items() if v is not None)
         wsum = sum(TERM_WEIGHT[k] for k in live)
         raw = (sum(v * TERM_WEIGHT[k] for k, v in live.items()) / wsum

@@ -584,6 +584,31 @@ def main():
         print('    %d case(s) pass - corridor, both sides, live rows agree'
               % (len(_ic) + 1))
 
+    # LD-163 - realised must NOT enter the rate score.
+    print()
+    print('  LD-163 - realised retired from the rate model')
+    _rm.load_scheduled()
+    _rr = _rm.compute()
+    _nb = 0
+    _leaked = [_rm.LABEL[i] for i, d in _rr.items()
+               if 'realised' in (d.get('weights') or {})]
+    if _leaked:
+        bad += 1; _nb += 1
+        print('    *** realised still a live term for: %s' % ', '.join(_leaked))
+    if _rm.TERM_WEIGHT.get('realised'):
+        bad += 1; _nb += 1
+        print('    *** TERM_WEIGHT realised is %s, want 0'
+              % _rm.TERM_WEIGHT['realised'])
+    # a currency with level 0 and path 0 must score 0 - it was +0.20 on JPY
+    # purely for having hiked, which is the double-count LD-163 removes
+    for i, d in _rr.items():
+        if d['level'] == 0 and d['path'] == 0 and abs(d['raw']) > 1e-9:
+            bad += 1; _nb += 1
+            print('    *** %s scores %+.2f on level 0 / path 0'
+                  % (_rm.LABEL[i], d['raw']))
+    if not _nb:
+        print('    3 case(s) pass - two terms, level 0.5 + path 0.5')
+
     print()
     if bad:
         print('*** %d FAILURE(S)' % bad)
