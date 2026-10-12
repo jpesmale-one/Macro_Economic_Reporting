@@ -94,9 +94,50 @@ def te_previous():
     return idx
 
 
+def _evmatch(ev, name):
+    """Does a TE event stem match our whitelist name? Conservative.
+
+    SERIES IDENTITY IS LOAD-BEARING (F-29/F-37): 'Final' and the transform
+    (YoY/MoM/QoQ) are part of the name, so a PREL must not satisfy a FINAL
+    row and a MoM must not satisfy a YoY one.
+    """
+    import re as _re
+    w = set(_re.sub(r'[^a-z0-9 ]', ' ', name.lower()).split())
+    g = set(_re.sub(r'[^a-z0-9 ]', ' ', ev.lower()).split())
+    for tag in ('final', 'prel', 'flash', 'core'):
+        if (tag in w) != (tag in g):
+            return False
+    for x in ('yoy', 'mom', 'qoq'):
+        if (x in w) != (x in g):
+            return False
+    # *** THE FIRST VERSION ALLOWED A SUBSET MATCH IN EITHER DIRECTION, AND
+    # THAT PRODUCED A FALSE POSITIVE IMMEDIATELY - exactly the failure F-37
+    # exists to prevent. 'goods trade balance adv aug' satisfied our 'Balance
+    # of Trade' row because {balance, trade} is a subset of {goods, trade,
+    # balance, adv}, and the guard then reported USD Balance of Trade as
+    # scoring off a wrong previous using a number from a DIFFERENT SERIES
+    # (the advance goods figure, $-118.8B, against the real $-88.6B).
+    #
+    # A FALSE POSITIVE IS WORSE THAN THE GAP IT CLOSED: it sends the reader
+    # to correct a row that is right. So the match is now EXACT on the
+    # significant words, and any extra qualifier in the TE event - adv, goods,
+    # ex, excluding - disqualifies it.
+    DROP = {'the', 'of', 'rate', 'index'}
+    w -= DROP
+    g -= DROP
+    if g - w:
+        return False          # the TE event carries a qualifier we do not
+    return bool(w) and w == g
+
+
+_BYMON = {}
+
+
 def audit():
     """([(ccy,ind,held,want,scores)], [unverified])"""
     idx = te_previous()
+    if not _BYMON:
+        _BYMON.update(te_previous_by_month())
     bad, unv = [], []
     for cat, iso, name, act, prev, ref, thr, v in sm.ROWS:
         ccy = sm.LABEL[iso]
@@ -104,6 +145,20 @@ def audit():
         if want is None:
             e = idx.get((ISO[ccy], str(act).split(' (')[0].strip()))
             want = e[2] if e else None
+        if not want:
+            # F-155 - SECOND CHANCE BEFORE EXCUSING THE ROW. Try the ref
+            # month against rows that carry a `previous` whether or not they
+            # have an actual: a SCHEDULED row states the previous of the print
+            # we hold, and that is the row the released-only index missed.
+            mon = _refmon(ref)
+            if mon:
+                for (i2, m2, ev), (d2, e2, pv2) in _BYMON.items():
+                    if i2 != ISO[ccy] or m2 != mon:
+                        continue
+                    if not _evmatch(ev, name):
+                        continue
+                    want = pv2
+                    break
         if not want:
             unv.append((ccy, name, act, prev))
             continue
@@ -155,6 +210,77 @@ def audit():
 #
 # SO THIS GUARD READS BOTH: the CSV for the vintage CHAIN (which print is the
 # previous one) and TE for the VALUE (LD-3). They answer different questions.
+# ---------------------------------------------------------------- F-155 ---
+# *** THE INDEX ONLY MATCHED **RELEASED** ROWS, SO A ROW WHOSE PRINT WE HOLD
+# BUT NEVER CAPTURED FELL INTO "UNVERIFIED" AND PASSED.
+#
+# Jeff, 2026-10-12: "AUD ANZ-Indeed Job Ads MoM 2.2% 1.9% Sep/26 >0.5%
+# -- Previous data is wrong as per TE can you check?"
+#
+# He was right, and R-48 had reported that row as UNVERIFIED rather than as
+# wrong - the second time this session a guard's SILENCE read as a pass
+# (F-152 was the first). The mechanism:
+#
+#   te_previous() keys on (iso, OUR HELD ACTUAL) and only indexes rows that
+#   HAVE an actual. We hold 2.2% for Sep/26. No capture contains an AU job-ads
+#   row with actual 2.2%, because the 6 Oct release was never captured with
+#   its result - we only have the SCHEDULED row from before it printed. So the
+#   lookup missed and the row was excused.
+#
+# *** THE ANSWER WAS SITTING IN THAT SCHEDULED ROW. TE publishes `previous`
+# on a row BEFORE it releases:
+#
+#     2026-09-07  job ads mom AUG   actual 2.5%   previous 1.9%
+#     2026-10-06  job ads mom SEP   actual  -     previous 2.5%   <- this one
+#     2026-11-02  job ads mom OCT   actual  -     previous 2.2%
+#
+# The 6 Oct row states the previous of the very print we hold. We held 1.9% -
+# the AUGUST release's previous - so the actual had advanced 2.5% -> 2.2%
+# while prev stayed behind. Identical shape to F-154's JPY Consumer
+# Confidence, which is why it must be CHECKED and not merely corrected.
+#
+# SO THE INDEX NOW ALSO KEYS ON (iso, event-month) FROM SCHEDULED ROWS. A
+# scheduled row's `previous` is as authoritative as a released row's - more
+# useful here, because it is published the moment the event is calendared.
+MONTHS = ('jan', 'feb', 'mar', 'apr', 'may', 'jun',
+          'jul', 'aug', 'sep', 'oct', 'nov', 'dec')
+
+
+def _refmon(ref):
+    """'Sep/26' -> 'sep', or None. Quarterly refs ('Jun/26 (Q)') too."""
+    r = (ref or '').strip().lower()
+    return r[:3] if r[:3] in MONTHS else None
+
+
+def te_previous_by_month():
+    """{(iso, 3-letter ref month): (date, event, previous)} from ANY row.
+
+    Includes rows with NO actual - a scheduled row publishes `previous`, and
+    that is precisely the row F-155 needed. Latest capture date wins, so a
+    revision supersedes the first publication.
+    """
+    idx = {}
+    for f in sorted(glob.glob(os.path.join(
+            REPO, 'data/raw/calendar/*_cal_full.json'))):
+        try:
+            rows = json.load(io.open(f, encoding='utf-8'))
+        except Exception:
+            continue
+        for r in rows if isinstance(rows, list) else []:
+            pv = (r.get('previous') or '').strip()
+            if not pv:
+                continue
+            e = (r.get('event') or '').lower().split()
+            mon = e[-1][:3] if e and e[-1][:3] in MONTHS else None
+            if not mon:
+                continue
+            k = (r.get('iso'), mon, ' '.join(e[:-1]))
+            d = r.get('date', '')
+            if k not in idx or d > idx[k][0]:
+                idx[k] = (d, r.get('event', ''), pv)
+    return idx
+
+
 # Rows where the CSV and TE legitimately disagree because TE REVISED the
 # previous print. Both point at the SAME MONTH, so this is a value question,
 # not a vintage one, and LD-3 settles it: the indicator page owns the VALUE.

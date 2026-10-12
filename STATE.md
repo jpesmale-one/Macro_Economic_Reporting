@@ -5293,6 +5293,67 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### F-155 - R-48 ONLY MATCHED **RELEASED** ROWS, SO A ROW IT COULD NOT
+### MATCH PASSED AS UNVERIFIED (2026-10-12)
+
+Jeff: "AUD ANZ-Indeed Job Ads MoM 2.2% 1.9% Sep/26 >0.5% -- Previous data is
+wrong as per TE can you check?"
+
+HE WAS RIGHT, AND R-48 HAD ALREADY SEEN THIS ROW AND EXCUSED IT. It was in the
+33 UNVERIFIED, not in the mismatches - the SECOND time this session a guards
+silence read as a pass (F-152 was the first, on the Inflation vintages).
+
+THE MECHANISM. te_previous() keys on (iso, OUR HELD ACTUAL) and indexes only
+rows that HAVE an actual. We hold 2.2% for Sep/26. No capture contains an AU
+job-ads row with actual 2.2%, because the 6 Oct release was never captured
+with its result - we only have the SCHEDULED row from before it printed. The
+lookup missed, so the row was excused rather than flagged.
+
+*** THE ANSWER WAS SITTING IN THAT SCHEDULED ROW. TE publishes  on a
+row BEFORE it releases:
+
+    2026-09-07  job ads mom AUG   actual 2.5%   previous 1.9%
+    2026-10-06  job ads mom SEP   actual  -     previous 2.5%   <- THIS ONE
+    2026-11-02  job ads mom OCT   actual  -     previous 2.2%
+
+We held 1.9% - the AUGUST releases previous. The actual had advanced
+2.5% -> 2.2% while prev stayed behind. IDENTICAL SHAPE TO F-154s JPY Consumer
+Confidence, which is why the guard mattered more than the correction.
+
+VERIFIED AT THE TE PAGE: Sep 2.2%, Aug 2.6% (first reported 2.5%, revised up),
+Jul 1.9% (first reported +0.8%). So 2.6% is the live previous and 1.9% is TWO
+MONTHS STALE. Cosmetic for the score - the threshold is >0.5%, a BAND test
+that never reads prev - but the table PRINTS prev, so the printed working was
+wrong.
+
+THE FIX: R-48 now also indexes (iso, ref-month, event-stem) from ANY row
+carrying a , released or not. UNVERIFIED fell 33 -> 13.
+
+*** AND MY FIRST VERSION OF IT PRODUCED A FALSE POSITIVE IMMEDIATELY, which is
+the part worth keeping. _evmatch allowed a SUBSET match in either direction, so
+"goods trade balance adv aug" satisfied our "Balance of Trade" row - and R-48
+reported USD Balance of Trade as SCORING off a wrong previous, using hBc118.8B
+from the advance goods series against the real hBc88.6B. That is exactly the
+confusion F-37 exists to prevent, reappearing in a new matcher.
+
+I caught it by checking the hit at the TE page instead of trusting my own
+guard: TEs real previous is -2.83B (Jul, revised), our held -1.2B is JUNE,
+and BOTH score -1 against -05.6B. So the guard was wrong about the number
+AND wrong that it changed a score. A FALSE POSITIVE IS WORSE THAN THE GAP IT
+CLOSED - it sends the reader to correct a row that is right.
+
+_evmatch is now EXACT on significant words: any extra qualifier in the TE
+event (adv, goods, ex, core, flash, prel) disqualifies it. Negative-tested six
+cases - the advance-goods row, flash-vs-final, core-vs-headline and
+ex-fuel-vs-headline are all refused; the two true matches pass. And reverting
+Job Ads prev to 1.9% now FAILS R-48 where before it was silently excused.
+
+STILL 13 UNVERIFIED, including the 8 GDP rows (calibrator-only, no actual) and
+USD CB Consumer Confidence (the known bad slug). Those are reported every run
+rather than hidden.
+
+R-46 FOURTEEN OF FOURTEEN. R-44 41 cases. R-43 clean. Board unchanged. V11.
+
 ### LD-166 - THE 1.5-2.5 CORRIDOR WAS NEVER AN INTEREST RATE RULE. LEVEL
 ### RETIRED; THE RATE ROW IS LD-154 ALONE (2026-10-12)
 

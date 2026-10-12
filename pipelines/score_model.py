@@ -166,7 +166,7 @@ ROWS = [
  # fourth consecutive period. Next print 20 Oct (Aug/26).
  ("Employment","GB","Unemployment Rate","4.9%","4.9%","Jul/26","<Prev","NEUTRAL"),
  ("Employment","JP","Unemployment Rate","2.5%","2.4%","Aug/26","<Prev","BAD"),
- ("Employment","AU","ANZ-Indeed Job Ads MoM","2.2%","1.9%","Sep/26",">0.5%","GOOD"),
+ ("Employment","AU","ANZ-Indeed Job Ads MoM","2.2%","2.6%","Sep/26",">0.5%","GOOD"),
  ("Employment","AU","Employment Change","39.5K (FT -6.3K, PT +45.8K)","-15.9K","Aug/26","LD-151 three legs","NEUTRAL"),
  ("Employment","AU","Unemployment Rate","4.6%","4.5%","Aug/26","<Prev","BAD"),
  ("Employment","NZ","Unemployment Rate","5.6%","5.4%","Jun/26 (Q)","<Prev","BAD"),
