@@ -1,0 +1,231 @@
+INTEREST RATE SCORING - THE RULE, AND THE EVIDENCE BEHIND IT
+Recorded 2026-10-12 at Jeff's request: "document the new rule as an evidence
+in Idea_dump so there is something we can go back to"
+
+This file exists because on 2026-10-12 Jeff asked "where did you get this
+rule?" about the Interest Rate scoring and COULD NOT CHECK THE ANSWER. Every
+other category's rule was written in Macro_economic_indicators.txt; the rate
+rule lived only in code comments and git history. He was then right that the
+rule he found there was wrong. Both halves of that are why this document
+exists: the rule is recorded, AND the primary sources are quoted, so the next
+disagreement is settled from the record instead of from memory.
+
+Everything below is quoted verbatim or cited by commit hash. Where this file
+states a conclusion, the evidence for it is directly beneath.
+
+
+================================================================================
+1. THE LIVE RULE
+================================================================================
+
+ONE TERM. The Interest Rate row is scored on WHAT THE BANK IS EXPECTED TO DO
+NEXT. Nothing is averaged against it.
+
+Jeff, 2026-10-10, verbatim (commit 7d99dd7):
+
+    BEFORE THE NEWS                   AFTER THE NEWS
+      Forecast > Previous = Good        Actual = Forecast = retain
+      Forecast < Previous = Bad         Actual > Forecast = override Good
+      Forecast = Previous = Neutral     Actual < Forecast = override Bad
+
+His reasoning, verbatim:
+
+    "This way we can reflect the forward looking sentiment the soonest on
+     Before the news scenario and ride the decision on the After the news
+     scenario."
+
+CONSENSUS SUPERSEDES FORECAST. Jeff, 2026-10-10, verbatim:
+
+    "Forecast is fine to use but when consensus appeared we should rescore it
+     based on that."
+
+  WHY BOTH ARE READ RATHER THAN CONSENSUS ALONE - measured, not assumed:
+  across 140 rate rows in our captures, consensus is present on only 42% and
+  arrives a MEDIAN ~4 DAYS ahead (ECB 6, BoE 4, Fed 3, RBA 3). A
+  consensus-only rule would fire about a week out instead of from the moment
+  the decision is scheduled. The field `src` records which number scored the
+  row, so a rescore is visible rather than silent.
+
+A CURRENCY WITH NO SCHEDULED DECISION carries its LAST decision forward
+(LD-154b). This is what takes the term from 3 of 8 currencies to all 8.
+
+  WHY IT IS NEEDED - against the real 4 Oct calendar, TE had the Fed and ECB
+  rows COMPLETELY EMPTY (no consensus, no forecast, ECB no previous either)
+  and no October row at all for GBP, AUD or CHF. Without the carry-forward the
+  only forward-looking term in the model was inert for most of the board.
+
+  Every carried decision is FULLY PRICED (actual == consensus), so each one
+  RETAINS its score rather than being re-paid for happening. That is LD-90,
+  Jeff 2026-09-02: "A central bank decision moves price by its surprise
+  component only. Level of rates -> already discounted."
+
+  Supersession is automatic: the moment TE schedules the next decision with a
+  number, the scheduled row is read and the currency flips to before-news. No
+  manual switch.
+
+
+================================================================================
+2. THE 1.5-2.5% CORRIDOR IS NOT PART OF THIS RULE, AND NEVER WAS
+================================================================================
+
+Jeff, 2026-10-12, verbatim:
+
+    "Then I don't think this is correct. I gave the 1.5-2.5 range to Inflation
+     as I remember because for IR our concern is the change not on a
+     particular target"
+    "I'd say lets stick to the new rule I gave you. Let's strip down all the
+     rules we have in Interest Rate and apply the new rule purely"
+
+HIS MEMORY IS CORRECT. THE EVIDENCE:
+
+  THE ONLY PLACE JEFF HIMSELF NAMES 1.5-2.5 IS ABOUT INFLATION.
+  Jeff, 2026-09-21, on JPY CPI printing 1.9% after 1.9% (commit 3bc3212):
+
+      "This should be Neutral since 1.9 is in between 1.5 to 2.5"
+
+  That is a CPI print. There is no quotation anywhere in the repo of Jeff
+  applying that band to a policy rate.
+
+  THE TWO COMMITS ARE 38 MINUTES 36 SECONDS APART, and the order shows how the band
+  spread:
+
+      3423bf8   2026-09-20 21:33:12   LD-142 puts 1.5-2.5 on the POLICY RATE
+      3bc3212   2026-09-20 22:11:48   LD-143 carries it to INFLATION
+
+  LD-143's own commit message names the motive, verbatim:
+
+      "THE REAL GAIN IS THAT THE TWO RULES BECOME ONE. LD-142 introduced the
+       corridor for the POLICY RATE a day earlier. Both categories now use an
+       IDENTICAL BAND"
+
+  THAT SYMMETRY WAS BUILT BECAUSE ONE BAND FOR BOTH WAS TIDIER. Tidiness is
+  not a reason. The asymmetry is real and it is the whole point:
+
+      INFLATION HAS A 2% TARGET.   A corridor around it is meaningful.
+      A POLICY RATE HAS NO TARGET. A corridor around it asserts a neutral
+                                   level that no central bank has declared.
+
+WHAT THE CORRIDOR WAS ACTUALLY DOING, measured on the live board 2026-10-12.
+Three of eight currencies were scored on where the rate SAT rather than on
+what the bank DID:
+
+      GBP   3.75%   HELD     ->  +1     a positive sign for doing nothing
+      CHF   0.00%   HELD     ->  -1     a negative sign for doing nothing
+      JPY   1.25%   HIKED    ->   0     an actual hike, scored as nothing
+
+All three now read 0, because none of them changed anything the market had not
+already priced. GBP and CHF being SIGNED FOR HOLDING was a direct violation of
+LD-90 - the principle the corridor was quietly working against.
+
+
+================================================================================
+3. WHAT WAS RETIRED, AND WHY EACH ONE WENT
+================================================================================
+
+The rate model has carried five terms at different times. FOUR ARE RETIRED.
+They are kept in the code at weight 0.0 rather than deleted, so a stale caller
+fails loudly instead of silently scoring zero.
+
+  level      the 1.5-2.5 corridor test.
+             RETIRED LD-166, 2026-10-12, for the reasons in section 2.
+
+  realised   paid +1 for having hiked AT ALL, regardless of whether the hike
+             was priced. RETIRED LD-163, 2026-10-11 (commit 9c5fd7b), on
+             Jeff's "we should follow now the new IR scoring. the one I gave
+             you."
+             WHY: it double-counted. On 11 Oct the September hikes were paying
+             USD, EUR and AUD through `realised` while `path` separately
+             reported them as fully priced and worth nothing extra. JPY was
+             the clearest case - +0.20 of its score came purely from having
+             hiked, on a level of 0 and a path of 0.
+
+  expected   CPI scored against each central bank's own mandate band.
+             RETIRED LD-142, 2026-09-20.
+             WHY: it was a PROXY for the rate tone, and it double-counted -
+             CPI already reaches the board through the Inflation category.
+
+  surprise   RETIRED on Jeff's instruction, 2026-09-20, verbatim:
+             "the surprise won't matter here anymore. because by the time we
+              capture the data its already past."
+
+ALSO SUPERSEDED, for the record:
+
+  LD-140     scored consensus-vs-standing - whether a move was EXPECTED. On
+             18 Sep it read JPY +1 for a priced hike IN THE WEEK THE YEN FELL
+             1.58%, the worst of the eight. Jeff: "This needs correction."
+             Replaced, not kept alongside: one rule, one quantity.
+
+  LD-141     a proposal to score the CPI gap from 2%. Superseded before
+             application - LD-154 reads the decision itself, which is the
+             quantity LD-141 was approximating.
+
+
+================================================================================
+4. THE RULE APPLIED - THE LIVE BOARD, 2026-10-12
+================================================================================
+
+Worked from the real data so the arithmetic can be checked against this file.
+
+  CCY   rate      prev      score    what scored it
+  USD   4.00%     3.75%     +1.00    AFTER - 4% exactly as expected, retain
+  EUR   2.65%     2.40%     +1.00    AFTER - 2.65% as expected, retain
+  AUD   4.60%     4.35%     +1.00    AFTER - 4.6% as expected, retain
+  NZD   2.75%     2.50%      0.00    BEFORE - expected HOLD at 2.75%
+  GBP   3.75%     3.75%      0.00    AFTER - 3.75% as expected, retain
+  JPY   1.25%     1.00%      0.00    BEFORE - expected HOLD at 1.25%
+  CAD   2.25%     2.25%      0.00    BEFORE - expected HOLD at 2.25%
+  CHF   0.00%     0.00%      0.00    AFTER - 0% as expected, retain
+
+  READ IT THIS WAY: USD, EUR and AUD score +1 because each HIKED and the
+  decision is being retained - they moved the rate up and the market got what
+  it expected, so the hawkish reading stands. NZD, JPY and CAD score 0 because
+  a HOLD is expected at their next meeting. GBP and CHF score 0 because their
+  last decisions were holds, fully priced.
+
+  *** NOTE WHAT IS NO LONGER HAPPENING. Under the retired corridor, GBP read
+  +1 and CHF read -1 on these exact same numbers - purely because 3.75% sits
+  above 2.5% and 0.00% sits below 1.5%. Neither bank had done anything.
+
+
+================================================================================
+5. WHERE THIS LIVES IN CODE, AND WHAT GUARDS IT
+================================================================================
+
+  pipelines/rate_model.py
+      decision_score()         the rule in section 1, before and after
+      LAST / standing_score()  LD-154b, the carry-forward
+      TERM_WEIGHT              path 1.00; the four retired terms 0.0
+      level_score()            STILL PRESENT for the audit trail, WEIGHT 0.
+                               It must never reach the score.
+
+  pipelines/test_inflation.py   R-44, the LD-166 block asserts:
+      - TERM_WEIGHT level is 0.0
+      - TERM_WEIGHT path is 1.0, the sole term
+      - GBP, CHF and JPY all read 0 (the three the corridor scored wrong)
+      - raw == path for all eight, so nothing is averaged in
+    Negative-tested 2026-10-12: restoring level to 0.50 fails all five checks.
+
+  A LESSON WORTH KEEPING. Four separate times a rate rule changed and the
+  REPORT kept describing the old one (F-135, F-148, F-149, F-150). The rate
+  row is scored OUTSIDE score_model, where most data guards look, so a
+  renderer/rule mismatch there is invisible to them. When this rule changes
+  again, THE TABLE COLUMNS AND THE FOOTNOTE MUST CHANGE IN THE SAME PASS.
+
+
+================================================================================
+6. HOW TO CHECK ANY OF THIS
+================================================================================
+
+    git show 7d99dd7     LD-154 - the rule, as Jeff gave it
+    git show 3423bf8     LD-142 - the corridor put on the policy rate
+    git show 3bc3212     LD-143 - the corridor carried to inflation, 39 min later
+    git show 9c5fd7b     LD-163 - realised retired
+    git show 1644f1c     LD-166 - level retired, the rate row becomes one term
+
+    python pipelines/test_inflation.py    R-44, including the LD-166 block
+    python pipelines/build_check.py       R-46, fourteen checks
+
+  Macro_economic_indicators.txt section 6 carries the same rule in the same
+  form as the other categories. THIS file carries the EVIDENCE; THAT file
+  carries the RULE. If they ever disagree, this one shows which sources were
+  read and when.

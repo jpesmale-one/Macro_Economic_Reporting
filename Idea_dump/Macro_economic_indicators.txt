@@ -470,7 +470,14 @@ Forward Looking Macro-Economic Indicators:
 		 which is why Jeff had to ask "where did you get this rule?" and could
 		 not check it against the spec. The rate rule had lived only in code
 		 comments and git history while every other category was written here.
-		 That asymmetry is the finding; the rule below is the live one.]
+		 That asymmetry is the finding; the rule below is the live one.
+
+		 *** THE EVIDENCE IS IN Idea_dump/Interest_Rate_Rule_Evidence.txt -
+		 Jeff, 2026-10-12: "document the new rule as an evidence in Idea_dump
+		 so there is something we can go back to". That file carries the
+		 verbatim quotes, the commit hashes, what each retired term was doing
+		 and why it went, and a worked example on live data. THIS file carries
+		 the RULE; THAT file carries the EVIDENCE for it.]
 
 		a. ALL EIGHT - <Bank> Interest Rate Decision
 		   THE RULE, in Jeff's words 2026-10-10:
