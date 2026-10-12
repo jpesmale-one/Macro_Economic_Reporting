@@ -22,12 +22,12 @@ Oct-26,Inflation,CAD,Inflation Rate YoY,3%,1
 Oct-26,Inflation,CHF,Inflation Rate YoY,1%,-1
 Oct-26,Interest_Rate,USD,Fed Interest Rate Decision,4.00%,1.0
 Oct-26,Interest_Rate,EUR,ECB Interest Rate Decision,2.65%,1.0
-Oct-26,Interest_Rate,GBP,BoE Interest Rate Decision,3.75%,0.5
+Oct-26,Interest_Rate,GBP,BoE Interest Rate Decision,3.75%,0.0
 Oct-26,Interest_Rate,JPY,BoJ Interest Rate Decision,1.25%,0.0
 Oct-26,Interest_Rate,AUD,RBA Interest Rate Decision,4.60%,1.0
-Oct-26,Interest_Rate,NZD,RBNZ Interest Rate Decision,2.75%,0.5
+Oct-26,Interest_Rate,NZD,RBNZ Interest Rate Decision,2.75%,0.0
 Oct-26,Interest_Rate,CAD,BoC Interest Rate Decision,2.25%,0.0
-Oct-26,Interest_Rate,CHF,SNB Interest Rate Decision,0.00%,-0.5
+Oct-26,Interest_Rate,CHF,SNB Interest Rate Decision,0.00%,0.0
 Oct-26,Production,USD,Durable Goods Ex Transp MoM,0.3%,0
 Oct-26,Production,USD,ISM Manufacturing PMI,54.5,1
 Oct-26,Production,USD,Industrial Production YoY,1.4%,1

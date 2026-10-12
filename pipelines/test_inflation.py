@@ -209,18 +209,41 @@ def main():
     import calibrator as _cal
 
     print()
-    print('  LD-142 - the rate-level rule')
-    print('  %-12s %-10s %-6s %-6s %s'
-          % ('RATE', 'PREV', 'WANT', 'GOT', 'CASE'))
+    print('  LD-166 - level is RETIRED, the rate row is LD-154 alone')
     import rate_model as _rm
-    for a, p_, want, note in RATE_LEVEL_CASES:
-        got = _rm.level_score(a, p_)
-        ok = got == want
-        if not ok:
-            bad += 1
-        print('  %-12s %-10s %-6s %-6s %s%s'
-              % (a or "''", p_ or "''", want, got, note,
-                 '' if ok else '   *** FAIL'))
+    _nl = 0
+    # THE RULE IS NOT "level_score is gone" - it still exists for the audit
+    # trail. The rule is that it MUST NOT REACH THE SCORE. Jeff, 2026-10-12:
+    # "strip down all the rules we have in Interest Rate and apply the new
+    # rule purely".
+    if _rm.TERM_WEIGHT.get('level') != 0.0:
+        bad += 1; _nl += 1
+        print('    *** TERM_WEIGHT level is %s, want 0'
+              % _rm.TERM_WEIGHT.get('level'))
+    if _rm.TERM_WEIGHT.get('path') != 1.0:
+        bad += 1; _nl += 1
+        print('    *** TERM_WEIGHT path is %s, want 1.0 (sole term)'
+              % _rm.TERM_WEIGHT.get('path'))
+    # and the DISCRIMINATING check: the three rows the corridor was scoring
+    # wrongly must now read 0. GBP and CHF were signed for HOLDING; JPY was
+    # given nothing for a HIKE the market had priced.
+    _rd = _rm.compute()
+    for _c, _want in (('GBP', 0.0), ('CHF', 0.0), ('JPY', 0.0)):
+        _i = dict((v, k) for k, v in _rm.LABEL.items())[_c]
+        _got = _rd[_i]['raw']
+        if abs(_got - _want) > 1e-9:
+            bad += 1; _nl += 1
+            print('    *** %s scores %+.2f, want %+.2f - the corridor is '
+                  'still reaching the score' % (_c, _got, _want))
+    # every currency's raw must equal its path exactly - nothing averaged in
+    for _i, _d in _rd.items():
+        if _d['path'] is not None and abs(_d['raw'] - _d['path']) > 1e-9:
+            bad += 1; _nl += 1
+            print('    *** %s raw %+.2f != path %+.2f - a second term is '
+                  'still weighted' % (_rm.LABEL[_i], _d['raw'], _d['path']))
+    if not _nl:
+        print('    4 case(s) pass - path is the sole term, GBP/CHF/JPY read '
+              '0, raw == path for all 8')
 
     # LD-140 precedence, including the case that would destroy signal.
     print()
@@ -599,12 +622,13 @@ def main():
         bad += 1; _nb += 1
         print('    *** TERM_WEIGHT realised is %s, want 0'
               % _rm.TERM_WEIGHT['realised'])
-    # a currency with level 0 and path 0 must score 0 - it was +0.20 on JPY
-    # purely for having hiked, which is the double-count LD-163 removes
+    # LD-166 - level no longer enters the score, so the old "level 0 and
+    # path 0 must be 0" check is subsumed by the stronger raw == path
+    # assertion in the LD-166 block. Kept as path-only.
     for i, d in _rr.items():
-        if d['level'] == 0 and d['path'] == 0 and abs(d['raw']) > 1e-9:
+        if d['path'] == 0 and abs(d['raw']) > 1e-9:
             bad += 1; _nb += 1
-            print('    *** %s scores %+.2f on level 0 / path 0'
+            print('    *** %s scores %+.2f on path 0'
                   % (_rm.LABEL[i], d['raw']))
     # LD-154b - EVERY currency must have a recorded last decision, so the
     # path term never depends on TE happening to publish a forecast. JPY,
@@ -735,7 +759,7 @@ def main():
         print('*** %d FAILURE(S)' % bad)
         return 1
     print('  %d cases pass' % (len(CASES) + len(PREV_CASES) + len(RATE_CASES)
-                          + len(REGIME_CASES) + 1 + 6))
+                          + len(REGIME_CASES) + 1 + 6 + 4 - len(RATE_LEVEL_CASES)))
     return 0
 
 

@@ -462,3 +462,58 @@ Forward Looking Macro-Economic Indicators:
 				1) Consensus-Forecast range entirely > 0 is Good
 				2) Consensus-Forecast range entirely < 0 is Bad
 				3) Range straddling 0 is Neutral
+
+	6. Interest Rate - the policy rate itself. It is the quantity every other
+	   category is trying to foresee, so it is scored on WHAT THE BANK IS
+	   EXPECTED TO DO NEXT, not on where the rate happens to sit.
+		[RECORDED 2026-10-12 - LD-166. This section did not exist until now,
+		 which is why Jeff had to ask "where did you get this rule?" and could
+		 not check it against the spec. The rate rule had lived only in code
+		 comments and git history while every other category was written here.
+		 That asymmetry is the finding; the rule below is the live one.]
+
+		a. ALL EIGHT - <Bank> Interest Rate Decision
+		   THE RULE, in Jeff's words 2026-10-10:
+			BEFORE THE NEWS
+			1) Forecast > Previous = Good       (a hike is expected)
+			2) Forecast < Previous = Bad        (a cut is expected)
+			3) Forecast = Previous = Neutral    (a hold is expected)
+			AFTER THE NEWS
+			4) Actual > Forecast = Good         (override, hawkish surprise)
+			5) Actual < Forecast = Bad          (override, dovish surprise)
+			6) Actual = Forecast = retain the current assessment
+
+		   CONSENSUS SUPERSEDES FORECAST. Jeff, 2026-10-10: "Forecast is fine
+		   to use but when consensus appeared we should rescore it based on
+		   that."
+
+		   A CURRENCY WITH NO SCHEDULED DECISION carries its LAST decision
+		   forward (LD-154b), so all eight always carry a reading rather than
+		   only the three with a meeting inside TE's horizon.
+
+		   *** THE 1.5-2.5% CORRIDOR IS NOT PART OF THIS RULE AND NEVER WAS.
+		   Jeff, 2026-10-12: "I gave the 1.5-2.5 range to Inflation as I
+		   remember because for IR our concern is the CHANGE not on a
+		   particular target", then "strip down all the rules we have in
+		   Interest Rate and apply the new rule purely."
+
+		   He is right and the record agrees. The only place that band appears
+		   in his own words is section 5 above, about a CPI print: "This
+		   should be Neutral since 1.9 is in between 1.5 to 2.5" (LD-143).
+		   LD-142 had put it on the policy rate 38 minutes earlier and LD-143
+		   then carried it to inflation to make "the two rules become one...
+		   an IDENTICAL BAND" - a symmetry built because it was TIDIER.
+		   INFLATION HAS A 2% TARGET so a corridor around it means something;
+		   A POLICY RATE HAS NO TARGET.
+
+		   What the corridor was actually doing, on 12 Oct: scoring three of
+		   eight currencies on where the rate SAT rather than on what the bank
+		   DID - GBP +1 and CHF -1 for HOLDING, and JPY 0 for a HIKE. All
+		   three now read 0.
+
+		   RETIRED WITH IT, and not kept alongside (one rule, one quantity):
+		     level     the 1.5-2.5 corridor test          (LD-166)
+		     realised  paid +1 for having hiked at all    (LD-163)
+		     expected  CPI vs each bank's mandate band    (LD-142)
+		     surprise  "by the time we capture the data its already past"
+		               (Jeff, 2026-09-20)

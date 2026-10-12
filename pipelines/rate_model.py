@@ -121,14 +121,48 @@ the SNB's own 0-2% mandate. Each bank is judged against its own target.
 # of 0 and a path of 0 - a currency scoring positive on a decision the market
 # had entirely absorbed.
 #
-# TWO TERMS NOW, EQUALLY WEIGHTED, asking two different questions:
-#     level 0.50   WHERE IS THE RATE?            vs the 1.5-2.5 corridor
-#     path  0.50   WHAT IS EXPECTED NEXT?        LD-154 before/after
-TERM_WEIGHT = {'level': 0.50, 'path': 0.50,
-               # retired, kept so a stale caller fails loudly rather than
-               # silently scoring zero: realised (LD-163), expected and
-               # surprise (LD-142)
-               'realised': 0.0, 'expected': 0.0, 'surprise': 0.0}
+# LD-166 - LEVEL RETIRED. ONE TERM: THE RULE JEFF GAVE ON 10 OCT, PURELY.
+#
+# Jeff, 2026-10-12, after being shown what level_score actually compares:
+#   "Then I don't think this is correct. I gave the 1.5-2.5 range to Inflation
+#    as I remember because for IR our concern is the CHANGE not on a
+#    particular target"
+#   "lets stick to the new rule I gave you. Let's strip down all the rules we
+#    have in Interest Rate and apply the new rule purely"
+#
+# *** HE IS RIGHT, AND THE GIT RECORD PROVES IT. The only place Jeff himself
+# names 1.5-2.5 is LD-143, about CPI: "This should be Neutral since 1.9 is in
+# between 1.5 to 2.5" - said of a JPY INFLATION print. LD-142 (21:33) put that
+# band on the policy rate and LD-143 (22:11, THIRTY-EIGHT MINUTES LATER)
+# carried it to inflation, and its own commit names the motive: "the two rules
+# become one... an IDENTICAL BAND". I built that symmetry because one band for
+# both was TIDIER. Tidiness is not a reason.
+#
+# INFLATION HAS A 2% TARGET, so a corridor around it is meaningful. A POLICY
+# RATE HAS NO TARGET - which is exactly Jeff's objection, and the output shows
+# the damage. Of the eight, THREE were scored on where the rate SITS rather
+# than on what the bank DID:
+#
+#     GBP  3.75% HELD   -> +1   a sign for doing nothing
+#     CHF  0.00% HELD   -> -1   a sign for doing nothing
+#     JPY  1.25% HIKED  ->  0   a hike, ignored
+#
+# LD-154 ALREADY ASKS THE CHANGE QUESTION, and it is the rule Jeff wrote:
+#     BEFORE THE NEWS   expectation vs the standing rate -> HIKE +1 / HOLD 0
+#                                                           / CUT -1
+#     AFTER THE NEWS    actual beat -> GOOD, missed -> BAD, as expected
+#                                                        -> retain
+# Consensus supersedes forecast. LD-154b carries the last decision forward so
+# all eight carry a reading between meetings.
+#
+# ONE TERM AT FULL WEIGHT. Nothing is averaged against it, so the rate row is
+# now exactly the rule Jeff specified and nothing else.
+TERM_WEIGHT = {'path': 1.00,
+               # retired, kept at 0.0 so a stale caller fails loudly rather
+               # than silently scoring zero: level (LD-166), realised
+               # (LD-163), expected and surprise (LD-142)
+               'level': 0.0, 'realised': 0.0, 'expected': 0.0,
+               'surprise': 0.0}
 
 # F-100 (2026-09-09) - W_RATE IS A PRE-REVAMP LEFTOVER AND IS NOW 1.
 #

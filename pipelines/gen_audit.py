@@ -127,9 +127,15 @@ def esc(t):
 def rate_detail(ccy):
     """(level, level_why, path, path_why, raw) for the Interest Rate row.
 
-    LD-163 left TWO terms, equally weighted:
-        level 0.50   where the rate sits vs the 1.5-2.5 corridor (LD-142)
-        path  0.50   what the next decision is expected to do (LD-154)
+    LD-166 left ONE term at full weight:
+        path  1.00   what the next decision is expected to do (LD-154)
+
+    LEVEL IS RETIRED. Jeff, 2026-10-12: "I gave the 1.5-2.5 range to Inflation
+    ... for IR our concern is the CHANGE not on a particular target", then
+    "strip down all the rules we have in Interest Rate and apply the new rule
+    purely". It is still returned by compute() for the audit trail, but it
+    carries weight 0 and MUST NOT be presented as part of the score - that
+    would be F-149 exactly, a column describing a term that no longer scores.
 
     F-99's lesson still holds - a rate row is scored from TERMS, not from an
     actual against a threshold, so the terms have to be on the row or the
@@ -219,8 +225,9 @@ for cat in CATS:
         # THE COLUMNS NOW ARE THE SCORE: the two live terms, what each one
         # read, and the result. A reader can check the arithmetic from the
         # row, which is the whole point of this section.
+        # LD-166 - LEVEL AND ITS CORRIDOR COLUMN ARE GONE. They described a
+        # term that no longer scores, which is F-149's defect exactly.
         A('    <thead><tr><th>CCY</th><th>Bank</th><th class="num">Rate</th>'
-          '<th class="num">Level</th><th>vs corridor</th>'
           '<th class="num">Path</th><th>What is expected</th>'
           '<th class="num">Score</th><th class="num">Category</th>'
           '</tr></thead>')
@@ -276,18 +283,17 @@ for cat in CATS:
             A('        <td class="ccy">%s</td>' % (ccy if first else ''))
             A('        <td>%s</td>' % esc(nm))
             if cat == 'Interest_Rate':
-                # F-149 - the rate row has its own five columns now: the
-                # standing rate, then the TWO LIVE TERMS with what each one
-                # read, then the score. Nothing here is shared with the
-                # generic actual/previous/ref shape.
+                # F-149 - the rate row has its own columns: the standing
+                # rate, then the LIVE TERM with what it read, then the score.
+                # Nothing here is shared with the generic actual/previous/ref
+                # shape.
+                # LD-166 - the LEVEL cell and its corridor text are GONE.
+                # level still comes back from compute() for the audit trail
+                # but carries weight 0, and printing a term that does not
+                # score is F-149's defect repeating.
                 lvl, lw, pa, pw, raw = v
                 _d = RATE[ISO[ccy]]
                 A('        <td class="num v">%s</td>' % esc(_d['rate']))
-                A('        <td class="num %s">%s</td>'
-                  % ('pos' if (lvl or 0) > 0 else
-                     'neg' if (lvl or 0) < 0 else 'zero',
-                     '%+d' % lvl if lvl is not None else '—'))
-                A('        <td class="dim sm">%s</td>' % esc(lw))
                 A('        <td class="num %s">%s</td>'
                   % ('pos' if (pa or 0) > 0 else
                      'neg' if (pa or 0) < 0 else 'zero',
@@ -418,14 +424,24 @@ for cat in CATS:
           'was.' + _sched_note() + '</div>')
 
     if cat == 'Interest_Rate':
-        A('  <div class="note"><strong>A rate row is scored from TWO '
-          'WEIGHTED TERMS, not from an actual against a threshold.</strong> '
-          '<code>score = (level + path) / 2</code>.'
+        A('  <div class="note"><strong>A rate row is scored from ONE TERM: '
+          'what the next decision is expected to do.</strong> '
+          '<code>score = path</code>, at full weight, with nothing averaged '
+          'against it.'
           '<br><br>'
-          '<strong>LEVEL (LD-142)</strong> asks <em>where is the rate</em>: '
-          'above the 2.5&#37; ceiling and rising scores +1, below the '
-          '1.5&#37; floor and falling scores &minus;1, inside the corridor '
-          'scores 0 &mdash; no compulsion either way.'
+          '<strong>&#9888; LEVEL IS RETIRED (LD-166).</strong> It scored the '
+          'rate against a 1.5&ndash;2.5&#37; corridor, and Jeff retired it on '
+          '12 Oct: <em>&ldquo;I gave the 1.5&ndash;2.5 range to Inflation '
+          '&hellip; for IR our concern is the CHANGE not on a particular '
+          'target.&rdquo;</em> He is right, and the record agrees &mdash; the '
+          'only place that band appears in his own words is about a CPI '
+          'print. <strong>Inflation has a 2&#37; target, so a corridor around '
+          'it means something; a policy rate has none.</strong> The corridor '
+          'was scoring three of eight currencies on where the rate SAT rather '
+          'than on what the bank DID: <strong>GBP +1 and CHF &minus;1 for '
+          'holding</strong>, and <strong>JPY 0 for a hike</strong>. All three '
+          'now read 0, because none of them changed anything the market had '
+          'not already priced.'
           '<br><br>'
           '<strong>PATH (LD-154)</strong> asks <em>what is expected '
           'next</em>. <strong>BEFORE</strong> a scheduled decision it reads '
@@ -438,8 +454,9 @@ for cat in CATS:
           'forward (LD-154b) &mdash; that is what takes this term from 3 of '
           '8 currencies to all 8.'
           '<br><br>'
-          '<strong>&#9888; realised, expected and surprise are RETIRED</strong> '
-          '(LD-142, LD-163) and no longer appear. <code>realised</code> paid '
+          '<strong>&#9888; level, realised, expected and surprise are all '
+          'RETIRED</strong> (LD-142, LD-163, LD-166) and no longer appear. '
+          '<code>realised</code> paid '
           '+1 for having hiked at all regardless of pricing, which double-'
           'counted what <code>path</code> already measures properly. A term '
           'that cannot be read is dropped from the average rather than '

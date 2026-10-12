@@ -5293,6 +5293,78 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### LD-166 - THE 1.5-2.5 CORRIDOR WAS NEVER AN INTEREST RATE RULE. LEVEL
+### RETIRED; THE RATE ROW IS LD-154 ALONE (2026-10-12)
+
+Jeff asked "where did you get this rule?" about the LEVEL sentence, then after
+being shown what level_score actually compares:
+
+  "Then I don't think this is correct. I gave the 1.5-2.5 range to Inflation as
+   I remember because for IR our concern is the CHANGE not on a particular
+   target"
+  "I'd say lets stick to the new rule I gave you. Let's strip down all the
+   rules we have in Interest Rate and apply the new rule purely"
+
+*** HE IS RIGHT AND THE GIT RECORD PROVES IT, which is the part worth keeping.
+The ONLY place Jeff himself names 1.5-2.5 is LD-143, about a CPI print: "This
+should be Neutral since 1.9 is in between 1.5 to 2.5". The commits are 38
+MINUTES APART:
+
+    21:33  LD-142  puts 1.5-2.5 on the POLICY RATE
+    22:11  LD-143  carries it to INFLATION - and its own commit message names
+                   the motive: "the two rules become one... an IDENTICAL BAND"
+
+I built that symmetry because ONE BAND FOR BOTH WAS TIDIER. Tidiness is not a
+reason. INFLATION HAS A 2% TARGET so a corridor around it means something; A
+POLICY RATE HAS NO TARGET - exactly Jeff's objection.
+
+WHAT THE CORRIDOR WAS ACTUALLY DOING. Three of eight scored on where the rate
+SAT rather than what the bank DID:
+
+    GBP  3.75% HELD   -> +1    a sign for doing nothing
+    CHF  0.00% HELD   -> -1    a sign for doing nothing
+    JPY  1.25% HIKED  ->  0    a hike, ignored
+
+All three now read 0, because none of them changed anything the market had not
+already priced - which is LD-90, the principle the corridor was quietly
+violating.
+
+THE RATE ROW IS NOW ONE TERM AT FULL WEIGHT: path 1.00, LD-154's before/after
+shape, consensus over forecast, LD-154b carrying the last decision so all
+eight have a reading. Nothing is averaged against it. level, realised,
+expected and surprise all sit at weight 0.0 rather than being deleted, so a
+stale caller fails loudly instead of silently scoring zero.
+
+THE RENDERER FOLLOWED THE RULE THIS TIME, not three weeks later. The Level
+column and its "vs corridor" text are GONE from the rate table and the
+footnote no longer describes the corridor - leaving them would have been
+F-149/F-151 for the sixth time. Verified on the built page: no Level header,
+no "vs corridor", no "2.5% ceiling" text anywhere.
+
+*** AND THE SET ROTATED FROM SHORT CHF TO SHORT JPY. Losing its spurious -1,
+CHF rises to -1.00 and JPY becomes the weakest at -1.47:
+
+    was: GBPCHF +8.57, GBPAUD +8.37, EURCHF +6.50, CADCHF +5.70
+    now: GBPJPY +8.03, GBPAUD +7.87, EURJPY +6.47, CADJPY +5.67
+
+GBP gives back half a point to +6.57 and NZD to +0.50. EURJPY and CADJPY had
+no bar files; 45 daily bars each read from OANDA via TradingView (LD-5 as
+amended). *** TODAY'S PARTIAL MONDAY BAR EXCLUDED - volume 12,116 against a
+normal ~200,000 - so the ATR window still ends before the graded week
+(LD-129). Both windows verified identical to GBPCHF's.
+
+R-44 NOW PROBES THE PATH, NOT THE VALUE. The LD-142 case table is retired and
+replaced by four assertions: level weight is 0, path weight is 1.0, GBP/CHF/JPY
+read 0, and raw == path for all eight. Negative-tested by restoring level to
+0.50 - it fails on five counts.
+
+*** AND THE SPEC NOW HAS AN INTEREST RATE SECTION AT ALL. It never did, which
+is why Jeff could not check the rule against Idea_dump and had to ask where it
+came from. Every other category was written there while the rate rule lived
+only in code comments and git history. That asymmetry is its own finding.
+
+R-46 FOURTEEN OF FOURTEEN. R-44 41 cases. R-43 clean. V10.
+
 ### F-154 / R-48 - THE CSV WAS RIGHT; score_model.ROWS IS A HAND-WRITTEN
 ### SECOND COPY AND prev HAD DRIFTED ON 26 ROWS (2026-10-12)
 
