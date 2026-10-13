@@ -42,9 +42,27 @@ import pair_atr as pa
 import atr_grade as ag
 
 BARS = os.path.join(REPO, 'data/raw/bars')
-TXT = ('C:/Users/jpesm/AppData/Local/Temp/claude/'
-       'c--Users-jpesm-OneDrive-Documents-GitHub/'
-       '16c8f514-dc2c-4587-b6a0-4fa0ff0b7ba8/scratchpad')
+# F-156 - THE RUNBOOK'S TWO COMMANDS DID NOT CONNECT.
+#
+# Jeff, 2026-10-13: "Today is Tuesday, let's build our very first issue of our
+# Daily Report". Step 2 of the runbook pulls bars; step 3 reported "no bars for
+# 2026-10-12 - pull them from TradingView first" IMMEDIATELY AFTER a successful
+# pull of all eleven pairs.
+#
+# pull_bars.py writes to os.path.join(HERE, '<PAIR>.txt') - that is pipelines/.
+# This module read a HARDCODED SCRATCHPAD PATH, which still held copies from an
+# earlier session ending Thu 8 Oct. So the report was not missing data; IT WAS
+# READING A DIFFERENT, OLDER SET, and said so in a way that pointed at the
+# feed rather than at the path.
+#
+# *** WORSE THAN A MISSING FILE: the stale copies were COMPLETE. Had Monday's
+# session happened to be inside that older range, the report would have
+# rendered silently off eleven-day-old prices. A path mismatch that fails
+# loudly is luck, not design.
+#
+# ONE PATH, DERIVED, SHARED WITH THE WRITER. A scratchpad path also cannot
+# survive a new session - the directory name carries a session id.
+TXT = os.path.dirname(os.path.abspath(__file__))
 
 
 def load_txt(pair):

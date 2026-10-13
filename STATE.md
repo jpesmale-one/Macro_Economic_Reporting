@@ -5293,6 +5293,62 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### THE FIRST DAILY EDITION - AND THREE DEFECTS THE RUNBOOK HID
+### (2026-10-13, reporting the Mon 12 Oct session)
+
+Jeff: "Today is Tuesday, let's build our very first issue of our Daily Report"
+
+PUBLISHED: https://claude.ai/artifact/AhxjemKJ6kHgkctBEXnjLW
+
+*** THE RUNBOOK HAD NEVER BEEN RUN END TO END, and all three of its steps
+failed in sequence. None was a data problem; every one was a path or a rule
+read wrongly.
+
+F-156 - THE RUNBOOK'S TWO COMMANDS DID NOT CONNECT. Step 2 pulled bars for
+eleven pairs successfully; step 3 then said "no bars for 2026-10-12 - pull
+them from TradingView first". pull_bars.py writes to os.path.join(HERE,...) =
+pipelines/, while daily_report.py and week_winners.py read a HARDCODED
+SCRATCHPAD PATH still holding copies from an earlier session ending Thu 8 Oct.
+  *** WORSE THAN A MISSING FILE: the stale copies were COMPLETE. Had Monday's
+  session fallen inside that older range, the report would have rendered
+  silently off eleven-day-old prices. Failing loudly was luck. Both modules
+  now derive TXT from __file__, and a scratchpad path could not have survived
+  a new session anyway - the directory name carries a session id.
+
+F-134 AGAIN - THE DAILY READ A PUBLISHED ARTEFACT THE REBUILDS LEFT BEHIND.
+load_edition() parses reports/2026/Q4/2026-10-11_weekly.md, which was last
+written 11 Oct 23:02 - BEFORE LD-165, F-154 and LD-166. So the first run
+reported the V8 board (GBP +7.07, JPY +0.87) and the V8 set (GBPAUD, GBPCHF,
+EURAUD, CADCHF). Only ONE of the four pairs even had bars, and the three
+missing ones were SILENTLY SKIPPED rather than reported. Regenerated the .md;
+the board now reads JPY #8 and all four JPY-leg pairs appear.
+
+F-157 - THE MONDAY GUARD TESTED THE WRONG DAY. gen_daily refused with
+"2026-10-12 is a MONDAY - the weekly is the baseline". BACKWARDS: LD-156
+governs WHICH DAY WE PUBLISH, not which session we report. Jeff, 2026-10-10,
+verbatim: "Tuesday -- Show the Currency Rank based on MONDAY price movement...
+For Monday we should not create a daily report". The Tuesday edition's whole
+content IS the Monday session. The guard now tests TODAY's weekday; the
+console keeps no Monday guard at all, so a past session can be read for a
+retro.
+
+WHAT THE EDITION SAYS. USD #1 (+0.268%) against a board rank of #4, and
+BREADTH says BROAD - stronger against all seven, so the dollar genuinely led.
+CHF last (-0.288%) and UNEXPLAINED - 30 rows landed that day, none for CHF.
+AUD is the widest gap: board #7, session #3, four places.
+
+*** AND I DID NOT MANUFACTURE A CATALYST. No source dated 12 Oct explains
+either CHF or USD. Both tier-5 notes are recorded and LABELLED "STANDING
+CONTEXT, NOT A MONDAY CATALYST" with their article dates (8 Oct, four days
+early) and links, per LD-158/159. That is LD-158's whole lesson - I once
+restated TE's euro commentary as fact about ECB intent and Jeff caught it by
+reading the actual statement.
+
+A LIMIT WORTH NAMING: breadth is measured against only the counterparts we
+hold bars for. USD gets all seven; CHF and NZD get ONE. A "BROAD - weaker
+against all 1" reading is arithmetically true and nearly meaningless. Pulling
+the full 28-pair grid would fix it and belongs on the 31 Oct list.
+
 ### F-155 - R-48 ONLY MATCHED **RELEASED** ROWS, SO A ROW IT COULD NOT
 ### MATCH PASSED AS UNVERIFIED (2026-10-12)
 

@@ -304,13 +304,36 @@ def build(day):
 if __name__ == '__main__':
     a = [x for x in sys.argv[1:] if not x.startswith('--')]
     day = a[0] if a else (dt.date.today() - dt.timedelta(days=1)).isoformat()
+    # F-157 - THE GUARD TESTED THE SESSION'S WEEKDAY, NOT THE EDITION'S.
+    #
+    # Jeff, 2026-10-13 (a TUESDAY): "Today is Tuesday, let's build our very
+    # first issue of our Daily Report". It refused:
+    #     "2026-10-12 is a MONDAY - the weekly is the baseline, no daily"
+    #
+    # *** THAT IS BACKWARDS. LD-156 is about WHICH DAY WE PUBLISH, not which
+    # session we report. Jeff, 2026-10-10, verbatim:
+    #     "Tuesday -- Show the Currency Rank based on MONDAY price movement...
+    #      For Monday we should not create a daily report since the Weekly
+    #      report is our baseline for Monday"
+    #
+    # So the Tuesday edition REPORTS THE MONDAY SESSION - that is its whole
+    # content. The rule being enforced is: do not publish ON a Monday, because
+    # the Monday edition would have only Friday's session, which the weekly
+    # already covers.
+    #
+    # THE TEST IS NOW ON TODAY, THE PUBLICATION DAY, and the SESSION may be any
+    # weekday. A weekend session is still refused - there are no bars.
+    today = dt.date.today()
+    if today.weekday() == 0:
+        print('today is MONDAY - the weekly is the baseline, no daily '
+              '(LD-156)')
+        sys.exit(0)
+    if today.weekday() >= 5:
+        print('today is a weekend - no daily')
+        sys.exit(0)
     wd = dt.datetime.strptime(day, '%Y-%m-%d').date().weekday()
     if wd >= 5:
-        print('%s is a weekend session - no daily' % day)
-        sys.exit(0)
-    if wd == 0:
-        print('%s is a MONDAY - the weekly is the baseline, no daily '
-              '(LD-156)' % day)
+        print('%s is a weekend session - no bars to report' % day)
         sys.exit(0)
     html = build(day)
     if not html:
