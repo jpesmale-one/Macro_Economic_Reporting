@@ -1,0 +1,18 @@
+{
+ "USD": [
+  {
+   "note": "NO SOURCE DATED 13 OCT EXPLAINS THIS SESSION. The nearest dollar-negative item is Fed Williams on 29 SEPTEMBER - two weeks early - saying one further hike 'may be appropriate late this year' and that 'this is just my forecast', which had traders pare October-hike bets toward December and pushed DXY modestly lower ON THAT DAY. Cited as the standing rate-path backdrop, NOT as Tuesday cause. investingLive carried a 'Williams hinting at one more rate hike' ticker item with no date, which could not be pinned to 13 Oct and is therefore not relied on.",
+   "source": "investingLive / FXStreet, 29 Sep 2026",
+   "url": "https://investinglive.com/central-banks/fed-s-williams-one-more-hike-likely-this-year-is-likely-enough/",
+   "fetched": "2026-10-14"
+  }
+ ],
+ "EUR": [
+  {
+   "note": "CONTEXT, 12 OCT (one day early): 'EUR/USD consolidates at the lows as France's budget and US CPI remain in focus', with the dollar supported by risk-off flows. NOTE THE DIRECTION IS OPPOSITE to Tuesday, when EUR rose and USD fell against all seven - so this describes the setup Tuesday reversed, not its cause.",
+   "source": "investingLive, 12 Oct 2026",
+   "url": "https://investinglive.com/forex/",
+   "fetched": "2026-10-14"
+  }
+ ]
+}

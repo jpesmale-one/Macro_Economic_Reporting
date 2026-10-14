@@ -5293,6 +5293,66 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### DAILY #2 - THE WHOLE BOARD WAS ONE USD MOVE, AND LD-162 SAID SO
+### (2026-10-14, reporting the Tue 13 Oct session)
+
+Jeff: "please build the daily report for today 10/14 Wednesday"
+
+PUBLISHED: https://claude.ai/artifact/MZBZSfyQaXsb1NzznKbV2d
+
+*** THE RUNBOOK RAN CLEAN THIS TIME - all three steps, no path fixes, no guard
+fixes. F-156/F-157 held.
+
+ONE PRE-EMPTIVE STEP THAT MATTERED: the chart was on 15m again, which is what
+produced Tuesday's stale first batch. Set it to D BEFORE pulling rather than
+discovering it afterwards. And I verified Tuesday was CLOSED in all eleven
+files by requiring a LATER bar to exist - the guard I flagged to Jeff
+yesterday, applied by hand until it is coded.
+
+THE SESSION IS A COMPLETE REVERSAL OF MONDAY:
+
+    NZD +0.112%  #1 (board #5)      CHF -0.146%  #6 (board #6)
+    CAD +0.102%  #2 (board #2)      JPY -0.149%  #7 (board #8)
+    EUR +0.058%  #3 (board #3)      USD -0.342%  #8 (board #4)
+    AUD +0.017%  #4 (board #7)
+    GBP +0.005%  #5 (board #1)
+
+USD went #1 on Monday to #8 on Tuesday.
+
+*** AND LD-162 EARNS ITS PLACE HERE. BREADTH says USD is "BROAD - weaker
+against all 7", and every other currency's BEST gain is against USD:
+
+    NZD +0.45 vs USD   CAD +0.44 vs USD   EUR +0.40 vs USD
+    AUD +0.36 vs USD   GBP +0.35 vs USD   CHF +0.20 vs USD   JPY +0.19 vs USD
+
+The seven span only 0.261pp between them while USD sits 0.194pp below the next
+weakest. SO THERE IS ONE MOVE TO EXPLAIN, NOT EIGHT - the other seven are
+NARROW by construction, lifted by the dollar falling rather than by anything
+of their own. That is exactly what Jeff asked for on 11 Oct: "If we can't
+really find any catalyst for the move then it could just the strength or
+weakness of the currency it is paired with."
+
+*** TWO CATALYSTS READ **AGAINST** THEIR MOVE, which is the honest finding:
+  USD existing home sales BEAT +1.5% vs -0.3% - and the dollar FELL
+  AUD NAB business confidence MISS -13 vs -9  - and AUD ROSE
+Both are reported as AGAINST rather than smoothed over.
+
+AND I FOUND NO 13 OCT SOURCE FOR THE DOLLAR. Searched four ways; the nearest
+dollar-negative item is Fed Williams on 29 SEPTEMBER (one more hike "may be
+appropriate", traders pared October-hike bets toward December). TWO WEEKS
+EARLY, so it is recorded as the standing rate-path backdrop and LABELLED NOT A
+TUESDAY CAUSE. investingLive also carried an undated "Williams hinting at one
+more rate hike" ticker item - I could not pin it to 13 Oct AND THEREFORE DID
+NOT USE IT, which is the LD-158 discipline: an undated ticker line is exactly
+the kind of thing I once turned into a claim about central bank intent.
+
+The EUR note is dated 12 Oct and points the OPPOSITE WAY (dollar supported by
+risk-off) - recorded as the setup Tuesday reversed, not its cause.
+
+THE SET: all four DRIFT again. GBPJPY adv 60.2 vs fav 44.4 is the only pair
+whose adverse excursion leads, worth watching since three of four are short
+JPY and JPY was #7.
+
 ### THE FIRST DAILY EDITION - AND THREE DEFECTS THE RUNBOOK HID
 ### (2026-10-13, reporting the Mon 12 Oct session)
 
