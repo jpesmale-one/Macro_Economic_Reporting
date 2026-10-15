@@ -1,0 +1,26 @@
+{
+ "USD": [
+  {
+   "note": "SAME-DAY SOURCE, AND IT MATCHES OUR OWN CAPTURE. 'The US dollar is broadly stronger today' on a hot September CPI - 3.7% against 3.6% expected, with core YoY 2.6% vs 2.5% and core MoM 0.3% vs 0.2%. Our capture carries the identical prints, so this is verified twice rather than taken on trust. USD/CAD peaked at 1.4299, its highest since April 2025. The author frames it as rate-path convergence: markets price 97bp of BoC hikes against 92bp for the Fed over the next year.",
+   "source": "investingLive, 14 Oct 2026",
+   "url": "https://investinglive.com/forex/canadian-dollar-touches-an-18-month-low-as-the-us-dollar-jumps-on-hot-cpi/",
+   "fetched": "2026-10-15"
+  }
+ ],
+ "JPY": [
+  {
+   "note": "NO SOURCE DATED 14 OCT EXPLAINS THE YEN. Searched BoJ and yen-specific coverage; the dated FX wrap for this session does not mention JPY at all. Our own data offers the only grounded reading: machinery orders MoM BEAT 5.2% vs 2.5%, which is consistent with the move - but a single second-tier print is a thin explanation for the strongest currency of the session, and it is reported as such rather than inflated.",
+   "source": "investingLive (session wrap, JPY not mentioned), 14 Oct 2026",
+   "url": "https://investinglive.com/forex/",
+   "fetched": "2026-10-15"
+  }
+ ],
+ "GBP": [
+  {
+   "note": "UNEXPLAINED BY ANY 14 OCT SOURCE. Three GBP releases landed, all speeches (BoE Breeden +2 more) whose TONE IS UNREAD under LD-107 - we do not score what a speaker said, only that they spoke. No dated wrap covers sterling. GBP was weaker against all three counterparts we hold bars for, so the move was its own rather than borrowed, and the cause is outside our data.",
+   "source": "investingLive (session wrap, GBP not mentioned), 14 Oct 2026",
+   "url": "https://investinglive.com/forex/",
+   "fetched": "2026-10-15"
+  }
+ ]
+}

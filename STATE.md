@@ -5293,6 +5293,58 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### DAILY #3 - THE CONCENTRATION RISK LANDED (2026-10-15, Wed 14 Oct session)
+
+Jeff: "lets build today's report"
+
+PUBLISHED: https://claude.ai/artifact/Ni3bjctpmr28feDTXxNuGa
+
+    JPY +0.261%  #1 (board #8)      CHF -0.019%  #5 (board #6)
+    USD +0.247%  #2 (board #4)      NZD -0.109%  #6 (board #5)
+    CAD +0.111%  #3 (board #2)      EUR -0.143%  #7 (board #3)
+    AUD +0.105%  #4 (board #7)      GBP -0.206%  #8 (board #1)
+
+*** THE TWO EXTREME RANKS BOTH INVERTED, AND THEY ARE OUR TWO LEGS.
+GBP board #1 -> session #8. JPY board #8 -> session #1. SEVEN PLACES EACH,
+the widest gaps the daily has produced. Breadth confirms both were real and
+not borrowed: GBP weaker against ALL THREE counterparts we hold, JPY stronger
+against ALL FOUR.
+
+GBPJPY had BOTH legs wrong at once - the spread ran 0.467pp against us in one
+session.
+
+*** AND THE CONCENTRATION I FLAGGED ON SUNDAY IS EXACTLY WHAT BIT.
+THREE OF FOUR PAIRS ARE SHORT JPY, so one currency took the set:
+
+    GBPJPY  fav  44.3  adv 150.3  ratio 0.29x  BEATEN
+    GBPAUD  fav  11.8  adv  92.2  ratio 0.13x  BEATEN
+    CADJPY  fav  19.8  adv  44.3  ratio 0.45x  DRIFT
+    EURJPY  fav  25.4  adv 104.6  ratio 0.24x  BEATEN
+
+THREE BEATEN. The 12-16 Oct edition opened by noting the overlap was balanced
+for the first time in a month (GBP x2, AUD x2, CHF x2, no leg three times) -
+but LD-166 then rotated the CHF shorts to JPY shorts and took JPY to x3
+WITHOUT THAT NOTE BEING REVISITED. The set changed; the diversification
+claim did not. That is the lesson of this edition.
+
+A VERIFIED SAME-DAY CATALYST, FOR ONCE. investingLive, dated 14 Oct: "The US
+dollar is broadly stronger today" on a hot September CPI, 3.7% vs 3.6%
+expected, USD/CAD peaking 1.4299, highest since April 2025. *** AND I CHECKED
+IT AGAINST OUR OWN CAPTURE rather than taking it on trust: our rows carry
+3.7%/3.6% headline, 2.6%/2.5% core YoY and 0.3%/0.2% core MoM - identical.
+Verified twice.
+
+JPY AND GBP STAY HONEST. The dated wrap does not mention either currency.
+JPY's only grounded reading is machinery orders BEAT 5.2% vs 2.5% - recorded
+WITH the caveat that one second-tier print is a thin explanation for the
+session's strongest currency. GBP is UNEXPLAINED: three releases, all
+speeches, tone unread under LD-107.
+
+PROCESS: TradingView was not running. Used the AUMID launcher, NEVER
+tv_launch (documented broken); CDP up in ~10s. Chart was on 15m AGAIN - third
+time - set to D before pulling. All eleven files verified to carry a CLOSED
+Wednesday by requiring a later bar.
+
 ### DAILY #2 - THE WHOLE BOARD WAS ONE USD MOVE, AND LD-162 SAID SO
 ### (2026-10-14, reporting the Tue 13 Oct session)
 
