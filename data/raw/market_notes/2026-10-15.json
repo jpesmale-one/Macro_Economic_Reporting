@@ -1,0 +1,26 @@
+{
+ "AUD": [
+  {
+   "note": "OUR OWN CAPTURE IS THE BEST EVIDENCE - no dated 15 Oct wrap covers the Aussie. Employment Change -39.3K against a +20K consensus, a 59K miss, with unemployment 4.7% vs 4.6% expected. *** BUT THE PRINT IS SPLIT AND LD-151 SAYS SO: full time +34.4K, part time -73.7K. AUD is graded on the FULL-TIME leg (LD-57/LD-151), and because headline and full time DISAGREE the rule returns NEUTRAL, not BAD. The market traded the headline; our rule does not. Participation also fell 67.0 -> 66.8, which FLATTERS the jobless rate.",
+   "source": "own TE capture 2026-10-16_1208PHT (no dated wrap found)",
+   "url": "https://tradingeconomics.com/australia/employment-change",
+   "fetched": "2026-10-16"
+  }
+ ],
+ "CHF": [
+  {
+   "note": "UNEXPLAINED BY ANY 15 OCT SOURCE. Searched CHF/SNB coverage specifically; nothing dated this session. Its one release read AGAINST the move (producer and import prices MISS 0.3% vs 0.6%), and CHF rose 0.607% to lead the board from a weekly rank of #6. Breadth can only measure it against USD here, so \"BROAD\" is arithmetically true but thin. Cause is outside our data.",
+   "source": "investingLive (session wrap, CHF not mentioned), 15-16 Oct 2026",
+   "url": "https://investinglive.com/forex/",
+   "fetched": "2026-10-16"
+  }
+ ],
+ "USD": [
+  {
+   "note": "CONTEXT, NOT A 15 OCT CATALYST. Retail sales BEAT 0.8% vs 0.1% and the dollar still FELL 0.368% - reported as AGAINST the move. Standing backdrop: the Fed chair is Warsh, whose debut was read as a hawkish reset (dollar to 13-month highs on that occasion) and who declines forward guidance - \"I cannot give you any forward guidance about what we are going to do next\". Next FOMC 28 Oct; TE carries a HOLD forecast at 4.00%. No source dated 15 Oct explains this session.",
+   "source": "FXStreet / Benzinga on Warsh (Aug-Sep 2026, NOT this session)",
+   "url": "https://www.fxstreet.com/news/federal-reserve-chair-warsh-inflation-trends-were-not-passing-the-test-202609161900",
+   "fetched": "2026-10-16"
+  }
+ ]
+}

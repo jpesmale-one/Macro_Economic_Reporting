@@ -5293,6 +5293,65 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### DAILY #4 - THE BIAS WORKED, AND AN LD-151 SPLIT WORTH KNOWING
+### (2026-10-16, reporting the Thu 15 Oct session)
+
+Jeff: "let's see todays daily report"
+
+PUBLISHED: https://claude.ai/artifact/GFC3zKe5hBJsWDJhP6TsYq
+
+    CHF +0.607%  #1 (board #6)      CAD -0.016%  #5 (board #2)
+    GBP +0.274%  #2 (board #1)      JPY -0.181%  #6 (board #8)
+    EUR +0.258%  #3 (board #3)      USD -0.368%  #7 (board #4)
+    NZD +0.141%  #4 (board #5)      AUD -1.083%  #8 (board #7)
+
+*** THE SET'S BEST SESSION YET: 2 CLEAN, 2 DRIFT, NO BEATEN.
+
+    GBPAUD  fav 306.2  adv   8.1  CLEAN   <- 38x
+    GBPJPY  fav 114.2  adv  22.9  CLEAN
+    EURJPY  fav  89.9  adv   0.5  DRIFT
+    CADJPY  fav  31.1  adv  25.6  DRIFT
+
+GBPAUD ran +1.36% - the widest single pair move the daily has recorded - and
+breadth confirms BOTH legs were real: GBP stronger against ALL THREE
+counterparts, AUD weaker against ALL. That is the bias doing exactly what it
+is for, two sessions after the same concentration cost three BEATEN.
+
+*** AND THE AUD PRINT IS SPLIT IN A WAY THE RULE AND THE MARKET DISAGREE ON.
+Employment Change -39.3K against +20K consensus, a 59K miss, unemployment 4.7%
+vs 4.6%. The market sold AUD 1.083%. BUT THE THREE LEGS DO NOT AGREE:
+
+    headline  -39.3K   NEGATIVE
+    full time +34.4K   POSITIVE
+    part time -73.7K   NEGATIVE
+
+LD-57/LD-151 grades AUD on the FULL-TIME leg, and because headline and full
+time DISAGREE, employment_grade() returns NEUTRAL - verified by calling it,
+not assumed. Participation also fell 67.0 -> 66.8, which FLATTERS the jobless
+rate. SO THE REPORT'S "consistent" LABEL IS THE HEADLINE'S VERDICT, NOT THE
+RULE'S, and the note says so rather than letting the two be conflated. This is
+the LD-151 case the rule was written for, appearing live for the first time.
+
+*** A LIVE BOARD CHANGE THE DAILY SURFACED: GBP's RATE ROW WENT 0 -> +1.
+The 16 Oct capture carries a GBP rate CONSENSUS of 4% against a standing
+3.75% - a HIKE expected, where Sunday's capture had no consensus and the row
+read HOLD. Under LD-154 before-the-news that is +1. USD and EUR meanwhile show
+only forecasts at their standing rates, so they read 0 where the 12-16 Oct
+edition had them at +1 via the old level term. NOT APPLIED TO THE PUBLISHED
+WEEKLY - the weekly is Monday's baseline (LD-156) and this is a Friday
+observation - but it is the first evidence LD-166's path-only rate row MOVES
+intra-week, which is what it was supposed to do.
+
+CHF IS UNEXPLAINED AND SAYS SO. It led the board from weekly #6, its one
+release read AGAINST the move, and no source dated 15 Oct covers it. USD's
+retail sales BEAT 0.8% vs 0.1% while the dollar FELL - also reported AGAINST.
+
+*** AND A FACT WORTH RECORDING FROM THE SEARCH: THE FED CHAIR IS WARSH. His
+debut was read as a hawkish reset, he declines forward guidance ("I cannot
+give you any forward guidance about what we are going to do next"), and the
+next FOMC is 28 OCT with TE carrying a HOLD at 4.00%. Recorded as standing
+backdrop, NOT as a 15 Oct catalyst - nothing dated this session was found.
+
 ### DAILY #3 - THE CONCENTRATION RISK LANDED (2026-10-15, Wed 14 Oct session)
 
 Jeff: "lets build today's report"
