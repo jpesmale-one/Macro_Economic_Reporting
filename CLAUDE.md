@@ -86,6 +86,26 @@ ledgers, and the separation is what keeps this one lean.
 
 ---
 
+## 0a-0. ⚠ LOGIC IS FROZEN FOR THE 19–23 OCT EDITION (LD-167)
+
+**Jeff, 2026-10-17, after the retro:** *"we stick with our current logic on the
+report building."*
+
+**Do not change a scoring rule, a band, a weight or a report rule in this
+edition.** Five scoring changes landed in 36 hours during 12–16 Oct, and the
+set that was graded shared only **one** pair with the one first published
+(GBPAUD). A sixth change now makes the next retro unreadable as evidence.
+
+| | |
+|---|---|
+| **FROZEN** | LD-149 bands, LD-151 legs, LD-154/155 before/after, LD-163/166 the rate row, LD-165, LD-126 the selector, LD-156..162 the daily |
+| **STILL ALLOWED** | the Sunday data refresh; **defect** fixes where a table describes a rule that does not run (the F-149/F-151 family — that is not a logic change); the 28-pair bar grid if Jeff asks |
+| **DEFERRED to 31 Oct** | the ×3 leg cap, rho, LD-162’s thin input, LD-151 vs price, LD-149 drift-vs-conviction, retiring `score_model.ROWS` |
+
+If a change feels necessary, **say so and ask** — do not apply it.
+
+---
+
 ## 0a-i. NEW HERE? READ `docs/SYSTEM_OVERVIEW.md` FIRST
 
 **The whole machine read forwards** — what feeds it, what it computes, what it

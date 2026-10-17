@@ -13,14 +13,16 @@
 
 <script>(function () { var p = new URLSearchParams(window.location.search); if (!p.has('_auth')) return; p.delete('_auth'); var qs = p.toString(); history.replaceState({}, '', window.location.pathname + (qs ? '?' + qs : '')); window.location.reload(); })();</script>
 <script>(function () { function h(n) { return new RegExp('(?:^|;\\s*)' + n.replace(/\./g, '\\.') + '=').test(document.cookie); } if (h('TEIsLoggedIn') || !h('.ASPXAUTH')) return; var e = '; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/', s = ['', '; domain=tradingeconomics.com', '; domain=.tradingeconomics.com'];['.ASPXAUTH', 'TEUsername', 'TENickName', 'TERole', 'TEUserInfo', 'TEName', 'TEUserEmail'].forEach(function (n) { if (!h(n)) return; s.forEach(function (d) { document.cookie = n + '=' + e + d; }); }); document.cookie = 'TEIsLoggedIn=false; domain=.tradingeconomics.com; path=/; SameSite=Lax; Secure; max-age=31536000'; })();</script>
-<script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20260930000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://d3ii0wo49og5mi.cloudfront.net'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/united-kingdom/manufacturing-pmi'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function () { try { return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsToken = '20260324:loboantunes'; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var isCopyright = false;var TEStreamId= '';</script>
+<script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20260930000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://charts-api.tradingeconomics.com'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/united-kingdom/manufacturing-pmi'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function() { try { return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsKey = '20260324:loboantunes'; var TEChartsToken = ''; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var TEChartsPath = '/united-kingdom/manufacturing-pmi'; var isCopyright = false;var TEStreamId= '';</script>
+
+<script>var TEAuth = (function () { var KEY = 'te-token', mem = null, pending = null; function now() { return Math.floor(Date.now() / 1000) } function fresh(c) { return c && c.token && now() < c.refresh - 60 } function cached() { if (fresh(mem)) return mem; try { var c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (fresh(c)) return mem = c } catch (e) { } return null } function load() { if (!pending) pending = fetch('/token', { method: 'POST', credentials: 'same-origin', cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json() }).then(function (c) { mem = c; try { localStorage.setItem(KEY, JSON.stringify(c)) } catch (e) { } return c.token }).catch(function (e) { console.log('TEAuth: /token failed', e); return '' }).then(function (t) { pending = null; return t }); return pending } return { ready: function () { var c = cached(); return c ? Promise.resolve(c.token) : load() }, current: function () { var c = cached(); return c ? c.token : '' }, refresh: function () { mem = null; try { localStorage.removeItem(KEY) } catch (e) { } return load() } } })();</script>
 <script type="text/javascript">var DEBUG = false; if (window.location.host.indexOf('localhost') > -1) DEBUG = true; else if (window.location.href.indexOf('debug') > -1) DEBUG = true; if (!DEBUG) { if (!window.console) window.console = {}; var methods = ["log", "debug", "info"]; for (var i = 0; i < methods.length; i++) { console[methods[i]] = function () { }; } }</script>
 <script>window.googletag = window.googletag || { cmd: [] };</script>
 <link rel="icon" href="https://d3e5kp2e91w0k0.cloudfront.net/favicon.svg" type="image/svg+xml" /><link rel="canonical" href="https://tradingeconomics.com/united-kingdom/manufacturing-pmi" /></head>
 <body>
     <script>(function(){var c=localStorage.getItem('IsDarkMode')==='true';if(c)document.body.classList.add('dark-theme');window.IsDarkMode=c;})();</script>
     <form method="post" action="/united-kingdom/manufacturing-pmi" id="aspnetForm">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="WvdRu5ScO/4DX38y+2x6x73GnQNvK7rf8swPRUGROUzmu402th8Zj63mdLeh6CAkLcowugtxYrTWTj1DgFy80397ll8=" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="bd0IyTjq9tjquNidyDDHG0Fcyp8H3Bcjvni0ANHCmWmjzDaUCQm7LzUBNPmUMF6kBH033U4RIl4tzXPAsIXqB7HCByE=" />
 
 <script type="text/javascript" language="Javascript">var TEChartSettings = '{"labels":false}'; console.log('TEChartSettings:', TEChartSettings);</script><script type="text/javascript" language="Javascript">var isCopyright = true;</script><script type="text/javascript" language="Javascript">var TESymbol = 'UNITEDKINMANPMI'; console.log('TESymbol:', TESymbol);var TELanguage = ''; console.log('TELanguage:', TELanguage);TELastUpdate = '202610010847'; console.log('TELastUpdate:', TELastUpdate);TEChart = 'EC'; console.log('TEChart:', TEChart);var TEAlertsName= 'United Kingdom Manufacturing PMI'; console.log('TEAlertsName:', TEAlertsName);</script><script type="text/javascript" language="Javascript">TEChartUrl = 'https://d3fy651gv2fhd3.cloudfront.net/charts/united-kingdom-manufacturing-pmi.png?s=unitedkinmanpmi&v=202610010847V20230410';TECountry = 'United Kingdom';TECategory = 'Manufacturing PMI';TEType = 'te';TEFrequency = 'Monthly';TEForecast =   [52.00,51.70,51.90,51.80];</script>
 <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="9ED6FB81" />
@@ -763,13 +765,13 @@
                                     BRC Retail Sales Monitor YoY
                                 </a>
                             </td>
-                            <td>0.50</td>
-                            
                             <td>1.00</td>
+                            
+                            <td>0.50</td>
                             
                             <td>
                                 percent</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -913,9 +915,9 @@
                                     Electricity Price
                                 </a>
                             </td>
-                            <td>162.50</td>
+                            <td>168.25</td>
                             
-                            <td>158.35</td>
+                            <td>171.71</td>
                             
                             <td>
                                 GBP/MWh</td>
@@ -958,13 +960,13 @@
                                     Industrial Production YoY
                                 </a>
                             </td>
-                            <td>0.60</td>
+                            <td>1.60</td>
                             
-                            <td>-0.20</td>
+                            <td>0.80</td>
                             
                             <td>
                                 percent</td>
-                            <td>Jul 2026</td>
+                            <td>Aug 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -973,13 +975,13 @@
                                     Industrial Production MoM
                                 </a>
                             </td>
-                            <td>0.20</td>
+                            <td>0.80</td>
                             
-                            <td>-0.20</td>
+                            <td>0.30</td>
                             
                             <td>
                                 percent</td>
-                            <td>Jul 2026</td>
+                            <td>Aug 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -988,13 +990,13 @@
                                     GDP 3-Month Avg
                                 </a>
                             </td>
-                            <td>0.40</td>
+                            <td>0.70</td>
                             
-                            <td>0.40</td>
+                            <td>0.50</td>
                             
                             <td>
                                 percent</td>
-                            <td>Jul 2026</td>
+                            <td>Aug 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1003,13 +1005,13 @@
                                     Manufacturing Production YoY
                                 </a>
                             </td>
-                            <td>2.60</td>
+                            <td>3.00</td>
                             
-                            <td>0.50</td>
+                            <td>2.20</td>
                             
                             <td>
                                 percent</td>
-                            <td>Jul 2026</td>
+                            <td>Aug 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -1018,13 +1020,13 @@
                                     Manufacturing Production MoM
                                 </a>
                             </td>
-                            <td>0.90</td>
+                            <td>1.20</td>
                             
-                            <td>-0.50</td>
+                            <td>1.00</td>
                             
                             <td>
                                 Percent</td>
-                            <td>Jul 2026</td>
+                            <td>Aug 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1033,13 +1035,13 @@
                                     Mining Production
                                 </a>
                             </td>
-                            <td>-9.60</td>
+                            <td>-5.00</td>
                             
-                            <td>-3.50</td>
+                            <td>-7.80</td>
                             
                             <td>
                                 percent</td>
-                            <td>Jul 2026</td>
+                            <td>Aug 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -1195,34 +1197,34 @@
                 <div class="card-header">Related</div>
                 <div class="card-body">
                     
-                            <div class="news-link"><a href='/united-kingdom/stock-market'>FTSE 100 Extends Gains for 2nd Session</a></div>
+                            <div class="news-link"><a href='/united-kingdom/stock-market'>FTSE Closes Week Higher</a></div>
                             
                         
-                            <div class="news-link"><a href='/united-kingdom/currency'>Sterling Rebounds from Three-Month Lows</a></div>
+                            <div class="news-link"><a href='/united-kingdom/currency'>Sterling Strengthens to 3-Week High</a></div>
                             
                         
-                            <div class="news-link"><a href='/united-kingdom/government-bond-yield'>UK Gilt Yields Stay Near Multi-Decade Highs</a></div>
+                            <div class="news-link"><a href='/united-kingdom/government-bond-yield'>UK 10 Year Gilt Yield Rebounds from 3-Week Low</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/united-kingdom/industrial-production-mom'>UK Industrial Output Hits 9-Month High</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/united-kingdom/construction-output'>UK Construction Output Dips More than Estimated</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/united-kingdom/manufacturing-production-mom'>UK Manufacturing Output Unexpectedly Rises in August</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/united-kingdom/balance-of-trade'>UK Trade Gap Smallest in 7 Months</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/united-kingdom/monthly-gdp-mom'>UK Economy Unexpectedly Grows in August</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/united-kingdom/brc-retail-sales-monitor-yoy'>UK Retail Sales Growth Picks Up in September</a></div>
                             
                         
                             <div class="news-link"><a href='/tsco:ln:eps'>Tesco earnings above expectations at 0.17 GBP</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/united-kingdom/rics-house-price-balance'>UK House Price Balance Weakens to 3-Month Low</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/united-kingdom/house-price-index-yoy'>UK House Prices Stagnate in September</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/united-kingdom/construction-pmi'>UK Construction Activity Falls Less in September</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/united-kingdom/services-pmi'>UK Services Sector Growth Remains Modest</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/united-kingdom/composite-pmi'>UK Private Sector Growth Revised Slightly Higher</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/united-kingdom/new-passenger-car-registrations-yoy'>UK New Car Registrations Extend Growth to 10th Month</a></div>
                             
                         
                     <br />
@@ -1243,25 +1245,25 @@
                     <div class="card-header">Latest</div>
                     <div class="card-body">
                         
-                                <div class="news-link"><a href='/mexico/industrial-production'>Mexico Industrial Output Hits Highest Growth Since 2024</a></div>
+                                <div class="news-link"><a href='/united-states/capital-flows'>US Records Net TIC Inflow in August</a></div>
                             
-                                <div class="news-link"><a href='/kosovo/inflation-cpi'>Kosovo Inflation Rate Accelerates in September</a></div>
+                                <div class="news-link"><a href='/brazil/stock-market'>Ibovespa Advances on IBC-Br Rebound</a></div>
                             
-                                <div class="news-link"><a href='/commodity/palladium'>Palladium Trades Near 1-Year Low</a></div>
+                                <div class="news-link"><a href='/canada/stock-market'>TSX Edges Higher as Energy Gains Offset Tech Selloff</a></div>
                             
-                                <div class="news-link"><a href='/united-states/stock-market'>US Futures Trade Steady</a></div>
+                                <div class="news-link"><a href='/united-states/government-budget-value'>US Budget Swings to Deficit in September</a></div>
                             
-                                <div class="news-link"><a href='/commodity/cocoa'>Cocoa Rises as West African Crop Risks Intensify</a></div>
+                                <div class="news-link"><a href='/commodity/brent-crude-oil'>Brent Rises Near $110 on Increasing Supply Risks</a></div>
                             
-                                <div class="news-link"><a href='/commodity/silver'>Silver Edges Lower Ahead of Key US Economic Releases</a></div>
+                                <div class="news-link"><a href='/commodity/crude-oil'>Oil Surges Above $100 on Rising Supply Risks</a></div>
                             
-                                <div class="news-link"><a href='/commodity/gold'>Gold Slips on Strong Dollar</a></div>
+                                <div class="news-link"><a href='/united-states/stock-market'>US Stocks Fall as Chip Selloff Deepens</a></div>
                             
-                                <div class="news-link"><a href='/india/inflation-cpi'>India Inflation Rises to 2-Year High</a></div>
+                                <div class="news-link"><a href='/france/stock-market'>CAC 40 Rises on Defense Stocks Gains</a></div>
                             
-                                <div class="news-link"><a href='/india/stock-market'>Indian Stocks Slide Ahead of CPI</a></div>
+                                <div class="news-link"><a href='/calendar?article=29375&g=top&importance=2&startdate=2026-10-16'>Week Ahead - Oct 19th</a></div>
                             
-                                <div class="news-link"><a href='/latvia/balance-of-trade'>Latvia Trade Deficit Widens in August</a></div>
+                                <div class="news-link"><a href='/mexico/currency'>Mexican Peso Approaches 11-Month Low</a></div>
                             
                         <br />
                         <a id="ctl00_ContentPlaceHolder1_ctl03_moreTopNews" href="../stream">
@@ -2769,13 +2771,12 @@
         }
     });
 </script>
-<script>console.log("/js/chartec.ascx"); TEChartsToken = '20260324:loboantunes:8e8b44e76377be93a37d5e3ac27bf4c9f1343b7bb938f2ae928fbd50d53d3fb3';</script>
+<script>console.log("/js/chartec.ascx"); TEChartsToken = '8e8b44e76377be93a37d5e3ac27bf4c9f1343b7bb938f2ae928fbd50d53d3fb3'; TEAuth.ready();</script>
 
 <script src='https://d1v8a2ofhkdel3.cloudfront.net/cdn/highstock_exporting.2024.10.1.0.js'></script>
 
-
-<link rel="stylesheet" href="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.css?v=20260219">
-<script src="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.js?v=20260219"></script>
+<link rel="stylesheet" href="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.css?v=20261014b">
+<script src="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.js?v=20261014b"></script>
 
 <script>console.log("Loading Chatbot")</script>
 

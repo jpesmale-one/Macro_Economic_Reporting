@@ -13,7 +13,9 @@
 
 <script>(function () { var p = new URLSearchParams(window.location.search); if (!p.has('_auth')) return; p.delete('_auth'); var qs = p.toString(); history.replaceState({}, '', window.location.pathname + (qs ? '?' + qs : '')); window.location.reload(); })();</script>
 <script>(function () { function h(n) { return new RegExp('(?:^|;\\s*)' + n.replace(/\./g, '\\.') + '=').test(document.cookie); } if (h('TEIsLoggedIn') || !h('.ASPXAUTH')) return; var e = '; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/', s = ['', '; domain=tradingeconomics.com', '; domain=.tradingeconomics.com'];['.ASPXAUTH', 'TEUsername', 'TENickName', 'TERole', 'TEUserInfo', 'TEName', 'TEUserEmail'].forEach(function (n) { if (!h(n)) return; s.forEach(function (d) { document.cookie = n + '=' + e + d; }); }); document.cookie = 'TEIsLoggedIn=false; domain=.tradingeconomics.com; path=/; SameSite=Lax; Secure; max-age=31536000'; })();</script>
-<script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20260930000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://d3ii0wo49og5mi.cloudfront.net'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/united-kingdom/unemployment-rate'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function () { try { return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsToken = '20260324:loboantunes'; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var isCopyright = false;var TEStreamId= '';</script>
+<script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20260930000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://charts-api.tradingeconomics.com'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/united-kingdom/unemployment-rate'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function() { try { return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsKey = '20260324:loboantunes'; var TEChartsToken = ''; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var TEChartsPath = '/united-kingdom/unemployment-rate'; var isCopyright = false;var TEStreamId= '';</script>
+
+<script>var TEAuth = (function () { var KEY = 'te-token', mem = null, pending = null; function now() { return Math.floor(Date.now() / 1000) } function fresh(c) { return c && c.token && now() < c.refresh - 60 } function cached() { if (fresh(mem)) return mem; try { var c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (fresh(c)) return mem = c } catch (e) { } return null } function load() { if (!pending) pending = fetch('/token', { method: 'POST', credentials: 'same-origin', cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json() }).then(function (c) { mem = c; try { localStorage.setItem(KEY, JSON.stringify(c)) } catch (e) { } return c.token }).catch(function (e) { console.log('TEAuth: /token failed', e); return '' }).then(function (t) { pending = null; return t }); return pending } return { ready: function () { var c = cached(); return c ? Promise.resolve(c.token) : load() }, current: function () { var c = cached(); return c ? c.token : '' }, refresh: function () { mem = null; try { localStorage.removeItem(KEY) } catch (e) { } return load() } } })();</script>
 <script type="text/javascript">var DEBUG = false; if (window.location.host.indexOf('localhost') > -1) DEBUG = true; else if (window.location.href.indexOf('debug') > -1) DEBUG = true; if (!DEBUG) { if (!window.console) window.console = {}; var methods = ["log", "debug", "info"]; for (var i = 0; i < methods.length; i++) { console[methods[i]] = function () { }; } }</script>
 <script>window.googletag = window.googletag || { cmd: [] };</script>
 <link rel="icon" href="https://d3e5kp2e91w0k0.cloudfront.net/favicon.svg" type="image/svg+xml" />
@@ -28,7 +30,7 @@
 <body>
     <script>(function(){var c=localStorage.getItem('IsDarkMode')==='true';if(c)document.body.classList.add('dark-theme');window.IsDarkMode=c;})();</script>
     <form method="post" action="/united-kingdom/unemployment-rate" id="aspnetForm">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="Ngn1HJqzsldBZ3G7FzYpwPz8dRY136Wjbvs20J+Udjgfi6oEv8DVBpZOuk4J2ZAGf9bn3+qvRtmlZkap/HiadEw00so=" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="Vs8aCSwmZwsiWluZwu39piKW7bEKc6JG/JBgiz4MH99jxDZtV4/ycJPKpQ6imSYlVPblr+97m/GgrWShb/zjIogy2kc=" />
 
 <script type="text/javascript" language="Javascript">var isCopyright = false;</script><script type="text/javascript" language="Javascript">var TESymbol = 'UKUEILOR'; console.log('TESymbol:', TESymbol);var TELanguage = ''; console.log('TELanguage:', TELanguage);TELastUpdate = '202609150630'; console.log('TELastUpdate:', TELastUpdate);TEChart = 'EC'; console.log('TEChart:', TEChart);var TEAlertsName= 'United Kingdom Unemployment Rate'; console.log('TEAlertsName:', TEAlertsName);</script><script type="text/javascript" language="Javascript">TEChartUrl = 'https://d3fy651gv2fhd3.cloudfront.net/charts/united-kingdom-unemployment-rate.png?s=ukueilor&v=202609150630V20230410';TECountry = 'United Kingdom';TECategory = 'Unemployment Rate';TEType = 'te';TEFrequency = 'Monthly';TEForecast =   [5.20,5.40,5.50,5.60];</script><script type="text/javascript" language="Javascript">TENextCalendarID = '399424'; console.log('TENextCalendarID:', TENextCalendarID);TECalendarActual = ''; console.log('TECalendarActual:', TECalendarActual);</script>
 <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="9ED6FB81" />
@@ -730,7 +732,7 @@
          
         <div role="tabpanel" class="tab-pane" id="stats"><h2 style="line-height: 1.45em;">Unemployment Rate in the United Kingdom remained unchanged at 4.90 percent in July.  Unemployment Rate in the United Kingdom averaged 6.61 percent from 1971 until 2026, reaching an all time high of 11.90 percent in April of 1984 and a record low of 3.40 percent in December of 1973. This page provides the latest reported value for - United Kingdom Unemployment Rate - plus previous releases, historical high and low, short-term forecast and long-term prediction, economic calendar, survey consensus and news. United Kingdom Unemployment Rate - data, historical chart, forecasts and calendar of releases - was last updated on  October of 2026. </h2></div>
         
-        <div role="tabpanel" class="tab-pane" id="forecast-desc"><h3  style="line-height: 1.45em;">Unemployment Rate in the United Kingdom remained unchanged at 4.90 percent in July. Unemployment Rate in the United Kingdom is expected to be 5.00 percent by the end of this quarter, according to Trading Economics global macro models and analysts expectations. In the long-term, the United Kingdom Unemployment Rate is projected to trend around 5.50 percent in 2027 and 5.20 percent in 2028, according to our econometric models.</h3></div>
+        <div role="tabpanel" class="tab-pane" id="forecast-desc"><h3  style="line-height: 1.45em;">Unemployment Rate in the United Kingdom remained unchanged at 4.90 percent in July. Unemployment Rate in the United Kingdom is expected to be 5.20 percent by the end of this quarter, according to Trading Economics global macro models and analysts expectations. In the long-term, the United Kingdom Unemployment Rate is projected to trend around 5.50 percent in 2027 and 5.20 percent in 2028, according to our econometric models.</h3></div>
         
         <div role="tabpanel" class="tab-pane" id="alerts-desc"><div id="alerts-chart" style="padding: 5px 15px 5px 15px;display: inline-block; width: 100%;"></div></div>
         
@@ -889,11 +891,11 @@
                 4.9%
             </td>
             <td class="datatable-item datatable-item-positive">
-                
+                5%
             </td>
             
             <td class="datatable-item datatable-item-positive">
-                
+                4.9%
             </td>
             
         </tr>
@@ -1382,34 +1384,34 @@
                 <div class="card-header">Related</div>
                 <div class="card-body">
                     
-                            <div class="news-link"><a href='/united-kingdom/stock-market'>FTSE 100 Extends Gains for 2nd Session</a></div>
+                            <div class="news-link"><a href='/united-kingdom/stock-market'>FTSE Closes Week Higher</a></div>
                             
                         
-                            <div class="news-link"><a href='/united-kingdom/currency'>Sterling Rebounds from Three-Month Lows</a></div>
+                            <div class="news-link"><a href='/united-kingdom/currency'>Sterling Strengthens to 3-Week High</a></div>
                             
                         
-                            <div class="news-link"><a href='/united-kingdom/government-bond-yield'>UK Gilt Yields Stay Near Multi-Decade Highs</a></div>
+                            <div class="news-link"><a href='/united-kingdom/government-bond-yield'>UK 10 Year Gilt Yield Rebounds from 3-Week Low</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/united-kingdom/industrial-production-mom'>UK Industrial Output Hits 9-Month High</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/united-kingdom/construction-output'>UK Construction Output Dips More than Estimated</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/united-kingdom/manufacturing-production-mom'>UK Manufacturing Output Unexpectedly Rises in August</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/united-kingdom/balance-of-trade'>UK Trade Gap Smallest in 7 Months</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/united-kingdom/monthly-gdp-mom'>UK Economy Unexpectedly Grows in August</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/united-kingdom/brc-retail-sales-monitor-yoy'>UK Retail Sales Growth Picks Up in September</a></div>
                             
                         
                             <div class="news-link"><a href='/tsco:ln:eps'>Tesco earnings above expectations at 0.17 GBP</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/united-kingdom/rics-house-price-balance'>UK House Price Balance Weakens to 3-Month Low</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/united-kingdom/house-price-index-yoy'>UK House Prices Stagnate in September</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/united-kingdom/construction-pmi'>UK Construction Activity Falls Less in September</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/united-kingdom/services-pmi'>UK Services Sector Growth Remains Modest</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/united-kingdom/composite-pmi'>UK Private Sector Growth Revised Slightly Higher</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/united-kingdom/new-passenger-car-registrations-yoy'>UK New Car Registrations Extend Growth to 10th Month</a></div>
                             
                         
                     <br />
@@ -1430,25 +1432,25 @@
                     <div class="card-header">Latest</div>
                     <div class="card-body">
                         
-                                <div class="news-link"><a href='/mexico/industrial-production'>Mexico Industrial Output Hits Highest Growth Since 2024</a></div>
+                                <div class="news-link"><a href='/united-states/capital-flows'>US Records Net TIC Inflow in August</a></div>
                             
-                                <div class="news-link"><a href='/kosovo/inflation-cpi'>Kosovo Inflation Rate Accelerates in September</a></div>
+                                <div class="news-link"><a href='/brazil/stock-market'>Ibovespa Advances on IBC-Br Rebound</a></div>
                             
-                                <div class="news-link"><a href='/commodity/palladium'>Palladium Trades Near 1-Year Low</a></div>
+                                <div class="news-link"><a href='/canada/stock-market'>TSX Edges Higher as Energy Gains Offset Tech Selloff</a></div>
                             
-                                <div class="news-link"><a href='/united-states/stock-market'>US Futures Trade Steady</a></div>
+                                <div class="news-link"><a href='/united-states/government-budget-value'>US Budget Swings to Deficit in September</a></div>
                             
-                                <div class="news-link"><a href='/commodity/cocoa'>Cocoa Rises as West African Crop Risks Intensify</a></div>
+                                <div class="news-link"><a href='/commodity/brent-crude-oil'>Brent Rises Near $110 on Increasing Supply Risks</a></div>
                             
-                                <div class="news-link"><a href='/commodity/silver'>Silver Edges Lower Ahead of Key US Economic Releases</a></div>
+                                <div class="news-link"><a href='/commodity/crude-oil'>Oil Surges Above $100 on Rising Supply Risks</a></div>
                             
-                                <div class="news-link"><a href='/commodity/gold'>Gold Slips on Strong Dollar</a></div>
+                                <div class="news-link"><a href='/united-states/stock-market'>US Stocks Fall as Chip Selloff Deepens</a></div>
                             
-                                <div class="news-link"><a href='/india/inflation-cpi'>India Inflation Rises to 2-Year High</a></div>
+                                <div class="news-link"><a href='/france/stock-market'>CAC 40 Rises on Defense Stocks Gains</a></div>
                             
-                                <div class="news-link"><a href='/india/stock-market'>Indian Stocks Slide Ahead of CPI</a></div>
+                                <div class="news-link"><a href='/calendar?article=29375&g=top&importance=2&startdate=2026-10-16'>Week Ahead - Oct 19th</a></div>
                             
-                                <div class="news-link"><a href='/latvia/balance-of-trade'>Latvia Trade Deficit Widens in August</a></div>
+                                <div class="news-link"><a href='/mexico/currency'>Mexican Peso Approaches 11-Month Low</a></div>
                             
                         <br />
                         <a id="ctl00_ContentPlaceHolder1_ctl03_moreTopNews" href="../stream">
@@ -2956,13 +2958,12 @@
         }
     });
 </script>
-<script>console.log("/js/chartec.ascx"); TEChartsToken = '20260324:loboantunes:375b32f9e5a845e610ca30b8243bee6c8c45bf1286e6bf45ed743ea271777895';</script>
+<script>console.log("/js/chartec.ascx"); TEChartsToken = '375b32f9e5a845e610ca30b8243bee6c8c45bf1286e6bf45ed743ea271777895'; TEAuth.ready();</script>
 
 <script src='https://d1v8a2ofhkdel3.cloudfront.net/cdn/highstock_exporting.2024.10.1.0.js'></script>
 
-
-<link rel="stylesheet" href="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.css?v=20260219">
-<script src="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.js?v=20260219"></script>
+<link rel="stylesheet" href="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.css?v=20261014b">
+<script src="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.js?v=20261014b"></script>
 
 <script> console.log("[PREDICTION] UC Loading");</script>
 

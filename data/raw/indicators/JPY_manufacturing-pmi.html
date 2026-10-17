@@ -13,14 +13,16 @@
 
 <script>(function () { var p = new URLSearchParams(window.location.search); if (!p.has('_auth')) return; p.delete('_auth'); var qs = p.toString(); history.replaceState({}, '', window.location.pathname + (qs ? '?' + qs : '')); window.location.reload(); })();</script>
 <script>(function () { function h(n) { return new RegExp('(?:^|;\\s*)' + n.replace(/\./g, '\\.') + '=').test(document.cookie); } if (h('TEIsLoggedIn') || !h('.ASPXAUTH')) return; var e = '; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/', s = ['', '; domain=tradingeconomics.com', '; domain=.tradingeconomics.com'];['.ASPXAUTH', 'TEUsername', 'TENickName', 'TERole', 'TEUserInfo', 'TEName', 'TEUserEmail'].forEach(function (n) { if (!h(n)) return; s.forEach(function (d) { document.cookie = n + '=' + e + d; }); }); document.cookie = 'TEIsLoggedIn=false; domain=.tradingeconomics.com; path=/; SameSite=Lax; Secure; max-age=31536000'; })();</script>
-<script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20260930000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://d3ii0wo49og5mi.cloudfront.net'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/japan/manufacturing-pmi'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function () { try { return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsToken = '20260324:loboantunes'; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var isCopyright = false;var TEStreamId= '';</script>
+<script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20260930000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://charts-api.tradingeconomics.com'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/japan/manufacturing-pmi'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function() { try { return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsKey = '20260324:loboantunes'; var TEChartsToken = ''; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var TEChartsPath = '/japan/manufacturing-pmi'; var isCopyright = false;var TEStreamId= '';</script>
+
+<script>var TEAuth = (function () { var KEY = 'te-token', mem = null, pending = null; function now() { return Math.floor(Date.now() / 1000) } function fresh(c) { return c && c.token && now() < c.refresh - 60 } function cached() { if (fresh(mem)) return mem; try { var c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (fresh(c)) return mem = c } catch (e) { } return null } function load() { if (!pending) pending = fetch('/token', { method: 'POST', credentials: 'same-origin', cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json() }).then(function (c) { mem = c; try { localStorage.setItem(KEY, JSON.stringify(c)) } catch (e) { } return c.token }).catch(function (e) { console.log('TEAuth: /token failed', e); return '' }).then(function (t) { pending = null; return t }); return pending } return { ready: function () { var c = cached(); return c ? Promise.resolve(c.token) : load() }, current: function () { var c = cached(); return c ? c.token : '' }, refresh: function () { mem = null; try { localStorage.removeItem(KEY) } catch (e) { } return load() } } })();</script>
 <script type="text/javascript">var DEBUG = false; if (window.location.host.indexOf('localhost') > -1) DEBUG = true; else if (window.location.href.indexOf('debug') > -1) DEBUG = true; if (!DEBUG) { if (!window.console) window.console = {}; var methods = ["log", "debug", "info"]; for (var i = 0; i < methods.length; i++) { console[methods[i]] = function () { }; } }</script>
 <script>window.googletag = window.googletag || { cmd: [] };</script>
 <link rel="icon" href="https://d3e5kp2e91w0k0.cloudfront.net/favicon.svg" type="image/svg+xml" /><link rel="canonical" href="https://tradingeconomics.com/japan/manufacturing-pmi" /></head>
 <body>
     <script>(function(){var c=localStorage.getItem('IsDarkMode')==='true';if(c)document.body.classList.add('dark-theme');window.IsDarkMode=c;})();</script>
     <form method="post" action="/japan/manufacturing-pmi" id="aspnetForm">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="dIrlGzqKUieHGIT60Iq3dDd3CE0qLD2GroxqEP5/51bEKwyz5sdU1BkbOJGUkDvf+C3olS9PhrNQwyFzFeMyMxxxSJE=" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="QuuNEGS7LqnigrPkdCshj3Saq2/AnzlqwCpznZGuWV+XLFGc9V/baEnSqxRQPRrQi1FH2M296UJGXr248nAPp3/iK1g=" />
 
 <script type="text/javascript" language="Javascript">var TEChartSettings = '{"labels":false}'; console.log('TEChartSettings:', TEChartSettings);</script><script type="text/javascript" language="Javascript">var isCopyright = true;</script><script type="text/javascript" language="Javascript">var TESymbol = 'JAPANMANPMI'; console.log('TESymbol:', TESymbol);var TELanguage = ''; console.log('TELanguage:', TELanguage);TELastUpdate = '202610010058'; console.log('TELastUpdate:', TELastUpdate);TEChart = 'EC'; console.log('TEChart:', TEChart);var TEAlertsName= 'Japan Manufacturing PMI'; console.log('TEAlertsName:', TEAlertsName);</script><script type="text/javascript" language="Javascript">TEChartUrl = 'https://d3fy651gv2fhd3.cloudfront.net/charts/japan-manufacturing-pmi.png?s=japanmanpmi&v=202610010058V20230410';TECountry = 'Japan';TECategory = 'Manufacturing PMI';TEType = 'te';TEFrequency = 'Monthly';TEForecast =   [53.00,53.50,51.90,51.00];</script>
 <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="9ED6FB81" />
@@ -793,13 +795,13 @@
                                     Capacity Utilization MoM
                                 </a>
                             </td>
-                            <td>107.70</td>
+                            <td>103.20</td>
                             
-                            <td>107.20</td>
+                            <td>107.70</td>
                             
                             <td>
                                 points</td>
-                            <td>Jul 2026</td>
+                            <td>Aug 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -838,13 +840,13 @@
                                     Cement Production
                                 </a>
                             </td>
-                            <td>3806.00</td>
+                            <td>3366.00</td>
                             
-                            <td>3391.00</td>
+                            <td>3806.00</td>
                             
                             <td>
                                 Thousands of Tonnes </td>
-                            <td>Jul 2026</td>
+                            <td>Aug 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -973,7 +975,7 @@
                                     Industrial Production YoY
                                 </a>
                             </td>
-                            <td>3.40</td>
+                            <td>2.70</td>
                             
                             <td>3.90</td>
                             
@@ -988,7 +990,7 @@
                                     Industrial Production MoM
                                 </a>
                             </td>
-                            <td>-1.70</td>
+                            <td>-2.40</td>
                             
                             <td>-0.20</td>
                             
@@ -1033,13 +1035,13 @@
                                     Machinery Orders MoM
                                 </a>
                             </td>
-                            <td>-3.70</td>
+                            <td>5.20</td>
                             
-                            <td>9.70</td>
+                            <td>-3.70</td>
                             
                             <td>
                                 percent</td>
-                            <td>Jul 2026</td>
+                            <td>Aug 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -1315,34 +1317,34 @@
                 <div class="card-header">Related</div>
                 <div class="card-body">
                     
-                            <div class="news-link"><a href='/japan/currency'>Yen Holds Steady in Thin Holiday Trade</a></div>
+                            <div class="news-link"><a href='/japan/stock-market'>Japanese Shares Rise on Tech Rebound</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/japan/government-bond-yield'>Japan 10-Year Yield Rises as BOJ Outlook Mulled</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/japan/industrial-production-mom'>Japan Industrial Output Falls More than Initially Anticipated</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/japan/currency'>Yen Gains Amid Fresh Verbal Warning</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/japan/interest-rate'>BoJ Koeda Backs Further Rate Hikes Amid Inflation Risks</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/japan/machinery-orders'>Japan Machinery Orders Rebound More than Expected</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/japan/producer-prices-change'>Japan Producer Prices Rise the Least in 4 Months</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/japan/loan-growth'>Japan Bank Lending Growth Below Forecasts</a></div>
                             
                         
                             <div class="news-link"><a href='/9983:jp:eps'>Fast Retailing earnings above expectations at 379.46 JPY</a></div>
                             
                         
-                            <div class="news-link"><a href='/japan/stock-market'>Japanese Stocks Recover on OpenAI Reports</a></div>
-                            
-                        
                             <div class="news-link"><a href='/japan/machine-tool-orders'>Japan Machine Tool Orders Notch Fresh High</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/japan/government-bond-yield'>Japan 10Y Yield Tracks US Yields Lower</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/japan/household-spending'>Japan Personal Spending Falls the Least in 3 Months</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/japan/economy-watchers-survey'>Japan Services Sentiment Rises to 7-Month High</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/japan/current-account'>Japan Current Account Surplus Above Forecasts</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/japan/leading-economic-index'>Japan Leading Index Highest Since 2014</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/japan/coincident-index'>Japan Coincident Index Slips to 3-Month Low</a></div>
                             
                         
                     <br />
@@ -1363,25 +1365,25 @@
                     <div class="card-header">Latest</div>
                     <div class="card-body">
                         
-                                <div class="news-link"><a href='/mexico/industrial-production'>Mexico Industrial Output Hits Highest Growth Since 2024</a></div>
+                                <div class="news-link"><a href='/united-states/capital-flows'>US Records Net TIC Inflow in August</a></div>
                             
-                                <div class="news-link"><a href='/kosovo/inflation-cpi'>Kosovo Inflation Rate Accelerates in September</a></div>
+                                <div class="news-link"><a href='/brazil/stock-market'>Ibovespa Advances on IBC-Br Rebound</a></div>
                             
-                                <div class="news-link"><a href='/commodity/palladium'>Palladium Trades Near 1-Year Low</a></div>
+                                <div class="news-link"><a href='/canada/stock-market'>TSX Edges Higher as Energy Gains Offset Tech Selloff</a></div>
                             
-                                <div class="news-link"><a href='/united-states/stock-market'>US Futures Trade Steady</a></div>
+                                <div class="news-link"><a href='/united-states/government-budget-value'>US Budget Swings to Deficit in September</a></div>
                             
-                                <div class="news-link"><a href='/commodity/cocoa'>Cocoa Rises as West African Crop Risks Intensify</a></div>
+                                <div class="news-link"><a href='/commodity/brent-crude-oil'>Brent Rises Near $110 on Increasing Supply Risks</a></div>
                             
-                                <div class="news-link"><a href='/commodity/silver'>Silver Edges Lower Ahead of Key US Economic Releases</a></div>
+                                <div class="news-link"><a href='/commodity/crude-oil'>Oil Surges Above $100 on Rising Supply Risks</a></div>
                             
-                                <div class="news-link"><a href='/commodity/gold'>Gold Slips on Strong Dollar</a></div>
+                                <div class="news-link"><a href='/united-states/stock-market'>US Stocks Fall as Chip Selloff Deepens</a></div>
                             
-                                <div class="news-link"><a href='/india/inflation-cpi'>India Inflation Rises to 2-Year High</a></div>
+                                <div class="news-link"><a href='/france/stock-market'>CAC 40 Rises on Defense Stocks Gains</a></div>
                             
-                                <div class="news-link"><a href='/india/stock-market'>Indian Stocks Slide Ahead of CPI</a></div>
+                                <div class="news-link"><a href='/calendar?article=29375&g=top&importance=2&startdate=2026-10-16'>Week Ahead - Oct 19th</a></div>
                             
-                                <div class="news-link"><a href='/latvia/balance-of-trade'>Latvia Trade Deficit Widens in August</a></div>
+                                <div class="news-link"><a href='/mexico/currency'>Mexican Peso Approaches 11-Month Low</a></div>
                             
                         <br />
                         <a id="ctl00_ContentPlaceHolder1_ctl03_moreTopNews" href="../stream">
@@ -2822,13 +2824,12 @@
         }
     });
 </script>
-<script>console.log("/js/chartec.ascx"); TEChartsToken = '20260324:loboantunes:da27ac88ee78ff59db47f23fab667935b396dc8523eb5029618bfe5d104d9a89';</script>
+<script>console.log("/js/chartec.ascx"); TEChartsToken = 'da27ac88ee78ff59db47f23fab667935b396dc8523eb5029618bfe5d104d9a89'; TEAuth.ready();</script>
 
 <script src='https://d1v8a2ofhkdel3.cloudfront.net/cdn/highstock_exporting.2024.10.1.0.js'></script>
 
-
-<link rel="stylesheet" href="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.css?v=20260219">
-<script src="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.js?v=20260219"></script>
+<link rel="stylesheet" href="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.css?v=20261014b">
+<script src="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.js?v=20261014b"></script>
 
 <script>console.log("Loading Chatbot")</script>
 

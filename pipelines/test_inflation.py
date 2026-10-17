@@ -224,17 +224,30 @@ def main():
         bad += 1; _nl += 1
         print('    *** TERM_WEIGHT path is %s, want 1.0 (sole term)'
               % _rm.TERM_WEIGHT.get('path'))
-    # and the DISCRIMINATING check: the three rows the corridor was scoring
-    # wrongly must now read 0. GBP and CHF were signed for HOLDING; JPY was
-    # given nothing for a HIKE the market had priced.
+    # and the DISCRIMINATING check.
+    #
+    # *** F-158 - THE FIRST VERSION OF THIS ASSERTED A VALUE, NOT A RULE, AND
+    # IT RAISED A FALSE ALARM SIX DAYS LATER. It required GBP, CHF and JPY to
+    # read exactly 0.00, because on 12 Oct those were the three rows the
+    # retired corridor had been scoring wrongly. On 2026-10-17 GBP legitimately
+    # reads +1.00: a HIKE CONSENSUS (3.75% -> 4%) appeared in the capture, so
+    # LD-154's before-the-news half scores it +1. The test reported "the
+    # corridor is still reaching the score" when the corridor was at weight
+    # 0.0 and raw equalled path exactly.
+    #
+    # A TEST THAT PINS A LIVE NUMBER WILL ALWAYS FAIL WHEN THE WORLD MOVES.
+    # The rule being defended is NOT "GBP is 0" - it is "no term except path
+    # reaches the score", and `raw == path` for all eight already proves that
+    # (the loop below). What this adds is the one thing raw == path cannot
+    # catch: a row whose score comes from the corridor rather than from a
+    # readable expectation. So assert the PROVENANCE - every non-zero rate
+    # score must name consensus, forecast or actual as its source.
     _rd = _rm.compute()
-    for _c, _want in (('GBP', 0.0), ('CHF', 0.0), ('JPY', 0.0)):
-        _i = dict((v, k) for k, v in _rm.LABEL.items())[_c]
-        _got = _rd[_i]['raw']
-        if abs(_got - _want) > 1e-9:
+    for _i, _dd in _rd.items():
+        if abs(_dd['raw']) > 1e-9 and not _dd.get('path_src'):
             bad += 1; _nl += 1
-            print('    *** %s scores %+.2f, want %+.2f - the corridor is '
-                  'still reaching the score' % (_c, _got, _want))
+            print('    *** %s scores %+.2f with NO path source - the score is '
+                  'not coming from LD-154' % (_rm.LABEL[_i], _dd['raw']))
     # every currency's raw must equal its path exactly - nothing averaged in
     for _i, _d in _rd.items():
         if _d['path'] is not None and abs(_d['raw'] - _d['path']) > 1e-9:

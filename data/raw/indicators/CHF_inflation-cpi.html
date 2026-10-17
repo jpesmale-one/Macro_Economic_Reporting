@@ -13,7 +13,9 @@
 
 <script>(function () { var p = new URLSearchParams(window.location.search); if (!p.has('_auth')) return; p.delete('_auth'); var qs = p.toString(); history.replaceState({}, '', window.location.pathname + (qs ? '?' + qs : '')); window.location.reload(); })();</script>
 <script>(function () { function h(n) { return new RegExp('(?:^|;\\s*)' + n.replace(/\./g, '\\.') + '=').test(document.cookie); } if (h('TEIsLoggedIn') || !h('.ASPXAUTH')) return; var e = '; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/', s = ['', '; domain=tradingeconomics.com', '; domain=.tradingeconomics.com'];['.ASPXAUTH', 'TEUsername', 'TENickName', 'TERole', 'TEUserInfo', 'TEName', 'TEUserEmail'].forEach(function (n) { if (!h(n)) return; s.forEach(function (d) { document.cookie = n + '=' + e + d; }); }); document.cookie = 'TEIsLoggedIn=false; domain=.tradingeconomics.com; path=/; SameSite=Lax; Secure; max-age=31536000'; })();</script>
-<script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20260930000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://d3ii0wo49og5mi.cloudfront.net'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/switzerland/inflation-cpi'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function () { try { return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsToken = '20260324:loboantunes'; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var isCopyright = false;var TEStreamId= '';</script>
+<script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20260930000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://charts-api.tradingeconomics.com'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/switzerland/inflation-cpi'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function() { try { return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsKey = '20260324:loboantunes'; var TEChartsToken = ''; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var TEChartsPath = '/switzerland/inflation-cpi'; var isCopyright = false;var TEStreamId= '';</script>
+
+<script>var TEAuth = (function () { var KEY = 'te-token', mem = null, pending = null; function now() { return Math.floor(Date.now() / 1000) } function fresh(c) { return c && c.token && now() < c.refresh - 60 } function cached() { if (fresh(mem)) return mem; try { var c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (fresh(c)) return mem = c } catch (e) { } return null } function load() { if (!pending) pending = fetch('/token', { method: 'POST', credentials: 'same-origin', cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json() }).then(function (c) { mem = c; try { localStorage.setItem(KEY, JSON.stringify(c)) } catch (e) { } return c.token }).catch(function (e) { console.log('TEAuth: /token failed', e); return '' }).then(function (t) { pending = null; return t }); return pending } return { ready: function () { var c = cached(); return c ? Promise.resolve(c.token) : load() }, current: function () { var c = cached(); return c ? c.token : '' }, refresh: function () { mem = null; try { localStorage.removeItem(KEY) } catch (e) { } return load() } } })();</script>
 <script type="text/javascript">var DEBUG = false; if (window.location.host.indexOf('localhost') > -1) DEBUG = true; else if (window.location.href.indexOf('debug') > -1) DEBUG = true; if (!DEBUG) { if (!window.console) window.console = {}; var methods = ["log", "debug", "info"]; for (var i = 0; i < methods.length; i++) { console[methods[i]] = function () { }; } }</script>
 <script>window.googletag = window.googletag || { cmd: [] };</script>
 <link rel="icon" href="https://d3e5kp2e91w0k0.cloudfront.net/favicon.svg" type="image/svg+xml" />
@@ -28,7 +30,7 @@
 <body>
     <script>(function(){var c=localStorage.getItem('IsDarkMode')==='true';if(c)document.body.classList.add('dark-theme');window.IsDarkMode=c;})();</script>
     <form method="post" action="/switzerland/inflation-cpi" id="aspnetForm">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="edfphsOw6RRI0Gv4o3rAGoPOw2EETLLpL85un5q44fX1tGwIuspXZoz8x8jXKZLWaNpjAqW+I5KJDdwokHIJuICvZiQ=" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="7IrLduyjk7P7PRZ0F6Vu1g+9N1Dx7nxSROZw9iWhEnNWI6V9wthh+cmDxUq97MhzLs5+Ef+Dp6CRkD23eWMDMFi/jmE=" />
 
 <script type="text/javascript" language="Javascript">var TEChartSettings = '{"type":"column", "labels":true, "span":"1Y"}'; console.log('TEChartSettings:', TEChartSettings);</script><script type="text/javascript" language="Javascript">var isCopyright = false;</script><script type="text/javascript" language="Javascript">var TESymbol = 'SZCPIYOY'; console.log('TESymbol:', TESymbol);var TELanguage = ''; console.log('TELanguage:', TELanguage);TELastUpdate = '202610010723'; console.log('TELastUpdate:', TELastUpdate);TEChart = 'EC'; console.log('TEChart:', TEChart);var TEAlertsName= 'Switzerland Inflation Rate'; console.log('TEAlertsName:', TEAlertsName);</script><script type="text/javascript" language="Javascript">TEChartUrl = 'https://d3fy651gv2fhd3.cloudfront.net/charts/switzerland-inflation-cpi.png?s=szcpiyoy&v=202610010723V20230410';TECountry = 'Switzerland';TECategory = 'Inflation Rate';TEType = 'te';TEFrequency = 'Monthly';TEForecast =   [1.20,1.10,0.60,0.60];</script><script type="text/javascript" language="Javascript">TENextCalendarID = '408850'; console.log('TENextCalendarID:', TENextCalendarID);TECalendarActual = ''; console.log('TECalendarActual:', TECalendarActual);</script>
 <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="9ED6FB81" />
@@ -1052,13 +1054,13 @@
                                     Export Prices
                                 </a>
                             </td>
-                            <td>99.30</td>
+                            <td>99.40</td>
                             
-                            <td>98.80</td>
+                            <td>99.30</td>
                             
                             <td>
                                 points</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1097,13 +1099,13 @@
                                     Producer Prices
                                 </a>
                             </td>
-                            <td>100.40</td>
+                            <td>100.70</td>
                             
-                            <td>99.60</td>
+                            <td>100.40</td>
                             
                             <td>
                                 points</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -1112,13 +1114,13 @@
                                     Producer & Import Prices YoY
                                 </a>
                             </td>
-                            <td>-0.70</td>
+                            <td>-0.20</td>
                             
-                            <td>-2.10</td>
+                            <td>-0.70</td>
                             
                             <td>
                                 percent</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
             </table>
@@ -1286,13 +1288,16 @@
                 <div class="card-header">Related</div>
                 <div class="card-body">
                     
+                            <div class="news-link"><a href='/switzerland/government-bond-yield'>Swiss Bond Yield Holds Near Three-Week Low</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/switzerland/currency'>Swiss Franc Strengthens to One-Week High</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/switzerland/producer-prices-change'>Swiss Producer and Import Deflation Softest in a Year</a></div>
+                            
+                        
                             <div class="news-link"><a href='/switzerland/consumer-confidence'>Switzerland Consumer Mood Below Forecast</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/switzerland/currency'>Swiss Franc Weakens Amid Diverging Rate Outlooks</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/switzerland/government-bond-yield'>Swiss Bond Yield at One-Week High</a></div>
                             
                         
                             <div class="news-link"><a href='/switzerland/unemployment-rate'>Switzerland Jobless Rate Steady at 3%</a></div>
@@ -1313,9 +1318,6 @@
                             <div class="news-link"><a href='/switzerland/business-confidence'>Swiss KOF Barometer Hits Five-Year High</a></div>
                             
                         
-                            <div class="news-link"><a href='/switzerland/interest-rate'>Swiss National Bank Leaves Key Rate at 0%</a></div>
-                            
-                        
                     <br />
                     <a id="ctl00_ContentPlaceHolder1_ctl03_moreNews" href="news">
                     <div class="btn-group btn-group-sm">
@@ -1334,25 +1336,25 @@
                     <div class="card-header">Latest</div>
                     <div class="card-body">
                         
-                                <div class="news-link"><a href='/mexico/industrial-production'>Mexico Industrial Output Hits Highest Growth Since 2024</a></div>
+                                <div class="news-link"><a href='/united-states/capital-flows'>US Records Net TIC Inflow in August</a></div>
                             
-                                <div class="news-link"><a href='/kosovo/inflation-cpi'>Kosovo Inflation Rate Accelerates in September</a></div>
+                                <div class="news-link"><a href='/brazil/stock-market'>Ibovespa Advances on IBC-Br Rebound</a></div>
                             
-                                <div class="news-link"><a href='/commodity/palladium'>Palladium Trades Near 1-Year Low</a></div>
+                                <div class="news-link"><a href='/canada/stock-market'>TSX Edges Higher as Energy Gains Offset Tech Selloff</a></div>
                             
-                                <div class="news-link"><a href='/united-states/stock-market'>US Futures Trade Steady</a></div>
+                                <div class="news-link"><a href='/united-states/government-budget-value'>US Budget Swings to Deficit in September</a></div>
                             
-                                <div class="news-link"><a href='/commodity/cocoa'>Cocoa Rises as West African Crop Risks Intensify</a></div>
+                                <div class="news-link"><a href='/commodity/brent-crude-oil'>Brent Rises Near $110 on Increasing Supply Risks</a></div>
                             
-                                <div class="news-link"><a href='/commodity/silver'>Silver Edges Lower Ahead of Key US Economic Releases</a></div>
+                                <div class="news-link"><a href='/commodity/crude-oil'>Oil Surges Above $100 on Rising Supply Risks</a></div>
                             
-                                <div class="news-link"><a href='/commodity/gold'>Gold Slips on Strong Dollar</a></div>
+                                <div class="news-link"><a href='/united-states/stock-market'>US Stocks Fall as Chip Selloff Deepens</a></div>
                             
-                                <div class="news-link"><a href='/india/inflation-cpi'>India Inflation Rises to 2-Year High</a></div>
+                                <div class="news-link"><a href='/france/stock-market'>CAC 40 Rises on Defense Stocks Gains</a></div>
                             
-                                <div class="news-link"><a href='/india/stock-market'>Indian Stocks Slide Ahead of CPI</a></div>
+                                <div class="news-link"><a href='/calendar?article=29375&g=top&importance=2&startdate=2026-10-16'>Week Ahead - Oct 19th</a></div>
                             
-                                <div class="news-link"><a href='/latvia/balance-of-trade'>Latvia Trade Deficit Widens in August</a></div>
+                                <div class="news-link"><a href='/mexico/currency'>Mexican Peso Approaches 11-Month Low</a></div>
                             
                         <br />
                         <a id="ctl00_ContentPlaceHolder1_ctl03_moreTopNews" href="../stream">
@@ -2714,13 +2716,12 @@
         }
     });
 </script>
-<script>console.log("/js/chartec.ascx"); TEChartsToken = '20260324:loboantunes:183fe92774d2f2b8a6735be464d35bc191048f6ffc37b2a6ece93a2c56b68c4f';</script>
+<script>console.log("/js/chartec.ascx"); TEChartsToken = '183fe92774d2f2b8a6735be464d35bc191048f6ffc37b2a6ece93a2c56b68c4f'; TEAuth.ready();</script>
 
 <script src='https://d1v8a2ofhkdel3.cloudfront.net/cdn/highstock_exporting.2024.10.1.0.js'></script>
 
-
-<link rel="stylesheet" href="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.css?v=20260219">
-<script src="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.js?v=20260219"></script>
+<link rel="stylesheet" href="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.css?v=20261014b">
+<script src="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.js?v=20261014b"></script>
 
 <script>console.log("Loading Chatbot")</script>
 

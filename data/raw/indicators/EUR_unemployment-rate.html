@@ -13,7 +13,9 @@
 
 <script>(function () { var p = new URLSearchParams(window.location.search); if (!p.has('_auth')) return; p.delete('_auth'); var qs = p.toString(); history.replaceState({}, '', window.location.pathname + (qs ? '?' + qs : '')); window.location.reload(); })();</script>
 <script>(function () { function h(n) { return new RegExp('(?:^|;\\s*)' + n.replace(/\./g, '\\.') + '=').test(document.cookie); } if (h('TEIsLoggedIn') || !h('.ASPXAUTH')) return; var e = '; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/', s = ['', '; domain=tradingeconomics.com', '; domain=.tradingeconomics.com'];['.ASPXAUTH', 'TEUsername', 'TENickName', 'TERole', 'TEUserInfo', 'TEName', 'TEUserEmail'].forEach(function (n) { if (!h(n)) return; s.forEach(function (d) { document.cookie = n + '=' + e + d; }); }); document.cookie = 'TEIsLoggedIn=false; domain=.tradingeconomics.com; path=/; SameSite=Lax; Secure; max-age=31536000'; })();</script>
-<script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20260930000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://d3ii0wo49og5mi.cloudfront.net'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/euro-area/unemployment-rate'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function () { try { return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsToken = '20260324:loboantunes'; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var isCopyright = false;var TEStreamId= '';</script>
+<script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20260930000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://charts-api.tradingeconomics.com'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/euro-area/unemployment-rate'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function() { try { return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsKey = '20260324:loboantunes'; var TEChartsToken = ''; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var TEChartsPath = '/euro-area/unemployment-rate'; var isCopyright = false;var TEStreamId= '';</script>
+
+<script>var TEAuth = (function () { var KEY = 'te-token', mem = null, pending = null; function now() { return Math.floor(Date.now() / 1000) } function fresh(c) { return c && c.token && now() < c.refresh - 60 } function cached() { if (fresh(mem)) return mem; try { var c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (fresh(c)) return mem = c } catch (e) { } return null } function load() { if (!pending) pending = fetch('/token', { method: 'POST', credentials: 'same-origin', cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json() }).then(function (c) { mem = c; try { localStorage.setItem(KEY, JSON.stringify(c)) } catch (e) { } return c.token }).catch(function (e) { console.log('TEAuth: /token failed', e); return '' }).then(function (t) { pending = null; return t }); return pending } return { ready: function () { var c = cached(); return c ? Promise.resolve(c.token) : load() }, current: function () { var c = cached(); return c ? c.token : '' }, refresh: function () { mem = null; try { localStorage.removeItem(KEY) } catch (e) { } return load() } } })();</script>
 <script type="text/javascript">var DEBUG = false; if (window.location.host.indexOf('localhost') > -1) DEBUG = true; else if (window.location.href.indexOf('debug') > -1) DEBUG = true; if (!DEBUG) { if (!window.console) window.console = {}; var methods = ["log", "debug", "info"]; for (var i = 0; i < methods.length; i++) { console[methods[i]] = function () { }; } }</script>
 <script>window.googletag = window.googletag || { cmd: [] };</script>
 <link rel="icon" href="https://d3e5kp2e91w0k0.cloudfront.net/favicon.svg" type="image/svg+xml" />
@@ -28,7 +30,7 @@
 <body>
     <script>(function(){var c=localStorage.getItem('IsDarkMode')==='true';if(c)document.body.classList.add('dark-theme');window.IsDarkMode=c;})();</script>
     <form method="post" action="/euro-area/unemployment-rate" id="aspnetForm">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="0b1ut2qlxaoJtAbRq+gIJvl2UR65rN1zdErloOq8FohrLavZwSJCEi5Yg5vjFI5t6Rg7UVc7sB/mUBs07pHnH1CsTfM=" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="a0kKjLxm7TNXKoPTSwEC1pBTvIp0llrWvk5BaGhXWnirkKfjCoD6K4XUjWyOS698sf1vJrRWh3mS/f5EYBJzlmkyxbc=" />
 
 <script type="text/javascript" language="Javascript">var TEChartSettings = '{"span":"3Y"}'; console.log('TEChartSettings:', TEChartSettings);</script><script type="text/javascript" language="Javascript">var isCopyright = false;</script><script type="text/javascript" language="Javascript">var TESymbol = 'UMRTEMU'; console.log('TESymbol:', TESymbol);var TELanguage = ''; console.log('TELanguage:', TELanguage);TELastUpdate = '202610010921'; console.log('TELastUpdate:', TELastUpdate);TEChart = 'EC'; console.log('TEChart:', TEChart);var TEAlertsName= 'Euro Area Unemployment Rate'; console.log('TEAlertsName:', TEAlertsName);</script><script type="text/javascript" language="Javascript">TEChartUrl = 'https://d3fy651gv2fhd3.cloudfront.net/charts/euro-area-unemployment-rate.png?s=umrtemu&v=202610010921V20230410';TECountry = 'Euro Area';TECategory = 'Unemployment Rate';TEType = 'te';TEFrequency = 'Monthly';TEForecast =   [6.40,6.40,6.50,6.50];</script><script type="text/javascript" language="Javascript">TENextCalendarID = '400141'; console.log('TENextCalendarID:', TENextCalendarID);TECalendarActual = ''; console.log('TECalendarActual:', TECalendarActual);</script>
 <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="9ED6FB81" />
@@ -763,26 +765,6 @@
 
 <br />
 
-<style>
-    #voteBox {
-        width: 100% !important;
-    }
-</style>
-
-<div id="voteBox" 
-    data-eventid="400141" 
-    data-country="Euro Area" 
-    data-category="Unemployment Rate" 
-    data-date="10/30/2026 10:00:00 AM" 
-    data-month="Sep" 
-    data-value="6.4%"
-    data-refdate="2026-09-30"
-    data-name="Unemployment Rate"
-    data-nexteventid="401554"
-    data-nexteventname="Unemployment Rate"
-    >
-</div>
-
         <br />
         <span id="calendar-table" class="section" style="display: block; visibility: hidden; height: 150px; margin-top: -150px;"></span>
         <div class="card">
@@ -910,7 +892,7 @@
         <script>hasCalendar = true;</script>
     
 
-<div id="ctl00_ContentPlaceHolder1_ctl00_ctl02_PanelPeers">
+<div id="ctl00_ContentPlaceHolder1_ctl00_ctl01_PanelPeers">
 	
     <br />
     <div class="card">
@@ -1156,7 +1138,7 @@
 
 </div>
 
-<div id="ctl00_ContentPlaceHolder1_ctl00_ctl03_adManager" class="ad-container">
+<div id="ctl00_ContentPlaceHolder1_ctl00_ctl02_adManager" class="ad-container">
 	
     <script type="text/javascript">console.log("[GPT] div placed below chart");</script>
     <div class='ad-slot' id='charts-btf'></div>
@@ -1168,7 +1150,7 @@
     #item_definition {border-bottom:none}
     #item_definition > .card-body{text-align:justify}
 </style>
-<div id="ctl00_ContentPlaceHolder1_ctl00_ctl04_Panel1">
+<div id="ctl00_ContentPlaceHolder1_ctl00_ctl03_Panel1">
 	
     <div class="card" id="item_definition">
         <div class="card-header">Euro Area Unemployment Rate</div>
@@ -1224,7 +1206,7 @@
     </div><br />
 
 </div>
-<div id="ctl00_ContentPlaceHolder1_ctl00_ctl04_Panel2">
+<div id="ctl00_ContentPlaceHolder1_ctl00_ctl03_Panel2">
 	
     <div class="card">
         <div class="card-body" style="text-align: justify">
@@ -1236,7 +1218,7 @@
 
 </div>
 
-<div id="ctl00_ContentPlaceHolder1_ctl00_ctl05_Panel1">
+<div id="ctl00_ContentPlaceHolder1_ctl00_ctl04_Panel1">
 	
     <style>.te-stream-date {color: #808080}.te-stream-repeater{border-bottom: 1px solid #ddd; border-left: none !important; border-right: none !important; border-top: none !important}</style>
     <div class="card">
@@ -1307,10 +1289,19 @@
                 <div class="card-header">Related</div>
                 <div class="card-body">
                     
-                            <div class="news-link"><a href='/euro-area/currency'>Euro Nears 17-Month Low on French Debt Concerns</a></div>
+                            <div class="news-link"><a href='/euro-area/stock-market'>European Stocks Close HIgher</a></div>
                             
                         
-                            <div class="news-link"><a href='/euro-area/stock-market'>European Stocks Kick Off the Week Higher</a></div>
+                            <div class="news-link"><a href='/euro-area/balance-of-trade'>Euro Area Posts Widest Trade Deficit in Over 3 Years</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/euro-area/inflation-cpi'>Euro Area Inflation Rate Confirmed at 3-Year High in September</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/euro-area/industrial-production-mom'>Euro Area Industrial Output Falls for 3rd Month</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/euro-area/currency'>Euro at $1.12</a></div>
                             
                         
                             <div class="news-link"><a href='/euro-area/interest-rate'>ECB Keeps Rate Path Open Amid Inflation Uncertainty: Minutes</a></div>
@@ -1326,15 +1317,6 @@
                             
                         
                             <div class="news-link"><a href='/euro-area/producer-price-inflation-mom'>Eurozone Industrial Producer Prices Rise 1.9% as Expected</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/euro-area/services-pmi'>Eurozone Services Activity Growth Strongest in 10 Months</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/euro-area/inflation-cpi'>Eurozone Inflation Accelerates to Three-Year High</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/euro-area/unemployment-rate'>Eurozone Jobless Rate Matches Forecasts at 6.4%</a></div>
                             
                         
                     <br />
@@ -1355,25 +1337,25 @@
                     <div class="card-header">Latest</div>
                     <div class="card-body">
                         
-                                <div class="news-link"><a href='/mexico/industrial-production'>Mexico Industrial Output Hits Highest Growth Since 2024</a></div>
+                                <div class="news-link"><a href='/united-states/capital-flows'>US Records Net TIC Inflow in August</a></div>
                             
-                                <div class="news-link"><a href='/kosovo/inflation-cpi'>Kosovo Inflation Rate Accelerates in September</a></div>
+                                <div class="news-link"><a href='/brazil/stock-market'>Ibovespa Advances on IBC-Br Rebound</a></div>
                             
-                                <div class="news-link"><a href='/commodity/palladium'>Palladium Trades Near 1-Year Low</a></div>
+                                <div class="news-link"><a href='/canada/stock-market'>TSX Edges Higher as Energy Gains Offset Tech Selloff</a></div>
                             
-                                <div class="news-link"><a href='/united-states/stock-market'>US Futures Trade Steady</a></div>
+                                <div class="news-link"><a href='/united-states/government-budget-value'>US Budget Swings to Deficit in September</a></div>
                             
-                                <div class="news-link"><a href='/commodity/cocoa'>Cocoa Rises as West African Crop Risks Intensify</a></div>
+                                <div class="news-link"><a href='/commodity/brent-crude-oil'>Brent Rises Near $110 on Increasing Supply Risks</a></div>
                             
-                                <div class="news-link"><a href='/commodity/silver'>Silver Edges Lower Ahead of Key US Economic Releases</a></div>
+                                <div class="news-link"><a href='/commodity/crude-oil'>Oil Surges Above $100 on Rising Supply Risks</a></div>
                             
-                                <div class="news-link"><a href='/commodity/gold'>Gold Slips on Strong Dollar</a></div>
+                                <div class="news-link"><a href='/united-states/stock-market'>US Stocks Fall as Chip Selloff Deepens</a></div>
                             
-                                <div class="news-link"><a href='/india/inflation-cpi'>India Inflation Rises to 2-Year High</a></div>
+                                <div class="news-link"><a href='/france/stock-market'>CAC 40 Rises on Defense Stocks Gains</a></div>
                             
-                                <div class="news-link"><a href='/india/stock-market'>Indian Stocks Slide Ahead of CPI</a></div>
+                                <div class="news-link"><a href='/calendar?article=29375&g=top&importance=2&startdate=2026-10-16'>Week Ahead - Oct 19th</a></div>
                             
-                                <div class="news-link"><a href='/latvia/balance-of-trade'>Latvia Trade Deficit Widens in August</a></div>
+                                <div class="news-link"><a href='/mexico/currency'>Mexican Peso Approaches 11-Month Low</a></div>
                             
                         <br />
                         <a id="ctl00_ContentPlaceHolder1_ctl03_moreTopNews" href="../stream">
@@ -2683,19 +2665,12 @@
         }
     });
 </script>
-<script>console.log("/js/chartec.ascx"); TEChartsToken = '20260324:loboantunes:8e18ef935d18fae95e22fd279f897c5accd25c17f665ded0b8adf4d839d43cdf';</script>
+<script>console.log("/js/chartec.ascx"); TEChartsToken = '8e18ef935d18fae95e22fd279f897c5accd25c17f665ded0b8adf4d839d43cdf'; TEAuth.ready();</script>
 
 <script src='https://d1v8a2ofhkdel3.cloudfront.net/cdn/highstock_exporting.2024.10.1.0.js'></script>
 
-
-<link rel="stylesheet" href="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.css?v=20260219">
-<script src="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.js?v=20260219"></script>
-
-<script> console.log("[PREDICTION] UC Loading");</script>
-
-    <link href="https://d2ran47v27f998.cloudfront.net/predictions.css" rel="stylesheet" />
-
-    <script async src="https://d2ran47v27f998.cloudfront.net/predictions.js" charset="utf-8"></script>
+<link rel="stylesheet" href="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.css?v=20261014b">
+<script src="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.js?v=20261014b"></script>
 
 <script>console.log("Loading Chatbot")</script>
 

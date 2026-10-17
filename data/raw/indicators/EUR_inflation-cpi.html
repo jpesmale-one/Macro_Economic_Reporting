@@ -13,7 +13,9 @@
 
 <script>(function () { var p = new URLSearchParams(window.location.search); if (!p.has('_auth')) return; p.delete('_auth'); var qs = p.toString(); history.replaceState({}, '', window.location.pathname + (qs ? '?' + qs : '')); window.location.reload(); })();</script>
 <script>(function () { function h(n) { return new RegExp('(?:^|;\\s*)' + n.replace(/\./g, '\\.') + '=').test(document.cookie); } if (h('TEIsLoggedIn') || !h('.ASPXAUTH')) return; var e = '; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/', s = ['', '; domain=tradingeconomics.com', '; domain=.tradingeconomics.com'];['.ASPXAUTH', 'TEUsername', 'TENickName', 'TERole', 'TEUserInfo', 'TEName', 'TEUserEmail'].forEach(function (n) { if (!h(n)) return; s.forEach(function (d) { document.cookie = n + '=' + e + d; }); }); document.cookie = 'TEIsLoggedIn=false; domain=.tradingeconomics.com; path=/; SameSite=Lax; Secure; max-age=31536000'; })();</script>
-<script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20260930000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://d3ii0wo49og5mi.cloudfront.net'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/euro-area/inflation-cpi'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function () { try { return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsToken = '20260324:loboantunes'; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var isCopyright = false;var TEStreamId= '';</script>
+<script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20260930000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://charts-api.tradingeconomics.com'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/euro-area/inflation-cpi'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function() { try { return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsKey = '20260324:loboantunes'; var TEChartsToken = ''; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var TEChartsPath = '/euro-area/inflation-cpi'; var isCopyright = false;var TEStreamId= '';</script>
+
+<script>var TEAuth = (function () { var KEY = 'te-token', mem = null, pending = null; function now() { return Math.floor(Date.now() / 1000) } function fresh(c) { return c && c.token && now() < c.refresh - 60 } function cached() { if (fresh(mem)) return mem; try { var c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (fresh(c)) return mem = c } catch (e) { } return null } function load() { if (!pending) pending = fetch('/token', { method: 'POST', credentials: 'same-origin', cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json() }).then(function (c) { mem = c; try { localStorage.setItem(KEY, JSON.stringify(c)) } catch (e) { } return c.token }).catch(function (e) { console.log('TEAuth: /token failed', e); return '' }).then(function (t) { pending = null; return t }); return pending } return { ready: function () { var c = cached(); return c ? Promise.resolve(c.token) : load() }, current: function () { var c = cached(); return c ? c.token : '' }, refresh: function () { mem = null; try { localStorage.removeItem(KEY) } catch (e) { } return load() } } })();</script>
 <script type="text/javascript">var DEBUG = false; if (window.location.host.indexOf('localhost') > -1) DEBUG = true; else if (window.location.href.indexOf('debug') > -1) DEBUG = true; if (!DEBUG) { if (!window.console) window.console = {}; var methods = ["log", "debug", "info"]; for (var i = 0; i < methods.length; i++) { console[methods[i]] = function () { }; } }</script>
 <script>window.googletag = window.googletag || { cmd: [] };</script>
 <link rel="icon" href="https://d3e5kp2e91w0k0.cloudfront.net/favicon.svg" type="image/svg+xml" />
@@ -28,9 +30,9 @@
 <body>
     <script>(function(){var c=localStorage.getItem('IsDarkMode')==='true';if(c)document.body.classList.add('dark-theme');window.IsDarkMode=c;})();</script>
     <form method="post" action="/euro-area/inflation-cpi" id="aspnetForm">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="MHli8swAfMF3War2+bEVScHCzl/aT3rD+tUMLLOpmufG8wCa5oft8M4giT5O4JZLFaZFM7+YFxmG8llwaKC4xt3B1a0=" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="IklCKBeSjUWVeYB2B9boXzovjwDUgbIuatVZoD8Cw5C0EK32G1Ca+AD4bop/yIoY4Ucm0YWLlFTufusnXy7h/FuLKUo=" />
 
-<script type="text/javascript" language="Javascript">var TEChartSettings = '{"type":"column", "labels":true, "span":"1Y"}'; console.log('TEChartSettings:', TEChartSettings);</script><script type="text/javascript" language="Javascript">var isCopyright = false;</script><script type="text/javascript" language="Javascript">var TESymbol = 'ECCPEMUY'; console.log('TESymbol:', TESymbol);var TELanguage = ''; console.log('TELanguage:', TELanguage);TELastUpdate = '202610020905'; console.log('TELastUpdate:', TELastUpdate);TEChart = 'EC'; console.log('TEChart:', TEChart);var TEAlertsName= 'Euro Area Inflation Rate'; console.log('TEAlertsName:', TEAlertsName);</script><script type="text/javascript" language="Javascript">TEChartUrl = 'https://d3fy651gv2fhd3.cloudfront.net/charts/euro-area-inflation-cpi.png?s=eccpemuy&v=202610020905V20230410';TECountry = 'Euro Area';TECategory = 'Inflation Rate';TEType = 'te';TEFrequency = 'Monthly';TEForecast =   [3.60,3.30,3.10,2.90];</script><script type="text/javascript" language="Javascript">TENextCalendarID = '400638'; console.log('TENextCalendarID:', TENextCalendarID);TECalendarActual = ''; console.log('TECalendarActual:', TECalendarActual);</script>
+<script type="text/javascript" language="Javascript">var TEChartSettings = '{"type":"column", "labels":true, "span":"1Y"}'; console.log('TEChartSettings:', TEChartSettings);</script><script type="text/javascript" language="Javascript">var isCopyright = false;</script><script type="text/javascript" language="Javascript">var TESymbol = 'ECCPEMUY'; console.log('TESymbol:', TESymbol);var TELanguage = ''; console.log('TELanguage:', TELanguage);TELastUpdate = '202610160915'; console.log('TELastUpdate:', TELastUpdate);TEChart = 'EC'; console.log('TEChart:', TEChart);var TEAlertsName= 'Euro Area Inflation Rate'; console.log('TEAlertsName:', TEAlertsName);</script><script type="text/javascript" language="Javascript">TEChartUrl = 'https://d3fy651gv2fhd3.cloudfront.net/charts/euro-area-inflation-cpi.png?s=eccpemuy&v=202610160915V20230410';TECountry = 'Euro Area';TECategory = 'Inflation Rate';TEType = 'te';TEFrequency = 'Monthly';TEForecast =   [3.60,3.30,3.10,2.90];</script><script type="text/javascript" language="Javascript">TENextCalendarID = '402708'; console.log('TENextCalendarID:', TENextCalendarID);TECalendarActual = ''; console.log('TECalendarActual:', TECalendarActual);</script>
 <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="9ED6FB81" />
         
         <nav id="ctl00_NavigationUC1_ctl00_menu" class="navbar navbar-dark fixed-top" role="navigation">
@@ -725,7 +727,7 @@
 <div id="ctl00_ContentPlaceHolder1_ctl00_Panel1">
 	
     <div class="tab-content te-tab-content " >
-            <div role="tabpanel" class="tab-pane active show" id="historical-desc"><h2 id="description" style="line-height: 1.45em;">Eurozone annual inflation accelerated to 3.8% in September 2026, up from 3.2% in August and above market expectations of 3.6%, according to preliminary estimates. The rate reached its highest level since September 2023 and remained well above the ECB’s 2% target, driven largely by a surge in energy prices amid continued fighting in the Middle East. Energy inflation jumped to 18.8%, its highest level since January 2023. Price growth also accelerated for services, to 3.2% from 3.0%, and unprocessed food, to 4.0% from 2.7%. Core inflation, which excludes energy and food, rose to 2.5% from 2.4%, in line with expectations. Among the euro area’s largest economies, inflation accelerated in Germany to 3.3% from 2.9%, France to 3.4% from 2.6%, Spain to 5.0% from 4.6%, Italy to 4.1% from 3.2%, and the Netherlands to 3.0% from 2.8%. <span class='source-present'>source: <a class='source-name' target='_blank' href ='https://ec.europa.eu/eurostat/'>EUROSTAT</a></span></h2></div>
+            <div role="tabpanel" class="tab-pane active show" id="historical-desc"><h2 id="description" style="line-height: 1.45em;">The annual inflation rate in the Eurozone accelerated for a third consecutive month to 3.8% in September 2026, the highest since September 2023, compared to 3.2% in August and in line with the preliminary estimate. Prices rose faster for energy (18.9% vs 14.3%), services (3.2% vs 3%) and food, alcohol and tobacco (1.3% vs 1.1%). On the other hand, inflation slowed slightly for non-energy industrial goods (1.1% vs 1.2%). Inflation accelerated across the bloc, with Slovakia the only country to record a slight decline, to 3% from 3.1%, while rates in Latvia and Portugal were unchanged at 3% and 3.6%, respectively. Among the Eurozone’s largest economies, inflation rose in Germany to 3.3% from 2.9%, France to 3.4% from 2.6%, Italy to 4.2% from 3.2%, Spain to 5% from 4.6%, and the Netherlands to 3% from 2.8%. Annual core inflation which excludes energy, food, alcohol & tobacco went up to 2.5% from 2.4%. Compared to August, the CPI increased 0.6%. <span class='source-present'>source: <a class='source-name' target='_blank' href ='https://ec.europa.eu/eurostat/'>EUROSTAT</a></span></h2></div>
 
          
         <div role="tabpanel" class="tab-pane" id="stats"><h2 style="line-height: 1.45em;">Inflation Rate In the Euro Area increased to 3.80 percent in September from 3.20 percent in August of 2026.  Inflation Rate in Euro Area averaged 2.26 percent from 1991 until 2026, reaching an all time high of 10.60 percent in October of 2022 and a record low of -0.60 percent in July of 2009. This page provides the latest reported value for - Euro Area Inflation Rate - plus previous releases, historical high and low, short-term forecast and long-term prediction, economic calendar, survey consensus and news. Euro Area Inflation Rate - data, historical chart, forecasts and calendar of releases - was last updated on  October of 2026. </h2></div>
@@ -770,16 +772,16 @@
 </style>
 
 <div id="voteBox" 
-    data-eventid="400638" 
+    data-eventid="402708" 
     data-country="Euro Area" 
     data-category="Inflation Rate" 
-    data-date="10/16/2026 9:00:00 AM" 
-    data-month="Sep" 
-    data-value="3.2%"
-    data-refdate="2026-09-30"
-    data-name="Inflation Rate YoY Final"
-    data-nexteventid="402708"
-    data-nexteventname="Inflation Rate YoY Flash"
+    data-date="11/4/2026 10:00:00 AM" 
+    data-month="Oct" 
+    data-value="3.8%"
+    data-refdate="2026-10-31"
+    data-name="Inflation Rate YoY Flash"
+    data-nexteventid="403255"
+    data-nexteventname="Inflation Rate YoY Final"
     >
 </div>
 
@@ -816,33 +818,6 @@
                             
                         </tr>
                     </thead>
-    
-        <tr data-id="402681" class='an-estimate-row' data-country="Euro Area" data-category="Inflation Rate">
-            <td style="text-align: left; padding-left: 10px; white-space: nowrap;">2026-09-17</td>
-            <td style="white-space: nowrap">09:00 AM</td>
-            <td>
-                <div class='d-none'>
-                Inflation Rate YoY Final
-                </div> 
-            </td>
-            <td id="reference" style="text-align: left">
-                Aug</span>
-            </td>
-            <td id="actual" class="datatable-item datatable-item-positive">
-                3.2%
-            </td>
-            <td id="previous" class="datatable-item datatable-item-positive">
-                2.9%
-            </td>
-            <td class="datatable-item datatable-item-positive">
-                3.3%
-            </td>
-            
-            <td class="datatable-item datatable-item-positive">
-                3.3%
-            </td>
-            
-        </tr>
     
         <tr data-id="402204" class='an-estimate-row' data-country="Euro Area" data-category="Inflation Rate">
             <td style="text-align: left; padding-left: 10px; white-space: nowrap;">2026-10-02</td>
@@ -883,7 +858,7 @@
                 Sep</span>
             </td>
             <td id="actual" class="datatable-item datatable-item-positive">
-                
+                3.8%
             </td>
             <td id="previous" class="datatable-item datatable-item-positive">
                 3.2%
@@ -894,6 +869,33 @@
             
             <td class="datatable-item datatable-item-positive">
                 3.8%
+            </td>
+            
+        </tr>
+    
+        <tr data-id="402708" class='an-estimate-row' data-country="Euro Area" data-category="Inflation Rate">
+            <td style="text-align: left; padding-left: 10px; white-space: nowrap;">2026-11-04</td>
+            <td style="white-space: nowrap">10:00 AM</td>
+            <td>
+                <div class='d-none'>
+                Inflation Rate YoY Flash
+                </div> 
+            </td>
+            <td id="reference" style="text-align: left">
+                Oct</span>
+            </td>
+            <td id="actual" class="datatable-item datatable-item-positive">
+                
+            </td>
+            <td id="previous" class="datatable-item datatable-item-positive">
+                3.8%
+            </td>
+            <td class="datatable-item datatable-item-positive">
+                
+            </td>
+            
+            <td class="datatable-item datatable-item-positive">
+                
             </td>
             
         </tr>
@@ -939,7 +941,7 @@
                                     
                                 </a>
                             </td>
-                            <td>103.30</td>
+                            <td>103.31</td>
                             
                             <td>103.06</td>
                             
@@ -971,13 +973,13 @@
                                     
                                 </a>
                             </td>
-                            <td>92.94</td>
+                            <td>103.44</td>
                             
-                            <td>91.48</td>
+                            <td>92.93</td>
                             
                             <td>
                                 points</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -987,13 +989,13 @@
                                     
                                 </a>
                             </td>
-                            <td>103.19</td>
+                            <td>104.24</td>
                             
-                            <td>103.01</td>
+                            <td>103.19</td>
                             
                             <td>
                                 points</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -1003,13 +1005,13 @@
                                     
                                 </a>
                             </td>
-                            <td>101.15</td>
+                            <td>101.33</td>
                             
-                            <td>101.19</td>
+                            <td>101.15</td>
                             
                             <td>
                                 points</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1019,13 +1021,13 @@
                                     
                                 </a>
                             </td>
-                            <td>104.19</td>
+                            <td>105.19</td>
                             
-                            <td>103.70</td>
+                            <td>104.19</td>
                             
                             <td>
                                 points</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -1035,13 +1037,13 @@
                                     
                                 </a>
                             </td>
-                            <td>104.24</td>
+                            <td>103.02</td>
                             
-                            <td>103.92</td>
+                            <td>104.24</td>
                             
                             <td>
                                 points</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1051,13 +1053,13 @@
                                     
                                 </a>
                             </td>
-                            <td>106.58</td>
+                            <td>105.94</td>
                             
-                            <td>106.36</td>
+                            <td>106.58</td>
                             
                             <td>
                                 points</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -1067,13 +1069,13 @@
                                     
                                 </a>
                             </td>
-                            <td>108.71</td>
+                            <td>109.41</td>
                             
-                            <td>107.41</td>
+                            <td>108.72</td>
                             
                             <td>
                                 points</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1099,7 +1101,7 @@
                                     
                                 </a>
                             </td>
-                            <td>117.45</td>
+                            <td>117.57</td>
                             
                             <td>113.05</td>
                             
@@ -1115,13 +1117,13 @@
                                     
                                 </a>
                             </td>
-                            <td>0.70</td>
+                            <td>1.00</td>
                             
-                            <td>0.80</td>
+                            <td>0.70</td>
                             
                             <td>
                                 percent</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -1133,11 +1135,11 @@
                             </td>
                             <td>2.60</td>
                             
-                            <td>2.70</td>
+                            <td>2.60</td>
                             
                             <td>
                                 percent</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1147,13 +1149,13 @@
                                     
                                 </a>
                             </td>
-                            <td>3.00</td>
+                            <td>3.20</td>
                             
-                            <td>3.30</td>
+                            <td>3.00</td>
                             
                             <td>
                                 percent</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
             </table>
@@ -1190,7 +1192,7 @@
                                     CPI
                                 </a>
                             </td>
-                            <td>104.30</td>
+                            <td>104.31</td>
                             
                             <td>103.69</td>
                             
@@ -1421,6 +1423,14 @@
         
                 <div class="list-group-item indc_news_stream te-stream-repeater">
                     <b>
+                        <a href='/euro-area/inflation-cpi/news/592744'>Euro Area Inflation Rate Confirmed at 3-Year High in September</a>
+                    </b>
+                    <div class="comment more">The annual inflation rate in the Eurozone accelerated for a third consecutive month to 3.8% in September 2026, the highest since September 2023, compared to 3.2% in August and in line with the preliminary estimate. Prices rose faster for energy (18.9% vs 14.3%), services (3.2% vs 3%) and food, alcohol and tobacco (1.3% vs 1.1%). On the other hand, inflation slowed slightly for non-energy industrial goods (1.1% vs 1.2%). Inflation accelerated across the bloc, with Slovakia the only country to record a slight decline, to 3% from 3.1%, while rates in Latvia and Portugal were unchanged at 3% and 3.6%, respectively. Among the Eurozone’s largest economies, inflation rose in Germany to 3.3% from 2.9%, France to 3.4% from 2.6%, Italy to 4.2% from 3.2%, Spain to 5% from 4.6%, and the Netherlands to 3% from 2.8%. Annual core inflation which excludes energy, food, alcohol & tobacco went up to 2.5% from 2.4%. Compared to August, the CPI increased 0.6%.</div>
+                    <small class="te-stream-date">2026-10-16</small><br />
+                </div>
+            
+                <div class="list-group-item indc_news_stream te-stream-repeater">
+                    <b>
                         <a href='/euro-area/inflation-cpi/news/589101'>Eurozone Inflation Accelerates to Three-Year High</a>
                     </b>
                     <div class="comment more">Eurozone annual inflation accelerated to 3.8% in September 2026, up from 3.2% in August and above market expectations of 3.6%, according to preliminary estimates. The rate reached its highest level since September 2023 and remained well above the ECB’s 2% target, driven largely by a surge in energy prices amid continued fighting in the Middle East. Energy inflation jumped to 18.8%, its highest level since January 2023. Price growth also accelerated for services, to 3.2% from 3.0%, and unprocessed food, to 4.0% from 2.7%. Core inflation, which excludes energy and food, rose to 2.5% from 2.4%, in line with expectations. Among the euro area’s largest economies, inflation accelerated in Germany to 3.3% from 2.9%, France to 3.4% from 2.6%, Spain to 5.0% from 4.6%, Italy to 4.1% from 3.2%, and the Netherlands to 3.0% from 2.8%.</div>
@@ -1433,14 +1443,6 @@
                     </b>
                     <div class="comment more">Eurozone annual inflation accelerated to 3.2% in August 2026, matching May’s two-and-a-half-year high but coming in slightly below the preliminary estimate of 3.3%. The rate remained well above the ECB’s 2% target, driven largely by a surge in energy prices amid continued fighting in the Middle East. Energy inflation jumped to 14.3%, its highest since January 2023, while inflation for unprocessed food and non-energy industrial goods also accelerated. Services inflation, however, eased to a four-month low of 3.0%, while core inflation, excluding energy and food, edged down to 2.4% from 2.5%. Among the euro area’s largest economies, inflation accelerated in Germany to 2.9% from 2.8%, France to 2.6% from 2.4%, Spain to 4.6% from 3.9%, and Italy to 3.2% from 2.9%. The Netherlands was an exception, with inflation easing to 2.8% from 3.0%.</div>
                     <small class="te-stream-date">2026-09-17</small><br />
-                </div>
-            
-                <div class="list-group-item indc_news_stream te-stream-repeater">
-                    <b>
-                        <a href='/euro-area/inflation-cpi/news/579984'>Eurozone Inflation Hits Highest Since 2023</a>
-                    </b>
-                    <div class="comment more">Eurozone annual inflation accelerated to 3.3% in August 2026 from 2.9% in July, in line with market expectations, according to preliminary estimates. The rate reached its highest level since September 2023 and remained well above the ECB’s 2% target, driven largely by a surge in energy prices amid continued fighting in the Middle East. The data strengthened expectations for an ECB rate hike as soon as this month, with markets fully pricing a 25-basis-point increase to 2.5%. Energy inflation jumped to 14.3%, its highest since January 2023, while unprocessed food and non-energy industrial goods inflation also accelerated. Services inflation, however, eased to a four-month low of 3.0%, while core inflation, excluding energy and food, edged down to 2.4%, below forecasts of 2.5%. Among the euro area’s largest economies, inflation accelerated in Germany to 2.9% from 2.8%, France to 2.7% from 2.4%, Spain to 4.5% from 3.9%, and Italy to 3.2% from 2.9%.</div>
-                    <small class="te-stream-date">2026-09-01</small><br />
                 </div>
             
             
@@ -1484,10 +1486,19 @@
                 <div class="card-header">Related</div>
                 <div class="card-body">
                     
-                            <div class="news-link"><a href='/euro-area/currency'>Euro Nears 17-Month Low on French Debt Concerns</a></div>
+                            <div class="news-link"><a href='/euro-area/stock-market'>European Stocks Close HIgher</a></div>
                             
                         
-                            <div class="news-link"><a href='/euro-area/stock-market'>European Stocks Kick Off the Week Higher</a></div>
+                            <div class="news-link"><a href='/euro-area/balance-of-trade'>Euro Area Posts Widest Trade Deficit in Over 3 Years</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/euro-area/inflation-cpi'>Euro Area Inflation Rate Confirmed at 3-Year High in September</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/euro-area/industrial-production-mom'>Euro Area Industrial Output Falls for 3rd Month</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/euro-area/currency'>Euro at $1.12</a></div>
                             
                         
                             <div class="news-link"><a href='/euro-area/interest-rate'>ECB Keeps Rate Path Open Amid Inflation Uncertainty: Minutes</a></div>
@@ -1503,15 +1514,6 @@
                             
                         
                             <div class="news-link"><a href='/euro-area/producer-price-inflation-mom'>Eurozone Industrial Producer Prices Rise 1.9% as Expected</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/euro-area/services-pmi'>Eurozone Services Activity Growth Strongest in 10 Months</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/euro-area/inflation-cpi'>Eurozone Inflation Accelerates to Three-Year High</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/euro-area/unemployment-rate'>Eurozone Jobless Rate Matches Forecasts at 6.4%</a></div>
                             
                         
                     <br />
@@ -1532,25 +1534,25 @@
                     <div class="card-header">Latest</div>
                     <div class="card-body">
                         
-                                <div class="news-link"><a href='/mexico/industrial-production'>Mexico Industrial Output Hits Highest Growth Since 2024</a></div>
+                                <div class="news-link"><a href='/united-states/capital-flows'>US Records Net TIC Inflow in August</a></div>
                             
-                                <div class="news-link"><a href='/kosovo/inflation-cpi'>Kosovo Inflation Rate Accelerates in September</a></div>
+                                <div class="news-link"><a href='/brazil/stock-market'>Ibovespa Advances on IBC-Br Rebound</a></div>
                             
-                                <div class="news-link"><a href='/commodity/palladium'>Palladium Trades Near 1-Year Low</a></div>
+                                <div class="news-link"><a href='/canada/stock-market'>TSX Edges Higher as Energy Gains Offset Tech Selloff</a></div>
                             
-                                <div class="news-link"><a href='/united-states/stock-market'>US Futures Trade Steady</a></div>
+                                <div class="news-link"><a href='/united-states/government-budget-value'>US Budget Swings to Deficit in September</a></div>
                             
-                                <div class="news-link"><a href='/commodity/cocoa'>Cocoa Rises as West African Crop Risks Intensify</a></div>
+                                <div class="news-link"><a href='/commodity/brent-crude-oil'>Brent Rises Near $110 on Increasing Supply Risks</a></div>
                             
-                                <div class="news-link"><a href='/commodity/silver'>Silver Edges Lower Ahead of Key US Economic Releases</a></div>
+                                <div class="news-link"><a href='/commodity/crude-oil'>Oil Surges Above $100 on Rising Supply Risks</a></div>
                             
-                                <div class="news-link"><a href='/commodity/gold'>Gold Slips on Strong Dollar</a></div>
+                                <div class="news-link"><a href='/united-states/stock-market'>US Stocks Fall as Chip Selloff Deepens</a></div>
                             
-                                <div class="news-link"><a href='/india/inflation-cpi'>India Inflation Rises to 2-Year High</a></div>
+                                <div class="news-link"><a href='/france/stock-market'>CAC 40 Rises on Defense Stocks Gains</a></div>
                             
-                                <div class="news-link"><a href='/india/stock-market'>Indian Stocks Slide Ahead of CPI</a></div>
+                                <div class="news-link"><a href='/calendar?article=29375&g=top&importance=2&startdate=2026-10-16'>Week Ahead - Oct 19th</a></div>
                             
-                                <div class="news-link"><a href='/latvia/balance-of-trade'>Latvia Trade Deficit Widens in August</a></div>
+                                <div class="news-link"><a href='/mexico/currency'>Mexican Peso Approaches 11-Month Low</a></div>
                             
                         <br />
                         <a id="ctl00_ContentPlaceHolder1_ctl03_moreTopNews" href="../stream">
@@ -2860,13 +2862,12 @@
         }
     });
 </script>
-<script>console.log("/js/chartec.ascx"); TEChartsToken = '20260324:loboantunes:e9ee14a134d60802037b276aa26237114ba3d078de42b13b4bee58c660b639d8';</script>
+<script>console.log("/js/chartec.ascx"); TEChartsToken = 'e9ee14a134d60802037b276aa26237114ba3d078de42b13b4bee58c660b639d8'; TEAuth.ready();</script>
 
 <script src='https://d1v8a2ofhkdel3.cloudfront.net/cdn/highstock_exporting.2024.10.1.0.js'></script>
 
-
-<link rel="stylesheet" href="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.css?v=20260219">
-<script src="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.js?v=20260219"></script>
+<link rel="stylesheet" href="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.css?v=20261014b">
+<script src="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.js?v=20261014b"></script>
 
 <script> console.log("[PREDICTION] UC Loading");</script>
 

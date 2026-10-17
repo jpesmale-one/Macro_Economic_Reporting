@@ -5293,6 +5293,89 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### F-158 - A TEST THAT PINNED A LIVE NUMBER RAISED A FALSE ALARM SIX DAYS
+### LATER (2026-10-17)
+
+Found while confirming the freeze had broken nothing: R-46 step 5 FAILED with
+"GBP scores +1.00, want +0.00 - the corridor is still reaching the score".
+
+*** IT WAS MY TEST THAT WAS WRONG, NOT THE MODEL. Checked before touching
+anything: level carries weight 0.0, raw EQUALS path exactly, and GBP's
+path_why reads "BEFORE - expected HIKE 3.75% -> 4%" from a CONSENSUS. The
+corridor was nowhere near the score. GBP is +1 because a hike consensus
+appeared in the capture during the week - LD-154 working exactly as intended.
+
+THE DEFECT: the LD-166 block I wrote on 12 Oct asserted ('GBP',0),('CHF',0),
+('JPY',0) - the three values those rows HAPPENED to have on the day the
+corridor was retired. A TEST THAT PINS A LIVE NUMBER WILL ALWAYS FAIL WHEN THE
+WORLD MOVES. Same family as F-150 (a guard exercising a path the product does
+not take) and as the first LD-165 block (an assertion that could not fail):
+*** TEST THE RULE, NEVER THE READING.
+
+THE FIX: assert PROVENANCE instead. raw == path for all eight already proves no
+second term is weighted; what it cannot catch is a non-zero score with no
+readable source. So every non-zero rate score must now name consensus, forecast
+or actual in path_src. Negative-tested - restoring level to 0.50 still fails on
+five counts.
+
+ALLOWED UNDER THE LD-167 FREEZE: this changes no rule, no band and no weight.
+It repairs a guard that was making a true configuration look broken, which is
+the F-149/F-151 family (a check describing something that is not happening).
+
+*** AND THE OTHER TWO R-46 FAILURES ARE NOT DEFECTS: R-45 "15 rows disagree
+with TE" and R-37 "14 problems" are the ordinary end-of-week staleness - a
+week of prints has landed since the 11 Oct roll. Step one of tomorrow's build
+is the refresh, which is exactly what clears them. Noted so they are not
+mistaken for breakage at the start of the build.
+
+### LD-167 - LOGIC FROZEN FOR THE 19-23 OCT BUILD (2026-10-17)
+
+Jeff, after the retro: "good retro. we stick with our current logic on the
+report building. tomorrow we'll produce our weekly report"
+
+*** NO SCORING OR REPORT-RULE CHANGES IN THE 19-23 OCT EDITION. This is the
+same freeze shape as 2026-10-03 ("No logic changes for the Weekly report this
+session. let's gather more data then reevaluate") and it exists for the same
+reason: five scoring changes landed in 36 hours last week, the graded set
+shared only ONE pair with the one first published, and a sixth change now
+would make the next retro unreadable as evidence.
+
+WHAT IS FROZEN - all of it stays exactly as it is:
+    LD-154/155   rate and inflation, before/after the news
+    LD-163/166   the rate row is LD-154 alone, path at full weight
+    LD-165       the base reads a forward inflation consensus
+    LD-149       WIN 1.40 / LOSS 0.70, target 0.75 x ATR(14)
+    LD-151       AUD and CAD graded on the full-time leg
+    LD-156..162  the daily report, its five sections, tier 5 and breadth
+    LD-126       the selector (one tier-1 read per category and per strong ccy)
+
+WHAT IS STILL ALLOWED, because it is not logic:
+    - the ordinary Sunday data refresh (R-45, R-47, roll_month, sync)
+    - DEFECT fixes where the renderer and a live rule disagree (the F-149/151
+      family) - a report that describes a rule it does not run is not a logic
+      change to fix
+    - the 28-pair bar grid, IF Jeff asks for it: it adds no rule, it only
+      gives LD-162 enough counterparts to be able to return NARROW
+
+CARRIED TO THE 31 OCT REVIEW, NOT ACTED ON NOW:
+    1. THE x3 LEG CONCENTRATION. Measured cost: three BEATEN in one session,
+       51% of the week's adverse movement. A x2 cap would have excluded one
+       pair - and GBPAUD, the best performer. Jeff's call, not a derivation.
+    2. rho. Seven weeks: -0.40, +0.00, +0.02, +0.17, +0.26, -0.62, +0.52.
+       The useful question is no longer "does it rank" but "why was
+       Wednesday -0.55 when the other four sessions were positive".
+    3. LD-162's INPUT. 40 of 40 BROAD, NARROW never fired, because CHF and NZD
+       have ONE counterpart. The metric is sound; the input is too thin.
+    4. LD-151 vs the market. The AUD print our rule calls NEUTRAL moved price
+       1.083%. Track the divergence; do not resolve it by argument.
+    5. CADJPY won on five DRIFTs. LD-149 cannot tell accumulation from
+       conviction, and a ratio built either way reads the same.
+    6. score_model.ROWS should be retired in favour of the CSVs - three copies
+       of derived data in one literal is what F-141/F-154 keep finding.
+
+TOMORROW (Sunday 18 Oct): build the 19-23 Oct edition on a fresh capture,
+refresh the macro data, run R-46's fourteen checks, and change nothing else.
+
 ### THE COUNTERFACTUAL: DID THIS WEEK'S SCORING CHANGES HELP? (2026-10-17)
 
 Jeff: "did we change the scoring from our last retro report?"
