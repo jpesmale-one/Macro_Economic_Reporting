@@ -5293,6 +5293,68 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### RETROSPECTIVE 12-16 OCT - THE FIRST ONE BUILT ON DAILY EVIDENCE
+### (2026-10-17)
+
+Jeff: "It's time for our Retrospective review. use the 4 reports we produced
+from Tuesday to Friday to have a more intelligent analysis"
+
+PUBLISHED: https://claude.ai/artifact/MrfibJq6Q6iG3wnST8aDjA
+Saved: reports/2026/Q4/2026-10-17_retro.html
+
+*** THE VERDICT: 4 WIN OF 4, SET RATIO 1.65 - the first clean sweep.
+    GBPJPY 1.60   GBPAUD 1.70   CADJPY 1.57   EURJPY 1.69
+Compare 5-9 Oct: 0 WIN, 2 CONTESTED, 2 LOSS, -245 pips.
+
+*** AND rho TURNED POSITIVE FOR THE FIRST TIME: +0.52, against a six-week
+record of -0.40, +0.00, +0.02, +0.17, +0.26, -0.62 (mean about -0.10).
+TESTED FOR ROBUSTNESS rather than reported bare: dropping each currency in
+turn gives +0.33 (JPY) to +0.63 (EUR) - positive however it is cut, so it is
+NOT one leg carrying it.
+
+*** BUT THE WEEK IS TWO SESSIONS, NOT FIVE - THE FINDING ONLY THE DAILIES
+ALLOW. Per-session fav/adv ratio:
+    Mon 2.39   Tue 1.00   WED 0.26   THU 9.48   Fri 3.54
+  THURSDAY supplied 43% of the week's favourable movement (541.4 of 1257.1).
+  WEDNESDAY supplied 51% of the adverse (391.4 of 762.3).
+  Strip both and the remaining three read 614.4/313.8 = 1.96 - still a WIN,
+  but a different week. Per-session rho matches the same shape: +0.29, +0.31,
+  **-0.55**, +0.40, +0.33. The bad session is the one where GBP went board #1
+  to session #8 and JPY #8 to #1, both extremes inverted seven places.
+
+*** THE CATALYST TALLY, NOW COUNTABLE FOR THE FIRST TIME (32 currency-sessions
+across four dailies): 10 consistent, 8 AGAINST, 8 quiet, 4 tone unread, 1
+UNEXPLAINED, 1 none-surprised. SO THE SCHEDULED DATA EXPLAINED THE MOVE 56% OF
+THE TIME IT SAID ANYTHING - barely better than a coin toss, on the very inputs
+the base score is built from. Thursday was an EXACT 4-4 split on the week's
+best session. Verified all four dailies carry 8 verdict rows before trusting
+the figure.
+
+*** AND 43% OF THE GAIN CAME FROM A PRINT OUR OWN RULE GRADES NEUTRAL.
+AUD Employment: headline -39.3K vs +20K, full time +34.4K, part time -73.7K.
+LD-57/LD-151 grades AUD on the FULL-TIME leg and the legs disagree, so
+employment_grade() returns NEUTRAL - called, not assumed. The market sold AUD
+1.083%. We were long GBPAUD and were paid by a release our scoring rule calls
+neutral. Which is right is genuinely open and the divergence should be tracked.
+
+*** A METRIC THAT CANNOT FAIL: LD-162 returned BROAD or mostly-broad in 40 OF
+40 currency-sessions. NARROW never fired once. The cause is the input, not the
+market - breadth is measured only against counterparts we hold bars for, and
+CHF and NZD get ONE. "BROAD, stronger against all 1" is arithmetically true
+and says nothing. The 28-pair grid is now the single highest-value fix.
+
+*** LD-166 ROTATED THE SET MID-WEEK AND THE PROSE DID NOT FOLLOW. Retiring
+the corridor took CHF -1.50 -> -1.00 and made JPY weakest, swapping three CHF
+shorts for three JPY shorts. The published edition still carried a note saying
+the overlap was "balanced for the first time in a month" - written before the
+rotation, never revisited. F-149/F-151's defect in PROSE, where no guard looks.
+The x3 JPY concentration then took three BEATEN on Wednesday.
+
+STYLE NOTE: the house retro stylesheet has no .chips/.chip - those live in the
+WEEKLY's style. Caught by checking every class used against the inherited block
+BEFORE publishing; added in the same var() token vocabulary so all three theme
+states hold. Every figure in the report re-verified against the pipeline.
+
 ### DAILY #4 - THE BIAS WORKED, AND AN LD-151 SPLIT WORTH KNOWING
 ### (2026-10-16, reporting the Thu 15 Oct session)
 
