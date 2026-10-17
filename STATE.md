@@ -5293,6 +5293,48 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### THE COUNTERFACTUAL: DID THIS WEEK'S SCORING CHANGES HELP? (2026-10-17)
+
+Jeff: "did we change the scoring from our last retro report?"
+
+A fair challenge to the retro's headline, because if the ruler moved then
+"4 WIN of 4 vs 0 WIN last week" is a definitional result, not a real one.
+
+*** FIRST, THE RULER DID NOT MOVE. atr_grade.py and pair_select.py have ZERO
+commits since the 10 Oct retro. TARGET 0.75, LOSS_AT 0.70, WIN_AT 1.40 are
+byte-identical. So the two retros ARE measured like for like.
+
+*** BUT THE INPUTS CHANGED HEAVILY - five scoring changes in 36 hours:
+    LD-154/155  rate and inflation on a before/after shape (10 Oct, 23:37)
+    LD-163      realised retired, rate = level 0.50 + path 0.50
+    LD-165      the base finally reads a forward inflation consensus
+    F-154/R-48  score_model.prev wrong on 26 of 41 rows, 3 of them scoring
+    LD-166      the 1.5-2.5 corridor retired from Interest Rate entirely
+  rate_model 4 commits, score_model 4, derive_scores 2, calibrator 1.
+
+*** AND THE SET THAT WAS GRADED SHARES ONLY ONE PAIR WITH THE ONE FIRST
+PUBLISHED:
+    V5  GBPAUD, GBPCHF, EURAUD, CADCHF
+    V11 GBPJPY, GBPAUD, CADJPY, EURJPY     <- only GBPAUD survives
+
+*** SO I GRADED ALL THREE SETS ON THE SAME WEEK WITH THE SAME RULE, which is
+the only way to answer whether the changes HELPED rather than just CHANGED:
+
+    V5  (pre-change)  ratio 1.53  WIN        2 WIN, 2 CONTESTED
+    V9  (mid-change)  ratio 1.32  CONTESTED  1 WIN, 3 CONTESTED
+    V11 (as graded)   ratio 1.65  WIN        4 WIN, 0 CONTESTED
+
+THE CHANGES IMPROVED THE OUTCOME ON THIS WEEK'S PRICES: 1.53 -> 1.65 on the
+set ratio, and 2 WIN -> 4 WIN on the pair count. V9 is WORSE than both, so the
+path was not monotonic - F-154's prev corrections alone made the set
+CONTESTED, and LD-166 is what recovered it.
+
+*** WHAT THIS DOES AND DOES NOT ESTABLISH. It is ONE WEEK and the sets differ
+by three legs, so this is not evidence that LD-166 is right - it is evidence
+that it was not harmful here. The honest summary is: the comparison is
+like-for-like on the RULE, the inputs changed materially, and the new inputs
+did better than the old ones on the one week both can be measured against.
+
 ### RETROSPECTIVE 12-16 OCT - THE FIRST ONE BUILT ON DAILY EVIDENCE
 ### (2026-10-17)
 
