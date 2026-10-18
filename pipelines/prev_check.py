@@ -291,6 +291,12 @@ REVISED = {
                                   'TE 6.4% revised. Same month.',
     ('USD', 'Non Farm Payrolls'): 'Aug/26: CSV 162K as first published, '
                                   'TE 133K revised. Same month.',
+    # 2026-10-18: the ABS revised August up 4.6 -> 4.7 when September printed,
+    # which is why September reads FLAT rather than a rise. Verified on the TE
+    # page AND in the 2026-10-18 capture (previous 4.7% carries TE's revision
+    # marker). Same month, so this is a value question and LD-3 settles it.
+    ('AUD', 'Unemployment Rate'): 'Aug/26: CSV 4.6% as first published, '
+                                  'TE 4.7% revised. Same month.',
 }
 
 

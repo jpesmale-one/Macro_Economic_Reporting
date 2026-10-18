@@ -6,23 +6,23 @@ Oct-26,Employment,GBP,Claimant Count Change,27.8K,-1
 Oct-26,Employment,GBP,Unemployment Rate,4.9%,0
 Oct-26,Employment,JPY,Unemployment Rate,2.5%,-1
 Oct-26,Employment,AUD,ANZ-Indeed Job Ads MoM,2.2%,1
-Oct-26,Employment,AUD,Employment Change,"39.5K (FT -6.3K, PT +45.8K)",0
-Oct-26,Employment,AUD,Unemployment Rate,4.6%,-1
+Oct-26,Employment,AUD,Employment Change,"-39.3K (FT +34.4K, PT -73.7K)",0
+Oct-26,Employment,AUD,Unemployment Rate,4.7%,0
 Oct-26,Employment,NZD,Unemployment Rate,5.6%,-1
 Oct-26,Employment,CAD,Employment Change,"-68.3K (FT -35.4K, PT -32.9K)",-1
 Oct-26,Employment,CAD,Unemployment Rate,6.5%,-1
 Oct-26,Employment,CHF,Unemployment Rate,3%,0
-Oct-26,Inflation,USD,Inflation Rate YoY,3.4%,1
-Oct-26,Inflation,EUR,Inflation Rate YoY Final,3.2%,1
+Oct-26,Inflation,USD,Inflation Rate YoY,3.7%,1
+Oct-26,Inflation,EUR,Inflation Rate YoY Final,3.8%,1
 Oct-26,Inflation,GBP,Inflation Rate YoY,3.1%,1
-Oct-26,Inflation,JPY,Inflation Rate YoY,1.9%,0
+Oct-26,Inflation,JPY,Inflation Rate YoY,1.9%,1
 Oct-26,Inflation,AUD,Inflation Rate YoY,4.0%,1
 Oct-26,Inflation,NZD,Inflation Rate YoY,4.1%,1
 Oct-26,Inflation,CAD,Inflation Rate YoY,3%,1
 Oct-26,Inflation,CHF,Inflation Rate YoY,1%,-1
-Oct-26,Interest_Rate,USD,Fed Interest Rate Decision,4.00%,1.0
-Oct-26,Interest_Rate,EUR,ECB Interest Rate Decision,2.65%,1.0
-Oct-26,Interest_Rate,GBP,BoE Interest Rate Decision,3.75%,0.0
+Oct-26,Interest_Rate,USD,Fed Interest Rate Decision,4.00%,0.0
+Oct-26,Interest_Rate,EUR,ECB Interest Rate Decision,2.65%,0.0
+Oct-26,Interest_Rate,GBP,BoE Interest Rate Decision,3.75%,1.0
 Oct-26,Interest_Rate,JPY,BoJ Interest Rate Decision,1.25%,0.0
 Oct-26,Interest_Rate,AUD,RBA Interest Rate Decision,4.60%,1.0
 Oct-26,Interest_Rate,NZD,RBNZ Interest Rate Decision,2.75%,0.0
@@ -30,26 +30,26 @@ Oct-26,Interest_Rate,CAD,BoC Interest Rate Decision,2.25%,0.0
 Oct-26,Interest_Rate,CHF,SNB Interest Rate Decision,0.00%,0.0
 Oct-26,Production,USD,Durable Goods Ex Transp MoM,0.3%,0
 Oct-26,Production,USD,ISM Manufacturing PMI,54.5,1
-Oct-26,Production,USD,Industrial Production YoY,1.4%,1
-Oct-26,Production,USD,Manufacturing Production YoY,0.9%,1
-Oct-26,Production,EUR,Industrial Production YoY,0%,0
+Oct-26,Production,USD,Industrial Production YoY,2.2%,1
+Oct-26,Production,USD,Manufacturing Production YoY,1.1%,1
+Oct-26,Production,EUR,Industrial Production YoY,-1.1%,-1
 Oct-26,Production,EUR,S&P Global Mfg PMI Final,52.9,1
-Oct-26,Production,GBP,Industrial Production YoY,0.6%,1
-Oct-26,Production,GBP,Manufacturing Production YoY,2.6%,1
+Oct-26,Production,GBP,Industrial Production YoY,1.6%,1
+Oct-26,Production,GBP,Manufacturing Production YoY,3%,1
 Oct-26,Production,GBP,S&P Global Mfg PMI Final,51.9,1
-Oct-26,Production,JPY,Industrial Production YoY Final,3.9%,1
+Oct-26,Production,JPY,Industrial Production YoY Final,2.7%,1
 Oct-26,Production,JPY,Machine Tool Orders YoY,60.4%,1
-Oct-26,Production,JPY,Machinery Orders YoY,11.2%,1
+Oct-26,Production,JPY,Machinery Orders YoY,18.6%,1
 Oct-26,Production,JPY,S&P Global Mfg PMI Final,54.1,1
 Oct-26,Production,AUD,S&P Global Mfg PMI Final,49.6,-1
-Oct-26,Production,NZD,Business NZ PMI,53.1,1
+Oct-26,Production,NZD,Business NZ PMI,56.5,1
 Oct-26,Production,NZD,Global Dairy Trade Price Index,-1.1%,-1
 Oct-26,Production,CAD,S&P Global Mfg PMI,51.5,1
 Oct-26,Production,CHF,Procure.ch-UBS Mfg PMI,55.3,1
 Oct-26,Spending,USD,Building Permits MoM Final,-2.1%,-1
-Oct-26,Spending,USD,CB Consumer Confidence,89.4,-1
+Oct-26,Spending,USD,CB Consumer Confidence,81.9,-1
 Oct-26,Spending,USD,Personal Spending MoM,0.9%,1
-Oct-26,Spending,USD,Retail Sales YoY,6%,1
+Oct-26,Spending,USD,Retail Sales YoY,6.3%,1
 Oct-26,Spending,EUR,Consumer Confidence Final,-16.5,-1
 Oct-26,Spending,EUR,Retail Sales YoY,0.8%,1
 Oct-26,Spending,GBP,GfK Consumer Confidence,-13,1
@@ -59,19 +59,19 @@ Oct-26,Spending,JPY,Household Spending YoY,-3.1%,-1
 Oct-26,Spending,JPY,Retail Sales YoY,2.7%,1
 Oct-26,Spending,AUD,Building Permits YoY Final,10.3%,1
 Oct-26,Spending,AUD,Household Spending YoY,6.8%,1
-Oct-26,Spending,AUD,NAB Business Confidence,-8,-1
+Oct-26,Spending,AUD,NAB Business Confidence,-13,-1
 Oct-26,Spending,AUD,Westpac Consumer Conf Change,-4.7%,1
 Oct-26,Spending,NZD,ANZ Business Confidence,51.9,-1
 Oct-26,Spending,NZD,ANZ Roy Morgan Consumer Conf,97.6,-1
 Oct-26,Spending,NZD,Building Permits MoM,-4.3%,-1
-Oct-26,Spending,NZD,Electronic Retail Card Spending YoY,0.2%,0
-Oct-26,Spending,CAD,Building Permits MoM,-17.3%,-1
+Oct-26,Spending,NZD,Electronic Retail Card Spending YoY,0.9%,1
+Oct-26,Spending,CAD,Building Permits MoM,8.8%,1
 Oct-26,Spending,CAD,Retail Sales YoY,5.1%,1
 Oct-26,Spending,CHF,Consumer Confidence,-36,-1
 Oct-26,Spending,CHF,Retail Sales YoY,3.2%,1
 Oct-26,Trade,USD,Balance of Trade,$-105.6B,-1
-Oct-26,Trade,EUR,Balance of Trade,EUR14.2B,1
-Oct-26,Trade,GBP,Balance of Trade,GBP-3.45B,1
+Oct-26,Trade,EUR,Balance of Trade,EUR-16.1B,-1
+Oct-26,Trade,GBP,Balance of Trade,GBP-0.920B,1
 Oct-26,Trade,JPY,Balance of Trade,JPY-1105.6B,-1
 Oct-26,Trade,AUD,Balance of Trade,A$0.495B,-1
 Oct-26,Trade,NZD,Balance of Trade,NZ$-1.349B,1

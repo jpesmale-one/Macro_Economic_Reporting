@@ -66,8 +66,8 @@ def hot(ccy, name):
 SP = ('C:/Users/jpesm/AppData/Local/Temp/claude/'
       'c--Users-jpesm-OneDrive-Documents-GitHub/'
       '16c8f514-dc2c-4587-b6a0-4fa0ff0b7ba8/scratchpad/')
-CAP = sorted(glob.glob('data/raw/calendar/2026-10-11_*_cal_full.json'))[-1]
-START, END = '2026-10-12', '2026-10-16'
+CAP = sorted(glob.glob('data/raw/calendar/2026-10-18_*_cal_full.json'))[-1]
+START, END = '2026-10-19', '2026-10-23'
 
 F = ps.final_scores(CAP, START, END)
 SC = dict((c, F[c]['total']) for c in F)

@@ -134,6 +134,33 @@ REFS = {
     ('NZ', 'Inflation Rate YoY'):       'Jun/26 (Q)',  # Q3 rel 21 Oct
     ('CA', 'Inflation Rate YoY'):       'Aug/26',  # Sep CPI rel 19 Oct
     ('CH', 'Inflation Rate YoY'):       'Sep/26',  # Sep CPI rel 1 Oct
+    # ---- 2026-10-18 build: the 15 rows R-45 found stale --------------------
+    # *** AND THE GUARD REPORTED 0 REF DRIFT UNTIL THESE WERE ADDED, which is
+    # F-152's blind spot repeating on a new set of rows: ref_drift() iterates
+    # the rows REFS hands it, so a row with no entry is SKIPPED, not reported.
+    # All fifteen vintages were stale (Jul/26 or Aug/26 against TE's Aug/26 or
+    # Sep/26) and a value-only sync would have left every one of them
+    # internally inconsistent - the September number wearing August's label,
+    # which is the exact defect F-141b was written for.
+    ('US', 'Industrial Production YoY'):       'Sep/26',
+    ('US', 'Manufacturing Production YoY'):    'Sep/26',
+    ('EA', 'Industrial Production YoY'):       'Aug/26',
+    ('GB', 'Industrial Production YoY'):       'Aug/26',
+    ('GB', 'Manufacturing Production YoY'):    'Aug/26',
+    ('JP', 'Industrial Production YoY Final'): 'Aug/26',
+    ('JP', 'Machinery Orders YoY'):            'Aug/26',
+    ('US', 'Retail Sales YoY'):                'Sep/26',
+    ('AU', 'NAB Business Confidence'):         'Sep/26',
+    ('EA', 'Balance of Trade'):                'Aug/26',
+    ('GB', 'Balance of Trade'):                'Aug/26',
+    ('AU', 'Employment Change'):               'Sep/26',
+    ('AU', 'Unemployment Rate'):               'Sep/26',
+    ('US', 'Inflation Rate YoY'):              'Sep/26',
+    ('EA', 'Inflation Rate YoY Final'):        'Sep/26',
+    ('NZ', 'Business NZ PMI'):                     'Sep/26',
+    ('NZ', 'Electronic Retail Card Spending YoY'): 'Sep/26',
+    ('CA', 'Building Permits MoM'):                'Aug/26',
+    ('US', 'CB Consumer Confidence'):            'Sep/26',
 }
 
 

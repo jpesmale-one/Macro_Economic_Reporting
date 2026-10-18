@@ -1,7 +1,7 @@
 Currency,Indicator,Frequency,Aug-26,Sep-26,Oct-26
 USD,Balance of Trade,Monthly,$-73.3B,-$88.6B,$-105.6B
-EUR,Balance of Trade,Monthly,EUR8.60B,EUR14.2B,EUR14.2B
-GBP,Balance of Trade,Monthly,GBP-5.54B,GBP-3.45B,GBP-3.45B
+EUR,Balance of Trade,Monthly,EUR8.60B,EUR14.2B,EUR-16.1B
+GBP,Balance of Trade,Monthly,GBP-5.54B,GBP-3.45B,GBP-0.920B
 JPY,Balance of Trade,Monthly,JPY-634.5B,JPY-1105.6B,JPY-1105.6B
 AUD,Balance of Trade,Monthly,A$1.929B,A$1.923B,A$0.495B
 NZD,Balance of Trade,Monthly,NZ$-1.95B,NZ$-1.349B,NZ$-1.349B

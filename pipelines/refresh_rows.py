@@ -31,6 +31,45 @@ revision - the September print, released Fri 2 Oct, and a collapse against a
 # (CCY, Indicator) -> the actual AS PUBLISHED (LD-112 - store the print, let
 # derive_scores.py do the grading)
 UPDATES = {
+    # ---- 2026-10-18 BUILD: prints that landed 12-16 Oct -------------------
+    # R-45 swept all 70 rows and found FIFTEEN stale. Every value read from
+    # the TE INDICATOR PAGE (LD-3 owns the value); the six marked
+    # [page+capture] agree with our own 2026-10-18 capture as well.
+    ('USD', 'Industrial Production YoY'):          '2.2%',                            # Sep/26, rel 16 Oct  [page]
+    ('USD', 'Manufacturing Production YoY'):       '1.1%',                            # Sep/26, rel 16 Oct  [page]
+    ('EUR', 'Industrial Production YoY'):          '-1.1%',                           # Aug/26, rel 15 Oct  [page+capture]
+    ('GBP', 'Industrial Production YoY'):          '1.6%',                            # Aug/26, rel 15 Oct  [page]
+    ('GBP', 'Manufacturing Production YoY'):       '3%',                              # Aug/26, rel 15 Oct  [page]
+    ('JPY', 'Industrial Production YoY Final'):    '2.7%',                            # Aug/26, rel 15 Oct  [page+capture]
+    ('JPY', 'Machinery Orders YoY'):               '18.6%',                           # Aug/26, rel 14 Oct  [page]
+    ('USD', 'Retail Sales YoY'):                   '6.3%',                            # Sep/26, rel 15 Oct  [page]
+    ('AUD', 'NAB Business Confidence'):            '-13',                             # Sep/26, rel 13 Oct  [page]
+    ('EUR', 'Balance of Trade'):                   'EUR-16.1B',                       # Aug/26, rel 16 Oct  [page+capture]
+    ('GBP', 'Balance of Trade'):                   'GBP-0.920B',                      # Aug/26, rel 15 Oct  [page]
+    ('AUD', 'Employment Change'):                  '-39.3K (FT +34.4K, PT -73.7K)',   # Sep/26, rel 15 Oct  [page+capture, all 3 legs]
+    ('AUD', 'Unemployment Rate'):                  '4.7%',                            # Sep/26, rel 15 Oct  [page+capture]
+    ('USD', 'Inflation Rate YoY'):                 '3.7%',                            # Sep/26, rel 14 Oct  [page]
+    ('EUR', 'Inflation Rate YoY Final'):           '3.8%',                            # Sep/26, rel 16 Oct  [page+capture]
+    # *** THREE MORE R-45 COULD NOT SEE, CAUGHT BY R-37 INSTEAD.
+    # All three sit in R-45's "NO PAGE" list - the slug does not resolve - so
+    # only the capture (R-37/R-40) could find them. THIS IS WHY BOTH CHECKS
+    # EXIST: 13 rows have no usable indicator page, and for those the capture
+    # is the only authority available.
+    ('NZD', 'Business NZ PMI'):                '56.5',   # Sep/26, rel 15 Oct [capture]
+    ('NZD', 'Electronic Retail Card Spending YoY'): '0.9%',  # Sep/26, rel 15 Oct [capture, YoY not MoM]
+    ('CAD', 'Building Permits MoM'):           '8.8%',   # Aug/26, rel 14 Oct [TE page read directly]
+    # *** USD CB CONSUMER CONFIDENCE - THE "NEVER VERIFIED" ROW, FINALLY READ.
+    # Its TE slug resolves to /united-states/consumer-confidence = UNIVERSITY
+    # OF MICHIGAN sentiment, a DIFFERENT survey, so R-45 can never check it and
+    # the dark-row ledger has carried it as UNVERIFIED since it was created.
+    # Read from the Conference Board release instead and CONFIRMED BY THREE
+    # INDEPENDENT SOURCES before changing a scoring row: 81.9 for September,
+    # down 6.7 from 88.6 in August, against a 89.2 consensus - the lowest since
+    # 2014. (Present Situation 109.3, Expectations 63.6.)
+    # The SCORE is -1 either way (89.4 vs 90.2 also fell), so the board does
+    # not move - but the PRINTED value was wrong by 7.5 points and two
+    # vintages, and a row nothing can check is exactly the row to read by hand.
+    ('USD', 'CB Consumer Confidence'):         '81.9',   # Sep/26, rel 29 Sep [Conference Board, 3 sources]
     # ---- 2026-10-11 BUILD: prints that landed 5-9 Oct ---------------------
     # Every value raised by R-45 against the TE indicator page and confirmed
     # on the page that owns it (LD-3).

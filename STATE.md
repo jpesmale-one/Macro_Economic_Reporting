@@ -5293,6 +5293,93 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### EDITION 2026-10-18 r1: 19-23 OCT, AND THE BIGGEST REFRESH YET
+### (2026-10-18)
+
+Jeff: "Lets build our weekly report for October 19-23. Make sure to update our
+macro economic indicator on the last week's news result. Scan all indicators
+and see if there are stalled data and update them accordingly."
+
+PUBLISHED: https://claude.ai/artifact/NhyqPwGB11jK1uwSxwzi3N
+Saved: reports/2026/Q4/2026-10-18_weekly.html
+
+*** EIGHTEEN STALE ROWS, AND THE TWO CHECKS FOUND DIFFERENT ONES - which is
+the finding, not the count. R-45 sweeps the TE indicator PAGE; R-37/R-40
+compare against our own CAPTURE. NEITHER ALONE WAS SUFFICIENT:
+  R-45 found 15 - USD industrial/manufacturing production, retail sales, CPI;
+       EUR industrial production, trade, CPI Final; GBP industrial/
+       manufacturing production, trade; JPY industrial production Final,
+       machinery orders; AUD NAB confidence, employment, unemployment.
+  R-37 found 3 MORE THAT R-45 STRUCTURALLY CANNOT SEE - NZD Business NZ PMI
+       (53.1->56.5), NZD card spending (0.2->0.9%), CAD building permits
+       (-17.3->8.8%). All three sit in R-45's NO PAGE list: the slug does not
+       resolve, so only the capture could find them.
+TRUE COVERAGE 42 -> 60 of 70.
+
+*** AND EVERY REF MONTH WAS STALE TOO, WITH ref_drift() REPORTING ZERO.
+All 15 carried Jul/26 or Aug/26 against TE's Aug/26 or Sep/26, and the guard
+said 0 until watchers were added - F-152's blind spot on a new set of rows
+(ref_drift iterates the rows REFS hands it, so an absent row is SKIPPED, not
+reported). A value-only sync would have left all 15 internally inconsistent:
+the September number wearing August's label, which is F-141b exactly.
+
+*** THE "NEVER VERIFIED" ROW HAS FINALLY BEEN READ. USD CB Consumer
+Confidence has carried UNVERIFIED in the dark-row ledger since it was created,
+because its TE slug resolves to UNIVERSITY OF MICHIGAN sentiment - a different
+survey. We held 89.4. Read from the Conference Board release and CONFIRMED BY
+THREE INDEPENDENT SOURCES before changing a scoring row: 81.9 Sep, down 6.7
+from 88.6, against an 89.2 consensus, lowest since 2014. SCORE IS -1 EITHER
+WAY so the board does not move - but the printed value was wrong by 7.5 points
+and two vintages. F-143 NOW READS 10 DARK ROWS CURRENT, 0 UNVERIFIABLE - the
+first time ever.
+
+THE BOARD, 19-23 Oct:
+    GBP +7.50  CAD +4.40  NZD +0.90 | JPY -0.27  USD -0.50 | AUD -0.67
+    EUR -1.00  CHF -1.20
+  EUR +4.00 -> -1.00, a FIVE-POINT swing, third to seventh. One cell did it:
+    Balance of Trade EUR14.2B -> EUR-16.1B, surplus to deficit, on a weight-2
+    category. Inflation still pays EUR +1 (3.8% is above the 2.2% ceiling), so
+    the euro is marked down on ACTIVITY while its INFLATION argues the other
+    way.
+  GBP +6.57 -> +7.50 on a BoE hike consensus of 4% vs the standing 3.75% -
+    the first time LD-166's path-only rate row has moved a currency between
+    editions.
+
+SET: GBPCHF +8.70, GBPAUD +8.17, CADCHF +7.60, NZDCHF +2.60
+
+*** CHF IS x3 - EXACTLY THE SHAPE THAT COST THREE BEATEN LAST WEEK. GBPCHF,
+CADCHF and NZDCHF are all short CHF. Last week JPY was x3 and on Wed 14 Oct it
+ranked #1 of eight, taking three BEATEN in one session = 51% of the week's
+adverse movement. THE SELECTOR IS UNCHANGED PER LD-167 (the x2 cap is deferred
+to 31 Oct), but the risk is now MEASURED, not hypothetical. And CHF has no
+scheduled row this week except Tuesday's trade balance, so the move that would
+do it is one the calendar cannot warn about.
+*** GBP ALSO HAS FIVE OF THIRTEEN SCHEDULED ROWS (unemployment and claimant
+count Tue, CPI Wed, GfK and retail sales Fri) with two of four pairs long GBP.
+
+TWO DEFECT FIXES, BOTH ALLOWED UNDER THE FREEZE:
+  F-159 - R-40 called EUR and GBP trade "data the world has superseded" on
+    the build that had just refreshed them, because we store EUR-16.1B and TE
+    renders the GLYPH. Numbers identical; the guard compares STRINGS. It now
+    treats an ISO code and its glyph as one value - F-139's rule one axis
+    over. NEGATIVE-TESTED: planting a wrong EUR value still fails it. The house
+    style is deliberately NOT restyled - it is mixed and pre-existing (USD $,
+    CAD C$, AUD A$, NZD NZ$, CHF/JPY/EUR/GBP the code), and the other six pass
+    only because TE happens to render them our way.
+  AUD Unemployment prev 4.5% -> 4.7% - the ABS revised August UP, so September
+    reads FLAT rather than a rise: BAD became NEUTRAL. Verified on the TE page
+    AND in our capture, which carries TE's revision marker. Added to
+    prev_check.REVISED as a same-month revision.
+
+ONE ROW CORRECTLY UNSCORABLE: NZD Global Dairy Trade (Tue 20) has no consensus
+and no forecast, so it scores None rather than a guessed 0 (F-73).
+
+STYLE NOTE: ".note fail" is the RETRO stylesheet's class, not the weekly's.
+Caught by checking every class against BOTH style blocks before publishing -
+the weekly uses ".note rev" for warnings.
+
+R-46 FOURTEEN OF FOURTEEN. R-44 41 cases. R-43 clean.
+
 ### F-158 - A TEST THAT PINNED A LIVE NUMBER RAISED A FALSE ALARM SIX DAYS
 ### LATER (2026-10-17)
 

@@ -35,9 +35,13 @@ READS = {
          'TE /australia/manufacturing-pmi - 52.0 Aug -> 49.6 Sep, sharpest '
          'fall in 21 months, released 30 Sep'),
     ('NZD', 'Business NZ PMI'):
-        ('53.1', 'Aug/26', '2026-10-04',
-         'TE /new-zealand/manufacturing-pmi - 54.3 Jul -> 53.1 Aug, released '
-         '10 Sep; Sep print due ~10 Oct'),
+        ('56.5', 'Sep/26', '2026-10-18',
+         'the 2026-10-18 CAPTURE carries "business nz pmi sep" actual 56.5, '
+         'previous 53.3 (TE revision marker), released 15 Oct. The indicator '
+         'page slug still does not resolve, so the CAPTURE is the authority '
+         'for this row - which is exactly why R-37/R-40 exist alongside '
+         'R-45: 13 rows have no usable page at all. 53.1 Aug -> 56.5 Sep is '
+         'a 3.4-point jump and it took NZD Production from 0 to +1.'),
     ('USD', 'ISM Manufacturing PMI'):
         ('54.5', 'Sep/26', '2026-10-04',
          'TE /united-states/business-confidence - 54.6 Aug -> 54.5 Sep, '
@@ -65,13 +69,26 @@ READS = {
     # URL has been found. Held at its last known value and SAID to be held
     # (F-73) - never silently carried as if checked.
     ('USD', 'CB Consumer Confidence'):
-        ('89.4', 'Aug/26', 'UNVERIFIED',
-         'slug resolves to /united-states/consumer-confidence = University of '
-         'Michigan sentiment, a DIFFERENT survey. Sep print not readable.'),
+        ('81.9', 'Sep/26', '2026-10-18',
+         'NO LONGER UNVERIFIED. The slug still resolves to '
+         '/united-states/consumer-confidence = University of Michigan '
+         'sentiment, a DIFFERENT survey - that defect stands and R-45 can '
+         'never check this row. Read from the Conference Board release and '
+         'CONFIRMED BY THREE INDEPENDENT SOURCES: 81.9 Sep, down 6.7 from '
+         '88.6 Aug, against an 89.2 consensus, lowest since 2014. Score is '
+         '-1 either way, so the board did not move - but the held 89.4 was '
+         'wrong by 7.5 points and two vintages.'),
     ('NZD', 'Electronic Retail Card Spending YoY'):
-        ('0.2%', 'Aug/26', 'UNVERIFIED',
-         'slug resolves to /new-zealand/retail-sales-annual which returns '
-         'LEVELS in NZD millions, not the YoY percentage this row holds.'),
+        ('0.9%', 'Sep/26', '2026-10-18',
+         'NO LONGER UNVERIFIED. The slug still resolves to '
+         '/new-zealand/retail-sales-annual, which returns LEVELS in NZD '
+         "millions rather than this row's YoY percentage - that defect "
+         'stands. But the 2026-10-18 capture carries the series directly: '
+         '"electronic retail card spending YOY sep" actual 0.9%, previous '
+         '0.2%, released 15 Oct. *** THE CAPTURE ALSO CARRIES A MOM ROW AT '
+         '-0.4% ON THE SAME DAY, and taking that would be an F-37 error - '
+         'the transform is part of the series identity. This row is the '
+         'YoY.'),
 }
 
 # how long a read stays good, by cadence

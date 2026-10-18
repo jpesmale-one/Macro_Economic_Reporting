@@ -142,8 +142,34 @@ def stale(since, until=None):
         # different from TE's bare "39.5K" and called a correctly-refreshed
         # row STALE. A guard that fires on its own house style teaches you to
         # skip it - the F-120 lesson from the other direction.
+        # F-159 - AN ISO CODE AND ITS CURRENCY GLYPH ARE THE SAME VALUE.
+        #
+        # Same shape as F-139 above, one axis over. We store EUR Balance of
+        # Trade as "EUR-16.1B" and GBP as "GBP-0.920B"; TE renders the GLYPH,
+        # "EUR-16.1B" and "GBP-0.920B". The NUMBERS are identical and the
+        # vintages agree, but R-40 compares strings and reported both rows as
+        # "THE EDITION IS SCORED ON DATA THE WORLD HAS SUPERSEDED" - on the
+        # very build that had just refreshed them correctly.
+        #
+        # WHY NOT RESTYLE THE CELLS INSTEAD: the house style is already MIXED
+        # and pre-existing (USD "$", CAD "C$", AUD "A$", NZD "NZ$", CHF "CHF",
+        # JPY "JPY", EUR/GBP the ISO code). The other six pass only because TE
+        # happens to render them the way we store them. Rewriting live cells
+        # mid-build to satisfy a string compare is the wrong direction - the
+        # GUARD should know that a symbol is presentation, which is exactly
+        # what F-139 established for the employment split.
+        _CCY_GLYPH = {u'€': 'EUR', u'£': 'GBP', u'¥': 'JPY',
+                      u'₣': 'CHF'}
+
+        def _norm_ccy(v):
+            v = v or ''
+            for g, iso in _CCY_GLYPH.items():
+                v = v.replace(g, iso)
+            return v
+
         _h = (held.get((c, n)) or '')
-        _same = (_h == act) or (act and _h.startswith(act + ' ('))
+        _hn, _an = _norm_ccy(_h), _norm_ccy(act)
+        _same = (_hn == _an) or (_an and _hn.startswith(_an + ' ('))
         if not _same:
             out.append((c, n, held.get((c, n)), act, ds, raw))
             continue
