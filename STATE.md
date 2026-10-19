@@ -5293,6 +5293,62 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### THE NO-GBP/EUR QUESTION, AND A PREMISE I COULD NOT VERIFY (2026-10-19)
+
+Jeff: "seems like GBP is takling a toll on France's riots. is there any other
+pair we could trade other than GBP and EUR?"
+
+*** FIRST, THE PREMISE - AND I COULD NOT CONFIRM IT. Searched France unrest
+and the France budget for October 2026. EVERY RESULT WAS OLDER: the riots
+coverage is all June-July 2023 (the Nanterre shooting), and the budget-crisis
+coverage is all autumn 2025 (Lecornu reappointed, the 2026 budget fight,
+deficit above 5% of GDP, debt over 114%). NOTHING DATED OCTOBER 2026 WAS FOUND.
+Recorded as UNVERIFIED rather than restated as fact - this is the LD-158
+discipline exactly: I once turned TE's description of market PRICING into a
+claim about ECB INTENT, and Jeff caught it by reading the actual statement.
+If he has a source, it changes the reading; I could not find one.
+
+*** AND OUR OWN DATA DOES NOT SUPPORT THE SHAPE OF THE PREMISE. GBP is the
+STRONGEST currency on the board at +7.50, not a currency taking a toll:
+    GBP cats: Production +2, Spending +2, Trade +2, Employment -0.5,
+              Inflation +1, Interest Rate +1
+EUR at -1.00 is weak for ONE reason and it is not France-specific:
+    EUR cats: Trade -2.00 (Balance of Trade EUR14.2B -> EUR-16.1B, a weight-2
+              category), everything else 0 except Inflation +1
+A French political story would be expected to show in EUR, not GBP - and the
+EUR weakness we DO have is a single trade cell, not a broad deterioration.
+
+*** THE ANSWER TO THE ACTUAL QUESTION: YES, EIGHT OF FOURTEEN CANDIDATES
+CARRY NEITHER GBP NOR EUR.
+    CADCHF LONG  +7.60 (tier 1)   NZDUSD LONG  +1.90
+    USDCAD SHORT +6.90            NZDJPY LONG  +1.67
+    CADJPY LONG  +6.67            AUDJPY SHORT +0.40
+    NZDCHF LONG  +2.60 (tier 1)   AUDUSD SHORT +0.17
+
+*** BUT LD-126 ONLY YIELDS **TWO** OF THEM, and that is the real finding.
+The rule is one tier-1 read per CATEGORY and per STRONG currency. Six of the
+eight clean candidates are RISK ON, so after CADCHF takes that category the
+rest are all excluded:
+    CADCHF LONG  +7.60  RISK ON
+    AUDJPY SHORT +0.40  RISK OFF
+    -> a TWO-pair set, and the second has a gap of +0.40 against the
+       published set's +8.70 top.
+THE SELECTOR IS NOT BEING OBSTRUCTIVE - the board simply has GBP and CAD as
+its only genuinely strong currencies, and GBP is the stronger. Excluding it
+costs most of the available edge.
+
+*** A LEG-CAP ALTERNATIVE EXISTS AND IS WORTH PUTTING TO JEFF. Relaxing the
+CATEGORY rule and capping each LEG at x2 instead gives four clean pairs:
+    CADCHF LONG +7.60, USDCAD SHORT +6.90, NZDCHF LONG +2.60, NZDUSD LONG +1.90
+    leg overlap CAD x2, CHF x2, USD x2, NZD x2 - MAX x2
+versus the published set's CHF x3. So the leg-cap idea deferred to 31 Oct
+would ALSO have solved this week's concentration - the two questions are the
+same question. NOT APPLIED: LD-167 freezes the selector this edition, and
+swapping a +8.70 top pair for a +7.60 one is a material change to the
+published bias, which is Jeff's call.
+
+NOTHING WAS CHANGED. The published 19-23 Oct set stands.
+
 ### EDITION 2026-10-18 r1: 19-23 OCT, AND THE BIGGEST REFRESH YET
 ### (2026-10-18)
 
