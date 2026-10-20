@@ -5293,6 +5293,67 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### DAILY #5 - THE CONCENTRATION PAID, NARROW FINALLY FIRED, AND A FIGURE
+### I GOT WRONG IN CHAT (2026-10-20, Mon 19 Oct session)
+
+Jeff: "lets see todays daily report"
+
+PUBLISHED: https://claude.ai/artifact/GNBgpRvddNMLNrLfU6YDds
+
+    AUD +0.171%  #1 (board #6)      USD +0.026%  #5 (board #5)
+    EUR +0.160%  #2 (board #7)      GBP -0.025%  #6 (board #1)
+    NZD +0.150%  #3 (board #3)      CHF -0.213%  #7 (board #8)
+    CAD +0.081%  #4 (board #2)      JPY -0.323%  #8 (board #4)
+
+THE SET: 2 CLEAN, 2 DRIFT, no BEATEN.
+    GBPCHF fav 34.1 adv  4.2  DRIFT     CADCHF fav 28.3 adv 10.0  CLEAN
+    GBPAUD fav 41.6 adv 58.8  DRIFT     NZDCHF fav 20.9 adv  6.5  CLEAN
+
+*** THE x3 CHF CONCENTRATION PAID, AND THAT MUST BE SAID AS PLAINLY AS THE
+RISK WAS. I flagged it twice before publishing - "one currency moving against
+us can take three of the four pairs with it". On Monday CHF went the RIGHT way:
+-0.213%, and breadth reads WEAKER AGAINST ALL FOUR counterparts we hold, so
+the move was its own rather than borrowed. The same shape that cost three
+BEATEN on 14 Oct earned two CLEAN here. THE RISK WAS REAL AND SO IS THIS -
+neither session settles whether x3 is acceptable; it is variance either way.
+
+*** AND LD-162 RETURNED "NARROW" FOR THE FIRST TIME IN 45 CURRENCY-SESSIONS.
+The retro four days ago said the metric almost CANNOT fire NARROW because five
+of eight currencies have only one or two counterparts. It fired on USD - the
+one currency with ALL SEVEN - reading "up vs 3, down vs 4". So USD's +0.026%
+rank-5 finish is an AVERAGE OF OPPOSITE MOVES, not a USD move. That is exactly
+what LD-162 was built to detect, and it needed the thickest data to do it,
+which is itself the argument for the 28-pair grid.
+
+*** JEFF'S FRANCE READ IS CORROBORATED AFTER ALL, AND I WAS WRONG TO LEAVE IT
+AT "UNVERIFIED". Yesterday four searches found nothing dated Oct 2026 and I
+recorded the premise as unconfirmed. Today investingLive carries TWO items: a
+Live Bytes line (Euronews) "Weekend riots damage 3,000 French shops, insurers
+face uncertain billions in claims, CAC 40 falls 1.1%" sitting alongside 20 Oct
+entries, and a session wrap headed "French unrest weighs on the euro". A dated
+19 Oct analysis adds the fiscal half - the National Assembly votes on part one
+of the budget bill, full vote 17 Nov.
+  STILL NOT ESTABLISHED FACT: no primary outlet confirms the riots in four
+  searches, and the Live Bytes item carries no explicit date. Recorded as a
+  DATED MARKET NARRATIVE. *** AND THE DIRECTION IS WRONG FOR THE STORY: EUR
+  ROSE 0.160% to rank #2 on Monday. Whatever the narrative, it did not weigh on
+  the euro in this session.
+
+*** A FIGURE I GOT WRONG IN CHAT, AND THE PAGE WAS RIGHT. Yesterday I wrote
+CAD +4.40 and NZD +0.90. The published page, the .md and the live data all say
+CAD +6.40 and NZD +1.40. THE ERROR WAS MINE, IN PROSE ONLY: I read the board
+BEFORE the final roll/sync passes, and the three capture-only rows landed after
+that read - CAD Building Permits -17.3% -> 8.8% turned CAD Spending positive
+(+2.00), and NZD Business NZ PMI 53.1 -> 56.5 turned NZD Production positive.
+So the figures I quoted were a mid-build snapshot. The artefacts never
+disagreed with each other, and the SET is unaffected (both moved UP, so bands
+and ordering are unchanged). Caught because the daily's parser read the .md and
+disagreed with my own message - the renderer checking the author, for once.
+
+THREE CATALYSTS READ AGAINST THEIR MOVE: CAD core CPI MISS while CAD rose, USD
+NAHB MISS while USD rose, JPY tertiary industry BEAT while JPY fell last.
+CHF is UNEXPLAINED - investingLive carries no Swiss franc content at all.
+
 ### THE NO-GBP/EUR QUESTION, AND A PREMISE I COULD NOT VERIFY (2026-10-19)
 
 Jeff: "seems like GBP is takling a toll on France's riots. is there any other

@@ -1,0 +1,26 @@
+{
+ "EUR": [
+  {
+   "note": "*** JEFF WAS RIGHT AND I COULD NOT CONFIRM IT YESTERDAY. investingLive carries TWO items: a Live Bytes line (Euronews) \"Weekend riots damage 3,000 French shops, insurers face uncertain billions in claims, CAC 40 falls 1.1%\" sitting alongside 20 Oct entries, and a session wrap headed \"French unrest weighs on the euro\". A dated 19 Oct analysis adds the fiscal half: the National Assembly votes on part one of the budget bill, \"a test of the government ability to deliver fiscal consolidation\", with the full vote 17 Nov - \"a smooth passage would offer some relief and give the euro a boost\". *** BUT NO PRIMARY REPORTING CONFIRMS THE RIOTS: four searches returned only 2018 and 2023 episodes. Recorded as a DATED MARKET NARRATIVE, not as established fact. And note EUR ROSE 0.160% this session, ranking #2 - so whatever the story, it did not weigh on the euro on Monday.",
+   "source": "investingLive, 19-20 Oct 2026 (riots item undated, unconfirmed elsewhere)",
+   "url": "https://investinglive.com/forex/eur-usd-seems-to-be-forming-a-bottom-as-growth-concerns-and-france-budget-vote-come-into-focus/",
+   "fetched": "2026-10-20"
+  }
+ ],
+ "CHF": [
+  {
+   "note": "UNEXPLAINED BY ANY 19 OCT SOURCE - investingLive carries no Swiss franc content at all. Our own data: CHF fell 0.213% to rank #7 with NOTHING scheduled, and breadth reads WEAKER AGAINST ALL FOUR counterparts we hold, so the move was its own rather than borrowed. Three of four pairs are short CHF, so this is the x3 concentration PAYING - the same shape that cost three BEATEN on 14 Oct when JPY ran the other way.",
+   "source": "investingLive (session wrap, CHF not mentioned), 19 Oct 2026",
+   "url": "https://investinglive.com/forex/",
+   "fetched": "2026-10-20"
+  }
+ ],
+ "JPY": [
+  {
+   "note": "NO 19 OCT SOURCE. The dated wrap does not mention the yen; investingLive yen coverage on the page runs 5-9 Oct (intervention risk, officials toughening tone) and is TEN DAYS EARLY, so it is not cited as cause. Our own row reads AGAINST the move: tertiary industry index BEAT -0.1% vs -0.2% while JPY fell 0.323% to last place.",
+   "source": "investingLive (session wrap, JPY not mentioned), 19 Oct 2026",
+   "url": "https://investinglive.com/forex/",
+   "fetched": "2026-10-20"
+  }
+ ]
+}
