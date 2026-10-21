@@ -5293,6 +5293,67 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### DAILY #6 - THE BEST SESSION THE SET HAS HAD (2026-10-21, Tue 20 Oct)
+
+Jeff: "please build our daily report for today"
+
+PUBLISHED: https://claude.ai/artifact/5WaM5a4rQfLm4BvADxGwS7
+
+    GBP +0.221%  #1 (board #1)      JPY -0.125%  #6 (board #4)
+    NZD +0.085%  #2 (board #3)      CHF -0.134%  #7 (board #8)
+    AUD +0.030%  #3 (board #6)      USD -0.323%  #8 (board #5)
+    CAD -0.004%  #4 (board #2)
+    EUR -0.075%  #5 (board #7)
+
+*** GBP RANKED #1 AGAINST A BOARD RANK OF #1 - the first exact top-of-board
+match the daily has recorded. And breadth confirms it was real: STRONGER
+AGAINST ALL THREE counterparts we hold.
+
+THE SET: 2 CLEAN, 2 DRIFT, and EVERY PAIR FAVOURABLE with tiny adverse:
+    GBPCHF fav 64.1 adv 4.8  CLEAN     CADCHF fav 22.0 adv 2.2  DRIFT
+    GBPAUD fav 76.4 adv 11.8 DRIFT     NZDCHF fav 21.4 adv 4.7  CLEAN
+Adverse excursion across all four totals 23.5 pips against 183.9 favourable -
+a 7.8x session ratio, the cleanest yet.
+
+*** AND THIS IS NOT THE 13 OCT "ONE USD MOVE" PATTERN, which I checked rather
+than assumed. USD is BROAD-weaker-against-all-7 and every other currency's
+best gain is against USD, so the dollar IS the common factor. BUT:
+    13 Oct: seven spanned 0.261pp, USD 0.194pp below the next weakest
+    20 Oct: seven spanned 0.355pp, USD 0.189pp below
+The spread is WIDER and GBP has its own +0.221% on its own BEAT. So USD
+weakness is the backdrop, not the whole story - unlike 13 Oct where the seven
+were NARROW by construction.
+
+*** THE UK JOBS PRINT IS SPLIT, STOCK AGAINST FLOW, and it matters because GBP
+is our main long:
+    unemployment     4.7% vs 4.9% consensus   BEAT  (stock)
+    employment chg   102K vs 20K              BEAT  (stock)
+    HMRC payrolls    13K  vs -15K forecast    BEAT  (stock)
+    claimant count   30.3K vs 19.4K expected  MISS  (flow)
+    avg earnings     3.9% -> 3.7%             eased
+Three stock measures beat; the one flow measure deteriorated badly. The daily
+scored the row CONSISTENT on the payrolls beat, which is the headline reading.
+
+*** AND IT CHANGES THE BOARD NEXT SUNDAY, FLAGGED NOT APPLIED. Our GBP
+Unemployment row holds 4.9% (Jul/26) and scores NEUTRAL under <Prev. The Aug
+print at 4.7% is a FALL, so the row goes 0 -> +1 at the next weekly build,
+lifting GBP's Employment category from -0.50 on a currency ALREADY the
+strongest at +7.50. The claimant row stays BAD either way (any positive reading
+is BAD under <0, LD-58). NOT APPLIED HERE: the weekly is Monday's baseline
+(LD-156) and the daily never rewrites the board mid-week.
+
+*** CHF IS EXPLAINED BY OUR OWN DATA FOR THE FIRST TIME THIS MONTH. Balance of
+trade MISSED - CHF1.4B against CHF4.3B expected, a sharp narrowing - and CHF
+fell 0.134% to #7, which is CONSISTENT. Every prior session had CHF as either
+quiet or UNEXPLAINED. Three of four pairs are short CHF, so this is the second
+consecutive session the x3 concentration has paid.
+
+USD's note is DATED 20 OCT and fits: investingLive ties dollar pressure to
+FALLING TREASURY YIELDS read as growth concern, naming Friday's US Flash PMIs
+as the test. Our pending home sales row MISSED badly at -7.3% vs +0.2%.
+GBP has no external coverage, but the ONS bulletin corroborates the SCHEDULE -
+it lists 4.9% for May-Jul and the next release as 20 OCTOBER, exactly our date.
+
 ### DAILY #5 - THE CONCENTRATION PAID, NARROW FINALLY FIRED, AND A FIGURE
 ### I GOT WRONG IN CHAT (2026-10-20, Mon 19 Oct session)
 

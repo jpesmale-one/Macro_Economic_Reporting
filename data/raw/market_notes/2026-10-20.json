@@ -1,0 +1,26 @@
+{
+ "GBP": [
+  {
+   "note": "OUR OWN CAPTURE IS THE EVIDENCE - no outlet covers sterling on this date. The UK labour report landed: unemployment 4.7% vs 4.9% consensus, employment change 102K vs 20K, HMRC payrolls 13K vs a -15K forecast. *** BUT IT IS SPLIT: claimant count MISSED badly at 30.3K against 19.4K expected, and average earnings eased 3.9% -> 3.7%. So the STOCK measures beat while the FLOW measure deteriorated. CORROBORATION FOR THE SCHEDULE, NOT THE VALUE: the ONS September bulletin puts unemployment at 4.9% for May-Jul and lists the next release as 20 OCTOBER 2026 - exactly this date - so the 4.7% is the release our capture caught, though no secondary source has published it yet.",
+   "source": "own TE capture 2026-10-21_1403PHT; ONS schedule corroborates the date",
+   "url": "https://www.ons.gov.uk/employmentandlabourmarket/peoplenotinwork/unemployment",
+   "fetched": "2026-10-21"
+  }
+ ],
+ "USD": [
+  {
+   "note": "DATED 20 OCT AND IT FITS. investingLive ties dollar pressure to FALLING TREASURY YIELDS, which it reads as \"markets growing more concerned about growth despite persistent inflation\", and names Friday US Flash PMIs as the test. Our own row agrees in direction: pending home sales MISSED badly at -7.3% vs +0.2% expected, and USD fell 0.323% to last place, WEAKER AGAINST ALL SEVEN counterparts. Growth-concern reading is consistent with both.",
+   "source": "investingLive, 20 Oct 2026",
+   "url": "https://investinglive.com/forex/",
+   "fetched": "2026-10-21"
+  }
+ ],
+ "CHF": [
+  {
+   "note": "EXPLAINED BY OUR OWN DATA FOR ONCE. Balance of trade MISSED - CHF1.4B against CHF4.3B expected, a sharp narrowing - and CHF fell 0.134% to rank #7, which is CONSISTENT. No external source covers the franc (investingLive carries no Swiss content), but the scheduled release and the move agree, which is the first time this month CHF has not been UNEXPLAINED. Three of four pairs are short CHF.",
+   "source": "own TE capture 2026-10-21_1403PHT (no external CHF coverage found)",
+   "url": "https://tradingeconomics.com/switzerland/balance-of-trade",
+   "fetched": "2026-10-21"
+  }
+ ]
+}
