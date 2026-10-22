@@ -1,0 +1,26 @@
+{
+ "CHF": [
+  {
+   "note": "*** A HEADWIND ON THREE OF OUR FOUR PAIRS, AND IT IS WORTH READING IN FULL. investingLive, 22 Oct: EUR/CHF has fallen to about 0.9220, a THREE-MONTH LOW, breaking trendline support, the 0.9300 level and the 100-day average, now testing the 200-day near 0.9235. The driver is named plainly: \"the Swiss franc draws renewed support from its traditional safe-haven appeal\". The cause is FRENCH: 10-year French yields above 5%, the highest since 2002, and the France-Germany spread near 170bp, the WIDEST SINCE 2011. The author adds that \"the SNB had only recently toned down its language on foreign exchange intervention\" and wonders whether policymakers must reconsider. *** THIS IS A STRUCTURAL ARGUMENT FOR A STRONGER CHF, and three of four pairs are SHORT CHF. Our board has CHF weakest at -1.20 on the fundamentals; the market is bidding it as a haven. Those are different questions and the daily should not pretend otherwise.",
+   "source": "investingLive, 22 Oct 2026",
+   "url": "https://investinglive.com/forex/eur-chf-falls-to-three-month-lows-as-french-bond-turmoil-raises-fresh-euro-risks/",
+   "fetched": "2026-10-22"
+  }
+ ],
+ "AUD": [
+  {
+   "note": "UNEXPLAINED. AUD led the session at +0.238% with NOTHING scheduled in 65 captured rows, and breadth reads STRONGER AGAINST BOTH counterparts we hold, so the move was its own rather than borrowed. No dated source covers it: the only AUD mention on investingLive is a 19 Oct line saying AUD and NZD were the WEAKEST majors that day - the OPPOSITE direction, two sessions early, so it is not cited as cause. This single move is what put GBPAUD into BEATEN.",
+   "source": "investingLive (only AUD mention is 19 Oct, opposite direction)",
+   "url": "https://investinglive.com/forex/",
+   "fetched": "2026-10-22"
+  }
+ ],
+ "GBP": [
+  {
+   "note": "OUR OWN CAPTURE, AND THE MOVE CONTRADICTS IT. UK CPI BEAT on every leg - headline 3.5% vs 3.4% consensus, core 2.8% vs 2.7%, MoM 0.4% vs 0.3% - which under LD-155 is hawkish and currency-POSITIVE. GBP still finished -0.015% at rank #3. The daily scores the row AGAINST the move and that is the honest label. No external source covers sterling on this date; investingLive carries no UK CPI content at all.",
+   "source": "own TE capture 2026-10-22_1749PHT (no external GBP coverage found)",
+   "url": "https://tradingeconomics.com/united-kingdom/inflation-cpi",
+   "fetched": "2026-10-22"
+  }
+ ]
+}

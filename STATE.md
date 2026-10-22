@@ -5293,6 +5293,74 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### DAILY #7 - A QUIET SESSION, AND A STRUCTURAL HEADWIND ON THREE OF FOUR
+### PAIRS (2026-10-22, Wed 21 Oct session)
+
+Jeff: "lets see today's report please"
+
+PUBLISHED: https://claude.ai/artifact/PZ66NC49Qe1LJMYPonUEon
+
+    AUD +0.238%  #1 (board #6)      JPY -0.121%  #6 (board #4)
+    NZD +0.181%  #2 (board #3)      USD -0.129%  #7 (board #5)
+    GBP -0.015%  #3 (board #1)      EUR -0.156%  #8 (board #7)
+    CAD -0.023%  #4 (board #2)
+    CHF -0.103%  #5 (board #8)
+
+A TIGHT, QUIET SESSION: the whole board spans 0.395pp and three of eight
+currencies had nothing scheduled at all.
+
+THE SET: 1 BEATEN, 3 DRIFT.
+    GBPCHF fav 31.5 adv  1.8  DRIFT     CADCHF fav  8.5 adv 12.2  DRIFT
+    GBPAUD fav  3.5 adv 83.3  BEATEN    NZDCHF fav 14.7 adv  4.2  DRIFT
+
+*** THE ONE BEATEN IS ONE CURRENCY, AND IT IS UNEXPLAINED. GBPAUD's adverse
+excursion was 83.3 pips against a 77-pip target - 1.08x, barely over the line.
+The cause is AUD alone: +0.238% with NOTHING scheduled in 65 captured rows, and
+breadth reads STRONGER AGAINST BOTH counterparts we hold, so the move was its
+own rather than borrowed. The only AUD mention on investingLive is a 19 Oct
+line calling AUD and NZD the WEAKEST majors - the OPPOSITE direction, two
+sessions early, so it is NOT cited as cause.
+The other three pairs are short CHF, which was quiet, so this did not spread.
+
+*** AND THE REAL FINDING IS A STRUCTURAL HEADWIND THE BOARD CANNOT SEE.
+investingLive, 22 Oct: EUR/CHF has fallen to ~0.9220, a THREE-MONTH LOW,
+breaking trendline support, 0.9300 and the 100-day average. The driver is named
+plainly - "the Swiss franc draws renewed support from its traditional
+safe-haven appeal" - and the cause is FRENCH: 10-year French yields above 5%,
+highest since 2002, and the France-Germany spread near 170bp, WIDEST SINCE
+2011. The author notes the SNB "had only recently toned down its language on
+foreign exchange intervention" and wonders if that must be reconsidered.
+  *** THREE OF OUR FOUR PAIRS ARE SHORT CHF. Our board has CHF WEAKEST at
+  -1.20 on the fundamentals; the market is bidding it as a HAVEN. Those are
+  different questions and the daily says so rather than pretending the board
+  already knows. This is the x3 concentration's actual risk, now named: not a
+  random adverse move but a REASON for one.
+  AND IT CONNECTS TO JEFF'S OWN READ FOUR DAYS AGO - he asked about France
+  weighing on things when I could find nothing dated. The France story is now
+  the clearest macro thread on the page, and it reaches us through CHF, not
+  EUR.
+
+*** BOTH CPI PRINTS LANDED AND NEITHER MOVES THE BOARD - checked, not assumed.
+    GBP CPI 3.1% -> 3.5%, BEAT 3.4% consensus: +1 before, +1 after
+    NZD CPI 4.1% -> 3.7%, MISSED 3.8% consensus: +1 before, +1 after
+Both remain far above the 2.2% ceiling, so the LD-155 level test is unchanged.
+NZD Inflation was the one genuinely quarterly-stale row and it refreshes
+Q2/26 -> Q3/26 at the Sunday build. Values refresh; scores do not.
+
+*** AND GBP'S CPI BEAT READ AGAINST THE MOVE. Headline, core and MoM all beat,
+which under LD-155 is hawkish and currency-positive - and GBP still finished
+-0.015%. Labelled AGAINST, not smoothed over. That is now two consecutive
+sessions where a GBP beat has not been paid.
+
+PROCESS - A NEW FAILURE MODE AND ITS FIX. CDP would not answer for ~5 minutes
+even though TradingView was running and the AUMID launcher reported OK. Cause:
+the app had started at 11:59, BEFORE my launch, so a STALE INSTANCE WITHOUT THE
+DEBUGGING FLAG held the application and `netstat` showed nothing on 9222 - the
+launcher attaching to an existing process cannot add the flag. Killed all nine
+TradingView processes and relaunched; CDP came up immediately. WORTH KNOWING:
+"launcher says OK" is not "CDP is enabled", and the discriminator is
+`netstat | grep 9222`, not the launcher's exit code.
+
 ### DAILY #6 - THE BEST SESSION THE SET HAS HAD (2026-10-21, Tue 20 Oct)
 
 Jeff: "please build our daily report for today"
