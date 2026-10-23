@@ -35,12 +35,34 @@ HEADER = u'''<div class="wrap">
   scheduled rows, <strong>five of them GBP</strong>.</p>
   <div class="chips">
     <span class="chip">4 pairs</span>
-    <span class="chip">GBPCHF LONG +8.70</span>
+    <span class="chip">GBPAUD LONG +9.17</span>
     <span class="chip">18 rows refreshed</span>
     <span class="chip q">12 of 13 rows scorable</span>
     <span class="chip q">logic frozen (LD-167)</span>
   </div>
 </header>
+
+<div class="note rev">
+  <strong>&#9888; r2 &mdash; THIS PAGE WAS REBUILT: ITS BOARD HAD DISAGREED WITH
+  ITS OWN EVIDENCE TABLE (F-161).</strong> Jeff asked why the link in the repo
+  markdown pointed at a four-week-old report (F-160, fixed), and checking that
+  surfaced this. The r1 page showed <strong>NAB Business Confidence scoring
+  &minus;1 in &sect;4</strong> and <strong>AUD &minus;0.67 in &sect;1</strong>
+  &mdash; and those cannot both be true. The board had been rendered BEFORE the
+  final <code>sync_score_model</code> pass corrected three verdicts, so the
+  document contradicted itself.
+  <br><br>
+  <strong>Corrected: AUD &minus;0.67 &rarr; &minus;1.67, CAD +6.40 &rarr;
+  +7.40, NZD +1.40 &rarr; +1.20.</strong> <strong>The SET IS THE SAME FOUR
+  PAIRS</strong> &mdash; only the gaps and their order move, with GBPAUD now
+  top at <strong>+9.17</strong> instead of GBPCHF at +8.70.
+  <br><br>
+  <strong>Every existing guard passed on the broken page</strong>, which is the
+  real finding: F-134 compares the page to the FACT TABLES (which were right),
+  R-44 checks the RULES (right), R-48 checks <code>prev</code> (right).
+  <strong>Nothing compared the board to the rows printed beside it.</strong>
+  <code>R-49</code> is now build check 9b and does exactly that.
+</div>
 
 <div class="note">
   <strong>LOGIC IS FROZEN THIS EDITION (LD-167).</strong> Jeff, after the

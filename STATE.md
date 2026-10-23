@@ -5293,6 +5293,78 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### F-160 + F-161 + R-49 - A STALE LINK, AND THE SELF-CONTRADICTING PAGE
+### IT LED TO (2026-10-23)
+
+Jeff: "can you check the link in our 2026-10-18_weekly.md? The link doesn't
+seem to be directing me to this week's weekly report"
+
+*** F-160 - HE WAS RIGHT, AND THE LINK WAS ONLY THE HALF HE COULD SEE.
+FIVE values in the .md header were pinned to the 28 Sep-2 Oct edition and had
+been copied forward by every build since:
+    url:     DU6Y3sC2T6eoPRu7Jkx82T          (the 28 Sep page)
+    retro:   4PNbyCZETwNq19pTjepWP1          (the retro before it)
+    date:    2026-09-27
+    title:   Week of 28 Sep-2 Octtember 2026 (the typo travelled too)
+    eyebrow: selection for the 28 Sep-2 Oct cycle
+
+THIS IS F-130's DEFECT IN THE ONE PLACE F-130's GUARD DOES NOT LOOK. R-46 step
+8 scans build_weekly.py - but only for START/END date PAIRS and dt.date()
+literals. A bare `date: 2026-09-27` string, a title and a URL are invisible to
+it, so the check PASSED on every build while the header told Jeff he was
+reading a four-week-old report.
+
+THE FIX IS A MANIFEST KEYED ON THE WINDOW, not another constant to forget.
+EDITIONS[START] holds only what a human must supply - the published URL and the
+previous retrospective - and date/title/eyebrow/OUT are DERIVED from START/END,
+which step 8 already guards. A window with no entry yields NO url line rather
+than a wrong one: absence is honest, a stale pointer is not (F-73's principle).
+Verified across four windows including cross-month (reproduces the old header
+exactly) and cross-year.
+
+*** F-161 - AND CHECKING THAT SURFACED SOMETHING WORSE: THE PUBLISHED PAGE
+DISAGREED WITH ITSELF. The r1 19-23 Oct page showed, in the same document:
+    section 4   NAB Business Confidence ... -1     (correct)
+    section 2   AUD ... -0.67                      (the PRE-sync total)
+AUD's true total from those rows is -1.67. The board had been rendered BEFORE
+the final sync_score_model pass corrected three verdicts, so every number was
+internally consistent with the pass that produced it and WRONG against the
+page's own evidence table. Three currencies were affected:
+    AUD -0.67 -> -1.67    CAD +6.40 -> +7.40    NZD unchanged at +1.40
+GBPAUD's gap was understated by a full point (+8.17 vs +9.17), which changed
+the ORDER of the set - GBPAUD is top, not GBPCHF - though NOT its membership.
+*** THE SET IS THE SAME FOUR PAIRS, so the published bias was never wrong.
+
+*** WHY EVERY EXISTING GUARD PASSED ON IT, which is the real finding. F-134
+compares the page to the FACT TABLES (right). R-44 checks the RULES (right).
+R-48 checks prev (right). NOTHING COMPARED THE BOARD TO THE ROWS PRINTED
+BESIDE IT. Same family as F-127 and F-134: one artefact regenerated, another
+left on an older pass.
+
+*** R-49 IS NOW BUILD CHECK 9b, and it took THREE wrong cuts to get right -
+each worth recording because each is an easy repeat:
+  1. ANCHORED ON THE PHRASE "The board" - and matched the first PROSE use of
+     those words, which my own F-161 note then introduced three screens
+     earlier. Read a note instead of a table and reported "0 of 8".
+  2. THEN RETURNED TRUE ON "not parseable" - a SILENT PASS, the exact shape of
+     F-150/F-152/F-158. An unreadable board is now a FAILURE, never a skip.
+  3. THEN ANCHORED ON "section 1" - but the board is section 2 in this edition.
+     The numbering is not stable across editions, so it is not an anchor.
+     Now anchors on the <h2> whose TEXT names the board.
+  4. AND RE-DERIVED ON THE NEWEST CAPTURE - which made a CORRECT page look
+     broken: it reported NZD +1.40 on the page against +1.20 "live", but the
+     page was built on the Sunday capture whose calibrator read +0.40 and by
+     Thursday a later capture read +0.20. THE CALIBRATOR IS FORWARD-LOOKING AND
+     LEGITIMATELY MOVES DAILY. It now reads the capture the page NAMES IN ITS
+     OWN FOOTER.
+NEGATIVE-TESTED by planting the original AUD -0.67 back into the board: R-49
+fails with the exact message, and passes once removed.
+
+Page republished at r2 with a note explaining the correction. R-46 now FIFTEEN
+steps; R-49 passes. The three red steps (R-42, R-45, R-37) are ordinary
+mid-week staleness - a week of prints has landed since Sunday - and clear at
+the next weekly refresh, not in a daily.
+
 ### DAILY #7 - A QUIET SESSION, AND A STRUCTURAL HEADWIND ON THREE OF FOUR
 ### PAIRS (2026-10-22, Wed 21 Oct session)
 

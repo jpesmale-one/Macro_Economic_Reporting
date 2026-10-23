@@ -338,6 +338,119 @@ def s9_page_fresh():
     return True, 'every held value appears on the published page'
 
 
+def s9b_board_self_consistent():
+    """R-49 (F-161): the page's BOARD must equal what the page's OWN ROWS give.
+
+    *** THE DEFECT THIS CATCHES, OBSERVED ON A PUBLISHED PAGE. On 2026-10-23
+    the 19-23 Oct edition showed, in the same document:
+        section 4  NAB Business Confidence ... -1    (correct)
+        section 1  AUD ... -0.67                     (the PRE-sync total)
+    AUD's true total from those rows is -1.67. The board had been rendered
+    BEFORE the final sync_score_model pass corrected that row's verdict, so the
+    page contradicted ITSELF - every number internally consistent with the pass
+    that produced it, and wrong against the page's own evidence table.
+    GBPAUD's gap was understated by a full point as a result (+8.17 vs +9.17),
+    which changed the ORDER of the set though not its membership.
+
+    *** WHY THE EXISTING GUARDS ALL PASSED. F-134 compares the page against the
+    FACT TABLES, and the fact tables were right. R-44 checks the RULES, and the
+    rules were right. R-48 checks `prev`, which was right. NOTHING compared the
+    board to the rows PRINTED BESIDE IT, so a renderer that ran mid-refresh
+    produced a self-contradicting document that every check waved through.
+    This is the F-127/F-134 family: one artefact regenerated, another left on an
+    older pass.
+
+    THE CHECK IS DELIBERATELY NOT "re-derive and compare to the page" - that is
+    F-134's job. It asks the narrower question F-134 cannot: do the board and
+    the evidence table in the SAME FILE agree? If they do not, one of them was
+    written by a stale pass and the page must be rebuilt before publishing.
+    """
+    import re as _re
+    page = os.path.join(REPO, 'reports', '2026', 'Q4')
+    import glob as _g
+    cands = sorted(_g.glob(os.path.join(page, '*_weekly.html')))
+    if not cands:
+        return True, 'no published page yet - nothing to compare'
+    html = io.open(cands[-1], encoding='utf-8').read()
+    name = os.path.basename(cands[-1])
+
+    # the board: rows under the §1 HEADING carrying a band and a FINAL.
+    #
+    # *** ANCHOR ON THE HEADING, NOT ON THE PHRASE. The first cut searched for
+    # the bare string "The board" and matched the first PROSE use of those two
+    # words - which my own F-161 note then introduced three screens earlier, so
+    # the parser read a note instead of a table and reported "0 of 8". The
+    # F-141 lesson (anchor on the section, never on a row shape) applies to
+    # headings too.
+    # ANCHOR ON THE <h2> WHOSE TEXT IS THE BOARD, not on a section NUMBER.
+    # Two wrong guesses are recorded because both are easy to repeat: first
+    # "The board" as a bare phrase (matched my own prose note), then "§1"
+    # (the board is §2 in this edition - the numbering is not stable across
+    # editions, so it is not an anchor at all).
+    board = {}
+    k = -1
+    for _m in _re.finditer(r'<h2[^>]*>(.*?)</h2>', html, _re.S):
+        if 'board' in _re.sub('<[^>]+>', '', _m.group(1)).lower():
+            k = _m.end()
+            break
+    if k < 0:
+        return False, ('%s: no <h2> naming the board - it cannot be checked, '
+                       'and that is a FAILURE, not a pass' % name)
+    for m in _re.finditer(r'<tr[^>]*>(.*?)</tr>', html[k:k + 4000], _re.S):
+        cells = [_re.sub('<[^>]+>', '', c).strip()
+                 for c in _re.findall(r'<t[dh][^>]*>(.*?)</t[dh]>',
+                                      m.group(1), _re.S)]
+        if len(cells) < 6:
+            continue
+        ccy = cells[1]
+        if ccy not in ('USD', 'EUR', 'GBP', 'JPY', 'AUD', 'NZD', 'CAD', 'CHF'):
+            continue
+        try:
+            board[ccy] = float(cells[5].replace('\u2212', '-')
+                               .replace('+', '').strip())
+        except ValueError:
+            continue
+    if len(board) != 8:
+        # *** NEVER A SILENT PASS. A board this check cannot read is the exact
+        # shape of every false green this project has found (F-150, F-152,
+        # F-158): silence that looks like success. If the page cannot be
+        # parsed, say so and fail.
+        return False, ('%s: board not parseable (%d of 8 currencies found) - '
+                       'an unreadable board is a FAILURE, not a skip' % (name, len(board)))
+
+    # what the live fact tables say the FINAL should be, on the page's own window
+    import pair_select as _ps
+    import glob as _g2
+    start, end = window()
+    # *** RE-DERIVE ON THE PAGE'S OWN CAPTURE, NOT THE NEWEST ONE. My first cut
+    # used caps[-1] and reported NZD +1.40 on the page against +1.20 "live" -
+    # but the page was RIGHT: it was built on the Sunday capture whose
+    # calibrator read +0.40, and by Thursday a later capture read +0.20. The
+    # calibrator is a FORWARD-LOOKING term and it legitimately moves every day;
+    # comparing a published page to a capture it never saw makes a correct page
+    # look broken. The page names its capture in the footer, so read it there.
+    _cap = None
+    _fm = _re.search(r'(2026-\d{2}-\d{2}_\d{4}PHT)', html)
+    if _fm:
+        _hit = sorted(_g2.glob(os.path.join(
+            REPO, 'data/raw/calendar/%s_cal_full.json' % _fm.group(1))))
+        if _hit:
+            _cap = _hit[0]
+    if _cap is None:
+        return False, ('%s does not name the capture it was built on - the '
+                       'board cannot be re-derived against the right data' % name)
+    live = _ps.final_scores(_cap, start, end)
+    bad = []
+    for c, v in sorted(board.items()):
+        want = live[c]['total']
+        if abs(want - v) > 0.005:
+            bad.append('%s page %+.2f vs rows %+.2f' % (c, v, want))
+    if bad:
+        return False, ('%s board disagrees with its own rows: %s'
+                       % (name, '; '.join(bad)))
+    return True, '%s board matches its own evidence rows' % name
+
+
 def s10_high_impact():
     """F-135: every HIGH_IMPACT category must actually be flaggable.
 
@@ -413,6 +526,7 @@ STEPS = [
     ('8b', 'policy rates match TE (R-47/F-142)', s8b_rates_vs_te),
     ('8c', 'dark rows read and current (F-143)', s8c_dark_rows),
     ('9', 'published page matches the data (F-134)', s9_page_fresh),
+    ('9b', 'board matches its own rows (R-49/F-161)', s9b_board_self_consistent),
     ('10', 'high-impact rows can flag (F-135)', s10_high_impact),
     ('11', 'selected pairs have OANDA bars (LD-145)', s11_pair_bars),
 ]
