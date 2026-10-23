@@ -5293,6 +5293,67 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### DAILY #8 - THE CONCENTRATION RISK LANDED, ONE DAY AFTER IT WAS NAMED
+### (2026-10-23, Thu 22 Oct session)
+
+Jeff: "lets see our daily report for today"
+
+PUBLISHED: https://claude.ai/artifact/MPLBzTk7GgjQGSwa2pJBoC
+
+    JPY +0.668%  #1 (board #4)      USD -0.182%  #5 (board #5)
+    CHF +0.343%  #2 (board #7)      AUD -0.270%  #6 (board #8)
+    CAD +0.086%  #3 (board #2)      EUR -0.289%  #7 (board #6)
+    GBP -0.108%  #4 (board #1)      NZD -0.430%  #8 (board #3)
+
+*** THREE BEATEN, AND ALL THREE ARE THE CHF SHORTS.
+    GBPAUD fav 69.0 adv 18.3  DRIFT
+    GBPCHF fav  2.3 adv 72.9  BEATEN
+    CADCHF fav  3.4 adv 26.5  BEATEN
+    NZDCHF fav  7.7 adv 43.7  BEATEN
+CHF rose against ALL FOUR counterparts we hold. One currency took three of the
+four pairs, which is precisely the sentence I wrote in the 19-23 Oct edition
+before publishing it - and yesterday's daily named the MECHANISM a session
+before it fired: French bond stress bidding the franc as a haven.
+
+*** THE WARNING WAS DATED AND SPECIFIC, WHICH IS WHY THIS IS WORTH RECORDING
+AS A HIT RATHER THAN A SURPRISE. Daily #7 (21 Oct) carried: "EUR/CHF at ~0.9220,
+a THREE-MONTH LOW ... the Swiss franc draws renewed support from its
+traditional safe-haven appeal ... French 10-year yields above 5%, the
+France-Germany spread near 170bp ... THREE OF OUR FOUR PAIRS ARE SHORT CHF."
+Today investingLive adds that EUR/CHF is "threatening a technical breakdown as
+euro-area risks deepen and French bond yields rise". SO THE FRANC'S STRENGTH IS
+EURO WEAKNESS, NOT A SWISS STORY - and our board scores CHF on Swiss
+fundamentals at -1.20, which cannot see it.
+
+*** THE WEEK IS CONTESTED, NOT LOST - checked rather than assumed:
+    GBPCHF 1.58   GBPAUD 1.11   CADCHF 1.22   NZDCHF 1.09
+    SET TOTAL fav 449.4 adv 365.9 ratio 1.23 -> CONTESTED (WIN needs 1.40)
+Thursday alone supplied 161.4 of 365.9 adverse pips = 44% of the week. Friday
+is still live and GBPCHF is the only pair above the WIN band.
+
+*** A RISK-OFF SESSION WITH TWO HAVENS BID, both dated 22 Oct. JPY: "the
+currency has started to act like a safe haven as market focus shifted to
+growth", plus September core CPI at 2.1% - above the BoJ's 2% target for the
+first time since December - supporting a December hike. US 10-year yields fell
+13.5bp and the dollar fell anyway. NOTE OUR JPY ROW READ **AGAINST** THE MOVE:
+inflation MoM MISSED 0.0% vs 0.4% while JPY led the board. The haven bid and
+the CPI beat both sit outside the MoM row our rule happened to score.
+
+NZD IS UNEXPLAINED AND WAS THE WORST PERFORMER. 59 rows landed, NONE for NZD.
+investingLive says only that "the AUD and NZD were the weakest major currencies
+against the USD that day" and gives NO REASON - a description, not a cause, so
+it is not cited as one. NZDCHF moved furthest against us (-0.77% vs CHF).
+
+NARROW fired again, on USD, "up vs 3, down vs 4" - the second time in four
+sessions, both on the only currency with all seven counterparts.
+
+PROCESS: the F-157b failure repeated EXACTLY - 12 TradingView processes started
+at 10:03, before my launch, holding the app with nothing listening on 9222.
+Caught in ONE step this time by checking `netstat | grep LISTENING | grep 9222`
+BEFORE trusting the app, per yesterday's note. Killed, relaunched, confirmed
+the listening PID matched the one launched. That check is now worth putting in
+the runbook.
+
 ### F-160 + F-161 + R-49 - A STALE LINK, AND THE SELF-CONTRADICTING PAGE
 ### IT LED TO (2026-10-23)
 

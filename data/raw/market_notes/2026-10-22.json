@@ -1,0 +1,26 @@
+{
+ "CHF": [
+  {
+   "note": "*** THE RISK I FLAGGED YESTERDAY, REALISED ON THE NEXT SESSION. investingLive 22 Oct: EUR/CHF is \"threatening a technical breakdown as euro-area risks deepen and French bond yields rise\", so the franc gains are tied to EURO WEAKNESS FROM FRENCH BOND STRESS rather than anything Swiss. CHF rose against ALL FOUR counterparts we hold and three of our four pairs are short it - which took three BEATEN in one session. Our board has CHF at -1.20 on the fundamentals; the market is bidding it as a haven. The SNB minutes also landed but their TONE IS UNREAD under LD-107, so they are not cited as cause.",
+   "source": "investingLive, 22 Oct 2026",
+   "url": "https://investinglive.com/forex/eur-chf-falls-to-three-month-lows-as-french-bond-turmoil-raises-fresh-euro-risks/",
+   "fetched": "2026-10-23"
+  }
+ ],
+ "JPY": [
+  {
+   "note": "DATED 22 OCT AND IT EXPLAINS THE SESSION LEADER. investingLive: \"the currency has started to act like a safe haven as market focus shifted to growth\", with safe-haven flows and extreme bearish positioning behind it. A second item adds that September core CPI was 2.1%, above the BoJ 2% target for the first time since December, with core-core at 2.4% - supporting a December hike. *** NOTE OUR OWN ROW READ **AGAINST** THE MOVE: inflation MoM MISSED at 0.0% vs 0.4%, yet JPY led the board at +0.668%. The haven bid and the CPI beat are both outside the MoM row our rule happened to score.",
+   "source": "investingLive, 22-23 Oct 2026",
+   "url": "https://investinglive.com/forex/the-japanese-yen-is-once-again-acting-as-a-safe-haven-as-growth-concerns-replace-inflation-fears/",
+   "fetched": "2026-10-23"
+  }
+ ],
+ "NZD": [
+  {
+   "note": "UNEXPLAINED BY ANY DATED SOURCE, AND IT WAS THE WORST PERFORMER. 59 rows landed that day and NONE were NZD. investingLive states only that \"the AUD and NZD were the weakest major currencies against the USD that day\" and gives NO REASON - a description, not a cause, so it is not cited as one. NZD fell 0.430% and was WEAKER AGAINST BOTH counterparts we hold, so the move was its own. NZDCHF is in the set and this is the leg that moved furthest against us (-0.77% vs CHF).",
+   "source": "investingLive (states the fact, gives no cause), 22 Oct 2026",
+   "url": "https://investinglive.com/forex/",
+   "fetched": "2026-10-23"
+  }
+ ]
+}
