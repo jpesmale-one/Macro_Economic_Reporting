@@ -5293,6 +5293,85 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### RETROSPECTIVE 19-23 OCT - THE WEEK THE HEDGE PAID (2026-10-24)
+
+Jeff: "lets our weeky retrospective report for Oct 19-23"
+
+PUBLISHED: https://claude.ai/artifact/MFCLDoZM78ww6fyps5BLcF
+Saved: reports/2026/Q4/2026-10-24_retro.html
+
+*** 2 WIN, 2 CONTESTED, 0 LOSS, set ratio 1.14 - a clear step down from last
+week's 4-of-4 at 1.65.
+    CADCHF 1.55 WIN   NZDCHF 1.51 WIN   GBPCHF 1.36 CONTESTED (missed by 0.04)
+    GBPAUD 0.84 CONTESTED
+No pair lost; none ran away. Two days made the week (Mon 1.57, Tue 7.83) and
+three gave it back (0.57, 0.51, 0.92). REMOVE THURSDAY AND THE WEEK READS 1.43,
+a WIN - the second consecutive retro where one session decides the verdict.
+
+*** AND THE HEADLINE FINDING IS THAT I WAS WRONG ABOUT THE CONCENTRATION.
+I warned about x3 CHF twice before publishing. Over the full week:
+    the THREE CHF shorts : 363.1 / 249.9 = 1.45   <- WIN band
+    the ONE non-CHF pair : 220.2 / 262.2 = 0.84   <- below 1.00
+THE DIVERSIFIED LEG WAS THE WORST PERFORMER. GBPAUD took TWO BEATEN, more than
+any CHF pair, and was the only pair with more adverse than favourable movement.
+  THE WARNING WAS NOT WRONG - Thursday was exactly the predicted failure, CHF
+  up against all four counterparts, three BEATEN, 32% of the week's adverse in
+  one day. It was OUTWEIGHED by four sessions where the same concentration ran
+  4.02, 9.19, 3.01 and 1.85. So x3 is a VARIANCE decision, not a QUALITY one:
+  it makes good weeks better and bad days worse. Two weeks now point opposite
+  ways and neither settles it.
+  *** A PROSE SLIP CAUGHT BEFORE IT REACHED THE PAGE: my own working print
+  said "1.26 vs 0.84" while the computed line above it read 1.45. Stated the
+  correction in the working and carried 1.45 into the retro. Verified again
+  against the pipeline before publishing.
+
+*** ONE CURRENCY DESTROYED rho, AND THAT IS THE WEEK'S MOST USEFUL RESULT.
+rho = +0.17 with AUD. WITHOUT AUD IT IS +0.81. Drop-one: every other currency
+moves it by at most 0.17; AUD moves it by 0.63.
+    AUD was board #8 and traded like #2.6, ranking #1 or #2 on THREE SESSIONS
+    WITH ZERO SCHEDULED RELEASES, and #6 on the one day it had data (flash PMI
+    MISS 47.8 vs 51.1).
+  *** AND THE BOARD IS NOT WRONG ABOUT AUD'S FUNDAMENTALS - checked, not
+  assumed. Production (-2) rests on a Sep PMI of 49.6 and OCTOBER'S FLASH
+  PRINTED 49.7 ON THURSDAY, still contractionary, still confirming. Trade (-2)
+  rests on an Aug balance that does not re-print until 5 Nov. SO THIS IS NOT
+  STALENESS AND CANNOT BE FIXED BY REFRESHING. It is either flow the board
+  cannot see, or a real limit on five-day prediction from fundamentals.
+
+EIGHT-WEEK rho: -0.40, 0.00, +0.02, +0.17, +0.26, -0.62, +0.52, +0.17.
+MEAN +0.02, STDEV 0.34 - indistinguishable from zero. Last week's +0.52 looked
+like a turn; this pulls it back. BUT THE QUESTION HAS SHARPENED: not "does the
+board rank" but "WHICH CURRENCIES does it rank, and which does it
+systematically misread" - answerable from eight weeks of per-currency drift,
+and worth the 31 Oct review.
+
+CATALYSTS: 4 consistent, 4 AGAINST from the two dailies still on disk = 50%
+when the data said anything, in line with last week's 56% over a larger sample.
+TWO UK PRINTS READ AGAINST THEIR OWN MOVE, both on our main long: Tuesday's
+jobs report beat on every STOCK measure and missed badly on the one FLOW
+measure; Wednesday's CPI beat on headline, core and MoM - hawkish under LD-155
+- and GBP fell anyway. GBP finished board #1, session-mean #4.2.
+
+*** F-162 - TWO OF THE FOUR DAILIES NO LONGER EXISTED ON DISK. Monday's and
+Tuesday's scratchpad files had been overwritten, so the catalyst tally covers
+TWO sessions and SAYS SO rather than quoting a week-total it cannot recount.
+The published artifacts hold all four, so nothing was lost to Jeff - but a
+retro that cannot recount its own week is weaker for no reason. Session data
+was re-derived from bars, which is the authority anyway.
+  FIXED THIS SESSION: gen_daily now writes a durable copy to
+  reports/2026/Q4/daily/<date>_daily.html alongside the scratchpad one, the
+  same LD-130 logic that put the weekly's URL in the repo. The two surviving
+  files were moved there and renamed to the existing house convention
+  (<date>_daily.html, matching 2026-10-09_daily.html already present).
+  Write path verified directly.
+
+R-46 at the end of the week reads 11 PASS, 4 FAIL - and ALL FOUR are ordinary
+end-of-week staleness, confirmed rather than assumed: R-45 and R-37 because a
+week of prints has landed since Sunday, LD-145 because the selector now wants
+NZDJPY, and R-49 because the fact tables have legitimately moved on (JPY base
+-0.67 -> -1.67). R-49 FLAGGING THIS IS IT WORKING AS A BUILD GATE: it says do
+not rebuild that page without refreshing first, which is exactly tomorrow.
+
 ### DAILY #8 - THE CONCENTRATION RISK LANDED, ONE DAY AFTER IT WAS NAMED
 ### (2026-10-23, Thu 22 Oct session)
 

@@ -339,6 +339,27 @@ if __name__ == '__main__':
     if not html:
         print('no bars for %s' % day)
         sys.exit(1)
+    # *** F-162 - A DAILY THAT ONLY EXISTS IN THE SCRATCHPAD CANNOT BE
+    # RECOUNTED. Building the 19-23 Oct retro on 24 Oct, TWO OF THE FOUR
+    # DAILIES WERE GONE: Monday's and Tuesday's files had been overwritten in
+    # the scratchpad, so the retro's catalyst tally covered two sessions
+    # instead of four and had to say so. The published artifacts held them, so
+    # nothing was lost to Jeff - but a retrospective that cannot recount its
+    # own week is weaker for no reason.
+    # THE REPO IS THE DURABLE COPY, exactly as LD-130 established for the
+    # weekly's URL: the scratchpad is session-scoped and the repo is not.
+    # Written to BOTH - the scratchpad copy is what the publish step reads.
     out = SP + 'daily_%s.html' % day
+    _repo = os.path.join(REPO, 'reports', '2026', 'Q4', 'daily',
+                         '%s_daily.html' % day)
+    try:
+        if not os.path.isdir(os.path.dirname(_repo)):
+            os.makedirs(os.path.dirname(_repo))
+        io.open(_repo, 'w', encoding='utf-8', newline=chr(10)).write(html)
+        print('  also saved %s' % _repo)
+    except Exception as _e:
+        print('  WARN: could not save the repo copy (%s) - the scratchpad '
+              'copy still published, but this week cannot be recounted '
+              'later' % _e)
     io.open(out, 'w', encoding='utf-8', newline='\n').write(html)
     print('wrote %s (%d bytes)' % (out, len(html)))
