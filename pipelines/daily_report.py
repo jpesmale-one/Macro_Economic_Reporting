@@ -52,6 +52,7 @@ sys.path.insert(0, HERE)
 
 import pair_atr as pa
 import atr_grade as ag
+import session_log as sl
 import daily_review as dr
 
 # F-156 - THE RUNBOOK'S TWO COMMANDS DID NOT CONNECT.
@@ -253,6 +254,16 @@ def report(day, board=None, picks=None):
             k = ag.classify(fav, adv, atr) if atr else '-'
             print('    %-8s %-6s fav %6.1f  adv %6.1f  %s'
                   % (pair, side, fav, adv, k))
+            # LD-170 - accumulate the per-session row so a weekday effect
+            # becomes TESTABLE. Jeff: "see what day the currencies usually
+            # gives back to the market". Idempotent on (week, session,
+            # pair), so re-running a daily never double-counts.
+            try:
+                _d = dt.datetime.strptime(day, '%Y-%m-%d').date()
+                _ws = (_d - dt.timedelta(days=_d.weekday())).isoformat()
+                sl.append(_ws, day, pair, side, fav, adv, frac, hit, k)
+            except Exception as e:                       # never block a build
+                print('    (LD-170 ledger skipped: %s)' % e)
     return 0
 
 

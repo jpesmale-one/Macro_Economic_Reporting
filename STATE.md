@@ -5293,6 +5293,244 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### LD-171 + LD-172 - YIELDS LOGGED, EXTREMES SHRUNK (2026-10-24)
+
+Jeff: "logging 2-year yields -- Where can we get this?" and "Let's keep our
+macro economic reporting for now and gather more data. we can also add that
+2-year yields and shrinkage calibration you're mentioning. But in parallel
+I can create a new repository and let's build this new product which is
+'rebuilt around rates'"
+
+*** 1. LD-171 - ALL EIGHT 2-YEAR YIELDS EXIST ON TVC, SO LD-23 IS
+SATISFIED. Verified by searching each one, not assumed:
+    TVC:US02Y  United States 2 Year Government Bonds Yield
+    TVC:DE02Y  Germany 2 Year Government Bonds Yield      <- EUR PROXY
+    TVC:GB02Y  United Kingdom 2 Year Government Bonds Yield
+    TVC:JP02Y  Japan 2 Year LSEG Government Bonds Yield
+    TVC:AU02Y  Australia 2 Year Government Bonds Yield
+    TVC:NZ02Y  New Zealand 2 Year Government Bonds Yield
+    TVC:CA02Y  Canada 2 Year Government Bonds Yield
+    TVC:CH02Y  Switzerland 2 Year Government Bonds Yield
+Same vendor, same instrument class, same daily bars - which is what LD-23
+means by "equal terms". 300 bars each, all current to 2026-10-23, pulled
+over CDP by pull_yields_cdp.py so 2,400 bars never touch the conversation.
+  *** THE ONE HONEST ASYMMETRY, STATED NOT HIDDEN: the euro area has no
+  single sovereign, so DE02Y is a PROXY. Under French fiscal stress the
+  Bund is exactly the wrong leg to read EUR from - which is itself the
+  haven story the board cannot see. Recorded in the file's own note field
+  so the eventual test knows it.
+
+*** AND IT SCORES NOTHING. F-3 - the indicator list is a CLOSED SET and
+amendments are Jeff's call alone. He authorised LOGGING. No fact table
+reads it, no board uses it, nothing in R-46 depends on it, and every file
+carries "scored": false. When there are enough weeks to test, the test
+runs against history recorded WITHOUT knowing the answer.
+
+*** FIRST READ, AND IT POINTS AT JEFF'S ORIGINAL INTUITION:
+    CCY   2y now   1m change
+    AUD    4.944     -0.061     <- HIGHEST 2y, board ranks it joint-LAST
+    GBP    4.919     +0.087     <- board #1, and the only one RISING
+    USD    4.686     -0.245
+    NZD    3.920     -0.045
+    CAD    3.361     -0.039
+    EUR    3.031     -0.221
+    JPY    1.871     -0.054
+    CHF    0.170     -0.185
+AUD carrying the highest short rate while the board has it at #7.5 is
+precisely the gap Jeff described ("if you look at the RHO AUD mostly on
+top... currently AUD has the higher IR in the list"). Not evidence yet -
+one reading - but the thing worth watching is now on disk.
+
+*** 2. LD-172 - SHRINKAGE, BUILT BUT OFF (SHRINK_K = 0.0).
+The board pinned four currencies in one place for all 7 sessions and all
+four drifted toward the middle, 6 of 7 each: GBP #1 -> traded #4.14, CAD #2
+-> #3.57, AUD #6-8 -> #3.86, CHF #6-8 -> #4.71. The four it was UNSURE
+about drifted +0.14 +0.14 +0.71 -1.43, i.e. no systematic error.
+rho(board, drift) = +0.922, permutation p = 0.0425 against 20,000 shuffled
+boards. *** THE BOARD IS NOT WRONG AND NOT BACKWARDS - IT IS OVER-CONFIDENT
+AT THE EXTREMES. Its #1 trades like #4; its #8 trades like #4.
+  Shrinking pulls each score toward the mean, so at k=0.5 the live board's
+  spread goes 9.17 -> 4.58 WITH EVERY RANK UNCHANGED. That is the property
+  that makes it safe: a reader who trusts the ORDER loses nothing, and what
+  changes is only how big a gap the board claims - which is what LD-126's
+  selector reads as conviction.
+  *** LD-167 RESPECTED: SHRINK_K defaults to 0.0, which returns the
+  published board byte-identically, and a test asserts it. Turning it on
+  is Jeff's call.
+
+*** F-166 - A NAIVE UTC DATE SPLIT ONE TRADING DAY IN TWO, and my own
+R-50-style alignment guard flagged a complete pull as stale. TVC stamps
+each daily yield bar at that market's OWN session open:
+    JPY/AUD/NZD 2026-10-22 21:00 UTC   (Asia opens the previous UTC day)
+    USD         2026-10-22 23:00 UTC
+    EUR/CHF     2026-10-23 06:00 UTC
+    GBP         2026-10-23 07:00 UTC
+    CAD         2026-10-23 10:00 UTC
+All five are ONE trading day. Dating in UTC put Asia and the US on 10-22
+and Europe on 10-23. session_of() now shifts +12h into the trading day
+before taking the date; F-77 applies, so the epoch is stored beside the
+date it produced and the raw epochs above are what PROVED the bars were
+never stale. *** THE GUARD DID ITS JOB - it refused to let a misaligned
+set through, and the misalignment turned out to be mine.
+
+*** F-167 - EXACT == SPLIT A REAL TIE, FOUND BY MY OWN FAILING TEST.
+On the live board JPY and AUD are both -5/3, but base_scores sums their
+category weights in a different order:
+    JPY -1.66666666666666651864   (-0x1.aaaaaaaaaaaaap+0)
+    AUD -1.66666666666666674068   (-0x1.aaaaaaaaaaaabp+0)
+2.22e-16 apart, so ranks() ordered two IDENTICAL currencies #7 and #8 on
+floating-point noise. order_preserved failed at every k, and the reason was
+instructive: shrink() is linear and preserved the TRUE tie (7.5/7.5) while
+the ORIGINAL ranking split it 7/8. *** THE BUG WAS IN THE BASELINE, NOT THE
+NEW CODE - without the test I would have "fixed" the shrinkage instead.
+ranks() now compares with a 1e-9 tolerance and breaks residual ties
+alphabetically so the order is deterministic.
+
+TESTS: test_shrink.py 20/20, test_group_ratio.py 13/13.
+
+*** THE NEW REPO - MY RECOMMENDATION ON SCOPE. Jeff is right that the
+rates product belongs in a SEPARATE repository: this one's whole value is
+that its logic is frozen and its history accumulates untouched (LD-167),
+and rebuilding the architecture in place would contaminate the only
+baseline we have. Keeping them apart also means the macro board stays the
+control group - in eight weeks we can compare two products on the same
+weeks rather than arguing about one.
+
+### THE HORIZON + LAG ANALYSIS - THE BOARD IS SIX WEEKS LATE (2026-10-24)
+
+Jeff: "so if you were a fundamentalist expert in macro economics which
+dictates the currency strengths and weaknesses... do you see any pattern
+which we are not considering" -> "ok let's run the horizon test next"
+-> "the board appears to be lagging -- interesting, how can we catch up?"
+
+*** 1. THE HORIZON TEST KILLED MY OWN HYPOTHESIS. I argued fundamentals
+might need WEEKS to express and that we were grading too fast. Swept every
+anchor session inside each board's validity window (not just 2 anchors):
+
+    horizon   n   mean rho   share of anchors rho>0
+      1d     38    -0.008          53%
+      3d     36    -0.062          31%
+      5d     34    -0.159          29%
+     10d     29    -0.339          14%
+     15d     24    -0.441          12%
+     20d     19    -0.515           0%     <- ZERO of 19
+
+LONGER IS WORSE, MONOTONICALLY, ACROSS SIX HORIZONS. Noise wanders; this
+walks one direction and never turns. *** SO DO NOT EXTEND THE HOLD. The
+current ~5-day grading is the most favourable window the board has.
+  CAVEAT STATED, NOT BURIED: only 2 months of board history exists, so
+  overlapping windows share price data. On strictly independent windows 10d
+  gives n=4, mean -0.278, t=-1.78 - suggestive, not conclusive. DIRECTION
+  is solid, MAGNITUDE is not.
+
+*** 2. PER-CURRENCY DRIFT WIDENS WITH HORIZON, which rules out mean
+reversion (drift would SHRINK as things settled):
+    CCY     1d     5d    10d    20d
+    CHF  +2.92  +3.32  +4.02  +4.32
+    USD  +2.11  +3.06  +3.86  +4.89
+    JPY  +1.61  +1.35  +0.98  +1.53
+    GBP  -0.32  +0.41  +1.41  +3.63
+    NZD  -0.37  -0.97  -1.52  -2.63
+    CAD  -1.71  -1.79  -2.34  -3.47
+    EUR  -2.05  -2.74  -2.97  -4.05
+    AUD  -2.18  -2.65  -3.45  -4.21
+CHF AND USD - THE TWO CLASSIC HAVENS - TOP THE LIST AND STRENGTHEN WITH
+TIME. That is the CHF blind spot confirmed over two months, not one French
+episode.
+
+*** 3. I CORRECTED MYSELF ON AUD. On the 7 dailies AUD drifted +2.86 (traded
+BETTER than board). On this 2-month sweep AUD drifts -2.18 to -4.21 (traded
+WORSE). BOTH ARE REAL, because the board's AUD rank FLIPPED: Aug/Sep had AUD
+at #2, October has it at #8. When the board liked AUD it underperformed; now
+the board hates it, it outperforms. *** AUD IS NOT A WEIRD CURRENCY. THE
+BOARD IS LATE ON AUD.
+
+*** 4. THE LEAD/LAG SCAN - A CLEAN SINGLE-PEAKED CURVE.
+A 20-session price move measured ENDING at an offset from the board date:
+    offset  mean rho
+      -60    -0.068
+      -40    +0.171
+      -30    +0.427   <- PEAK
+      -20    +0.293
+      -10    +0.200
+       +0    +0.088
+      +10    -0.235
+      +20    -0.515
+THE BOARD AGREES BEST WITH A MOVE THAT ENDED ~30 SESSIONS (~6 WEEKS) BEFORE
+THE BOARD DATE. Not noise, not backwards - A DESCRIPTION OF THE RECENT PAST.
+rho is positive looking back, negative looking forward, ~zero at the present.
+  THE MECHANISM IS ARITHMETIC: monthly indicators print 2-6 weeks after
+  their reference period (EUR Inflation Final lags ~2 weeks by LD-164's own
+  accepted price), the board reads the LEVEL of that stale print, and price
+  absorbed it on release. We average month-old facts and rank the average.
+
+*** 5. LD-169 - CORRELATED PAIRS COUNT ONCE (Jeff's own proposal).
+Jeff: "what if we average our correlated pairs first before including the
+others? this way we still account everything winners and losers"
+HIS METHOD BEATS MY EARLIER ONE. I had proposed BEST-of-three, which uses
+hindsight and inflates every reported number. His average keeps winners AND
+losers and only stops one view voting three times.
+  *** HE ASKED ME TO PICK THE AVERAGING METHOD, SO I PICKED ON EVIDENCE.
+  Method A (average the RATIOS) vs Method B (average PIPS, then one ratio).
+  THREE TESTS, B WON ALL THREE:
+    1. A lets a DEAD pair cancel a live one: group fav100/adv50 beside a
+       pair that moved 1 fav / 2 adv reads 1.250 under A, 1.942 under B.
+    2. A IS UNBOUNDED: fav50/adv1 has ratio 50.0 and drags a nothing week
+       to 25.3; B reads 1.089.
+    3. *** THE DECIDER - B REPRODUCES LD-149 EXACTLY when no pairs are
+       grouped (1.013 vs 1.013; A gives 1.042). A would silently restate
+       every week we ever published, INCLUDING uncorrelated ones, breaking
+       the 3,192 pair-weeks behind LD-149's bands. B changes only what it
+       is meant to change.
+  On 19-23 Oct: CHF view 1.453, GBPAUD 0.840, set ratio 0.988 CONTESTED
+  (published figure was 1.139 - the old number described the CHF view, not
+  the set). pipelines/group_ratio.py + test_group_ratio.py, 13/13 pass.
+
+*** F-163 - MY FIRST GROUPING WAS BROKEN AND THE TEST CAUGHT IT. I grouped
+on "shares any currency", which was (a) ORDER DEPENDENT - the same 4 pairs
+gave 2 groups in sorted order and 1 group of four if GBPAUD came first,
+because GBPAUD shares GBP with GBPCHF which shares CHF with CADCHF - and
+(b) TRANSITIVELY COLLAPSING almost any set into one blob. Fixed to group on
+the DOMINANT REPEATED VIEW (currency in most pairs, ties alphabetical),
+verified as ONE grouping across all 24 permutations. Also bias-aware so a
+LONG CHF and a SHORT CHF are not averaged into each other.
+
+*** 6. LD-170 - THE PER-SESSION LEDGER (Jeff authorised the setup).
+Jeff: "we need to observe this more... see what day the currencies usually
+gives back to the market. then I can avoid that day"
+  data/derived/sessions.csv, one row per pair-session, idempotent on
+  (week, session, pair) so re-running a daily never double-counts. Wired
+  into daily_report.report() at the existing grade_day call, wrapped so a
+  ledger error can NEVER block a build.
+  BACKFILLED 19-23 OCT FROM BARS, NOT MEMORY, and it reproduces the
+  published retro EXACTLY: 1.571 / 7.826 / 0.573 / 0.511 / 0.916 against
+  the retro's 1.57 / 7.83 / 0.57 / 0.51 / 0.92. Thursday's three BEATEN
+  also match. An independent confirmation of the retro's own table.
+  *** weekday_table() REFUSES TO CALL A WINNER below 8 weeks. n=1 today.
+  The file promises nothing about Thursdays; it makes the claim testable in
+  ~2 months, which is the LD-111 lesson applied one level down.
+
+*** F-164 - A SILENT FALL-THROUGH COST ME THE WHOLE FIRST BACKFILL.
+atr_grade.grade_day tests bias == 'LONG' and treats ANYTHING else as short,
+so lowercase 'long' graded every long as a short and inverted fav/adv on all
+20 rows. I CAUGHT IT because the numbers matched the retro EXACTLY BUT
+SWAPPED - 79.5/124.9 against 124.9/79.5 - too precise to be coincidence.
+session_log.append now normalises case and RAISES on anything not
+LONG/SHORT: a ledger that accepts a silently-wrong direction is worse than
+no ledger.
+
+*** WHAT I NOW RECOMMEND, CHANGED BY THE EVIDENCE:
+  - DO NOT extend the holding period. Settled.
+  - The yield/spread input moves UP the list: CHF and USD are the two
+    largest systematic errors and both are haven/yield driven. Still
+    Jeff's call under F-3, still must satisfy LD-23.
+  - The fix for the lag is FRESHNESS, not more indicators: prefer the
+    newest print over a monthly average, weight flash over final, and read
+    CHANGE rather than LEVEL - which is what LD-166 already did for the
+    rate row, and what Jeff's instinct there was right about.
+  - Per-currency rho is now ANSWERED for 2 months, and should be re-run
+    each retro rather than treated as a one-off.
+
 ### LD-168 + R-50 - THE 28-PAIR GRID, FIVE WEEKS LATE (2026-10-25)
 
 Jeff: "Write dailies into the repo so a retro can always recount its own week.
