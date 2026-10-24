@@ -5293,6 +5293,60 @@ releases. A Tuesday report built on Sunday's capture shows "nothing scheduled"
 for rows that printed. It now refuses quietly - printing the warning above the
 report rather than reporting confidently on absent data.
 
+### LD-168 + R-50 - THE 28-PAIR GRID, FIVE WEEKS LATE (2026-10-25)
+
+Jeff: "Write dailies into the repo so a retro can always recount its own week.
+And pull the full 28-pair grid - still the highest-value item, now five weeks
+old on the list. -- Lets do this. I thought we're actually doing this"
+
+*** HE IS RIGHT TO PUSH ON BOTH, AND HALF-RIGHT THAT NOTHING HAD HAPPENED.
+The DAILIES fix was written yesterday but NEVER TESTED END TO END - the only
+run I attempted hit the weekend guard and exited before reaching the write. So
+the code existed and was unproven, which is not the same as done. The GRID had
+genuinely not been touched since it went on the list.
+
+*** 1. DAILIES - PROVEN, NOT JUST WRITTEN. Drove build()+write directly to
+bypass the publication-day guard and regenerated the two sessions the retro
+could not recount (19 and 20 Oct). reports/2026/Q4/daily/ now holds all four of
+last week's sessions under the existing house convention.
+  AND IT CHANGES A RETRO FIGURE: the 17 Oct retro reported 4 consistent / 4
+  AGAINST from the two surviving dailies = 50%. The FULL FOUR-SESSION count is
+  8 consistent / 8 AGAINST - still exactly 50%, so the retro's conclusion
+  stands, but it is now measured on 32 rows instead of 16.
+
+*** 2. THE GRID - AND IT WAS WORSE THAN "12 MISSING". We held 16 of 28
+crosses. Pulled the 12 absent ones (AUDCAD AUDCHF AUDJPY AUDNZD CHFJPY EURCAD
+EURGBP EURNZD GBPCAD GBPNZD NZDCAD NZDJPY) and breadth STILL read n=4 for JPY
+and EUR on a nominally complete grid.
+  THE CAUSE: FIVE FILES WERE STALE AT 16 OCT - CADJPY, EURAUD, EURCHF, EURJPY,
+  GBPJPY - left over from the PREVIOUS week's set and never re-pulled when
+  LD-166 rotated the set to CHF shorts. legs() silently dropped them because
+  they had no 22 Oct bar. *** A STALE FILE DOES NOT ERROR; IT QUIETLY SHRINKS n
+  AND MAKES EVERY READING LOOK BROAD. That is the same silent-degradation shape
+  as F-150/F-152/F-158, in data rather than code.
+
+*** THE RESULT, MEASURED ON THE SAME WEEK THE RETRO JUDGED:
+    BEFORE: 40 of 40 BROAD-ish, NARROW never fired, n ranged 1 to 7
+    AFTER : 20 NARROW, 10 mostly, 10 BROAD, n = 7 for every reading
+The metric went from UNABLE TO FAIL to informative. The retro's claim that
+LD-162 was broken by thin input is now demonstrated, not argued.
+
+*** R-50 IS BUILD CHECK 11b and tests BOTH failure modes, because the second
+is the one that actually bit: (1) all 28 crosses have a file; (2) every file
+reaches the SAME latest session. Negative-tested both branches - deleting
+AUDNZD and truncating CHFJPY each fail with their own message, and both pass
+once restored.
+
+THE RUNBOOK NOW PULLS THE GRID (CLAUDE.md section 0a-iii), five lines instead
+of two, with the reason recorded inline so it is not trimmed back later.
+AND THE 28 .txt FILES WERE CONVERTED TO data/raw/bars/*.json - LD-145 reads
+json, LD-162 reads txt, and keeping them in step beats pulling twice. That also
+cleared LD-145's NZDJPY failure.
+
+R-46 is now SIXTEEN steps, 13 passing. The three red (R-45, R-37, R-49) are the
+same end-of-week staleness as yesterday, unchanged by this work and cleared by
+tomorrow's refresh.
+
 ### RETROSPECTIVE 19-23 OCT - THE WEEK THE HEDGE PAID (2026-10-24)
 
 Jeff: "lets our weeky retrospective report for Oct 19-23"

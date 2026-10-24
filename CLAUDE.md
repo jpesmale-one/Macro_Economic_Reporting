@@ -173,8 +173,19 @@ refuses on Mondays and weekends rather than rendering an empty page.
 
 ```
 python pipelines/capture_calendar.py --write     # MUST be same-morning
-python pipelines/pull_bars.py EURUSD GBPUSD AUDUSD NZDUSD USDJPY USDCAD USDCHF
-python pipelines/pull_bars.py <the four selected pairs>
+
+# LD-168 - PULL THE FULL 28-PAIR GRID, NOT JUST THE MAJORS. LD-162's breadth
+# is measured only against counterparts we hold bars for, so a thin grid makes
+# every reading look BROAD: the 17 Oct retro measured 40 of 40 BROAD-ish with
+# NARROW never firing, because CHF and NZD had ONE counterpart each. On the
+# full grid the SAME WEEK reads 20 NARROW / 10 mostly / 10 BROAD.
+# R-50 (build check 11b) fails if any cross is missing OR behind the others -
+# a stale file does not error, it silently shrinks n.
+python pipelines/pull_bars.py EURUSD EURGBP EURAUD EURNZD EURCAD EURCHF EURJPY
+python pipelines/pull_bars.py GBPUSD GBPAUD GBPNZD GBPCAD GBPCHF GBPJPY
+python pipelines/pull_bars.py AUDUSD AUDNZD AUDCAD AUDCHF AUDJPY
+python pipelines/pull_bars.py NZDUSD NZDCAD NZDCHF NZDJPY
+python pipelines/pull_bars.py USDCAD USDCHF USDJPY CADCHF CADJPY CHFJPY
 python pipelines/daily_report.py                 # console, to read first
 python pipelines/gen_daily.py                    # the page
 ```

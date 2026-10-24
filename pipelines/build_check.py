@@ -479,6 +479,61 @@ def s10_high_impact():
     return True, 'all %d high-impact categories flag (LD-134)' % len(gp.HIGH_IMPACT)
 
 
+def s11b_pair_grid():
+    """R-50 (LD-168): LD-162 needs all 28 crosses, or it cannot return NARROW.
+
+    *** WHY THIS IS A GUARD AND NOT A ONE-OFF PULL. The 17 Oct retro measured
+    that LD-162 returned BROAD or mostly-broad in 40 OF 40 currency-sessions
+    and NARROW never once fired - not because markets were broad, but because
+    breadth is measured only against counterparts we hold bars for, and CHF and
+    NZD had exactly ONE. "BROAD, stronger against all 1" is arithmetically true
+    and says nothing.
+    With the full grid the SAME WEEK re-reads as 20 NARROW, 10 mostly, 10 BROAD
+    - the metric went from unable-to-fail to informative. That is worth a guard,
+    because the failure mode is SILENT: a missing file does not error, it just
+    quietly shrinks n and makes every reading look broad.
+
+    TWO THINGS ARE CHECKED, and the second is the one that bit:
+      1. all 28 conventional crosses have a bar file at all;
+      2. every file carries the SAME latest session. Five files sat at 16 Oct
+         while the rest were current - left over from the previous week's set
+         and never re-pulled when the set rotated - so legs() silently dropped
+         three counterparts per currency and JPY still read n=4 on a grid that
+         was nominally complete.
+    """
+    import itertools as _it
+    import glob as _g
+    ORDER = ['EUR', 'GBP', 'AUD', 'NZD', 'USD', 'CAD', 'CHF', 'JPY']
+    _rank = dict((c, i) for i, c in enumerate(ORDER))
+    want = set()
+    for a, b in _it.combinations(ORDER, 2):
+        want.add(a + b if _rank[a] < _rank[b] else b + a)
+
+    import daily_report as _dr
+    have = set(os.path.basename(f)[:-4]
+               for f in _g.glob(os.path.join(_dr.TXT, '??????.txt')))
+    missing = sorted(want - have)
+    if missing:
+        return False, ('%d of 28 crosses have no bar file: %s - LD-162 cannot '
+                       'return NARROW without them (R-50)'
+                       % (len(missing), ' '.join(missing[:6])))
+
+    # 2. every file must reach the same latest session
+    last = {}
+    for p in sorted(want):
+        b = _dr.bars(p)
+        if not b:
+            return False, '%s has a file but no readable bars (R-50)' % p
+        last[p] = b[-1][0]
+    newest = max(last.values())
+    behind = sorted(p for p, d in last.items() if d != newest)
+    if behind:
+        return False, ('%d cross(es) are behind the others (newest %s): %s - a '
+                       'stale file does not error, it SILENTLY shrinks breadth '
+                       '(R-50)' % (len(behind), newest, ' '.join(behind[:6])))
+    return True, 'all 28 crosses present and current to %s' % newest
+
+
 def s11_pair_bars():
     """LD-145: every SELECTED pair needs OANDA bars for its ATR and target.
 
@@ -529,6 +584,7 @@ STEPS = [
     ('9b', 'board matches its own rows (R-49/F-161)', s9b_board_self_consistent),
     ('10', 'high-impact rows can flag (F-135)', s10_high_impact),
     ('11', 'selected pairs have OANDA bars (LD-145)', s11_pair_bars),
+    ('11b', 'all 28 crosses for LD-162 (R-50)', s11b_pair_grid),
 ]
 
 PAGE_STEPS = """
