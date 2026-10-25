@@ -66,7 +66,16 @@ def hot(ccy, name):
 SP = ('C:/Users/jpesm/AppData/Local/Temp/claude/'
       'c--Users-jpesm-OneDrive-Documents-GitHub/'
       '16c8f514-dc2c-4587-b6a0-4fa0ff0b7ba8/scratchpad/')
-CAP = sorted(glob.glob('data/raw/calendar/2026-10-18_*_cal_full.json'))[-1]
+# *** F-170 - THE CAPTURE WAS PINNED TO 2026-10-18, LAST WEEK'S SUNDAY.
+# Advancing START/END moved the window but the page kept scoring the
+# calibrator off the PREVIOUS edition's capture, so R-49 re-derived on the
+# capture the footer named and found USD -0.30 on the page against -0.50
+# live. The page was wrong, not the guard.
+# This is F-130's shape in the one field F-130's scanner does not read: it
+# looks for START/END pairs and dt.date() literals, and a date inside a glob
+# pattern is neither. Take the NEWEST capture - the build is always for the
+# week the newest Sunday capture opens.
+CAP = sorted(glob.glob('data/raw/calendar/*_cal_full.json'))[-1]
 START, END = '2026-10-26', '2026-10-30'
 
 F = ps.final_scores(CAP, START, END)

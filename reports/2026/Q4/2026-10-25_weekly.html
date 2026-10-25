@@ -1,0 +1,1316 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+/* ---- revision log (LD-139) -------------------------------------------
+   Jeff, 2026-09-14: "I don't like this in the top. we can place it under
+   section 5 Methods and Limits. plus change the background I can barely
+   read it"
+
+   Two defects, one cause. The notes were hardcoded #fffaf0 on light ink
+   tokens - in DARK MODE that is near-white paper under light-grey text,
+   which is what he could not read. Everything else on this page draws
+   from the theme tokens; these did not, because I wrote them inline in a
+   hurry across five revisions.
+
+   And five stacked banners pushed the actual report below the fold. A
+   revision log is PROVENANCE, not the lede - it belongs with the method,
+   and collapsed, so the current reading opens first. */
+.revlog{margin:26px 0 0}
+.revlog > summary{
+  cursor:pointer; list-style:none;
+  font:600 11px/1 "IBM Plex Mono",ui-monospace,monospace;
+  letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3);
+  padding:9px 0; border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  display:flex; align-items:center; gap:9px;
+}
+.revlog > summary::-webkit-details-marker{display:none}
+.revlog > summary::before{
+  content:"B8"; color:var(--accent); font-size:13px;
+  transition:transform .15s ease; display:inline-block;
+}
+.revlog[open] > summary::before{transform:rotate(90deg)}
+.revlog > summary:hover{color:var(--ink-2)}
+.revlog .inner{padding:16px 0 0}
+.note.rev{
+  background:var(--card); color:var(--ink-2);
+  border:1px solid var(--rule); border-left:2px solid var(--accent);
+  padding:13px 16px; margin:0 0 10px;
+  font-size:13px; line-height:1.6; border-radius:0 3px 3px 0;
+}
+.note.rev:last-child{margin-bottom:0}
+.note.rev strong{font-weight:600; color:var(--ink)}
+.note.rev code{font-size:.92em; color:var(--ink-2)}
+</style></head><body>
+<title>Week of 26&ndash;30 Oct 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#f7f6f3; --card:#fffefc; --ink:#12161c; --ink-2:#4a525e;
+  --ink-3:#79828f; --rule:#e2e0da; --rule-2:#cfccc4;
+  --accent:#3d5a80; --accent-soft:#eaeef4;
+  --bull:#1f7a5a; --bull-soft:#e6f2ec;
+  --bear:#b03a2e; --bear-soft:#fbeae7;
+  --warn:#8a6d1f; --warn-soft:#faf1dc;
+  --shadow:0 1px 2px rgba(18,22,28,.06), 0 6px 20px rgba(18,22,28,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#11141a; --card:#171b23; --ink:#e9eaec; --ink-2:#a4acb8;
+    --ink-3:#767f8c; --rule:#252b35; --rule-2:#333b47;
+    --accent:#8fb0d9; --accent-soft:#1b2432;
+    --bull:#5fc39b; --bull-soft:#152a23;
+    --bear:#f0857a; --bear-soft:#2c1a18;
+    --warn:#d3b25f; --warn-soft:#2a2312;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#11141a; --card:#171b23; --ink:#e9eaec; --ink-2:#a4acb8;
+  --ink-3:#767f8c; --rule:#252b35; --rule-2:#333b47;
+  --accent:#8fb0d9; --accent-soft:#1b2432;
+  --bull:#5fc39b; --bull-soft:#152a23;
+  --bear:#f0857a; --bear-soft:#2c1a18;
+  --warn:#d3b25f; --warn-soft:#2a2312;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font:400 16px/1.6 "IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+  margin:0; padding:0 18px 72px;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:760px; margin:0 auto}
+
+/* ---------- masthead ---------- */
+header{padding:40px 0 26px; border-bottom:2px solid var(--ink)}
+.eyebrow{
+  font:500 11px/1 "IBM Plex Mono",ui-monospace,monospace;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);
+  margin:0 0 14px;
+}
+h1{
+  font:600 clamp(30px,7vw,44px)/1.08 Newsreader,Georgia,serif;
+  letter-spacing:-.015em; margin:0 0 6px; text-wrap:balance;
+}
+.dek{
+  font:400 clamp(16px,3.4vw,19px)/1.45 Newsreader,Georgia,serif;
+  color:var(--ink-2); margin:0 0 20px; text-wrap:balance;
+}
+.chips{display:flex; flex-wrap:wrap; gap:7px}
+.chip{
+  font:500 11px/1 "IBM Plex Mono",ui-monospace,monospace;
+  letter-spacing:.05em; padding:6px 9px; border-radius:3px;
+  background:var(--accent-soft); color:var(--accent);
+  border:1px solid transparent;
+}
+.chip.q{background:transparent; border-color:var(--rule-2); color:var(--ink-3)}
+
+/* ---------- sections ---------- */
+section{padding-top:38px}
+h2{
+  font:600 13px/1 "IBM Plex Mono",ui-monospace,monospace;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--accent);
+  margin:0 0 4px;
+}
+h2 + .sub{
+  font:400 clamp(20px,4.4vw,27px)/1.25 Newsreader,Georgia,serif;
+  margin:0 0 18px; text-wrap:balance;
+}
+h3{
+  font:600 15px/1.35 "IBM Plex Sans",sans-serif;
+  margin:30px 0 10px; letter-spacing:-.01em;
+}
+p{margin:0 0 14px; max-width:66ch}
+strong{font-weight:600}
+em{font-style:italic; color:var(--ink-2)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.92em}
+
+/* ---------- the set ---------- */
+.set{display:flex; flex-direction:column; gap:10px; margin:0 0 20px}
+.pair{
+  background:var(--card); border:1px solid var(--rule);
+  border-left:3px solid var(--accent);
+  border-radius:4px; padding:14px 16px; box-shadow:var(--shadow);
+  display:grid; grid-template-columns:auto 1fr auto; gap:4px 14px;
+  align-items:baseline;
+}
+.pair.top{border-left-color:var(--bull)}
+.rank{
+  font:600 12px/1 "IBM Plex Mono",monospace; color:var(--ink-3);
+  grid-row:span 2;
+}
+.sym{
+  font:600 clamp(19px,4.6vw,23px)/1.1 "IBM Plex Mono",monospace;
+  letter-spacing:-.01em;
+}
+.bias{
+  font:600 11px/1 "IBM Plex Mono",monospace; letter-spacing:.08em;
+  padding:4px 7px; border-radius:3px; margin-left:8px; vertical-align:2px;
+}
+.bias.long{background:var(--bull-soft); color:var(--bull)}
+.bias.short{background:var(--bear-soft); color:var(--bear)}
+.gap{
+  font:600 clamp(19px,4.6vw,23px)/1.1 "IBM Plex Mono",monospace;
+  font-variant-numeric:tabular-nums; text-align:right;
+}
+.gap.big{color:var(--bull)}
+.legs{
+  grid-column:2/4; font:400 13px/1.45 "IBM Plex Sans",sans-serif;
+  color:var(--ink-2);
+}
+.legs .cat{
+  font-family:"IBM Plex Mono",monospace; font-size:11px;
+  letter-spacing:.06em; color:var(--ink-3);
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto; margin:0 0 14px; -webkit-overflow-scrolling:touch}
+table{
+  border-collapse:collapse; width:100%; min-width:max-content;
+  font:400 13.5px/1.4 "IBM Plex Sans",sans-serif;
+}
+th{
+  font:600 11px/1.2 "IBM Plex Mono",monospace; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--ink-3); text-align:left;
+  padding:0 12px 8px 0; border-bottom:1px solid var(--rule-2);
+  white-space:nowrap;
+}
+td{
+  padding:8px 12px 8px 0; border-bottom:1px solid var(--rule);
+  white-space:nowrap; vertical-align:baseline;
+}
+tbody tr:last-child td{border-bottom:none}
+.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; text-align:right}
+th.num{text-align:right}
+.pos{color:var(--bull); font-weight:500}
+.neg{color:var(--bear); font-weight:500}
+.zero{color:var(--ink-3)}
+.dash{color:var(--ink-3)}
+tr.sel td{background:var(--accent-soft)}
+/* LD-134 - high-impact rows: Employment, Inflation, Interest Rate, GDP.
+   A CAUTION, not a weight - the warn hue is deliberately the same one the
+   flag notes use, and is NOT the accent, so it cannot be read as selection. */
+tr.hot td{background:var(--warn-soft)}
+tr.hot td:first-child{box-shadow:inset 3px 0 0 var(--warn)}
+.tag-hi{
+  font:600 9.5px/1 "IBM Plex Mono",monospace; letter-spacing:.09em;
+  padding:3px 5px; border-radius:2px; margin-left:7px; vertical-align:1px;
+  background:var(--warn-soft); color:var(--warn); white-space:nowrap;
+}
+tr.sel td:first-child{font-weight:600}
+.band{
+  font:600 10px/1 "IBM Plex Mono",monospace; letter-spacing:.07em;
+  padding:4px 6px; border-radius:3px;
+}
+.band.s{background:var(--bull-soft); color:var(--bull)}
+.band.n{background:var(--rule); color:var(--ink-2)}
+.band.w{background:var(--bear-soft); color:var(--bear)}
+.ccy{font-family:"IBM Plex Mono",monospace; font-weight:600}
+
+/* ---------- indicator tables ---------- */
+h3 .wt{
+  font:400 11px/1 "IBM Plex Mono",monospace; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--ink-3); margin-left:8px;
+}
+table.ind td{white-space:normal}
+table.ind td:nth-child(2){min-width:15em}
+table.ind tr.grp td{border-top:1px solid var(--rule-2)}
+table.ind tbody tr:first-child td{border-top:none}
+table.ind td.tot{
+  font-weight:600; vertical-align:middle;
+  border-left:1px solid var(--rule); padding-left:12px;
+}
+table.ind td.v{font-family:"IBM Plex Mono",monospace; font-size:12.5px; white-space:nowrap}
+table.ind td.dim{color:var(--ink-2)}
+table.ind td.sm{font-size:12px; white-space:nowrap}
+table.ind td.q{color:var(--warn); font-weight:500}
+table.ind td.terms .wt2{font-size:10.5px; color:var(--ink-3)}
+table.ind td.terms{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-2); white-space:nowrap}
+p.cnt{
+  font:500 12px/1 "IBM Plex Mono",monospace; letter-spacing:.04em;
+  color:var(--ink-3); margin:0 0 10px;
+}
+
+/* ---------- notes ---------- */
+.note{
+  border-left:2px solid var(--rule-2); padding:2px 0 2px 14px;
+  margin:0 0 16px; color:var(--ink-2); font-size:14.5px;
+}
+.note strong{color:var(--ink)}
+.flag{border-left-color:var(--warn)}
+.flag .lbl{
+  display:block; font:600 11px/1 "IBM Plex Mono",monospace;
+  letter-spacing:.1em; color:var(--warn); margin-bottom:6px;
+}
+.kv{
+  display:grid; grid-template-columns:auto 1fr; gap:6px 16px;
+  font-size:14px; margin:0 0 16px;
+}
+.kv dt{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-3); white-space:nowrap}
+.kv dd{margin:0; color:var(--ink-2)}
+hr{border:none; border-top:1px solid var(--rule); margin:34px 0 0}
+footer{
+  margin-top:34px; padding-top:20px; border-top:1px solid var(--rule);
+  font-size:13px; color:var(--ink-3);
+}
+footer p{max-width:none}
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Macro Economic Reporting &middot; Weekly &middot; Sunday 25 Oct 2026</p>
+  <h1>Week of 26&ndash;30 Oct</h1>
+  <p class="dek">Selection for the 26&ndash;30 Oct cycle, into
+  <strong>five central bank decisions</strong> &mdash; RBNZ and BoC Wednesday,
+  <strong>Fed and ECB Thursday</strong>, BoJ Friday. Thirteen rows refreshed,
+  and <strong>JPY swings +2.33 from &minus;1.67</strong> on a trade deficit
+  that halved and a CPI print at 2.1%. <strong>CAD takes the board at
+  +7.00</strong>; GBP eases to +6.00 on a jobs and confidence miss.</p>
+  <div class="chips">
+    <span class="chip">3 pairs</span>
+    <span class="chip">CADCHF LONG +8.00</span>
+    <span class="chip">13 rows refreshed</span>
+    <span class="chip q">20 of 20 rows scorable</span>
+    <span class="chip q">logic frozen (LD-167)</span>
+  </div>
+</header>
+
+<div class="note">
+  <strong>&#9888; FIVE RATE DECISIONS IN ONE WEEK, AND THE BOARD CANNOT SEE
+  PAST THEM.</strong> Under LD-154 the rate row scores the PATH &mdash; where
+  the policy rate is going &mdash; and five of the eight central banks report
+  between Wednesday and Friday. Every rate score on this page is a read of
+  the path <em>before</em> those decisions.
+  <br><br>
+  <strong>Logic is frozen for this edition (LD-167).</strong> Jeff:
+  <em>"Keep frozen &mdash; refresh data only."</em> No rule, band or weight
+  changed; the correlated-pair grouping (LD-169) and the extreme shrinkage
+  (LD-172) are both built, tested and <strong>switched off</strong>. The board
+  stays a clean control group for the rate-differential comparison.
+  <br><br>
+  <strong>R-46 passed 16 of 16 for the first time in this project's
+  record.</strong> Four defects were cleared to get there, and three of them
+  were guards accusing correct work rather than data being wrong &mdash;
+  recorded in STATE.md.
+</div>
+
+<section>
+  <h2>The set</h2>
+  <p class="sub">3 pairs — one tier-1 read for every category and every strong currency.</p>
+
+  <div class="set">
+    <div class="pair top">
+      <span class="rank">1</span>
+      <span class="sym">CADCHF<span class="bias long">LONG</span></span>
+      <span class="gap big">+8.00</span>
+      <span class="legs"><span class="cat">RISK ON</span> &nbsp;long CAD <strong>+7.20</strong> · short CHF <strong>−0.80</strong></span>
+      <span class="legs"><span class="cat">covers</span> &nbsp;RISK ON · CAD</span>
+      <span class="legs"><span class="cat">range</span> &nbsp;ATR(14) <strong>31</strong> pips · 0.75 target <strong>23</strong> pips</span>
+      <span class="legs"><span class="cat">swap</span> &nbsp;<strong class="pos">+2.25 pp</strong> — earns to hold</span>
+    </div>
+    <div class="pair">
+      <span class="rank">2</span>
+      <span class="sym">GBPAUD<span class="bias long">LONG</span></span>
+      <span class="gap">+7.47</span>
+      <span class="legs"><span class="cat">EITHER</span> &nbsp;long GBP <strong>+6.00</strong> · short AUD <strong>−1.47</strong></span>
+      <span class="legs"><span class="cat">covers</span> &nbsp;EITHER · GBP</span>
+      <span class="legs"><span class="cat">range</span> &nbsp;ATR(14) <strong>102</strong> pips · 0.75 target <strong>77</strong> pips</span>
+      <span class="legs"><span class="cat">swap</span> &nbsp;<strong class="neg">-0.85 pp</strong> — costs to hold</span>
+    </div>
+    <div class="pair">
+      <span class="rank">3</span>
+      <span class="sym">AUDJPY<span class="bias short">SHORT</span></span>
+      <span class="gap">+4.00</span>
+      <span class="legs"><span class="cat">RISK OFF</span> &nbsp;long JPY <strong>+2.53</strong> · short AUD <strong>−1.47</strong></span>
+      <span class="legs"><span class="cat">covers</span> &nbsp;RISK OFF · JPY</span>
+      <span class="legs"><span class="cat">range</span> &nbsp;ATR(14) <strong>85</strong> pips · 0.75 target <strong>64</strong> pips</span>
+      <span class="legs"><span class="cat">swap</span> &nbsp;<strong class="neg">-3.35 pp</strong> — costs to hold</span>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>The swap line is the POLICY RATE DIFFERENTIAL in the direction of the bias, not a broker swap rate.</strong> A pair has two swaps with opposite signs; which one applies depends on the side, so it is computed per position. Brokers quote swaps in points per lot, set by their own funding and marked up — two brokers differ, and so do two accounts at one broker. What is shown is the economic force underneath that number, never the number itself.
+    <br><br><strong>It moves nothing.</strong> LD-8 caps carry at a swing-ranking tiebreak, never a filter; this does not even tiebreak. The set, the gaps and the board are computed before it runs and do not consult it. It is disclosed so a reader holding a position for a week can see whether the week costs them anything — <strong>no lot sizes, no money figures (LD-4)</strong>.
+  </div>
+
+  <p><strong>CADCHF LONG carries the widest gap on the board at +8.00</strong> — <strong>CAD is top at +7.20 and AUD is bottom at −1.47</strong>.</p>
+
+
+  <div class="note flag">
+    <span class="lbl">⚠ THESE PAIRS SHARE LEGS</span>
+    <strong>AUD appears in 2 pairs.</strong> The set covers every category AND every strong currency (LD-126), and that guarantee means a currency can appear more than once. <strong>These are 3 separate reads, not a portfolio</strong> — taking them all would hold one view several times over, which is the correlation that inflates a scorecard (EF-3).
+  </div>
+  <p><strong>The old gap-first rule would have given:</strong> <span class="mono">CADCHF LONG · GBPAUD LONG · EURJPY SHORT</span> — leg-disjoint, +19.10 total gap against +19.47 here. <strong>That set was optimal on conviction and had no way to guarantee a category was represented</strong>; this one guarantees coverage and gives up the disjointness.</p>
+</section>
+<section>
+  <h2>§1 The pairs</h2>
+  <p class="sub">Risk category is an output, not a forecast.</p>
+  <p>Of the <strong>12 permitted pairings, 5 are RISK ON, 5 RISK OFF and 2 EITHER</strong>. Nothing here predicts the regime — the roles present in each band decide which categories can be filled.</p>
+
+  <h3>The strongest read in each category</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Category</th><th>Representative</th><th>Dir</th><th class="num">Gap</th><th>Long / short</th><th>In the set?</th></tr></thead>
+    <tbody>
+      <tr class="sel"><td><span class="cat">RISK ON</span></td><td class="ccy">CADCHF</td><td>LONG</td><td class="num pos">+8.00</td><td>CAD over CHF</td><td><strong>yes</strong></td></tr>
+      <tr class="sel"><td><span class="cat">RISK OFF</span></td><td class="ccy">AUDJPY</td><td>SHORT</td><td class="num pos">+4.00</td><td>JPY over AUD</td><td><strong>yes</strong></td></tr>
+      <tr class="sel"><td><span class="cat">EITHER</span></td><td class="ccy">GBPAUD</td><td>LONG</td><td class="num pos">+7.47</td><td>GBP over AUD</td><td><strong>yes</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>RISK ON <span class="wt">5 pairs · 1 selected</span></h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Pair</th><th>Dir</th><th class="num">Tier</th><th class="num">Gap</th><th>Long / short</th></tr></thead>
+    <tbody>
+      <tr class="sel"><td class="ccy">CADCHF</td><td>LONG</td><td class="num">1</td><td class="num pos">+8.00</td><td>CAD over CHF</td></tr>
+      <tr><td class="ccy">GBPCHF</td><td>LONG</td><td class="num">1</td><td class="num ">+6.80</td><td>GBP over CHF</td></tr>
+      <tr><td class="ccy">USDCAD</td><td>SHORT</td><td class="num">2</td><td class="num ">+7.70</td><td>CAD over USD</td></tr>
+      <tr><td class="ccy">GBPUSD</td><td>LONG</td><td class="num">2</td><td class="num ">+6.50</td><td>GBP over USD</td></tr>
+      <tr><td class="ccy">NZDCHF</td><td>LONG</td><td class="num">2</td><td class="num ">+0.20</td><td>NZD over CHF</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>RISK OFF <span class="wt">5 pairs · 1 selected</span></h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Pair</th><th>Dir</th><th class="num">Tier</th><th class="num">Gap</th><th>Long / short</th></tr></thead>
+    <tbody>
+      <tr class="sel"><td class="ccy">AUDJPY</td><td>SHORT</td><td class="num">1</td><td class="num pos">+4.00</td><td>JPY over AUD</td></tr>
+      <tr><td class="ccy">EURJPY</td><td>SHORT</td><td class="num">1</td><td class="num ">+3.63</td><td>JPY over EUR</td></tr>
+      <tr><td class="ccy">NZDJPY</td><td>SHORT</td><td class="num">2</td><td class="num ">+3.13</td><td>JPY over NZD</td></tr>
+      <tr><td class="ccy">AUDUSD</td><td>SHORT</td><td class="num">2</td><td class="num ">+0.97</td><td>USD over AUD</td></tr>
+      <tr><td class="ccy">EURUSD</td><td>SHORT</td><td class="num">2</td><td class="num ">+0.60</td><td>USD over EUR</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>EITHER <span class="wt">2 pairs · 1 selected</span></h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Pair</th><th>Dir</th><th class="num">Tier</th><th class="num">Gap</th><th>Long / short</th></tr></thead>
+    <tbody>
+      <tr class="sel"><td class="ccy">GBPAUD</td><td>LONG</td><td class="num">1</td><td class="num pos">+7.47</td><td>GBP over AUD</td></tr>
+      <tr><td class="ccy">GBPNZD</td><td>LONG</td><td class="num">2</td><td class="num ">+6.60</td><td>GBP over NZD</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Conviction is the score gap, not the category</strong> — a RISK OFF pair is not inherently better than a RISK ON one. Tier 1 is STRONG vs WEAK; tier 2 is STRONG vs NEUTRAL or NEUTRAL vs WEAK. <strong>All 28 currency combinations are eligible</strong>, each returned in the symbol the market quotes with the direction carrying the bias.</p>
+
+  <h3>What the calibrator changed in the set</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Basis</th><th>Pairs</th></tr></thead>
+    <tbody>
+      <tr><td class="zero">Base only</td><td class="mono">CADCHF LONG · GBPAUD LONG · EURJPY SHORT</td></tr>
+      <tr class="sel"><td><strong>+ calibrator</strong></td><td class="mono"><strong>CADCHF LONG · GBPAUD LONG · AUDJPY SHORT</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>The calibrator changed the set.</strong> <strong>Out: EURJPY SHORT.</strong> <strong>In: AUDJPY SHORT.</strong></p>
+</section>
+<section>
+  <h2>§2 The board</h2>
+  <p class="sub">FINAL = base + calibrator</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Band</th><th>CCY</th><th>Role</th><th class="num">Base</th><th class="num">Calib</th><th class="num">Final</th><th class="num">Lead</th><th class="num">Confirm</th></tr></thead>
+    <tbody>
+      <tr><td><span class="band s">STRONG</span></td><td class="ccy">CAD</td><td>Commodity</td><td class="num">+7.00</td><td class="num pos">+0.20</td><td class="num pos">+7.20</td><td class="num">+6.00</td><td class="num">+1.00</td></tr>
+      <tr><td><span class="band s">STRONG</span></td><td class="ccy">GBP</td><td>Cyclical</td><td class="num">+6.00</td><td class="num zero">+0.00</td><td class="num pos">+6.00</td><td class="num">+4.00</td><td class="num">+2.00</td></tr>
+      <tr><td><span class="band s">STRONG</span></td><td class="ccy">JPY</td><td>Safe haven</td><td class="num">+2.33</td><td class="num pos">+0.20</td><td class="num pos">+2.53</td><td class="num">+3.33</td><td class="num">−1.00</td></tr>
+      <tr><td><span class="band n">NEUTRAL</span></td><td class="ccy">USD</td><td>Safe haven</td><td class="num">−0.50</td><td class="num zero">+0.00</td><td class="num neg">−0.50</td><td class="num">−0.50</td><td class="num">+0.00</td></tr>
+      <tr><td><span class="band n">NEUTRAL</span></td><td class="ccy">NZD</td><td>Commodity</td><td class="num">+0.00</td><td class="num neg">−0.60</td><td class="num neg">−0.60</td><td class="num">−1.00</td><td class="num">+1.00</td></tr>
+      <tr><td><span class="band w">WEAK</span></td><td class="ccy">CHF</td><td>Safe haven</td><td class="num">−1.00</td><td class="num pos">+0.20</td><td class="num neg">−0.80</td><td class="num">+0.00</td><td class="num">−1.00</td></tr>
+      <tr><td><span class="band w">WEAK</span></td><td class="ccy">EUR</td><td>Cyclical</td><td class="num">−1.00</td><td class="num neg">−0.10</td><td class="num neg">−1.10</td><td class="num">−2.00</td><td class="num">+1.00</td></tr>
+      <tr><td><span class="band w">WEAK</span></td><td class="ccy">AUD</td><td>Commodity</td><td class="num">−1.67</td><td class="num pos">+0.20</td><td class="num neg">−1.47</td><td class="num">−3.00</td><td class="num">+1.33</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <dl class="kv">
+    <dt>Base</dt><dd>−9 … +9 — six fact tables, <code>Oct-26</code>, 78 of 78 cells scored</dd>
+    <dt>Calibrator</dt><dd>−5 … +5 — 20 scheduled rows, 20 scorable, 17 with a TE consensus</dd>
+    <dt>Weights</dt><dd>Production · Spending · Trade = <strong>2</strong> (leading) · Employment · Inflation · Interest Rate = <strong>1</strong>. <strong>The calibrator has no weights</strong> — the day is the unit.</dd>
+    <dt>Bands</dt><dd>Target 3 / 2 / 3 by rank, and <strong>a tie is never split</strong>. This week: <strong>3 / 2 / 3</strong>.</dd>
+  </dl>
+
+  <h3>What the calibrator changed</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>CCY</th><th class="num">Base</th><th class="num">Calib</th><th class="num">Final</th><th>Effect</th></tr></thead>
+    <tbody>
+      <tr><td class="ccy">NZD</td><td class="num">+0.00 <span class="zero">(#4)</span></td><td class="num neg">−0.60</td><td class="num">−0.60 <span class="zero">(#5)</span></td><td>stays NEUTRAL</td></tr>
+      <tr><td class="ccy">CAD</td><td class="num">+7.00 <span class="zero">(#1)</span></td><td class="num pos">+0.20</td><td class="num">+7.20 <span class="zero">(#1)</span></td><td>stays STRONG</td></tr>
+      <tr><td class="ccy">JPY</td><td class="num">+2.33 <span class="zero">(#3)</span></td><td class="num pos">+0.20</td><td class="num">+2.53 <span class="zero">(#3)</span></td><td>stays STRONG</td></tr>
+      <tr><td class="ccy">CHF</td><td class="num">−1.00 <span class="zero">(#7)</span></td><td class="num pos">+0.20</td><td class="num">−0.80 <span class="zero">(#6)</span></td><td>stays WEAK</td></tr>
+      <tr><td class="ccy">AUD</td><td class="num">−1.67 <span class="zero">(#8)</span></td><td class="num pos">+0.20</td><td class="num">−1.47 <span class="zero">(#8)</span></td><td>stays WEAK</td></tr>
+      <tr><td class="ccy">EUR</td><td class="num">−1.00 <span class="zero">(#6)</span></td><td class="num neg">−0.10</td><td class="num">−1.10 <span class="zero">(#7)</span></td><td>stays WEAK</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>0 of 8 currencies move band</strong> (6 take a non-zero adjustment). <strong>The board is tightly packed — the whole final spread is 8.67 points — so a term bounded at ±5 re-ranks it readily</strong>, which is what a calibrator is for.</p>
+</section>
+<section>
+  <h2>§3 The calibrator</h2>
+  <p class="sub">The day is the unit, not the category.</p>
+  <p>One question per currency per day — <em>is this currency positive or negative on Monday?</em> <strong>A currency with three releases on Tuesday scores Tuesday once</strong>, so a crowded calendar cannot outvote the macro base by accident.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>CCY</th><th class="num">Mon 26</th><th class="num">Tue 27</th><th class="num">Wed 28</th><th class="num">Thu 29</th><th class="num">Fri 30</th><th class="num">Week</th></tr></thead>
+    <tbody>
+      <tr><td class="ccy">CAD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+0.20</td></tr>
+      <tr><td class="ccy">GBP</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num zero">+0.00</td></tr>
+      <tr><td class="ccy">JPY</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num zero">+0.00</td><td class="num pos">+1.00</td><td class="num pos">+0.20</td></tr>
+      <tr><td class="ccy">USD</td><td class="num dash">—</td><td class="num neg">−1.00</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num dash">—</td><td class="num zero">+0.00</td></tr>
+      <tr><td class="ccy">NZD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num neg">−1.00</td><td class="num neg">−1.00</td><td class="num neg">−1.00</td><td class="num neg">−0.60</td></tr>
+      <tr><td class="ccy">CHF</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num pos">+0.20</td></tr>
+      <tr><td class="ccy">EUR</td><td class="num dash">—</td><td class="num dash">—</td><td class="num dash">—</td><td class="num neg">−1.00</td><td class="num pos">+0.50</td><td class="num neg">−0.10</td></tr>
+      <tr><td class="ccy">AUD</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+1.00</td><td class="num dash">—</td><td class="num dash">—</td><td class="num pos">+0.20</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note"><strong>A dash is a day with no scheduled whitelist row.</strong> <strong>GBP has no rows at all this week</strong>, so its calibrator term is +0.00 by absence — not by balance.</div>
+
+  <h3>Every scheduled row, and how it scored</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>When (PHT)</th><th>CCY</th><th>Indicator</th><th class="num">Previous</th><th class="num">Cons / Fcst</th><th>Threshold</th><th class="num">Score</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">Tue 27 20:00</td><td class="ccy">USD</td><td>Building Permits MoM Final</td><td class="num v">−2.1%</td><td class="num v">−0.2%</td><td class="dim sm">&gt;0.5%</td><td class="num neg">−1</td></tr>
+      <tr><td class="mono">Tue 27 20:30</td><td class="ccy">USD</td><td>Durable Goods Ex Transp MoM</td><td class="num v">0.3%</td><td class="num v">0.6% – 0.2%</td><td class="dim sm">&gt;0.5%</td><td class="num zero">0</td></tr>
+      <tr><td class="mono">Tue 27 22:00</td><td class="ccy">USD</td><td>CB Consumer Confidence</td><td class="num v">81.9</td><td class="num v">80.5 – 80</td><td class="dim sm">&gt;Prev</td><td class="num neg">−1</td></tr>
+      <tr class="hot"><td class="mono">Wed 28 08:30</td><td class="ccy">AUD</td><td>Inflation Rate YoY <span class="tag-hi">HIGH</span></td><td class="num v">4.0%</td><td class="num v">4.2% – 4.1%</td><td class="dim sm">1.8-2.2 corridor (LD-155)</td><td class="num pos">+1</td></tr>
+      <tr class="hot"><td class="mono">Wed 28 09:00</td><td class="ccy">NZD</td><td>Interest Rate Decision <span class="tag-hi">HIGH</span></td><td class="num v">2.75%</td><td class="num v">3.0%</td><td class="dim sm">HIKE into NEUTRAL regime (LD-146)</td><td class="num neg">−1</td></tr>
+      <tr class="hot"><td class="mono">Wed 28 21:45</td><td class="ccy">CAD</td><td>Interest Rate Decision <span class="tag-hi">HIGH</span></td><td class="num v">2.25%</td><td class="num v">2.5%</td><td class="dim sm">HIKE into STRONG regime (LD-146)</td><td class="num pos">+1</td></tr>
+      <tr class="hot"><td class="mono">Thu 29 02:00</td><td class="ccy">USD</td><td>Interest Rate Decision <span class="tag-hi">HIGH</span></td><td class="num v">4%</td><td class="num v">4.0%</td><td class="dim sm">HOLD into NEUTRAL regime (LD-146)</td><td class="num pos">+1</td></tr>
+      <tr><td class="mono">Thu 29 08:00</td><td class="ccy">NZD</td><td>ANZ Business Confidence</td><td class="num v">51.9</td><td class="num v">51.5</td><td class="dim sm">&gt;Prev</td><td class="num neg">−1</td></tr>
+      <tr><td class="mono">Thu 29 13:00</td><td class="ccy">JPY</td><td>Consumer Confidence</td><td class="num v">35.4</td><td class="num v">35.1 – 35.6</td><td class="dim sm">&gt;Prev</td><td class="num zero">0</td></tr>
+      <tr><td class="mono">Thu 29 18:00</td><td class="ccy">EUR</td><td>Consumer Confidence Final</td><td class="num v">−16.5</td><td class="num v">−17.9</td><td class="dim sm">&gt;Prev</td><td class="num neg">−1</td></tr>
+      <tr class="hot"><td class="mono">Thu 29 20:30</td><td class="ccy">USD</td><td>GDP Growth Rate QoQ <span class="tag-hi">HIGH</span></td><td class="num v">2.2%</td><td class="num v">3.2% – 3.1%</td><td class="dim sm">&gt;0 range (LD-117)</td><td class="num pos">+1</td></tr>
+      <tr><td class="mono">Thu 29 20:30</td><td class="ccy">USD</td><td>Personal Spending MoM</td><td class="num v">0.9%</td><td class="num v">0.3%</td><td class="dim sm">&gt;0.5%</td><td class="num zero">0</td></tr>
+      <tr class="hot"><td class="mono">Thu 29 21:15</td><td class="ccy">EUR</td><td>Interest Rate Decision <span class="tag-hi">HIGH</span></td><td class="num v">2.65%</td><td class="num v">2.65%</td><td class="dim sm">HOLD into WEAK regime (LD-146)</td><td class="num neg">−1</td></tr>
+      <tr><td class="mono">Fri 30 05:00</td><td class="ccy">NZD</td><td>ANZ Roy Morgan Consumer Conf</td><td class="num v">97.6</td><td class="num v">97.4</td><td class="dim sm">&gt;Prev</td><td class="num neg">−1</td></tr>
+      <tr class="hot"><td class="mono">Fri 30 07:30</td><td class="ccy">JPY</td><td>Unemployment Rate <span class="tag-hi">HIGH</span></td><td class="num v">2.5%</td><td class="num v">2.5% – 2.60%</td><td class="dim sm">&lt;Prev</td><td class="num zero">0</td></tr>
+      <tr><td class="mono">Fri 30 07:50</td><td class="ccy">JPY</td><td>Retail Sales YoY</td><td class="num v">2.7%</td><td class="num v">3.3% – 3.8%</td><td class="dim sm">&gt;0.5%</td><td class="num pos">+1</td></tr>
+      <tr class="hot"><td class="mono">Fri 30 11:00</td><td class="ccy">JPY</td><td>Interest Rate Decision <span class="tag-hi">HIGH</span></td><td class="num v">1.25%</td><td class="num v">1.25%</td><td class="dim sm">HOLD into STRONG regime (LD-146)</td><td class="num pos">+1</td></tr>
+      <tr><td class="mono">Fri 30 15:30</td><td class="ccy">CHF</td><td>Retail Sales YoY</td><td class="num v">3.2%</td><td class="num v">1.4%</td><td class="dim sm">&gt;0.5%</td><td class="num pos">+1</td></tr>
+      <tr class="hot"><td class="mono">Fri 30 18:00</td><td class="ccy">EUR</td><td>GDP Growth Rate QoQ <span class="tag-hi">HIGH</span></td><td class="num v">0.6%</td><td class="num v">0.2% – 0.1%</td><td class="dim sm">&gt;0 range (LD-117)</td><td class="num pos">+1</td></tr>
+      <tr class="hot"><td class="mono">Fri 30 18:00</td><td class="ccy">EUR</td><td>Unemployment Rate <span class="tag-hi">HIGH</span></td><td class="num v">6.4%</td><td class="num v">6.4% – 6.40%</td><td class="dim sm">&lt;Prev</td><td class="num zero">0</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note flag">
+    <span class="lbl">⚠ HIGH-IMPACT RELEASES THIS WEEK</span>
+    <strong>10 of 20 rows are Employment, Inflation, Interest Rate or GDP</strong> — the categories that move price hardest. They are highlighted in the table above. <strong>This is a caution, not a weight</strong>: the calibrator scores every row identically (LD-98). <strong>Wed 28:</strong> AUD Inflation Rate YoY, NZD Interest Rate Decision, CAD Interest Rate Decision. <strong>Thu 29:</strong> USD Interest Rate Decision, USD GDP Growth Rate QoQ, EUR Interest Rate Decision. <strong>Fri 30:</strong> JPY Unemployment Rate, JPY Interest Rate Decision, EUR GDP Growth Rate QoQ, EUR Unemployment Rate.
+  </div>
+  <p><strong>20 of 20 rows are scorable, and 17 carry a real TE consensus.</strong> That is the value of building on Sunday rather than a week out — the same pipeline run against 14–18 Sep could score only 13 of 20, because <strong>TE publishes consensus close to the release</strong>.</p>
+
+  <h3>The collision rules, from this run</h3>
+  <p><strong>Tue 27, USD — 3 rows, RULE 1 — latest month wins.</strong></p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Row</th><th>Ref</th><th class="num">Score</th><th>Kept?</th></tr></thead>
+    <tbody>
+      <tr class="sel"><td>CB Consumer Confidence</td><td class="mono">OCT</td><td class="num neg">−1</td><td><strong>KEPT</strong></td></tr>
+      <tr><td>Building Permits MoM Final</td><td class="mono">SEP</td><td class="num neg">−1</td><td><span class="zero">dropped</span></td></tr>
+      <tr><td>Durable Goods Ex Transp MoM</td><td class="mono">SEP</td><td class="num zero">0</td><td><span class="zero">dropped</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note flag"><span class="lbl">⚠ THE RULE CHANGES THE NUMBER</span>Sharing all 3 rows would give <strong>−0.67</strong>; taking only the latest month gives <strong>−1.00</strong>. <strong>The most current read of the economy decides the day</strong> — an older row does not dilute it.</div>
+  <p><strong>Thu 29, USD — 3 rows, RATE PRECEDENCE — the decision takes the day (LD-140, scored by LD-146).</strong></p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Row</th><th>Ref</th><th class="num">Score</th><th>Kept?</th></tr></thead>
+    <tbody>
+      <tr class="sel"><td>Interest Rate Decision</td><td class="mono">—</td><td class="num pos">+1</td><td><strong>KEPT</strong></td></tr>
+      <tr><td>GDP Growth Rate QoQ</td><td class="mono">SEP</td><td class="num pos">+1</td><td><span class="zero">dropped</span></td></tr>
+      <tr><td>Personal Spending MoM</td><td class="mono">SEP</td><td class="num zero">0</td><td><span class="zero">dropped</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Day score <strong>+1.00</strong>.</p>
+  <p><strong>Thu 29, EUR — 2 rows, RATE PRECEDENCE — the decision takes the day (LD-140, scored by LD-146).</strong></p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Row</th><th>Ref</th><th class="num">Score</th><th>Kept?</th></tr></thead>
+    <tbody>
+      <tr class="sel"><td>Interest Rate Decision</td><td class="mono">—</td><td class="num neg">−1</td><td><strong>KEPT</strong></td></tr>
+      <tr><td>Consumer Confidence Final</td><td class="mono">OCT</td><td class="num neg">−1</td><td><span class="zero">dropped</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Day score <strong>−1.00</strong>.</p>
+  <p><strong>Fri 30, JPY — 3 rows, RATE PRECEDENCE — the decision takes the day (LD-140, scored by LD-146).</strong></p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Row</th><th>Ref</th><th class="num">Score</th><th>Kept?</th></tr></thead>
+    <tbody>
+      <tr class="sel"><td>Interest Rate Decision</td><td class="mono">—</td><td class="num pos">+1</td><td><strong>KEPT</strong></td></tr>
+      <tr><td>Unemployment Rate</td><td class="mono">SEP</td><td class="num zero">0</td><td><span class="zero">dropped</span></td></tr>
+      <tr><td>Retail Sales YoY</td><td class="mono">SEP</td><td class="num pos">+1</td><td><span class="zero">dropped</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Day score <strong>+1.00</strong>.</p>
+  <p><strong>Fri 30, EUR — 2 rows, RULE 2 — same month, shared.</strong></p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Row</th><th>Ref</th><th class="num">Score</th><th>Kept?</th></tr></thead>
+    <tbody>
+      <tr class="sel"><td>GDP Growth Rate QoQ</td><td class="mono">SEP</td><td class="num pos">+1</td><td><strong>KEPT</strong></td></tr>
+      <tr class="sel"><td>Unemployment Rate</td><td class="mono">SEP</td><td class="num zero">0</td><td><strong>KEPT</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Day score <strong>+0.50</strong>.</p>
+</section>
+
+<section>
+  <h2>&sect;4 Every indicator, with its working</h2>
+  <p class="sub">78 rows &mdash; the evidence behind every category score.</p>
+
+  <p><strong>Read a row left to right:</strong> the <em>actual</em> is measured against the <em>threshold</em>, which gives the <strong>score</strong>. The category total is the mean of its rows, times the category weight.</p>
+
+  <div class="note"><strong>A Ref ending in (Q) is a QUARTERLY series.</strong> NZD publishes Unemployment and Inflation quarterly, so those rows move once a quarter and are current between prints.</div>
+  <div class="note flag">
+    <span class="lbl">&#9888; DIRECTION OF GOODNESS IS NOT UNIFORM</span>
+    <strong>Unemployment and claimant counts score +1 when they FALL</strong> &mdash; they reach the currency through the economy. <strong>Inflation scores on a corridor, not a direction</strong> (LD-155), and <strong>the policy rate scores its PATH, not its level</strong> (LD-166). The threshold column states which rule applies to each row.</div>
+
+  <h3>Production <span class="wt">weight 2 &middot; LEADING</span></h3>
+  <p class="cnt">18 rows &mdash; 14 good &middot; 2 neutral &middot; 2 bad</p>
+  <div class="scroll">
+  <table class="ind">
+    <thead><tr><th>CCY</th><th>Indicator</th><th class="num">Actual</th><th class="num">Previous</th><th>Ref</th><th>Threshold</th><th class="num">Score</th></tr></thead>
+    <tbody>
+      <tr class="grp">
+        <td class="ccy">AUD</td>
+        <td>S&amp;P Global Mfg PMI Final</td>
+        <td class="num v">49.6</td>
+        <td class="num v dim">52.0</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;50.5</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">CAD</td>
+        <td>S&amp;P Global Mfg PMI</td>
+        <td class="num v">51.5</td>
+        <td class="num v dim">53.0</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;50.5</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">CHF</td>
+        <td>Procure.ch-UBS Mfg PMI</td>
+        <td class="num v">55.3</td>
+        <td class="num v dim">57.1</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;50.5</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">EUR</td>
+        <td>Industrial Production YoY</td>
+        <td class="num v">-1.1%</td>
+        <td class="num v dim">-0.3%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num zero">0</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">EUR</td>
+        <td>S&amp;P Global Mfg PMI Final</td>
+        <td class="num v">52.9</td>
+        <td class="num v dim">52.7</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;50.5</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">GBP</td>
+        <td>Industrial Production YoY</td>
+        <td class="num v">1.6%</td>
+        <td class="num v dim">-0.9%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">GBP</td>
+        <td>Manufacturing Production YoY</td>
+        <td class="num v">3%</td>
+        <td class="num v dim">0.5%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">GBP</td>
+        <td>S&amp;P Global Mfg PMI Final</td>
+        <td class="num v">51.9</td>
+        <td class="num v dim">51.9</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;50.5</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">JPY</td>
+        <td>Industrial Production YoY Final</td>
+        <td class="num v">2.7%</td>
+        <td class="num v dim">4.9%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">JPY</td>
+        <td>Machine Tool Orders YoY</td>
+        <td class="num v">60.4%</td>
+        <td class="num v dim">64.7%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">JPY</td>
+        <td>Machinery Orders YoY</td>
+        <td class="num v">18.6%</td>
+        <td class="num v dim">16.9%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">JPY</td>
+        <td>S&amp;P Global Mfg PMI Final</td>
+        <td class="num v">54.1</td>
+        <td class="num v dim">54.9</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;50.5</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">NZD</td>
+        <td>Business NZ PMI</td>
+        <td class="num v">56.5</td>
+        <td class="num v dim">54.3</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;50.5</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">NZD</td>
+        <td>Global Dairy Trade Price Index</td>
+        <td class="num v">2.5%</td>
+        <td class="num v dim">1.2%</td>
+        <td class="dim sm">Oct/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">USD</td>
+        <td>Durable Goods Ex Transp MoM</td>
+        <td class="num v">0.3%</td>
+        <td class="num v dim">0.7%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num zero">0</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">USD</td>
+        <td>ISM Manufacturing PMI</td>
+        <td class="num v">54.5</td>
+        <td class="num v dim">55.6</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;50.5</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">USD</td>
+        <td>Industrial Production YoY</td>
+        <td class="num v">2.2%</td>
+        <td class="num v dim">1.13%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">USD</td>
+        <td>Manufacturing Production YoY</td>
+        <td class="num v">1.1%</td>
+        <td class="num v dim">1.2%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Spending <span class="wt">weight 2 &middot; LEADING</span></h3>
+  <p class="cnt">23 rows &mdash; 9 good &middot; 2 neutral &middot; 12 bad</p>
+  <div class="scroll">
+  <table class="ind">
+    <thead><tr><th>CCY</th><th>Indicator</th><th class="num">Actual</th><th class="num">Previous</th><th>Ref</th><th>Threshold</th><th class="num">Score</th></tr></thead>
+    <tbody>
+      <tr class="grp">
+        <td class="ccy">AUD</td>
+        <td>Building Permits YoY Final</td>
+        <td class="num v">10.3%</td>
+        <td class="num v dim">10.9%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">AUD</td>
+        <td>Household Spending YoY</td>
+        <td class="num v">6.8%</td>
+        <td class="num v dim">6.0%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">AUD</td>
+        <td>NAB Business Confidence</td>
+        <td class="num v">-13</td>
+        <td class="num v dim">-6</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">AUD</td>
+        <td>Westpac Consumer Conf Change</td>
+        <td class="num v">-4.7%</td>
+        <td class="num v dim">-5.2%</td>
+        <td class="dim sm">Oct/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">CAD</td>
+        <td>Building Permits MoM</td>
+        <td class="num v">8.8%</td>
+        <td class="num v dim">18.3%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">CAD</td>
+        <td>Retail Sales YoY</td>
+        <td class="num v">5.4%</td>
+        <td class="num v dim">5.1%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">CHF</td>
+        <td>Consumer Confidence</td>
+        <td class="num v">-36</td>
+        <td class="num v dim">-33</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">CHF</td>
+        <td>Retail Sales YoY</td>
+        <td class="num v">3.2%</td>
+        <td class="num v dim">2.6%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">EUR</td>
+        <td>Consumer Confidence Final</td>
+        <td class="num v">-16.5</td>
+        <td class="num v dim">-15.5</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">EUR</td>
+        <td>Retail Sales YoY</td>
+        <td class="num v">0.8%</td>
+        <td class="num v dim">0.7%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">GBP</td>
+        <td>GfK Consumer Confidence</td>
+        <td class="num v">-24</td>
+        <td class="num v dim">-13</td>
+        <td class="dim sm">Oct/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">GBP</td>
+        <td>Retail Sales Ex Fuel YoY</td>
+        <td class="num v">0.8%</td>
+        <td class="num v dim">2.9%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">JPY</td>
+        <td>Consumer Confidence</td>
+        <td class="num v">35.4</td>
+        <td class="num v dim">35.5</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">JPY</td>
+        <td>Household Spending YoY</td>
+        <td class="num v">-3.1%</td>
+        <td class="num v dim">-3.6%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">JPY</td>
+        <td>Retail Sales YoY</td>
+        <td class="num v">2.7%</td>
+        <td class="num v dim">1.8%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">NZD</td>
+        <td>ANZ Business Confidence</td>
+        <td class="num v">51.9</td>
+        <td class="num v dim">53.7</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">NZD</td>
+        <td>ANZ Roy Morgan Consumer Conf</td>
+        <td class="num v">97.6</td>
+        <td class="num v dim">98.0</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">NZD</td>
+        <td>Building Permits MoM</td>
+        <td class="num v">-4.3%</td>
+        <td class="num v dim">-3.7%</td>
+        <td class="dim sm">Jul/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">NZD</td>
+        <td>Electronic Retail Card Spending YoY</td>
+        <td class="num v">0.9%</td>
+        <td class="num v dim">0.9%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num zero">0</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">USD</td>
+        <td>Building Permits MoM Final</td>
+        <td class="num v">-2.1%</td>
+        <td class="num v dim">4.3%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">USD</td>
+        <td>CB Consumer Confidence</td>
+        <td class="num v">81.9</td>
+        <td class="num v dim">88.6</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">USD</td>
+        <td>Personal Spending MoM</td>
+        <td class="num v">0.9%</td>
+        <td class="num v dim">1.2%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num zero">0</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">USD</td>
+        <td>Retail Sales YoY</td>
+        <td class="num v">6.3%</td>
+        <td class="num v dim">5.03%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Trade <span class="wt">weight 2 &middot; LEADING</span></h3>
+  <p class="cnt">8 rows &mdash; 3 good &middot; 0 neutral &middot; 5 bad</p>
+  <div class="scroll">
+  <table class="ind">
+    <thead><tr><th>CCY</th><th>Indicator</th><th class="num">Actual</th><th class="num">Previous</th><th>Ref</th><th>Threshold</th><th class="num">Score</th></tr></thead>
+    <tbody>
+      <tr class="grp">
+        <td class="ccy">AUD</td>
+        <td>Balance of Trade</td>
+        <td class="num v">A$0.495B</td>
+        <td class="num v dim">A$1.351B</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">CAD</td>
+        <td>Balance of Trade</td>
+        <td class="num v">C$4.2B</td>
+        <td class="num v dim">C$0.79B</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">CHF</td>
+        <td>Balance of Trade</td>
+        <td class="num v">CHF1.4B</td>
+        <td class="num v dim">CHF5.4B</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">EUR</td>
+        <td>Balance of Trade</td>
+        <td class="num v">EUR-16.1B</td>
+        <td class="num v dim">EUR7.2B</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">GBP</td>
+        <td>Balance of Trade</td>
+        <td class="num v">GBP-0.920B</td>
+        <td class="num v dim">GBP-5.54B</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">JPY</td>
+        <td>Balance of Trade</td>
+        <td class="num v">JPY-536.6B</td>
+        <td class="num v dim">JPY-1111.9B</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">NZD</td>
+        <td>Balance of Trade</td>
+        <td class="num v">NZ$-1.971B</td>
+        <td class="num v dim">NZ$-1.536B</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">USD</td>
+        <td>Balance of Trade</td>
+        <td class="num v">$-105.6B</td>
+        <td class="num v dim">-$71.2B</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Employment <span class="wt">weight 1 &middot; CONFIRMING</span></h3>
+  <p class="cnt">13 rows &mdash; 2 good &middot; 4 neutral &middot; 7 bad</p>
+  <div class="scroll">
+  <table class="ind">
+    <thead><tr><th>CCY</th><th>Indicator</th><th class="num">Actual</th><th class="num">Previous</th><th>Ref</th><th>Threshold</th><th class="num">Score</th></tr></thead>
+    <tbody>
+      <tr class="grp">
+        <td class="ccy">AUD</td>
+        <td>ANZ-Indeed Job Ads MoM</td>
+        <td class="num v">2.2%</td>
+        <td class="num v dim">2.6%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;0.5%</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">AUD</td>
+        <td>Employment Change</td>
+        <td class="num v">-39.3K (FT +34.4K, PT -73.7K)</td>
+        <td class="num v dim">-15.9K</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">LD-151 three legs</td>
+        <td class="num zero">&mdash;</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">AUD</td>
+        <td>Unemployment Rate</td>
+        <td class="num v">4.7%</td>
+        <td class="num v dim">4.7%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&lt;Prev</td>
+        <td class="num zero">0</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">CAD</td>
+        <td>Employment Change</td>
+        <td class="num v">-68.3K (FT -35.4K, PT -32.9K)</td>
+        <td class="num v dim">-41.7K</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">LD-151 three legs</td>
+        <td class="num zero">&mdash;</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">CAD</td>
+        <td>Unemployment Rate</td>
+        <td class="num v">6.5%</td>
+        <td class="num v dim">6.4%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&lt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">CHF</td>
+        <td>Unemployment Rate</td>
+        <td class="num v">3%</td>
+        <td class="num v dim">3%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&lt;Prev</td>
+        <td class="num zero">0</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">EUR</td>
+        <td>Unemployment Rate</td>
+        <td class="num v">6.4%</td>
+        <td class="num v dim">6.4%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&lt;Prev</td>
+        <td class="num zero">0</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">GBP</td>
+        <td>Claimant Count Change</td>
+        <td class="num v">30.3K</td>
+        <td class="num v dim">7K</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&lt;0 (LD-58)</td>
+        <td class="num zero">&mdash;</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">GBP</td>
+        <td>Unemployment Rate</td>
+        <td class="num v">4.7%</td>
+        <td class="num v dim">4.9%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&lt;Prev</td>
+        <td class="num pos">+1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">JPY</td>
+        <td>Unemployment Rate</td>
+        <td class="num v">2.5%</td>
+        <td class="num v dim">2.4%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">&lt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">NZD</td>
+        <td>Unemployment Rate</td>
+        <td class="num v">5.6%</td>
+        <td class="num v dim">5.4%</td>
+        <td class="dim sm">Jun/26 (Q)</td>
+        <td class="dim sm">&lt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">USD</td>
+        <td>Non Farm Payrolls</td>
+        <td class="num v">29K</td>
+        <td class="num v dim">133K</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&gt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">USD</td>
+        <td>Unemployment Rate</td>
+        <td class="num v">4.2%</td>
+        <td class="num v dim">4.1%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">&lt;Prev</td>
+        <td class="num neg">-1</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Inflation <span class="wt">weight 1 &middot; CONFIRMING</span></h3>
+  <p class="cnt">8 rows &mdash; 6 good &middot; 1 neutral &middot; 1 bad</p>
+  <div class="scroll">
+  <table class="ind">
+    <thead><tr><th>CCY</th><th>Indicator</th><th class="num">Actual</th><th class="num">Previous</th><th>Ref</th><th>Threshold</th><th class="num">Score</th></tr></thead>
+    <tbody>
+      <tr class="grp">
+        <td class="ccy">AUD</td>
+        <td>Inflation Rate YoY</td>
+        <td class="num v">4.0%</td>
+        <td class="num v dim">3.8%</td>
+        <td class="dim sm">Aug/26</td>
+        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="num zero">&mdash;</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">CAD</td>
+        <td>Inflation Rate YoY</td>
+        <td class="num v">3.1%</td>
+        <td class="num v dim">3%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="num zero">&mdash;</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">CHF</td>
+        <td>Inflation Rate YoY</td>
+        <td class="num v">1%</td>
+        <td class="num v dim">0.8%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="num zero">&mdash;</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">EUR</td>
+        <td>Inflation Rate YoY Final</td>
+        <td class="num v">3.8%</td>
+        <td class="num v dim">2.9%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="num zero">&mdash;</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">GBP</td>
+        <td>Inflation Rate YoY</td>
+        <td class="num v">3.5%</td>
+        <td class="num v dim">3.1%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="num zero">&mdash;</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">JPY</td>
+        <td>Inflation Rate YoY</td>
+        <td class="num v">2.1%</td>
+        <td class="num v dim">1.9%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="num zero">&mdash;</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">NZD</td>
+        <td>Inflation Rate YoY</td>
+        <td class="num v">3.7%</td>
+        <td class="num v dim">4.1%</td>
+        <td class="dim sm">Sep/26 (Q)</td>
+        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="num zero">&mdash;</td>
+      </tr>
+      <tr class="grp">
+        <td class="ccy">USD</td>
+        <td>Inflation Rate YoY</td>
+        <td class="num v">3.7%</td>
+        <td class="num v dim">3.3%</td>
+        <td class="dim sm">Sep/26</td>
+        <td class="dim sm">1.8-2.2 corridor (LD-155)</td>
+        <td class="num zero">&mdash;</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>§5 Method and limits</h2>
+  <p class="sub">What this report can and cannot see.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Term</th><th>Range</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Base</td><td class="mono">−9 … +9</td><td>six fact tables, <code>Oct-26</code>, 78 of 78 cells</td></tr>
+      <tr><td>Calibrator</td><td class="mono">−5 … +5</td><td><strong>20 scheduled rows, 20 scorable, 17 with a TE consensus</strong></td></tr>
+      <tr class="sel"><td><strong>FINAL</strong></td><td class="mono"><strong>−14 … +14</strong></td><td>the sum</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note flag">
+    <span class="lbl">⚠ VINTAGE</span>
+    <strong>Built as of Sunday 6 September.</strong> The fact tables hold what was knowable then — rows that printed Mon 7 or Tue 8 are held at their earlier values.<br><br>Releases up to Friday 4 September stay: a Sunday report legitimately sees Friday's prints.<br><br><strong>Leaving the Mon/Tue prints in would have been a backtest contaminated with hindsight.</strong> An analysis asking <em>what was knowable then</em> must use the vintage available then, and say which it used. This one says.
+  </div>
+
+  <h3>What is not here</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Absent</th><th>Reason</th></tr></thead>
+    <tbody>
+      <tr><td>Gold, BTC</td><td><strong>Removed</strong> — forex focus</td></tr>
+      <tr><td>Entry references, falsifiers, charts</td><td><strong>No price data in this edition</strong></td></tr>
+      <tr><td>News, rate-path commentary</td><td>LD-97 — the weekly is the decision</td></tr>
+      <tr><td>Lot sizes, entries, stops, targets</td><td><strong>LD-4 — no money path</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<p class="sub" style="margin-top:28px">
+  <strong>Macro Economic Reporting</strong> &middot; weekly selection for
+  26&ndash;30 Oct 2026 &middot; built Sunday 25 Oct on the
+  <span class="mono">2026-10-25_1045PHT</span> capture.
+  Whitelist: <strong>78 rows</strong>, <strong>13 refreshed this build</strong>
+  (11 by R-45 against the TE indicator page, 2 by R-37 against the capture).
+  True coverage <strong>57 of 70</strong>, and <strong>20 of 20 week-ahead rows scorable with 17 carrying a consensus</strong>. Dark-row ledger:
+  <strong>10 current, 0 unverifiable</strong>. Prices and ATR:
+  <span class="mono">OANDA</span> daily bars read from TradingView (LD-5 as
+  amended). All eight policy rates verified against Trading Economics (R-47).
+  <strong>Logic frozen this edition (LD-167)</strong> &mdash; no rule, band or
+  weight changed.
+  <strong>Observations only &mdash; no entries, stops, targets or sizing
+  (LD-4).</strong>
+</p>
+
+</div>

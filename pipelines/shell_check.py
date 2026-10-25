@@ -123,6 +123,34 @@ def check(path):
         if got and got[:5] != want:
             bad.append(('calibrator days', ' '.join(got[:5]), ' '.join(want)))
 
+    # *** F-171 - THE <title> WAS STALE FOR FOUR EDITIONS AND NOTHING READ
+    # <head>. Every page from 28 Sep on shipped titled "Week of 28 Sep to 2
+    # Oct", including the one published an hour ago, because the shell is
+    # reused verbatim and <title> lives in it. R-43 checked the header chip,
+    # F-122 the eyebrow/h1/dek, R-49 the board - none looked at <head>.
+    # AND IT IS NOT COSMETIC: the Artifact platform names the published page
+    # from this tag, so the artifact carried a four-week-old window.
+    _t = re.search(r'<title>(.*?)</title>', html, re.S)
+    if not _t:
+        bad.append((chr(60) + 'title' + chr(62), '(absent)', 'the window'))
+    else:
+        _sd = _dt.date(*(int(x) for x in START.split('-')))
+        _ed = _sd + _dt.timedelta(days=4)
+        _txt = _t.group(1)
+        # *** THE FIRST VERSION OF THIS CHECK DID NOT FIRE, and the reason
+        # matters: it asked whether the month name appeared ANYWHERE in the
+        # title, and the stale title "Week of 28 Sep to 2 Oct" contains
+        # "Oct". A substring test on a date range is not a date test.
+        # Require the START DAY NUMBER beside its own month, which is what
+        # actually distinguishes one edition from another.
+        _d1 = str(_sd.day)
+        _m1 = _sd.strftime('%b')
+        _ok = (_d1 in _txt and _m1 in _txt) or (
+            str(_ed.day) in _txt and _ed.strftime('%b') in _txt)
+        if not _ok:
+            bad.append((chr(60) + 'title' + chr(62), _txt.strip(),
+                        'a title naming %s %s' % (_d1, _m1)))
+
     return bad, (pair, gap, n)
 
 

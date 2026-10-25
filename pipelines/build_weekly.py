@@ -31,7 +31,9 @@ CAT = dict(((_sm.LABEL[_r[1]], _r[2]), _r[0]) for _r in _sm.ROWS)
 def hot(ccy, name):
     return CAT.get((ccy, name)) in HIGH_IMPACT
 
-CAP = sorted(glob.glob('data/raw/calendar/2026-10-18_*_cal_full.json'))[-1]
+# F-170 - pinned to 2026-10-18 here too, the same defect in the second of
+# the two files that each hold the window. Take the newest capture.
+CAP = sorted(glob.glob('data/raw/calendar/*_cal_full.json'))[-1]
 START, END = '2026-10-26', '2026-10-30'
 
 F = ps.final_scores(CAP, START, END)
@@ -111,6 +113,8 @@ n_scor = len([r for r in ROWS if r['score'] is not None])
 # no url line rather than a WRONG one: absence is honest, a stale pointer is
 # not (the F-73 principle - never a guessed value).
 EDITIONS = {
+    '2026-10-26': ('https://claude.ai/artifact/X9gTs1ic6bazYjDfcY339g',
+                   'https://claude.ai/artifact/MFCLDoZM78ww6fyps5BLcF'),
     '2026-10-19': ('https://claude.ai/artifact/NhyqPwGB11jK1uwSxwzi3N',
                    'https://claude.ai/artifact/MrfibJq6Q6iG3wnST8aDjA'),
     '2026-10-12': ('https://claude.ai/artifact/VYdPphZ1WtGXuBUrfGtK9n',
