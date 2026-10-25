@@ -75,7 +75,7 @@ ROWS = [
  # the set not in expansion.
  ("Production","AU","S&P Global Mfg PMI Final","49.6","52.0","Sep/26",">50.5","BAD"),
  ("Production","NZ","Business NZ PMI","56.5","54.3","Sep/26",">50.5","GOOD"),
- ("Production","NZ","Global Dairy Trade Price Index","-1.1%","0.9%","Sep/26",">0.5%","BAD"),
+ ("Production","NZ","Global Dairy Trade Price Index","2.5%","1.2%","Oct/26",">0.5%","BAD"),
  ("Production","CA","S&P Global Mfg PMI","51.5","53.0","Sep/26",">50.5","GOOD"),
  ("Production","CH","Procure.ch-UBS Mfg PMI","55.3","57.1","Sep/26",">50.5","GOOD"),
  # LD-102: CHF Industrial Production YoY REMOVED 2026-09-09 on Jeff's
@@ -98,8 +98,8 @@ ROWS = [
  # RESTATE ITS RULE.
  ("Spending","EA","Retail Sales YoY","0.8%","0.7%","Aug/26",">0.5%","GOOD"),
  ("Spending","EA","Consumer Confidence Final","-16.5","-15.5","Sep/26",">Prev","BAD"),
- ("Spending","GB","GfK Consumer Confidence","-13","-14","Sep/26",">Prev","GOOD"),
- ("Spending","GB","Retail Sales Ex Fuel YoY","2.7%","1.8%","Aug/26",">0.5%","GOOD"),
+ ("Spending","GB","GfK Consumer Confidence","-24","-13","Oct/26",">Prev","BAD"),
+ ("Spending","GB","Retail Sales Ex Fuel YoY","0.8%","2.9%","Sep/26",">0.5%","GOOD"),
  # F-98: spec line 113 - ">0.5% Good, <0% Bad, between Neutral". Restored
  # from a consensus test I substituted during a sync. -3.6% is below 0,
  # so BAD either way - the RULE was wrong, not the verdict.
@@ -114,7 +114,7 @@ ROWS = [
  ("Spending","NZ","Electronic Retail Card Spending YoY","0.9%","0.9%","Sep/26",">0.5%","NEUTRAL"),
  ("Spending","NZ","ANZ Business Confidence","51.9","53.7","Sep/26",">Prev","BAD"),
  ("Spending","NZ","ANZ Roy Morgan Consumer Conf","97.6","98.0","Sep/26",">Prev","BAD"),
- ("Spending","CA","Retail Sales YoY","5.1%","5.2%","Jul/26",">0.5%","GOOD"),
+ ("Spending","CA","Retail Sales YoY","5.4%","5.1%","Aug/26",">0.5%","GOOD"),
  ("Spending","CA","Building Permits MoM","8.8%","18.3%","Aug/26",">0.5%","BAD"),
  ("Spending","CH","Consumer Confidence","-36","-33","Sep/26",">Prev","BAD"),
  ("Spending","CH","Retail Sales YoY","3.2%","2.6%","Aug/26",">0.5%","GOOD"),
@@ -124,22 +124,22 @@ ROWS = [
  ("Trade","US","Balance of Trade","$-105.6B","-$71.2B","Aug/26",">Prev","BAD"),
  ("Trade","EA","Balance of Trade","EUR-16.1B","EUR7.2B","Aug/26",">Prev","BAD"),
  ("Trade","GB","Balance of Trade","GBP-0.920B","GBP-5.54B","Aug/26",">Prev","GOOD"),
- ("Trade","JP","Balance of Trade","JPY-1105.6B","JPY-638.3B","Aug/26",">Prev","BAD"),
+ ("Trade","JP","Balance of Trade","JPY-536.6B","JPY-1111.9B","Sep/26",">Prev","GOOD"),
  # F-98: spec line 141 - all eight Balance of Trade rows are ">Prev".
  # A$1.923B is BELOW the A$2.341B previous, so this FLIPS GOOD -> BAD.
  # It only read GOOD because it beat a low consensus, which is not the
  # rule Jeff specified.
  ("Trade","AU","Balance of Trade","A$0.495B","A$1.351B","Aug/26",">Prev","BAD"),
- ("Trade","NZ","Balance of Trade","NZ$-1.349B","NZ$-2.118B","Aug/26",">Prev","GOOD"),
+ ("Trade","NZ","Balance of Trade","NZ$-1.971B","NZ$-1.536B","Sep/26",">Prev","BAD"),
  # F-98: spec line 138. C$0.77B is below the C$4.2B previous - BAD under
  # either rule, but the rule is ">Prev".
  ("Trade","CA","Balance of Trade","C$4.2B","C$0.79B","Aug/26",">Prev","GOOD"),
- ("Trade","CH","Balance of Trade","CHF5.6B","CHF8.1B","Aug/26",">Prev","BAD"),
+ ("Trade","CH","Balance of Trade","CHF1.4B","CHF5.4B","Sep/26",">Prev","BAD"),
  # ---------------- EMPLOYMENT (w=2) ----------------
  ("Employment","US","Non Farm Payrolls","29K","133K","Sep/26",">Prev","BAD"),
  ("Employment","US","Unemployment Rate","4.2%","4.1%","Sep/26","<Prev","BAD"),
  ("Employment","EA","Unemployment Rate","6.4%","6.4%","Aug/26","<Prev","NEUTRAL"),
- ("Employment","GB","Claimant Count Change","27.8K","-11.8K","Aug/26","<0 (LD-58)","BAD"),
+ ("Employment","GB","Claimant Count Change","30.3K","7K","Sep/26","<0 (LD-58)","BAD"),
  # F-144 - GBP WAS THE ONLY CURRENCY OF THE EIGHT WITHOUT AN UNEMPLOYMENT RATE.
  #
  # Jeff, 2026-10-04: "Don't we have Unemployment Rate for GBP in the indicator
@@ -164,7 +164,7 @@ ROWS = [
  #
  # ONS publishes a rolling 3-month rate; Jul/26 released 15 Sep, flat for the
  # fourth consecutive period. Next print 20 Oct (Aug/26).
- ("Employment","GB","Unemployment Rate","4.9%","4.9%","Jul/26","<Prev","NEUTRAL"),
+ ("Employment","GB","Unemployment Rate","4.7%","4.9%","Aug/26","<Prev","GOOD"),
  ("Employment","JP","Unemployment Rate","2.5%","2.4%","Aug/26","<Prev","BAD"),
  ("Employment","AU","ANZ-Indeed Job Ads MoM","2.2%","2.6%","Sep/26",">0.5%","GOOD"),
  ("Employment","AU","Employment Change","-39.3K (FT +34.4K, PT -73.7K)","-15.9K","Sep/26","LD-151 three legs","NEUTRAL"),
@@ -218,11 +218,11 @@ ROWS = [
  # ---------------- INFLATION (w=3) ----------------
  ("Inflation","US","Inflation Rate YoY","3.7%","3.3%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
  ("Inflation","EA","Inflation Rate YoY Final","3.8%","2.9%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
- ("Inflation","GB","Inflation Rate YoY","3.1%","2.9%","Aug/26","1.8-2.2 corridor (LD-155)","GOOD"),
- ("Inflation","JP","Inflation Rate YoY","1.9%","1.9%","Aug/26","1.8-2.2 corridor (LD-155)","NEUTRAL"),
+ ("Inflation","GB","Inflation Rate YoY","3.5%","3.1%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
+ ("Inflation","JP","Inflation Rate YoY","2.1%","1.9%","Sep/26","1.8-2.2 corridor (LD-155)","NEUTRAL"),
  ("Inflation","AU","Inflation Rate YoY","4.0%","3.8%","Aug/26","1.8-2.2 corridor (LD-155)","GOOD"),
- ("Inflation","NZ","Inflation Rate YoY","4.1%","3.1%","Jun/26 (Q)","1.8-2.2 corridor (LD-155)","GOOD"),
- ("Inflation","CA","Inflation Rate YoY","3%","3.0%","Aug/26","1.8-2.2 corridor (LD-155)","GOOD"),
+ ("Inflation","NZ","Inflation Rate YoY","3.7%","4.1%","Sep/26 (Q)","1.8-2.2 corridor (LD-155)","GOOD"),
+ ("Inflation","CA","Inflation Rate YoY","3.1%","3%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
  ("Inflation","CH","Inflation Rate YoY","1%","0.8%","Sep/26","1.8-2.2 corridor (LD-155)","BAD"),
 ]
 

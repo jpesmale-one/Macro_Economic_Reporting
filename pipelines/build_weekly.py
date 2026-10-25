@@ -32,7 +32,7 @@ def hot(ccy, name):
     return CAT.get((ccy, name)) in HIGH_IMPACT
 
 CAP = sorted(glob.glob('data/raw/calendar/2026-10-18_*_cal_full.json'))[-1]
-START, END = '2026-10-19', '2026-10-23'
+START, END = '2026-10-26', '2026-10-30'
 
 F = ps.final_scores(CAP, START, END)
 SC = dict((c, F[c]['total']) for c in F)
@@ -193,10 +193,18 @@ A('')
 A('<!--exec-->')
 A('')
 _nm = {6: 'six', 7: 'seven', 8: 'eight'}.get(len(ft.WEIGHT), str(len(ft.WEIGHT)))
-A('**Selection for the 14\u201318 September cycle, built Sunday 27 September.** '
-  'The second weekly on the revamped model \u2014 %s fact '
-  'tables, leading indicators at weight 2, a day-scored week-ahead '
-  'calibrator, and no room or event-risk gate anywhere in selection.' % _nm)
+# *** F-168 - THE DEK WAS PINNED TO 14-18 SEPTEMBER AND CARRIED FOR SIX
+# WEEKS. The header above is DERIVED (F-160) but this sentence was a
+# literal, so every edition since 27 Sep opened by telling Jeff he was
+# reading the September cycle. R-46 step 8 scans for START/END pairs and
+# dt.date() literals; PROSE MONTH NAMES ARE INVISIBLE TO IT - the F-122
+# shape exactly, where the parts nobody re-reads hide the staleness.
+# Now derived from START/END, which step 8 already guards.
+A('**Selection for the %s–%s cycle, built %s %d %s.** '
+  'Six fact tables, leading indicators at weight 2, a day-scored '
+  'week-ahead calibrator, and no room or event-risk gate anywhere in '
+  'selection.'
+  % (_MON, _FRI, _SUN.strftime('%A'), _SUN.day, _SUN.strftime('%B')))
 A('')
 A('**THE SET:**')
 A('')

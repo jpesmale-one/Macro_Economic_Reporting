@@ -366,13 +366,24 @@ def s9b_board_self_consistent():
     written by a stale pass and the page must be rebuilt before publishing.
     """
     import re as _re
-    page = os.path.join(REPO, 'reports', '2026', 'Q4')
-    import glob as _g
-    cands = sorted(_g.glob(os.path.join(page, '*_weekly.html')))
-    if not cands:
-        return True, 'no published page yet - nothing to compare'
-    html = io.open(cands[-1], encoding='utf-8').read()
-    name = os.path.basename(cands[-1])
+    # *** F-169 - cands[-1] TOOK THE NEWEST PAGE THAT EXISTS, NOT THIS
+    # EDITION'S. On the first run of a new window that is LAST WEEK'S page,
+    # and re-deriving it against THIS week's window reported all eight
+    # currencies as disagreeing - accusing a page that was correct when
+    # published. That is F-140's shape exactly ("a guard that names the wrong
+    # file does not weaken to a no-op; it accuses correct work"), and here it
+    # arrived through the FILE rather than through a pinned date.
+    # Check the page this build is FOR. If it does not exist yet there is
+    # nothing to contradict, which is a pass with a reason, not a silent one.
+    _st = _edition_stamp()
+    _q = (int(_st[5:7]) - 1) // 3 + 1
+    target = os.path.join(REPO, 'reports/%s/Q%d/%s_weekly.html'
+                          % (_st[:4], _q, _st))
+    if not os.path.exists(target):
+        return True, ('no page for the %s edition yet - nothing to '
+                      'contradict' % _st)
+    html = io.open(target, encoding='utf-8').read()
+    name = os.path.basename(target)
 
     # the board: rows under the §1 HEADING carrying a band and a FINAL.
     #

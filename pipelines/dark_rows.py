@@ -51,15 +51,17 @@ READS = {
          'TE /united-kingdom/manufacturing-pmi - 51.7 Aug -> 51.9 Sep, '
          'released 1 Oct'),
     ('NZD', 'Global Dairy Trade Price Index'):
-        ('-1.1%', '15 Sep', '2026-09-30',
-         'TE /new-zealand/global-dairy-trade-price-index - next auction '
-         '6 Oct'),
+        ('2.5%', 'Oct/26', '2026-10-26',
+         'TE /new-zealand/global-dairy-trade-price-index - auction for the '
+         'two weeks ended 20 Oct, 1.2% -> 2.5%, released 20 Oct. Verified '
+         'on the indicator page, which R-45 cannot reach (no slug).'),
     ('NZD', 'Unemployment Rate'):
         ('5.6%', 'Q2/26', '2026-09-30',
          'TE /new-zealand/unemployment-rate - quarterly, Q3 due 3 Nov'),
     ('NZD', 'Inflation Rate YoY'):
-        ('4.1%', 'Q2/26', '2026-09-30',
-         'TE /new-zealand/inflation-cpi - quarterly, Q3 due 21 Oct'),
+        ('3.7%', 'Q3/26', '2026-10-26',
+         'TE /new-zealand/inflation-cpi - quarterly, Q3 LANDED 21 Oct: '
+         '4.1% -> 3.7%. The ledger had said "Q3 due 21 Oct" and it did.'),
     ('USD', 'Non Farm Payrolls'):
         ('29K', 'Sep/26', '2026-10-04',
          'TE /united-states/non-farm-payrolls - 162K Aug -> 29K Sep vs 100K '
