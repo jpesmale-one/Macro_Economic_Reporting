@@ -573,7 +573,7 @@ footer p{max-width:none}
 </section>
 
 <section>
-  <h2>&sect;4 Every indicator, with its working</h2>
+  <h2>§4 Every indicator, with its working</h2>
   <p class="sub">78 rows &mdash; the evidence behind every category score.</p>
 
   <p><strong>Read a row left to right:</strong> the <em>actual</em> is measured against the <em>threshold</em>, which gives the <strong>score</strong>. The category total is the mean of its rows, times the category weight.</p>
@@ -1338,6 +1338,28 @@ footer p{max-width:none}
   </table>
   </div>
 </section>
+
+  <h3>Reconciliation</h3>
+  <p class="cnt">Every category score, summed to the board.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>CCY</th><th class="num">Produ</th><th class="num">Spend</th><th class="num">Trade</th><th class="num">Emplo</th><th class="num">Infla</th><th class="num">Inter</th><th class="num">Base</th></tr></thead>
+    <tbody>
+      <tr><td class="ccy">CAD</td><td class="num pos">+2.00</td><td class="num pos">+2.00</td><td class="num pos">+2.00</td><td class="num neg">-1.00</td><td class="num pos">+1.00</td><td class="num pos">+1.00</td><td class="num pos tot">+7.00</td></tr>
+      <tr><td class="ccy">GBP</td><td class="num pos">+2.00</td><td class="num zero">+0.00</td><td class="num pos">+2.00</td><td class="num zero">+0.00</td><td class="num pos">+1.00</td><td class="num pos">+1.00</td><td class="num pos tot">+6.00</td></tr>
+      <tr><td class="ccy">JPY</td><td class="num pos">+2.00</td><td class="num neg">-0.67</td><td class="num pos">+2.00</td><td class="num neg">-1.00</td><td class="num zero">+0.00</td><td class="num zero">+0.00</td><td class="num pos tot">+2.33</td></tr>
+      <tr><td class="ccy">NZD</td><td class="num pos">+2.00</td><td class="num neg">-1.00</td><td class="num neg">-2.00</td><td class="num neg">-1.00</td><td class="num pos">+1.00</td><td class="num pos">+1.00</td><td class="num zero tot">+0.00</td></tr>
+      <tr><td class="ccy">USD</td><td class="num pos">+1.50</td><td class="num zero">+0.00</td><td class="num neg">-2.00</td><td class="num neg">-1.00</td><td class="num pos">+1.00</td><td class="num zero">+0.00</td><td class="num neg tot">-0.50</td></tr>
+      <tr><td class="ccy">EUR</td><td class="num zero">+0.00</td><td class="num zero">+0.00</td><td class="num neg">-2.00</td><td class="num zero">+0.00</td><td class="num pos">+1.00</td><td class="num zero">+0.00</td><td class="num neg tot">-1.00</td></tr>
+      <tr><td class="ccy">CHF</td><td class="num pos">+2.00</td><td class="num zero">+0.00</td><td class="num neg">-2.00</td><td class="num zero">+0.00</td><td class="num neg">-1.00</td><td class="num zero">+0.00</td><td class="num neg tot">-1.00</td></tr>
+      <tr><td class="ccy">AUD</td><td class="num neg">-2.00</td><td class="num pos">+1.00</td><td class="num neg">-2.00</td><td class="num pos">+0.33</td><td class="num pos">+1.00</td><td class="num zero">+0.00</td><td class="num neg tot">-1.67</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Weights: leading &times; 2, confirming &times; 1.</strong> The 6 category cells in each row sum to that currency&rsquo;s base score, and the base plus the calibrator is the FINAL in &sect;2.</p>
+  <div class="note">
+    <strong>Every cell above is the ACTUAL AS PUBLISHED, and the score beside it is DERIVED from it</strong> &mdash; so this table can be audited against the source without trusting a verdict anyone typed. <strong>Until 2026-09-09 the fact tables stored the verdict while the actual lived elsewhere</strong>, which is what produced F-91, F-94 and F-95: one release written into two places, with nothing keeping them in step. Storing the actual once removed that class of bug rather than guarding against it (LD-112).
+  </div>
 
 <section>
   <h2>§5 Method and limits</h2>
