@@ -27,6 +27,9 @@ sys.path.insert(0, HERE)
 
 import daily_report as dr
 import atr_grade as ag
+import risk_tone as rt
+import fact_tables as ft
+import pair_select as ps
 
 SP = ('C:/Users/jpesm/AppData/Local/Temp/claude/'
       'c--Users-jpesm-OneDrive-Documents-GitHub/'
@@ -254,10 +257,58 @@ def build(day):
               % (c, bi, si, 'neg' if g >= 4 else '', g, read))
         A('</tbody></table></div>')
 
+    # *** LD-173 - WAS IT A RISK ON OR RISK OFF DAY? Jeff, 2026-10-27:
+    # "CADCHF is a risk on trade let's see if the market sentiment is
+    # aligning with the move". pair_select already classifies every pair by
+    # the role of its legs; what was missing was the SESSION's own tone, so
+    # the two could be compared. A RISK ON pair paying on a risk-off day is
+    # paying for a reason other than the one it was selected for.
+    _tl, _tsp, _td = rt.tone(day)
+    if _tl:
+        A('<h2>Risk on or risk off?</h2>')
+        _tk = ('pos' if _tl.endswith('RISK ON')
+               else ('neg' if _tl.endswith('RISK OFF') else ''))
+        A('<p><strong class="%s">%s</strong> &mdash; the '
+          'commodity basket finished <strong>%+.3f%%</strong> against the '
+          'safe-haven basket’s <strong>%+.3f%%</strong>, a spread of '
+          '<strong>%+.3f pp</strong>.</p>'
+          % (_tk, _tl, _td['commodity'], _td['haven'], _tsp))
+        A('<div class="scroll"><table>')
+        A('<thead><tr><th>Basket</th><th>Currencies</th>'
+          '<th class="num">Mean move</th></tr></thead><tbody>')
+        for _role, _note in (('Commodity', ''), ('Safe haven', ''),
+                             ('Cyclical', 'excluded from the spread')):
+            _ccys = _td['baskets'].get(_role, [])
+            if _role == 'Commodity':
+                _v = _td['commodity']
+            elif _role == 'Safe haven':
+                _v = _td['haven']
+            else:
+                _v = _td['cyclical']
+            A('<tr><td><strong>%s</strong>%s</td><td class="ccy">%s</td>'
+              '<td class="num %s">%s</td></tr>'
+              % (_role,
+                 (' <em>&mdash; %s</em>' % _note)
+                 if _note else '',
+                 ' '.join(_ccys),
+                 ('pos' if _v and _v > 0 else 'neg' if _v and _v < 0 else ''),
+                 ('%+.3f%%' % _v) if _v is not None else '&mdash;'))
+        A('</tbody></table></div>')
+        A('<div class="note"><span class="lbl">HOW THIS IS READ</span>'
+          'Commodity currencies lead when risk appetite is on; havens lead '
+          'when it is off. <strong>Cyclical (EUR, GBP) sits between the two '
+          'and is excluded from the spread</strong>, because a '
+          'cyclical-versus-commodity pair is itself classed EITHER — '
+          'including it would blur the distinction being measured. '
+          '<strong>About 40%% of sessions read MIXED</strong>, and the label '
+          'says so rather than manufacturing a tone. The number to trust is '
+          'the spread.</div>')
+
     if picks:
         A('<h2>The set, this session</h2>')
         A('<div class="scroll"><table>')
-        A('<thead><tr><th>Pair</th><th>Side</th><th class="num">Favourable</th>'
+        A('<thead><tr><th>Pair</th><th>Side</th><th>Category</th>'
+          '<th>Vs tone</th><th class="num">Favourable</th>'
           '<th class="num">Adverse</th><th>State</th></tr></thead><tbody>')
         for pair, side in picks:
             b = dr.bars(pair)
@@ -275,10 +326,17 @@ def build(day):
             k = ag.classify(fav, adv, atr) if atr else '&mdash;'
             kc = {'CLEAN': 'pos', 'EARNED': 'pos',
                   'BEATEN': 'neg', 'DRIFT': ''}.get(k, '')
+            # the pair's own risk category, from the roles of its legs
+            _lg, _sh = ((pair[:3], pair[3:]) if side == 'LONG'
+                        else (pair[3:], pair[:3]))
+            _cat = ps.CATEGORY.get((ft.ROLE.get(_lg), ft.ROLE.get(_sh)))                 or 'n/a'
+            _al = rt.aligns(_cat, _tl)
+            _ak = {'ALIGNED': 'pos', 'AGAINST': 'neg'}.get(_al, '')
             A('<tr><td class="ccy">%s</td><td>%s</td>'
-              '<td class="num">%.1f</td><td class="num">%.1f</td>'
+              '<td>%s</td><td class="%s"><strong>%s</strong>'
+              '</td><td class="num">%.1f</td><td class="num">%.1f</td>'
               '<td class="%s"><strong>%s</strong></td></tr>'
-              % (pair, side, fav, adv, kc, k))
+              % (pair, side, _cat, _ak, _al, fav, adv, kc, k))
         A('</tbody></table></div>')
         A('<div class="note"><span class="lbl">WHAT THESE STATES MEAN</span>'
           '<strong>CLEAN</strong> delivered a full day without being '
