@@ -27,7 +27,7 @@ sys.path.insert(0, HERE)
 
 import daily_report as dr
 import atr_grade as ag
-import risk_tone as rt
+import risk_index as RI
 import fact_tables as ft
 import pair_select as ps
 
@@ -263,46 +263,61 @@ def build(day):
     # the role of its legs; what was missing was the SESSION's own tone, so
     # the two could be compared. A RISK ON pair paying on a risk-off day is
     # paying for a reason other than the one it was selected for.
-    _tl, _tsp, _td = rt.tone(day)
+    # *** LD-174 - THE TONE COMES FROM INDICES, NOT FROM THE CURRENCIES.
+    # Jeff, 2026-10-28: "did you based the Risk On and Risk Off on the
+    # currencies? I think it's better if we look at Indices for this one".
+    # He is right, and the fault was circularity: LD-173 derived the tone
+    # from the currency baskets and then graded currency pairs against it,
+    # so the measure and the thing measured came from the same 28 bars.
+    # Equities and volatility are priced by different participants in
+    # different markets, so agreement with them is information.
+    _tl, _tsc, _td = RI.tone(day)
     if _tl:
         A('<h2>Risk on or risk off?</h2>')
         _tk = ('pos' if _tl.endswith('RISK ON')
                else ('neg' if _tl.endswith('RISK OFF') else ''))
-        A('<p><strong class="%s">%s</strong> &mdash; the '
-          'commodity basket finished <strong>%+.3f%%</strong> against the '
-          'safe-haven basket’s <strong>%+.3f%%</strong>, a spread of '
-          '<strong>%+.3f pp</strong>.</p>'
-          % (_tk, _tl, _td['commodity'], _td['haven'], _tsp))
+        A('<p><strong class="%s">%s</strong> &mdash; <strong>%d of the 4 '
+          'index legs</strong> point risk-on, %d point risk-off, %d flat. '
+          'Score <strong>%+.2f</strong> on a &minus;1 to &plus;1 scale.</p>'
+          % (_tk, _tl, _td['agree'], _td['against'], _td['flat'], _tsc))
         A('<div class="scroll"><table>')
-        A('<thead><tr><th>Basket</th><th>Currencies</th>'
-          '<th class="num">Mean move</th></tr></thead><tbody>')
-        for _role, _note in (('Commodity', ''), ('Safe haven', ''),
-                             ('Cyclical', 'excluded from the spread')):
-            _ccys = _td['baskets'].get(_role, [])
-            if _role == 'Commodity':
-                _v = _td['commodity']
-            elif _role == 'Safe haven':
-                _v = _td['haven']
-            else:
-                _v = _td['cyclical']
-            A('<tr><td><strong>%s</strong>%s</td><td class="ccy">%s</td>'
-              '<td class="num %s">%s</td></tr>'
-              % (_role,
-                 (' <em>&mdash; %s</em>' % _note)
-                 if _note else '',
-                 ' '.join(_ccys),
-                 ('pos' if _v and _v > 0 else 'neg' if _v and _v < 0 else ''),
-                 ('%+.3f%%' % _v) if _v is not None else '&mdash;'))
+        A('<thead><tr><th>Leg</th><th>Region</th>'
+          '<th class="num">Move</th><th class="num">Vote</th>'
+          '<th>Source</th></tr></thead><tbody>')
+        for _k, _sym, _nm, _rg, _inv in RI.SERIES:
+            _p, _v = _td['legs'][_k]
+            A('<tr><td><strong>%s</strong></td><td>%s</td>'
+              '<td class="num %s">%s</td><td class="num %s">%s</td>'
+              '<td class="ccy">%s%s</td></tr>'
+              % (_nm, _rg,
+                 ('pos' if _p and _p > 0 else 'neg' if _p and _p < 0 else ''),
+                 ('%+.2f%%' % _p) if _p is not None else '&mdash;',
+                 ('pos' if _v > 0 else 'neg' if _v < 0 else ''),
+                 ('%+d' % _v) if _v else '0',
+                 _sym, ' (inverted)' if _inv else ''))
         A('</tbody></table></div>')
         A('<div class="note"><span class="lbl">HOW THIS IS READ</span>'
-          'Commodity currencies lead when risk appetite is on; havens lead '
-          'when it is off. <strong>Cyclical (EUR, GBP) sits between the two '
-          'and is excluded from the spread</strong>, because a '
-          'cyclical-versus-commodity pair is itself classed EITHER — '
-          'including it would blur the distinction being measured. '
-          '<strong>About 40%% of sessions read MIXED</strong>, and the label '
-          'says so rather than manufacturing a tone. The number to trust is '
-          'the spread.</div>')
+          'Equities rising and volatility falling is risk-on. '
+          '<strong>VIX is inverted</strong> &mdash; a rise in it votes '
+          'risk-off. The headline is a <strong>mean of directions, not a '
+          'weighted sum</strong>, because the four markets do not share a '
+          'trading window and are not on a common scale: a sum would let '
+          'whichever index moved most set the tone, while counting votes '
+          'asks the more robust question of how many legs agree. '
+          '<strong>A leg moving less than %.2f%% does not vote.</strong>'
+          '</div>' % RI.DEADBAND)
+        A('<div class="note warn"><span class="lbl">&#9888; What this '
+          'measure does NOT settle</span>'
+          'Measured across every session on disk, a risk-on pair does tilt '
+          'the right way &mdash; <strong>AUDJPY LONG runs 1.23 on risk-on '
+          'days against 0.66 on risk-off</strong>, and NZDCHF LONG 1.27 '
+          'against 0.78. <strong>But CADCHF inverts</strong> (0.93 vs '
+          '1.48), because <strong>CAD trades haven-like, not as a '
+          'commodity currency</strong>: its mean strength is &minus;0.068 '
+          'on risk-on sessions and &plus;0.071 on risk-off. So a '
+          'CAD-versus-CHF trade is haven against haven, whatever the '
+          'category table calls it. The role map is a closed set (F-3), so '
+          'this is reported here rather than changed.</div>')
 
     if picks:
         A('<h2>The set, this session</h2>')
@@ -330,7 +345,7 @@ def build(day):
             _lg, _sh = ((pair[:3], pair[3:]) if side == 'LONG'
                         else (pair[3:], pair[:3]))
             _cat = ps.CATEGORY.get((ft.ROLE.get(_lg), ft.ROLE.get(_sh)))                 or 'n/a'
-            _al = rt.aligns(_cat, _tl)
+            _al = RI.aligns(_cat, _tl)
             _ak = {'ALIGNED': 'pos', 'AGAINST': 'neg'}.get(_al, '')
             A('<tr><td class="ccy">%s</td><td>%s</td>'
               '<td>%s</td><td class="%s"><strong>%s</strong>'
