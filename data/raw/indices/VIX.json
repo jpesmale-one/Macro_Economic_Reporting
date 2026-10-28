@@ -2403,7 +2403,7 @@
  ],
  "key": "VIX",
  "note": "inverted - a RISE is risk-off",
- "pulled": "2026-10-28T09:54:20",
+ "pulled": "2026-10-28T10:19:44",
  "role": "risk-tone leg (LD-174)",
  "source": "TradingView (LD-5 as amended); Yahoo is never used",
  "symbol": "TVC:VIX"
