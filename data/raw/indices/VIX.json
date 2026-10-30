@@ -1,30 +1,6 @@
 {
  "bars": [
   {
-   "close": 16.59,
-   "epoch": 1755760500,
-   "high": 17.24,
-   "low": 15.65,
-   "open": 15.72,
-   "session": "2025-08-21"
-  },
-  {
-   "close": 14.21,
-   "epoch": 1755846900,
-   "high": 16.83,
-   "low": 14.21,
-   "open": 16.81,
-   "session": "2025-08-22"
-  },
-  {
-   "close": 14.8,
-   "epoch": 1756106100,
-   "high": 15.19,
-   "low": 14.24,
-   "open": 15.05,
-   "session": "2025-08-25"
-  },
-  {
    "close": 14.62,
    "epoch": 1756192500,
    "high": 15.75,
@@ -2399,11 +2375,35 @@
    "low": 17.43,
    "open": 18.43,
    "session": "2026-10-27"
+  },
+  {
+   "close": 16.9,
+   "epoch": 1793171700,
+   "high": 17.77,
+   "low": 16.21,
+   "open": 17.47,
+   "session": "2026-10-28"
+  },
+  {
+   "close": 17.19,
+   "epoch": 1793258100,
+   "high": 17.36,
+   "low": 16.21,
+   "open": 17.15,
+   "session": "2026-10-29"
+  },
+  {
+   "close": 18.41,
+   "epoch": 1793344500,
+   "high": 18.62,
+   "low": 18.03,
+   "open": 18.43,
+   "session": "2026-10-30"
   }
  ],
  "key": "VIX",
  "note": "inverted - a RISE is risk-off",
- "pulled": "2026-10-28T10:19:44",
+ "pulled": "2026-10-30T18:00:50",
  "role": "risk-tone leg (LD-174)",
  "source": "TradingView (LD-5 as amended); Yahoo is never used",
  "symbol": "TVC:VIX"
