@@ -1,0 +1,380 @@
+<title>The Week The Board Was Right</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#FAF9F7; --card:#FFFFFE; --ink:#12151C; --ink-2:#4A515C;
+  --ink-3:#79818C; --rule:#E3E0D9; --rule-2:#CFCBC2;
+  --accent:#2F6B4F; --accent-soft:#E6F0EA;
+  --good:#3F7F5C; --good-soft:#E4F0E8;
+  --bad:#B4514D; --bad-soft:#FAE8E7;
+  --shadow:0 1px 2px rgba(18,21,28,.05), 0 6px 20px rgba(18,21,28,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#12151C; --card:#191D26; --ink:#EAEBED; --ink-2:#A5ACB7;
+    --ink-3:#767E8A; --rule:#252A34; --rule-2:#343B46;
+    --accent:#6FB287; --accent-soft:#16271E;
+    --good:#6FB287; --good-soft:#16271E;
+    --bad:#D2726E; --bad-soft:#2B1917;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#12151C; --card:#191D26; --ink:#EAEBED; --ink-2:#A5ACB7;
+  --ink-3:#767E8A; --rule:#252A34; --rule-2:#343B46;
+  --accent:#6FB287; --accent-soft:#16271E;
+  --good:#6FB287; --good-soft:#16271E;
+  --bad:#D2726E; --bad-soft:#2B1917;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font:400 16px/1.62 "IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+  margin:0; padding:0 18px 80px; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:780px; margin:0 auto}
+
+header{padding:44px 0 24px; border-bottom:2px solid var(--ink)}
+.eyebrow{
+  font:500 11px/1 "IBM Plex Mono",ui-monospace,monospace;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3);
+  margin:0 0 14px;
+}
+h1{
+  font:600 clamp(31px,7.2vw,46px)/1.06 Newsreader,Georgia,serif;
+  letter-spacing:-.018em; margin:0 0 10px; text-wrap:balance;
+}
+.dek{
+  font:400 clamp(16px,3.4vw,19px)/1.48 Newsreader,Georgia,serif;
+  color:var(--ink-2); margin:0; max-width:58ch; text-wrap:balance;
+}
+
+.score{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(118px,1fr));
+  gap:1px; background:var(--rule); border:1px solid var(--rule);
+  margin:26px 0 0;
+}
+.tile{background:var(--card); padding:13px 14px 14px}
+.tile .k{
+  font:500 10px/1.3 "IBM Plex Mono",monospace; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:7px;
+}
+.tile .v{
+  font:600 23px/1 "IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em; display:block;
+}
+.tile .s{font:400 11px/1.3 "IBM Plex Sans",sans-serif; color:var(--ink-3); display:block; margin-top:5px}
+.v.good{color:var(--good)} .v.bad{color:var(--bad)} .v.warn{color:var(--accent)}
+
+section{padding-top:42px}
+h2{
+  font:600 12px/1 "IBM Plex Mono",ui-monospace,monospace;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--accent);
+  margin:0 0 5px;
+}
+h2 + .sub{
+  font:400 clamp(20px,4.4vw,27px)/1.26 Newsreader,Georgia,serif;
+  margin:0 0 18px; text-wrap:balance; max-width:48ch;
+}
+h3{font:600 15px/1.35 "IBM Plex Sans",sans-serif; margin:30px 0 9px; letter-spacing:-.01em}
+h4{
+  font:600 11px/1 "IBM Plex Mono",monospace; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); margin:22px 0 8px;
+}
+p{margin:0 0 14px; max-width:66ch}
+strong{font-weight:600}
+em{font-style:italic; color:var(--ink-2)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.92em}
+
+.scroll{overflow-x:auto; margin:0 0 16px; -webkit-overflow-scrolling:touch}
+table{border-collapse:collapse; width:100%; min-width:max-content;
+  font:400 13.5px/1.42 "IBM Plex Sans",sans-serif}
+th{
+  font:600 10.5px/1.2 "IBM Plex Mono",monospace; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-3); text-align:left;
+  padding:0 13px 8px 0; border-bottom:1px solid var(--rule-2); white-space:nowrap;
+}
+td{padding:9px 13px 9px 0; border-bottom:1px solid var(--rule); white-space:nowrap; vertical-align:baseline}
+tbody tr:last-child td{border-bottom:none}
+.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; text-align:right}
+th.num{text-align:right}
+.pos{color:var(--good); font-weight:500}
+.neg{color:var(--bad); font-weight:500}
+.zero{color:var(--ink-3)}
+.ccy{font-family:"IBM Plex Mono",monospace; font-weight:600}
+tr.hi td{background:var(--accent-soft)}
+
+.note{border-left:2px solid var(--rule-2); padding:3px 0 3px 15px; margin:0 0 18px;
+  color:var(--ink-2); font-size:14.5px; max-width:66ch}
+.note strong{color:var(--ink)}
+.note.win{border-left-color:var(--good)}
+.note.fail{border-left-color:var(--bad)}
+.note .lbl{display:block; font:600 10.5px/1 "IBM Plex Mono",monospace;
+  letter-spacing:.11em; margin-bottom:7px; color:var(--ink-3)}
+.note.win .lbl{color:var(--good)}
+.note.fail .lbl{color:var(--bad)}
+
+ol.qa{margin:0; padding:0; list-style:none;
+  display:flex; flex-direction:column; gap:20px}
+ol.qa > li{padding-left:0}
+.q{font:600 13px/1.4 "IBM Plex Sans",sans-serif; color:var(--accent); margin:0 0 7px}
+.q .tag{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.06em;
+  color:var(--ink-3); margin-right:8px}
+
+pre.box{
+  font:500 12px/1.65 "IBM Plex Mono",monospace; background:var(--card);
+  border:1px solid var(--rule); border-left:2px solid var(--accent);
+  padding:13px 15px; margin:0 0 18px; overflow-x:auto; color:var(--ink-2);
+}
+pre.box b{color:var(--ink); font-weight:600}
+
+.verdict{border:1px solid var(--rule-2); background:var(--card);
+  padding:20px 22px; margin:14px 0 0; box-shadow:var(--shadow)}
+.verdict h3{margin-top:0}
+.verdict p:last-child{margin-bottom:0}
+
+footer{margin-top:46px; padding-top:20px; border-top:1px solid var(--rule);
+  font-size:13px; color:var(--ink-3)}
+footer p{max-width:none}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{font:500 12px/1 "IBM Plex Mono",ui-monospace,monospace;
+      letter-spacing:.02em;padding:6px 10px;border-radius:999px;
+      background:var(--accent-soft);color:var(--accent);
+      border:1px solid var(--rule-2);white-space:nowrap}
+.chip.q{background:transparent;color:var(--ink-3)}
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Macro Economic Reporting &middot; Retrospective &middot; Saturday 31 Oct 2026</p>
+  <h1>The Week The Board Was Right</h1>
+  <p class="dek"><strong>1 WIN, 2 CONTESTED, set ratio 1.07</strong> &mdash; the
+  third straight step down from the clean sweep. And yet
+  <strong>rho rose to +0.48</strong>, its best reading in six weeks: the board
+  named <strong>CAD #1 and GBP #2 and the market agreed exactly</strong>. The
+  ranking was right and the pairs expressing it were not. That gap is the
+  week&#39;s subject.</p>
+  <div class="chips">
+    <span class="chip">1 WIN / 2 CONTESTED / 0 LOSS</span>
+    <span class="chip">rho +0.48</span>
+    <span class="chip q">ratio 1.07</span>
+    <span class="chip q">five central banks</span>
+  </div>
+</header>
+
+<section>
+<h2>&sect;1 &mdash; The verdict</h2>
+
+<div class="scroll">
+<table>
+<thead><tr><th>PAIR</th><th class="num">ATR</th><th class="num">&Sigma; fav</th>
+<th class="num">&Sigma; adv</th><th class="num">ratio</th><th>VERDICT</th>
+<th>Mon&ndash;Fri</th></tr></thead>
+<tbody>
+<tr><td class="ccy">CADCHF</td><td class="num">31</td><td class="num pos">94.2</td><td class="num">55.6</td><td class="num pos">1.69</td><td class="pos"><strong>WIN</strong></td><td class="mono s">CLEAN DRIFT CLEAN <span class="neg">BEATEN</span> DRIFT</td></tr>
+<tr><td class="ccy">GBPAUD</td><td class="num">102</td><td class="num">285.6</td><td class="num">277.8</td><td class="num">1.03</td><td><strong>CONTESTED</strong></td><td class="mono s">DRIFT <span class="neg">BEATEN</span> DRIFT CLEAN DRIFT</td></tr>
+<tr><td class="ccy">AUDJPY</td><td class="num">85</td><td class="num">171.7</td><td class="num neg">180.0</td><td class="num neg">0.95</td><td><strong>CONTESTED</strong></td><td class="mono s">DRIFT DRIFT DRIFT DRIFT DRIFT</td></tr>
+<tr><td colspan="2"><strong>SET TOTAL</strong></td><td class="num"><strong>551.5</strong></td><td class="num"><strong>513.4</strong></td><td class="num"><strong>1.07</strong></td><td><strong>CONTESTED</strong></td><td class="s">no pair lost; one cleared 1.40</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="note">
+  <strong>AUDJPY drifted five sessions out of five.</strong> That is not a near
+  miss, it is a pair that never engaged: fav 171.7 against adv 180.0, no CLEAN
+  and no BEATEN in the whole week. A pair can only be CONTESTED by going
+  nowhere, and this one did. <strong>LD-169 changed nothing this week</strong>
+  &mdash; the three pairs share no dominant repeated view, so the grouped ratio
+  and the plain ratio are both 1.07. The rule costs nothing when there is no
+  concentration to correct, which is how it should behave.
+</div>
+</section>
+
+<section>
+<h2>&sect;2 &mdash; Where the week turned</h2>
+
+<div class="scroll">
+<table>
+<thead><tr><th>SESSION</th><th class="num">fav</th><th class="num">adv</th>
+<th class="num">ratio</th><th>the set, that day</th><th>index tone</th></tr></thead>
+<tbody>
+<tr><td class="mono">Mon 26</td><td class="num">119.4</td><td class="num">83.4</td><td class="num pos">1.43</td><td class="s">one CLEAN</td><td class="s">mild RISK ON <span class="mono">+0.50</span></td></tr>
+<tr><td class="mono">Tue 27</td><td class="num">45.1</td><td class="num neg">163.5</td><td class="num neg">0.28</td><td class="s">one <span class="neg">BEATEN</span></td><td class="s"><strong>RISK ON</strong> <span class="mono">+1.00</span></td></tr>
+<tr><td class="mono">Wed 28</td><td class="num">34.3</td><td class="num neg">131.0</td><td class="num neg">0.26</td><td class="s">one CLEAN, the worst fav of the week</td><td class="s"><strong>RISK ON</strong> <span class="mono">+1.00</span></td></tr>
+<tr><td class="mono">Thu 29</td><td class="num pos">225.4</td><td class="num">84.6</td><td class="num pos">2.66</td><td class="s">one CLEAN, one <span class="neg">BEATEN</span></td><td class="s">mild RISK ON <span class="mono">+0.50</span></td></tr>
+<tr><td class="mono">Fri 30</td><td class="num pos">127.3</td><td class="num">50.9</td><td class="num pos">2.50</td><td class="s">three DRIFT, nothing beaten</td><td class="s"><strong>RISK OFF</strong> <span class="mono">&minus;1.00</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="note warn">
+  <span class="lbl">An observation, explicitly not a finding</span>
+  <strong>The set&#39;s two worst sessions were the two unanimous risk-on days,
+  and its second best was the one risk-off day.</strong> Across the five
+  sessions the correlation between index tone and set ratio is
+  <strong>&minus;0.73</strong>. That number is seductive and it is
+  <strong>not significant</strong>: an exact permutation test over all 120
+  orderings gives <span class="mono">p = 0.133</span>, so roughly one week in
+  seven would look this clean by chance. <strong>n = 5.</strong> It is recorded
+  here so that it can be tested on more weeks, not acted on now.
+</div>
+</section>
+
+<section>
+<h2>&sect;3 &mdash; The board was right; the pairs were not</h2>
+
+<div class="scroll">
+<table>
+<thead><tr><th>CCY</th><th class="num">week %</th><th class="num">board</th>
+<th class="num">traded</th><th class="num">gap</th><th>read</th></tr></thead>
+<tbody>
+<tr><td class="ccy">CAD</td><td class="num pos">+0.635</td><td class="num">#1</td><td class="num">#1</td><td class="num pos">0</td><td class="s"><strong>exact</strong></td></tr>
+<tr><td class="ccy">GBP</td><td class="num pos">+0.489</td><td class="num">#2</td><td class="num">#2</td><td class="num pos">0</td><td class="s"><strong>exact</strong></td></tr>
+<tr><td class="ccy">CHF</td><td class="num pos">+0.141</td><td class="num">#6</td><td class="num">#3</td><td class="num">+3</td><td class="s">ranked low, traded high</td></tr>
+<tr><td class="ccy">USD</td><td class="num pos">+0.046</td><td class="num">#4</td><td class="num">#4</td><td class="num pos">0</td><td class="s"><strong>exact</strong></td></tr>
+<tr><td class="ccy">AUD</td><td class="num pos">+0.007</td><td class="num">#8</td><td class="num">#5</td><td class="num">+3</td><td class="s">ranked last, finished mid</td></tr>
+<tr><td class="ccy">EUR</td><td class="num neg">&minus;0.134</td><td class="num">#7</td><td class="num">#6</td><td class="num">+1</td><td class="s">close</td></tr>
+<tr><td class="ccy">JPY</td><td class="num neg">&minus;0.168</td><td class="num">#3</td><td class="num">#7</td><td class="num neg">&minus;4</td><td class="s"><strong>the week&#39;s worst call</strong></td></tr>
+<tr><td class="ccy">NZD</td><td class="num neg">&minus;0.969</td><td class="num">#5</td><td class="num">#8</td><td class="num neg">&minus;3</td><td class="s">RBNZ cut harder than consensus</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="note">
+  <strong>Three of eight exact, and the top two among them.</strong> rho
+  <strong>+0.48</strong> is the best since 26 September and a sharp recovery
+  from last week&#39;s +0.17. The board&#39;s failure was concentrated: JPY at
+  &minus;4 and NZD at &minus;3 supplied almost all the error, and NZD&#39;s is
+  explainable &mdash; the <span class="mono">RBNZ</span> cut to 2.75% against a
+  3.0% consensus, a genuine MISS the board could not have priced.
+  <strong>So the question this week is not why the board was wrong. It is why
+  a board this accurate returned 1.07.</strong>
+</div>
+</section>
+
+<section>
+<h2>&sect;4 &mdash; The AUD anomaly, resolved</h2>
+
+<p>AUD has been the open item for three weeks: ranked <strong>#8</strong> by the
+board, repeatedly trading near the top. The daily index-tone block added on
+27 October settles it. AUD&#39;s session rank tracks the risk tone almost
+exactly:</p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>SESSION</th><th>index tone</th><th class="num">AUD %</th>
+<th class="num">AUD rank</th><th class="num">CAD %</th><th class="num">CAD rank</th></tr></thead>
+<tbody>
+<tr><td class="mono">Mon 26</td><td class="s">mild RISK ON</td><td class="num">+0.005</td><td class="num">#4</td><td class="num pos">+0.472</td><td class="num">#1</td></tr>
+<tr><td class="mono">Tue 27</td><td class="s"><strong>RISK ON</strong></td><td class="num pos">+0.340</td><td class="num pos"><strong>#1</strong></td><td class="num neg">&minus;0.071</td><td class="num">#6</td></tr>
+<tr><td class="mono">Wed 28</td><td class="s"><strong>RISK ON</strong></td><td class="num pos">+0.364</td><td class="num pos"><strong>#1</strong></td><td class="num pos">+0.341</td><td class="num">#2</td></tr>
+<tr><td class="mono">Thu 29</td><td class="s">mild RISK ON</td><td class="num neg">&minus;0.492</td><td class="num neg">#8</td><td class="num neg">&minus;0.100</td><td class="num">#6</td></tr>
+<tr><td class="mono">Fri 30</td><td class="s"><strong>RISK OFF</strong></td><td class="num neg">&minus;0.210</td><td class="num neg">#7</td><td class="num neg">&minus;0.008</td><td class="num">#4</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="note">
+  <strong>Board #8 traded #1 on both unanimous risk-on days and #8 and #7 once
+  the tone softened.</strong> The board is not mis-ranking AUD on fundamentals
+  &mdash; it is ranking a currency whose weekly outcome is set by something the
+  six fact tables do not contain. On 27 October AUD led with
+  <strong>no AUD release at all</strong> (UNEXPLAINED on 65 captured rows); on
+  28 October it led again, and that time the calendar did explain it
+  (inflation MoM Sep BEAT 0.8% vs 0.6%). Same rank, same gap, two different
+  causes &mdash; which is precisely why the tone block had to be measured
+  outside the currency board rather than inside it.
+</div>
+
+<div class="note warn">
+  <span class="lbl">Still Jeff&#39;s call, still unchanged (F-3)</span>
+  Two role questions this measurement raises remain <strong>reported, not
+  changed</strong>: CAD is classed <span class="mono">Commodity</span> yet
+  traded more defensively than CHF across the month, and GBPAUD is classed
+  <span class="mono">EITHER</span> yet behaves risk-off. The indicator and role
+  lists are a closed set; amendments are Jeff&#39;s alone.
+</div>
+</section>
+
+<section>
+<h2>&sect;5 &mdash; The rates product, first full week</h2>
+
+<p>Rate Differential Reporting ran its first complete week alongside the macro
+board. <strong>Four sessions, not five</strong> &mdash; CAD&#39;s 2-year never
+settled a Friday bar, and the product grades only sessions every series has
+completed, so Friday is absent by rule rather than by omission.</p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>PAIR</th><th class="num">&Sigma; fav</th><th class="num">&Sigma; adv</th>
+<th class="num">ratio</th><th>VERDICT</th><th class="num">2y spread chg</th></tr></thead>
+<tbody>
+<tr><td class="ccy">EURUSD</td><td class="num pos">166.6</td><td class="num">80.0</td><td class="num pos">2.08</td><td class="pos"><strong>WIN</strong></td><td class="num neg">&minus;0.103</td></tr>
+<tr><td class="ccy">AUDCHF</td><td class="num pos">93.4</td><td class="num">62.6</td><td class="num pos">1.49</td><td class="pos"><strong>WIN</strong></td><td class="num neg">&minus;0.072</td></tr>
+<tr><td class="ccy">GBPJPY</td><td class="num">210.0</td><td class="num">159.6</td><td class="num">1.32</td><td><strong>CONTESTED</strong></td><td class="num neg">&minus;0.042</td></tr>
+<tr><td class="ccy">NZDCAD</td><td class="num neg">58.2</td><td class="num neg">220.3</td><td class="num neg">0.26</td><td class="neg"><strong>LOSS</strong></td><td class="num neg">&minus;0.125</td></tr>
+<tr><td colspan="1"><strong>SET TOTAL</strong></td><td class="num"><strong>528.2</strong></td><td class="num"><strong>522.5</strong></td><td class="num"><strong>1.01</strong></td><td><strong>CONTESTED</strong></td><td class="s">all four narrowed</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="note">
+  <strong>Every spread in the set compressed, and the board&#39;s rank order did
+  not move at all.</strong> All eight currencies ended the week in the same
+  position they started it &mdash; AUD #1 through CHF #8, unchanged &mdash;
+  while the gaps between them narrowed: NZDCAD by <strong>22.4%</strong> of its
+  own width, EURUSD by 6.2%. That is the shape of a central-bank week.
+  <strong>The ranking survived; the edge being ranked shrank.</strong>
+  NZDCAD is the clearest case: a LOSS at 0.26 whose differential also lost a
+  fifth of its width, so price and thesis failed together rather than
+  disagreeing.
+</div>
+</section>
+
+<section>
+<h2>&sect;6 &mdash; What this week actually taught</h2>
+
+<div class="qa">
+  <p class="k">A right board and a flat set are not a contradiction.</p>
+  <p>rho <strong>+0.48</strong> with a set ratio of <strong>1.07</strong> is the
+  week in one line. The board ranked CAD and GBP first and second and the market
+  agreed exactly &mdash; but CADCHF was the only pair positioned to collect it,
+  and it was the only WIN. <strong>Ranking accuracy and pair selection are
+  separate problems</strong>, and this week separated them cleanly for the first
+  time.</p>
+
+  <p class="k">The calendar cannot see the week&#39;s biggest mover.</p>
+  <p>AUD finished mid-table having been ranked last, and its daily rank was set
+  by index tone rather than by any AUD release. Five central banks reported and
+  the tone block &mdash; four instruments outside the FX board &mdash; explained
+  more of AUD&#39;s week than the six fact tables did.</p>
+
+  <p class="k">Two products disagreed usefully.</p>
+  <p>The macro set returned 1.07 and the rates set 1.01, but they failed on
+  different pairs for different reasons: the macro side on a pair that never
+  engaged (AUDJPY, five DRIFTs), the rates side on one whose differential was
+  actively compressing (NZDCAD, &minus;22.4%). Neither product would have
+  surfaced the other&#39;s failure.</p>
+</div>
+</section>
+
+<footer>
+<p><strong>Macro Economic Reporting</strong> &middot; retrospective for
+26&ndash;30 October 2026 &middot; built 31 October 2026. Grades are
+<span class="mono">0.75 &times; ATR(14)</span> targets with ATR taken from
+sessions ending before the graded week (LD-128/129); excursions run from each
+day&#39;s own open. Verdict bands are LD-149 as calibrated on 3,192 pair-weeks:
+WIN &ge; 1.40, CONTESTED 0.70&ndash;1.40, LOSS &lt; 0.70. Prices, ATR and
+yields from TradingView (LD-5 as amended). Rate decisions are recorded as
+having happened; <strong>their tone is never scored</strong> (LD-107).
+<strong>Observations only: no entries, stops, targets or sizing (LD-4).</strong></p>
+</footer>
+
+</div></body></html>
