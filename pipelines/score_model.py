@@ -38,7 +38,7 @@ ROWS = [
  # GDP: above the line GOOD, below zero BAD, IN BETWEEN NEUTRAL. 0.4 is between.
  # F-92 was fixed in the calibrator and never reached the fact table; deriving
  # the score from the actual (LD-112) surfaced it on the first run.
- ("Production","US","Durable Goods Ex Transp MoM","0.3%","0.7%","Aug/26",">0.5%","NEUTRAL"),
+ ("Production","US","Durable Goods Ex Transp MoM","0.5%","0.7%","Sep/26",">0.5%","NEUTRAL"),
  # F-91: this row still held the JUL print after the AUG Final released
  # 1 Sep 08:00. Jeff caught it reading the audit view. The score does not
  # change - 52.7 and 51.9 are both above 50.5 - but the EVIDENCE was a
@@ -85,10 +85,10 @@ ROWS = [
  # ONE-ROW weight-2 category: Procure.ch PMI alone moves CHF by up to
  # 2.00 points.
  # ---------------- SPENDING (w=1) ----------------
- ("Spending","US","Building Permits MoM Final","-2.1%","4.3%","Aug/26",">0.5%","BAD"),
+ ("Spending","US","Building Permits MoM Final","-0.4%","4.3%","Sep/26",">0.5%","BAD"),
  ("Spending","US","Retail Sales YoY","6.3%","5.03%","Sep/26",">0.5%","GOOD"),
- ("Spending","US","CB Consumer Confidence","81.9","88.6","Sep/26",">Prev","BAD"),
- ("Spending","US","Personal Spending MoM","0.9%","1.2%","Aug/26",">0.5%","NEUTRAL"),
+ ("Spending","US","CB Consumer Confidence","91.7","84.2","Oct/26",">Prev","GOOD"),
+ ("Spending","US","Personal Spending MoM","0.5%","1.2%","Sep/26",">0.5%","NEUTRAL"),
  # F-96: I changed the RULE while updating the VALUE in F-94. This row
  # carried ">0.5%" like the other five Retail Sales rows; I rewrote it
  # to ">Cons 1.1%" and it became the only one of six not on the level
@@ -97,23 +97,23 @@ ROWS = [
  # EUR Spending goes +0.00 -> +2.00. UPDATING A VALUE IS NOT LICENCE TO
  # RESTATE ITS RULE.
  ("Spending","EA","Retail Sales YoY","0.8%","0.7%","Aug/26",">0.5%","GOOD"),
- ("Spending","EA","Consumer Confidence Final","-16.5","-15.5","Sep/26",">Prev","BAD"),
+ ("Spending","EA","Consumer Confidence Final","-17.9","-15.5","Oct/26",">Prev","BAD"),
  ("Spending","GB","GfK Consumer Confidence","-24","-13","Oct/26",">Prev","BAD"),
  ("Spending","GB","Retail Sales Ex Fuel YoY","0.8%","2.9%","Sep/26",">0.5%","GOOD"),
  # F-98: spec line 113 - ">0.5% Good, <0% Bad, between Neutral". Restored
  # from a consensus test I substituted during a sync. -3.6% is below 0,
  # so BAD either way - the RULE was wrong, not the verdict.
  ("Spending","JP","Household Spending YoY","-3.1%","-3.6%","Aug/26",">0.5%","BAD"),
- ("Spending","JP","Consumer Confidence","35.4","35.5","Sep/26",">Prev","BAD"),
- ("Spending","JP","Retail Sales YoY","2.7%","1.8%","Aug/26",">0.5%","GOOD"),
+ ("Spending","JP","Consumer Confidence","35.0","35.5","Oct/26",">Prev","BAD"),
+ ("Spending","JP","Retail Sales YoY","2.3%","1.8%","Sep/26",">0.5%","GOOD"),
  ("Spending","AU","Household Spending YoY","6.8%","6.0%","Aug/26",">0.5%","GOOD"),
  ("Spending","AU","Building Permits YoY Final","10.3%","10.9%","Aug/26",">0.5%","GOOD"),
  ("Spending","AU","Westpac Consumer Conf Change","-4.7%","-5.2%","Oct/26",">Prev","GOOD"),
  ("Spending","AU","NAB Business Confidence","-13","-6","Sep/26",">Prev","BAD"),
  ("Spending","NZ","Building Permits MoM","-4.3%","-3.7%","Jul/26",">0.5%","BAD"),
  ("Spending","NZ","Electronic Retail Card Spending YoY","0.9%","0.9%","Sep/26",">0.5%","NEUTRAL"),
- ("Spending","NZ","ANZ Business Confidence","51.9","53.7","Sep/26",">Prev","BAD"),
- ("Spending","NZ","ANZ Roy Morgan Consumer Conf","97.6","98.0","Sep/26",">Prev","BAD"),
+ ("Spending","NZ","ANZ Business Confidence","52.5","53.7","Oct/26",">Prev","BAD"),
+ ("Spending","NZ","ANZ Roy Morgan Consumer Conf","96.2","98.0","Oct/26",">Prev","BAD"),
  ("Spending","CA","Retail Sales YoY","5.4%","5.1%","Aug/26",">0.5%","GOOD"),
  ("Spending","CA","Building Permits MoM","8.8%","18.3%","Aug/26",">0.5%","BAD"),
  ("Spending","CH","Consumer Confidence","-36","-33","Sep/26",">Prev","BAD"),
@@ -138,7 +138,7 @@ ROWS = [
  # ---------------- EMPLOYMENT (w=2) ----------------
  ("Employment","US","Non Farm Payrolls","29K","133K","Sep/26",">Prev","BAD"),
  ("Employment","US","Unemployment Rate","4.2%","4.1%","Sep/26","<Prev","BAD"),
- ("Employment","EA","Unemployment Rate","6.4%","6.4%","Aug/26","<Prev","NEUTRAL"),
+ ("Employment","EA","Unemployment Rate","6.5%","6.5%","Sep/26","<Prev","NEUTRAL"),
  ("Employment","GB","Claimant Count Change","30.3K","7K","Sep/26","<0 (LD-58)","BAD"),
  # F-144 - GBP WAS THE ONLY CURRENCY OF THE EIGHT WITHOUT AN UNEMPLOYMENT RATE.
  #
@@ -165,7 +165,7 @@ ROWS = [
  # ONS publishes a rolling 3-month rate; Jul/26 released 15 Sep, flat for the
  # fourth consecutive period. Next print 20 Oct (Aug/26).
  ("Employment","GB","Unemployment Rate","4.7%","4.9%","Aug/26","<Prev","GOOD"),
- ("Employment","JP","Unemployment Rate","2.5%","2.4%","Aug/26","<Prev","BAD"),
+ ("Employment","JP","Unemployment Rate","2.4%","2.5%","Sep/26","<Prev","GOOD"),
  ("Employment","AU","ANZ-Indeed Job Ads MoM","2.2%","2.6%","Sep/26",">0.5%","GOOD"),
  ("Employment","AU","Employment Change","-39.3K (FT +34.4K, PT -73.7K)","-15.9K","Sep/26","LD-151 three legs","NEUTRAL"),
  ("Employment","AU","Unemployment Rate","4.7%","4.7%","Sep/26","<Prev","NEUTRAL"),
@@ -220,7 +220,7 @@ ROWS = [
  ("Inflation","EA","Inflation Rate YoY Final","3.8%","2.9%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
  ("Inflation","GB","Inflation Rate YoY","3.5%","3.1%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
  ("Inflation","JP","Inflation Rate YoY","2.1%","1.9%","Sep/26","1.8-2.2 corridor (LD-155)","NEUTRAL"),
- ("Inflation","AU","Inflation Rate YoY","4.0%","3.8%","Aug/26","1.8-2.2 corridor (LD-155)","GOOD"),
+ ("Inflation","AU","Inflation Rate YoY","4.3%","3.8%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
  ("Inflation","NZ","Inflation Rate YoY","3.7%","4.1%","Sep/26 (Q)","1.8-2.2 corridor (LD-155)","GOOD"),
  ("Inflation","CA","Inflation Rate YoY","3.1%","3%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
  ("Inflation","CH","Inflation Rate YoY","1%","0.8%","Sep/26","1.8-2.2 corridor (LD-155)","BAD"),
@@ -234,7 +234,7 @@ CCYS = ["US","EA","GB","JP","AU","NZ","CA","CH"]
 # the expectations not the result"). QoQ only - LD-116.
 GDP_ROWS = [
     ("GDP","US","GDP Growth Rate QoQ","-","-","Q2/26",">0 range (LD-117)","NEUTRAL"),
-    ("GDP","EA","GDP Growth Rate QoQ","-","-","Q2/26",">0 range (LD-117)","NEUTRAL"),
+    ("GDP","EA","GDP Growth Rate QoQ","-","-","Q3/26",">0 range (LD-117)","NEUTRAL"),
     ("GDP","GB","GDP Growth Rate QoQ","-","-","Q2/26",">0 range (LD-117)","NEUTRAL"),
     ("GDP","JP","GDP Growth Rate QoQ","-","-","Q2/26",">0 range (LD-117)","NEUTRAL"),
     ("GDP","AU","GDP Growth Rate QoQ","-","-","Q2/26",">0 range (LD-117)","NEUTRAL"),

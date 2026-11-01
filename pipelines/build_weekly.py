@@ -34,7 +34,7 @@ def hot(ccy, name):
 # F-170 - pinned to 2026-10-18 here too, the same defect in the second of
 # the two files that each hold the window. Take the newest capture.
 CAP = sorted(glob.glob('data/raw/calendar/*_cal_full.json'))[-1]
-START, END = '2026-10-26', '2026-10-30'
+START, END = '2026-11-02', '2026-11-06'
 
 F = ps.final_scores(CAP, START, END)
 SC = dict((c, F[c]['total']) for c in F)
@@ -113,6 +113,8 @@ n_scor = len([r for r in ROWS if r['score'] is not None])
 # no url line rather than a WRONG one: absence is honest, a stale pointer is
 # not (the F-73 principle - never a guessed value).
 EDITIONS = {
+    '2026-11-02': ('https://claude.ai/artifact/ULHurVN77wrmjaw5wdZZxV',
+                   'https://claude.ai/artifact/NUNALj8NF1B4z3cppCqMdK'),
     '2026-10-26': ('https://claude.ai/artifact/X9gTs1ic6bazYjDfcY339g',
                    'https://claude.ai/artifact/MFCLDoZM78ww6fyps5BLcF'),
     '2026-10-19': ('https://claude.ai/artifact/NhyqPwGB11jK1uwSxwzi3N',

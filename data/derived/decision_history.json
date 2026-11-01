@@ -3,64 +3,64 @@
   "last": null,
   "last_rate": null,
   "days_since": null,
-  "next": "2026-09-16",
-  "next_forecast": "4%",
-  "n_seen": 1
+  "next": null,
+  "next_forecast": null,
+  "n_seen": 2
  },
  "EUR": {
-  "last": "2026-09-10",
+  "last": "2026-10-29",
   "last_rate": "2.65%",
   "days_since": 3,
   "next": null,
   "next_forecast": null,
-  "n_seen": 1
+  "n_seen": 2
  },
  "GBP": {
   "last": null,
   "last_rate": null,
   "days_since": null,
-  "next": "2026-09-17",
-  "next_forecast": "3.75%",
-  "n_seen": 1
+  "next": "2026-11-05",
+  "next_forecast": "4.0%",
+  "n_seen": 2
  },
  "JPY": {
-  "last": null,
-  "last_rate": null,
-  "days_since": null,
-  "next": "2026-09-18",
-  "next_forecast": "1.25%",
-  "n_seen": 2
+  "last": "2026-10-30",
+  "last_rate": "1.25%",
+  "days_since": 2,
+  "next": null,
+  "next_forecast": null,
+  "n_seen": 3
  },
  "AUD": {
   "last": null,
   "last_rate": null,
   "days_since": null,
-  "next": "2026-09-29",
-  "next_forecast": "4.35%",
-  "n_seen": 1
+  "next": "2026-11-03",
+  "next_forecast": "4.6%",
+  "n_seen": 2
  },
  "NZD": {
-  "last": "2026-09-02",
+  "last": "2026-10-28",
   "last_rate": "2.75%",
-  "days_since": 11,
+  "days_since": 4,
   "next": null,
   "next_forecast": null,
-  "n_seen": 1
+  "n_seen": 2
  },
  "CAD": {
   "last": "2026-09-02",
   "last_rate": "2.25%",
-  "days_since": 11,
+  "days_since": 60,
   "next": null,
   "next_forecast": null,
-  "n_seen": 1
+  "n_seen": 2
  },
  "CHF": {
-  "last": null,
-  "last_rate": null,
-  "days_since": null,
-  "next": "2026-09-24",
-  "next_forecast": "0%",
+  "last": "2026-09-24",
+  "last_rate": "0%",
+  "days_since": 38,
+  "next": null,
+  "next_forecast": null,
   "n_seen": 1
  }
 }

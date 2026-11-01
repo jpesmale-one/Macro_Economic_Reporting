@@ -161,6 +161,37 @@ REFS = {
     ('NZ', 'Electronic Retail Card Spending YoY'): 'Sep/26',
     ('CA', 'Building Permits MoM'):                'Aug/26',
     ('US', 'CB Consumer Confidence'):            'Sep/26',
+    # ---- 2026-11-01 build: vintages for the 2-6 Nov window ----------------
+    # *** F-178 AGAIN, IN REFS THIS TIME. The 2026-10-18 block corrected US
+    # and EA inflation to Sep/26 but left GB, JP, AU, NZ and CA behind in the
+    # F-152 block above - and because a LATER duplicate key wins, the stale
+    # Aug/26 entries were the ones in force. sync --dry then proposed moving
+    # score_model BACKWARDS (Sep/26 -> Aug/26) on four rows whose values had
+    # not changed at all. The CSV was right, score_model was right, and REFS
+    # was the stale copy proposing to corrupt both.
+    # Verified against the TE indicator pages before landing (LD-3 owns the
+    # value, and R-45 passes these rows on Sep/26).
+    ('GB', 'Inflation Rate YoY'):       'Sep/26',  # Sep CPI rel 21 Oct
+    ('JP', 'Inflation Rate YoY'):       'Sep/26',  # Sep CPI rel 22 Oct
+    ('AU', 'Inflation Rate YoY'):       'Sep/26',  # Sep CPI rel 28 Oct, 4.3%
+    ('CA', 'Inflation Rate YoY'):       'Sep/26',  # Sep CPI rel 19 Oct
+    ('NZ', 'Inflation Rate YoY'):       'Sep/26 (Q)',  # Q3 rel 21 Oct
+
+    # the nine rows that re-printed 26-30 Oct
+    ('US', 'Durable Goods Ex Transp MoM'): 'Sep/26',  # rel 27 Oct
+    ('US', 'Personal Spending MoM'):       'Sep/26',  # rel 29 Oct
+    ('EA', 'Consumer Confidence Final'):   'Oct/26',  # rel 29 Oct
+    ('JP', 'Consumer Confidence'):         'Oct/26',  # rel 29 Oct
+    ('JP', 'Retail Sales YoY'):            'Sep/26',  # rel 29 Oct
+    ('NZ', 'ANZ Business Confidence'):     'Oct/26',  # rel 29 Oct
+    ('EA', 'Unemployment Rate'):           'Sep/26',  # rel 30 Oct
+    ('JP', 'Unemployment Rate'):           'Sep/26',  # rel 29 Oct
+
+    # the four R-37 raised (R-45 does not reach these)
+    ('US', 'Building Permits MoM Final'):   'Sep/26',      # FINAL, rel 27 Oct
+    ('US', 'CB Consumer Confidence'):       'Oct/26',      # rel 27 Oct
+    ('NZ', 'ANZ Roy Morgan Consumer Conf'): 'Oct/26',
+
 }
 
 

@@ -76,7 +76,7 @@ SP = ('C:/Users/jpesm/AppData/Local/Temp/claude/'
 # pattern is neither. Take the NEWEST capture - the build is always for the
 # week the newest Sunday capture opens.
 CAP = sorted(glob.glob('data/raw/calendar/*_cal_full.json'))[-1]
-START, END = '2026-10-26', '2026-10-30'
+START, END = '2026-11-02', '2026-11-06'
 
 F = ps.final_scores(CAP, START, END)
 SC = dict((c, F[c]['total']) for c in F)

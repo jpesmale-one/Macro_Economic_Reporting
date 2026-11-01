@@ -69,7 +69,6 @@ UPDATES = {
     # The SCORE is -1 either way (89.4 vs 90.2 also fell), so the board does
     # not move - but the PRINTED value was wrong by 7.5 points and two
     # vintages, and a row nothing can check is exactly the row to read by hand.
-    ('USD', 'CB Consumer Confidence'):         '81.9',   # Sep/26, rel 29 Sep [Conference Board, 3 sources]
     # ---- 2026-10-11 BUILD: prints that landed 5-9 Oct ---------------------
     # Every value raised by R-45 against the TE indicator page and confirmed
     # on the page that owns it (LD-3).
@@ -80,7 +79,6 @@ UPDATES = {
     ('EUR', 'Retail Sales YoY'):    '0.8%',
     ('JPY', 'Machine Tool Orders YoY'): '60.4%',
     ('JPY', 'Household Spending YoY'):  '-3.1%',
-    ('JPY', 'Consumer Confidence'): '35.4',
     ('CHF', 'Consumer Confidence'): '-36',
     ('CHF', 'Unemployment Rate'):   '3%',
     ('AUD', 'ANZ-Indeed Job Ads MoM'): '2.2%',
@@ -110,21 +108,13 @@ UPDATES = {
     # ---- EMPLOYMENT -------------------------------------------------------
     ('USD', 'Non Farm Payrolls'):            '29K',      # Sep/26, rel 2 Oct
     ('USD', 'Unemployment Rate'):            '4.2%',     # Sep/26, rel 2 Oct
-    ('EUR', 'Unemployment Rate'):            '6.4%',     # Aug/26, rel 1 Oct
-    ('JPY', 'Unemployment Rate'):            '2.5%',     # Aug/26, rel 1 Oct
 
     # ---- INFLATION --------------------------------------------------------
-    ('AUD', 'Inflation Rate YoY'):           '4.0%',     # Aug/26, rel 30 Sep
     ('CHF', 'Inflation Rate YoY'):           '1%',       # Sep/26, rel 1 Oct
 
     # ---- SPENDING ---------------------------------------------------------
-    ('USD', 'Personal Spending MoM'):        '0.9%',     # Aug/26, rel 30 Sep
-    ('JPY', 'Retail Sales YoY'):             '2.7%',     # Aug/26, rel 29 Sep
     ('CHF', 'Retail Sales YoY'):             '3.2%',     # Aug/26, rel 1 Oct
     ('AUD', 'Household Spending YoY'):       '6.8%',     # Aug/26, rel 29 Sep
-    ('EUR', 'Consumer Confidence Final'):    '-16.5',    # Sep/26, rel 29 Sep
-    ('NZD', 'ANZ Business Confidence'):      '51.9',     # Sep/26, rel 30 Sep
-    ('NZD', 'ANZ Roy Morgan Consumer Conf'): '97.6',     # Sep/26, rel 2 Oct
 
     # ---- TRADE ------------------------------------------------------------
     ('AUD', 'Balance of Trade'):             'A$0.495B',  # Aug/26, rel 1 Oct
@@ -134,4 +124,83 @@ UPDATES = {
     ('CHF', 'Procure.ch-UBS Mfg PMI'):       '55.3',     # Sep/26, rel 1 Oct
     ('EUR', 'S&P Global Mfg PMI Final'):     '52.9',     # Sep/26, rel 1 Oct
     ('JPY', 'S&P Global Mfg PMI Final'):     '54.1',     # Sep/26, rel 1 Oct
+
+    # ---- 2026-11-01 BUILD: prints that landed 26-30 Oct -------------------
+    # R-45 swept all 70 rows and found NINE stale, ZERO differing - so this
+    # is a clean roll, not a data conflict. Every value read from the TE
+    # INDICATOR PAGE (LD-3: a calendar is a SCHEDULE authority, never a
+    # VALUE authority), with vintage and release date recorded so F-29/F-37
+    # cannot be violated by a later edit.
+    #
+    # *** F-147 - EVERY EARLIER ENTRY BELOW STAYS. roll_month copies the
+    # previous column forward for any row NOT in this dict, so dropping a
+    # corrected row RESTORES its pre-correction value. A key reappearing in
+    # this newer block simply overrides the older one.
+    #
+    # USD Personal Spending 0.5% Sep/26 was ALSO recovered independently
+    # from BEA for the capture gap (see RECOVERED.md) and the two agree.
+    ('USD', 'Durable Goods Ex Transp MoM'): '0.5%',   # Sep/26, rel 27 Oct, prev 0.3%
+    ('USD', 'Personal Spending MoM'):       '0.5%',   # Sep/26, rel 29 Oct, prev 0.9%
+    ('EUR', 'Consumer Confidence Final'):   '-17.9',  # Oct/26, rel 29 Oct, prev -16.8
+    ('JPY', 'Consumer Confidence'):         '35.0',   # Oct/26, rel 29 Oct, prev 35.4
+    ('JPY', 'Retail Sales YoY'):            '2.3%',   # Sep/26, rel 29 Oct, prev 2.9%
+    ('NZD', 'ANZ Business Confidence'):     '52.5',   # Oct/26, rel 29 Oct, prev 51.9
+    ('EUR', 'Unemployment Rate'):           '6.5%',   # Sep/26, rel 30 Oct, prev 6.5%
+    ('JPY', 'Unemployment Rate'):           '2.4%',   # Sep/26, rel 29 Oct, prev 2.5%
+    ('AUD', 'Inflation Rate YoY'):          '4.3%',   # Sep/26, rel 28 Oct, prev 4.0%
+
+    # ---- the four R-37 raised that R-45 does not reach --------------------
+    # R-45 sweeps indicator pages; R-37 compares against the CAPTURE, and the
+    # two see different rows - which is why both exist. Each verified on its
+    # own source before landing (LD-3: the calendar schedules, it does not
+    # value), and all four agree with the capture.
+    # *** TE's /united-states/consumer-confidence serves UMich SENTIMENT, not
+    # Conference Board CONFIDENCE - a wrong-SERIES trap of exactly the F-29/
+    # F-37 kind, caught because the page returned 48.0 where the capture said
+    # 91.7. Confirmed 91.7 Oct/26 from the Conference Board release instead.
+    ('USD', 'Building Permits MoM Final'):  '-0.4%',  # Sep/26 FINAL, rel 27 Oct, prev -2.1%
+    ('USD', 'CB Consumer Confidence'):      '91.7',   # Oct/26, rel 27 Oct, prev 84.2 (rev)
+    ('NZD', 'ANZ Roy Morgan Consumer Conf'): '96.2',  # Oct/26, prev 97.6
+
+
 }
+
+
+# *** F-178 - A DUPLICATE KEY IN THIS DICT IS SILENT, AND IT ALMOST SHIPPED.
+# The 2026-11-01 block was first written at the TOP of UPDATES, which reads
+# naturally (newest first) and is exactly backwards: Python keeps the LAST
+# assignment, so nine stale October values further down silently overrode all
+# nine fresh ones. Nothing raised. UPDATES simply returned the old number, and
+# the board would have been built on last month's prints while every check
+# reported a clean roll - the F-147 failure shape with the sign flipped.
+#
+# THE RULE: a re-printed row goes at the END of UPDATES, never at the top.
+# This guard re-parses the source and fails loudly if a key is assigned more
+# than once anywhere, so the next person does not have to know the rule.
+def _duplicate_keys():
+    # Imported locally: this module is a pure data table and deliberately
+    # carries no module-level imports for other code to inherit.
+    import io
+    import os
+    import re
+    src = io.open(os.path.abspath(__file__), encoding='utf-8').read()
+    body = src[src.index('UPDATES = {'):]
+    body = body[:body.index(chr(10) + '}')]
+    seen, dupes = set(), []
+    pat = r"\(\s*'([A-Z]{3})'\s*,\s*'([^']+)'\s*\)\s*:"
+    for m in re.finditer(pat, body):
+        k = (m.group(1), m.group(2))
+        if k in seen:
+            dupes.append(k)
+        seen.add(k)
+    return dupes
+
+
+_DUPES = _duplicate_keys()
+if _DUPES:
+    raise SystemExit(
+        '*** F-178: %d key(s) assigned twice in UPDATES - the LAST one wins '
+        'SILENTLY.%s    %s%s    A re-printed row belongs at the END of the '
+        'dict; remove the older entry or move the newer one down.'
+        % (len(_DUPES), chr(10), '; '.join('%s %s' % k for k in _DUPES),
+           chr(10)))

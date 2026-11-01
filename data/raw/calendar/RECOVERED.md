@@ -216,3 +216,67 @@ have taken AUD from -2.00 back to +1.67 and changed the set.
 
 THE RULE: a correction stays in UPDATES until its series re-prints, not just
 in the week it was made.
+
+---
+
+## 2026-11-01 roll (window 2 - 6 Nov) - two USD rows lost to the capture gap
+
+Both were scheduled 2026-10-29, between the 28 Oct and 1 Nov captures, so
+R-42 reported them lost. Recovered from the ISSUING AGENCY rather than from
+TE, because TE's indicator pages would not render their data tables through
+either fetch path available here (the page returned navigation only, twice).
+BEA is the agency that publishes both series, so this is a stronger source
+than the calendar mirror, not a weaker one (LD-159 - link recorded).
+
+USD | GDP Growth Rate QoQ  | 2026-10-29 | 3.4% | Q3 2026 ADVANCE estimate,
+    annual rate; prior Q2 2026 = 2.2%
+    https://www.bea.gov/data/gdp/gross-domestic-product
+
+USD | Personal Spending MoM | 2026-10-29 | 0.5% | Sep 2026; previous
+    Aug 2026 = 0.9%
+    https://tradingeconomics.com/united-states/personal-spending
+
+*** F-29/F-37 - THE TRANSFORM AND VINTAGE ARE PART OF THE IDENTITY. The GDP
+figure is the ADVANCE estimate and is recorded as such. It must NOT be filed
+under a 'Final' or 'Second estimate' name, and when the second estimate
+prints (scheduled late Nov) that is a DIFFERENT vintage, not a correction to
+this one.
+
+*** F-147 - BOTH ROWS MUST STAY IN refresh_rows.UPDATES UNTIL THEIR SERIES
+RE-PRINTS. Dropping them from the dict next week does not leave them alone;
+roll_month RESTORES them to the pre-recovery value.
+
+### EUR GDP Growth Rate QoQ - raised by R-37, NOT refreshed (F-3)
+
+R-37 flagged ours='-' against TE 0.4%, released 2026-10-30. The figure is
+real and was verified at source (Eurostat preliminary flash, Q3 2026, euro
+area +0.4% QoQ, published 30 Oct 2026):
+  https://ec.europa.eu/eurostat/web/main/news/euro-indicators
+
+It is NOT refreshed because GDP lives in `_retired_GDP_Macro_Indicators.csv`
+and is not in the live closed set. indicator_pages.py skips the row by name
+for the same reason. Adding it back is an amendment to the indicator list,
+which is Jeff's call alone (F-3) - so this is REPORTED, not changed.
+
+### JPY Unemployment Rate - prev held at 2.5%, CSV chain says 2.4% (R-48)
+
+The Nov-26 roll brought JPY Unemployment to 2.4% (Sep/26, rel 29 Oct). Its
+`prev` in score_model read 2.4% - the same number as the actual, which scored
++0 where TE's 2.5% scores +1. Corrected to 2.5%.
+
+prev_check now reports the opposite direction: the CSV VINTAGE CHAIN derives
+2.4%. The column history is
+
+    Aug-26 2.4% | Sep-26 2.4% | Oct-26 2.5% | Nov-26 2.4%
+
+so "last DISTINCT value" walking back from Nov-26 skips the duplicated Sep
+and lands on Aug's 2.4% - stepping over Oct's 2.5%, which is a REAL and
+distinct print, not a carried copy.
+
+HELD 2.5% IS CORRECT. TE's own indicator page gives prev 2.5% for the 29 Oct
+release, and LD-3 makes TE the VALUE authority while the CSV answers only
+which print came before. Where the two disagree on a value, TE wins.
+
+Recorded rather than silently accepted: the CSV-side rule has a blind spot
+when a series alternates (A, A, B, A), and this is the row that exposed it.
+Fixing that rule is a LOGIC change and is NOT made here.

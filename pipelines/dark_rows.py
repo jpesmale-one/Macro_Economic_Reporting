@@ -71,15 +71,17 @@ READS = {
     # URL has been found. Held at its last known value and SAID to be held
     # (F-73) - never silently carried as if checked.
     ('USD', 'CB Consumer Confidence'):
-        ('81.9', 'Sep/26', '2026-10-18',
-         'NO LONGER UNVERIFIED. The slug still resolves to '
-         '/united-states/consumer-confidence = University of Michigan '
-         'sentiment, a DIFFERENT survey - that defect stands and R-45 can '
-         'never check this row. Read from the Conference Board release and '
-         'CONFIRMED BY THREE INDEPENDENT SOURCES: 81.9 Sep, down 6.7 from '
-         '88.6 Aug, against an 89.2 consensus, lowest since 2014. Score is '
-         '-1 either way, so the board did not move - but the held 89.4 was '
-         'wrong by 7.5 points and two vintages.'),
+        ('91.7', 'Oct/26', '2026-11-01',
+         'STILL UNREACHABLE BY R-45, AND THE TRAP FIRED AGAIN TODAY. The '
+         'slug /united-states/consumer-confidence resolves to University of '
+         'Michigan SENTIMENT, a different survey; fetching it on 1 Nov '
+         'returned 48.0 Oct/26 where the capture said 91.7 - a wrong-SERIES '
+         'read of exactly the F-29/F-37 kind, caught only because the two '
+         'disagreed by 44 points. Read instead from the Conference Board '
+         'release of 27 Oct: 91.7 for Oct/26, up 7.5 from a REVISED 84.2 '
+         'Sep (the 81.9 we held was revised up), against an 81.0 consensus. '
+         'A rise over prev scores GOOD, where Sep scored BAD - so this row '
+         'FLIPS SIGN this week and the board moves with it.'),
     ('NZD', 'Electronic Retail Card Spending YoY'):
         ('0.9%', 'Sep/26', '2026-10-18',
          'NO LONGER UNVERIFIED. The slug still resolves to '
