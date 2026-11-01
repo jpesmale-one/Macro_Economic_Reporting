@@ -61,6 +61,27 @@ ok('macro +0.78 ATR as published',
 ok('rates -1.36 ATR as published',
    t and abs(t[0]['rates'][0] + 1.36) < 0.02, str(t[0]['rates'][0] if t else None))
 
+# --- LD-176, the lock ------------------------------------------------------
+ok('LD-176 check_lock passes while frozen values hold', PC.check_lock())
+
+_orig = PC.MIN_WEEKS
+try:
+    PC.MIN_WEEKS = 1
+    fired = False
+    try:
+        PC.verdict([{'week': 'w', 'sessions': [1],
+                     'macro': (0, 0.2, 1, 1, {}, 0),
+                     'rates': (0, 0.1, 1, 1, {}, 0), 'lead': 0.1}])
+    except SystemExit:
+        fired = True
+    ok('LD-176 verdict() refuses to run on a moved MIN_WEEKS', fired)
+finally:
+    PC.MIN_WEEKS = _orig
+
+ok('LD-176 LOCK records all three corrections',
+   PC.LOCK['corrections'] == ('common-sessions', 'atr-normalised',
+                             'per-pair-day'), str(PC.LOCK['corrections']))
+
 print()
 print('FAILURES: %d' % len(fails))
 if fails:

@@ -1504,6 +1504,40 @@ would fire T1/T3 and take the full gate ladder.
 
 ---
 
+### LD-176 - THE RETRO COMPARISON METHOD IS FROZEN UNTIL IT ANSWERS (2026-11-01)
+DECISION: Jeff: "let's lock this retro method until we see the real
+difference between macro and rates differential reporting." The LD-175
+measure - common sessions only, ATR-normalised, per pair-day, MIN_WEEKS = 8,
+ATR from LD-128/129, a missing ATR dropped per F-73 - is FROZEN while it is
+measuring. The unlock is a CONDITION, not a date: it lifts when
+product_compare.verdict() stops refusing, i.e. at 8 weeks both products
+graded (~late Dec 2026 on current cadence).
+STILL ALLOWED: adding the weekly row each Saturday (that is the method
+running, not a change); defect fixes where the code does not do what the
+CLAUDE.md table says; recording an observation in prose.
+FORBIDDEN WITHOUT JEFF: changing MIN_WEEKS; adding, removing or reweighting
+a correction; switching the normaliser; redefining a "common" session;
+declaring a winner early; dropping a week that looks wrong.
+REJECTED:
+  (a) Lock it by date (e.g. "until 31 Dec"). Rejected: the question is
+      whether the measure has enough weeks, not whether a date has passed.
+      A date can arrive with six weeks logged and nothing to say, and the
+      lock would lift on an answer that does not exist.
+  (b) Leave it to judgement and the CLAUDE.md note alone. Rejected: prose
+      does not stop a careless edit. check_lock() fingerprints MIN_WEEKS and
+      is called from verdict(), so moving it raises instead of quietly
+      returning a winner; a mutation test proves it fires.
+  (c) Tune the basis if an early week looks wrong. Rejected and inverted:
+      retuning mid-sample restarts the sample, and the temptation will be
+      strongest exactly when an early week looks wrong. THE WEEK IS THE
+      FINDING - say so and ask.
+RATIONALE: this measure exists to answer one question that needs ~8 weeks.
+Every change to the basis before then destroys the only thing it produces.
+The named risk is me: the pressure to "improve" the measure while it runs
+is what the lock is against. Same shape as LD-167, which froze report logic
+for an edition after five scoring changes in 36 hours made a retro
+unreadable as evidence - except this one is conditional rather than dated.
+
 ## ESTABLISHED FACTS LEDGER
 What the data has settled, with source and vintage. Only SEALED editions
 contribute here. Later work may cite these; unsealed drafts may not be

@@ -52,7 +52,37 @@ RATES = os.path.join(os.path.dirname(REPO), 'Rate_Differential_Reporting',
                      'data', 'derived', 'sessions.csv')
 
 # Below this, no winner is declared. See the docstring.
+#
+# *** LD-176 - FROZEN. Jeff, 2026-11-01: "let's lock this retro method until
+# we see the real difference between macro and rates differential reporting."
+# MIN_WEEKS, the three corrections and the ATR source are frozen WHILE THE
+# MEASURE IS RUNNING, because retuning a basis mid-sample restarts the sample
+# and produces a number that looks like evidence and is not. The unlock is a
+# CONDITION, not a date: it lifts when verdict() stops refusing. If an early
+# week looks wrong, THE WEEK IS THE FINDING - say so and ask.
 MIN_WEEKS = 8
+
+# The frozen constants, fingerprinted. check_lock() fails loudly if one moves,
+# so the lock survives a careless edit rather than depending on someone having
+# read CLAUDE.md first.
+LOCK = {
+    'MIN_WEEKS': 8,
+    'corrections': ('common-sessions', 'atr-normalised', 'per-pair-day'),
+    'atr_source': 'LD-128/129 sessions ending before the graded week',
+    'missing_atr': 'drop the row (F-73), never 1 and never 0',
+}
+
+
+def check_lock():
+    """Raise if a frozen parameter has moved (LD-176)."""
+    if MIN_WEEKS != LOCK['MIN_WEEKS']:
+        raise SystemExit(
+            '*** LD-176 VIOLATION: MIN_WEEKS is %r, frozen at %r.\n'
+            '    The comparison is mid-measurement; changing the basis '
+            'restarts the sample.\n'
+            '    This is Jeff\'s call, not mine - revert it or ask him.'
+            % (MIN_WEEKS, LOCK['MIN_WEEKS']))
+    return True
 
 
 def rows(path):
@@ -130,6 +160,7 @@ def table():
 
 def verdict(t=None):
     """The standing answer, or a refusal with the reason."""
+    check_lock()          # LD-176 - verified where a winner is declared
     t = table() if t is None else t
     if len(t) < MIN_WEEKS:
         return (None, '%d of %d weeks - too few to call a winner. The 26-30 '

@@ -106,6 +106,34 @@ If a change feels necessary, **say so and ask** — do not apply it.
 
 ---
 
+## 0a-0b. ⚠ THE RETRO COMPARISON METHOD IS FROZEN UNTIL 8 WEEKS (LD-176)
+
+**Jeff, 2026-11-01:** *"let's lock this retro method until we see the real
+difference between macro and rates differential reporting."*
+
+**Do not change how LD-175 measures, while it is measuring.** A measure that
+is retuned while it runs cannot answer the question it was built for, because
+every change restarts the sample — and this one needs ~8 weeks to say anything
+at all. The point of the lock is that **I am the risk**: the temptation to
+"improve" the basis will be strongest exactly when an early week looks wrong.
+
+| | |
+|---|---|
+| **FROZEN** | the three corrections in `product_compare.py` — common sessions only, ATR-normalised, per pair-day; `MIN_WEEKS = 8`; the ATR source (LD-128/129, sessions ending before the graded week); `score()`'s F-73 drop of a row with no ATR; the `§6` table's columns |
+| **STILL ALLOWED** | adding the weekly row each Saturday (that is the method running, not a change); **defect** fixes where the code does not do what this table says; recording an observation in prose |
+| **FORBIDDEN WITHOUT JEFF** | changing `MIN_WEEKS`; adding, removing or reweighting a correction; switching the normaliser; redefining a "common" session; declaring a winner early; dropping a week that looks wrong |
+
+**The unlock is a CONDITION, not a date:** the lock lifts when
+`product_compare.verdict()` stops refusing — that is, at **8 weeks both
+products graded**, ~late December 2026 on current cadence. Nothing about a
+single bad week lifts it early.
+
+**If an early week looks wrong, the week is the finding — say so and ask.**
+A method changed mid-measurement produces a number that looks like evidence
+and is not.
+
+---
+
 ## 0a-i. NEW HERE? READ `docs/SYSTEM_OVERVIEW.md` FIRST
 
 **The whole machine read forwards** — what feeds it, what it computes, what it
