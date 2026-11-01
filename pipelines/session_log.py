@@ -37,7 +37,8 @@ REPO = os.path.dirname(HERE)
 LEDGER = os.path.join(REPO, 'data', 'derived', 'sessions.csv')
 
 FIELDS = ('week_start', 'session', 'weekday', 'pair', 'direction',
-          'fav_pips', 'adv_pips', 'frac_atr', 'hit', 'state', 'note')
+          'fav_pips', 'adv_pips', 'atr_pips', 'frac_atr', 'hit', 'state',
+          'note')
 
 WEEKDAY = ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')
 
@@ -50,7 +51,7 @@ def _rows():
 
 
 def append(week_start, session, pair, direction, fav, adv,
-           frac=None, hit=None, state='', note=''):
+           frac=None, hit=None, state='', note='', atr=None):
     """Add one pair-session row. Idempotent on (week, session, pair).
 
     Re-running a daily build must not double-count the day, so an existing
@@ -71,6 +72,7 @@ def append(week_start, session, pair, direction, fav, adv,
     new = {'week_start': week_start, 'session': session, 'weekday': wd,
            'pair': pair, 'direction': direction,
            'fav_pips': '%.1f' % float(fav), 'adv_pips': '%.1f' % float(adv),
+           'atr_pips': ('%.1f' % float(atr)) if atr is not None else '',
            'frac_atr': ('%.3f' % frac) if frac is not None else '',
            'hit': ('1' if hit else '0') if hit is not None else '',
            'state': state, 'note': note}

@@ -157,6 +157,34 @@ check('title is this edition, not inherited (F-171)',
 for stale in ('14&ndash;18 September', '19&ndash;23 Oct', '20 Oct', '24 Oct'):
     check('no stale window text: %s' % stale, stale not in h)
 
+# --- 6b. LD-175 comparison section agrees with the module ----------------
+# F-177 again: anchor on the week's own row, not on the document.
+import product_compare as PC
+_t = PC.table()
+check('LD-175 table has exactly the weeks both products graded',
+      len(_t) >= 1, '%d week(s)' % len(_t))
+if _t:
+    w = _t[0]
+    crow = re.search(r'<td class="mono">26&ndash;30 Oct</td>(.*?)</tr>',
+                     h, re.S)
+    check('LD-175 week row present', bool(crow))
+    if crow:
+        # The page writes minus signs as &minus; (and &ndash; in labels), so
+        # strip tags AND decode the entities before comparing - otherwise the
+        # check fails on typography rather than on a wrong number, which is a
+        # false alarm, and a checker that cries wolf gets ignored.
+        cc = [re.sub('<[^>]*>', '', c)
+              .replace('&minus;', '-').replace('−', '-').strip()
+              for c in re.findall(r'<td[^>]*>(.*?)</td>', crow.group(1), re.S)]
+        for val in ('%d' % len(w['sessions']),
+                    '%+.2f' % w['macro'][0], '%+.2f' % w['macro'][1],
+                    '%+.2f' % w['rates'][0], '%+.2f' % w['rates'][1],
+                    '%+.2f' % w['lead']):
+            check('LD-175 row carries %s' % val, val in cc, 'row=%s' % cc)
+    who, _why = PC.verdict(_t)
+    check('page states NO CALL while the module refuses',
+          (who is None) == ('NO CALL' in h), 'module=%s' % who)
+
 # --- 7. LD-4 ---------------------------------------------------------------
 low = h.lower()
 check('LD-4 no money path',
