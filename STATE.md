@@ -8220,3 +8220,79 @@ CARRIED, not fixed here:
     capture, failing IDENTICALLY before this edit. Clears with the dailies.
   - STATE.md's header still reads `edition: 2026-10-11` though 2-6 Nov is
     published. Pre-existing, flagged not silently fixed.
+
+### 2026-11-03 - GRADED INFLATION: ASKED, TESTED TWICE, CLOSED
+
+Recorded so it is not re-proposed in three months. This began as F-182 (the
+blank Score column) and became a scoring question; the scoring question is
+now ANSWERED NO, on measurement rather than preference.
+
+Jeff approved the consensus-column route ("consensus-column -- I'm ok with
+this"). I WITHDREW IT after measuring coverage, which I should have measured
+before proposing it. The LD-155 coverage note already said consensus fires
+"roughly one week in four per currency" - it was in the file the whole time
+and I read it as a footnote instead of as the constraint that decides the
+design.
+
+MEASURED, data/raw/calendar/2026-11-01_1312PHT_cal_full.json:
+
+    inflation-rate rows in the capture        26
+    carrying a REAL consensus                  4
+    of the 8 YoY rows the board scores         2   (CHF 1.3%, EA flash 3.9%)
+
+BOTH ROUTES FAIL:
+  1. Corridor DISTANCE reinstates the level test LD-155 retired - LD-136 in
+     a new scale. Settled 2026-10-10: the level does not score once an
+     actual exists, the SURPRISE does.
+  2. A consensus column fails LD-23. Six of eight currencies would score
+     +/-1.00 from the verdict while two scored a magnitude - one category,
+     two scoring regimes, ROTATING BY RELEASE CALENDAR. An input that is
+     empty six times in eight is not an input on equal terms.
+
+So the 8 rows take the verdict fallback BY DESIGN. F-182 was correctly a
+DISPLAY fix and the scoring stays frozen. Figures recorded in
+derive_scores.py beside the LD-155 note, where the next person to have this
+idea will find them.
+
+### 2026-11-03 - THE TWO ROLE QUESTIONS: ANSWERED, AND MY CASE WAS WEAKER
+### THAN I PRESENTED IT
+
+Jeff: *"On the labels I think its early to decide."* He is right, and testing
+his reasoning made the case for changing anything WEAKER, not stronger.
+
+HIS HYPOTHESIS, on CAD: classed Commodity for the longest time; may read
+haven-like this year because US-Iran keeps oil unusually sensitive and oil is
+CAD's primary commodity. He called it speculation and asked for research.
+
+*** THE TEST CANNOT RUN, AND THAT IS THE FINDING. The hypothesis predicts a
+RECENT effect, so it needs a period split. Index history reaches 2025-06;
+THE FX BARS ONLY REACH 2026-08-10 - 49 gradeable sessions, all one period.
+Both period rows came back identical because they are the same 49 sessions.
+His hypothesis is UNTESTED, not unsupported, and I cannot build the stronger
+case he asked for from what is on disk.
+
+*** WHAT THE RUN DID SHOW UNDERCUTS MY OWN OCTOBER CLAIM, over 49 sessions
+(18 risk-ON, 17 risk-OFF) instead of the retro's four weeks:
+
+    AUD +0.155   NZD +0.088   JPY +0.059   GBP -0.002
+    EUR -0.029   USD -0.075   CAD -0.094   CHF -0.103
+
+  - CAD and CHF are now THE SAME WITHIN NOISE (-0.094 vs -0.103). The retro
+    had CAD MORE defensive than CHF; that was a short-window artifact, and I
+    presented -0.139 as a finding when the ranking was not stable.
+  - JPY reads HIGH-BETA (+0.059), which is backwards for a haven. The measure
+    mislabels a currency nobody disputes, so it is noisier at n=49 than my
+    framing implied.
+
+So Jeff's instinct was right for a better reason than either of us gave: not
+only "too early" but THE SAMPLE IS TOO SMALL FOR THE MEASURE TO BE STABLE.
+
+ON GBPAUD his reading is correct and mine was sloppy. He asked "during
+Risk-off its Long Bias?" - yes, 0.66 risk-on / 1.35 risk-off. I had written
+"behaves risk-off", which is ambiguous. And his explanation holds: GBP sits
+at -0.002, genuinely neutral, which is what EITHER is for. The pair's tilt
+comes from AUD being the high-beta leg - long GBPAUD is SHORT AUD - not from
+GBP acting haven-like. EITHER describes GBP correctly.
+
+DECIDED: both roles UNCHANGED. Revisit JANUARY 2027 (Jeff's date), by which
+point FX history should cover ~5 months and a period split becomes possible.

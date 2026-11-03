@@ -148,6 +148,38 @@ LOW, HIGH = 1.5, 2.5
 # roughly one week in four per currency and AFTER-the-news governs the rest.
 # The last print carries until the next is scheduled - the standing state,
 # not stale data.
+#
+# *** AND THAT COVERAGE IS WHY INFLATION CANNOT BE GRADED ON SURPRISE SIZE.
+# MEASURED 2026-11-03 against data/raw/calendar/2026-11-01_1312PHT, not
+# assumed - the note above says "one week in four" and that is exactly the
+# number that kills the idea, so it is written here as a count:
+#
+#     inflation-rate rows in the capture        26
+#     carrying a REAL consensus                  4
+#     of the 8 YoY rows the board scores         2   (CHF 1.3%, EA flash 3.9%)
+#
+# Jeff asked on 2026-11-03 why the Score column was blank for inflation
+# (F-182), and the obvious answer - give graded() a corridor branch so the
+# rows carry a magnitude - was proposed, approved, and then WITHDRAWN TWICE
+# on reading the data. Both routes fail, for different reasons:
+#
+#   1. CORRIDOR DISTANCE reinstates the LEVEL TEST LD-155 RETIRED. Scoring
+#      "1.0% is 0.8pp below the floor" is LD-136 wearing a new scale. Jeff
+#      settled this on 2026-10-10: a 1.2% print beating a 1.0% expectation
+#      scores GOOD though 1.2% is deflationary - "yes, this is intended".
+#      The level does not score once an actual exists. The SURPRISE does.
+#   2. A CONSENSUS COLUMN IN score_model.ROWS fails LD-23. The surprise is
+#      only computable where TE publishes an expectation, which is 2 of 8
+#      in a given week, so six currencies would score ±1.00 from the verdict
+#      while two scored a magnitude - the same category graded two different
+#      ways, ROTATING BY RELEASE CALENDAR rather than by economics. LD-23 is
+#      explicit: no input that cannot be sourced for all eight on equal
+#      terms. A column that is empty six times out of eight is not an input.
+#
+# So the 8 inflation rows take the verdict fallback BY DESIGN, not by
+# omission, and F-182 was correctly a DISPLAY fix. If this idea returns,
+# the question to ask first is not "what scale?" but "what is the consensus
+# coverage this week?" - and the answer above is where to start.
 NEW_LOW, NEW_HIGH = 1.8, 2.2
 
 
