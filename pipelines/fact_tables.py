@@ -166,7 +166,20 @@ def category_score(cat, ccy, month=None):
 
 
 def base_scores(month=None):
-    """{ccy: {'total', 'leading', 'confirming', 'cats': {cat: score}}}."""
+    """{ccy: {'total', 'leading', 'confirming', 'cats': {cat: score}}}.
+
+    *** F-183 - CALL THIS WITH A MONTH. A bare call resolves latest_month()
+    for itself, so two bare calls in one build can land on DIFFERENT months
+    if the fact tables gain a column between them. That shipped on the
+    2026-11-01 weekly: the board carried JPY from Oct-26 (+4.33) beside USD
+    from Nov-26 (+1.00), and EUR matched NEITHER column - a value no
+    committed state can reproduce. Nothing errored; the page named one month
+    and scored across two.
+
+    A bare call is still allowed because audit and exploratory tools make
+    them legitimately, but every PUBLISHING path must pin the month and
+    _assert_single_month() below is what proves it did.
+    """
     month = month or latest_month()
     out = {}
     for c in CCYS:
@@ -254,3 +267,39 @@ if __name__ == '__main__':
         print('%-5s %-7s %-12s %+7.2f %+8.2f %+10.2f   %s'
               % (c, band[c], ROLE[c], d['total'], d['leading'],
                  d['confirming'], cells))
+
+
+def assert_single_month(month, *boards):
+    """F-183 - prove every board on a page came from ONE month.
+
+    *** THE GUARD THAT WAS MISSING. The defect this catches is silent by
+    construction: each board is internally consistent, the arithmetic is
+    right, the page names a month confidently, and only a cell-by-cell
+    comparison against the stored columns reveals that two different months
+    were read. A reader cannot see it. A build check can.
+
+    Pass the month the page claims plus every {ccy: {...}} board it printed.
+    Raises unless each board reproduces EXACTLY from that month.
+    """
+    want = base_scores(month)
+    bad = []
+    for i, b in enumerate(boards):
+        if not b:
+            continue
+        for c in CCYS:
+            if c not in b or c not in want:
+                continue
+            got = b[c]['total'] if isinstance(b[c], dict) else b[c]
+            # final_scores carries base+calibrator; compare its BASE term
+            if isinstance(b[c], dict) and 'base' in b[c]:
+                got = b[c]['base']
+            if abs(float(got) - want[c]['total']) > 1e-9:
+                bad.append('board %d: %s reads %+.2f, %s gives %+.2f'
+                           % (i, c, float(got), month, want[c]['total']))
+    if bad:
+        raise SystemExit(
+            '*** F-183: THE PAGE MIXES MONTHS.' + chr(10)
+            + chr(10).join('    ' + x for x in bad) + chr(10)
+            + '    Every board must be pinned to the month the page names.'
+            + chr(10) + '    This is the defect that shipped on 2026-11-01.')
+    return True

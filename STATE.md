@@ -8296,3 +8296,74 @@ GBP acting haven-like. EITHER describes GBP correctly.
 
 DECIDED: both roles UNCHANGED. Revisit JANUARY 2027 (Jeff's date), by which
 point FX history should cover ~5 months and a period split becomes possible.
+
+### 2026-11-03 - F-183 - THE PUBLISHED BOARD MIXED TWO MONTHS
+
+Jeff, looking at the 2-6 Nov weekly: *"if EUR is $5 then why we have this?"*
+Then, when I started explaining: *"you mean to say our board is again stale?"*
+And then the instruction that matters: *"fix whatever needs fixing. we can't
+be like this everytime."*
+
+*** HE WAS RIGHT TO PUSH. The data was never stale. The BOARD WAS ASSEMBLED
+ACROSS TWO MONTH COLUMNS, and it shipped.
+
+    published   GBP +6.40  CAD +6.30  JPY +4.53  USD +1.10
+                NZD +0.00  AUD -0.67  EUR -0.80  CHF -1.20
+
+    Oct-26 base: JPY +4.33   USD +0.50   EUR +1.00
+    Nov-26 base: JPY +5.33   USD +1.00   EUR +0.00
+
+JPY came from Oct-26. USD came from Nov-26. EUR matched NEITHER - and no
+committed state reproduces -1.00, so the EUR cell was read mid-write while
+the Nov column was being populated in that very commit (2539f7d added
+Nov-26; before it, the column did not exist).
+
+CAUSE, and it is the F-179 shape from the rates repo:
+  pair_select.final_scores()  called ft.base_scores()  with NO month
+  gen_page.py:113             called ft.base_scores()  with NO month
+Each resolved latest_month() INDEPENDENTLY. gen_page then printed
+MONTH = ft.latest_month() four lines later, so the page NAMED one month
+and SCORED across two. Nothing errored. Every number was internally
+consistent. A reader cannot see it.
+
+CORRECTED, pinned to Nov-26:
+    CCY   published  correct   delta
+    CAD     +6.30     +6.10    -0.20
+    JPY     +4.53     +5.53    +1.00
+    EUR     -0.80     +0.40    +1.20
+    (GBP, USD, NZD, AUD, CHF unchanged)
+
+    rank published: GBP CAD JPY USD NZD AUD EUR CHF
+    rank correct  : GBP CAD JPY USD EUR NZD AUD CHF
+    EUR moves 7th -> 5th. And THE SET CHANGES: EURJPY SHORT is no longer
+    selected; AUDJPY SHORT takes its place.
+
+*** AND I MADE IT WORSE BEFORE HE CAUGHT IT. Asked why CHF/EUR were low, I
+quoted score_model.compute() - EUR +2.79 - and told him EUR was MID-TABLE
+and the one case where board and price agreed. That was the F-141 duplicate
+("score_model.ROWS is a second copy"), its third appearance. The published
+board said -0.80, the correct board says +0.40, and I reported +2.79. Three
+different numbers, and I picked the only one that is not the board.
+
+THE FIX - three parts, because the first two alone would not stop it:
+  1. PIN. gen_page resolves MONTH once and passes it to final_scores() and
+     base_scores(). pair_select threads `month` through candidates(),
+     by_strong() and its __main__ demo - three more bare calls the GATE
+     found that I had missed.
+  2. PROVE. ft.assert_single_month(MONTH, *boards) re-derives every board
+     from the named month and raises on any disagreement. gen_page calls it
+     BEFORE rendering a row. Mutation-tested: a wrong-month board and a
+     single tampered cell both raise.
+  3. GATE. build_check step 9c AST-parses gen_page and pair_select for bare
+     base_scores()/final_scores() calls (docstrings stripped - F-179's own
+     lesson about a guard matching the comment that documents it), and then
+     verifies the guard still BITES rather than trusting that it does.
+
+NOTE: R-49 (step 9b) ALREADY CATCHES THIS - "EUR page -0.80 vs rows +0.20".
+The gate existed and was green at build time because the page and the rows
+were written in the same mixed-month pass. 9c checks the PIPELINE, not the
+output, which is why it catches the cause rather than the symptom.
+
+STILL OPEN: the 2026-11-01 weekly page and its artifact carry the wrong
+board and the wrong set. Republishing restates a week Jeff has already
+traded, so that is HIS call, not mine.

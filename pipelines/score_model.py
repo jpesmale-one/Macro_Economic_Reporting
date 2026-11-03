@@ -483,7 +483,25 @@ def graded_signed(actual, previous, threshold, verdict):
 
 
 def compute(include_rate=True):
-    """Five scored categories plus Interest Rate (LD-23, weight 3) when
+    """*** NOT THE BOARD. DO NOT QUOTE THIS AS THE BOARD (F-184).
+
+    THE PUBLISHED BOARD IS fact_tables.base_scores(month). This function
+    scores the ROWS table, which is a SECOND COPY of the same facts kept
+    for the evidence tables - that duplication is F-141, and it has now
+    caused trouble three times.
+
+    The two DISAGREE and are meant to: base_scores() derives every score
+    from the fact-table CELL for a named month (LD-112), while this reads
+    ROWS, which carries its own actuals and is refreshed separately. On
+    2026-11-03 this returned EUR +2.79 while the published board had EUR
+    -0.80 - and the +2.79 was reported to Jeff as the board, with a
+    paragraph of analysis built on it. It was wrong.
+
+    Use this for: the §4 evidence tables and anything scoring ROWS.
+    Use base_scores(MONTH) for: the board, ranks, bands, selection, and
+    any sentence that says "the board says".
+
+    Five scored categories plus Interest Rate (LD-23, weight 3) when
     include_rate is True. Rate scores come from pipelines/rate_model.py, which
     scores inflation-vs-own-mandate only - see that file for why steps 2-4
     (priced odds, vote splits, forward paths) were rejected."""

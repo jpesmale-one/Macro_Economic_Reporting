@@ -87,7 +87,7 @@ TIER = {('STRONG', 'WEAK'): 1,
 # boundary - and MIN_GAP, which was my number and never ratified, is gone.
 
 
-def final_scores(capture=None, start=None, end=None):
+def final_scores(capture=None, start=None, end=None, month=None):
     """FINAL = base + calibrator (the revamp's 5).
 
     Jeff, 2026-09-04: "The result from the Macro Economic Indicators will be
@@ -97,8 +97,18 @@ def final_scores(capture=None, start=None, end=None):
     Returns {ccy: {'base', 'cal', 'total'}}. With no capture, the calibrator
     term is zero and this degrades to base-only - which is what r1 and r2 of
     the 2026-09-08 edition published, and said so.
+
+    *** F-183 - PASS THE MONTH. This used to call ft.base_scores() with no
+    argument, so it resolved latest_month() ITSELF, independently of every
+    other caller in the same build. gen_page.py then called base_scores()
+    AGAIN for the Lead/Confirm columns. Two resolutions, one page: if the
+    fact tables gain a column mid-build, the Base column and the
+    Lead/Confirm columns come from DIFFERENT MONTHS and nothing errors.
+    That is the F-179 shape from the rates repo, and it SHIPPED here - see
+    the 2026-11-01 weekly, whose board carries JPY from Oct-26 (+4.33) and
+    USD from Nov-26 (+1.00) in the same table.
     """
-    b = ft.base_scores()
+    b = ft.base_scores(month)
     out = dict((c, {'base': b[c]['total'], 'cal': 0.0,
                     'total': b[c]['total']}) for c in b)
     if capture and start and end:
@@ -111,13 +121,16 @@ def final_scores(capture=None, start=None, end=None):
     return out
 
 
-def candidates(scores=None, band=None):
+def candidates(scores=None, band=None, month=None):
     """Every permitted pairing, richest gap first.
 
     Returns dicts: long, short, category, tier, gap, pair, direction.
     """
     if scores is None:
-        b = ft.base_scores()
+        # F-183 - a bare base_scores() resolves latest_month() for itself.
+        # This path only fires when the caller passed nothing, but it is the
+        # same trap, so it pins the month explicitly.
+        b = ft.base_scores(month or ft.latest_month())
         scores = dict((c, b[c]['total']) for c in b)
     if band is None:
         band, _ = ft.bands(scores)
@@ -244,7 +257,7 @@ def by_category(cands=None, tier=1):
     return out
 
 
-def by_strong(cands=None, band=None, scores=None, tier=1):
+def by_strong(cands=None, band=None, scores=None, tier=1, month=None):
     """The best tier-`tier` pair for each STRONG currency (LD-126).
 
     Jeff, 2026-09-10: "we have EUR, CHF, JPY as our strong currencies. We
@@ -261,8 +274,9 @@ def by_strong(cands=None, band=None, scores=None, tier=1):
     cands = candidates() if cands is None else cands
     if band is None or scores is None:
         import fact_tables as _ft
-        scores = scores or dict(
-            (c, _ft.base_scores()[c]['total']) for c in _ft.CCYS)
+        _m = month or _ft.latest_month()          # F-183 - pin it
+        _b = _ft.base_scores(_m)
+        scores = scores or dict((c, _b[c]['total']) for c in _ft.CCYS)
         band = band or _ft.bands(scores)[0]
     strong = sorted([c for c in band if band[c] == 'STRONG'],
                     key=lambda c: -scores[c])
@@ -357,7 +371,8 @@ def select(cands=None, max_pairs=None):
 
 
 if __name__ == '__main__':
-    b = ft.base_scores()
+    _M = ft.latest_month()                        # F-183 - pin it
+    b = ft.base_scores(_M)
     sc = dict((c, b[c]['total']) for c in b)
     band, order = ft.bands(sc)
 

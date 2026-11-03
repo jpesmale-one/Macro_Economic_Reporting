@@ -78,7 +78,14 @@ SP = ('C:/Users/jpesm/AppData/Local/Temp/claude/'
 CAP = sorted(glob.glob('data/raw/calendar/*_cal_full.json'))[-1]
 START, END = '2026-11-02', '2026-11-06'
 
-F = ps.final_scores(CAP, START, END)
+# *** F-183 - RESOLVE THE MONTH ONCE, HERE, AND PASS IT DOWN.
+# Every board read below is pinned to MONTH. Before this, final_scores()
+# and base_scores() each called latest_month() for themselves, so a build
+# that ran while the fact tables gained a column could mix two months in
+# one table - which is what the 2026-11-01 weekly published (JPY from
+# Oct-26, USD from Nov-26). Same shape as F-179 in the rates repo.
+MONTH = ft.latest_month()
+F = ps.final_scores(CAP, START, END, month=MONTH)
 SC = dict((c, F[c]['total']) for c in F)
 BAND, ORDER = ft.bands(SC)
 CANDS = ps.candidates(SC, BAND)
@@ -110,11 +117,13 @@ def _order(r):
 
 
 ROWS = sorted(cal.week_rows(CAP, START, END), key=_order)
-B = ft.base_scores()
+B = ft.base_scores(MONTH)          # F-183 - the SAME month as F above
+# F-183 - and PROVE it before a single row is rendered. A page that mixes
+# months is internally consistent and wrong, which is the expensive kind.
+ft.assert_single_month(MONTH, F, B)
 BSC = dict((c, F[c]['base']) for c in F)
 BBAND, BORDER = ft.bands(BSC)
 BPICK = ps.select(ps.candidates(BSC, BBAND))
-MONTH = ft.latest_month()
 scored, total = ft.coverage(MONTH)
 BRANK = dict((c, i + 1) for i, c in enumerate(BORDER))
 FRANK = dict((c, i + 1) for i, c in enumerate(ORDER))

@@ -579,6 +579,55 @@ def s11_pair_bars():
     return True, 'all %d selected pairs have bars' % len(sel)
 
 
+def s9c_one_month():
+    """F-183 - every publishing path must pin the board to ONE month.
+
+    *** THIS GATE EXISTS BECAUSE THE DEFECT SHIPPED. The 2026-11-01 weekly
+    published a board carrying JPY from Oct-26 (+4.33) beside USD from
+    Nov-26 (+1.00), with EUR at -1.00 matching NEITHER stored column. Every
+    number was internally consistent; the page named one month and scored
+    across two. No check looked, because none existed.
+
+    Two things are verified here, not assumed:
+      1. no publishing path calls base_scores()/final_scores() BARE, which
+         would resolve latest_month() independently of its caller
+      2. the guard itself still bites - a board from the wrong month must
+         raise, or this gate is decoration
+    """
+    import ast as _ast
+    import re as _re
+    bad = []
+    for fn in ('gen_page.py', 'pair_select.py'):
+        src = io.open(os.path.join(HERE, fn), encoding='utf-8').read()
+        code = _ast.parse(src)
+        for n in _ast.walk(code):          # strip docstrings - F-179's lesson
+            if isinstance(n, _ast.Expr) and isinstance(n.value, _ast.Constant)                     and isinstance(n.value.value, str):
+                n.value.value = ''
+        live = _re.sub(r'#.*', '', _ast.unparse(code))
+        for call in ('base_scores', 'final_scores'):
+            for m in _re.finditer(call + r'\(([^)]*)\)', live):
+                args = m.group(1).strip()
+                if args == '' or (call == 'final_scores'
+                                  and 'month' not in args):
+                    bad.append('%s calls %s(%s) without a month'
+                               % (fn, call, args[:40]))
+    if bad:
+        return False, '; '.join(bad)
+
+    # the guard must still bite
+    import fact_tables as _ft
+    m = _ft.latest_month()
+    other = [x for x in _ft.months() if x != m]
+    if other:
+        try:
+            _ft.assert_single_month(m, _ft.base_scores(other[-1]))
+            return False, ('assert_single_month did NOT raise on a '
+                           'wrong-month board - the guard is decoration')
+        except SystemExit:
+            pass
+    return True, 'every board pinned to %s; guard verified to bite' % m
+
+
 STEPS = [
     ('1', 'capture is fresh (<=3 days)', s1_capture),
     ('2', 'no release lost to a gap (R-42)', s2_gaps),
@@ -593,6 +642,7 @@ STEPS = [
     ('8c', 'dark rows read and current (F-143)', s8c_dark_rows),
     ('9', 'published page matches the data (F-134)', s9_page_fresh),
     ('9b', 'board matches its own rows (R-49/F-161)', s9b_board_self_consistent),
+    ('9c', 'board pinned to one month (F-183)', s9c_one_month),
     ('10', 'high-impact rows can flag (F-135)', s10_high_impact),
     ('11', 'selected pairs have OANDA bars (LD-145)', s11_pair_bars),
     ('11b', 'all 28 crosses for LD-162 (R-50)', s11b_pair_grid),
