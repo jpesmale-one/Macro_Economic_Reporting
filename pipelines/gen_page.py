@@ -75,7 +75,16 @@ SP = ('C:/Users/jpesm/AppData/Local/Temp/claude/'
 # looks for START/END pairs and dt.date() literals, and a date inside a glob
 # pattern is neither. Take the NEWEST capture - the build is always for the
 # week the newest Sunday capture opens.
-CAP = sorted(glob.glob('data/raw/calendar/*_cal_full.json'))[-1]
+# *** F-183b - A REBUILD MUST USE THE EDITION'S OWN CAPTURE, NOT THE NEWEST.
+# The newest capture is right on Sunday, when it IS the edition's. It is wrong
+# on any later rebuild: the calibrator is forward-looking and moves daily, so
+# re-deriving a Sunday page on Tuesday's capture restates the week with
+# information it never had. R-49 already says this in its own comment - it
+# re-derives on "the page's own capture, not the newest one" - so a rebuild
+# that ignores the rule fails the gate that enforces it.
+# CAPTURE env var pins it; unset keeps the Sunday behaviour.
+CAP = os.environ.get('CAPTURE') or sorted(
+    glob.glob('data/raw/calendar/*_cal_full.json'))[-1]
 START, END = '2026-11-02', '2026-11-06'
 
 # *** F-183 - RESOLVE THE MONTH ONCE, HERE, AND PASS IT DOWN.
