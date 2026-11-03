@@ -8126,3 +8126,97 @@ ranked nothing.
 #   Artifact: https://claude.ai/artifact/WmE2JYF16PjYJj47gtomo8 (V1)
 
 
+
+### 2026-11-03 - F-182 - THE SCORE COLUMN DESCRIBED A RULE THAT DOES NOT RUN
+
+Jeff, reading the 2-6 Nov weekly: *"why we don't have score in inflation?"*
+Then, mid-turn: *"can you also check employments"* - which is what widened a
+one-category question into the real count.
+
+*** HE WAS LOOKING AT A TABLE THAT CONTRADICTED ITS OWN HEADER. The Inflation
+block's header read "8 rows - 6 good . 1 neutral . 1 bad" while all eight
+SCORE cells printed an em-dash. Both were generated from the same ROWS, four
+lines apart.
+
+CAUSE. section4.py asked ONLY graded_signed() for the column and printed
+nothing when it returned None. compute() does not stop there - it falls
+through to the VERDICT and scores those rows at FULL weight:
+
+    g = graded_signed(r[3], r[4], r[6], v)
+    if g is not None:  s += per * g      # magnitude
+    elif v == "GOOD":  s += per          # <- the branch the column never ran
+    elif v == "BAD":   s -= per
+
+So the board was RIGHT the whole time and the page was hiding its own
+arithmetic. Nothing was mis-scored; the evidence for 19 of 78 rows was simply
+not shown. That is the F-172/F-173 family again - a table that cannot be
+audited is not evidence - but inverted: not a MISSING category, a PRESENT
+category rendering as if unscored.
+
+*** MY OWN COUNT WAS WRONG FIRST TIME AND THE CORRECTION MATTERS. I reported
+11 rows. It is NINETEEN. I audited the six WEIGHTED categories and missed all
+8 GDP rows under '>0 range (LD-117)', because GDP sits in the RETIRED table
+and I was reading the weighted set. All 8 show 0, matching NEUTRAL, so no
+number on the page was wrong - but the dash was masking a WHOLE CATEGORY, not
+inflation's corner, and a count arrived at by looking where I expected the
+answer is not a count.
+
+    Inflation    8 of 8   1.8-2.2 corridor (LD-155)
+    GDP          8 of 8   >0 range (LD-117)          <- MISSED on the first pass
+    Employment   2        LD-151 three legs (AUD, CAD)
+    Employment   1        <0 (LD-58) (GBP Claimant Count)
+
+*** WHY THIS IS A DISPLAY FIX AND NOT A SCORING ONE - Jeff asked for the
+scoring change first ("if option 2 makes more sense then lets do it then")
+and withdrew it once the implementation was read, which is the right call and
+nearly went the other way.
+
+I had pitched a corridor-DISTANCE branch and showed a simulated board where
+CHF moved #8 -> #6. Reading derive_scores.py killed it:
+
+  1. LD-155 IS A SURPRISE RULE, NOT A DISTANCE RULE. The corridor only sets
+     the sign BEFORE the news. Once an actual exists the level is ignored and
+     the sign comes from actual-vs-CONSENSUS. Jeff confirmed that explicitly
+     on 2026-10-10 - "a 1.2% print beating a 1.0% forecast is still
+     deflationary", answered "yes, this is intended".
+  2. score_model.ROWS HAS NO CONSENSUS COLUMN. The tuple is
+     (category, ccy, indicator, actual, prev, ref, rule, verdict). The
+     magnitude LD-155 would need is not in the table, so the only thing
+     graded() COULD measure is distance from the corridor - which is the
+     LEVEL TEST LD-155 RETIRED. My simulated CHF -0.40 was LD-136 coming
+     back in wearing a new scale.
+  3. CLAUDE.md:101 lists LD-151 legs and LD-154/155 before/after as FROZEN,
+     and LD-151 reads three leg DIRECTIONS - three signs have no magnitude.
+
+So all 19 rows dash because their rules are CATEGORICAL BY DESIGN, not
+because a scale was never written. The honest route to graded inflation is
+ADDING A CONSENSUS COLUMN to ROWS - an F-3 input-set change, Jeff's call,
+and retro work with a week of evidence behind it, not a mid-week edit over a
+published board.
+
+FIX. section4.py mirrors compute()'s branch order. MISSING still dashes
+(F-73). Verified, because "display-only" is a claim that has to be tested:
+
+    board IDENTICAL to the published weekly
+      GB +4.45  AU +3.69  CA +3.04  US +2.55
+      JP +2.48  NZ +2.07  EA +1.79  CH -3.04
+    column vs compute(): 0 disagreements of 78
+    dashes across the 70 weighted rows: 0
+    Inflation now renders 6x +1, JPY 0, CHF -1 - which is what its header
+    claimed all along
+
+PROCESS, recorded because it cost time and nearly cost more. I ran the gate
+under `git stash` to prove the failures predated the edit. R-46 RE-FETCHES 72
+INDICATOR PAGES AS IT RUNS, so the stash swallowed those fetches, the working
+tree collected a second set, and `git stash pop` aborted on 72 conflicts.
+Recovered by resetting data/raw/indicators/ to HEAD and taking ONLY
+section4.py back out of the stash - no work lost. The lesson is narrow and
+general: NEVER STASH AROUND A STEP THAT WRITES TO THE WORKING TREE. Diff the
+OUTPUT instead; that was available and I did not reach for it.
+
+CARRIED, not fixed here:
+  - R-46 stops at step 2 on 2026-11-03 (R-42 12 rows lost to a capture gap,
+    R-45 one TE disagreement). Ordinary Tuesday staleness against a 1 Nov
+    capture, failing IDENTICALLY before this edit. Clears with the dailies.
+  - STATE.md's header still reads `edition: 2026-10-11` though 2-6 Nov is
+    published. Pre-existing, flagged not silently fixed.

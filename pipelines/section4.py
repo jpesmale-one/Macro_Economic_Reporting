@@ -100,9 +100,34 @@ for cat in ORDER:
     A('    <tbody>')
     for c, iso, name, act, prev, ref, thr, v in sorted(
             rows, key=lambda r: (ISO2CCY.get(r[1], r[1]), r[2])):
+        # *** F-182 - THE COLUMN DESCRIBED A RULE THAT DOES NOT RUN.
+        # Jeff, 2026-11-03: "why we don't have score in inflation?" All 8
+        # Inflation rows printed an em-dash while the block header above them
+        # read "6 good - 1 neutral - 1 bad", because this column asked ONLY
+        # graded_signed() and showed nothing when it returned None - whereas
+        # compute() falls through to the VERDICT and scores those rows at
+        # full weight. The board was right the whole time; the page was
+        # hiding its own arithmetic on 11 of 78 rows (Inflation 8/8 under
+        # LD-155, AUD+CAD Employment Change under LD-151, GBP Claimant
+        # Count under LD-58).
+        # Those rules are categorical BY DESIGN and on CLAUDE.md's FROZEN
+        # list, so there is no magnitude to recover: LD-155 takes its sign
+        # from actual-vs-CONSENSUS, which score_model.ROWS does not carry,
+        # and grading corridor DISTANCE instead would reinstate the level
+        # test LD-155 explicitly retired. So this is a DISPLAY fix only -
+        # it mirrors compute()'s branch order and changes no score anywhere.
         sc = sm.graded_signed(act, prev, thr, v)
-        k, txt = cls(None if sc is None else
-                     (1 if sc > 0 else (-1 if sc < 0 else 0)))
+        if sc is not None:
+            sgn = 1 if sc > 0 else (-1 if sc < 0 else 0)
+        elif v == 'GOOD':
+            sgn = 1
+        elif v == 'BAD':
+            sgn = -1
+        elif v == 'NEUTRAL':
+            sgn = 0
+        else:
+            sgn = None          # MISSING - genuinely unscored (F-73)
+        k, txt = cls(sgn)
         A('      <tr class="grp">')
         A('        <td class="ccy">%s</td>' % esc(ISO2CCY.get(iso, iso)))
         A('        <td>%s</td>' % esc(name))
