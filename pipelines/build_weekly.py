@@ -33,10 +33,22 @@ def hot(ccy, name):
 
 # F-170 - pinned to 2026-10-18 here too, the same defect in the second of
 # the two files that each hold the window. Take the newest capture.
-CAP = sorted(glob.glob('data/raw/calendar/*_cal_full.json'))[-1]
+# *** F-183/F-183b - THE SAME TWO DEFECTS gen_page.py carried, in the second
+# of the two files that build an edition. The .md matters MORE than the page
+# here: daily_report.load_edition() reads the SEALED board and set off this
+# markdown (LD-97), so a wrong .md silently mis-grades every daily for the
+# rest of the week - which is exactly what happened to the 2 Nov dailies,
+# graded against EURJPY SHORT, a pair the corrected board never selected.
+#   F-183  - final_scores() with no month resolved latest_month() for itself,
+#            independently of MONTH below, so one file could mix two columns.
+#   F-183b - the NEWEST capture is right on Sunday and wrong on any rebuild;
+#            the calibrator is forward-looking and moves daily.
+CAP = os.environ.get('CAPTURE') or sorted(
+    glob.glob('data/raw/calendar/*_cal_full.json'))[-1]
 START, END = '2026-11-02', '2026-11-06'
 
-F = ps.final_scores(CAP, START, END)
+MONTH = ft.latest_month()                 # F-183 - resolve ONCE, here
+F = ps.final_scores(CAP, START, END, month=MONTH)
 SC = dict((c, F[c]['total']) for c in F)
 BAND, ORDER = ft.bands(SC)
 CANDS = ps.candidates(SC, BAND)
@@ -60,8 +72,7 @@ PICKED = [p for p, _ in SEL]
 WHY = dict((p['pair'], why) for p, why in SEL)
 CALD = cal.calibrate(CAP, START, END)
 ROWS = cal.week_rows(CAP, START, END)
-MONTH = ft.latest_month()
-scored, total = ft.coverage(MONTH)
+scored, total = ft.coverage(MONTH)   # MONTH resolved at the top (F-183)
 b = ft.base_scores(MONTH)
 
 BSC = dict((c, F[c]['base']) for c in F)

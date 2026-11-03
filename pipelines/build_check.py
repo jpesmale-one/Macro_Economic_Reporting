@@ -597,7 +597,10 @@ def s9c_one_month():
     import ast as _ast
     import re as _re
     bad = []
-    for fn in ('gen_page.py', 'pair_select.py'):
+    # build_weekly.py writes the .md that daily_report.load_edition()
+    # treats as the SEALED board for the whole week (LD-97), so it carries
+    # the same obligation as the page - and it carried the same two defects.
+    for fn in ('gen_page.py', 'pair_select.py', 'build_weekly.py'):
         src = io.open(os.path.join(HERE, fn), encoding='utf-8').read()
         code = _ast.parse(src)
         for n in _ast.walk(code):          # strip docstrings - F-179's lesson
