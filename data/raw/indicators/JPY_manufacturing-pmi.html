@@ -13,18 +13,18 @@
 
 <script>(function () { var p = new URLSearchParams(window.location.search); if (!p.has('_auth')) return; p.delete('_auth'); var qs = p.toString(); history.replaceState({}, '', window.location.pathname + (qs ? '?' + qs : '')); window.location.reload(); })();</script>
 <script>(function () { function h(n) { return new RegExp('(?:^|;\\s*)' + n.replace(/\./g, '\\.') + '=').test(document.cookie); } if (h('TEIsLoggedIn') || !h('.ASPXAUTH')) return; var e = '; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/', s = ['', '; domain=tradingeconomics.com', '; domain=.tradingeconomics.com'];['.ASPXAUTH', 'TEUsername', 'TENickName', 'TERole', 'TEUserInfo', 'TEName', 'TEUserEmail'].forEach(function (n) { if (!h(n)) return; s.forEach(function (d) { document.cookie = n + '=' + e + d; }); }); document.cookie = 'TEIsLoggedIn=false; domain=.tradingeconomics.com; path=/; SameSite=Lax; Secure; max-age=31536000'; })();</script>
-<script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20260930000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://charts-api.tradingeconomics.com'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/japan/manufacturing-pmi'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function() { try { return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsKey = '20260324:loboantunes'; var TEChartsToken = ''; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var TEChartsPath = '/japan/manufacturing-pmi'; var isCopyright = false;var TEStreamId= '';</script>
+<script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20261031000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://charts-api.tradingeconomics.com'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/japan/manufacturing-pmi'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function() { try { var t = localStorage.getItem('TETheme'); if (t === 'system') return window.matchMedia('(prefers-color-scheme: dark)').matches; if (t === 'light' || t === 'dark') return t === 'dark'; return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsKey = '20260324:loboantunes'; var TEChartsToken = ''; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var TEChartsPath = '/japan/manufacturing-pmi'; var isCopyright = false;var TEStreamId= '';</script>
 
 <script>var TEAuth = (function () { var KEY = 'te-token', mem = null, pending = null; function now() { return Math.floor(Date.now() / 1000) } function fresh(c) { return c && c.token && now() < c.refresh - 60 } function cached() { if (fresh(mem)) return mem; try { var c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (fresh(c)) return mem = c } catch (e) { } return null } function load() { if (!pending) pending = fetch('/token', { method: 'POST', credentials: 'same-origin', cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json() }).then(function (c) { mem = c; try { localStorage.setItem(KEY, JSON.stringify(c)) } catch (e) { } return c.token }).catch(function (e) { console.log('TEAuth: /token failed', e); return '' }).then(function (t) { pending = null; return t }); return pending } return { ready: function () { var c = cached(); return c ? Promise.resolve(c.token) : load() }, current: function () { var c = cached(); return c ? c.token : '' }, refresh: function () { mem = null; try { localStorage.removeItem(KEY) } catch (e) { } return load() } } })();</script>
 <script type="text/javascript">var DEBUG = false; if (window.location.host.indexOf('localhost') > -1) DEBUG = true; else if (window.location.href.indexOf('debug') > -1) DEBUG = true; if (!DEBUG) { if (!window.console) window.console = {}; var methods = ["log", "debug", "info"]; for (var i = 0; i < methods.length; i++) { console[methods[i]] = function () { }; } }</script>
 <script>window.googletag = window.googletag || { cmd: [] };</script>
 <link rel="icon" href="https://d3e5kp2e91w0k0.cloudfront.net/favicon.svg" type="image/svg+xml" /><link rel="canonical" href="https://tradingeconomics.com/japan/manufacturing-pmi" /></head>
 <body>
-    <script>(function(){var c=localStorage.getItem('IsDarkMode')==='true';if(c)document.body.classList.add('dark-theme');window.IsDarkMode=c;})();</script>
+    <script>(function(){var c=false;try{var t=localStorage.getItem('TETheme');if(t!=='light'&&t!=='dark'&&t!=='system')t=localStorage.getItem('IsDarkMode')==='true'?'dark':'light';c=t==='system'?window.matchMedia('(prefers-color-scheme: dark)').matches:t==='dark';localStorage.setItem('IsDarkMode',String(c));}catch(e){}if(c)document.body.classList.add('dark-theme');window.IsDarkMode=c;})();</script>
     <form method="post" action="/japan/manufacturing-pmi" id="aspnetForm">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="zhQKmvw9AJ5Yvubh6S8So6Dw43ymJHP2vbEzOqwO4fI9X3mfJnXwZBQ4sQafZrsDBUhWm1xwwQNbPW8ckeOezaEWjRc=" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="JFVlHEmlYFSd7QYzrQI3c1SVTH1U49gvCMnBgJbS3XhZzwmiklZHUpA0qoxn8Z/pDnXa90aWZc93kR+Z5Y9yTmyBup8=" />
 
-<script type="text/javascript" language="Javascript">var TEChartSettings = '{"labels":false}'; console.log('TEChartSettings:', TEChartSettings);</script><script type="text/javascript" language="Javascript">var isCopyright = true;</script><script type="text/javascript" language="Javascript">var TESymbol = 'JAPANMANPMI'; console.log('TESymbol:', TESymbol);var TELanguage = ''; console.log('TELanguage:', TELanguage);TELastUpdate = '202610230043'; console.log('TELastUpdate:', TELastUpdate);TEChart = 'EC'; console.log('TEChart:', TEChart);var TEAlertsName= 'Japan Manufacturing PMI'; console.log('TEAlertsName:', TEAlertsName);</script><script type="text/javascript" language="Javascript">TEChartUrl = 'https://d3fy651gv2fhd3.cloudfront.net/charts/japan-manufacturing-pmi.png?s=japanmanpmi&v=202610230043V20230410';TECountry = 'Japan';TECategory = 'Manufacturing PMI';TEType = 'te';TEFrequency = 'Monthly';TEForecast =   [53.00,53.50,51.90,51.00];</script>
+<script type="text/javascript" language="Javascript">var TEChartSettings = '{"labels":false}'; console.log('TEChartSettings:', TEChartSettings);</script><script type="text/javascript" language="Javascript">var isCopyright = true;</script><script type="text/javascript" language="Javascript">var TESymbol = 'JAPANMANPMI'; console.log('TESymbol:', TESymbol);var TELanguage = ''; console.log('TELanguage:', TELanguage);TELastUpdate = '202611020145'; console.log('TELastUpdate:', TELastUpdate);TEChart = 'EC'; console.log('TEChart:', TEChart);var TEAlertsName= 'Japan Manufacturing PMI'; console.log('TEAlertsName:', TEAlertsName);</script><script type="text/javascript" language="Javascript">TEChartUrl = 'https://d3fy651gv2fhd3.cloudfront.net/charts/japan-manufacturing-pmi.png?s=japanmanpmi&v=202611020145V20230410';TECountry = 'Japan';TECategory = 'Manufacturing PMI';TEType = 'te';TEFrequency = 'Monthly';TEForecast =   [53.00,53.50,51.90,51.00];</script>
 <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="9ED6FB81" />
         
         <nav id="ctl00_NavigationUC1_ctl00_menu" class="navbar navbar-dark fixed-top" role="navigation">
@@ -138,16 +138,14 @@
             </div>
             <div class="offcanvas-body user-offcanvas-body">
                 <div class="list-group list-group-user">
-                    <a href="/analytics/pricing.aspx?source=menu " class="user-item list-group-item">
-                        <b class="list-group-item-heading"><i class="bi bi-save2-fill me-2"></i>&nbsp;DATA PLANS</b><br>
+                    <a href="/analytics/pricing.aspx?source=menu" class="user-item list-group-item">
+                        <b class="list-group-item-heading"><i class="bi bi-save2-fill te-icon-data"></i>DATA PLANS</b><br>
                         <span class="list-group-item-text">Download historical data for 20 million indicators using your browser.</span>
                     </a>
                     <div class="user-item list-group-item">
                         
                         <div class="navbar-user-link">
-                            <a href="/analytics/pricing.aspx?source=menu" class="navbar-te-link mx-1">Subscription Plans</a>
-                            |
-                            <a href="/analytics/features.aspx?source=menu" class="navbar-te-link mx-1">Features</a>
+                            <a href="/analytics/pricing.aspx?source=menu" class="navbar-te-link mx-1">Subscription Plans<span class="mx-1">|</span></a><a href="/analytics/features.aspx?source=menu" class="navbar-te-link mx-1">Features</a>
                         </div>
                       
                     </div>
@@ -155,113 +153,177 @@
                 <div class="list-group list-group-user">
 
                     <a href="/api/" class="user-item list-group-item">
-                        <b class="list-group-item-heading"><i class="bi bi-phone mx-1 me-2"></i>API GATEWAY</b><br>
-                        <span class="list-group-item-text mx-1">Direct access to our data from your apps using any programing language.</span>
+                        <b class="list-group-item-heading"><i class="bi bi-phone me-2"></i>API GATEWAY</b><br>
+                        <span class="list-group-item-text">Direct access to our data from your apps using any programing language.</span>
                     </a>
                     <div class="user-item list-group-item">
                         <div>
-                            <a href="/api/?source=menu" class="navbar-te-link mx-1">Features</a> |
-                            <a href="https://docs.tradingeconomics.com/" target="_blank" class="navbar-te-link mx-1">Docs</a> |
-                            <a href="https://developer.tradingeconomics.com/" class="navbar-te-link mx-1">Developer</a>
+                            <a href="/api/?source=menu" class="navbar-te-link">Features</a><span class="mx-2 te-sep">|</span><a href="https://docs.tradingeconomics.com/" target="_blank" class="navbar-te-link">Docs</a><span class="mx-2 te-sep">|</span><a href="https://developer.tradingeconomics.com/" class="navbar-te-link">Developer</a>
                         </div>
                     </div>
                 </div>
                
                 
-                <div class="list-group list-group-user">
+                <div class="list-group list-group-user te-user-row">
 
                     
-                        <a class="user-item list-group-item" href="https://sso.tradingeconomics.com/sso/login?returnurl=https://tradingeconomics.com/japan/manufacturing-pmi"><i class="bi bi-person-fill"></i> Already a user? <b>Login</b></a>
+                        <a class="user-item list-group-item" href="https://sso.tradingeconomics.com/sso/login?returnurl=https://tradingeconomics.com/japan/manufacturing-pmi"><i class="bi bi-person-fill me-2"></i>Already a user? <b>Login</b></a>
                     
                 </div>
                 
 <style>
-    .form-switch {
-        width: 3.5em !important;
-        height: 2em !important
+    .te-theme-pill {
+        display: inline-flex;
+        border-radius: 9999px;
+        background-color: #e5e7eb;
+        padding: 4px
     }
-    .bi-sun-fill {
-        font-size: 12px;
-        color: #ddd !important;
+    #offcanvasGuest .te-theme-pill .te-theme-option {
+        display: inline-flex;
+        align-items: center;
+        border: 0;
+        border-radius: 9999px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 20px;
+        background-color: transparent;
+        color: #5D5D5D;
+        cursor: pointer;
+        transition: color .15s, background-color .15s
     }
-    .bi-moon-fill {
-        font-size: 10px;
-        color: #333 !important;
+    #offcanvasGuest .te-theme-pill .te-theme-option:hover {
+        color: #222
     }
-    .darkmode-toggle-container {
-        width: auto;
-        padding: 0px;
-        margin-left: 0px;
-        margin-top: 0px;
-        border: none;
+    #offcanvasGuest .te-theme-pill .te-theme-option[aria-pressed="true"] {
+        background-color: #fff;
+        color: #222;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px -1px rgba(0,0,0,.1)
     }
-    .form-check-div-sun {
-        width: 20px;
-        margin-bottom: 3px;
-        margin-left: -54px;
-        position: relative
+    #offcanvasGuest .te-theme-pill .te-theme-option i {
+        color: inherit;
+        font-size: 11px;
+        position: relative;
+        top: 1px;
+        margin-right: 6px
     }
-    .form-check-div-moon {
-        width: 20px;
-        margin-bottom: 3px;
-        margin-left: 3px;
-        position: relative
+    body.dark-theme .te-theme-pill {
+        background-color: #111
     }
-    .dk-switch-right-menu{
-        padding-left:10px;
+    body.dark-theme #offcanvasGuest .te-theme-pill .te-theme-option {
+        color: #aaa
+    }
+    body.dark-theme #offcanvasGuest .te-theme-pill .te-theme-option:hover,
+    body.dark-theme #offcanvasGuest .te-theme-pill .te-theme-option[aria-pressed="true"] {
+        color: #fff
+    }
+    body.dark-theme #offcanvasGuest .te-theme-pill .te-theme-option[aria-pressed="true"] {
+        background-color: #333
+    }
+    .dk-switch-right-menu {
+        padding: 20px 16px
     }
 </style>
 <div class="list-group list-group-user dk-switch-right-menu">
-    <div class="d-flex align-items-center darkmode-toggle-container">
-    <div class="form-check form-switch darkmode-form-switch user-item">
-        <input class="form-check-input p-1" type="checkbox" role="button" id="flexSwitchCheckChecked">
+    <div class="te-theme-pill" role="group" aria-label="Theme">
+        <button type="button" class="te-theme-option" data-te-theme="light" aria-pressed="false"><i class="bi bi-sun-fill"></i>Light</button>
+        <button type="button" class="te-theme-option" data-te-theme="dark" aria-pressed="false"><i class="bi bi-moon-fill"></i>Dark</button>
+        <button type="button" class="te-theme-option" data-te-theme="system" aria-pressed="false"><i class="bi bi-circle-half"></i>System</button>
     </div>
-    <div class="form-check-div-sun">
-        <label class="form-check-label form-check-label-sun p-1 d-inline" for="flexSwitchCheckChecked"><i class="bi bi-sun-fill"></i></label>
-    </div>
-    <div class="form-check-div-moon">
-        <label class="form-check-label form-check-label-moon p-1 d-inline" for="flexSwitchCheckChecked"><i class="bi bi-moon-fill"></i></label>
-    </div>
-</div>
 </div>
 
 
 <script>
-    function SetTheme(isDark) {
-        console.log('Changing theme', isDark);
-        if (IsDarkMode != isDark) {
-            IsDarkMode = isDark;
-            document.body.classList.toggle("dark-theme");
-            localStorage.setItem('IsDarkMode', IsDarkMode);
-
-            IsDarkMode ? ga('event', 'te_darkmode_on') : ga('event', 'te_darkmode_off');
-            window.location.reload();
+    // Same keys as te.next ThemeContext: TETheme holds the choice, IsDarkMode the resolved value.
+    function TEGetTheme() {
+        try {
+            var t = localStorage.getItem('TETheme');
+            if (t === 'light' || t === 'dark' || t === 'system') return t;
+            return localStorage.getItem('IsDarkMode') === 'true' ? 'dark' : 'light';
+        } catch (e) {
+            return 'light';
         }
     }
-    document.addEventListener('DOMContentLoaded', function () {
-        let checkbox = document.getElementById("flexSwitchCheckChecked");
-        let sundiv = document.getElementsByClassName("form-check-label-sun")[0];
-        let moondiv = document.getElementsByClassName("form-check-label-moon")[0];
 
-        if (IsDarkMode) {
-            sundiv.classList.add("d-none");
-            moondiv.classList.remove("d-none");
-        } else {
-            moondiv.classList.add("d-none");
-            sundiv.classList.remove("d-none");
+    function TEMarkTheme(theme) {
+        document.querySelectorAll('.te-theme-pill button').forEach(function (b) {
+            b.setAttribute('aria-pressed', b.getAttribute('data-te-theme') === theme ? 'true' : 'false');
+        });
+    }
+
+    function TESetTheme(theme) {
+        var isDark = theme === 'system' ? window.matchMedia('(prefers-color-scheme: dark)').matches : theme === 'dark';
+        try {
+            localStorage.setItem('TETheme', theme);
+            localStorage.setItem('IsDarkMode', String(isDark));
+        } catch (e) { }
+        TEMarkTheme(theme);
+
+        if (IsDarkMode != isDark) {
+            IsDarkMode = isDark;
+            document.body.classList.toggle("dark-theme", isDark);
+            if (typeof ga === 'function') IsDarkMode ? ga('event', 'te_darkmode_on') : ga('event', 'te_darkmode_off');
+            window.location.reload();
+            return;
         }
-        checkbox.checked = IsDarkMode;
+
+        var menu = bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasGuest'));
+        if (menu) menu.hide();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        TEMarkTheme(TEGetTheme());
+        document.querySelectorAll('.te-theme-pill button').forEach(function (b) {
+            b.addEventListener('click', function () { TESetTheme(b.getAttribute('data-te-theme')); });
+        });
     });
-
-
-
-    document.getElementById("flexSwitchCheckChecked").addEventListener("change", function () {
-        SetTheme(!IsDarkMode)
-    });
-
 </script>
+
+                <div class="list-group list-group-user te-notif-right-menu d-none" id="teNotifToggle">
+                    <div class="te-notif-toggle" role="button" tabindex="0" aria-label="Toggle desktop notifications">
+                        <span class="te-notif-switch"><span class="te-notif-knob"><i class="bi bi-bell-fill"></i></span></span>
+                        <span>Notifications</span>
+                        <span class="te-notif-info" tabindex="0">
+                            <i class="bi bi-info-circle"></i>
+                            <span class="te-notif-tooltip" role="tooltip">Alerts for major calendar releases, even when this tab is minimised or in the background.</span>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
+        <style>
+            /* Spacing matches te.next RightMenu. */
+            #offcanvasGuest { max-width: 324.22px }
+            #offcanvasGuest .offcanvas-header { padding: 16px }
+            #offcanvasGuest .offcanvas-title { margin: 0; font-size: 16px; line-height: 23.2px }
+            #offcanvasGuest .btn-close { margin-right: -4px; background-size: 14px }
+            #offcanvasGuest .offcanvas-body, #offcanvasGuest .list-group-user { border-top-color: #e5e7eb }
+            body.dark-theme #offcanvasGuest .offcanvas-body, body.dark-theme #offcanvasGuest .list-group-user { border-top-color: #333 }
+            #offcanvasGuest .list-group-user .user-item { padding: 10px 15px }
+            #offcanvasGuest .list-group-user i { font-size: 16px }
+            #offcanvasGuest .te-icon-data { margin-right: 12px }
+            #offcanvasGuest .te-user-row { padding: 20px 0 }
+            #offcanvasGuest .te-user-row .user-item { padding: 0 16px }
+            #offcanvasGuest .te-user-row-alerts .user-item { margin-bottom: 12px }
+            #offcanvasGuest .te-sep { color: #9ca3af }
+            body.dark-theme #offcanvasGuest .te-sep { color: #777 }
+            body.dark-theme #offcanvasGuest .user-offcanvas-body > :first-child { border-top: none }
+            .te-theme-pill, .te-notif-toggle { align-self: flex-start }
+            .te-notif-right-menu { padding: 20px 16px }
+            .te-notif-toggle { display: inline-flex; align-items: center; gap: 12px; cursor: pointer }
+            .te-notif-switch { position: relative; display: block; width: 56px; height: 28px; border-radius: 9999px; background-color: #d1d5db; transition: background-color .15s }
+            .te-notif-knob { position: absolute; top: 4px; left: 4px; width: 20px; height: 20px; border-radius: 9999px; background-color: #fff; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px -1px rgba(0,0,0,.1); display: flex; align-items: center; justify-content: center; transition: transform .15s }
+            #offcanvasGuest .te-notif-knob i { font-size: 11px; line-height: 1; position: relative; top: 1px; color: #374151 }
+            .te-notif-toggle.on .te-notif-switch { background-color: #1f2937 }
+            .te-notif-toggle.on .te-notif-knob { transform: translateX(28px) }
+            .te-notif-info { position: relative; display: inline-flex; cursor: help }
+            #offcanvasGuest .te-notif-info > i { color: #5D5D5D; line-height: 1 }
+            .te-notif-tooltip { pointer-events: none; position: absolute; top: 100%; right: -12px; z-index: 10; margin-top: 8px; width: 224px; border: 1px solid #e5e7eb; border-radius: 4px; background-color: #fff; padding: 6px 10px; font-size: 12px; line-height: 16px; opacity: 0; box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1); transition: opacity .15s }
+            .te-notif-info:hover .te-notif-tooltip, .te-notif-info:focus-within .te-notif-tooltip { opacity: 1 }
+            body.dark-theme .te-notif-switch { background-color: #555 }
+            body.dark-theme .te-notif-toggle.on .te-notif-switch { background-color: #ddd }
+            body.dark-theme #offcanvasGuest .te-notif-info > i { color: #aaa }
+            body.dark-theme .te-notif-tooltip { background-color: #333; border-color: #111 }
+        </style>
 
         
         <div class="offcanvas offcanvas-start" tabindex="-1" id="tesidemenu" aria-labelledby="tesidemenuoptions">
@@ -492,18 +554,19 @@
                 }
             });
 
-            var voteInfo = {};
+            // Keep votes and theme across logout, same as te.next clearClientSession.
+            var preserved = {};
 
             Object.keys(localStorage).forEach(function (key) {
-                if (key.startsWith('voteInfo-')) {
-                    voteInfo[key] = localStorage.getItem(key);
+                if (key.startsWith('voteInfo-') || key.startsWith('IsDarkMode') || key.startsWith('TETheme')) {
+                    preserved[key] = localStorage.getItem(key);
                 }
             });
 
             localStorage.clear();
 
-            Object.keys(voteInfo).forEach(function (key) {
-                localStorage.setItem(key, voteInfo[key]);
+            Object.keys(preserved).forEach(function (key) {
+                localStorage.setItem(key, preserved[key]);
             });
 
             sessionStorage.clear();
@@ -513,6 +576,47 @@
             window.location.href = e.currentTarget.href;
         }
     }
+
+    // Desktop notifications opt-in, same localStorage key as te.next (src/lib/desktopNotification.ts).
+    function TEDesktopNotificationsEnabled() {
+        if (!('Notification' in window)) return false;
+        try {
+            if (Notification.permission !== 'granted') return false;
+            // No saved choice yet: users who already granted permission keep getting alerts.
+            var pref = localStorage.getItem('te-desktop-notifications');
+            return pref === null || pref === 'true';
+        } catch (e) {
+            return false;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var wrapper = document.getElementById('teNotifToggle');
+        if (!wrapper || !('Notification' in window)) return;
+        var toggle = wrapper.querySelector('.te-notif-toggle');
+        wrapper.classList.remove('d-none');
+        toggle.classList.toggle('on', TEDesktopNotificationsEnabled());
+
+        function onToggle() {
+            if (TEDesktopNotificationsEnabled()) {
+                try { localStorage.setItem('te-desktop-notifications', 'false'); } catch (e) { }
+                toggle.classList.remove('on');
+                return;
+            }
+            Notification.requestPermission().then(function (permission) {
+                var granted = permission === 'granted';
+                try { localStorage.setItem('te-desktop-notifications', String(granted)); } catch (e) { }
+                toggle.classList.toggle('on', granted);
+            }).catch(function () { });
+        }
+
+        toggle.addEventListener('click', onToggle);
+        toggle.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onToggle(); }
+        });
+        // Info icon only shows the tooltip.
+        toggle.querySelector('.te-notif-info').addEventListener('click', function (e) { e.stopPropagation(); });
+    });
 </script>
 
         
@@ -683,7 +787,7 @@
 <div id="ctl00_ContentPlaceHolder1_ctl00_Panel1">
 	
     <div class="tab-content te-tab-content " >
-            <div role="tabpanel" class="tab-pane active show" id="historical-desc"><h2 id="description" style="line-height: 1.45em;">The S&P Global Japan Manufacturing PMI declined to 53.3 in October 2026 from 54.1 in September, falling below market forecasts of 54.5, preliminary estimates showed. It was the slowest expansion in the manufacturing sector since March, as firms recorded slower increases in output and new orders, with both growing at their weakest rates in seven months. Employment continued to increase, with job creation rising moderately. Purchasing activity also increased, contributing to the largest accumulation of stocks of purchases in almost four years. Meanwhile, suppliers’ delivery times lengthened substantially. On the price front, input and output costs continued to rise. Looking ahead, business sentiment remained positive. <span class='source-present'>source: <a class='source-name' target='_blank' href ='https://www.pmi.spglobal.com/public'>S&P Global</a></span></h2></div>
+            <div role="tabpanel" class="tab-pane active show" id="historical-desc"><h2 id="description" style="line-height: 1.45em;">The S&P Global Japan Manufacturing PMI was confirmed at 53.3 in October 2026, matching preliminary estimates, but declining from 54.1 in September. It was the softest expansion in the manufacturing sector since March, as firms recorded slower increases in output and new orders, with both growing at their weakest rates in seven months. Employment continued to increase, with the pace of job creation remaining among the fastest seen over the past decade. Purchasing activity increased at the weakest pace in six months. Meanwhile, suppliers’ delivery times lengthened substantially. On the price front, input cost inflation accelerated for the first time in five months, while output costs continued to rise, though inflation eased to a six-month low. Looking ahead, business sentiment remained positive, ticking up slightly. <span class='source-present'>source: <a class='source-name' target='_blank' href ='https://www.pmi.spglobal.com/public'>S&P Global</a></span></h2></div>
 
          
         <div role="tabpanel" class="tab-pane" id="stats"><h2 style="line-height: 1.45em;">Manufacturing PMI in Japan decreased to 53.30 points in October from 54.10 points in September of 2026.  Manufacturing PMI in Japan averaged 50.20 points from 2008 until 2026, reaching an all time high of 56.20 points in January of 2014 and a record low of 29.60 points in February of 2009. This page provides the latest reported value for - Japan Manufacturing PMI - plus previous releases, historical high and low, short-term forecast and long-term prediction, economic calendar, survey consensus and news.</h2></div>
@@ -825,13 +929,13 @@
                                     Car Registrations
                                 </a>
                             </td>
-                            <td>236293.00</td>
+                            <td>216757.00</td>
                             
-                            <td>172839.00</td>
+                            <td>236293.00</td>
                             
                             <td>
                                 Units</td>
-                            <td>Sep 2026</td>
+                            <td>Oct 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -1050,13 +1154,13 @@
                                     Manufacturing Production
                                 </a>
                             </td>
-                            <td>3.40</td>
+                            <td>1.90</td>
                             
-                            <td>4.00</td>
+                            <td>2.70</td>
                             
                             <td>
                                 percent</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1065,13 +1169,13 @@
                                     Mining Production
                                 </a>
                             </td>
-                            <td>-5.20</td>
+                            <td>-4.70</td>
                             
-                            <td>-2.60</td>
+                            <td>-5.20</td>
                             
                             <td>
                                 percent</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -1254,6 +1358,14 @@
         
                 <div class="list-group-item indc_news_stream te-stream-repeater">
                     <b>
+                        <a href='/japan/manufacturing-pmi/news/597069'>Japan Manufacturing Growth Confirmed at 7-Month Low</a>
+                    </b>
+                    <div class="comment more">The S&P Global Japan Manufacturing PMI was confirmed at 53.3 in October 2026, matching preliminary estimates, but declining from 54.1 in September. It was the softest expansion in the manufacturing sector since March, as firms recorded slower increases in output and new orders, with both growing at their weakest rates in seven months. Employment continued to increase, with the pace of job creation remaining among the fastest seen over the past decade. Purchasing activity increased at the weakest pace in six months. Meanwhile, suppliers’ delivery times lengthened substantially. On the price front, input cost inflation accelerated for the first time in five months, while output costs continued to rise, though inflation eased to a six-month low. Looking ahead, business sentiment remained positive, ticking up slightly.</div>
+                    <small class="te-stream-date">2026-11-02</small><br />
+                </div>
+            
+                <div class="list-group-item indc_news_stream te-stream-repeater">
+                    <b>
                         <a href='/japan/manufacturing-pmi/news/594396'>Japan Manufacturing Growth Eases to 7-Month Low</a>
                     </b>
                     <div class="comment more">The S&P Global Japan Manufacturing PMI declined to 53.3 in October 2026 from 54.1 in September, falling below market forecasts of 54.5, preliminary estimates showed. It was the slowest expansion in the manufacturing sector since March, as firms recorded slower increases in output and new orders, with both growing at their weakest rates in seven months. Employment continued to increase, with job creation rising moderately. Purchasing activity also increased, contributing to the largest accumulation of stocks of purchases in almost four years. Meanwhile, suppliers’ delivery times lengthened substantially. On the price front, input and output costs continued to rise. Looking ahead, business sentiment remained positive.</div>
@@ -1266,14 +1378,6 @@
                     </b>
                     <div class="comment more">The S&P Global Japan Manufacturing PMI was confirmed at 54.1 in September 2026, matching the preliminary estimate and easing from 54.9 in the previous month. It was the softest expansion in the manufacturing sector since March, as firms recorded slower increases in output and new orders. Output growth eased to a three-month low, while sales growth was at its weakest in four months. The slowdown came despite a further marked increase in foreign sales, although the rate of growth eased from August's eight-and-a-half-year high. Meanwhile, delivery times lengthened further amid reports of supplier shortages, while purchasing rose slightly and inventories of inputs increased for the first time in over two years. Employment continued to increase, with job creation remaining close to August's multi-year record. On the price front, input cost inflation eased to a six-month low, while output prices continued to rise. Finally, sentiment was little changed.</div>
                     <small class="te-stream-date">2026-10-01</small><br />
-                </div>
-            
-                <div class="list-group-item indc_news_stream te-stream-repeater">
-                    <b>
-                        <a href='/japan/manufacturing-pmi/news/586271'>Japan Manufacturing Growth at 6-Month Low</a>
-                    </b>
-                    <div class="comment more">The S&P Global Japan Manufacturing PMI declined to 54.1 in September 2026 from 54.9 in the previous month, below market expectations of 55.0, marking the ninth consecutive month of expansion in factory activity, preliminary estimates showed. It was the softest expansion in the manufacturing sector since March, as firms recorded softer increases in output and new orders. Output growth eased to a three-month low, as firms recorded sales growth at its weakest in four months. The slowdown came despite a further marked increase in foreign sales, with the rate of growth unchanged from August's eight-and-a-half-year high. Meanwhile, delivery times lengthened further amid reports of supplier shortages, while purchasing activity eased, inventories of inputs rose slightly, and employment continued to increase. On the price front, input and output prices rose, driven by higher energy and raw material prices, as well as a weak yen. Lastly, sentiment improved due to hopes of continued demand.</div>
-                    <small class="te-stream-date">2026-09-24</small><br />
                 </div>
             
             
@@ -1317,34 +1421,34 @@
                 <div class="card-header">Related</div>
                 <div class="card-body">
                     
-                            <div class="news-link"><a href='/japan/stock-market'>Japanese Shares Drop on Tech Losses</a></div>
+                            <div class="news-link"><a href='/8002:jp:eps'>Marubeni earnings above expectations at 93.39 JPY</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/stocks'>Asian Tech Stocks Drop on AI Concerns</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/japan/government-bond-yield'>Japan 10Y Yield Holds Near Three-Month Low</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/japan/currency'>Yen Strengthens as US Dollar Weakens</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/japan/stock-market'>Japanese Share Decline as Tech Rout Persists</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/japan/monetary-base-yoy'>Japan Monetary Base Declines for 15th Straight Month</a></div>
+                            
+                        
+                            <div class="news-link"><a href='/japan/manufacturing-pmi'>Japan Manufacturing Growth Confirmed at 7-Month Low</a></div>
                             
                         
                             <div class="news-link"><a href='/japan/housing-starts-yoy'>Japan Housing Starts Unexpectedly Drop</a></div>
                             
                         
-                            <div class="news-link"><a href='/japan/government-bond-yield'>Japan 10Y Yield Falls as BOJ Holds Rates</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/japan/currency'>Yen Strengthens as BOJ Keeps Rates Unchanged</a></div>
-                            
-                        
                             <div class="news-link"><a href='/japan/interest-rate'>BoJ Holds Rates, Signals Further Hikes Ahead</a></div>
                             
                         
-                            <div class="news-link"><a href='/stocks'>Asian Stocks Slide as Tech Selloff Intensifies</a></div>
-                            
-                        
                             <div class="news-link"><a href='/6702:jp:eps'>Fujitsu earnings below expectations at 27.61 JPY</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/2914:jp:eps'>Japan Tobacco earnings below expectations at 105.36 JPY</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/japan/industrial-production-mom'>Japan Industrial Output Rebounds More than Expected</a></div>
-                            
-                        
-                            <div class="news-link"><a href='/japan/retail-sales-annual'>Japan Retail Sales Growth Eases to 3-Month Low</a></div>
                             
                         
                     <br />
@@ -1365,25 +1469,25 @@
                     <div class="card-header">Latest</div>
                     <div class="card-body">
                         
-                                <div class="news-link"><a href='/south-korea/imports-yoy'>South Korea Import Growth Below Forecasts</a></div>
+                                <div class="news-link"><a href='/india/services-pmi'>India Services PMI Revised Lower, Remains at 4-Month High</a></div>
                             
-                                <div class="news-link"><a href='/south-korea/exports-yoy'>South Korea Exports Near $1 Trillion Annual Target</a></div>
+                                <div class="news-link"><a href='/india/composite-pmi'>India Composite PMI Confirmed at 4-Month High</a></div>
                             
-                                <div class="news-link"><a href='/south-korea/balance-of-trade'>South Korea Trade Surplus Beats Estimates</a></div>
+                                <div class="news-link"><a href='/india/stock-market'>Sensex Steady at 2-Month High</a></div>
                             
-                                <div class="news-link"><a href='/601166:ch:eps'>Industrial Bank earnings below expectations at 0.84 CNY</a></div>
+                                <div class="news-link"><a href='/china/currency'>Offshore Yuan Remains Under Pressure</a></div>
                             
-                                <div class="news-link"><a href='/601138:ch:eps'>Foxconn Industrial Internet earnings below expectations at 0.84 CNY</a></div>
+                                <div class="news-link"><a href='/indonesia/currency'>Rupiah Stays Weak Near IDR 18,130 Ahead of Q3 GDP Release</a></div>
                             
-                                <div class="news-link"><a href='/isp:im:eps'>Intesa Sanpaolo earnings in line with market expectations at 0.15 EUR</a></div>
+                                <div class="news-link"><a href='/sbin:in:eps'>State Bank of India earnings above expectations at 24.90 INR</a></div>
                             
-                                <div class="news-link"><a href='/sunp:in:eps'>Sun Pharmaceuticals earnings below expectations at 13.17 INR</a></div>
+                                <div class="news-link"><a href='/8002:jp:eps'>Marubeni earnings above expectations at 93.39 JPY</a></div>
                             
-                                <div class="news-link"><a href='/ril:in:eps'>Reliance Industries earnings above expectations at 17.65 INR</a></div>
+                                <div class="news-link"><a href='/united-arab-emirates/manufacturing-pmi'>UAE Non-Oil Private Sector Growth Remains Strong</a></div>
                             
-                                <div class="news-link"><a href='/cp:cn:eps'>Canadian Pacific Railway earnings below expectations at 1.04 CAD</a></div>
+                                <div class="news-link"><a href='/stocks'>Asian Tech Stocks Drop on AI Concerns</a></div>
                             
-                                <div class="news-link"><a href='/slovakia/rating'>Fitch Affirms Slovakia at ’A-’ with Stable Outlook</a></div>
+                                <div class="news-link"><a href='/switzerland/currency'>Swiss Franc Hits 2-Month High</a></div>
                             
                         <br />
                         <a id="ctl00_ContentPlaceHolder1_ctl03_moreTopNews" href="../stream">
