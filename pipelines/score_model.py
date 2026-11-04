@@ -219,11 +219,20 @@ ROWS = [
  ("Inflation","US","Inflation Rate YoY","3.7%","3.3%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
  ("Inflation","EA","Inflation Rate YoY Final","3.8%","2.9%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
  ("Inflation","GB","Inflation Rate YoY","3.5%","3.1%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
- ("Inflation","JP","Inflation Rate YoY","2.1%","1.9%","Sep/26","1.8-2.2 corridor (LD-155)","NEUTRAL"),
+ # F-187 - 2.1% MISSED a 2.3% forecast (capture 2026-10-23, print 22 Oct).
+ # Stored NEUTRAL because the expectation had rolled off the TE window and
+ # the row fell back to the corridor level test. The surprise overrides it.
+ ("Inflation","JP","Inflation Rate YoY","2.1%","1.9%","Sep/26","1.8-2.2 corridor (LD-155)","BAD"),
  ("Inflation","AU","Inflation Rate YoY","4.3%","3.8%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
- ("Inflation","NZ","Inflation Rate YoY","3.7%","4.1%","Sep/26 (Q)","1.8-2.2 corridor (LD-155)","GOOD"),
- ("Inflation","CA","Inflation Rate YoY","3.1%","3%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
- ("Inflation","CH","Inflation Rate YoY","1.5%","1%","Oct/26","1.8-2.2 corridor (LD-155)","BAD"),
+ # F-187 - 3.7% MISSED a 3.8% consensus (capture 2026-10-23, print 21 Oct).
+ ("Inflation","NZ","Inflation Rate YoY","3.7%","4.1%","Sep/26 (Q)","1.8-2.2 corridor (LD-155)","BAD"),
+ # F-187 - 3.1% MISSED a 3.2% consensus (capture 2026-10-22, print 19 Oct).
+ ("Inflation","CA","Inflation Rate YoY","3.1%","3%","Sep/26","1.8-2.2 corridor (LD-155)","BAD"),
+ # F-187b - 1.5% BEAT a 1.3% consensus (captures 2026-11-01 and 2026-11-03,
+ # print 3 Nov). No capture holds the actual - it was recovered from the
+ # agency under LD-3 - but both hold the consensus it beat. Stored BAD on
+ # the corridor level test; the surprise override governs and gives +1.
+ ("Inflation","CH","Inflation Rate YoY","1.5%","1%","Oct/26","1.8-2.2 corridor (LD-155)","GOOD"),
 ]
 
 CCYS = ["US","EA","GB","JP","AU","NZ","CA","CH"]

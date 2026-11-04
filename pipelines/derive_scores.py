@@ -339,6 +339,124 @@ def prev_score(actual, previous, thr):
 # final row and a core print cannot satisfy a headline one.
 SCHED_INF = {}
 
+# {ccy: (consensus, forecast, actual, date, capture)} for a print that has
+# ALREADY LANDED - the expectation it was scored against, recovered from the
+# capture archive rather than from the newest capture alone.
+LANDED_INF = {}
+
+
+# *** F-187 - THE EXPECTATION A LANDED PRINT WAS SCORED AGAINST LIVES IN A
+# CAPTURE WE NO LONGER READ.
+#
+# Jeff, 2026-11-04, on the JPY inflation row scoring 0: "I disagree on JPY it
+# is not 0 due to the results", with a screenshot of the TE page showing
+# 2.1% actual against a 2.3% FORECAST. Our score was 0.
+#
+# I had searched for JPY's expectation in the NEWEST capture, found the next
+# scheduled print (20 Nov) blank on both columns, and reported that no
+# forecast existed. What I had actually established was that no forecast was
+# visible FROM THERE. The print that scores is the one that landed 22 Oct,
+# and capture 2026-10-23_1022PHT holds it complete:
+#
+#     2026-10-22  act='2.1%'  prev='1.9%'  cons=''  fcst='2.3%'
+#
+# That is F-73 exactly - an absence we cannot see is a fact about our reach,
+# not about the world - committed while quoting F-73 in the same session.
+#
+# *** THE WINDOW IS THE MECHANISM, AND IT IS NOT A JPY PROBLEM.
+# TE's calendar window rolls forward faster than our capture cadence. The
+# expectation appears in the capture BEFORE the print; the actual appears in
+# the capture AFTER it; only the captures in between hold both. Once the row
+# rolls off the back, load_inflation() - which reads ONE capture - can never
+# see the pair again, and the row silently falls back to the LD-155 corridor
+# level test. Three of eight rows were wrong this way:
+#
+#     JPY  2.1% vs fcst 2.3% (22 Oct)   scored  0, should be -1
+#     NZD  3.7% vs cons 3.8% (21 Oct)   scored +1, should be -1
+#     CAD  3.1% vs cons 3.2% (19 Oct)   scored +1, should be -1
+#
+# All three MISSED and all three were scored off the level instead. Every
+# one of those expectations was in our own archive the whole time.
+#
+# So the fix is not another gate. The archive is append-only by nature - 39
+# captures, nothing overwritten - and this reads the pair back out of it.
+# The newest sighting that carries OUR actual is the authority, because a
+# later capture may show the same row re-stated or rolled off entirely.
+def load_landed_inflation(archive=None):
+    """Fill LANDED_INF from the WHOLE capture archive. Returns rows found.
+
+    For each currency's inflation row, find the newest capture that witnessed
+    the print with an actual, and keep the expectation recorded alongside it.
+    """
+    import glob as _g
+    import json as _j
+    import os as _os
+    import io as _io
+    import re as _re
+    import datetime as _dt           # F-187b - a passed date anchors a row
+    if archive is None:
+        archive = sorted(_g.glob(_os.path.join(
+            REPO, 'data/raw/calendar/*_cal_full.json')))
+    ISO = {'US': 'USD', 'EA': 'EUR', 'GB': 'GBP', 'JP': 'JPY',
+           'AU': 'AUD', 'NZ': 'NZD', 'CA': 'CAD', 'CH': 'CHF'}
+    WANT = {}
+    for _c, _i, _n, _a, _p, _r, _t, _v in sm.ROWS:
+        if _c == 'Inflation':
+            WANT[sm.LABEL[_i]] = _n
+    n = 0
+    for cap in archive:
+        try:
+            raw = _j.load(_io.open(cap, encoding='utf-8'))
+        except Exception:
+            continue
+        rows = raw if isinstance(raw, list) else raw.get(
+            'rows', raw.get('events', []))
+        for r in rows:
+            ccy = ISO.get(r.get('iso'))
+            if not ccy or ccy not in WANT:
+                continue
+            e = (r.get('event', '') or '').lower()
+            if not _re.match(r'^inflation rate yoy', e):
+                continue
+            if 'core' in e or 'mom' in e or 'qoq' in e:
+                continue
+            # series identity, exactly as load_inflation enforces it (F-37)
+            if ('final' in e) != ('Final' in WANT[ccy]):
+                continue
+            cons = (r.get('consensus') or '').strip()
+            fcst = (r.get('forecast') or '').strip()
+            if not (cons or fcst):
+                continue            # no expectation recorded - nothing to use
+            act = (r.get('actual') or '').strip()
+            # *** F-187b - A PRINT WE NEVER CAPTURED STILL HAS AN EXPECTATION.
+            #
+            # CHF inflation printed 1.5% on 2026-11-03. NO capture holds that
+            # actual - our 3 Nov capture was taken at 12:26 PHT, before the
+            # release, and the value was recovered from the agency under LD-3.
+            # But both the 1 Nov and 3 Nov captures DO hold cons=1.3%, and
+            # 1.5% beat it, so the row scores +1 under the override.
+            #
+            # F-186's date guard keeps a passed print out of SCHED_INF, which
+            # is right - it is not "next". But the expectation it carried is
+            # exactly what the actual was measured against, and dropping the
+            # row entirely threw that away. So a row whose DATE HAS PASSED is
+            # anchored here by date rather than by a matching actual: the
+            # fact table owns the value, this owns what was expected of it.
+            if not act:
+                if (r.get('date') or '') >= _dt.date.today().isoformat():
+                    continue        # genuinely upcoming - SCHED_INF's job
+                act = None          # passed, uncaptured: anchor on date only
+            # captures are walked oldest-first, so a later sighting of the
+            # SAME print overwrites an earlier one - the latest reading of
+            # a value wins, which is the same rule the fact tables use.
+            prior = LANDED_INF.get(ccy)
+            if prior and prior[3] > (r.get('date') or ''):
+                continue            # keep the NEWER print, not an older one
+            LANDED_INF[ccy] = (cons or None, fcst or None, act,
+                               r.get('date') or '', _os.path.basename(cap))
+            n += 1
+    return n
+
 
 def load_inflation(capture=None):
     """Fill SCHED_INF from a TE capture. Returns how many rows it found.
@@ -456,8 +574,28 @@ def score_row(cat, ccy, indicator, actual, _autoload_inf=True):
                 previous=actual, consensus=_s[0], forecast=_s[1])
             if sc is not None:
                 return sc
-        # no scheduled print - the after-the-news branch, with the print as
-        # its own reading: the LEVEL test against 1.8-2.2.
+        # F-187 - NO SCHEDULED PRINT DOES NOT MEAN NO EXPECTATION.
+        # Before falling back to the bare level test, ask the ARCHIVE what
+        # this print was expected to be. The pair (expectation, actual) sits
+        # in the captures between the two window positions; reading only the
+        # newest capture loses it and silently reverts the row to a corridor
+        # test LD-155's override is supposed to beat.
+        if _autoload_inf and not LANDED_INF:
+            try:
+                load_landed_inflation()
+            except Exception:
+                pass
+        _l = LANDED_INF.get(ccy)
+        # _l[2] is the actual the ARCHIVE saw, or None when the print landed
+        # between captures (F-187b) - then the fact table's actual is the
+        # only one there is, and the archive supplies only the expectation.
+        if _l and (_l[2] is None or _l[2] == (actual or '').strip()):
+            sc, _src, _why = inflation_decision(
+                consensus=_l[0], forecast=_l[1], actual=actual)
+            if sc is not None:
+                return sc
+        # no expectation anywhere - the print is its own reading: the LEVEL
+        # test against 1.8-2.2.
         sc, _src, _why = inflation_decision(actual=actual)
         if sc is not None:
             return sc

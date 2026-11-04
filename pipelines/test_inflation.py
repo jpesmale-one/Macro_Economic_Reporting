@@ -608,7 +608,18 @@ def main():
         for _cat, _iso, _n, _a2, _p2, _ref, _thr, _v in _sm2.ROWS:
             if _cat != 'Inflation':
                 continue
-            _want, _, _ = ds.inflation_decision(actual=_a2)
+            # *** F-187 - THIS CHECK USED TO CALL inflation_decision(actual=)
+            # AND NOTHING ELSE, so it asserted the LEVEL test against every
+            # stored verdict. That is only the rule's fallback branch: when
+            # an expectation exists, LD-155's SURPRISE OVERRIDE governs and
+            # the level is not consulted at all. The checker therefore
+            # demanded the corridor answer on exactly the rows the archive
+            # proves were scored on a miss, and would have rejected the
+            # three F-187 corrections as defects. A check that disagrees
+            # with the scorer about which BRANCH a row takes will always
+            # reject the right answer - F-120's lesson, one layer up.
+            # score_row IS the scorer, so ask it.
+            _want = ds.score_row(_cat, _sm2.LABEL[_iso], _n, _a2)
             _store = {'GOOD': 1, 'NEUTRAL': 0, 'BAD': -1}.get(_v)
             if _want is not None and _store != _want:
                 bad += 1; _nb += 1
