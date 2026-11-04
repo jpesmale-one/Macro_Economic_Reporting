@@ -29,7 +29,7 @@ W = {"Production":1, "Spending":1, "Trade":1, "Employment":2, "Inflation":3}
 # (category, ccy, indicator, actual, prev, ref, rule, score)  score in GOOD/BAD/NEUTRAL/MISSING
 ROWS = [
  # ---------------- PRODUCTION (w=1) ----------------
- ("Production","US","ISM Manufacturing PMI","54.5","55.6","Sep/26",">50.5","GOOD"),
+ ("Production","US","ISM Manufacturing PMI","55.5","54.5","Oct/26",">50.5","GOOD"),
  ("Production","US","Industrial Production YoY","2.2%","1.13%","Sep/26",">0.5%","GOOD"),
  ("Production","US","Manufacturing Production YoY","1.1%","1.2%","Sep/26",">0.5%","GOOD"),
  # F-101 (2026-09-09): verdict was BAD on a 0.4% print against a >0.5% LEVEL
@@ -45,7 +45,7 @@ ROWS = [
  # month stale, and audit_te did not flag it because TE's country page had
  # already rolled forward, so our value and TE's current value agreed on
  # being "the last print" while meaning different months.
- ("Production","EA","S&P Global Mfg PMI Final","52.9","52.7","Sep/26",">50.5","GOOD"),
+ ("Production","EA","S&P Global Mfg PMI Final","52.7","52.9","Oct/26",">50.5","GOOD"),
  ("Production","EA","Industrial Production YoY","-1.1%","-0.3%","Aug/26",">0.5%","NEUTRAL"),
  # F-95: held the JUL print after the AUG Final released Tue 1 Sep 08:30
  # at 51.7 from 51.9. Same shape as F-91 on the EUR row - the two are
@@ -54,7 +54,7 @@ ROWS = [
  # old. R-37 missed it because no GBP Mfg PMI Final row with an actual
  # sits in the 4 Sep capture - TE had already rolled the row forward to
  # the Sep Flash, so there was nothing to compare against.
- ("Production","GB","S&P Global Mfg PMI Final","51.9","51.9","Sep/26",">50.5","GOOD"),
+ ("Production","GB","S&P Global Mfg PMI Final","52.8","51.9","Oct/26",">50.5","GOOD"),
  # F-93: the threshold read "<0%", which says NEGATIVE growth is GOOD for
  # GBP. It was written to DESCRIBE the -0.2% print, not to encode the
  # direction - the exact F-68 shape. Industrial production is a growth
@@ -67,17 +67,17 @@ ROWS = [
  ("Production","JP","Industrial Production YoY Final","2.7%","4.9%","Aug/26",">0.5%","GOOD"),
  ("Production","JP","Machinery Orders YoY","18.6%","16.9%","Aug/26",">0.5%","GOOD"),
  ("Production","JP","Machine Tool Orders YoY","60.4%","64.7%","Sep/26",">0.5%","GOOD"),
- ("Production","JP","S&P Global Mfg PMI Final","54.1","54.9","Sep/26",">50.5","GOOD"),
+ ("Production","JP","S&P Global Mfg PMI Final","53.3","54.1","Oct/26",">50.5","GOOD"),
  # F-143: 52.0 -> 49.6 (Sep/26, released 30 Sep) - the sharpest fall in
  # 21 months and BELOW 50, which is contraction. Under F-101's band a
  # level threshold reads: above the line GOOD, below the floor BAD, in
  # between NEUTRAL. For a PMI the floor is 50, not zero. The only PMI in
  # the set not in expansion.
- ("Production","AU","S&P Global Mfg PMI Final","49.6","52.0","Sep/26",">50.5","BAD"),
+ ("Production","AU","S&P Global Mfg PMI Final","49.6","49.6","Oct/26",">50.5","BAD"),
  ("Production","NZ","Business NZ PMI","56.5","54.3","Sep/26",">50.5","GOOD"),
  ("Production","NZ","Global Dairy Trade Price Index","2.5%","1.2%","Oct/26",">0.5%","BAD"),
- ("Production","CA","S&P Global Mfg PMI","51.5","53.0","Sep/26",">50.5","GOOD"),
- ("Production","CH","Procure.ch-UBS Mfg PMI","55.3","57.1","Sep/26",">50.5","GOOD"),
+ ("Production","CA","S&P Global Mfg PMI","49.6","51.5","Oct/26",">50.5","BAD"),
+ ("Production","CH","Procure.ch-UBS Mfg PMI","56.7","55.3","Oct/26",">50.5","GOOD"),
  # LD-102: CHF Industrial Production YoY REMOVED 2026-09-09 on Jeff's
  # call - quarterly, so it scores the same value for ~13 consecutive
  # weekly editions and can never appear in the calibrator. It was
@@ -110,14 +110,14 @@ ROWS = [
  ("Spending","AU","Building Permits YoY Final","10.3%","10.9%","Aug/26",">0.5%","GOOD"),
  ("Spending","AU","Westpac Consumer Conf Change","-4.7%","-5.2%","Oct/26",">Prev","GOOD"),
  ("Spending","AU","NAB Business Confidence","-13","-6","Sep/26",">Prev","BAD"),
- ("Spending","NZ","Building Permits MoM","-4.3%","-3.7%","Jul/26",">0.5%","BAD"),
+ ("Spending","NZ","Building Permits MoM","-7.9%","-4.3%","Sep/26",">0.5%","BAD"),
  ("Spending","NZ","Electronic Retail Card Spending YoY","0.9%","0.9%","Sep/26",">0.5%","NEUTRAL"),
  ("Spending","NZ","ANZ Business Confidence","52.5","53.7","Oct/26",">Prev","BAD"),
  ("Spending","NZ","ANZ Roy Morgan Consumer Conf","96.2","98.0","Oct/26",">Prev","BAD"),
  ("Spending","CA","Retail Sales YoY","5.4%","5.1%","Aug/26",">0.5%","GOOD"),
  ("Spending","CA","Building Permits MoM","8.8%","18.3%","Aug/26",">0.5%","BAD"),
  ("Spending","CH","Consumer Confidence","-36","-33","Sep/26",">Prev","BAD"),
- ("Spending","CH","Retail Sales YoY","3.2%","2.6%","Aug/26",">0.5%","GOOD"),
+ ("Spending","CH","Retail Sales YoY","1.6%","3.2%","Sep/26",">0.5%","GOOD"),
  # ---------------- TRADE (w=1) ----------------
  # F-98: spec line 132. -$88.6B is a WIDER deficit than -$71.2B, so this
  # FLIPS GOOD -> BAD. Beating a -$90B consensus is not the test.
@@ -223,7 +223,7 @@ ROWS = [
  ("Inflation","AU","Inflation Rate YoY","4.3%","3.8%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
  ("Inflation","NZ","Inflation Rate YoY","3.7%","4.1%","Sep/26 (Q)","1.8-2.2 corridor (LD-155)","GOOD"),
  ("Inflation","CA","Inflation Rate YoY","3.1%","3%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
- ("Inflation","CH","Inflation Rate YoY","1%","0.8%","Sep/26","1.8-2.2 corridor (LD-155)","BAD"),
+ ("Inflation","CH","Inflation Rate YoY","1.5%","1%","Oct/26","1.8-2.2 corridor (LD-155)","BAD"),
 ]
 
 CCYS = ["US","EA","GB","JP","AU","NZ","CA","CH"]

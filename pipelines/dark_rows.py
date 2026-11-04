@@ -31,9 +31,14 @@ import datetime as dt
 # (CCY, Indicator) -> (value, ref_month, read_on, source)
 READS = {
     ('AUD', 'S&P Global Mfg PMI Final'):
-        ('49.6', 'Sep/26', '2026-10-04',
-         'TE /australia/manufacturing-pmi - 52.0 Aug -> 49.6 Sep, sharpest '
-         'fall in 21 months, released 30 Sep'),
+        ('49.6', 'Oct/26', '2026-11-04',
+         'the 2026-11-03 CAPTURE carries "s&p global manufacturing pmi final '
+         'oct" actual 49.6, previous 49.6, consensus 49.7, released 1 Nov. '
+         '*** THE VALUE DID NOT MOVE - 49.6 Sep -> 49.6 Oct - so only the '
+         'VINTAGE changed. This is F-123 exactly: a repeated value hides a '
+         'stale vintage from any check that compares on value alone. The '
+         'previous read was TE /australia/manufacturing-pmi, 52.0 Aug -> '
+         '49.6 Sep, the sharpest fall in 21 months, released 30 Sep.'),
     ('NZD', 'Business NZ PMI'):
         ('56.5', 'Sep/26', '2026-10-18',
          'the 2026-10-18 CAPTURE carries "business nz pmi sep" actual 56.5, '
@@ -43,13 +48,17 @@ READS = {
          'R-45: 13 rows have no usable page at all. 53.1 Aug -> 56.5 Sep is '
          'a 3.4-point jump and it took NZD Production from 0 to +1.'),
     ('USD', 'ISM Manufacturing PMI'):
-        ('54.5', 'Sep/26', '2026-10-04',
-         'TE /united-states/business-confidence - 54.6 Aug -> 54.5 Sep, '
-         'released 1 Oct'),
+        ('55.5', 'Oct/26', '2026-11-04',
+         'the 2026-11-03 CAPTURE carries "ism manufacturing pmi oct" actual '
+         '55.5, previous 54.5, consensus 54.6, released 2 Nov - a BEAT. The '
+         'capture is the authority here for the same reason as the NZD row '
+         'above. Updated in the F-185 sweep, when R-40 found this row one '
+         'vintage behind along with 8 others from the same 2 Nov PMI round.'),
     ('GBP', 'S&P Global Mfg PMI Final'):
-        ('51.9', 'Sep/26', '2026-10-04',
-         'TE /united-kingdom/manufacturing-pmi - 51.7 Aug -> 51.9 Sep, '
-         'released 1 Oct'),
+        ('52.8', 'Oct/26', '2026-11-04',
+         'the 2026-11-03 CAPTURE carries "s&p global manufacturing pmi final '
+         'oct" actual 52.8, previous 51.9, consensus 52.8 - exactly on '
+         'consensus, released 2 Nov. Updated in the F-185 sweep.'),
     ('NZD', 'Global Dairy Trade Price Index'):
         ('2.5%', 'Oct/26', '2026-10-26',
          'TE /new-zealand/global-dairy-trade-price-index - auction for the '

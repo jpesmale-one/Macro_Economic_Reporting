@@ -352,6 +352,7 @@ def load_inflation(capture=None):
     import os as _os
     import io as _io
     import re as _re
+    import datetime as _dt               # F-186 - a passed date is not "next"
     if capture is None:
         c = sorted(_g.glob(_os.path.join(REPO,
                    'data/raw/calendar/*_cal_full.json')))
@@ -385,6 +386,28 @@ def load_inflation(capture=None):
             continue
         if (r.get('actual') or '').strip():
             continue            # released - the fact table owns it
+        # *** F-186 - A BLANK ACTUAL DOES NOT MEAN "NOT YET RELEASED".
+        #
+        # The test above is the only thing separating an UPCOMING print from
+        # a LANDED one, and it reads a column that goes stale. CHF inflation
+        # printed 1.5% on 2026-11-03; our capture that day was taken at
+        # 12:26 PHT, BEFORE the release, so the actual is blank - and this
+        # loop therefore filed a print that had ALREADY HAPPENED as the next
+        # one scheduled. LD-165 then read the 1.3% consensus as the live
+        # expectation and scored the row BEFORE-the-news at -1, when the
+        # actual beat that consensus and scores +1. A 2-point error on a
+        # WEIGHT-3 category, so 6 points of raw contribution.
+        #
+        # The capture can never self-heal it: the TE window rolls forward
+        # faster than we capture, so the row falls off the back before the
+        # number lands in it. Same mechanism as F-185, different table.
+        #
+        # So a date in the PAST disqualifies a row from being "scheduled",
+        # whatever its actual column says. The fact table owns a print whose
+        # date has passed - recovered from the indicator page under LD-3 if
+        # no capture caught it.
+        if (r.get('date') or '') < _dt.date.today().isoformat():
+            continue
         cons = (r.get('consensus') or '').strip()
         fcst = (r.get('forecast') or '').strip()
         if not (cons or fcst):
