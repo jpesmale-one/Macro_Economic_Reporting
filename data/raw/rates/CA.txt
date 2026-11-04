@@ -1,3 +1,3 @@
-2.25%
+2.50%
 # https://tradingeconomics.com/canada/interest-rate
-# read 2026-10-04: 2 Sep hold
+# read 2026-11-04: BoC HIKED 28 Oct to 2.50% (bankofcanada.ca fad-press-release-2026-10-28)

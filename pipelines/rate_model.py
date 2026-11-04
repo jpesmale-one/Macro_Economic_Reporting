@@ -197,15 +197,25 @@ ROWS = {
     # NZD 2026-09-02: hiked to 2.75% exactly on consensus and FELL 108
     # pips. A fully-priced hike is not news, so it scores 0.00 - the
     # realised term still pays for the level, the surprise pays nothing.
-    'NZ': ('2.75%', +1.0, 4.1, True,  'HIKED 2 Sep to 2.75%, exactly on consensus - fully priced, NZD -108 pips (LD-90)', 0.0, 2.50, None, '2.50%'),
-    'US': ('4.00%', +1.0, 3.4, False, 'HIKED 17 Sep to 4.00%, on consensus; projections raised 3.6%->4.1%', 0.0, 4.00, None, '3.75%'),
+    # F-185: the 28 Oct round. RBNZ HELD 2.75% against a 3.0% consensus for
+    # a hike - a MISS under LD-154, and prev_rate becomes 2.75% (the rate
+    # BEFORE this decision), not the 2.50% that preceded the September one.
+    'NZ': ('2.75%', 0.0, 4.1, True,  'HELD 28 Oct at 2.75%, 4-3, against a 3.0% consensus for a hike - a MISS; NZD sold off hard', 0.0, 2.75, None, '2.75%'),
+    # F-185: Fed HELD the 3-3/4 to 4 percent range on 28 Oct, 10-2, Cook and
+    # Hammack both preferring +25bp. This row carried the 17 Sep hike.
+    'US': ('4.00%', 0.0, 3.4, False, 'HELD 28 Oct at 3.75-4.00%, 10-2 - Cook and Hammack both preferred +25bp', 0.0, 4.00, None, '4.00%'),
     # ECB HIKED 10 Sep 2026 to 2.65%, exactly on the 2.65% consensus - the
     # same shape as NZD above, so SURPRISE scores 0.00 (LD-90): a fully
     # priced hike is not news. REALISED now pays +1.0 for having moved.
     # PATH is None - the next meeting is beyond TE's horizon (F-102).
-    'EA': ('2.65%', +1.0, 2.9, True,  'HIKED 10 Sep to 2.65%, exactly on consensus - fully priced (LD-90). HICP final', 0.0, 2.65, None, '2.40%'),
+    # F-185: ECB HELD all three key rates on 29 Oct. We track the MAIN
+    # REFINANCING rate, 2.65%, so the LEVEL was already right - only the
+    # decision was stale, and prev_rate goes 2.40% -> 2.65%.
+    'EA': ('2.65%', 0.0, 2.9, True,  'HELD 29 Oct, main refinancing rate unchanged at 2.65% - no pre-commitment to a path', 0.0, 2.65, None, '2.65%'),
     'GB': ('3.75%', 0.0, 2.9, True,  'HELD 17 Sep at 3.75%, 3 of 9 voting to HIKE - hawkish hold', 0.0, 3.75, 3.75, '3.75%'),
-    'JP': ('1.25%', +1.0, 1.9, True,  'HIKED 18 Sep to 1.25%, on consensus, split 7-2 - yen FELL 1.58% that week', 0.0, 1.25, None, '1.00%'),
+    # F-185: BoJ HELD at around 1.25% on 30 Oct, 8-1. This row carried the
+    # 18 Sep hike, so prev_rate goes 1.00% -> 1.25%.
+    'JP': ('1.25%', 0.0, 1.9, True,  'HELD 30 Oct at around 1.25%, 8-1 majority - ETF sales pace raised to ~860bn yen/yr', 0.0, 1.25, None, '1.25%'),
     # RBA HIKED 29 Sep to 4.60%, exactly on the 4.60% consensus - its fourth
     # hike this year and the highest Australian policy rate since 2011.
     # REALISED pays +1.0 for having moved. LD-90 still applies to the market
@@ -217,11 +227,20 @@ ROWS = {
     # the hike landed 29 Sep, BEFORE the Sunday 4 Oct build, so it is squarely
     # inside what this edition may see. The vintage rule exists to keep NEXT
     # week's prints out, never to keep LAST week's out.
-    'AU': ('4.60%', 1.0, 4.0, True, 'HIKED 29 Sep to 4.60%, exactly on consensus - fourth hike this year, highest since 2011', 0.0, 4.60, None, '4.35%'),
-    # LD-90: BoC HELD 2 Sep at 2.25%, exactly on consensus. A fully-priced
-    # hold is not news either - the surprise term pays 0.00 rather than
-    # being absent. NZD's row already recorded this; CAD's did not.
-    'CA': ('2.25%', 0.0, 3.0, True,  'HELD 2 Sep at 2.25%, exactly on consensus - fully priced, CAD +53 pips (LD-90)', 0.0, 2.25, None, '2.25%'),
+    #
+    # F-185 (2026-11-04) - AND IT WENT STALE AGAIN, the same cell, the same
+    # way. The RBA HIKED 4.60 -> 4.85% on 3 Nov, 6-3. F-142's note above was
+    # written about this very row in October and the comment did not prevent
+    # the repeat, because a comment is not a check. That is what finally
+    # bought the gate (s9d_rate_freshness).
+    'AU': ('4.85%', 1.0, 4.0, True, 'HIKED 3 Nov to 4.85%, 6-3, exactly on consensus - fifth hike this year', 0.0, 4.85, None, '4.60%'),
+    # F-185: BoC HIKED 2.25 -> 2.50% on 28 Oct, exactly on the 2.5%
+    # consensus, citing oil-driven CPI near 3% since April and ~3.5%
+    # expected by year end. This is the ONE stale row that was costing CAD
+    # rather than flattering it - a hike we were not crediting at all.
+    # The 28 Oct actual is in none of our 39 captures (see LAST), so this
+    # came from the Bank's own release.
+    'CA': ('2.50%', 1.0, 3.0, True,  'HIKED 28 Oct to 2.50%, exactly on consensus - oil-driven CPI near 3% since April', 0.0, 2.50, None, '2.25%'),
     # F-88: this row still carried 0.4% FALLING after CHF inflation
     # printed 0.8% RISING on 3 Sep. Section 2.5 updated on that print and
     # 2.6 did not, so the same indicator drove two categories in opposite
@@ -426,11 +445,51 @@ def load_scheduled(capture=None):
 
 LAST = {
     # ccy: (actual, previous, consensus)   verified against rate_model.ROWS
+    #
+    # *** F-185 - FIVE OF THESE EIGHT ROWS WENT STALE THROUGH A WHOLE
+    # MEETING ROUND (2026-11-04). Jeff: "this is not the latest result",
+    # then "EUR and USD held rates. why they are still scored as +1?"
+    #
+    # A late-October round repriced five of the eight and LAST learned about
+    # none of it. USD and EUR kept paying +1 for their SEPTEMBER HIKES for
+    # two published editions after both banks had HELD.
+    #
+    # WHY IT WAS INVISIBLE, AND THIS IS THE PART WORTH REMEMBERING.
+    # standing_score does not decay. LD-154b carries the last decision
+    # forward indefinitely so all eight carry a reading between meetings -
+    # the right rule - but it means a missed update does not drift toward
+    # neutral, it keeps ACTIVELY PAYING the old score every week. And the
+    # label gives nothing away: a stale hike and a true hold both print
+    # "exactly as expected, retain", because that wording describes the
+    # CONSENSUS MATCH, not the DIRECTION. GBP's real hold read +0 and USD's
+    # two-month-old hike read +1 off the same sentence.
+    #
+    # WORSE, TWO OF THE FIVE CANNOT BE RECOVERED FROM OUR OWN CAPTURES.
+    # The TE window rolls forward faster than we capture: the 2026-10-28
+    # capture spanned 10-25..11-22 and was taken at 10:19 PHT, BEFORE the
+    # 14:00 ET announcements; the next capture spanned 10-29..11-27, so
+    # 28 October had already fallen off the back. The BoC and Fed actuals
+    # for that date appear in NONE of the 39 captures. Only the issuing
+    # agency has them, which is LD-3 earning its keep.
+    #
+    # Every row below re-verified at the ISSUING AGENCY on 2026-11-04.
+    # See s9d_rate_freshness in build_check.py for the gate that now fails
+    # when a meeting has passed one of these rows by.
     'GBP': ('3.75%', '3.75%', '3.75%'),   # BoE 17 Sep HELD  -> retains NEUTRAL
-    'AUD': ('4.6%',  '4.35%', '4.6%'),    # RBA 29 Sep HIKED -> retains GOOD
+    # RBA 3 Nov HIKED 4.60 -> 4.85%, 6-3, exactly on the 4.85% consensus.
+    #   rba.gov.au/media-releases/2026/mr-26-30.html
+    'AUD': ('4.85%', '4.6%',  '4.85%'),   # RBA  3 Nov HIKED -> retains GOOD
     'CHF': ('0%',    '0%',    '0%'),      # SNB 24 Sep HELD  -> retains NEUTRAL
-    'USD': ('4%',    '3.75%', '4%'),      # Fed 16 Sep HIKED -> retains GOOD
-    'EUR': ('2.65%', '2.4%',  '2.65%'),   # ECB 10 Sep HIKED -> retains GOOD
+    # Fed 28 Oct HELD the 3-3/4 to 4 percent target range, 10-2 (Cook and
+    # Hammack both preferred +25bp). The SEPTEMBER HIKE this row used to
+    # carry scored +1; a hold scores 0, the same as GBP and CHF.
+    #   federalreserve.gov/monetarypolicy/files/monetary20261028a1.pdf
+    'USD': ('4%',    '4%',    '4%'),      # Fed 28 Oct HELD  -> now NEUTRAL
+    # ECB 29 Oct HELD all three key rates. We track the MAIN REFINANCING
+    # rate, 2.65%, unchanged since the 10 Sep hike took effect 16 Sep - so
+    # the LEVEL here was right and only the DECISION was stale.
+    #   euribor-rates.info/en/ecb-interest-rates/ (ECB release unreachable)
+    'EUR': ('2.65%', '2.65%', '2.65%'),   # ECB 29 Oct HELD  -> now NEUTRAL
 
     # *** THE LAST THREE, FROM THE BANKS THEMSELVES (2026-10-11).
     # Jeff: "For this one I have given you links to Central Banks you can
@@ -448,9 +507,23 @@ LAST = {
     #        rate at 2.25%"
     #   NZD  rbnz.govt.nz/monetary-policy/monetary-policy-decisions
     #        25bp increase to 2.75% on 2 Sep, agreed by consensus
-    'JPY': ('1.25%', '1.00%', '1.25%'),   # BoJ 18 Sep HIKED -> retains GOOD
-    'CAD': ('2.25%', '2.25%', '2.25%'),   # BoC  2 Sep HELD  -> retains NEUTRAL
-    'NZD': ('2.75%', '2.50%', '2.75%'),   # RBNZ 2 Sep HIKED -> retains GOOD
+    # *** ALL THREE SUPERSEDED IN THE LATE-OCTOBER ROUND (F-185), re-verified
+    # at the issuing agency on 2026-11-04:
+    #   JPY  boj.or.jp/en/mopo/mpmdeci/mpr_2026/k261030a.pdf
+    #        "encourage the uncollateralized overnight call rate to remain at
+    #        around 1.25 percent", 8-1 majority, 30 Oct. A HOLD: 0, not +1.
+    #   CAD  bankofcanada.ca/2026/10/fad-press-release-2026-10-28/
+    #        "increased its target for the overnight rate by 25 basis points
+    #        to 2.5%", 28 Oct, exactly on the 2.5% consensus. The hike this
+    #        row was NOT crediting: 0 -> +1, the only row that gains.
+    #   NZD  rbnz.govt.nz/news-and-events/news/2026/10/ocr-held-at-2-75-percent
+    #        OCR HELD at 2.75% on 28 Oct, 4-3, against a 3.0% consensus for
+    #        a hike. Under LD-154 that is a MISS, so +1 -> -1, a two-point
+    #        swing. The rule is working: the market had priced the hike and
+    #        the NZD sold off hard on the hold.
+    'JPY': ('1.25%', '1.25%', '1.25%'),   # BoJ 30 Oct HELD  -> now NEUTRAL
+    'CAD': ('2.5%',  '2.25%', '2.5%'),    # BoC 28 Oct HIKED -> now GOOD
+    'NZD': ('2.75%', '2.75%', '3.0%'),    # RBNZ 28 Oct HELD vs 3.0% -> BAD
 }
 
 

@@ -1,3 +1,3 @@
-4.60%
+4.85%
 # https://tradingeconomics.com/australia/interest-rate
-# read 2026-10-04: 29 Sep hike from 4.35%; next 3 Nov
+# read 2026-11-04: RBA HIKED 3 Nov to 4.85%, 6-3 (rba.gov.au mr-26-30.html)

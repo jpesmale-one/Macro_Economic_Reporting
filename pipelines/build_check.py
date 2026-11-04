@@ -631,6 +631,114 @@ def s9c_one_month():
     return True, 'every board pinned to %s; guard verified to bite' % m
 
 
+def s9d_rate_freshness():
+    """F-185 - has a MEETING passed one of the eight rate rows by?
+
+    *** GATE 8b WAS WRITTEN TO CATCH EXACTLY THIS AND PASSED ALL FIVE.
+    On 2026-11-04 five of the eight rows were stale through a whole
+    late-October meeting round. USD and EUR had been paying +1 for their
+    SEPTEMBER HIKES across two published editions after both banks held.
+    8b was green the entire time.
+
+    WHY: 8b compares rate_model against data/raw/rates/*.txt, and every one
+    of those cached reads was dated 2026-10-04. It compared the model
+    against a snapshot of the world taken BEFORE the meetings - a freshness
+    gate with no freshness check, which is F-132's failure exactly ("R-45
+    run WITHOUT --refresh, so it validated today's fact table against a
+    week-old cached page and reported OK").
+
+    THE CACHE EVEN HELD THE ANSWER. US.txt read "16 Sep hike from 3.75%;
+    next FOMC 28 Oct". AU.txt read "next 3 Nov". The date that would have
+    failed the gate was sitting in the file the gate reads, and nothing
+    compared it to today.
+
+    So this gate asks the question 8b cannot: not "does the model agree with
+    the cache" but "is either of them OLD ENOUGH TO BE WRONG". Two
+    independent tests, because they fail differently:
+
+      1. SCHEDULE - the captures carry decision DATES (LD-3 makes a calendar
+         a schedule authority, which is precisely this use). Any decision
+         dated on or before today whose date is later than the date LAST
+         records for that currency means a meeting has passed us by.
+      2. CACHE AGE - a cached TE read older than the shortest meeting cycle
+         (6 weeks) cannot witness anything, so 8b's MATCH is meaningless.
+
+    Neither test can self-heal. Two of the five 28 Oct actuals appear in
+    NONE of the 39 captures - the TE window rolls forward faster than we
+    capture, so the row fell off the back before the number landed in it.
+    The gate can only say "a meeting happened, go read the agency" (LD-3).
+    """
+    import datetime as _dt
+    import json as _json
+    import glob as _glob
+    import re as _re
+    import rate_model as _rm
+
+    today = _dt.date.today()
+    bad = []
+
+    # ---- 1. has a scheduled decision passed what LAST records? ----------
+    ISO2 = dict((v, k) for k, v in _rm.LABEL.items())
+    seen = {}
+    for f in _glob.glob(os.path.join(REPO, 'data/raw/calendar/*_cal_full.json')):
+        try:
+            rows = _json.load(io.open(f, encoding='utf-8'))
+        except Exception:
+            continue
+        for r in rows:
+            if not isinstance(r, dict):
+                continue
+            if 'interest rate decision' not in (r.get('event') or '').lower():
+                continue
+            ccy = _rm.LABEL.get(r.get('iso'))
+            d = (r.get('date') or '').strip()
+            if ccy and _re.match(r'^\d{4}-\d{2}-\d{2}$', d):
+                if d <= today.isoformat() and d > seen.get(ccy, ''):
+                    seen[ccy] = d
+    # the date LAST claims, parsed out of the row's own comment
+    src = io.open(os.path.join(HERE, 'rate_model.py'), encoding='utf-8').read()
+    MON = ('Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec').split()
+    claimed = {}
+    for ccy in _rm.LAST:
+        m = _re.search(r"'%s':\s*\([^)]*\)[^\n]*#\s*\w+\s+(\d{1,2})\s+(\w{3})"
+                       % ccy, src)
+        if m and m.group(2) in MON:
+            claimed[ccy] = '2026-%02d-%02d' % (MON.index(m.group(2)) + 1,
+                                               int(m.group(1)))
+    for ccy, d in sorted(seen.items()):
+        c = claimed.get(ccy)
+        if c and d > c:
+            bad.append('%s: a decision dated %s has passed, LAST records %s'
+                       % (ccy, d, c))
+        elif not c:
+            bad.append('%s: cannot read a decision date from its LAST row'
+                       % ccy)
+
+    # ---- 2. is the cached TE read too old to witness anything? ----------
+    CACHE = os.path.join(REPO, 'data/raw/rates')
+    for iso, ccy in sorted(_rm.LABEL.items()):
+        p = os.path.join(CACHE, '%s.txt' % iso)
+        if not os.path.exists(p):
+            bad.append('%s: no cached TE read at all' % ccy)
+            continue
+        m = _re.search(r'read (\d{4}-\d{2}-\d{2})',
+                       io.open(p, encoding='utf-8').read())
+        if not m:
+            bad.append('%s: cached read carries no date' % ccy)
+            continue
+        age = (today - _dt.date(*map(int, m.group(1).split('-')))).days
+        if age > 42:                       # shortest meeting cycle, 6 weeks
+            bad.append('%s: cached TE read is %d days old (%s) - older than '
+                       'a meeting cycle, so step 8b proves nothing'
+                       % (ccy, age, m.group(1)))
+
+    if bad:
+        return False, ('%d rate row(s) may be stale: %s'
+                       % (len(bad), '; '.join(bad)))
+    return True, ('all 8 rate rows current; no passed meeting, no cached '
+                  'read older than a cycle')
+
+
 STEPS = [
     ('1', 'capture is fresh (<=3 days)', s1_capture),
     ('2', 'no release lost to a gap (R-42)', s2_gaps),
@@ -646,6 +754,7 @@ STEPS = [
     ('9', 'published page matches the data (F-134)', s9_page_fresh),
     ('9b', 'board matches its own rows (R-49/F-161)', s9b_board_self_consistent),
     ('9c', 'board pinned to one month (F-183)', s9c_one_month),
+    ('9d', 'no meeting has passed a rate row (F-185)', s9d_rate_freshness),
     ('10', 'high-impact rows can flag (F-135)', s10_high_impact),
     ('11', 'selected pairs have OANDA bars (LD-145)', s11_pair_bars),
     ('11b', 'all 28 crosses for LD-162 (R-50)', s11b_pair_grid),

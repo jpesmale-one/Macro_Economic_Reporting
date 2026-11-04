@@ -84,7 +84,26 @@ def held(iso):
 
 
 def compare():
-    """[(iso, held, te, verdict)] - verdict in MATCH / STALE / UNVERIFIED."""
+    """[(iso, held, te, verdict)] - verdict in MATCH / STALE / UNVERIFIED.
+
+    *** THE CACHE IS NOT ALWAYS TE, AND THE COLUMN HEADER LIES A LITTLE.
+    The 2026-11-04 refresh (F-185) was recorded from the ISSUING AGENCIES -
+    the Fed statement PDF, the BoJ statement PDF, the RBA and RBNZ releases,
+    the Bank of Canada release - because TE was not reachable and because
+    two of the five decisions appear in NONE of our 39 captures. Each
+    cached note carries its own source URL, so read the note rather than
+    trusting the "TE SAYS" header.
+
+    That is a STRONGER source than TE, not a weaker one (LD-3: a calendar is
+    a schedule authority, never a value authority). But this function cannot
+    tell the two apart, so it cannot be cited as "verified against TE".
+
+    *** AND A MATCH HERE PROVES LESS THAN IT LOOKS. This compares the model
+    against a CACHED FILE. On 2026-11-04 all eight matched while five were
+    stale, because every cached read was dated 2026-10-04 - before the
+    meetings. Step 9d in build_check.py is what asks whether either side is
+    old enough to be wrong; this one only asks whether they agree.
+    """
     out = []
     for iso in sorted(SLUG):
         h = held(iso)

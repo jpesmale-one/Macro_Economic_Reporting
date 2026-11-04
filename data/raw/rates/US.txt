@@ -1,3 +1,3 @@
 4.00%
 # https://tradingeconomics.com/united-states/interest-rate
-# read 2026-10-04: 16 Sep hike from 3.75%; next FOMC 28 Oct
+# read 2026-11-04: Fed HELD 28 Oct at 3.75-4.00%, 10-2 (federalreserve.gov monetary20261028a1.pdf); next 9 Dec
