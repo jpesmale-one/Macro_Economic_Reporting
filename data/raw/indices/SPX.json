@@ -1,14 +1,6 @@
 {
  "bars": [
   {
-   "close": 6465.94,
-   "epoch": 1756215000,
-   "high": 6468.37,
-   "low": 6429.21,
-   "open": 6435.49,
-   "session": "2025-08-26"
-  },
-  {
    "close": 6481.4,
    "epoch": 1756301400,
    "high": 6487.06,
@@ -2399,11 +2391,19 @@
    "low": 7545.39,
    "open": 7552.92,
    "session": "2026-11-03"
+  },
+  {
+   "close": 7688.62,
+   "epoch": 1793802600,
+   "high": 7715.57,
+   "low": 7635.81,
+   "open": 7635.81,
+   "session": "2026-11-04"
   }
  ],
  "key": "SPX",
  "note": "",
- "pulled": "2026-11-04T12:42:30",
+ "pulled": "2026-11-05T10:54:31",
  "role": "risk-tone leg (LD-174)",
  "source": "TradingView (LD-5 as amended); Yahoo is never used",
  "symbol": "TVC:SPX"

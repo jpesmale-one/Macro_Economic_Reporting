@@ -1,14 +1,6 @@
 {
  "bars": [
   {
-   "close": 41820.41,
-   "epoch": 1754611200,
-   "high": 42033.92,
-   "low": 41248.05,
-   "open": 41283.7,
-   "session": "2025-08-08"
-  },
-  {
    "close": 42718.12,
    "epoch": 1754956800,
    "high": 42999.71,
@@ -2393,17 +2385,25 @@
    "session": "2026-11-02"
   },
   {
-   "close": 60281.69,
+   "close": 62188.41,
    "epoch": 1793750400,
    "high": 63105.47,
    "low": 60030.1,
    "open": 62973.16,
    "session": "2026-11-04"
+  },
+  {
+   "close": 61913.29,
+   "epoch": 1793836800,
+   "high": 62653.98,
+   "low": 61334.5,
+   "open": 62384.73,
+   "session": "2026-11-05"
   }
  ],
  "key": "NI225",
  "note": "",
- "pulled": "2026-11-04T12:42:33",
+ "pulled": "2026-11-05T10:54:33",
  "role": "risk-tone leg (LD-174)",
  "source": "TradingView (LD-5 as amended); Yahoo is never used",
  "symbol": "TVC:NI225"

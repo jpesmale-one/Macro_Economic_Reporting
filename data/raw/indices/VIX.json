@@ -1,14 +1,6 @@
 {
  "bars": [
   {
-   "close": 14.44,
-   "epoch": 1756365300,
-   "high": 14.69,
-   "low": 14.12,
-   "open": 14.42,
-   "session": "2025-08-28"
-  },
-  {
    "close": 15.35,
    "epoch": 1756451700,
    "high": 15.97,
@@ -2399,11 +2391,19 @@
    "low": 20.29,
    "open": 21.66,
    "session": "2026-11-03"
+  },
+  {
+   "close": 16.6,
+   "epoch": 1793780100,
+   "high": 19.22,
+   "low": 16.57,
+   "open": 19.2,
+   "session": "2026-11-04"
   }
  ],
  "key": "VIX",
  "note": "inverted - a RISE is risk-off",
- "pulled": "2026-11-04T12:42:38",
+ "pulled": "2026-11-05T10:54:38",
  "role": "risk-tone leg (LD-174)",
  "source": "TradingView (LD-5 as amended); Yahoo is never used",
  "symbol": "TVC:VIX"
