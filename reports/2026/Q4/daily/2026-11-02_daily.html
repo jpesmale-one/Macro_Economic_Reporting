@@ -49,7 +49,7 @@ footer{margin-top:36px; padding-top:18px; border-top:1px solid var(--rule);
 <div class="wrap">
 <p class="eyebrow">Macro Economic Reporting &middot; Daily &middot; session Monday 02 November 2026</p>
 <h1>What moved, and did it confirm us</h1>
-<p class="dek">The session ranked the eight currencies an average of <strong>2.25 places</strong> from where the weekly board put them, the widest by <strong>4</strong>. A reading near zero is a session that confirmed the bias; a wide one is the board and the market disagreeing.</p>
+<p class="dek">The session ranked the eight currencies an average of <strong>2.2 places</strong> from where the weekly board put them, the widest by <strong>4</strong>. A reading near zero is a session that confirmed the bias; a wide one is the board and the market disagreeing.</p>
 <h2>The session, ranked</h2>
 <div class="scroll"><table>
 <thead><tr><th>CCY</th><th class="num">Move</th><th class="num">Session</th><th class="num">Board</th><th>Catalyst</th></tr></thead><tbody>
@@ -78,16 +78,27 @@ footer{margin-top:36px; padding-top:18px; border-top:1px solid var(--rule);
 <h2>Against the weekly board</h2>
 <div class="scroll"><table>
 <thead><tr><th>CCY</th><th class="num">Board</th><th class="num">Session</th><th class="num">Gap</th><th>Read</th></tr></thead><tbody>
-<tr><td class="ccy">EUR</td><td class="num">#6</td><td class="num">#2</td><td class="num ">4</td><td>ranked low, traded high</td></tr>
-<tr><td class="ccy">JPY</td><td class="num">#2</td><td class="num">#6</td><td class="num ">4</td><td>ranked high, traded low</td></tr>
+<tr><td class="ccy">JPY</td><td class="num">#2</td><td class="num">#6</td><td class="num neg">4</td><td>ranked high, traded low</td></tr>
+<tr><td class="ccy">EUR</td><td class="num">#6</td><td class="num">#2</td><td class="num neg">4</td><td>ranked low, traded high</td></tr>
 <tr><td class="ccy">CHF</td><td class="num">#4</td><td class="num">#1</td><td class="num ">3</td><td>ranked low, traded high</td></tr>
 </tbody></table></div>
+<h2>Risk on or risk off?</h2>
+<p><strong class="">MIXED</strong> &mdash; <strong>2 of the 4 index legs</strong> point risk-on, 2 point risk-off, 0 flat. Score <strong>+0.00</strong> on a &minus;1 to &plus;1 scale.</p>
+<div class="scroll"><table>
+<thead><tr><th>Leg</th><th>Region</th><th class="num">Move</th><th class="num">Vote</th><th>Source</th></tr></thead><tbody>
+<tr><td><strong>S&P 500</strong></td><td>United States</td><td class="num neg">-0.91%</td><td class="num neg">-1</td><td class="ccy">TVC:SPX</td></tr>
+<tr><td><strong>Japan 225</strong></td><td>Asia</td><td class="num pos">+0.17%</td><td class="num pos">+1</td><td class="ccy">TVC:NI225</td></tr>
+<tr><td><strong>DAX</strong></td><td>Europe</td><td class="num pos">+0.69%</td><td class="num pos">+1</td><td class="ccy">XETR:DAX</td></tr>
+<tr><td><strong>Volatility (VIX)</strong></td><td>global</td><td class="num pos">+10.97%</td><td class="num neg">-1</td><td class="ccy">TVC:VIX (inverted)</td></tr>
+</tbody></table></div>
+<div class="note"><span class="lbl">HOW THIS IS READ</span>Equities rising and volatility falling is risk-on. <strong>VIX is inverted</strong> &mdash; a rise in it votes risk-off. The headline is a <strong>mean of directions, not a weighted sum</strong>, because the four markets do not share a trading window and are not on a common scale: a sum would let whichever index moved most set the tone, while counting votes asks the more robust question of how many legs agree. <strong>A leg moving less than 0.10% does not vote.</strong></div>
+<div class="note warn"><span class="lbl">&#9888; What this measure does NOT settle</span>Measured across every session on disk, a risk-on pair does tilt the right way &mdash; <strong>AUDJPY LONG runs 1.23 on risk-on days against 0.66 on risk-off</strong>, and NZDCHF LONG 1.27 against 0.78. <strong>But CADCHF inverts</strong> (0.93 vs 1.48), because <strong>CAD trades haven-like, not as a commodity currency</strong>: its mean strength is &minus;0.068 on risk-on sessions and &plus;0.071 on risk-off. So a CAD-versus-CHF trade is haven against haven, whatever the category table calls it. The role map is a closed set (F-3), so this is reported here rather than changed.</div>
 <h2>The set, this session</h2>
 <div class="scroll"><table>
 <thead><tr><th>Pair</th><th>Side</th><th>Category</th><th>Vs tone</th><th class="num">Favourable</th><th class="num">Adverse</th><th>State</th></tr></thead><tbody>
-<tr><td class="ccy">GBPNZD</td><td>LONG</td><td>RISK ON</td><td class=""><strong>MIXED</strong></td><td class="num">111.8</td><td class="num">4.0</td><td class="pos"><strong>CLEAN</strong></td></tr>
-<tr><td class="ccy">NZDJPY</td><td>SHORT</td><td>RISK OFF</td><td class=""><strong>MIXED</strong></td><td class="num">18.2</td><td class="num">31.2</td><td class=""><strong>DRIFT</strong></td></tr>
+<tr><td class="ccy">GBPNZD</td><td>LONG</td><td>EITHER</td><td class=""><strong>n/a</strong></td><td class="num">111.8</td><td class="num">4.0</td><td class="pos"><strong>CLEAN</strong></td></tr>
+<tr><td class="ccy">NZDJPY</td><td>SHORT</td><td>RISK OFF</td><td class=""><strong>n/a</strong></td><td class="num">18.2</td><td class="num">31.2</td><td class=""><strong>DRIFT</strong></td></tr>
 </tbody></table></div>
 <div class="note"><span class="lbl">WHAT THESE STATES MEAN</span><strong>CLEAN</strong> delivered a full day without being threatened &middot; <strong>EARNED</strong> delivered through a real fight &middot; <strong>BEATEN</strong> the opposite side paid out &middot; <strong>DRIFT</strong> neither side completed (LD-148). <strong>BEATEN is not a loss</strong> &mdash; it is a sign the bias is being contested.</div>
-<footer><p><strong>Macro Economic Reporting</strong> &middot; daily for the Monday 02 November session &middot; built 03 November 2026. Currency strength is each currency against the other seven, open to close, on OANDA daily bars from TradingView (LD-5). The board and the set are read from the published weekly and are <strong>never recomputed here</strong> &mdash; the weekly is the decision (LD-97). <strong>Observations only: no entries, stops, targets or sizing (LD-4).</strong></p></footer>
+<footer><p><strong>Macro Economic Reporting</strong> &middot; daily for the Monday 02 November session &middot; built 05 November 2026. Currency strength is each currency against the other seven, open to close, on OANDA daily bars from TradingView (LD-5). The board and the set are read from the published weekly and are <strong>never recomputed here</strong> &mdash; the weekly is the decision (LD-97). <strong>Observations only: no entries, stops, targets or sizing (LD-4).</strong></p></footer>
 </div>

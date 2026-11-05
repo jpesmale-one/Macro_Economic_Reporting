@@ -739,6 +739,59 @@ def s9d_rate_freshness():
                   'read older than a cycle')
 
 
+
+def s11c_session_closed():
+    """F-188: is the session being reported actually FINISHED?
+
+    *** THE DEFECT THIS EXISTS FOR, AND IT PUBLISHED.
+
+    The 3 Nov daily was built at ~15:00 PHT on 4 Nov and reported "a very
+    quiet session - six of the eight moved less than a tenth of a percent",
+    average rank gap 1.75, both set pairs DRIFT. Every one of those numbers
+    was wrong. Rebuilt the next morning the SAME session reads GBP +0.321%,
+    NZD -0.342%, average gap 3.5, and GBPNZD CLEAN at 1.152x ATR - a pair
+    that hit its target, published as one that went nowhere.
+
+    *** WHY NO EXISTING GUARD CAUGHT IT. OANDA daily bars open at 22:00 UTC
+    = 06:00 PHT the NEXT calendar day, so the bar labelled 2026-11-03 opens
+    on the morning of 4 Nov and closes on the morning of 5 Nov. At 15:00 PHT
+    on 4 Nov that row EXISTED and carried the right session label; it simply
+    held nine hours of trading instead of twenty-four. EURUSD read
+    o=1.1191 c=1.11884 mid-flight against o=1.1190 c=1.12289 final - 40 pips
+    on one leg.
+
+    session_strength() returns None only when the row is ABSENT, and the row
+    was present. A partial bar and a closed one are indistinguishable in the
+    file format: same label, same open, plausible close. That is what made
+    the output look like a quiet day rather than a broken build, and it is
+    the same shape as R-50 - a silent shrink, not an error.
+
+    *** THE TEST. A session is closed only once the NEXT session's bar has
+    opened. So require a bar strictly later than the reported session on
+    every MAJ leg; if the reported session is the newest row anywhere, the
+    build is reading a bar that is still being written.
+    """
+    import daily_report as _dr
+
+    day = os.environ.get('SESSION')
+    if not day:
+        return True, 'no SESSION set - nothing to check'
+    stale = []
+    for p in _dr.MAJ:
+        b = _dr.bars(p)
+        if not b:
+            stale.append('%s: no bars' % p)
+            continue
+        if not any(x[0] > day for x in b):
+            stale.append('%s: newest bar IS %s' % (p, b[-1][0]))
+    if stale:
+        return False, ('session %s is still OPEN on %d leg(s): %s - a '
+                       'partial bar carries the right label and the wrong '
+                       'numbers (F-188)'
+                       % (day, len(stale), ', '.join(stale[:3])))
+    return True, 'session %s closed on all %d legs' % (day, len(_dr.MAJ))
+
+
 STEPS = [
     ('1', 'capture is fresh (<=3 days)', s1_capture),
     ('2', 'no release lost to a gap (R-42)', s2_gaps),
@@ -758,6 +811,7 @@ STEPS = [
     ('10', 'high-impact rows can flag (F-135)', s10_high_impact),
     ('11', 'selected pairs have OANDA bars (LD-145)', s11_pair_bars),
     ('11b', 'all 28 crosses for LD-162 (R-50)', s11b_pair_grid),
+    ('11c', 'reported session has CLOSED (F-188)', s11c_session_closed),
 ]
 
 PAGE_STEPS = """
