@@ -1,14 +1,6 @@
 {
  "bars": [
   {
-   "close": 24037.33,
-   "epoch": 1756710000,
-   "high": 24046.85,
-   "low": 23969.36,
-   "open": 24012.04,
-   "session": "2025-09-01"
-  },
-  {
    "close": 23487.33,
    "epoch": 1756796400,
    "high": 23990.81,
@@ -2399,11 +2391,19 @@
    "low": 25876.82,
    "open": 25888.93,
    "session": "2026-11-04"
+  },
+  {
+   "close": 26325.01,
+   "epoch": 1793865600,
+   "high": 26692.9,
+   "low": 26223.34,
+   "open": 26449.79,
+   "session": "2026-11-05"
   }
  ],
  "key": "DAX",
  "note": "",
- "pulled": "2026-11-05T10:54:36",
+ "pulled": "2026-11-06T15:58:17",
  "role": "risk-tone leg (LD-174)",
  "source": "TradingView (LD-5 as amended); Yahoo is never used",
  "symbol": "XETR:DAX"
