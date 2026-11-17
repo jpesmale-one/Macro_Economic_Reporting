@@ -70,6 +70,32 @@ _NOT = (
     ('Inflation Rate YoY', 'core inflation'),      # core is its own series
     ('Inflation Rate YoY', 'ex-food and energy'),  # JP core-core
     ('Inflation Rate MoM', 'food inflation'),
+    # F-191 - TWO SWISS UNEMPLOYMENT SERIES, ONE WHITELIST NAME.
+    #
+    # Switzerland publishes BOTH a seasonally adjusted rate and an n.s.a.
+    # one. TE only ever exposed the n.s.a. figure, so a single row matched
+    # and nothing was ambiguous. biquote exposes both, and 'unemployment
+    # rate' and 'unemployment rate n.s.a.' BOTH satisfy the token subset
+    # test - they differ only by a suffix the matcher cannot see, which is
+    # F-119's shape exactly.
+    #
+    # WHICH ONE IS OURS, established from the record rather than chosen:
+    # the fact table holds CH Unemployment Rate 3%, and every TE capture
+    # that carried an actual gave 3% - the N.S.A. series. The s.a. series
+    # printed 3.1 on the same day. So the s.a. row is the intruder, and
+    # excluding it KEEPS the series we have always scored.
+    #
+    # Dropping the wrong one here would silently re-base CHF's employment
+    # row by 0.1pp without any gate noticing, because both are plausible
+    # unemployment rates.
+    #
+    # *** AND THE OBVIOUS GUARD IS THE WRONG ONE. 's.a.' is a SUBSTRING of
+    # 'n.s.a.', so excluding 's.a.' drops the n.s.a. row - the one we score -
+    # and keeps the plain 'unemployment rate', which IS the adjusted series.
+    # Exactly inverted. Caught by testing all four spellings; the fix is to
+    # name the adjusted row by a token the n.s.a. row does not contain.
+    ('Unemployment Rate', ' s.a.'),                # CH seasonally adjusted
+    ('Unemployment Rate', 'seasonally adjusted'),
     ('Inflation Rate MoM', 'core inflation'),
     ('Inflation Rate YoY Final', 'core inflation'),
 )
