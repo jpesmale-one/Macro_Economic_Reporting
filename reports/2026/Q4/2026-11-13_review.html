@@ -1,0 +1,246 @@
+<title>The Week Nobody Was Watching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#FAF9F7; --card:#FFFFFE; --ink:#12151C; --ink-2:#4A515C;
+  --ink-3:#79818C; --rule:#E3E0D9; --rule-2:#CFCBC2;
+  --accent:#2F6B4F; --accent-soft:#E6F0EA;
+  --good:#3F7F5C; --good-soft:#E4F0E8;
+  --bad:#B4514D; --bad-soft:#FAE8E7;
+  --shadow:0 1px 2px rgba(18,21,28,.05), 0 6px 20px rgba(18,21,28,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#12151C; --card:#191D26; --ink:#EAEBED; --ink-2:#A5ACB7;
+    --ink-3:#767E8A; --rule:#252A34; --rule-2:#343B46;
+    --accent:#6FB287; --accent-soft:#16271E;
+    --good:#6FB287; --good-soft:#16271E;
+    --bad:#D2726E; --bad-soft:#2B1917;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#12151C; --card:#191D26; --ink:#EAEBED; --ink-2:#A5ACB7;
+  --ink-3:#767E8A; --rule:#252A34; --rule-2:#343B46;
+  --accent:#6FB287; --accent-soft:#16271E;
+  --good:#6FB287; --good-soft:#16271E;
+  --bad:#D2726E; --bad-soft:#2B1917;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font:400 16px/1.62 "IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+  margin:0; padding:0 18px 80px; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:780px; margin:0 auto}
+
+header{padding:44px 0 24px; border-bottom:2px solid var(--ink)}
+.eyebrow{
+  font:500 11px/1 "IBM Plex Mono",ui-monospace,monospace;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3);
+  margin:0 0 14px;
+}
+h1{
+  font:600 clamp(31px,7.2vw,46px)/1.06 Newsreader,Georgia,serif;
+  letter-spacing:-.018em; margin:0 0 10px; text-wrap:balance;
+}
+.dek{
+  font:400 clamp(16px,3.4vw,19px)/1.48 Newsreader,Georgia,serif;
+  color:var(--ink-2); margin:0; max-width:58ch; text-wrap:balance;
+}
+
+.score{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(118px,1fr));
+  gap:1px; background:var(--rule); border:1px solid var(--rule);
+  margin:26px 0 0;
+}
+.tile{background:var(--card); padding:13px 14px 14px}
+.tile .k{
+  font:500 10px/1.3 "IBM Plex Mono",monospace; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:7px;
+}
+.tile .v{
+  font:600 23px/1 "IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em; display:block;
+}
+.tile .s{font:400 11px/1.3 "IBM Plex Sans",sans-serif; color:var(--ink-3); display:block; margin-top:5px}
+.v.good{color:var(--good)} .v.bad{color:var(--bad)} .v.warn{color:var(--accent)}
+
+section{padding-top:42px}
+h2{
+  font:600 12px/1 "IBM Plex Mono",ui-monospace,monospace;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--accent);
+  margin:0 0 5px;
+}
+h2 + .sub{
+  font:400 clamp(20px,4.4vw,27px)/1.26 Newsreader,Georgia,serif;
+  margin:0 0 18px; text-wrap:balance; max-width:48ch;
+}
+h3{font:600 15px/1.35 "IBM Plex Sans",sans-serif; margin:30px 0 9px; letter-spacing:-.01em}
+h4{
+  font:600 11px/1 "IBM Plex Mono",monospace; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); margin:22px 0 8px;
+}
+p{margin:0 0 14px; max-width:66ch}
+strong{font-weight:600}
+em{font-style:italic; color:var(--ink-2)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.92em}
+
+.scroll{overflow-x:auto; margin:0 0 16px; -webkit-overflow-scrolling:touch}
+table{border-collapse:collapse; width:100%; min-width:max-content;
+  font:400 13.5px/1.42 "IBM Plex Sans",sans-serif}
+th{
+  font:600 10.5px/1.2 "IBM Plex Mono",monospace; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-3); text-align:left;
+  padding:0 13px 8px 0; border-bottom:1px solid var(--rule-2); white-space:nowrap;
+}
+td{padding:9px 13px 9px 0; border-bottom:1px solid var(--rule); white-space:nowrap; vertical-align:baseline}
+tbody tr:last-child td{border-bottom:none}
+.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; text-align:right}
+th.num{text-align:right}
+.pos{color:var(--good); font-weight:500}
+.neg{color:var(--bad); font-weight:500}
+.zero{color:var(--ink-3)}
+.ccy{font-family:"IBM Plex Mono",monospace; font-weight:600}
+tr.hi td{background:var(--accent-soft)}
+
+.note{border-left:2px solid var(--rule-2); padding:3px 0 3px 15px; margin:0 0 18px;
+  color:var(--ink-2); font-size:14.5px; max-width:66ch}
+.note strong{color:var(--ink)}
+.note.win{border-left-color:var(--good)}
+.note.fail{border-left-color:var(--bad)}
+.note .lbl{display:block; font:600 10.5px/1 "IBM Plex Mono",monospace;
+  letter-spacing:.11em; margin-bottom:7px; color:var(--ink-3)}
+.note.win .lbl{color:var(--good)}
+.note.fail .lbl{color:var(--bad)}
+
+ol.qa{margin:0; padding:0; list-style:none;
+  display:flex; flex-direction:column; gap:20px}
+ol.qa > li{padding-left:0}
+.q{font:600 13px/1.4 "IBM Plex Sans",sans-serif; color:var(--accent); margin:0 0 7px}
+.q .tag{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.06em;
+  color:var(--ink-3); margin-right:8px}
+
+pre.box{
+  font:500 12px/1.65 "IBM Plex Mono",monospace; background:var(--card);
+  border:1px solid var(--rule); border-left:2px solid var(--accent);
+  padding:13px 15px; margin:0 0 18px; overflow-x:auto; color:var(--ink-2);
+}
+pre.box b{color:var(--ink); font-weight:600}
+
+.verdict{border:1px solid var(--rule-2); background:var(--card);
+  padding:20px 22px; margin:14px 0 0; box-shadow:var(--shadow)}
+.verdict h3{margin-top:0}
+.verdict p:last-child{margin-bottom:0}
+
+footer{margin-top:46px; padding-top:20px; border-top:1px solid var(--rule);
+  font-size:13px; color:var(--ink-3)}
+footer p{max-width:none}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{font:500 12px/1 "IBM Plex Mono",ui-monospace,monospace;
+      letter-spacing:.02em;padding:6px 10px;border-radius:999px;
+      background:var(--accent-soft);color:var(--accent);
+      border:1px solid var(--rule-2);white-space:nowrap}
+.chip.q{background:transparent;color:var(--ink-3)}
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Macro Economic Reporting &middot; Price Review &middot;
+     9&ndash;13 Nov 2026</p>
+  <h1>The Week Nobody Was Watching</h1>
+  <p class="dek"><strong>No weekly edition governed this week, and no
+  calendar was captured during it.</strong> So this is not a retrospective and
+  nothing here is scored: it is what price did, and how the previous week's
+  set would have fared had it simply been carried forward. The answer is
+  that it decayed &mdash; <strong>GBPNZD 0.81 and NZDJPY 0.96</strong>, both
+  below break-even, against 1.98 and 1.51 the week before.</p>
+  <div class="chips">
+    <span class="chip q">no board</span>
+    <span class="chip q">no catalysts</span>
+    <span class="chip">prices verified</span>
+    <span class="chip">USD +1.28% top</span>
+  </div>
+</header>
+
+<div class="note bad"><span class="lbl">&#9888; Read this before the tables
+</span>There is <strong>no board on this page and no scores</strong>, because
+neither can be sourced honestly. No weekly was published for 9&ndash;13 Nov,
+and the newest calendar capture is <strong>6 Nov</strong> &mdash; attempts on
+17 Nov returned pages holding one table row against the usual 603. Scoring
+the week from today's data would pin a forward-looking calibrator to a
+vintage eleven days after the fact, which is precisely the drift F-183b
+forbids. <strong>Prices and index legs are fully sourced and verified</strong>
+(LD-5); everything else is absent and marked as absent, per F-73.</div>
+
+<section>
+<h2>&sect;1 &mdash; What moved</h2>
+<p>Currency strength is each currency against the other seven, open to close,
+summed across the five sessions.</p>
+<div class="scroll"><table>
+<thead><tr><th>CCY</th><th class="num">Week</th><th class="num">Mon 9</th><th class="num">Tue 10</th><th class="num">Wed 11</th><th class="num">Thu 12</th><th class="num">Fri 13</th></tr></thead><tbody><tr><td class="ccy"><strong>USD</strong></td><td class="num mono good"><strong>+1.277%</strong></td><td class="num mono bad">-0.52</td><td class="num mono good">+0.61</td><td class="num mono good">+0.59</td><td class="num mono good">+0.33</td><td class="num mono good">+0.26</td></tr><tr><td class="ccy"><strong>JPY</strong></td><td class="num mono good"><strong>+0.397%</strong></td><td class="num mono bad">-0.23</td><td class="num mono good">+0.06</td><td class="num mono bad">-0.06</td><td class="num mono good">+0.27</td><td class="num mono good">+0.36</td></tr><tr><td class="ccy"><strong>NZD</strong></td><td class="num mono good"><strong>+0.330%</strong></td><td class="num mono good">+0.58</td><td class="num mono good">+0.20</td><td class="num mono bad">-0.04</td><td class="num mono bad">-0.21</td><td class="num mono bad">-0.20</td></tr><tr><td class="ccy"><strong>GBP</strong></td><td class="num mono good"><strong>+0.301%</strong></td><td class="num mono good">+0.17</td><td class="num mono bad">-0.08</td><td class="num mono good">+0.09</td><td class="num mono good">+0.04</td><td class="num mono good">+0.08</td></tr><tr><td class="ccy"><strong>CAD</strong></td><td class="num mono good"><strong>+0.221%</strong></td><td class="num mono bad">-0.47</td><td class="num mono good">+0.11</td><td class="num mono good">+0.15</td><td class="num mono good">+0.23</td><td class="num mono good">+0.21</td></tr><tr><td class="ccy"><strong>EUR</strong></td><td class="num mono good"><strong>+0.220%</strong></td><td class="num mono good">+0.21</td><td class="num mono good">+0.11</td><td class="num mono bad">-0.08</td><td class="num mono good">+0.01</td><td class="num mono bad">-0.02</td></tr><tr><td class="ccy"><strong>AUD</strong></td><td class="num mono bad"><strong>-0.254%</strong></td><td class="num mono good">+0.29</td><td class="num mono bad">-0.26</td><td class="num mono good">+0.29</td><td class="num mono bad">-0.34</td><td class="num mono bad">-0.25</td></tr><tr><td class="ccy"><strong>CHF</strong></td><td class="num mono bad"><strong>-1.214%</strong></td><td class="num mono bad">-0.55</td><td class="num mono bad">-0.14</td><td class="num mono bad">-0.35</td><td class="num mono good">+0.01</td><td class="num mono bad">-0.18</td></tr></tbody></table></div>
+<div class="note"><span class="lbl">The shape of it</span>
+<strong>USD led and CHF trailed</strong> &mdash; close to a straight reversal
+of 2&ndash;6 Nov, when CHF topped the table and the havens were bid. The two
+commodity currencies stayed weak: AUD negative again, NZD positive on the
+week only because of a single strong Monday.</div>
+</section>
+
+<section>
+<h2>&sect;2 &mdash; Risk tone, and where it turned</h2>
+<div class="scroll"><table>
+<thead><tr><th>Session</th><th class="num">SPX</th><th class="num">NI225</th>
+<th class="num">DAX</th><th class="num">VIX</th><th>Tone</th></tr></thead>
+<tbody><tr><td><strong>Mon 9</strong></td><td class="num mono good">+1.72%</td><td class="num mono good">+1.41%</td><td class="num mono good">+1.75%</td><td class="num mono good">-20.53%</td><td class="good">RISK ON <span class="mono">+1.00</span></td></tr><tr><td><strong>Tue 10</strong></td><td class="num mono good">+0.10%</td><td class="num mono good">+1.83%</td><td class="num mono bad">-0.76%</td><td class="num mono good">-1.57%</td><td class="good">mild RISK ON <span class="mono">+0.50</span></td></tr><tr><td><strong>Wed 11</strong></td><td class="num mono good">+0.43%</td><td class="num mono good">+1.19%</td><td class="num mono good">+0.15%</td><td class="num mono good">-7.07%</td><td class="good">RISK ON <span class="mono">+1.00</span></td></tr><tr><td><strong>Thu 12</strong></td><td class="num mono good">+0.55%</td><td class="num mono bad">-1.07%</td><td class="num mono bad">-0.52%</td><td class="num mono bad">+1.80%</td><td class="bad">mild RISK OFF <span class="mono">-0.50</span></td></tr><tr><td><strong>Fri 13</strong></td><td class="num mono bad">-0.72%</td><td class="num mono bad">-0.13%</td><td class="num mono good">+0.20%</td><td class="num mono bad">+2.72%</td><td class="bad">mild RISK OFF <span class="mono">-0.50</span></td></tr></tbody></table></div>
+<p>Risk-on through Wednesday, then off for the last two sessions. That turn
+is visible in the currency table too: JPY is the strongest currency on both
+Thursday and Friday having been negative on Monday.</p>
+</section>
+
+<section>
+<h2>&sect;3 &mdash; What the old set would have done</h2>
+<p>The 2&ndash;6 Nov set carried forward, graded on the same rules
+(LD-148). <strong>This is a counterfactual, not a record of positions</strong>
+&mdash; no weekly selected these pairs for this week, and the question is
+only what a stale board would have been worth.</p>
+<div class="scroll"><table>
+<thead><tr><th>Pair</th><th>Session</th><th class="num">Favourable</th>
+<th class="num">Adverse</th><th class="num">ATR</th><th>State</th>
+</tr></thead><tbody><tr><td class="ccy" rowspan="6"><strong>GBPNZD</strong><br><span class="mono">LONG</span></td><td>Mon 9</td><td class="num mono">78.7</td><td class="num mono">130.1</td><td class="num mono dim">159.3</td><td class="bad"><strong>BEATEN</strong></td></tr><tr><td>Tue 10</td><td class="num mono">15.3</td><td class="num mono">69.1</td><td class="num mono dim">169.5</td><td class=""><strong>DRIFT</strong></td></tr><tr><td>Wed 11</td><td class="num mono">66.8</td><td class="num mono">33.1</td><td class="num mono dim">168.2</td><td class=""><strong>DRIFT</strong></td></tr><tr><td>Thu 12</td><td class="num mono">51.3</td><td class="num mono">61.1</td><td class="num mono dim">166.5</td><td class=""><strong>DRIFT</strong></td></tr><tr><td>Fri 13</td><td class="num mono">61.8</td><td class="num mono">43.6</td><td class="num mono dim">163.3</td><td class=""><strong>DRIFT</strong></td></tr><tr><td colspan="4"><strong>GBPNZD total</strong></td><td class="num mono"><strong>273.9 / 337.0</strong></td><td class="bad"><strong>ratio 0.81</strong></td></tr><tr><td class="ccy" rowspan="6"><strong>NZDJPY</strong><br><span class="mono">SHORT</span></td><td>Mon 9</td><td class="num mono">29.2</td><td class="num mono">76.8</td><td class="num mono dim">80.6</td><td class="bad"><strong>BEATEN</strong></td></tr><tr><td>Tue 10</td><td class="num mono">16.6</td><td class="num mono">37.4</td><td class="num mono dim">86.5</td><td class=""><strong>DRIFT</strong></td></tr><tr><td>Wed 11</td><td class="num mono">13.0</td><td class="num mono">29.4</td><td class="num mono dim">86.4</td><td class=""><strong>DRIFT</strong></td></tr><tr><td>Thu 12</td><td class="num mono">49.7</td><td class="num mono">21.9</td><td class="num mono dim">78.9</td><td class=""><strong>DRIFT</strong></td></tr><tr><td>Fri 13</td><td class="num mono">57.3</td><td class="num mono">7.0</td><td class="num mono dim">78.3</td><td class=""><strong>DRIFT</strong></td></tr><tr><td colspan="4"><strong>NZDJPY total</strong></td><td class="num mono"><strong>165.8 / 172.5</strong></td><td class="bad"><strong>ratio 0.96</strong></td></tr></tbody></table></div>
+<div class="note warn"><span class="lbl">&#9888; The finding, such as it is
+</span>Both carried pairs fell <strong>below break-even</strong> &mdash;
+0.81 and 0.96, against 1.98 and 1.51 the week before &mdash; and nine of the
+ten sessions were DRIFT or BEATEN, with not one CLEAN. The set was built on a
+board whose top half had already inverted during 2&ndash;6 Nov; carried into a
+week that reversed again, it stopped working. <strong>This is the cost of a
+stale board stated in pips</strong>, and it is the one thing this page can
+show that a scored retrospective could not.</div>
+</section>
+
+<section>
+<h2>&sect;4 &mdash; Method and limits</h2>
+<p>Prices are OANDA daily bars via TradingView (LD-5 as amended; Yahoo is
+never a fallback). Index legs are TVC and XETR. Every figure is computed at
+build time, not typed.</p>
+<div class="note bad"><span class="lbl">The data behind this page was wrong
+once, and was rebuilt</span>The first refresh for this build returned bars
+whose open had been replaced by a smoothed value equal to the bar's own low
+in <strong>3667 of 8400 cases (44%%)</strong>, against 122 in the committed
+baseline. Carried into a grading, that silently converts adverse excursion to
+zero and turns BEATEN days into CLEAN ones. The bars were restored from the
+last verified commit, re-pulled, and checked at <strong>1%% across all 8400
+</strong> before anything here was computed. <span class="mono">pull_bars.py
+</span> now refuses any pull above 20%% (F-190).</div>
+<p class="fine">Observations only: no entries, stops, targets or sizing
+(LD-4). No board, no scores, no selection &mdash; this page describes a week
+the reporting did not cover.</p>
+</section>
+
+</div>

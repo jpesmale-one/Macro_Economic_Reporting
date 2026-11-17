@@ -63,9 +63,22 @@ def hot(ccy, name):
         return 'Interest_Rate' in HIGH_IMPACT
     return CAT.get((ccy, name)) in HIGH_IMPACT
 
-SP = ('C:/Users/jpesm/AppData/Local/Temp/claude/'
-      'c--Users-jpesm-OneDrive-Documents-GitHub/'
-      '16c8f514-dc2c-4587-b6a0-4fa0ff0b7ba8/scratchpad/')
+# *** F-189 - SEE gen_daily.py. This was pinned to ONE conversation's
+# scratchpad, so every later session failed here - and step 10 of the build
+# check (F-135) imports this module, so a dead temp path reported itself as
+# a FAILED GATE rather than as a missing directory. A guard that cannot run
+# is worse than no guard, because it looks like a finding.
+import os as _os                     # this module had no REPO/HERE of its own
+_REPO = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+SP = (_os.environ.get('SCRATCHPAD')
+      or _os.environ.get('CLAUDE_SCRATCHPAD')
+      or _os.path.join(_REPO, 'build'))
+if not SP.endswith(('/', '\\')):
+    SP += '/'
+try:
+    os.makedirs(SP)
+except OSError:
+    pass
 # *** F-170 - THE CAPTURE WAS PINNED TO 2026-10-18, LAST WEEK'S SUNDAY.
 # Advancing START/END moved the window but the page kept scoring the
 # calibrator off the PREVIOUS edition's capture, so R-49 re-derived on the
