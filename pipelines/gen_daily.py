@@ -31,9 +31,27 @@ import risk_index as RI
 import fact_tables as ft
 import pair_select as ps
 
-SP = ('C:/Users/jpesm/AppData/Local/Temp/claude/'
-      'c--Users-jpesm-OneDrive-Documents-GitHub/'
-      '16c8f514-dc2c-4587-b6a0-4fa0ff0b7ba8/scratchpad/')
+# *** F-189 - THE SCRATCHPAD PATH WAS PINNED TO ONE SESSION AND BROKE.
+#
+# This was a literal naming one conversation's scratchpad, which exists only
+# for that session. Every later run died with FileNotFoundError AFTER having
+# already written the real report - so the page was fine and the build
+# looked failed, which is the worst way round: it invites a rerun of work
+# that already succeeded, or a "fix" to a generator that is not broken.
+#
+# Now: honour SCRATCHPAD/CLAUDE_SCRATCHPAD when set, else fall back to the
+# repo's own build/ directory, which always exists. The copy is a
+# convenience for the publish step (see F-162 below), never the source of
+# truth - reports/ is - so a missing scratchpad must never fail a build.
+SP = (os.environ.get('SCRATCHPAD')
+      or os.environ.get('CLAUDE_SCRATCHPAD')
+      or os.path.join(REPO, 'build'))
+if not SP.endswith(('/', '\\')):
+    SP += '/'
+try:
+    os.makedirs(SP)
+except OSError:
+    pass
 
 HEAD = u'''<title>%(title)s</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
