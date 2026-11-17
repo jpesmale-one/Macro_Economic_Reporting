@@ -15,7 +15,9 @@
 <script>(function () { function h(n) { return new RegExp('(?:^|;\\s*)' + n.replace(/\./g, '\\.') + '=').test(document.cookie); } if (h('TEIsLoggedIn') || !h('.ASPXAUTH')) return; var e = '; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/', s = ['', '; domain=tradingeconomics.com', '; domain=.tradingeconomics.com'];['.ASPXAUTH', 'TEUsername', 'TENickName', 'TERole', 'TEUserInfo', 'TEName', 'TEUserEmail'].forEach(function (n) { if (!h(n)) return; s.forEach(function (d) { document.cookie = n + '=' + e + d; }); }); document.cookie = 'TEIsLoggedIn=false; domain=.tradingeconomics.com; path=/; SameSite=Lax; Secure; max-age=31536000'; })();</script>
 <script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20261031000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://charts-api.tradingeconomics.com'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/new-zealand/business-confidence'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function() { try { var t = localStorage.getItem('TETheme'); if (t === 'system') return window.matchMedia('(prefers-color-scheme: dark)').matches; if (t === 'light' || t === 'dark') return t === 'dark'; return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsKey = '20260324:loboantunes'; var TEChartsToken = ''; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var TEChartsPath = '/new-zealand/business-confidence'; var isCopyright = false;var TEStreamId= '';</script>
 
-<script>var TEAuth = (function () { var KEY = 'te-token', mem = null, pending = null; function now() { return Math.floor(Date.now() / 1000) } function fresh(c) { return c && c.token && now() < c.refresh - 60 } function cached() { if (fresh(mem)) return mem; try { var c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (fresh(c)) return mem = c } catch (e) { } return null } function load() { if (!pending) pending = fetch('/token', { method: 'POST', credentials: 'same-origin', cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json() }).then(function (c) { mem = c; try { localStorage.setItem(KEY, JSON.stringify(c)) } catch (e) { } return c.token }).catch(function (e) { console.log('TEAuth: /token failed', e); return '' }).then(function (t) { pending = null; return t }); return pending } return { ready: function () { var c = cached(); return c ? Promise.resolve(c.token) : load() }, current: function () { var c = cached(); return c ? c.token : '' }, refresh: function () { mem = null; try { localStorage.removeItem(KEY) } catch (e) { } return load() } } })();</script>
+<script>var TEWaf = (function () { var sdk = null, counts = {}, mode = (new URLSearchParams(location.search).get('wafsim') || '').toLowerCase().trim(), dbg = location.host.indexOf('localhost') > -1 || location.href.indexOf('debug') > -1; function log() { if (dbg) console.log.apply(console, ['[WAF]'].concat([].slice.call(arguments))) } function pathOf(url) { return new URL(url, location.href).pathname } function fake(status, action) { return Promise.resolve(new Response('', { status: status, headers: action ? { 'x-amzn-waf-action': action } : {} })) } function sim(url, real) { var m = mode, part = pathOf(url); if (!m) return real(); var n = counts[part] = (counts[part] || 0) + 1, r = m === 'captcha' ? fake(405, 'captcha') : m === 'block' ? fake(403) : m === 'error' ? fake(500) : m === 'challenge' && n === 1 ? fake(202, 'challenge') : m === 'challenge-fail' ? (n === 1 ? fake(202, 'challenge') : fake(405, 'captcha')) : null; console.warn('[WAF] wafsim ' + part + ' #' + n + ' ' + m + (r ? ': faked' : ': real request')); return r || (m === 'slow' ? new Promise(function (ok) { setTimeout(ok, 4000) }).then(function () { return real() }) : real()) } function load() { if (window.AwsWafIntegration) return Promise.resolve(); if (!sdk) sdk = new Promise(function (ok, fail) { var s = document.createElement('script'); s.async = true; s.src = 'https://91ba28030c9c.edge.sdk.awswaf.com/91ba28030c9c/' + (/^(es|pt|tr|zh|de|ko|ru|id|ar|pl|fr|jp|it)\./.test(location.hostname) ? 'dabb42b514e0' : '0b02aacc862d') + '/challenge.js'; s.onload = ok; s.onerror = function () { sdk = null; fail(new Error('WAF SDK failed to load')) }; document.head.appendChild(s) }); return sdk } function challenged(r) { return r.status === 202 && /challenge/i.test(r.headers.get('x-amzn-waf-action') || '') } return { sdk: load, challenged: challenged, sim: sim, simulating: function () { return !!mode }, fetch: function (url, opt) { var part = pathOf(url), t0 = Date.now(), get = function (token) { var o = opt || {}; if (token) { o = Object.assign({}, o); var h = new Headers(o.headers || {}); h.set('x-aws-waf-token', token); o.headers = h } return sim(url, function () { return fetch(url, o) }) }, say = function (what, r) { log(part, what, r.status, r.headers.get('x-amzn-waf-action') || '', (Date.now() - t0) + 'ms', url); return r }; return get().then(function (r) { say('response', r); if (!challenged(r)) return r; log(part, 'WAF challenge: loading SDK + getToken'); var waits = [0, 1000, 2000, 3000, 2000]; function retry(i) { return new Promise(function (ok) { setTimeout(ok, waits[i]) }).then(function () { return AwsWafIntegration.getToken() }).then(function (token) { log(part, 'retry ' + (i + 1) + ' with the SDK token in x-aws-waf-token'); return get(token) }).then(function (r2) { if (challenged(r2) && i + 1 < waits.length) return retry(i + 1); return say(challenged(r2) ? 'still challenged, giving up' : 'retry response', r2) }) } return load().then(function () { return retry(0) }) }, function (e) { log(part, 'failed', e); throw e }) }, log: log } })();</script>
+
+<script>var TEAuth = (function () { var KEY = 'te-token', mem = null, pending = null; function now() { return Math.floor(Date.now() / 1000) } function fresh(c) { return c && c.token && now() < c.refresh - 60 } function cached() { if (TEWaf.simulating()) return null; if (fresh(mem)) return mem; try { var c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (fresh(c)) return mem = c } catch (e) { } return null } function post() { return TEWaf.fetch('/token', { method: 'POST', credentials: 'same-origin', cache: 'no-store' }).then(function (r) { if (r.status !== 200) throw new Error('HTTP ' + r.status); return r.json() }) } function load() { if (!pending) pending = post().then(function (c) { mem = c; try { localStorage.setItem(KEY, JSON.stringify(c)) } catch (e) { } return c.token }).catch(function (e) { console.log('TEAuth: /token failed', e); return '' }).then(function (t) { pending = null; TEWaf.log('/token', t ? 'te-token fetched' : 'no te-token (io connects without one)'); return t }); return pending } return { ready: function () { var c = cached(); if (c) TEWaf.log('/token', 'te-token from cache, refresh at', new Date(c.refresh * 1000).toISOString()); return c ? Promise.resolve(c.token) : load() }, current: function () { var c = cached(); return c ? c.token : '' }, refresh: function () { mem = null; try { localStorage.removeItem(KEY) } catch (e) { } return load() } } })();</script>
 <script type="text/javascript">var DEBUG = false; if (window.location.host.indexOf('localhost') > -1) DEBUG = true; else if (window.location.href.indexOf('debug') > -1) DEBUG = true; if (!DEBUG) { if (!window.console) window.console = {}; var methods = ["log", "debug", "info"]; for (var i = 0; i < methods.length; i++) { console[methods[i]] = function () { }; } }</script>
 <script>window.googletag = window.googletag || { cmd: [] };</script>
 <link rel="icon" href="https://d3e5kp2e91w0k0.cloudfront.net/favicon.svg" type="image/svg+xml" />
@@ -30,7 +32,7 @@
 <body>
     <script>(function(){var c=false;try{var t=localStorage.getItem('TETheme');if(t!=='light'&&t!=='dark'&&t!=='system')t=localStorage.getItem('IsDarkMode')==='true'?'dark':'light';c=t==='system'?window.matchMedia('(prefers-color-scheme: dark)').matches:t==='dark';localStorage.setItem('IsDarkMode',String(c));}catch(e){}if(c)document.body.classList.add('dark-theme');window.IsDarkMode=c;})();</script>
     <form method="post" action="/new-zealand/business-confidence" id="aspnetForm">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="c32j+8ywmX9DbJbY1Vovd0RG0eKJcqwWE9bZC53d/cnwgQVEEgn1VhnmB0p5Xt4oH5qWuqMZ7BQ1nz2dlzWGQUnhv6s=" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="IvDYF7dJTvp3/myeJg0kRqFGQbnsCzlq6n4HvuRbfgHAtq7O6Mh2oVW9IlD4OqnWOz5AgxtdaP++lzEepYKftxeqlDs=" />
 
 <script type="text/javascript" language="Javascript">var isCopyright = false;</script><script type="text/javascript" language="Javascript">var TESymbol = 'NZIEBCAC'; console.log('TESymbol:', TESymbol);var TELanguage = ''; console.log('TELanguage:', TELanguage);TELastUpdate = '202610290051'; console.log('TELastUpdate:', TELastUpdate);TEChart = 'EC'; console.log('TEChart:', TEChart);var TEAlertsName= 'New Zealand Business Confidence'; console.log('TEAlertsName:', TEAlertsName);</script><script type="text/javascript" language="Javascript">TEChartUrl = 'https://d3fy651gv2fhd3.cloudfront.net/charts/new-zealand-business-confidence.png?s=nziebcac&v=202610290051V20230410';TECountry = 'New Zealand';TECategory = 'Business Confidence';TEType = 'te';TEFrequency = 'Monthly';TEForecast =   [38.00,25.00,30.00,34.00];</script><script type="text/javascript" language="Javascript">TENextCalendarID = '401328'; console.log('TENextCalendarID:', TENextCalendarID);TECalendarActual = ''; console.log('TECalendarActual:', TECalendarActual);</script>
 <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="9ED6FB81" />
@@ -1006,13 +1008,13 @@
                                     Bankruptcies
                                 </a>
                             </td>
-                            <td>78.00</td>
+                            <td>59.00</td>
                             
-                            <td>69.00</td>
+                            <td>78.00</td>
                             
                             <td>
                                 Individuals</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1300,34 +1302,34 @@
                 <div class="card-header">Related</div>
                 <div class="card-body">
                     
-                            <div class="news-link"><a href='/new-zealand/stock-market'>NZX 50 Ends 0.7% Lower but Posts 2nd Weekly Gain</a></div>
+                            <div class="news-link"><a href='/new-zealand/stock-market'>NZX 50 Ends Little Changed, Holds at Record High</a></div>
                             
                         
-                            <div class="news-link"><a href='/new-zealand/currency'>New Zealand Dollar Slides Ahead of Election</a></div>
+                            <div class="news-link"><a href='/new-zealand/inflation-expectations'>New Zealand 2-Year Inflation Outlook Edges Up to 2.36%</a></div>
                             
                         
-                            <div class="news-link"><a href='/new-zealand/government-bond-yield'>New Zealand 10-Year Yield Falls to August Lows</a></div>
+                            <div class="news-link"><a href='/new-zealand/currency'>New Zealand Dollar Hovers at 2009 Lows</a></div>
                             
                         
-                            <div class="news-link"><a href='/new-zealand/global-dairy-trade-price-index'>Global Dairy Prices Rise for Second Consecutive Auction</a></div>
+                            <div class="news-link"><a href='/new-zealand/interest-rate'>RBNZ Flags Rising Financial Stability Risks Amid Geopolitical Tensions</a></div>
                             
                         
-                            <div class="news-link"><a href='/new-zealand/unemployment-rate'>New Zealand Jobless Rate Hits 11-Year High</a></div>
+                            <div class="news-link"><a href='/new-zealand/food-inflation'>New Zealand Food Inflation Eases Slightly in October</a></div>
                             
                         
-                            <div class="news-link"><a href='/new-zealand/building-permits-mom'>New Zealand Building Permits Drop 7.9% in September</a></div>
+                            <div class="news-link"><a href='/new-zealand/services-pmi'>New Zealand Services Sector Expands Most in Over 3 Years</a></div>
                             
                         
-                            <div class="news-link"><a href='/new-zealand/anz-roy-morgan-consumer-confidence-index'>New Zealand Consumer Confidence Falls in October</a></div>
+                            <div class="news-link"><a href='/new-zealand/composite-pmi'>New Zealand Private Sector Growth Hits 4-Month High</a></div>
                             
                         
-                            <div class="news-link"><a href='/new-zealand/business-confidence'>New Zealand Business Sentiment Recovers</a></div>
+                            <div class="news-link"><a href='/new-zealand/manufacturing-pmi'>New Zealand Manufacturing Growth Eases in October</a></div>
                             
                         
-                            <div class="news-link"><a href='/new-zealand/interest-rate'>RBNZ Holds Cash Rate at 2.75% in Surprise 4-3 Vote</a></div>
+                            <div class="news-link"><a href='/new-zealand/government-bond-yield'>New Zealand 10-Year Yield Edges Lower</a></div>
                             
                         
-                            <div class="news-link"><a href='/new-zealand/inflation-cpi'>New Zealand Inflation Eases in Q3</a></div>
+                            <div class="news-link"><a href='/new-zealand/tourist-arrivals'>New Zealand Tourist Arrivals Climb in September</a></div>
                             
                         
                     <br />
@@ -1348,25 +1350,25 @@
                     <div class="card-header">Latest</div>
                     <div class="card-body">
                         
-                                <div class="news-link"><a href='/denmark/manufacturing-production-mom'>Danish Manufacturing Output Growth at 3-Month High</a></div>
+                                <div class="news-link"><a href='/brazil/stock-market'>Ibovespa Rebounds Amid Fiscal Adjusment Bill Vote</a></div>
                             
-                                <div class="news-link"><a href='/wpm:cn:eps'>Wheaton Precious Metals earnings below expectations at 0.90 USD</a></div>
+                                <div class="news-link"><a href='/canada/investment-in-foreign-securities'>Canadian Investment in Foreign Securities Eases in September</a></div>
                             
-                                <div class="news-link"><a href='/norway/manufacturing-production-mom'>Norway Manufacturing Output Unchanged in September</a></div>
+                                <div class="news-link"><a href='/united-states/ny-fed-services-activity-index'>NY Services Activity Contraction Slows</a></div>
                             
-                                <div class="news-link"><a href='/romania/retail-sales-annual'>Romanian Retail Sales Drop 2.6% in September</a></div>
+                                <div class="news-link"><a href='/canada/foreign-stock-investment'>Foreign Investment in Canadian Securities Rebounds</a></div>
                             
-                                <div class="news-link"><a href='/kazakhstan/current-account'>Kazakhstan Current Account Swings to a Surplus in Q3</a></div>
+                                <div class="news-link"><a href='/united-states/import-prices-mom'>US Import Prices Rise More than Expected</a></div>
                             
-                                <div class="news-link"><a href='/germany/industrial-production-mom'>German Industrial Output Unexpectedly Rises</a></div>
+                                <div class="news-link"><a href='/united-states/export-prices-mom'>US Export Prices Rise More than Expected</a></div>
                             
-                                <div class="news-link"><a href='/united-kingdom/house-price-index-yoy'>UK House Prices Fall Most in 3 Years: Lloyds</a></div>
+                                <div class="news-link"><a href='/united-states/retail-sales'>US Retail Sales Growth Slows in October</a></div>
                             
-                                <div class="news-link"><a href='/japan/stock-market'>Nikkei Posts Biggest Weekly Drop Since March 2020</a></div>
+                                <div class="news-link"><a href='/canada/housing-starts'>Canada Housing Starts Fall Less Than Expected</a></div>
                             
-                                <div class="news-link"><a href='/taiwan/stock-market'>TAIEX Ends at Over 6-Month Low, Posts 4th Weekly Loss</a></div>
+                                <div class="news-link"><a href='/hungary/interest-rate'>National Bank of Hungary Keeps Rates Unchanged</a></div>
                             
-                                <div class="news-link"><a href='/388:hk:eps'>Hong Kong Exchanges earnings above expectations at 3.83 HKD</a></div>
+                                <div class="news-link"><a href='/united-states/stock-market'>US Futures Declines Ahead of Nvidia Earnings</a></div>
                             
                         <br />
                         <a id="ctl00_ContentPlaceHolder1_ctl03_moreTopNews" href="../news">
@@ -2263,6 +2265,8 @@
     
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
+<script>(function () { var t = window.TECalendarTable || window.TEMarketsTable; if (!t) return; var done = false, release = function () { if (!done) { done = true; $.holdReady(false) } }; $.holdReady(true); t.then(release, release); setTimeout(release, 8000) })();</script>
+
     
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js" defer></script>
 
@@ -2704,13 +2708,11 @@
             $(jModal).find(".modal-footer").remove();
 
         $(jModal).on('show.bs.modal', function (e) {
-            $(".navbar").css("padding-right", "17px");
             $(".pagemenu").css("padding-right", "17px");
             $(".pagetabs").css("padding-right", "17px");
         });
 
         $(jModal).on('hide.bs.modal', function (e) {
-            $(".navbar").css("padding-right", "");
             $(".pagemenu").css("padding-right", "");
             $(".pagetabs").css("padding-right", "");
         });
@@ -2745,10 +2747,8 @@
 <script>console.log("/js/chartec.ascx"); TEChartsToken = 'e8aea07bbcae7f83a1360ef3f6ac4f033ba4c023c15838d00f2af73867e93b34'; TEAuth.ready();</script>
 
 <script src='https://d1v8a2ofhkdel3.cloudfront.net/cdn/highstock_exporting.2024.10.1.0.js'></script>
-
 <link rel="stylesheet" href="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.css?v=20261014b">
 <script src="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.js?v=20261014b"></script>
-
 <script>console.log("Loading Chatbot")</script>
 
 
@@ -3082,13 +3082,11 @@
                 $(jModal).find(".modal-footer").remove();
 
             $(jModal).on('show.bs.modal', function (e) {
-                $(".navbar").css("padding-right", "17px");
                 $(".pagemenu").css("padding-right", "17px");
                 $(".pagetabs").css("padding-right", "17px");
             });
 
             $(jModal).on('hide.bs.modal', function (e) {
-                $(".navbar").css("padding-right", "");
                 $(".pagemenu").css("padding-right", "");
                 $(".pagetabs").css("padding-right", "");
             });
@@ -3811,41 +3809,36 @@
         }
         if (TELanguage && TELanguage != '') streamURL += "&lang=" + TELanguage;
         console.log(streamURL);
-        $.ajax({
-            url: streamURL,
-            type: "GET",
-            dataType: "json",
-            beforeSend: function () {
-                $('#spinner').show();
-                streamIsLoading = true;
-            },
-            complete: function () {
-                $('#spinner').hide();
-                streamIsLoading = false;
-            },
-            success: function (data) {
-                appendResult(data);
-                if (start == 0) {
-                    $('#stream-btn').css("visibility", "visible");
-                    if (sCategory || sCountry) {
-                        var sFilter = sCategory || sCountry;
-                        if (sFilter == "economy") $('#streamTabEconomy').tab('show');
-                        else if (sFilter == "markets") $('#streamTabMarkets').tab('show');
-                        else {
-                            //var sFilterDiv = '<a class="btn btn-outline-secondary" href="/stream">' + sFilter + '&nbsp;<i class="glyphicon glyphicon-filter"></i></a><br/><br/>';$("#stream").prepend(sFilterDiv);
-                            //OLD - $('#streamTabs').append('<li id="streamTabFilter" class="active" style="text-transform:capitalize;"><a>' + sFilter + '</a></li> ');
-                            $('#pagemenutabs li a').removeClass("active")
-                            $('#pagemenutabs').append('<li id="streamTabFilter" class="nav-item" style="text-transform:capitalize;"><a class="nav-link active">' + sFilter + '</a></li> ');
+        // TEWaf.fetch: the stream endpoints are AWS WAF challenge paths (see js/jsHead.ascx)
+        $('#spinner').show();
+        streamIsLoading = true;
+        var complete = function () {
+            $('#spinner').hide();
+            streamIsLoading = false;
+        };
+        TEWaf.fetch(streamURL, { credentials: 'same-origin' }).then(function (r) { if (r.status !== 200) throw new Error('HTTP ' + r.status); return r.json() }).then(function (data) { complete(); success(data) }, function (e) { complete(); error(e) });
+        function success(data) {
+            appendResult(data);
+            if (start == 0) {
+                $('#stream-btn').css("visibility", "visible");
+                if (sCategory || sCountry) {
+                    var sFilter = sCategory || sCountry;
+                    if (sFilter == "economy") $('#streamTabEconomy').tab('show');
+                    else if (sFilter == "markets") $('#streamTabMarkets').tab('show');
+                    else {
+                        //var sFilterDiv = '<a class="btn btn-outline-secondary" href="/stream">' + sFilter + '&nbsp;<i class="glyphicon glyphicon-filter"></i></a><br/><br/>';$("#stream").prepend(sFilterDiv);
+                        //OLD - $('#streamTabs').append('<li id="streamTabFilter" class="active" style="text-transform:capitalize;"><a>' + sFilter + '</a></li> ');
+                        $('#pagemenutabs li a').removeClass("active")
+                        $('#pagemenutabs').append('<li id="streamTabFilter" class="nav-item" style="text-transform:capitalize;"><a class="nav-link active">' + sFilter + '</a></li> ');
 
-                        }
                     }
                 }
-            },
-            error: function (e) {
-                console.log(e)
-                console.error("Stream Error")
             }
-        });
+        }
+        function error(e) {
+            console.log(e)
+            console.error("Stream Error")
+        }
     }
     function appendResult(data) {
         console.log("[streams] Appending Results");

@@ -15,7 +15,9 @@
 <script>(function () { function h(n) { return new RegExp('(?:^|;\\s*)' + n.replace(/\./g, '\\.') + '=').test(document.cookie); } if (h('TEIsLoggedIn') || !h('.ASPXAUTH')) return; var e = '; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/', s = ['', '; domain=tradingeconomics.com', '; domain=.tradingeconomics.com'];['.ASPXAUTH', 'TEUsername', 'TENickName', 'TERole', 'TEUserInfo', 'TEName', 'TEUserEmail'].forEach(function (n) { if (!h(n)) return; s.forEach(function (d) { document.cookie = n + '=' + e + d; }); }); document.cookie = 'TEIsLoggedIn=false; domain=.tradingeconomics.com; path=/; SameSite=Lax; Secure; max-age=31536000'; })();</script>
 <script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20261031000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://charts-api.tradingeconomics.com'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/euro-area/consumer-confidence'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function() { try { var t = localStorage.getItem('TETheme'); if (t === 'system') return window.matchMedia('(prefers-color-scheme: dark)').matches; if (t === 'light' || t === 'dark') return t === 'dark'; return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsKey = '20260324:loboantunes'; var TEChartsToken = ''; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var TEChartsPath = '/euro-area/consumer-confidence'; var isCopyright = false;var TEStreamId= '';</script>
 
-<script>var TEAuth = (function () { var KEY = 'te-token', mem = null, pending = null; function now() { return Math.floor(Date.now() / 1000) } function fresh(c) { return c && c.token && now() < c.refresh - 60 } function cached() { if (fresh(mem)) return mem; try { var c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (fresh(c)) return mem = c } catch (e) { } return null } function load() { if (!pending) pending = fetch('/token', { method: 'POST', credentials: 'same-origin', cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json() }).then(function (c) { mem = c; try { localStorage.setItem(KEY, JSON.stringify(c)) } catch (e) { } return c.token }).catch(function (e) { console.log('TEAuth: /token failed', e); return '' }).then(function (t) { pending = null; return t }); return pending } return { ready: function () { var c = cached(); return c ? Promise.resolve(c.token) : load() }, current: function () { var c = cached(); return c ? c.token : '' }, refresh: function () { mem = null; try { localStorage.removeItem(KEY) } catch (e) { } return load() } } })();</script>
+<script>var TEWaf = (function () { var sdk = null, counts = {}, mode = (new URLSearchParams(location.search).get('wafsim') || '').toLowerCase().trim(), dbg = location.host.indexOf('localhost') > -1 || location.href.indexOf('debug') > -1; function log() { if (dbg) console.log.apply(console, ['[WAF]'].concat([].slice.call(arguments))) } function pathOf(url) { return new URL(url, location.href).pathname } function fake(status, action) { return Promise.resolve(new Response('', { status: status, headers: action ? { 'x-amzn-waf-action': action } : {} })) } function sim(url, real) { var m = mode, part = pathOf(url); if (!m) return real(); var n = counts[part] = (counts[part] || 0) + 1, r = m === 'captcha' ? fake(405, 'captcha') : m === 'block' ? fake(403) : m === 'error' ? fake(500) : m === 'challenge' && n === 1 ? fake(202, 'challenge') : m === 'challenge-fail' ? (n === 1 ? fake(202, 'challenge') : fake(405, 'captcha')) : null; console.warn('[WAF] wafsim ' + part + ' #' + n + ' ' + m + (r ? ': faked' : ': real request')); return r || (m === 'slow' ? new Promise(function (ok) { setTimeout(ok, 4000) }).then(function () { return real() }) : real()) } function load() { if (window.AwsWafIntegration) return Promise.resolve(); if (!sdk) sdk = new Promise(function (ok, fail) { var s = document.createElement('script'); s.async = true; s.src = 'https://91ba28030c9c.edge.sdk.awswaf.com/91ba28030c9c/' + (/^(es|pt|tr|zh|de|ko|ru|id|ar|pl|fr|jp|it)\./.test(location.hostname) ? 'dabb42b514e0' : '0b02aacc862d') + '/challenge.js'; s.onload = ok; s.onerror = function () { sdk = null; fail(new Error('WAF SDK failed to load')) }; document.head.appendChild(s) }); return sdk } function challenged(r) { return r.status === 202 && /challenge/i.test(r.headers.get('x-amzn-waf-action') || '') } return { sdk: load, challenged: challenged, sim: sim, simulating: function () { return !!mode }, fetch: function (url, opt) { var part = pathOf(url), t0 = Date.now(), get = function (token) { var o = opt || {}; if (token) { o = Object.assign({}, o); var h = new Headers(o.headers || {}); h.set('x-aws-waf-token', token); o.headers = h } return sim(url, function () { return fetch(url, o) }) }, say = function (what, r) { log(part, what, r.status, r.headers.get('x-amzn-waf-action') || '', (Date.now() - t0) + 'ms', url); return r }; return get().then(function (r) { say('response', r); if (!challenged(r)) return r; log(part, 'WAF challenge: loading SDK + getToken'); var waits = [0, 1000, 2000, 3000, 2000]; function retry(i) { return new Promise(function (ok) { setTimeout(ok, waits[i]) }).then(function () { return AwsWafIntegration.getToken() }).then(function (token) { log(part, 'retry ' + (i + 1) + ' with the SDK token in x-aws-waf-token'); return get(token) }).then(function (r2) { if (challenged(r2) && i + 1 < waits.length) return retry(i + 1); return say(challenged(r2) ? 'still challenged, giving up' : 'retry response', r2) }) } return load().then(function () { return retry(0) }) }, function (e) { log(part, 'failed', e); throw e }) }, log: log } })();</script>
+
+<script>var TEAuth = (function () { var KEY = 'te-token', mem = null, pending = null; function now() { return Math.floor(Date.now() / 1000) } function fresh(c) { return c && c.token && now() < c.refresh - 60 } function cached() { if (TEWaf.simulating()) return null; if (fresh(mem)) return mem; try { var c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (fresh(c)) return mem = c } catch (e) { } return null } function post() { return TEWaf.fetch('/token', { method: 'POST', credentials: 'same-origin', cache: 'no-store' }).then(function (r) { if (r.status !== 200) throw new Error('HTTP ' + r.status); return r.json() }) } function load() { if (!pending) pending = post().then(function (c) { mem = c; try { localStorage.setItem(KEY, JSON.stringify(c)) } catch (e) { } return c.token }).catch(function (e) { console.log('TEAuth: /token failed', e); return '' }).then(function (t) { pending = null; TEWaf.log('/token', t ? 'te-token fetched' : 'no te-token (io connects without one)'); return t }); return pending } return { ready: function () { var c = cached(); if (c) TEWaf.log('/token', 'te-token from cache, refresh at', new Date(c.refresh * 1000).toISOString()); return c ? Promise.resolve(c.token) : load() }, current: function () { var c = cached(); return c ? c.token : '' }, refresh: function () { mem = null; try { localStorage.removeItem(KEY) } catch (e) { } return load() } } })();</script>
 <script type="text/javascript">var DEBUG = false; if (window.location.host.indexOf('localhost') > -1) DEBUG = true; else if (window.location.href.indexOf('debug') > -1) DEBUG = true; if (!DEBUG) { if (!window.console) window.console = {}; var methods = ["log", "debug", "info"]; for (var i = 0; i < methods.length; i++) { console[methods[i]] = function () { }; } }</script>
 <script>window.googletag = window.googletag || { cmd: [] };</script>
 <link rel="icon" href="https://d3e5kp2e91w0k0.cloudfront.net/favicon.svg" type="image/svg+xml" />
@@ -30,9 +32,9 @@
 <body>
     <script>(function(){var c=false;try{var t=localStorage.getItem('TETheme');if(t!=='light'&&t!=='dark'&&t!=='system')t=localStorage.getItem('IsDarkMode')==='true'?'dark':'light';c=t==='system'?window.matchMedia('(prefers-color-scheme: dark)').matches:t==='dark';localStorage.setItem('IsDarkMode',String(c));}catch(e){}if(c)document.body.classList.add('dark-theme');window.IsDarkMode=c;})();</script>
     <form method="post" action="/euro-area/consumer-confidence" id="aspnetForm">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="L/qaAhHeXlJY+63EFsY/1jgMyc4sdaHTbnHsjinK+HCE7NlyLwyNONJjF1+FSt9EwwYsx0EGPXhRMXceMRkvWjW+qB4=" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="ePfVN6aUxeAddeZ/xn4xr6nqTnDYfSmPGSIGR20YespTJY8fqqTB/gbyt31UA5CqOQwcmD9m9nHV54zKqz8nTtNG5Hs=" />
 
-<script type="text/javascript" language="Javascript">var isCopyright = false;</script><script type="text/javascript" language="Javascript">var TESymbol = 'EUCCEMU'; console.log('TESymbol:', TESymbol);var TELanguage = ''; console.log('TELanguage:', TELanguage);TELastUpdate = '202610291029'; console.log('TELastUpdate:', TELastUpdate);TEChart = 'EC'; console.log('TEChart:', TEChart);var TEAlertsName= 'Euro Area Consumer Confidence'; console.log('TEAlertsName:', TEAlertsName);</script><script type="text/javascript" language="Javascript">TEChartUrl = 'https://d3fy651gv2fhd3.cloudfront.net/charts/euro-area-consumer-confidence.png?s=euccemu&v=202610291029V20230410';TECountry = 'Euro Area';TECategory = 'Consumer Confidence';TEType = 'te';TEFrequency = 'Monthly';TEForecast =   [-19.00,-18.00,-17.00,-16.00];</script><script type="text/javascript" language="Javascript">TENextCalendarID = '400545'; console.log('TENextCalendarID:', TENextCalendarID);TECalendarActual = ''; console.log('TECalendarActual:', TECalendarActual);</script>
+<script type="text/javascript" language="Javascript">var isCopyright = false;</script><script type="text/javascript" language="Javascript">var TESymbol = 'EUCCEMU'; console.log('TESymbol:', TESymbol);var TELanguage = ''; console.log('TELanguage:', TELanguage);TELastUpdate = '202610291029'; console.log('TELastUpdate:', TELastUpdate);TEChart = 'EC'; console.log('TEChart:', TEChart);var TEAlertsName= 'Euro Area Consumer Confidence'; console.log('TEAlertsName:', TEAlertsName);</script><script type="text/javascript" language="Javascript">TEChartUrl = 'https://d3fy651gv2fhd3.cloudfront.net/charts/euro-area-consumer-confidence.png?s=euccemu&v=202610291029V20230410';TECountry = 'Euro Area';TECategory = 'Consumer Confidence';TEType = 'te';TEFrequency = 'Monthly';TEForecast =   [-18.60,-18.00,-17.00,-16.00];</script><script type="text/javascript" language="Javascript">TENextCalendarID = '400545'; console.log('TENextCalendarID:', TENextCalendarID);TECalendarActual = ''; console.log('TECalendarActual:', TECalendarActual);</script>
 <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="9ED6FB81" />
         
         <nav id="ctl00_NavigationUC1_ctl00_menu" class="navbar navbar-dark fixed-top" role="navigation">
@@ -836,7 +838,7 @@
          
         <div role="tabpanel" class="tab-pane" id="stats"><h2 style="line-height: 1.45em;">Consumer Confidence In the Euro Area decreased to -17.90 points in October from -16.80 points in September of 2026.  Consumer Confidence in Euro Area averaged -9.51 points from 1985 until 2026, reaching an all time high of -0.40 points in January of 2000 and a record low of -27.50 points in September of 2022. This page provides the latest reported value for - Euro Area Consumer Confidence - plus previous releases, historical high and low, short-term forecast and long-term prediction, economic calendar, survey consensus and news. Euro Area Consumer Confidence - data, historical chart, forecasts and calendar of releases - was last updated on  November of 2026. </h2></div>
         
-        <div role="tabpanel" class="tab-pane" id="forecast-desc"><h3  style="line-height: 1.45em;">Consumer Confidence In the Euro Area decreased to -17.90 points in October from -16.80 points in September of 2026. Consumer Confidence in Euro Area is expected to be -19.00 points by the end of this quarter, according to Trading Economics global macro models and analysts expectations. In the long-term, the Euro Area Consumer Confidence is projected to trend around -14.00 points in 2027 and -13.00 points in 2028, according to our econometric models.</h3></div>
+        <div role="tabpanel" class="tab-pane" id="forecast-desc"><h3  style="line-height: 1.45em;">Consumer Confidence In the Euro Area decreased to -17.90 points in October from -16.80 points in September of 2026. Consumer Confidence in Euro Area is expected to be -18.60 points by the end of this quarter, according to Trading Economics global macro models and analysts expectations. In the long-term, the Euro Area Consumer Confidence is projected to trend around -14.00 points in 2027 and -13.00 points in 2028, according to our econometric models.</h3></div>
         
         <div role="tabpanel" class="tab-pane" id="alerts-desc"><div id="alerts-chart" style="padding: 5px 15px 5px 15px;display: inline-block; width: 100%;"></div></div>
         
@@ -974,12 +976,12 @@
             <td id="previous" class="datatable-item datatable-item-negative">
                 -17.9
             </td>
-            <td class="datatable-item datatable-item-positive">
-                
+            <td class="datatable-item datatable-item-negative">
+                -17.9
             </td>
             
-            <td class="datatable-item datatable-item-positive">
-                
+            <td class="datatable-item datatable-item-negative">
+                -18.0
             </td>
             
         </tr>
@@ -1128,13 +1130,13 @@
                                     Retail Sales MoM
                                 </a>
                             </td>
-                            <td>0.10</td>
+                            <td>-0.70</td>
                             
-                            <td>-0.60</td>
+                            <td>0.40</td>
                             
                             <td>
                                 percent</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1143,13 +1145,13 @@
                                     Retail Sales YoY
                                 </a>
                             </td>
-                            <td>0.80</td>
-                            
                             <td>0.40</td>
+                            
+                            <td>1.30</td>
                             
                             <td>
                                 percent</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -1332,34 +1334,34 @@
                 <div class="card-header">Related</div>
                 <div class="card-body">
                     
-                            <div class="news-link"><a href='/euro-area/stock-market'>European Stocks Set for Negative Open</a></div>
+                            <div class="news-link"><a href='/euro-area/full-year-gdp-growth'>EU Raises Eurozone 2026 Growth Forecast</a></div>
                             
                         
-                            <div class="news-link"><a href='/euro-area/producer-price-inflation-mom'>Eurozone Producer Prices Surge in September</a></div>
+                            <div class="news-link"><a href='/euro-area/zew-economic-sentiment-index'>Eurozone ZEW Sentiment Improves More than Expected</a></div>
                             
                         
-                            <div class="news-link"><a href='/euro-area/construction-pmi'>Eurozone Construction Downturn Deepens in October</a></div>
+                            <div class="news-link"><a href='/euro-area/stock-market'>European Stocks Lower</a></div>
                             
                         
-                            <div class="news-link"><a href='/euro-area/currency'>Euro Climbs to One-Month High</a></div>
+                            <div class="news-link"><a href='/euro-area/currency'>Euro Falls Below $1.10</a></div>
                             
                         
-                            <div class="news-link"><a href='/euro-area/inflation-cpi'>Eurozone Inflation Hits Fresh Three-Year High</a></div>
+                            <div class="news-link"><a href='/euro-area/industrial-production-mom'>Eurozone Industrial Production Returns to Growth in September</a></div>
                             
                         
-                            <div class="news-link"><a href='/euro-area/composite-pmi'>Eurozone Business Activity Slows in October</a></div>
+                            <div class="news-link"><a href='/euro-area/employment-change'>Eurozone Employment Stalls</a></div>
                             
                         
-                            <div class="news-link"><a href='/euro-area/services-pmi'>Euro Area Services PMI Revised Lower</a></div>
+                            <div class="news-link"><a href='/euro-area/gdp-growth-annual'>Eurozone Annual Growth Rate Confirmed at 1.3% in Q2</a></div>
                             
                         
-                            <div class="news-link"><a href='/euro-area/manufacturing-pmi'>Eurozone Manufacturing Growth Remains Solid in October</a></div>
+                            <div class="news-link"><a href='/euro-area/gdp-growth'>Eurozone GDP Growth Slows to 0.4% in Q3</a></div>
                             
                         
-                            <div class="news-link"><a href='/euro-area/unemployment-rate'>Eurozone Jobless Rate Steady at Over 2-1/2-Year High</a></div>
+                            <div class="news-link"><a href='/euro-area/balance-of-trade'>Eurozone Trade Gap Larger than Expected</a></div>
                             
                         
-                            <div class="news-link"><a href='/euro-area/gdp-growth'>Eurozone GDP Growth Beats Expectations</a></div>
+                            <div class="news-link"><a href='/euro-area/retail-sales'>Eurozone Retail Sales Drop More Than Expected</a></div>
                             
                         
                     <br />
@@ -1380,25 +1382,25 @@
                     <div class="card-header">Latest</div>
                     <div class="card-body">
                         
-                                <div class="news-link"><a href='/denmark/manufacturing-production-mom'>Danish Manufacturing Output Growth at 3-Month High</a></div>
+                                <div class="news-link"><a href='/ecuador/inflation-cpi'>Ecuador Inflation Rate Rises to 4-Month High</a></div>
                             
-                                <div class="news-link"><a href='/wpm:cn:eps'>Wheaton Precious Metals earnings below expectations at 0.90 USD</a></div>
+                                <div class="news-link"><a href='/brazil/stock-market'>Ibovespa Rebounds Amid Fiscal Adjusment Bill Vote</a></div>
                             
-                                <div class="news-link"><a href='/norway/manufacturing-production-mom'>Norway Manufacturing Output Unchanged in September</a></div>
+                                <div class="news-link"><a href='/canada/investment-in-foreign-securities'>Canadian Investment in Foreign Securities Eases in September</a></div>
                             
-                                <div class="news-link"><a href='/romania/retail-sales-annual'>Romanian Retail Sales Drop 2.6% in September</a></div>
+                                <div class="news-link"><a href='/united-states/ny-fed-services-activity-index'>NY Services Activity Contraction Slows</a></div>
                             
-                                <div class="news-link"><a href='/kazakhstan/current-account'>Kazakhstan Current Account Swings to a Surplus in Q3</a></div>
+                                <div class="news-link"><a href='/canada/foreign-stock-investment'>Foreign Investment in Canadian Securities Rebounds</a></div>
                             
-                                <div class="news-link"><a href='/germany/industrial-production-mom'>German Industrial Output Unexpectedly Rises</a></div>
+                                <div class="news-link"><a href='/united-states/import-prices-mom'>US Import Prices Rise More than Expected</a></div>
                             
-                                <div class="news-link"><a href='/united-kingdom/house-price-index-yoy'>UK House Prices Fall Most in 3 Years: Lloyds</a></div>
+                                <div class="news-link"><a href='/united-states/export-prices-mom'>US Export Prices Rise More than Expected</a></div>
                             
-                                <div class="news-link"><a href='/japan/stock-market'>Nikkei Posts Biggest Weekly Drop Since March 2020</a></div>
+                                <div class="news-link"><a href='/united-states/retail-sales'>US Retail Sales Growth Slows in October</a></div>
                             
-                                <div class="news-link"><a href='/taiwan/stock-market'>TAIEX Ends at Over 6-Month Low, Posts 4th Weekly Loss</a></div>
+                                <div class="news-link"><a href='/canada/housing-starts'>Canada Housing Starts Fall Less Than Expected</a></div>
                             
-                                <div class="news-link"><a href='/388:hk:eps'>Hong Kong Exchanges earnings above expectations at 3.83 HKD</a></div>
+                                <div class="news-link"><a href='/hungary/interest-rate'>National Bank of Hungary Keeps Rates Unchanged</a></div>
                             
                         <br />
                         <a id="ctl00_ContentPlaceHolder1_ctl03_moreTopNews" href="../news">
@@ -1874,29 +1876,31 @@
                             
                                 <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl04_HyperLink2" href="/euro-area/foreign-exchange-reserves" style="text-decoration: none; text-transform: capitalize;">Foreign Exchange Reserves</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl05_HyperLink2" href="/euro-area/interbank-rate" style="text-decoration: none; text-transform: capitalize;">Interbank Rate</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl05_HyperLink2" href="/euro-area/implied-rates" style="text-decoration: none; text-transform: capitalize;">Implied Rates</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl06_HyperLink2" href="/euro-area/loan-growth" style="text-decoration: none; text-transform: capitalize;">Loans to Households YoY</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl06_HyperLink2" href="/euro-area/interbank-rate" style="text-decoration: none; text-transform: capitalize;">Interbank Rate</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl07_HyperLink2" href="/euro-area/loans-to-private-sector" style="text-decoration: none; text-transform: capitalize;">Loans to Non-financial Corporations</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl07_HyperLink2" href="/euro-area/loan-growth" style="text-decoration: none; text-transform: capitalize;">Loans to Households YoY</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl08_HyperLink2" href="/euro-area/longer-term-refinancing-operations" style="text-decoration: none; text-transform: capitalize;">Longer-Term Refinancing Operations</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl08_HyperLink2" href="/euro-area/loans-to-private-sector" style="text-decoration: none; text-transform: capitalize;">Loans to Non-financial Corporations</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl09_HyperLink2" href="/euro-area/lending-rate" style="text-decoration: none; text-transform: capitalize;">Marginal Lending Rate</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl09_HyperLink2" href="/euro-area/longer-term-refinancing-operations" style="text-decoration: none; text-transform: capitalize;">Longer-Term Refinancing Operations</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl10_HyperLink2" href="/euro-area/money-supply-m0" style="text-decoration: none; text-transform: capitalize;">Money Supply M0</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl10_HyperLink2" href="/euro-area/lending-rate" style="text-decoration: none; text-transform: capitalize;">Marginal Lending Rate</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl11_HyperLink2" href="/euro-area/money-supply-m1" style="text-decoration: none; text-transform: capitalize;">Money Supply M1</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl11_HyperLink2" href="/euro-area/money-supply-m0" style="text-decoration: none; text-transform: capitalize;">Money Supply M0</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl12_HyperLink2" href="/euro-area/money-supply-m2" style="text-decoration: none; text-transform: capitalize;">Money Supply M2</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl12_HyperLink2" href="/euro-area/money-supply-m1" style="text-decoration: none; text-transform: capitalize;">Money Supply M1</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl13_HyperLink2" href="/euro-area/money-supply-m3" style="text-decoration: none; text-transform: capitalize;">Money Supply M3</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl13_HyperLink2" href="/euro-area/money-supply-m2" style="text-decoration: none; text-transform: capitalize;">Money Supply M2</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl14_HyperLink2" href="/euro-area/nominal-effective-exchange-rate-18" style="text-decoration: none; text-transform: capitalize;">Nominal Effective Exchange Rate 18</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl14_HyperLink2" href="/euro-area/money-supply-m3" style="text-decoration: none; text-transform: capitalize;">Money Supply M3</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl15_HyperLink2" href="/euro-area/nominal-effective-exchange-rate-41" style="text-decoration: none; text-transform: capitalize;">Nominal Effective Exchange Rate 41</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl15_HyperLink2" href="/euro-area/nominal-effective-exchange-rate-18" style="text-decoration: none; text-transform: capitalize;">Nominal Effective Exchange Rate 18</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl16_HyperLink2" href="/euro-area/refinancing-operations" style="text-decoration: none; text-transform: capitalize;">Refinancing Operations</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl16_HyperLink2" href="/euro-area/nominal-effective-exchange-rate-41" style="text-decoration: none; text-transform: capitalize;">Nominal Effective Exchange Rate 41</a><br />
+                            
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl17_HyperLink2" href="/euro-area/refinancing-operations" style="text-decoration: none; text-transform: capitalize;">Refinancing Operations</a><br />
                             
                     </div>
                 </div>
@@ -2228,6 +2232,8 @@
     </form>
     
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script>(function () { var t = window.TECalendarTable || window.TEMarketsTable; if (!t) return; var done = false, release = function () { if (!done) { done = true; $.holdReady(false) } }; $.holdReady(true); t.then(release, release); setTimeout(release, 8000) })();</script>
 
     
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js" defer></script>
@@ -2670,13 +2676,11 @@
             $(jModal).find(".modal-footer").remove();
 
         $(jModal).on('show.bs.modal', function (e) {
-            $(".navbar").css("padding-right", "17px");
             $(".pagemenu").css("padding-right", "17px");
             $(".pagetabs").css("padding-right", "17px");
         });
 
         $(jModal).on('hide.bs.modal', function (e) {
-            $(".navbar").css("padding-right", "");
             $(".pagemenu").css("padding-right", "");
             $(".pagetabs").css("padding-right", "");
         });
@@ -2711,10 +2715,8 @@
 <script>console.log("/js/chartec.ascx"); TEChartsToken = '2d7c2f0e94313c8a68114f29a5405b45237e9e1661bb14ec44ba196c097bc76a'; TEAuth.ready();</script>
 
 <script src='https://d1v8a2ofhkdel3.cloudfront.net/cdn/highstock_exporting.2024.10.1.0.js'></script>
-
 <link rel="stylesheet" href="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.css?v=20261014b">
 <script src="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.js?v=20261014b"></script>
-
 <script>console.log("Loading Chatbot")</script>
 
 
@@ -3048,13 +3050,11 @@
                 $(jModal).find(".modal-footer").remove();
 
             $(jModal).on('show.bs.modal', function (e) {
-                $(".navbar").css("padding-right", "17px");
                 $(".pagemenu").css("padding-right", "17px");
                 $(".pagetabs").css("padding-right", "17px");
             });
 
             $(jModal).on('hide.bs.modal', function (e) {
-                $(".navbar").css("padding-right", "");
                 $(".pagemenu").css("padding-right", "");
                 $(".pagetabs").css("padding-right", "");
             });
@@ -3777,41 +3777,36 @@
         }
         if (TELanguage && TELanguage != '') streamURL += "&lang=" + TELanguage;
         console.log(streamURL);
-        $.ajax({
-            url: streamURL,
-            type: "GET",
-            dataType: "json",
-            beforeSend: function () {
-                $('#spinner').show();
-                streamIsLoading = true;
-            },
-            complete: function () {
-                $('#spinner').hide();
-                streamIsLoading = false;
-            },
-            success: function (data) {
-                appendResult(data);
-                if (start == 0) {
-                    $('#stream-btn').css("visibility", "visible");
-                    if (sCategory || sCountry) {
-                        var sFilter = sCategory || sCountry;
-                        if (sFilter == "economy") $('#streamTabEconomy').tab('show');
-                        else if (sFilter == "markets") $('#streamTabMarkets').tab('show');
-                        else {
-                            //var sFilterDiv = '<a class="btn btn-outline-secondary" href="/stream">' + sFilter + '&nbsp;<i class="glyphicon glyphicon-filter"></i></a><br/><br/>';$("#stream").prepend(sFilterDiv);
-                            //OLD - $('#streamTabs').append('<li id="streamTabFilter" class="active" style="text-transform:capitalize;"><a>' + sFilter + '</a></li> ');
-                            $('#pagemenutabs li a').removeClass("active")
-                            $('#pagemenutabs').append('<li id="streamTabFilter" class="nav-item" style="text-transform:capitalize;"><a class="nav-link active">' + sFilter + '</a></li> ');
+        // TEWaf.fetch: the stream endpoints are AWS WAF challenge paths (see js/jsHead.ascx)
+        $('#spinner').show();
+        streamIsLoading = true;
+        var complete = function () {
+            $('#spinner').hide();
+            streamIsLoading = false;
+        };
+        TEWaf.fetch(streamURL, { credentials: 'same-origin' }).then(function (r) { if (r.status !== 200) throw new Error('HTTP ' + r.status); return r.json() }).then(function (data) { complete(); success(data) }, function (e) { complete(); error(e) });
+        function success(data) {
+            appendResult(data);
+            if (start == 0) {
+                $('#stream-btn').css("visibility", "visible");
+                if (sCategory || sCountry) {
+                    var sFilter = sCategory || sCountry;
+                    if (sFilter == "economy") $('#streamTabEconomy').tab('show');
+                    else if (sFilter == "markets") $('#streamTabMarkets').tab('show');
+                    else {
+                        //var sFilterDiv = '<a class="btn btn-outline-secondary" href="/stream">' + sFilter + '&nbsp;<i class="glyphicon glyphicon-filter"></i></a><br/><br/>';$("#stream").prepend(sFilterDiv);
+                        //OLD - $('#streamTabs').append('<li id="streamTabFilter" class="active" style="text-transform:capitalize;"><a>' + sFilter + '</a></li> ');
+                        $('#pagemenutabs li a').removeClass("active")
+                        $('#pagemenutabs').append('<li id="streamTabFilter" class="nav-item" style="text-transform:capitalize;"><a class="nav-link active">' + sFilter + '</a></li> ');
 
-                        }
                     }
                 }
-            },
-            error: function (e) {
-                console.log(e)
-                console.error("Stream Error")
             }
-        });
+        }
+        function error(e) {
+            console.log(e)
+            console.error("Stream Error")
+        }
     }
     function appendResult(data) {
         console.log("[streams] Appending Results");

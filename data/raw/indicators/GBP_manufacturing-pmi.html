@@ -15,14 +15,16 @@
 <script>(function () { function h(n) { return new RegExp('(?:^|;\\s*)' + n.replace(/\./g, '\\.') + '=').test(document.cookie); } if (h('TEIsLoggedIn') || !h('.ASPXAUTH')) return; var e = '; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/', s = ['', '; domain=tradingeconomics.com', '; domain=.tradingeconomics.com'];['.ASPXAUTH', 'TEUsername', 'TENickName', 'TERole', 'TEUserInfo', 'TEName', 'TEUserEmail'].forEach(function (n) { if (!h(n)) return; s.forEach(function (d) { document.cookie = n + '=' + e + d; }); }); document.cookie = 'TEIsLoggedIn=false; domain=.tradingeconomics.com; path=/; SameSite=Lax; Secure; max-age=31536000'; })();</script>
 <script type="text/javascript">var TEChartSettings = {}; var TESymbol = ''; var TECountry = ''; var TECategory = ''; var TEFrequency = ''; var TELanguage = ''; var TELastUpdate = '20261031000000'; var TEChartVersion = ''; var symbol = ''; var symbolType = ''; var hasCalendar = false; var isLoggedIn = document.cookie.indexOf('.ASPXAUTH') > -1; var TERole = (document.cookie.match(/(?:^|;\s*)TERole=([^;]*)/) || [])[1] || ''; var TEAlertsName = ''; var TEChartsDatasource = 'https://charts-api.tradingeconomics.com'; var IsMobile =  false; var TEChartsMeta = ''; var TEForecast = []; var TEAuthorization = ''; var TESecurify = ''; var TESecurifyUrl = ''; var TEType = ''; var TEChartUrl = '/united-kingdom/manufacturing-pmi'; var TEComparable = 0; var isAlertsLoaded = false; var IsDarkMode = (function() { try { var t = localStorage.getItem('TETheme'); if (t === 'system') return window.matchMedia('(prefers-color-scheme: dark)').matches; if (t === 'light' || t === 'dark') return t === 'dark'; return localStorage.getItem('IsDarkMode') === 'true'; } catch (e) { return false; } })(); var isPakoLoaded = false; var TEChartsKey = '20260324:loboantunes'; var TEChartsToken = ''; var TEObfuscationkey = 'tradingeconomics-charts-core-api-key'; var TEChartsPath = '/united-kingdom/manufacturing-pmi'; var isCopyright = false;var TEStreamId= '';</script>
 
-<script>var TEAuth = (function () { var KEY = 'te-token', mem = null, pending = null; function now() { return Math.floor(Date.now() / 1000) } function fresh(c) { return c && c.token && now() < c.refresh - 60 } function cached() { if (fresh(mem)) return mem; try { var c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (fresh(c)) return mem = c } catch (e) { } return null } function load() { if (!pending) pending = fetch('/token', { method: 'POST', credentials: 'same-origin', cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json() }).then(function (c) { mem = c; try { localStorage.setItem(KEY, JSON.stringify(c)) } catch (e) { } return c.token }).catch(function (e) { console.log('TEAuth: /token failed', e); return '' }).then(function (t) { pending = null; return t }); return pending } return { ready: function () { var c = cached(); return c ? Promise.resolve(c.token) : load() }, current: function () { var c = cached(); return c ? c.token : '' }, refresh: function () { mem = null; try { localStorage.removeItem(KEY) } catch (e) { } return load() } } })();</script>
+<script>var TEWaf = (function () { var sdk = null, counts = {}, mode = (new URLSearchParams(location.search).get('wafsim') || '').toLowerCase().trim(), dbg = location.host.indexOf('localhost') > -1 || location.href.indexOf('debug') > -1; function log() { if (dbg) console.log.apply(console, ['[WAF]'].concat([].slice.call(arguments))) } function pathOf(url) { return new URL(url, location.href).pathname } function fake(status, action) { return Promise.resolve(new Response('', { status: status, headers: action ? { 'x-amzn-waf-action': action } : {} })) } function sim(url, real) { var m = mode, part = pathOf(url); if (!m) return real(); var n = counts[part] = (counts[part] || 0) + 1, r = m === 'captcha' ? fake(405, 'captcha') : m === 'block' ? fake(403) : m === 'error' ? fake(500) : m === 'challenge' && n === 1 ? fake(202, 'challenge') : m === 'challenge-fail' ? (n === 1 ? fake(202, 'challenge') : fake(405, 'captcha')) : null; console.warn('[WAF] wafsim ' + part + ' #' + n + ' ' + m + (r ? ': faked' : ': real request')); return r || (m === 'slow' ? new Promise(function (ok) { setTimeout(ok, 4000) }).then(function () { return real() }) : real()) } function load() { if (window.AwsWafIntegration) return Promise.resolve(); if (!sdk) sdk = new Promise(function (ok, fail) { var s = document.createElement('script'); s.async = true; s.src = 'https://91ba28030c9c.edge.sdk.awswaf.com/91ba28030c9c/' + (/^(es|pt|tr|zh|de|ko|ru|id|ar|pl|fr|jp|it)\./.test(location.hostname) ? 'dabb42b514e0' : '0b02aacc862d') + '/challenge.js'; s.onload = ok; s.onerror = function () { sdk = null; fail(new Error('WAF SDK failed to load')) }; document.head.appendChild(s) }); return sdk } function challenged(r) { return r.status === 202 && /challenge/i.test(r.headers.get('x-amzn-waf-action') || '') } return { sdk: load, challenged: challenged, sim: sim, simulating: function () { return !!mode }, fetch: function (url, opt) { var part = pathOf(url), t0 = Date.now(), get = function (token) { var o = opt || {}; if (token) { o = Object.assign({}, o); var h = new Headers(o.headers || {}); h.set('x-aws-waf-token', token); o.headers = h } return sim(url, function () { return fetch(url, o) }) }, say = function (what, r) { log(part, what, r.status, r.headers.get('x-amzn-waf-action') || '', (Date.now() - t0) + 'ms', url); return r }; return get().then(function (r) { say('response', r); if (!challenged(r)) return r; log(part, 'WAF challenge: loading SDK + getToken'); var waits = [0, 1000, 2000, 3000, 2000]; function retry(i) { return new Promise(function (ok) { setTimeout(ok, waits[i]) }).then(function () { return AwsWafIntegration.getToken() }).then(function (token) { log(part, 'retry ' + (i + 1) + ' with the SDK token in x-aws-waf-token'); return get(token) }).then(function (r2) { if (challenged(r2) && i + 1 < waits.length) return retry(i + 1); return say(challenged(r2) ? 'still challenged, giving up' : 'retry response', r2) }) } return load().then(function () { return retry(0) }) }, function (e) { log(part, 'failed', e); throw e }) }, log: log } })();</script>
+
+<script>var TEAuth = (function () { var KEY = 'te-token', mem = null, pending = null; function now() { return Math.floor(Date.now() / 1000) } function fresh(c) { return c && c.token && now() < c.refresh - 60 } function cached() { if (TEWaf.simulating()) return null; if (fresh(mem)) return mem; try { var c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (fresh(c)) return mem = c } catch (e) { } return null } function post() { return TEWaf.fetch('/token', { method: 'POST', credentials: 'same-origin', cache: 'no-store' }).then(function (r) { if (r.status !== 200) throw new Error('HTTP ' + r.status); return r.json() }) } function load() { if (!pending) pending = post().then(function (c) { mem = c; try { localStorage.setItem(KEY, JSON.stringify(c)) } catch (e) { } return c.token }).catch(function (e) { console.log('TEAuth: /token failed', e); return '' }).then(function (t) { pending = null; TEWaf.log('/token', t ? 'te-token fetched' : 'no te-token (io connects without one)'); return t }); return pending } return { ready: function () { var c = cached(); if (c) TEWaf.log('/token', 'te-token from cache, refresh at', new Date(c.refresh * 1000).toISOString()); return c ? Promise.resolve(c.token) : load() }, current: function () { var c = cached(); return c ? c.token : '' }, refresh: function () { mem = null; try { localStorage.removeItem(KEY) } catch (e) { } return load() } } })();</script>
 <script type="text/javascript">var DEBUG = false; if (window.location.host.indexOf('localhost') > -1) DEBUG = true; else if (window.location.href.indexOf('debug') > -1) DEBUG = true; if (!DEBUG) { if (!window.console) window.console = {}; var methods = ["log", "debug", "info"]; for (var i = 0; i < methods.length; i++) { console[methods[i]] = function () { }; } }</script>
 <script>window.googletag = window.googletag || { cmd: [] };</script>
 <link rel="icon" href="https://d3e5kp2e91w0k0.cloudfront.net/favicon.svg" type="image/svg+xml" /><link rel="canonical" href="https://tradingeconomics.com/united-kingdom/manufacturing-pmi" /></head>
 <body>
     <script>(function(){var c=false;try{var t=localStorage.getItem('TETheme');if(t!=='light'&&t!=='dark'&&t!=='system')t=localStorage.getItem('IsDarkMode')==='true'?'dark':'light';c=t==='system'?window.matchMedia('(prefers-color-scheme: dark)').matches:t==='dark';localStorage.setItem('IsDarkMode',String(c));}catch(e){}if(c)document.body.classList.add('dark-theme');window.IsDarkMode=c;})();</script>
     <form method="post" action="/united-kingdom/manufacturing-pmi" id="aspnetForm">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="1UZI0vSA3hE7qEDFoVM3/fd1cIABoyoiY1CmtmiQiYezpd2We1DiLlEkvob35diLrRBUygQjY9xpI8vOAXW3OEj+G3U=" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="SUOTVl1oJQoAnmfeGCVagHhIn516Znbibm0w5/rRfshHRB0Uz2cOcLsZ4A3lSIc2zDmtTRFIJdLbmyOh+C4Nqjx2M2s=" />
 
 <script type="text/javascript" language="Javascript">var TEChartSettings = '{"labels":false}'; console.log('TEChartSettings:', TEChartSettings);</script><script type="text/javascript" language="Javascript">var isCopyright = true;</script><script type="text/javascript" language="Javascript">var TESymbol = 'UNITEDKINMANPMI'; console.log('TESymbol:', TESymbol);var TELanguage = ''; console.log('TELanguage:', TELanguage);TELastUpdate = '202611020947'; console.log('TELastUpdate:', TELastUpdate);TEChart = 'EC'; console.log('TEChart:', TEChart);var TEAlertsName= 'United Kingdom Manufacturing PMI'; console.log('TEAlertsName:', TEAlertsName);</script><script type="text/javascript" language="Javascript">TEChartUrl = 'https://d3fy651gv2fhd3.cloudfront.net/charts/united-kingdom-manufacturing-pmi.png?s=unitedkinmanpmi&v=202611020947V20230410';TECountry = 'United Kingdom';TECategory = 'Manufacturing PMI';TEType = 'te';TEFrequency = 'Monthly';TEForecast =   [52.00,51.70,51.90,51.80];</script>
 <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="9ED6FB81" />
@@ -869,13 +871,13 @@
                                     BRC Retail Sales Monitor YoY
                                 </a>
                             </td>
-                            <td>1.00</td>
+                            <td>1.10</td>
                             
-                            <td>0.50</td>
+                            <td>1.00</td>
                             
                             <td>
                                 percent</td>
-                            <td>Sep 2026</td>
+                            <td>Oct 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -929,13 +931,13 @@
                                     Changes in Inventories
                                 </a>
                             </td>
-                            <td>-4103.00</td>
+                            <td>310.00</td>
                             
-                            <td>421.00</td>
+                            <td>-4103.00</td>
                             
                             <td>
                                 GBP Million</td>
-                            <td>Jun 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -944,13 +946,13 @@
                                     Composite Leading Indicator
                                 </a>
                             </td>
-                            <td>101.38</td>
+                            <td>101.43</td>
                             
-                            <td>101.14</td>
+                            <td>101.36</td>
                             
                             <td>
                                 points</td>
-                            <td>Sep 2026</td>
+                            <td>Oct 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1004,13 +1006,13 @@
                                     Crude Oil Rigs
                                 </a>
                             </td>
-                            <td>7.00</td>
+                            <td>5.00</td>
                             
-                            <td>6.00</td>
+                            <td>7.00</td>
                             
                             <td>
                                 </td>
-                            <td>Sep 2026</td>
+                            <td>Oct 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1019,9 +1021,9 @@
                                     Electricity Price
                                 </a>
                             </td>
-                            <td>181.34</td>
+                            <td>177.49</td>
                             
-                            <td>175.82</td>
+                            <td>189.52</td>
                             
                             <td>
                                 GBP/MWh</td>
@@ -1064,13 +1066,13 @@
                                     Industrial Production YoY
                                 </a>
                             </td>
-                            <td>1.60</td>
+                            <td>3.10</td>
                             
-                            <td>0.80</td>
+                            <td>1.10</td>
                             
                             <td>
                                 percent</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1079,13 +1081,13 @@
                                     Industrial Production MoM
                                 </a>
                             </td>
-                            <td>0.80</td>
-                            
                             <td>0.30</td>
+                            
+                            <td>0.70</td>
                             
                             <td>
                                 percent</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -1096,11 +1098,11 @@
                             </td>
                             <td>0.70</td>
                             
-                            <td>0.50</td>
+                            <td>0.60</td>
                             
                             <td>
                                 percent</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1109,13 +1111,13 @@
                                     Manufacturing Production YoY
                                 </a>
                             </td>
-                            <td>3.00</td>
+                            <td>4.40</td>
                             
-                            <td>2.20</td>
+                            <td>2.50</td>
                             
                             <td>
                                 percent</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -1124,13 +1126,13 @@
                                     Manufacturing Production MoM
                                 </a>
                             </td>
-                            <td>1.20</td>
+                            <td>0.70</td>
                             
-                            <td>1.00</td>
+                            <td>0.70</td>
                             
                             <td>
                                 Percent</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1139,13 +1141,13 @@
                                     Mining Production
                                 </a>
                             </td>
-                            <td>-5.00</td>
+                            <td>1.20</td>
                             
-                            <td>-7.80</td>
+                            <td>-5.10</td>
                             
                             <td>
                                 percent</td>
-                            <td>Aug 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row'>
@@ -1154,13 +1156,13 @@
                                     New Orders
                                 </a>
                             </td>
-                            <td>9163.00</td>
+                            <td>9232.00</td>
                             
-                            <td>10395.00</td>
+                            <td>9125.00</td>
                             
                             <td>
                                 GBP Million</td>
-                            <td>Jun 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
                         <tr class='datatable-row-alternating'>
@@ -1184,13 +1186,13 @@
                                     Business Investment QoQ
                                 </a>
                             </td>
-                            <td>1.80</td>
+                            <td>0.40</td>
                             
-                            <td>3.00</td>
+                            <td>1.80</td>
                             
                             <td>
                                 percent</td>
-                            <td>Jun 2026</td>
+                            <td>Sep 2026</td>
                         </tr>
                     
             </table>
@@ -1301,34 +1303,34 @@
                 <div class="card-header">Related</div>
                 <div class="card-body">
                     
-                            <div class="news-link"><a href='/united-kingdom/house-price-index-yoy'>UK House Prices Fall Most in 3 Years: Lloyds</a></div>
+                            <div class="news-link"><a href='/united-kingdom/productivity'>UK Labor Productivity Growth Accelerates in Q3</a></div>
                             
                         
-                            <div class="news-link"><a href='/united-kingdom/stock-market'>FTSE 100 Falls on Thursday</a></div>
+                            <div class="news-link"><a href='/united-kingdom/government-bond-yield'>UK Gilt Yields Steady as Markets Brace for Inflation Data</a></div>
                             
                         
-                            <div class="news-link"><a href='/ng:ln:eps'>National Grid earnings above expectations at 0.36 GBP</a></div>
+                            <div class="news-link"><a href='/united-kingdom/currency'>Sterling Remains Weak Ahead of UK Inflation Data</a></div>
                             
                         
-                            <div class="news-link"><a href='/united-kingdom/government-bond-yield'>UK Gilt Yields Trim Losses After BoE Rate Hike</a></div>
+                            <div class="news-link"><a href='/united-kingdom/stock-market'>UK Stocks Fall Led by Miners</a></div>
                             
                         
-                            <div class="news-link"><a href='/united-kingdom/currency'>Sterling Hits Over One-Month High Following BoE Rate Hike</a></div>
+                            <div class="news-link"><a href='/united-kingdom/wage-growth'>UK Total Pay Growth Slows to Weakest Pace Since 2020</a></div>
                             
                         
-                            <div class="news-link"><a href='/united-kingdom/interest-rate'>BoE Raises Rates for 1st Time Since 2023</a></div>
+                            <div class="news-link"><a href='/united-kingdom/average-earnings-excluding-bonus'>UK Regular Pay Growth  Slightly Below Estimates</a></div>
                             
                         
-                            <div class="news-link"><a href='/united-kingdom/new-passenger-car-registrations-yoy'>UK New Car Registrations Rise for 11th Consecutive Month</a></div>
+                            <div class="news-link"><a href='/united-kingdom/employment-change'>UK Employment Posts Biggest Gain in 14 Months</a></div>
                             
                         
-                            <div class="news-link"><a href='/united-kingdom/construction-pmi'>UK Construction Activity Falls the Most in 4 Months</a></div>
+                            <div class="news-link"><a href='/united-kingdom/non-farm-payrolls'>UK Payroll Employment Drops Most in Nearly 6 Years</a></div>
                             
                         
-                            <div class="news-link"><a href='/arm:us:eps'>ARM Holdings earnings above expectations at 0.52 USD</a></div>
+                            <div class="news-link"><a href='/united-kingdom/unemployment-rate'>UK Jobless Rate Falls to 17-Month Low</a></div>
                             
                         
-                            <div class="news-link"><a href='/united-kingdom/services-pmi'>UK Services Growth at Eight-Month High</a></div>
+                            <div class="news-link"><a href='/united-kingdom/construction-orders'>UK Q3 Construction Orders Fall at Steeper Pace</a></div>
                             
                         
                     <br />
@@ -1349,25 +1351,25 @@
                     <div class="card-header">Latest</div>
                     <div class="card-body">
                         
-                                <div class="news-link"><a href='/denmark/manufacturing-production-mom'>Danish Manufacturing Output Growth at 3-Month High</a></div>
+                                <div class="news-link"><a href='/ecuador/inflation-cpi'>Ecuador Inflation Rate Rises to 4-Month High</a></div>
                             
-                                <div class="news-link"><a href='/wpm:cn:eps'>Wheaton Precious Metals earnings below expectations at 0.90 USD</a></div>
+                                <div class="news-link"><a href='/brazil/stock-market'>Ibovespa Rebounds Amid Fiscal Adjusment Bill Vote</a></div>
                             
-                                <div class="news-link"><a href='/norway/manufacturing-production-mom'>Norway Manufacturing Output Unchanged in September</a></div>
+                                <div class="news-link"><a href='/canada/investment-in-foreign-securities'>Canadian Investment in Foreign Securities Eases in September</a></div>
                             
-                                <div class="news-link"><a href='/romania/retail-sales-annual'>Romanian Retail Sales Drop 2.6% in September</a></div>
+                                <div class="news-link"><a href='/united-states/ny-fed-services-activity-index'>NY Services Activity Contraction Slows</a></div>
                             
-                                <div class="news-link"><a href='/kazakhstan/current-account'>Kazakhstan Current Account Swings to a Surplus in Q3</a></div>
+                                <div class="news-link"><a href='/canada/foreign-stock-investment'>Foreign Investment in Canadian Securities Rebounds</a></div>
                             
-                                <div class="news-link"><a href='/germany/industrial-production-mom'>German Industrial Output Unexpectedly Rises</a></div>
+                                <div class="news-link"><a href='/united-states/import-prices-mom'>US Import Prices Rise More than Expected</a></div>
                             
-                                <div class="news-link"><a href='/united-kingdom/house-price-index-yoy'>UK House Prices Fall Most in 3 Years: Lloyds</a></div>
+                                <div class="news-link"><a href='/united-states/export-prices-mom'>US Export Prices Rise More than Expected</a></div>
                             
-                                <div class="news-link"><a href='/japan/stock-market'>Nikkei Posts Biggest Weekly Drop Since March 2020</a></div>
+                                <div class="news-link"><a href='/united-states/retail-sales'>US Retail Sales Growth Slows in October</a></div>
                             
-                                <div class="news-link"><a href='/taiwan/stock-market'>TAIEX Ends at Over 6-Month Low, Posts 4th Weekly Loss</a></div>
+                                <div class="news-link"><a href='/canada/housing-starts'>Canada Housing Starts Fall Less Than Expected</a></div>
                             
-                                <div class="news-link"><a href='/388:hk:eps'>Hong Kong Exchanges earnings above expectations at 3.83 HKD</a></div>
+                                <div class="news-link"><a href='/hungary/interest-rate'>National Bank of Hungary Keeps Rates Unchanged</a></div>
                             
                         <br />
                         <a id="ctl00_ContentPlaceHolder1_ctl03_moreTopNews" href="../news">
@@ -1895,27 +1897,29 @@
                             
                                 <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl04_HyperLink2" href="/united-kingdom/foreign-exchange-reserves" style="text-decoration: none; text-transform: capitalize;">Foreign Exchange Reserves</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl05_HyperLink2" href="/united-kingdom/interest-rate-on-new-mortgages" style="text-decoration: none; text-transform: capitalize;">Interest rate on new mortgages</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl05_HyperLink2" href="/united-kingdom/implied-rates" style="text-decoration: none; text-transform: capitalize;">Implied Rates</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl06_HyperLink2" href="/united-kingdom/interest-rate-on-outstanding-mortgages" style="text-decoration: none; text-transform: capitalize;">Interest Rate on Outstanding Mortgages</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl06_HyperLink2" href="/united-kingdom/interest-rate-on-new-mortgages" style="text-decoration: none; text-transform: capitalize;">Interest rate on new mortgages</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl07_HyperLink2" href="/united-kingdom/lending-rate" style="text-decoration: none; text-transform: capitalize;">Lending Rate</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl07_HyperLink2" href="/united-kingdom/interest-rate-on-outstanding-mortgages" style="text-decoration: none; text-transform: capitalize;">Interest Rate on Outstanding Mortgages</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl08_HyperLink2" href="/united-kingdom/loans-to-private-sector" style="text-decoration: none; text-transform: capitalize;">Loans to Private Sector</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl08_HyperLink2" href="/united-kingdom/lending-rate" style="text-decoration: none; text-transform: capitalize;">Lending Rate</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl09_HyperLink2" href="/united-kingdom/money-supply-m4" style="text-decoration: none; text-transform: capitalize;">M4 Money Supply MoM</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl09_HyperLink2" href="/united-kingdom/loans-to-private-sector" style="text-decoration: none; text-transform: capitalize;">Loans to Private Sector</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl10_HyperLink2" href="/united-kingdom/money-supply-m0" style="text-decoration: none; text-transform: capitalize;">Money Supply M0</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl10_HyperLink2" href="/united-kingdom/money-supply-m4" style="text-decoration: none; text-transform: capitalize;">M4 Money Supply MoM</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl11_HyperLink2" href="/united-kingdom/money-supply-m1" style="text-decoration: none; text-transform: capitalize;">Money Supply M1</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl11_HyperLink2" href="/united-kingdom/money-supply-m0" style="text-decoration: none; text-transform: capitalize;">Money Supply M0</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl12_HyperLink2" href="/united-kingdom/money-supply-m2" style="text-decoration: none; text-transform: capitalize;">Money Supply M2</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl12_HyperLink2" href="/united-kingdom/money-supply-m1" style="text-decoration: none; text-transform: capitalize;">Money Supply M1</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl13_HyperLink2" href="/united-kingdom/money-supply-m3" style="text-decoration: none; text-transform: capitalize;">Money Supply M3</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl13_HyperLink2" href="/united-kingdom/money-supply-m2" style="text-decoration: none; text-transform: capitalize;">Money Supply M2</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl14_HyperLink2" href="/united-kingdom/overnight-interbank-average-rate" style="text-decoration: none; text-transform: capitalize;">Overnight Interbank Average Rate</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl14_HyperLink2" href="/united-kingdom/money-supply-m3" style="text-decoration: none; text-transform: capitalize;">Money Supply M3</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl15_HyperLink2" href="/united-kingdom/private-debt-to-gdp" style="text-decoration: none; text-transform: capitalize;">Private Debt to GDP</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl15_HyperLink2" href="/united-kingdom/overnight-interbank-average-rate" style="text-decoration: none; text-transform: capitalize;">Overnight Interbank Average Rate</a><br />
+                            
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl04_Repeater2_ctl16_HyperLink2" href="/united-kingdom/private-debt-to-gdp" style="text-decoration: none; text-transform: capitalize;">Private Debt to GDP</a><br />
                             
                     </div>
                 </div>
@@ -2079,6 +2083,8 @@
                             
                                 <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl07_Repeater2_ctl21_HyperLink2" href="/united-kingdom/new-orders" style="text-decoration: none; text-transform: capitalize;">New Orders</a><br />
                             
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl07_Repeater2_ctl22_HyperLink2" href="/united-kingdom/services-output-mom" style="text-decoration: none; text-transform: capitalize;">Services Output MoM</a><br />
+                            
                     </div>
                 </div>
             </div>
@@ -2141,35 +2147,37 @@
                             
                                 <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl02_HyperLink2" href="/united-kingdom/construction-orders" style="text-decoration: none; text-transform: capitalize;">Construction Orders YoY</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl03_HyperLink2" href="/united-kingdom/construction-output" style="text-decoration: none; text-transform: capitalize;">Construction Output YoY</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl03_HyperLink2" href="/united-kingdom/construction-output-mom" style="text-decoration: none; text-transform: capitalize;">Construction Output MoM</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl04_HyperLink2" href="/united-kingdom/home-ownership-rate" style="text-decoration: none; text-transform: capitalize;">Home Ownership Rate</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl04_HyperLink2" href="/united-kingdom/construction-output" style="text-decoration: none; text-transform: capitalize;">Construction Output YoY</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl05_HyperLink2" href="/united-kingdom/housing-index" style="text-decoration: none; text-transform: capitalize;">Housing Index</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl05_HyperLink2" href="/united-kingdom/home-ownership-rate" style="text-decoration: none; text-transform: capitalize;">Home Ownership Rate</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl06_HyperLink2" href="/united-kingdom/housing-starts" style="text-decoration: none; text-transform: capitalize;">Housing Starts</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl06_HyperLink2" href="/united-kingdom/housing-index" style="text-decoration: none; text-transform: capitalize;">Housing Index</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl07_HyperLink2" href="/united-kingdom/house-price-index-mom" style="text-decoration: none; text-transform: capitalize;">Lloyds House Price Index MoM</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl07_HyperLink2" href="/united-kingdom/housing-starts" style="text-decoration: none; text-transform: capitalize;">Housing Starts</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl08_HyperLink2" href="/united-kingdom/house-price-index-yoy" style="text-decoration: none; text-transform: capitalize;">Lloyds House Price Index YoY</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl08_HyperLink2" href="/united-kingdom/house-price-index-mom" style="text-decoration: none; text-transform: capitalize;">Lloyds House Price Index MoM</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl09_HyperLink2" href="/united-kingdom/mortgage-approvals" style="text-decoration: none; text-transform: capitalize;">Mortgage Approvals</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl09_HyperLink2" href="/united-kingdom/house-price-index-yoy" style="text-decoration: none; text-transform: capitalize;">Lloyds House Price Index YoY</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl10_HyperLink2" href="/united-kingdom/home-loans" style="text-decoration: none; text-transform: capitalize;">Mortgage Lending</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl10_HyperLink2" href="/united-kingdom/mortgage-approvals" style="text-decoration: none; text-transform: capitalize;">Mortgage Approvals</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl11_HyperLink2" href="/united-kingdom/nationwide-housing-prices" style="text-decoration: none; text-transform: capitalize;">Nationwide Housing Prices</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl11_HyperLink2" href="/united-kingdom/home-loans" style="text-decoration: none; text-transform: capitalize;">Mortgage Lending</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl12_HyperLink2" href="/united-kingdom/nationwide-housing-prices-mom" style="text-decoration: none; text-transform: capitalize;">Nationwide Housing Prices MoM</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl12_HyperLink2" href="/united-kingdom/nationwide-housing-prices" style="text-decoration: none; text-transform: capitalize;">Nationwide Housing Prices</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl13_HyperLink2" href="/united-kingdom/nationwide-housing-prices-yoy" style="text-decoration: none; text-transform: capitalize;">Nationwide Housing Prices YoY</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl13_HyperLink2" href="/united-kingdom/nationwide-housing-prices-mom" style="text-decoration: none; text-transform: capitalize;">Nationwide Housing Prices MoM</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl14_HyperLink2" href="/united-kingdom/price-to-rent-ratio" style="text-decoration: none; text-transform: capitalize;">Price to Rent Ratio</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl14_HyperLink2" href="/united-kingdom/nationwide-housing-prices-yoy" style="text-decoration: none; text-transform: capitalize;">Nationwide Housing Prices YoY</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl15_HyperLink2" href="/united-kingdom/private-rental-prices" style="text-decoration: none; text-transform: capitalize;">Private Rental Prices YoY</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl15_HyperLink2" href="/united-kingdom/price-to-rent-ratio" style="text-decoration: none; text-transform: capitalize;">Price to Rent Ratio</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl16_HyperLink2" href="/united-kingdom/residential-property-prices" style="text-decoration: none; text-transform: capitalize;">Residential Property Prices</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl16_HyperLink2" href="/united-kingdom/private-rental-prices" style="text-decoration: none; text-transform: capitalize;">Private Rental Prices YoY</a><br />
                             
-                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl17_HyperLink2" href="/united-kingdom/rics-house-price-balance" style="text-decoration: none; text-transform: capitalize;">RICS House Price Balance</a><br />
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl17_HyperLink2" href="/united-kingdom/residential-property-prices" style="text-decoration: none; text-transform: capitalize;">Residential Property Prices</a><br />
+                            
+                                <a id="ctl00_SidebarUC1_ctl00_Repeater1_ctl09_Repeater2_ctl18_HyperLink2" href="/united-kingdom/rics-house-price-balance" style="text-decoration: none; text-transform: capitalize;">RICS House Price Balance</a><br />
                             
                     </div>
                 </div>
@@ -2397,6 +2405,8 @@
     </form>
     
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script>(function () { var t = window.TECalendarTable || window.TEMarketsTable; if (!t) return; var done = false, release = function () { if (!done) { done = true; $.holdReady(false) } }; $.holdReady(true); t.then(release, release); setTimeout(release, 8000) })();</script>
 
     
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js" defer></script>
@@ -2839,13 +2849,11 @@
             $(jModal).find(".modal-footer").remove();
 
         $(jModal).on('show.bs.modal', function (e) {
-            $(".navbar").css("padding-right", "17px");
             $(".pagemenu").css("padding-right", "17px");
             $(".pagetabs").css("padding-right", "17px");
         });
 
         $(jModal).on('hide.bs.modal', function (e) {
-            $(".navbar").css("padding-right", "");
             $(".pagemenu").css("padding-right", "");
             $(".pagetabs").css("padding-right", "");
         });
@@ -2880,10 +2888,8 @@
 <script>console.log("/js/chartec.ascx"); TEChartsToken = '8e8b44e76377be93a37d5e3ac27bf4c9f1343b7bb938f2ae928fbd50d53d3fb3'; TEAuth.ready();</script>
 
 <script src='https://d1v8a2ofhkdel3.cloudfront.net/cdn/highstock_exporting.2024.10.1.0.js'></script>
-
 <link rel="stylesheet" href="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.css?v=20261014b">
 <script src="https://d2xewprs6ejfae.cloudfront.net/production/ec.min.js?v=20261014b"></script>
-
 <script>console.log("Loading Chatbot")</script>
 
 
@@ -3217,13 +3223,11 @@
                 $(jModal).find(".modal-footer").remove();
 
             $(jModal).on('show.bs.modal', function (e) {
-                $(".navbar").css("padding-right", "17px");
                 $(".pagemenu").css("padding-right", "17px");
                 $(".pagetabs").css("padding-right", "17px");
             });
 
             $(jModal).on('hide.bs.modal', function (e) {
-                $(".navbar").css("padding-right", "");
                 $(".pagemenu").css("padding-right", "");
                 $(".pagetabs").css("padding-right", "");
             });
@@ -3946,41 +3950,36 @@
         }
         if (TELanguage && TELanguage != '') streamURL += "&lang=" + TELanguage;
         console.log(streamURL);
-        $.ajax({
-            url: streamURL,
-            type: "GET",
-            dataType: "json",
-            beforeSend: function () {
-                $('#spinner').show();
-                streamIsLoading = true;
-            },
-            complete: function () {
-                $('#spinner').hide();
-                streamIsLoading = false;
-            },
-            success: function (data) {
-                appendResult(data);
-                if (start == 0) {
-                    $('#stream-btn').css("visibility", "visible");
-                    if (sCategory || sCountry) {
-                        var sFilter = sCategory || sCountry;
-                        if (sFilter == "economy") $('#streamTabEconomy').tab('show');
-                        else if (sFilter == "markets") $('#streamTabMarkets').tab('show');
-                        else {
-                            //var sFilterDiv = '<a class="btn btn-outline-secondary" href="/stream">' + sFilter + '&nbsp;<i class="glyphicon glyphicon-filter"></i></a><br/><br/>';$("#stream").prepend(sFilterDiv);
-                            //OLD - $('#streamTabs').append('<li id="streamTabFilter" class="active" style="text-transform:capitalize;"><a>' + sFilter + '</a></li> ');
-                            $('#pagemenutabs li a').removeClass("active")
-                            $('#pagemenutabs').append('<li id="streamTabFilter" class="nav-item" style="text-transform:capitalize;"><a class="nav-link active">' + sFilter + '</a></li> ');
+        // TEWaf.fetch: the stream endpoints are AWS WAF challenge paths (see js/jsHead.ascx)
+        $('#spinner').show();
+        streamIsLoading = true;
+        var complete = function () {
+            $('#spinner').hide();
+            streamIsLoading = false;
+        };
+        TEWaf.fetch(streamURL, { credentials: 'same-origin' }).then(function (r) { if (r.status !== 200) throw new Error('HTTP ' + r.status); return r.json() }).then(function (data) { complete(); success(data) }, function (e) { complete(); error(e) });
+        function success(data) {
+            appendResult(data);
+            if (start == 0) {
+                $('#stream-btn').css("visibility", "visible");
+                if (sCategory || sCountry) {
+                    var sFilter = sCategory || sCountry;
+                    if (sFilter == "economy") $('#streamTabEconomy').tab('show');
+                    else if (sFilter == "markets") $('#streamTabMarkets').tab('show');
+                    else {
+                        //var sFilterDiv = '<a class="btn btn-outline-secondary" href="/stream">' + sFilter + '&nbsp;<i class="glyphicon glyphicon-filter"></i></a><br/><br/>';$("#stream").prepend(sFilterDiv);
+                        //OLD - $('#streamTabs').append('<li id="streamTabFilter" class="active" style="text-transform:capitalize;"><a>' + sFilter + '</a></li> ');
+                        $('#pagemenutabs li a').removeClass("active")
+                        $('#pagemenutabs').append('<li id="streamTabFilter" class="nav-item" style="text-transform:capitalize;"><a class="nav-link active">' + sFilter + '</a></li> ');
 
-                        }
                     }
                 }
-            },
-            error: function (e) {
-                console.log(e)
-                console.error("Stream Error")
             }
-        });
+        }
+        function error(e) {
+            console.log(e)
+            console.error("Stream Error")
+        }
     }
     function appendResult(data) {
         console.log("[streams] Appending Results");
