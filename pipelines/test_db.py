@@ -131,6 +131,22 @@ def main():
     check('as-of rebuild covers all eight currencies', isos == 8,
           '%d values across %d currencies' % (len(rows), isos))
 
+    # *** THE AS-OF COUNT MUST EQUAL THE NUMBER OF GROUPS HOLDING AN ACTUAL.
+    # An invariant, not a magic number, because the first SQLite version
+    # returned 93 against Postgres's 87: the primary key includes `event`,
+    # so several source events can map to ONE whitelist indicator at the
+    # same captured_at (AU Employment Change matched three variants), and a
+    # join on max(captured_at) returned those groups more than once.
+    # Only running BOTH engines exposed it - either one alone looked right.
+    groups = con.execute(
+        "select count(*) from ("
+        " select iso, indicator, event_date from observations"
+        "  where captured_at <= '2026-10-20T23:59+08:00'"
+        "    and indicator is not null and actual is not null"
+        "  group by 1,2,3)").fetchone()[0]
+    check('as-of returns exactly one row per group', len(rows) == groups,
+          '%d rows vs %d groups' % (len(rows), groups))
+
     print()
     if fails:
         print('*** %d FAILURE(S): %s' % (len(fails), ', '.join(fails)))

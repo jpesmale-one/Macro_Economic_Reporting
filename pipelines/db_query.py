@@ -83,18 +83,32 @@ def as_of(moment, db=None):
     query that makes that mechanical instead of a matter of finding the right
     capture file.
     """
+    # *** ONE ROW PER (iso, indicator, event_date) - AND THE OBVIOUS JOIN
+    # GIVES MORE THAN THAT. The primary key includes `event`, so SEVERAL
+    # source events can map to one whitelist indicator at the same
+    # captured_at: AU Employment Change matched three variants, so a join on
+    # max(captured_at) returned that group three times and the count came out
+    # 93 against Postgres's 87. Postgres was right - 87 is the number of
+    # groups holding any actual, which both engines agree on once asked
+    # directly.
+    #
+    # group_concat/min picks one row deterministically, which is what
+    # DISTINCT ON does in the Postgres function.
     c = con(db)
     try:
         return c.execute("""
         select o.iso, o.indicator, o.event_date, o.actual,
                o.consensus, o.forecast, o.captured_at
           from observations o
-          join (select iso, indicator, event_date, max(captured_at) mc
+          join (select iso, indicator, event_date,
+                       max(captured_at) mc, min(event) me
                   from observations
                  where captured_at <= ? and indicator is not null
+                   and actual is not null
                  group by iso, indicator, event_date) m
             on o.iso=m.iso and o.indicator=m.indicator
            and o.event_date=m.event_date and o.captured_at=m.mc
+           and o.event=m.me
          where o.actual is not null
          order by o.iso, o.event_date""", (moment,)).fetchall()
     finally:
