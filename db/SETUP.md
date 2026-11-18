@@ -21,16 +21,40 @@ it awake anyway.
 
 ## 2. Copy the connection string
 
-**Project Settings → Database → Connection string → URI**, and tick
-**Use connection pooling** (port `6543`). The pooler is the right choice for
-short-lived script connections; the direct port `5432` is for long-lived
-ones.
+**Click `Connect` in the top bar of the project page** — next to the project
+name, not in Settings.
+
+In the dialog that opens:
+
+- stay on the **Connection string** tab (not "App Frameworks")
+- choose **Transaction pooler**
+- copy the URI
+
+> The old route was *Project Settings → Database → Connection string* with a
+> "Use connection pooling" tickbox. Supabase replaced it with this dialog, so
+> that tickbox no longer exists — the three modes are offered as named
+> choices instead.
 
 It looks like:
 
 ```
 postgresql://postgres.abcdefghijklm:[YOUR-PASSWORD]@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres
 ```
+
+Replace `[YOUR-PASSWORD]` with the database password from step 1 — the
+dashboard shows the placeholder, not the real password.
+
+### Which of the three modes, and why
+
+| Mode | Port | Use it? |
+|---|---|---|
+| Direct connection | 5432 | No — IPv6-only on the free tier |
+| **Transaction pooler** | **6543** | **Yes** — built for short-lived connections, which is exactly what our scripts open |
+| Session pooler | 5432 | Only if transaction mode misbehaves |
+
+Our loader connects, writes, and disconnects, so transaction mode is the
+right fit. It is also IPv4, which avoids a class of connection failure the
+direct option hits on home networks.
 
 ## 3. Save it locally — never in the repo
 

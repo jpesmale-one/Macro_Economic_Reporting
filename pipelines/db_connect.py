@@ -63,6 +63,33 @@ def is_pg():
     return url() is not None
 
 
+def advise(u):
+    """Problems we can see in the URL itself, before dialling out.
+
+    Both of these produce confusing failures: the placeholder authenticates
+    as a password literally called '[YOUR-PASSWORD]', and the direct host is
+    IPv6-only on the free tier, so it fails with a network error that looks
+    like the project is down.
+    """
+    out = []
+    if not u:
+        return out
+    if 'YOUR-PASSWORD' in u or 'YOUR_PASSWORD' in u:
+        out.append('the password placeholder is still in the URL - paste the '
+                   'real database password from step 1')
+    if 'YOUR_PROJECT_REF' in u:
+        out.append('the project ref placeholder is still in the URL')
+    if '.pooler.supabase.com' not in u and 'supabase' in u:
+        out.append('this looks like the DIRECT connection (db.<ref>.supabase'
+                   '.co). It is IPv6-only on the free tier. Use the '
+                   'Transaction pooler string instead - host ends '
+                   '.pooler.supabase.com, port 6543')
+    if u.endswith(':5432/postgres') and 'pooler' in u:
+        out.append('port 5432 on the pooler is SESSION mode; transaction '
+                   'mode (6543) suits short-lived script connections better')
+    return out
+
+
 def connect():
     """An open connection, plus a flag saying which engine it is.
 
@@ -90,10 +117,20 @@ def main():
         print('  file   : %s' % SQLITE)
         print('           exists: %s' % os.path.exists(SQLITE))
         print()
-        print('  To point at Supabase, create db/.env with:')
-        print('    SUPABASE_DB_URL=postgresql://postgres.<ref>:'
-              '<password>@<host>:6543/postgres')
+        print('  To point at Supabase:')
+        print('    1. cp db/.env.example db/.env')
+        print('    2. paste the Transaction pooler URI from the dashboard')
+        print('       (Connect button in the project top bar)')
+        print('    3. re-run this command')
         return 0
+
+    warn = advise(u)
+    if warn:
+        print()
+        for w in warn:
+            print('  *** %s' % w)
+        print()
+
     try:
         con, eng = connect()
         with con.cursor() as cur:
