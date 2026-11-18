@@ -37,6 +37,7 @@ sys.path.insert(0, HERE)
 
 import week_ahead as wa
 import score_model as sm
+import db_connect as dbc
 
 CAPS = os.path.join(REPO, 'data/raw/calendar/*_cal_full.json')
 SCHEMA = os.path.join(REPO, 'db/schema.sql')
@@ -156,26 +157,50 @@ def main():
         print('  DRY RUN - pass --write to load.')
         return 0
 
-    d = os.path.dirname(db)
-    if d and not os.path.isdir(d):
-        os.makedirs(d)
-    con = sqlite3.connect(db)
-    con.executescript(io.open(SCHEMA, encoding='utf-8').read())
-    before = con.execute('select count(*) from observations').fetchone()[0]
-    con.executemany(
-        'insert or ignore into observations ('
-        'captured_at, capture_file, source, iso, event, event_date,'
-        'event_time, indicator, actual, consensus, forecast, previous,'
-        'source_url, importance) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-        allrows)
+    # *** SAME ROWS, EITHER ENGINE. db_connect decides: a SUPABASE_DB_URL in
+    # the environment or db/.env means Postgres, otherwise the local SQLite
+    # file. The backfill is identical, which is the point of stage 1 - the
+    # schema and the loaded history are the asset, not the host.
+    if dbc.is_pg() and '--db' not in a:
+        con, eng = dbc.connect()
+        print('  engine: postgres  %s' % dbc.redacted(dbc.url()))
+    else:
+        d = os.path.dirname(db)
+        if d and not os.path.isdir(d):
+            os.makedirs(d)
+        con, eng = sqlite3.connect(db), 'sqlite'
+        con.executescript(io.open(SCHEMA, encoding='utf-8').read())
+        print('  engine: sqlite    %s' % db)
+
+    cur = con.cursor()
+    cur.execute('select count(*) from observations')
+    before = cur.fetchone()[0]
+
+    if eng == 'sqlite':
+        sql = ('insert or ignore into observations ('
+               'captured_at, capture_file, source, iso, event, event_date,'
+               'event_time, indicator, actual, consensus, forecast, previous,'
+               'source_url, importance) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)')
+    else:
+        # ON CONFLICT DO NOTHING keeps the load idempotent, and the
+        # append-only trigger means a conflicting row could not be updated
+        # anyway - a revision must arrive as a new captured_at.
+        sql = ('insert into observations ('
+               'captured_at, capture_file, source, iso, event, event_date,'
+               'event_time, indicator, actual, consensus, forecast, previous,'
+               'source_url, importance) '
+               'values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) '
+               'on conflict do nothing')
+    cur.executemany(sql, allrows)
     con.commit()
-    after = con.execute('select count(*) from observations').fetchone()[0]
+    cur.execute('select count(*) from observations')
+    after = cur.fetchone()[0]
     print()
     print('  rows in table: %d (was %d, +%d)' % (after, before, after - before))
-    vints = con.execute(
-        'select count(distinct captured_at) from observations').fetchone()[0]
-    span = con.execute(
-        'select min(event_date), max(event_date) from observations').fetchone()
+    cur.execute('select count(distinct captured_at) from observations')
+    vints = cur.fetchone()[0]
+    cur.execute('select min(event_date), max(event_date) from observations')
+    span = cur.fetchone()
     print('  distinct vintages: %d' % vints)
     print('  event dates: %s .. %s' % span)
     con.close()

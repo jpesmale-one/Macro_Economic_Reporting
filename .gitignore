@@ -16,3 +16,4 @@ scratch/
 build/
 data/raw/calendar/_rejected/
 data/macro.db
+db/.env
