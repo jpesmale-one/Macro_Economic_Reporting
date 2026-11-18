@@ -88,8 +88,22 @@ def rows_from(path, names):
         if not isinstance(r, dict):
             continue
         iso = r.get('iso')
-        if iso not in CCY:
+        if not iso:
             continue
+        # *** EVERY COUNTRY IS KEPT, NOT JUST OUR EIGHT.
+        #
+        # The first version filtered to CCY here and it quietly broke the
+        # daily's honesty check. catalyst.py tier 4 reports "UNEXPLAINED -
+        # N rows landed that day, none for NZD", and N counts the WHOLE
+        # captured calendar on purpose: "we checked 83 rows and none touched
+        # this currency" is a far stronger statement than "we checked 44".
+        # Dropping the other 36 countries turned 83 into 44 and weakened a
+        # claim the report is built to make.
+        #
+        # Whitelist matching still happens below - `indicator` stays null for
+        # a row we do not score - so nothing else is affected. This is the
+        # same lesson as R-50: keep what you captured, filter at the point of
+        # use, never at the point of storage.
         ev = str(r.get('event') or '').strip().lower()
         date = str(r.get('date') or '')[:10]
         if not ev or len(date) != 10:
@@ -98,7 +112,10 @@ def rows_from(path, names):
         if k in seen:                       # a capture can repeat a row
             continue
         seen.add(k)
-        hit = wa.match(ev, names.get(CCY[iso], []), iso)
+        # Only our eight have a whitelist to match against; every other
+        # country stores with indicator null and counts toward the calendar.
+        hit = (wa.match(ev, names.get(CCY[iso], []), iso)
+               if iso in CCY else None)
 
         def val(key):
             # F-73: '' means we saw no value. Store null, never a zero.

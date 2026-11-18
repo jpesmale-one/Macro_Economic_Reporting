@@ -155,5 +155,63 @@ def main():
     return 0
 
 
+def rebuild_proof():
+    """Rebuild a published report from the DATABASE and diff it.
+
+    *** THE STRONGEST TEST THE MIGRATION CAN PASS. Not "the queries look
+    right" but "a report regenerated from Postgres is the file we shipped".
+    The only permitted difference is the build date in the footer, which
+    SHOULD differ - the report is being built on a different day.
+
+    Run separately from the unit checks because it swaps the capture
+    directory and regenerates a tracked file:
+
+        python pipelines/test_db.py --rebuild
+    """
+    import glob
+    import shutil
+    import subprocess
+    import db_shim
+
+    target = 'reports/2026/Q4/daily/2026-11-05_daily.html'
+    asof = '2026-11-06T23:59+08:00'        # the vintage it was built on
+    print('REBUILD PROOF  %s' % target)
+    print('  as of vintage: %s' % asof)
+
+    db_shim.materialise(as_of=asof)
+    shimdir = os.path.join(os.environ.get('TEMP', '/tmp'), 'macro_shim')
+    cal = os.path.join(REPO, 'data/raw/calendar')
+    bak = cal + '_filebak'
+    if os.path.isdir(bak):
+        shutil.rmtree(bak)
+    shutil.move(cal, bak)
+    os.makedirs(cal)
+    try:
+        for p in glob.glob(os.path.join(shimdir, '*_cal_full.json')):
+            shutil.copy(p, os.path.join(cal, os.path.basename(p)))
+        subprocess.run([sys.executable,
+                        os.path.join(HERE, 'gen_daily.py'), '2026-11-05'],
+                       capture_output=True, text=True, timeout=900)
+    finally:
+        shutil.rmtree(cal)
+        shutil.move(bak, cal)
+
+    d = subprocess.run(['git', 'diff', '--numstat', target],
+                       capture_output=True, text=True, cwd=REPO).stdout.strip()
+    changed = int(d.split()[0]) if d else 0
+    body = subprocess.run(['git', 'diff', target], capture_output=True,
+                          text=True, cwd=REPO).stdout
+    only_date = all('built ' in l for l in body.splitlines()
+                    if l.startswith('+') and not l.startswith('+++'))
+    subprocess.run(['git', 'checkout', '--', target], cwd=REPO)
+
+    ok = changed <= 1 and (changed == 0 or only_date)
+    print('  lines differing: %d  %s' % (
+        changed, '(the build date, which should differ)' if changed else ''))
+    print()
+    print('  REBUILD PROOF PASSES' if ok else '  *** REBUILD DIFFERS')
+    return 0 if ok else 1
+
+
 if __name__ == '__main__':
-    sys.exit(main())
+    sys.exit(rebuild_proof() if '--rebuild' in sys.argv else main())

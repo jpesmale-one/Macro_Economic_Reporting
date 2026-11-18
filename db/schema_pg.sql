@@ -53,9 +53,14 @@ create table if not exists observations (
         forecast is distinct from '' and
         previous is distinct from ''
     ),
-    constraint obs_known_iso check (
-        iso in ('US','EA','GB','JP','AU','NZ','CA','CH')
-    )
+    -- *** NOT RESTRICTED TO OUR EIGHT, DELIBERATELY. An earlier version
+    -- checked `iso in (our eight)` and would have rejected the rest of the
+    -- captured calendar. catalyst.py tier 4 counts EVERY row that landed on
+    -- a day to say "N rows landed, none for NZD" - the honesty signal behind
+    -- UNEXPLAINED - so dropping other countries turned 83 into 44 and
+    -- weakened the claim. Filter at the point of use, never at storage
+    -- (R-50's lesson). A two-letter shape is all we require.
+    constraint obs_iso_shape check (char_length(iso) between 2 and 3)
 );
 
 create index if not exists obs_lookup
