@@ -79,14 +79,23 @@ def advise(u):
                    'real database password from step 1')
     if 'YOUR_PROJECT_REF' in u:
         out.append('the project ref placeholder is still in the URL')
-    if '.pooler.supabase.com' not in u and 'supabase' in u:
-        out.append('this looks like the DIRECT connection (db.<ref>.supabase'
-                   '.co). It is IPv6-only on the free tier. Use the '
-                   'Transaction pooler string instead - host ends '
-                   '.pooler.supabase.com, port 6543')
-    if u.endswith(':5432/postgres') and 'pooler' in u:
-        out.append('port 5432 on the pooler is SESSION mode; transaction '
-                   'mode (6543) suits short-lived script connections better')
+    # *** THE THREE MODES DIFFER BY HOST AS WELL AS PORT, so editing the
+    # port on a DIRECT string yields a host/port pair that exists nowhere.
+    # Say which mode this actually is rather than leaving it to the eye.
+    pooler = '.pooler.supabase.com' in u
+    if not pooler and 'supabase' in u:
+        out.append('MODE: direct connection (db.<ref>.supabase.co). This is '
+                   'IPv6-only on the free tier and usually fails from home '
+                   'networks. Do NOT just change the port - the pooler has a '
+                   'different HOST and username too. Re-copy from Connect -> '
+                   'Transaction pooler.')
+    elif pooler and ':5432/' in u:
+        out.append('MODE: session pooler (port 5432). Transaction pooler '
+                   '(6543) suits short-lived script connections better. Here '
+                   'the host is already right, so changing 5432 to 6543 is '
+                   'all that differs - safe to edit by hand.')
+    elif pooler and ':6543/' in u:
+        pass                      # transaction pooler - what we want
     return out
 
 
