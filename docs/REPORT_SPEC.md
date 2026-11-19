@@ -4620,3 +4620,112 @@ grades is hindsight (F-83).
 
 **R-46 step 11** fails the build when a selected pair has no bars, so the prompt
 arrives before publishing rather than as *"no bars"* on the page.
+
+---
+
+## F-192 — THE ATR WAS COMPUTED, USED, AND NEVER HANDED OVER
+
+**The ledger column that fed nothing.** `daily_report.py` computes the
+14-period ATR, grades the day with it, classifies the session state with it —
+and then called `session_log.append()` **without it**:
+
+```python
+atr = ag.atr(...) if len(prior) > 15 else None
+fav, adv, frac, hit = ag.grade_day(side, o, h, l, f, atr or 1)
+k = ag.classify(fav, adv, atr) if atr else '-'
+...
+sl.append(_ws, day, pair, side, fav, adv, frac, hit, k)   # <- no atr
+```
+
+`append()`'s signature is `(week_start, session, pair, direction, fav, adv,
+frac, hit, state, note, atr)`. The ninth positional argument is `state`, so
+`atr` defaulted to `None` and the column was written **blank on every row of
+every build**.
+
+**NOTHING ERRORED.** A blank `atr_pips` is a legal CSV cell. The console
+output was right, because the console used the local variable. The page was
+right, for the same reason. Only the stored row was hollow — and a row with
+no ATR is silently dropped by every ATR-normalised read (F-73, LD-176's
+`score()`).
+
+> **THE SIGNATURE OF THIS BUG CLASS: a generator quietly becomes a manual
+> step.** The blank was noticed, so the fill was done by hand — and then done
+> by hand again, on **five consecutive builds**, each time as a small chore
+> rather than as evidence that the writer had stopped writing. The repair kept
+> the symptom invisible, which is what let the cause survive five sightings.
+
+**THE FIX IS ONE KEYWORD**, `atr=atr`, and `None` still stays `None` — never a
+guessed `0`. An unscorable row must score blank: *an absence we cannot see is
+a fact about our reach, not about the world.*
+
+**R-51 `test_session_log.py`** — and the test has to reach the **call site**,
+not `append()`. `append()` was never broken; it stored an ATR correctly
+whenever it was given one. A test asserting that would have passed against
+the defect. So R-51 reads the source of the function that writes the ledger
+and asserts the value crosses the boundary. **Proven by reverting the fix: 1
+of 6 checks fails, and it is that one.**
+
+---
+
+## R-51 — THE DAILY GETS A RUNNER, FOR THE REASON THE WEEKLY GOT ONE
+
+**`run_daily.py`.** CLAUDE.md §0a-ii already settled this argument for the
+weekly: *"this file listed ~20 guards, and in three weeks that list failed
+three times the same way — the step was there and I ran it slightly wrong. A
+checklist that cannot check itself is a wish."* `build_check.py` was the
+answer and the weekly has not mis-ordered a step since.
+
+**The daily never got the same treatment** — ten commands typed by hand in a
+documented order. Every one of its ordering traps has now fired in a
+**published** report:
+
+| | The trap | What it published |
+|---|---|---|
+| **F-188** | the session had not CLOSED | a pair that hit its target, as DRIFT |
+| **F-190** | the bars were not raw PRICE | four of ten session states flipped |
+| **R-50** | the 28-cross grid was thin | 40 of 40 sessions read BROAD |
+| **F-192** | the ATR never reached the ledger | five builds filled by hand |
+| **LD-162** | the capture was from yesterday | real prints read NO CATALYST |
+
+**Not one announced itself.** Each produced a page that was internally
+consistent, plausible, and wrong — the failure a person reading his own
+output cannot catch, and a gate run in a fixed order can.
+
+**It decides nothing.** It does not touch the board or the set (LD-97), does
+not score, does not publish. LD-4 holds absolutely — no lot size, entry, stop,
+target or order anywhere in it.
+
+**THE STEP THAT CANNOT BE AUTOMATED IS NOT PRETENDED AWAY.** `pull_bars.py`
+drives a live TradingView window over CDP; if that bridge is wedged, no
+orchestration conjures price, and **LD-5 forbids a fallback — Yahoo is never
+one.** So the runner CHECKS the bars and says to pull them. It does not fake
+them and does not continue without them.
+
+### Two defects in the gates themselves, both found by testing
+
+**A gate that fires for someone else's reason is worse than a missing gate.**
+The first grid gate compared every cross against the *session*, so on a day
+before the pull it reported *"28 crosses are behind the session"* and stopped
+the run — ahead of F-188, which owns that question and says the clearer thing.
+All 28 files were present and level; nothing was incomplete. R-50's concern is
+a **ragged** grid, which silently shrinks `n`; freshness is F-188's. The
+comparison is now cross-vs-cross.
+
+**THE FIRST REPLAY PROVED NOTHING, AND REPORTED THAT IT DID.** It corrupted
+`data/raw/bars/*.json` — which no gate reads, because `daily_report.bars()`
+reads the `.txt` files beside the pipelines — and printed *"DID NOT BITE"*
+about a gate it had never exercised. Taken at face value that reading inverts:
+a working guard looks broken. It also **edited `data/raw/`, which is
+immutable** (CLAUDE.md §6); restored from git, verified byte-identical.
+`test_run_daily.py` now copies the live bars to a temp dir and repoints
+`dr.TXT` at the copy.
+
+**R-51 replays the real failures, and the clean case too** — a gate that
+always fires is not a gate. 8 of 8 verdict-correct: F-190 refuses 44% (the
+measured proportion of the real corrupt pull) and accepts 13% (the top of the
+real clean range), R-50 bites on both the 17 Oct thin grid and a
+one-cross-behind grid, F-188 bites on an open session and passes on a closed
+one. **Session dates are DERIVED from the bars, never pinned** — the first
+version pinned the newest bar's own date as its "closed" baseline and reported
+a false alarm against a gate answering correctly. A pinned date would also rot
+exactly the way F-170 and F-183 did.

@@ -261,7 +261,19 @@ def report(day, board=None, picks=None):
             try:
                 _d = dt.datetime.strptime(day, '%Y-%m-%d').date()
                 _ws = (_d - dt.timedelta(days=_d.weekday())).isoformat()
-                sl.append(_ws, day, pair, side, fav, adv, frac, hit, k)
+                # *** F-192 - PASS THE ATR. It is computed twelve lines
+                # up and was simply never handed over, so every row this
+                # build wrote carried a BLANK atr_pips and silently dropped
+                # out of every ATR-normalised read (LD-176/F-73). The fill
+                # was then done by hand on five consecutive builds, which is
+                # how a one-line omission became a standing manual step.
+                #
+                # `atr` is None when fewer than 16 prior bars exist. That
+                # stays None - NEVER a guessed 0. An unscorable row must
+                # score blank, because an absence we cannot see is a fact
+                # about our reach, not about the world.
+                sl.append(_ws, day, pair, side, fav, adv, frac, hit, k,
+                          atr=atr)
             except Exception as e:                       # never block a build
                 print('    (LD-170 ledger skipped: %s)' % e)
     return 0

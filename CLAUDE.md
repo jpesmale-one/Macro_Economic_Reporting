@@ -214,9 +214,40 @@ python pipelines/pull_bars.py GBPUSD GBPAUD GBPNZD GBPCAD GBPCHF GBPJPY
 python pipelines/pull_bars.py AUDUSD AUDNZD AUDCAD AUDCHF AUDJPY
 python pipelines/pull_bars.py NZDUSD NZDCAD NZDCHF NZDJPY
 python pipelines/pull_bars.py USDCAD USDCHF USDJPY CADCHF CADJPY CHFJPY
-python pipelines/daily_report.py                 # console, to read first
-python pipelines/gen_daily.py                    # the page
+
+# *** THEN RUN THE RUNNER, NOT THE TWO SCRIPTS BY HAND (R-51).
+python pipelines/run_daily.py            # gates only - reports and stops
+python pipelines/run_daily.py --go       # gates, then daily_report + gen_daily
 ```
+
+### `run_daily.py` — the daily's `build_check` (R-51)
+
+**Six gates in dependency order, STOPPING at the first failure**, then the two
+build steps. It decides nothing: it never touches the board or the set (LD-97),
+never scores, never publishes.
+
+| Gate | The failure it exists for |
+|---|---|
+| publication day | LD-156/F-157 — no daily ON a Monday; the test is on TODAY, not the session |
+| capture covers the session | LD-162 — yesterday's capture reads real prints as NO CATALYST |
+| 28-cross grid complete | **R-50 — a RAGGED grid silently shrinks n; it does not error** |
+| bars are raw price | **F-190 — 44% of opens overwritten flipped four of ten states** |
+| **reported session has CLOSED** | **F-188 — a partial bar carries the right label and the wrong numbers** |
+| ledger writes `atr_pips` | **F-192 — computed, used, and never handed to the ledger** |
+
+**Why these six and not the ten commands.** Every one of the daily's ordering
+traps has fired in a **published** report, and not one announced itself — each
+produced a page that was internally consistent, plausible and wrong. That is
+the failure a person reading his own output cannot catch.
+
+**THE BARS STEP STAYS MANUAL AND THAT IS NOT A GAP.** `pull_bars.py` drives a
+live TradingView window over CDP. If the bridge is wedged, no orchestration
+conjures price, and **LD-5 forbids a fallback — Yahoo is NEVER one.** The
+runner checks the bars and tells you to pull them; it will not continue
+without them.
+
+**R-51 `test_run_daily.py`** replays each real historical failure against its
+gate, *and the clean case too* — a gate that always fires is not a gate.
 
 **THE CAPTURE MUST BE FROM THAT MORNING.** `releases_by_day()` reads ACTUALS
 and TE only carries one once a row has released, so yesterday's capture shows
