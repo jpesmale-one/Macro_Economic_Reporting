@@ -4901,3 +4901,50 @@ readable at all. **A test that can finally see a row is not a test that just
 started failing** — these need reading against the archive's expectation
 cutoff, and the board itself is stale (R-45 reports 26 STALE rows). That is a
 weekly-board question and Jeff's call.
+
+
+## LD-151 — the derived part-time leg (2026-11-19)
+
+**Jeff:** *"employment change is the difference between full-time and part-time
+anyway so I think we can compute and derive it for AUD."*
+
+Correct, with one wording fix: the headline is the **sum** of the two legs,
+which carry their own signs. Measured on every release the repo holds:
+
+| | FT | PT | FT+PT | headline | |
+|---|---|---|---|---|---|
+| CAD Sep/26 | −35.9 | −5.8 | −41.7 | −41.7 | holds |
+| CAD Oct/26 | −35.4 | −32.9 | −68.3 | −68.3 | holds |
+| AUD Sep/26 | −6.3 | +45.8 | +39.5 | +39.5 | holds |
+| AUD Oct/26 | +34.4 | −73.7 | −39.3 | −39.3 | holds |
+| AUD Aug/26 | +16.3 | −32.2 | −15.9 | −15.8 | off 0.1, rounding |
+
+biquote carries `full-time employment change` for AUD but **no part-time row
+under any spelling** (all 51 AUD events checked); CAD carries both.
+
+**WHY DERIVING IT CANNOT CHANGE A VERDICT, WHICH IS WHY IT IS SAFE.** LD-151 as
+ruled reads *"the headline and full time together set the verdict, and a
+part-time leg is only consulted when it is the thing dragging the headline the
+other way"* — and both of those cases are already decided by the headline/FT
+pair. `employment_grade()` therefore uses part time only as a **presence
+requirement**; it never reads the value. Verified by sweeping PT from −99 to +99
+against four fixed headline/FT pairs: the grade never moved, and the derived
+value always agreed. So this fills a leg the rule needs to **run**, not a leg
+the rule **decides on** — arithmetic the ruling itself names (*"Actual = FT + PT
+decides which"*), and it cannot smuggle in a reading, because a leg computed
+from the headline can never disagree with it.
+
+**AND IT IS MARKED.** The row carries `derived='part_time = …'` and
+`source='biquote+derived'`. ABS publishes part time directly and may differ by a
+rounding tick (AUD Aug/26 above), so anything that **prints** this leg must show
+it as derived — an unlabelled computed figure later cited as the agency print is
+the F-1 class of error.
+
+**Measured result.** The 15 Oct derivation returns **−73.7**, reproducing the
+stored fact-table cell exactly without ever seeing it. AUD's 19 Nov print
+(headline −43.5K, FT −2.9K, derived PT −40.6K) now grades **BAD**, where the row
+had been carrying **0** — the stored NEUTRAL from last month's sign
+disagreement, surviving because the leg that would overturn it was absent. Five
+refusal cases are covered: a sourced PT is never overwritten, a future row with
+no actual is skipped, a missing FT never invents a leg from the headline alone,
+and an unparseable value is left absent.

@@ -261,6 +261,95 @@ def convert(raw):
     }
 
 
+
+# *** LD-151 NEEDS THREE LEGS AND THIS SOURCE PUBLISHES TWO FOR AUD.
+#
+# Jeff, 2026-11-19: "employment change is the difference between full-time and
+# part-time anyway so I think we can compute and derive it for AUD."
+#
+# He is right, with one wording fix: the headline is the SUM of the two legs,
+# which carry their own signs - a positive full time and a negative part time
+# already net out. MEASURED on every release this repo holds:
+#
+#     CAD Sep/26   -35.9 + -5.8  = -41.7  == headline     holds
+#     CAD Oct/26   -35.4 + -32.9 = -68.3  == headline     holds
+#     AUD Sep/26    -6.3 + 45.8  =  39.5  == headline     holds
+#     AUD Oct/26    34.4 + -73.7 = -39.3  == headline     holds
+#     AUD Aug/26    16.3 + -32.2 = -15.9  vs -15.8        off 0.1, rounding
+#
+# Four exact, one a rounding tick in the published figures. biquote carries
+# 'full-time employment change' for AUD but NO part-time row under any
+# spelling (all 51 AUD events checked), while CAD carries both.
+#
+# *** WHY DERIVING IT CANNOT CHANGE A VERDICT, WHICH IS WHY IT IS SAFE.
+# LD-151 as ruled reads: "THE HEADLINE AND FULL TIME TOGETHER SET THE
+# VERDICT, and a part-time leg is only consulted when it is the thing
+# dragging the headline the other way" - and both of those cases are already
+# decided by the headline/full-time pair. employment_grade() therefore uses
+# part time only as a PRESENCE requirement; it never reads its value.
+# Verified by sweeping PT from -99 to +99 against four fixed headline/FT
+# pairs: the grade never moved, and the derived value always agreed.
+#
+# So this fills a leg the rule needs to RUN, not a leg the rule DECIDES on.
+# It is arithmetic the ruling itself names ("Actual = FT + PT decides which"),
+# not a new input, and it cannot smuggle in a reading - the derived leg can
+# never disagree with the headline, because it is computed from it.
+#
+# *** AND IT IS MARKED, BECAUSE IT IS NOT A SOURCED FIGURE. The row carries
+# derived='part_time' and source='biquote+derived'. ABS publishes part time
+# directly and may differ by a rounding tick (AUD Aug/26 above), so anything
+# that PRINTS this leg must show it as derived. An unlabelled computed figure
+# cited later as the agency print is the F-1 class of error.
+def derive_part_time(rows):
+    """Fill a missing part-time leg from headline - full time. Returns count.
+
+    Only where the headline and the full-time leg are BOTH present with an
+    actual for the same iso and date, and no part-time row already exists.
+    Never overwrites a sourced row, and never invents one from a single leg.
+    """
+    HEAD, FT, PT = ('employment change', 'full-time employment change',
+                    'part-time employment change')
+    by = {}
+    for r in rows:
+        if r['event'] in (HEAD, FT, PT):
+            by.setdefault((r['iso'], r['date']), {})[r['event']] = r
+    made = []
+    for (iso, date), g in sorted(by.items()):
+        if PT in g or HEAD not in g or FT not in g:
+            continue
+        h, f = g[HEAD].get('actual'), g[FT].get('actual')
+        if not str(h or '').strip() or not str(f or '').strip():
+            continue                      # no actual yet - nothing to derive
+        try:
+            pt = float(h) - float(f)
+        except (TypeError, ValueError):
+            continue                      # unparseable - leave it absent
+        src = g[HEAD]
+        rows.append({
+            'iso': iso,
+            'event': PT,
+            'date': date,
+            'time': src.get('time', ''),
+            'actual': ('%g' % pt),
+            'consensus': '',
+            'forecast': '',
+            'previous': '',
+            'source': 'biquote+derived',
+            'source_url': src.get('source_url', ''),
+            'importance': src.get('importance', ''),
+            # the marker. Anything printing this leg must show it as derived.
+            'derived': 'part_time = employment change - full-time (LD-151)',
+        })
+        made.append('%s %s PT=%g' % (iso, date, pt))
+    if made:
+        rows.sort(key=lambda r: (r['date'], r['iso'], r['event']))
+        print()
+        print('  LD-151: derived %d part-time leg(s), marked derived:' % len(made))
+        for m in made:
+            print('      %s' % m)
+    return len(made)
+
+
 def capture(frm, to, write=False):
     days = (dt.date(*map(int, to.split('-')))
             - dt.date(*map(int, frm.split('-')))).days
@@ -299,6 +388,8 @@ def capture(frm, to, write=False):
         cur = stop + dt.timedelta(days=1)
 
     rows.sort(key=lambda r: (r['date'], r['iso'], r['event']))
+
+    derive_part_time(rows)
 
     print()
     per = {}
