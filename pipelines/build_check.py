@@ -97,6 +97,40 @@ def s1_capture():
     return True, 'newest capture %s (%d days old)' % (taken, age)
 
 
+def s1b_vocabulary():
+    """R-52/F-193: can the whitelist still READ the newest capture?
+
+    *** A SOURCE SWAP IS A VOCABULARY CHANGE, NOT A DATA CHANGE, AND EVERY
+    EXISTING GUARD MEASURED THE WRONG THING. When biquote replaced TE the
+    capture grew from ~900 rows to 1,536 - coverage looked BETTER by every
+    count taken - while whitelist matches fell from 68-73 of 78 to 33,
+    because biquote spells the same series 'cpi y/y' where TE said
+    'inflation rate yoy'. The rows were all there; we could no longer name
+    them.
+
+    Placed BEFORE the gap check and the TE reconciliation, because both of
+    those report a vocabulary break as missing or disagreeing data - R-45
+    read it as "33 rows disagree with TE, TRUE COVERAGE 26 of 70" - which
+    sends you looking for a release that never went missing.
+    """
+    import capture_vocab as cv
+    names = cv.whitelist()
+    size = sum(len(v) for v in names.values())
+    caps = sorted(glob.glob(cv.CAPS))
+    if len(caps) < 2:
+        return True, 'need two captures to compare'
+    hist = [cv.total(cv.matched(p, names)[0]) for p in caps[-6:]]
+    newest, prior = hist[-1], sorted(hist[:-1])
+    med = prior[len(prior) // 2]
+    if med and newest < med * cv.FLOOR:
+        return False, ('vocabulary break - %d of %d whitelist rows readable, '
+                       'was %d. The source renamed them, it did not drop '
+                       'them: run capture_vocab.py (F-193)'
+                       % (newest, size, med))
+    return True, '%d of %d whitelist rows readable (median %d)' % (
+        newest, size, med)
+
+
 def s2_gaps():
     """R-42: did a release print while no capture could see it?"""
     code, out = _py(os.path.join(HERE, 'capture_gap.py'), '--raise')
@@ -794,6 +828,7 @@ def s11c_session_closed():
 
 STEPS = [
     ('1', 'capture is fresh (<=3 days)', s1_capture),
+    ('1b', 'whitelist can read the capture (R-52)', s1b_vocabulary),
     ('2', 'no release lost to a gap (R-42)', s2_gaps),
     ('3', 'every row vs TE, refreshed (R-45)', s3_indicator_pages),
     ('4', 'held values vs capture (R-37/R-40)', s4_vintage),

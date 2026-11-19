@@ -171,6 +171,7 @@ never writes to the fact tables — it reports, and you decide.
 | # | Check | The failure it exists for |
 |---|---|---|
 | 1 | capture ≤3 days old | F-121 — the TE window rotates, releases vanish |
+| **1b** | **whitelist can READ the capture (R-52)** | **F-193 — a source swap is a VOCABULARY change; biquote says `cpi y/y` where TE said `inflation rate yoy`, and 37 rows went unreadable while the capture grew** |
 | 2 | no release lost to a gap (R-42) | F-121 |
 | 3 | every row vs TE, **`--refresh`** (R-45) | **F-132 — without the flag it reads a week-old cache and reports OK** |
 | 4 | held values vs capture (R-37/R-40) | F-120, F-123 |

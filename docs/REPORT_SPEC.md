@@ -4729,3 +4729,99 @@ one. **Session dates are DERIVED from the bars, never pinned** — the first
 version pinned the newest bar's own date as its "closed" baseline and reported
 a false alarm against a gate answering correctly. A pinned date would also rot
 exactly the way F-170 and F-183 did.
+
+---
+
+## F-193 — THE NEW SOURCE SPEAKS A DIFFERENT VOCABULARY, AND THE WHITELIST WENT DEAF
+
+**Measured, not inferred.** Whitelist rows matched per capture:
+
+| Capture | Source | Matched |
+|---|---|---|
+| 2026-11-01 | TE | 73 of 78 |
+| 2026-11-03 | TE | 69 of 78 |
+| 2026-11-04 | TE | 68 of 78 |
+| 2026-11-05 | TE | 70 of 78 |
+| 2026-11-06 | TE | 73 of 78 |
+| **2026-11-18** | **biquote** | **33 of 78** |
+
+**biquote names the same series differently, and `week_ahead.match()` is
+TE-shaped:**
+
+```
+inflation rate yoy  -> Inflation Rate YoY     MATCHES
+cpi y/y             -> None                   <- biquote's spelling
+gdp growth rate qoq -> GDP Growth Rate QoQ    MATCHES
+gdp q/q             -> None                   <- biquote's spelling
+retail sales mom    -> Retail Sales MoM       MATCHES
+retail sales m/m    -> None                   <- biquote's spelling
+```
+
+**The matcher is not broken — LD-59 forbids loosening it.** `cpi y/y` and
+`inflation rate yoy` are the same series under two vocabularies; a fuzzy
+matcher that bridged them would also bind AUD `Inflation Rate YoY` to
+`TD-MI Inflation Gauge`. **A loose match does not report an absence, it
+invents a presence.**
+
+**WHY NO GUARD CAUGHT IT, AND WHY THAT IS THE REAL FINDING.** The adapter was
+validated on the two things I thought to check — all eight currencies present,
+forward expectations present, history to August at 92–96% actuals. Every one
+of those passed, and all of them are properties of **the source**. Not one of
+them asks whether **our own matcher can still read it**. The adapter and the
+matcher were each correct; the JOINT behaviour was never measured, so a 40-row
+loss passed through a review that looked thorough.
+
+> **A SOURCE SWAP IS NOT A DATA CHANGE, IT IS A VOCABULARY CHANGE.** The rows
+> were all there. 1,536 of them — more than TE ever served. Coverage looked
+> *better* by every count I took.
+
+**IMPACT IS BOUNDED, AND NOT WHERE IT FIRST APPEARED.** `score_model.ROWS` is
+a static hand-maintained table holding Sep/26 actuals, so **no published score
+is wrong from this** and no fact-table cell moved. What is lost is
+**verification and forward expectation**: R-40/R-41/R-45 cannot confirm 45
+rows against a capture that no longer names them, and `load_inflation()`
+returns **0 rows**, so LD-165's before-the-news branch has no expectation to
+score and silently falls through to the corridor level test — which is why
+`test_inflation.py` reports EUR and GBP inflation as `-1` while the archive
+proves both were scored `+1` against a real consensus. **The test is reasoning
+from an absence (F-73), and the absence is ours.**
+
+**45 unmatched rows, by category:** Spending 17, Production 12, Inflation 7,
+GDP 7, Employment 2. **Most are recoverable by name mapping** — `cpi y/y`,
+`gdp q/q`, `retail sales y/y`, `industrial production y/y`,
+`building permits m/m`, `household spending y/y` all exist in the capture
+under biquote's spelling. **A few are genuinely absent** and must be treated
+as absent, not mapped onto a near neighbour: AUD Household Spending YoY, AUD
+ANZ-Indeed Job Ads MoM, JPY S&P Global Mfg PMI Final, NZD Global Dairy Trade
+Price Index. **USD Non Farm Payrolls matched nothing but CFTC positioning
+rows** — the clearest illustration of why the mapping is a table of named
+equivalences and never a similarity score.
+
+**THE MAPPING IS A WHITELIST AMENDMENT, SO IT IS JEFF'S CALL (F-3, LD-23).**
+Each pair asserts "these two names are the same series", which is a judgement
+about identity — the repo never rules on identity (R-41). It belongs in
+`capture_biquote.RENAME`, where source-vocabulary knowledge already lives,
+rather than in the shared matcher.
+
+**R-52 `capture_vocab.py`, wired as build-check step 1b.** It compares the
+newest capture's match count to the median of the previous five and fails on a
+cliff — **a ratio, not a floor**, because coverage legitimately varies with the
+capture window (TE's own captures ranged 68 to 73), so an absolute threshold
+either passes a real break or cries wolf on a quiet week.
+
+**Placed BEFORE the gap check and the TE reconciliation**, because both report
+a vocabulary break as missing or disagreeing *data*: the build check stopped at
+step 2 with *"5 releases lost to a capture gap"* and R-45 read *"33 rows
+disagree with TE, TRUE COVERAGE 26 of 70"*. Both send you hunting for releases
+that never went missing.
+
+**AND THE GUARD'S OWN FIRST SUGGESTIONS WERE WRONG, IN THE VOICE OF A GUARD.**
+Candidates were found by head token, so `Inflation Rate YoY` searched on
+`inflation` and offered AUD **`mi inflation expectations`** — a survey of
+expected inflation, not the CPI print — while missing `cpi y/y` entirely, and
+reported CAD and CHF inflation as *"absent from source"* when both publish
+`cpi y/y`. **A suggestion that names the wrong series is worse than none:** it
+invites exactly the identity error R-41 exists to prevent. Candidates now come
+from a table of known spelling differences, and a row with no entry reads
+*"no candidate — check by hand"* — our ignorance, not the source's silence
+(F-73). 24 of 37 rows now carry a clean candidate; 13 need a human.
