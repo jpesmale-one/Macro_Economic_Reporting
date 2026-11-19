@@ -116,7 +116,111 @@ def num(v):
 # vocabulary) instead of pushing a source quirk into the shared matcher.
 RENAME = {
     ('CH', 'unemployment rate'): 'unemployment rate s.a.',
+
+    # --- F-193 / R-52. GROUP A: the same series, spelled differently.
+    # biquote says 'cpi y/y' where TE said 'inflation rate yoy'. Nothing
+    # about the measurement changed, only the words, so these are spelling
+    # repairs and carry no identity risk.
+    ('AU', 'cpi y/y'): 'inflation rate yoy',
+    ('CA', 'cpi y/y'): 'inflation rate yoy',
+    ('CH', 'cpi y/y'): 'inflation rate yoy',
+    ('JP', 'cpi y/y'): 'inflation rate yoy',
+    ('NZ', 'cpi y/y'): 'inflation rate yoy',
+    ('US', 'cpi y/y'): 'inflation rate yoy',
+    ('EA', 'cpi y/y'): 'inflation rate yoy final',
+
+    ('AU', 'gdp q/q'): 'gdp growth rate qoq',
+    ('CA', 'gdp q/q'): 'gdp growth rate qoq',
+    ('CH', 'gdp q/q'): 'gdp growth rate qoq',
+    ('EA', 'gdp q/q'): 'gdp growth rate qoq',
+    ('GB', 'gdp q/q'): 'gdp growth rate qoq',
+    ('JP', 'gdp q/q'): 'gdp growth rate qoq',
+    ('NZ', 'gdp q/q'): 'gdp growth rate qoq',
+    ('US', 'gdp q/q'): 'gdp growth rate qoq',
+
+    ('CH', 'retail sales y/y'): 'retail sales yoy',
+    ('EA', 'retail sales y/y'): 'retail sales yoy',
+    ('JP', 'retail sales y/y'): 'retail sales yoy',
+    ('US', 'retail sales y/y'): 'retail sales yoy',
+
+    ('EA', 'industrial production y/y'): 'industrial production yoy',
+    ('JP', 'industrial production y/y'): 'industrial production yoy final',
+    ('JP', 'household spending y/y'): 'household spending yoy',
+    ('JP', 'machine tool orders y/y'): 'machine tool orders yoy',
+    ('US', 'personal spending m/m'): 'personal spending mom',
+    ('CA', 'building permits m/m'): 'building permits mom',
+    ('US', 'building permits m/m'): 'building permits mom final',
+
+    # 'fed industrial production y/y' IS the series we have always scored -
+    # a source prefix, not a different measurement. This was in the first
+    # Group B draft as needing a ruling; the capture shows the YoY is
+    # published (2.2 on 16 Oct, 2.1 on 17 Nov), so it is Group A.
+    ('US', 'fed industrial production y/y'): 'industrial production yoy',
+
+    # --- GROUP B: different NAME, same series. Each of these is an identity
+    # ruling by Jeff (R-41, F-3), not a spelling repair.
+    #
+    # Spacing only, but the source also carries 'private nonfarm payrolls'.
+    # The headline print is the bare name, which is the one we score.
+    ('US', 'nonfarm payrolls'): 'non farm payrolls',
+    # No Flash/Final split at this source; the single PMI print is the Final.
+    ('AU', 's&p global manufacturing pmi'): 's&p global mfg pmi final',
+    ('EA', 's&p global manufacturing pmi'): 's&p global mfg pmi final',
+    # au Jibun Bank sponsors the S&P Global Japan PMI - same survey, same
+    # compiler, sponsor's name in front.
+    ('JP', 'au jibun bank manufacturing pmi'): 's&p global mfg pmi final',
+    ('AU', 'westpac-mi consumer sentiment m/m'): 'westpac consumer conf change',
+    # Indeed left the sponsorship; ANZ still compiles the same job ads series.
+    ('AU', 'anz job advertisements m/m'): 'anz-indeed job ads mom',
+    ('CH', 'consumer climate'): 'consumer confidence',
+    ('NZ', 'businessnz manufacturing index'): 'business nz pmi',
+    ('NZ', 'gdt price index'): 'global dairy trade price index',
+    # Our row says 'Final' because TE split a flash and a final estimate.
+    # This source publishes ONE euro-area consumer confidence print, named
+    # 'consumer confidence index' - so the single print IS the final, the
+    # same ruling already applied to the Mfg PMI rows above. Without this
+    # the row stays unreadable on a missing 'final' token, which is a
+    # vocabulary artefact and not a real absence.
+    ('EA', 'consumer confidence index'): 'consumer confidence final',
 }
+
+# *** THE ROWS LEFT DELIBERATELY UNREADABLE (F-193 group C), AND WHY.
+#
+# A visible gap is honest. A wrong map is not - it makes the whitelist
+# readable again by substituting a DIFFERENT indicator, and the score then
+# computes, looks fine, and measures something else. That is the invented
+# presence LD-59 forbids, arriving through the front door instead of through
+# the matcher. Each of these was offered a candidate and REFUSED:
+#
+#   US Durable Goods Ex Transp MoM   source has 'excl. defense m/m'
+#                                    ex-DEFENSE is not ex-TRANSPORT.
+#   JP Machinery Orders YoY          source has 'core machinery orders y/y'
+#                                    core excludes volatile items; we score
+#                                    the headline.
+#   NZD ANZ Roy Morgan Consumer Conf source has 'anz business confidence'
+#                                    a BUSINESS survey is not a CONSUMER one.
+#   AU Building Permits YoY Final    source has 'building approvals m/m'
+#   CA Retail Sales YoY              source has 'retail sales m/m'
+#   NZ Electronic Retail Card Spend  source has '... m/m' and a y/y
+#   US Manufacturing Production YoY  source has 'fed ... production m/m'
+#
+# *** WHY THE m/m SUBSTITUTIONS WERE DECLINED, WITH THE NUMBERS.
+# A MoM and a YoY are different MEASUREMENTS of the same data, not two
+# names for one series, and score_model's thresholds are tuned to YoY
+# magnitudes. Measured on one release date, 17 Nov 2026:
+#
+#     US industrial production    -0.4 m/m   vs   +2.1 y/y
+#     NZ electronic card sales    -0.7 m/m   vs   +0.3 y/y
+#
+# Opposite signs, several times apart. Feeding a MoM into a YoY row does not
+# degrade a score, it INVERTS it - a confident BAD where the series says
+# GOOD. So these stay unreadable until the source publishes the YoY, or
+# Jeff adds a MoM row to the closed set with its own thresholds.
+#
+#   AU Household Spending YoY   genuinely absent from the source
+#   NZ Building Permits MoM     NZ publishes 'building consents m/m'; the
+#                               consents/permits identity is Jeff's to rule
+#                               on and has not been ruled.
 
 
 def convert(raw):

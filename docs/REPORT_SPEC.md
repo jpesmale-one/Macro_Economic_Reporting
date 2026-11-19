@@ -4824,4 +4824,80 @@ reported CAD and CHF inflation as *"absent from source"* when both publish
 invites exactly the identity error R-41 exists to prevent. Candidates now come
 from a table of known spelling differences, and a row with no entry reads
 *"no candidate — check by hand"* — our ignorance, not the source's silence
-(F-73). 24 of 37 rows now carry a clean candidate; 13 need a human.
+(F-73).
+
+**AND THE CORRECTED GUARD STILL UNDER-REPORTED, THE SAME WAY.** The spelling
+table only held the five substitutions already seen, so a row spelled a sixth
+way still read *"no candidate"* — and that was then read as the source being
+silent. Probing the capture directly found that most of those rows **do**
+exist: AUD `westpac-mi consumer sentiment m/m`, AUD `anz job advertisements
+m/m`, CHF `consumer climate`, NZD `businessnz manufacturing index`, NZD `gdt
+price index`, USD `nonfarm payrolls`, USD `fed industrial production y/y`,
+JPY `au jibun bank manufacturing pmi`. **The guard's silence was ours, not the
+source's — the exact error its own docstring warns about.** Corrected count:
+**45 unreadable rows, 39 with a candidate, 6 genuinely absent.** (The earlier
+"37" was the *drop* from the median, 70→33, not the absolute gap against 78.)
+
+### The mapping, as ruled (F-193 repair)
+
+Jeff's ruling: take the mechanical spellings wholesale, take the unambiguous
+identity renames, and **leave the rest unreadable on purpose**. Landed in
+`capture_biquote.RENAME`, which is where source-vocabulary knowledge already
+lives (F-191) rather than in the shared matcher.
+
+| Group | Rows | Ruling |
+|---|---|---|
+| A — same series, different spelling | 25 | taken wholesale |
+| B — different name, same series | 10 | taken where unambiguous |
+| C — refused | 9 | left unreadable, deliberately |
+
+Measured against the same capture: **33 → 69 of 78**, inside TE's own 68–73
+band. Every RENAME target was validated against the whitelist — a typo'd
+target writes a name nothing reads, which looks like progress and delivers
+none.
+
+**THE m/m SUBSTITUTIONS WERE DECLINED, AND THE NUMBERS ARE WHY.** The ruling
+initially included "take the m/m alternative for those items without y/y". A
+MoM and a YoY are different *measurements* of the same data, not two names for
+one series, and `score_model`'s thresholds are tuned to YoY magnitudes. On one
+release date, 17 Nov 2026:
+
+| Series | MoM | YoY |
+|---|---|---|
+| US industrial production | **−0.4** | **+2.1** |
+| NZ electronic card sales | **−0.7** | **+0.3** |
+
+Opposite signs, several times apart. Feeding a MoM into a YoY row does not
+degrade a score, it **inverts** it — a confident BAD where the series reads
+GOOD. Those rows stay unreadable until the source publishes the YoY, or a MoM
+row with its own thresholds joins the closed set (Jeff's call, F-3).
+
+Four further rows were refused for the same class of reason: ex-**defense** is
+not ex-**transport** (USD Durable Goods), **core** machinery orders are not the
+headline (JPY), and ANZ **business** confidence is not Roy Morgan **consumer**
+confidence (NZD). Each had a candidate and each was declined — **a visible gap
+is honest; a wrong map is not.** It makes the whitelist readable by
+substituting a different indicator, and the score then computes, looks fine,
+and measures something else: LD-59's invented presence arriving through the
+front door instead of through the matcher.
+
+**WHAT THE REPAIR RESTORED, MEASURED.** `load_inflation()` went from **0 rows
+to 2** (CAD 3.3% due 14 Dec, JPY 1.9% due 19 Nov), so LD-165's
+score-from-expectation path runs again instead of silently falling through to
+the corridor level test. `test_inflation`'s two absence failures —
+*"load_inflation found no scheduled rows"* and *"no scheduled row reached the
+base"* — are cleared, proven by stashing the mapping and re-running at HEAD.
+
+**AND THE REPAIR IS FORWARD-ONLY, BY DESIGN.** RENAME applies at *capture*
+time, so the stored 18 Nov file still reads 33 of 78 and always will — it is
+immutable (§6). The correction lands as a NEW vintage alongside it, which is
+the architecture working as specified, not a shortfall in the fix.
+
+**THE FOUR LD-155 FAILURES THAT REMAIN ARE NOT THIS DEFECT.** Six inflation
+rows report stored-vs-LD-155 disagreements (USD/EUR/GBP stored GOOD, LD-155
+says −1; JPY/NZD/CAD the other way). Two of those predate the mapping and were
+present at HEAD; the rest became visible only because the rows are now
+readable at all. **A test that can finally see a row is not a test that just
+started failing** — these need reading against the archive's expectation
+cutoff, and the board itself is stale (R-45 reports 26 STALE rows). That is a
+weekly-board question and Jeff's call.
