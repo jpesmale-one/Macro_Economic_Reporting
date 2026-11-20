@@ -344,6 +344,128 @@ def legs(text):
     return vals[0], vals[1], vals[2], ref
 
 
+# *** F-199 - THE FORWARD ROW MUST BE READ STRUCTURALLY, NOT BY POSITION.
+#
+# releases() flattens the Calendar table to text and splits on whitespace,
+# which is fine for a LANDED row and unsafe for a forward one, because a
+# BLANK CELL VANISHES. JPY's landed Oct row reads
+#
+#     2.3%  2.1%  2.0%
+#
+# - three values where the schema says four - because its Consensus is
+# empty. Parsed by position that makes 2.0% look like the CONSENSUS when it
+# is the TEForecast, and under LD-154 consensus OUTRANKS forecast, so the
+# weaker number would be promoted to the stronger authority. Exactly the
+# LD-59 failure one level down: the gap invents a presence.
+#
+# The rows ARE in the static HTML with id="actual" and id="previous"
+# attributes and a fixed eight-column shape, so <td> POSITION is reliable:
+#
+#     date | time | event | reference | actual | previous | consensus | fcst
+#
+# This reads that. It never guesses a missing cell and never shifts a
+# column to fill one.
+CAL_TR = re.compile(r'<tr[^>]*\bdata-id=[^>]*>(.*?)</tr>', re.S)
+CAL_TD = re.compile(r'<td\b[^>]*>(.*?)</td>', re.S)
+
+
+def calendar_rows(html):
+    """[{date,time,event,ref,actual,previous,consensus,forecast}] from RAW html.
+
+    Takes the UNSTRIPPED html, not the text form - the whole point is the
+    <td> boundaries that the text form destroys.
+    """
+    if not html:
+        return []
+    i = html.find('id="calendar"')
+    if i < 0:
+        return []
+    body = html[i:]
+    j = body.find('</table>')
+    if j > 0:
+        body = body[:j]
+    out = []
+    for tr in CAL_TR.finditer(body):
+        tds = []
+        for m in CAL_TD.finditer(tr.group(1)):
+            txt = re.sub(r'<[^>]+>', ' ', m.group(1))
+            tds.append(' '.join(txt.split()))
+        if len(tds) < 7:
+            continue
+        tds += [''] * (8 - len(tds))
+        out.append({'date': tds[0], 'time': tds[1], 'event': tds[2],
+                    'ref': tds[3], 'actual': tds[4], 'previous': tds[5],
+                    'consensus': tds[6], 'forecast': tds[7]})
+    return out
+
+
+def scheduled(html, name, today=None):
+    """The NEXT unreleased row matching `name`, or None.
+
+    Returns {date, previous, consensus, forecast, event} for the EARLIEST
+    future row of OUR series that carries an expectation. None - never a
+    guessed blank - when there is no such row, so a caller falls back to
+    its standing reading rather than scoring off nothing (F-73).
+
+    *** THREE REFUSALS, EACH ONE A BUG WE HAVE ALREADY HAD.
+      - a row with an ACTUAL is history, not a schedule (F-186 / F-197b:
+        load_scheduled filed the 5 Nov BoE decision as "next" and paid GBP
+        +1 for a hike it had already made)
+      - a row whose DATE HAS PASSED is not next whatever its actual says,
+        because TE's window rolls forward faster than we capture (F-186)
+      - a row with NEITHER consensus NOR forecast has nothing to score
+    """
+    import datetime as _dt
+    import phtime as _pt
+    now = _dt.datetime.now(_pt.PHT)
+    want = set(re.sub(r'[^a-z0-9 ]', ' ', name.lower()).split())
+    want -= {'the', 'of', 'rate', 'index'}
+    is_final = 'final' in want
+    xform = ({'yoy'} & want) or ({'mom'} & want) or ({'qoq'} & want)
+    best = None
+    for r in calendar_rows(html):
+        if r['actual'].strip():
+            continue                       # released - history owns it
+        got = set(re.sub(r'[^a-z0-9 ]', ' ', r['event'].lower()).split())
+        # the same identity tests latest() enforces (F-37, F-132, LD-59)
+        if is_final != ('final' in got):
+            continue
+        if xform:
+            other = {'yoy', 'mom', 'qoq'} - xform
+            if (xform & got) != xform or (other & got):
+                continue
+        if not is_final and ('prel' in got or 'flash' in got):
+            continue
+        if not want or len(want & got) < max(1, len(want) - 1):
+            continue
+        if not (r['consensus'].strip() or r['forecast'].strip()):
+            continue                       # nothing to score from
+        when = _pt.te_pht(r['date'], r['time']) if r['time'] else None
+        if when is not None and when <= now:
+            continue                       # already happened
+        if best is None or r['date'] < best['date']:
+            best = r
+    if best is None:
+        return None
+    return {'date': best['date'], 'previous': best['previous'] or None,
+            'consensus': best['consensus'] or None,
+            'forecast': best['forecast'] or None, 'event': best['event']}
+
+
+def raw_html(ccy, name, refresh=False):
+    """The UNSTRIPPED html for one indicator page, from the newest vintage."""
+    sl = slug(name)
+    if refresh:
+        fetch(ccy, name, True)             # land a vintage, then read it
+    path, vint = newest(ccy, sl)
+    if path is None:
+        return None
+    try:
+        return io.open(path, encoding='utf-8', errors='replace').read()
+    except Exception:
+        return None
+
+
 def latest(text, name, today=None):
     """The newest release on the page whose series matches `name`.
 

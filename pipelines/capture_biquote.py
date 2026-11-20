@@ -114,8 +114,44 @@ def num(v):
 #
 # Renaming it here keeps the knowledge where the ambiguity is (this source's
 # vocabulary) instead of pushing a source quirk into the shared matcher.
+# *** LD-178 - THE EQUIVALENT OF WHAT TE GAVE US IS THE ONE WE USE.
+#
+# Jeff, 2026-11-20, asked to rule on the two open LD-59 identity questions
+# (EUR trade SA vs NSA, NZD trade monthly vs 12-month): "whatever is the
+# equivalent of the one we're getting from TE that's what we are going to
+# use."
+#
+# That is a RULE, not two answers, and it settles every future source swap
+# the same way: the series TE fed us IS the series the row's history was
+# built from, so a replacement must match it rather than merely resemble it
+# or improve on it. It also keeps the vintage chain honest - a row whose
+# definition changes mid-chain has a break in it that no later check can
+# see, because both halves are internally consistent.
+#
+# Applied to the two open questions, read off the TE pages we hold:
+#
+#   EUR  the page's own component is labelled plainly 'Balance of Trade',
+#        -10291.90 EUR Million for Sep 2026, with NO seasonal qualifier,
+#        and our row holds EUR-16.1B / €-10.3B. So the NSA spelling is the
+#        equivalent:            'trade balance n.s.a.'  ->  NSA
+#
+#   NZD  the page's component is 'Balance of Trade' -2771.70 NZD Million
+#        for Oct 2026 - a MONTHLY figure, matching our NZ$-2.772B. The
+#        12-month rolling series is a different measurement:
+#                               'trade balance'         ->  MONTHLY
+#
+# Both are recorded here rather than in a note, because the next source
+# swap will reach for this table and not for the note (F-193's whole
+# lesson: a source swap is a VOCABULARY change, and the vocabulary lives
+# in code).
 RENAME = {
     ('CH', 'unemployment rate'): 'unemployment rate s.a.',
+
+    # --- LD-178. The TE-equivalent spelling for the two trade rows Jeff
+    # ruled on. These map biquote's name ONTO the whitelist name, so the
+    # left side is what biquote publishes and the right is our row.
+    ('EA', 'trade balance n.s.a.'): 'balance of trade',
+    ('NZ', 'trade balance'): 'balance of trade',
 
     # --- F-193 / R-52. GROUP A: the same series, spelled differently.
     # biquote says 'cpi y/y' where TE said 'inflation rate yoy'. Nothing

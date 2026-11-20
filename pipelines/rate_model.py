@@ -415,6 +415,68 @@ LABEL = {'US': 'USD', 'EA': 'EUR', 'GB': 'GBP', 'JP': 'JPY',
 SCHEDULED = {}
 
 
+def load_scheduled_pages(refresh=False):
+    """Fill SCHEDULED from the TE INDICATOR PAGES. Returns rows found.
+
+    *** F-199 - THE CALENDAR CAPTURE IS A ROLLING WINDOW; THE PAGE IS NOT.
+    LD-154's BEFORE-THE-NEWS half only fires when an expectation is
+    readable, and load_scheduled() reads ONE calendar capture. On
+    2026-11-20, with its date and actual guards working correctly, that
+    capture yielded ZERO forward decisions for all eight currencies - the
+    next meetings are December and the window had not reached them.
+
+    The per-currency interest-rate page carries them: five of eight, each
+    with a previous and a TEForecast. So the rule stopped being limited by
+    the rule and started being limited by our reach, which is F-73's whole
+    point - an absence we cannot see is a fact about our reach.
+
+    USD, EUR and GBP genuinely have NO forward decision row (checked every
+    row of all three tables): their December entries are statements and
+    projections, not decisions. Those three keep LD-154b's standing carry,
+    which is the correct reading and not a gap.
+
+    *** CONSENSUS IS BLANK ON EVERY FORWARD ROW TE PUBLISHES TODAY, so this
+    is a TEFORECAST-ONLY read and it is PROVISIONAL. Jeff, on LD-154:
+    "Forecast is fine to use but when consensus appeared we should rescore
+    it based on that." Measured over 140 rate rows, consensus lands a few
+    days before the print, so these must be re-read each build - which they
+    are, because this runs from the page every time rather than from a
+    stored value.
+
+    The capture wins where it HAS a row: it is same-day and may carry a
+    consensus the page has not published yet. This only fills what the
+    capture could not see.
+    """
+    import indicator_pages as ip
+    n = 0
+    for ccy in ('USD', 'EUR', 'GBP', 'JPY', 'AUD', 'NZD', 'CAD', 'CHF'):
+        if ccy in SCHEDULED:
+            continue                     # the capture already answered
+        try:
+            html = ip.raw_html(ccy, 'Interest Rate', refresh)
+            s = ip.scheduled(html, 'Interest Rate Decision')
+        except Exception:
+            continue
+        if not s:
+            continue
+        # *** THE PAGE'S OWN `previous` IS THE STANDING RATE, AND IT IS THE
+        # ONE THIS EXPECTATION WAS QUOTED AGAINST. decision_score compares
+        # the expectation to the previous it is given, so handing it LAST's
+        # actual instead would mix two sources - the F-197b mistake in the
+        # other direction. Stored alongside so compute() can use the pair.
+        SCHEDULED[ccy] = (s['consensus'], s['forecast'])
+        SCHED_PREV[ccy] = s['previous']
+        SCHED_WHEN[ccy] = s['date']
+        n += 1
+    return n
+
+
+# ccy -> the PREVIOUS and DATE that came with a page-read expectation, so
+# the before-news test compares the pair TE itself published.
+SCHED_PREV = {}
+SCHED_WHEN = {}
+
+
 def load_scheduled(capture=None):
     """Fill SCHEDULED from a TE capture. Returns how many rows it found."""
     import glob as _g
@@ -699,6 +761,16 @@ def compute(_autoload=True):
             load_scheduled()
         except Exception:
             pass
+        # F-199 - then the PAGES, for the currencies the capture could not
+        # see. Order matters: the capture is same-day and may carry a
+        # consensus the page has not published, so it keeps precedence.
+        # This runs every compute() rather than caching, because a
+        # TEForecast-only read is PROVISIONAL until consensus lands
+        # (LD-154) and a stored value would not notice it arriving.
+        try:
+            load_scheduled_pages()
+        except Exception:
+            pass
 
     out = {}
     for ccy, row in ROWS.items():
@@ -716,10 +788,17 @@ def compute(_autoload=True):
         # it read NZD's 28 Oct forecast of 2.75% as "HIKE 2.50 -> 2.75" when
         # 2.75% is already the standing rate and the forecast is a HOLD. Same
         # for JPY. Caught by reading the output rather than the diff.
-        _sch = SCHEDULED.get(LABEL.get(ccy, ccy), (None, None))
-        path, psrc, path_why = decision_score(rate, _sch[0], _sch[1], None)
+        _lbl = LABEL.get(ccy, ccy)
+        _sch = SCHEDULED.get(_lbl, (None, None))
+        # F-199 - where the expectation came from an indicator PAGE, compare
+        # it against the previous THAT PAGE published, not against `rate`.
+        # The two agree today, but handing decision_score a previous from a
+        # different source than the expectation is exactly the misaligned
+        # pair that produced F-197b's phantom hike.
+        _prev = SCHED_PREV.get(_lbl) or rate
+        path, psrc, path_why = decision_score(_prev, _sch[0], _sch[1], None)
         if path is None:
-            path, psrc, path_why = standing_score(LABEL.get(ccy, ccy))
+            path, psrc, path_why = standing_score(_lbl)
         bp = None
         # LD-142 - the LEVEL term replaces expected() and LD-140's
         # consensus-vs-standing test. See level_score() for Jeff's five rules

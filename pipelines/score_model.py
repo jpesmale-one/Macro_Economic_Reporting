@@ -216,7 +216,7 @@ ROWS = [
  # and at Q2/26 it carried the OLDEST vintage on the board.
  ("Employment","CH","Unemployment Rate","3%","3%","Oct/26","<Prev","NEUTRAL"),
  # ---------------- INFLATION (w=3) ----------------
- ("Inflation","US","Inflation Rate YoY","3.7%","3.7%","Sep/26","1.8-2.2 corridor (LD-155)","BAD"),
+ ("Inflation","US","Inflation Rate YoY","3.7%","3.7%","Sep/26","1.8-2.2 corridor (LD-155)","GOOD"),
  ("Inflation","EA","Inflation Rate YoY Final","4%","3.8%","Oct/26","1.8-2.2 corridor (LD-155)","GOOD"),
  ("Inflation","GB","Inflation Rate YoY","3.6%","3.5%","Oct/26","1.8-2.2 corridor (LD-155)","BAD"),
  # F-187 - 2.1% MISSED a 2.3% forecast (capture 2026-10-23, print 22 Oct).

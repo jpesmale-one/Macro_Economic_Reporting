@@ -544,6 +544,54 @@ def load_landed_inflation(archive=None):
     return n
 
 
+def load_inflation_pages(refresh=False):
+    """Fill SCHED_INF from the TE INDICATOR PAGES. Returns rows found.
+
+    *** F-199, the inflation half. Same reasoning as
+    rate_model.load_scheduled_pages: load_inflation() reads ONE calendar
+    capture, whose window had reached only CAD's 14 Dec print on
+    2026-11-20. The per-currency CPI page carries the rest.
+
+    *** THE REACH IS SMALLER THAN IT LOOKS, AND BOTH REASONS ARE CORRECT.
+    Eight pages carry a forward row; only TWO can be used:
+      - five have a forward row with a BLANK TEForecast - the row exists,
+        the number does not, so there is nothing to score (F-73: say what
+        we know, not what we infer from a gap)
+      - EUR's only forward row is the Inflation Rate YoY FLASH, and our row
+        names the FINAL. F-37: a flash cannot satisfy a final row. The
+        identity test refuses it, which is the whole point of having one.
+
+    So this adds AUD and NZD. That is a small gain honestly obtained,
+    rather than a large one taken by loosening a rule.
+    """
+    import indicator_pages as ip
+    WANT = {}
+    for _c, _i, _n, _a, _p, _r, _t, _v in sm.ROWS:
+        if _c == 'Inflation':
+            WANT[sm.LABEL[_i]] = _n
+    n = 0
+    for ccy, name in WANT.items():
+        if ccy in SCHED_INF:
+            continue                     # the capture already answered
+        try:
+            # *** THE PAGE IS FETCHED BY THE WHITELIST NAME, not a guess.
+            # slug('Inflation Rate') resolves to 'inflation-rate', a page
+            # that is not the CPI release history; only the whitelist names
+            # ('Inflation Rate YoY', '... Final') map to 'inflation-cpi'
+            # via SLUG. Passing a tidied-up name silently fetched the wrong
+            # page and the loader found nothing - no error, just a quiet 0.
+            html = ip.raw_html(ccy, name, refresh)
+            s = ip.scheduled(html, name)
+        except Exception:
+            continue
+        if not s:
+            continue
+        SCHED_INF[ccy] = (s['consensus'], s['forecast'], s['date'],
+                          s['event'].lower())
+        n += 1
+    return n
+
+
 def load_inflation(capture=None):
     """Fill SCHED_INF from a TE capture. Returns how many rows it found.
 
@@ -652,6 +700,14 @@ def score_row(cat, ccy, indicator, actual, _autoload_inf=True):
         if _autoload_inf and not SCHED_INF:
             try:
                 load_inflation()
+            except Exception:
+                pass
+            # F-199 - then the PAGES for what the capture window missed.
+            # Capture first: it is same-day and may carry a consensus the
+            # page has not published yet, and consensus outranks forecast
+            # (LD-154/LD-155).
+            try:
+                load_inflation_pages()
             except Exception:
                 pass
         _s = SCHED_INF.get(ccy)

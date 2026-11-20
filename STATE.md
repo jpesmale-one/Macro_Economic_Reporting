@@ -20,6 +20,63 @@ prev_edition: 2026-10-04 (r1 - graded 0 WIN / 2 CONTESTED / 2 LOSS under
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-11-20 *** F-199 - THE FORWARD READER IS BUILT (Jeff: "build it") ***
+#   Both before-the-news rules test 32/32 against Jeff's stated rule and
+#   were firing on 1 OF 16 ROWS, because load_scheduled/load_inflation each
+#   read ONE calendar capture and TE's window had not reached December.
+#   The INDICATOR PAGES carry those rows. Now read.
+#   REACH 1 of 16 -> 9 of 16:
+#     rate      5 of 8   USD/EUR/GBP have NO forward decision row (their
+#                        Dec entries are statements/projections) - LD-154b
+#                        standing carry is correct there, not a gap
+#     inflation 4 of 8   three pages have a forward row with a BLANK
+#                        TEForecast; EUR's only forward row is the FLASH
+#                        and our row names the FINAL (F-37 refuses it)
+#   BOARD: JPY +6.33 (1st), USD +4.00 -> +6.00 (3rd -> 2nd), CHF +5.00
+#   (2nd -> 3rd), CAD +3.00 (4th), GBP +2.00 (5th), NZD +0.00 -> +2.00
+#   (8th -> 6th), AUD +2.17 -> +1.17 (5th -> 7th), EUR +1.00 (8th).
+#   Rate moves: JPY 0->+1 (hike 1.25->1.5), NZD -1->+1 (2.75->3.0),
+#   AUD +1->0 (HOLD priced - we had been paying AUD for a November hike
+#   already made). Inflation: USD -1->+1 on its 10 Dec forecast 3.8%.
+#   All 5 forward rate rows hand-checked vs Jeff's rule: 0 mismatches.
+#   *** THE PARSE IS STRUCTURAL AND THAT IS NOT OPTIONAL. A BLANK CELL
+#   VANISHES from the text form: JPY's landed Oct row reads "2.3% 2.1%
+#   2.0%" - three values where the schema says four - so by POSITION the
+#   TEForecast looks like the CONSENSUS, and consensus OUTRANKS forecast
+#   under LD-154. The weaker number would be promoted to the stronger
+#   authority. calendar_rows() reads <td> position instead.
+#   *** CONSENSUS IS BLANK ON EVERY FORWARD ROW TE PUBLISHES TODAY, so this
+#   is TEFORECAST-ONLY and PROVISIONAL. Honoured by reading the page on
+#   EVERY compute() rather than caching - a stored value would not notice
+#   consensus arriving. The CAPTURE keeps precedence where it has a row.
+#   MY OWN QUIET-ZERO BUG: slug('Inflation Rate') resolves to
+#   'inflation-rate', a real TE page that is NOT the CPI release history.
+#   Only the WHITELIST names map to 'inflation-cpi'. Fetching by a
+#   tidied-up name found nothing - no error, just a 0.
+#
+# 2026-11-20 *** LD-178 - THE TE-EQUIVALENT SERIES IS THE ONE WE USE ***
+#   Jeff, on the two open LD-59 trade identity questions: "whatever is the
+#   equivalent of the one we're getting from TE that's what we are going to
+#   use." THAT IS A RULE, not two answers, and it settles every future
+#   source swap: the series TE fed us IS the series the row's history was
+#   built from, so a replacement must MATCH it, not resemble or improve on
+#   it. It also keeps the vintage chain honest - a row whose definition
+#   changes mid-chain has a break no later check can see.
+#   APPLIED, read off the TE pages:
+#     EUR  component 'Balance of Trade' -10291.90 EUR Million Sep 2026,
+#          NO seasonal qualifier -> NSA -> 'trade balance n.s.a.'
+#     NZD  component 'Balance of Trade' -2771.70 NZD Million Oct 2026,
+#          MONTHLY, matches our NZ$-2.772B -> 'trade balance'
+#   Recorded in capture_biquote.RENAME, not a note: the next source swap
+#   reaches for that table (F-193 - a source swap is a VOCABULARY change
+#   and the vocabulary lives in code).
+#   BOTH OPEN IDENTITY QUESTIONS ARE NOW CLOSED.
+#
+# 2026-11-20 *** THE RETRO QUESTION IS SETTLED - no backfit ***
+#   Jeff: "we're building a new. we don't need to rebuild the old reports.
+#   we are building a new one." The published editions stand as history
+#   (LD-167); the LD-177 board move is NOT backfitted into them.
+#
 # 2026-11-20 *** LD-177 APPLIED - `previous` COMES FROM OUR OWN TABLE ***
 #   Jeff: "Item A it is." score_row() now reads `previous` from the fact
 #   table's PRIOR MONTH COLUMN; score_model.ROWS.prev is the fallback only.

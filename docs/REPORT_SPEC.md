@@ -5578,3 +5578,142 @@ overriding the source it came from.
 | `sync_score_model` after the write | **0 / 0 / 0 / 0** on all four fields |
 | R-44, R-48, R-53, steps 6, 8b, 9d + 7 guard suites | **PASS** |
 | `data/raw/`, fact tables | **untouched** — this is a scoring-source change only |
+
+---
+
+## F-199 — THE FORWARD READER: THE RULE WAS NEVER THE LIMIT, OUR REACH WAS
+
+**Jeff, 2026-11-20: "Item B -- build it."**
+
+Both before-the-news rules (LD-154 rates, LD-155 inflation) test 32 of 32
+cases against the stated rule. They were firing on **1 of 16 rows**, because
+`load_scheduled()` and `load_inflation()` each read **one calendar capture**,
+and TE's calendar window is a rolling ~26 days that had not reached the
+December meetings. F-73 exactly: an absence about our reach, reported as an
+absence about the world.
+
+The per-currency **indicator pages** carry those rows. They are now read.
+
+### Reach: 1 of 16 → 9 of 16
+
+| | Forward rows now read | Why not the rest |
+|---|---|---|
+| Interest rate | **5 of 8** | USD, EUR, GBP have **no forward decision row** — their December entries are statements and projections. LD-154b's standing carry is correct there, not a gap. |
+| Inflation | **4 of 8** | three pages carry a forward row with a **blank TEForecast** — the row exists, the number does not; and **EUR's only forward row is the FLASH** while our row names the FINAL (F-37) |
+
+**EUR is the one worth noting.** Its 1 Dec row is `Inflation Rate YoY Flash`;
+our whitelist row is the **Final**. The identity test refuses it, which is
+the whole point of having one — *a flash cannot satisfy a final row.* The
+reach is smaller than the headline because two rules held, not because
+anything failed.
+
+### Board
+
+```
+            BEFORE   AFTER            BEFORE   AFTER
+JPY   1st   +5.33   +6.33      GBP     6th     +2.00   5th
+USD   3rd   +4.00   +6.00  2nd  NZD     8th     +0.00   +2.00  6th
+CHF   2nd   +5.00   +5.00  3rd  AUD     5th     +2.17   +1.17  7th
+CAD   4th   +3.00   +3.00      EUR     7th     +1.00          8th
+```
+
+Rate rows moved: **JPY 0 → +1** (hike priced 1.25→1.5), **NZD −1 → +1**
+(2.75→3.0), **AUD +1 → 0** (hold priced — we had been paying AUD for a
+November hike already made). Inflation: **USD −1 → +1** on its 10 Dec
+forecast of 3.8%.
+
+All five forward rate rows hand-checked against Jeff's rule: **0 mismatches.**
+
+### Why the parse is structural, and why that is not optional
+
+`releases()` flattens the Calendar table to text and splits on whitespace.
+Fine for a landed row, unsafe for a forward one, because **a blank cell
+vanishes**. JPY's landed October row reads:
+
+```
+2.3%   2.1%   2.0%
+```
+
+— three values where the schema says four, because its Consensus is empty.
+By position that makes **2.0% look like the Consensus when it is the
+TEForecast**, and under LD-154 consensus *outranks* forecast — so the weaker
+number would be promoted to the stronger authority. LD-59 one level down:
+the gap invents a presence.
+
+The rows are in the static HTML with `id="actual"`/`id="previous"` and a
+fixed eight-column shape, so `<td>` position is reliable. `calendar_rows()`
+reads that; it never guesses a missing cell and never shifts a column to
+fill one.
+
+### Three refusals, each one a bug already had
+
+`scheduled()` skips a row with an **actual** (history, not a schedule — F-197b
+filed the 5 Nov BoE decision as "next" and paid GBP +1 for a hike already
+made), a row whose **date has passed** whatever its actual says (F-186: TE's
+window rolls faster than we capture), and a row with **neither consensus nor
+forecast** (nothing to score).
+
+### Consensus is blank on every forward row TE publishes today
+
+So this is a **TEForecast-only, provisional** read. Jeff's LD-154 ruling —
+*"when consensus appeared we should rescore it based on that"* — is honoured
+by reading from the page on **every** `compute()` rather than caching: a
+stored value would not notice consensus arriving. The **capture keeps
+precedence** where it has a row, because it is same-day and may carry a
+consensus the page has not published yet.
+
+### A quiet-zero bug of my own
+
+`slug('Inflation Rate')` resolves to `inflation-rate`, a real TE page that is
+**not** the CPI release history; only the whitelist names map to
+`inflation-cpi`. Passing a tidied-up name fetched the wrong page and the
+loader found nothing — **no error, just a 0**. The loader now fetches by the
+whitelist name, which is also what LD-59 requires.
+
+### And the verdict mirror moved again
+
+USD's stored verdict read `BAD` against a derived +1 once the forward row
+landed. `sync_score_model` caught it (1 field) — the F-196 machinery doing
+its job on the first change after it was built.
+
+### Verified
+
+| | |
+|---|---|
+| Forward rate rows vs Jeff's rule | **5 of 5, 0 mismatches** |
+| Vintages landed | 8 interest-rate + 8 inflation-cpi, **all additions** |
+| `data/raw/` tracked files | **unchanged** (§6) |
+| R-44, R-48, R-53, steps 6/8b/9d, 7 guard suites | **PASS** |
+| R-37 | 2 problems, both pre-existing unlanded NZD rows |
+
+---
+
+## LD-178 — THE TE-EQUIVALENT SERIES IS THE ONE WE USE
+
+**Jeff, 2026-11-20**, ruling on the two open LD-59 identity questions (EUR
+trade SA vs NSA, NZD trade monthly vs 12-month):
+
+> *"whatever is the equivalent of the one we're getting from TE that's what
+> we are going to use."*
+
+**That is a rule, not two answers**, and it settles every future source swap
+the same way: the series TE fed us **is** the series the row's history was
+built from, so a replacement must *match* it rather than resemble it or
+improve on it. It also keeps the vintage chain honest — a row whose
+definition changes mid-chain has a break in it that no later check can see,
+because both halves are internally consistent.
+
+Applied, read off the TE pages we hold:
+
+| Row | TE's own component | Ruling |
+|---|---|---|
+| **EUR Balance of Trade** | `Balance of Trade` −10291.90 EUR Million, Sep 2026, **no seasonal qualifier**; our row holds `€-10.3B` | **NSA** → `trade balance n.s.a.` |
+| **NZD Balance of Trade** | `Balance of Trade` −2771.70 NZD Million, **Oct 2026 — monthly**, matching our `NZ$-2.772B` | **monthly** → `trade balance` |
+
+Recorded in `capture_biquote.RENAME`, not in a note: the next source swap
+will reach for that table. F-193's lesson is that **a source swap is a
+vocabulary change, and the vocabulary lives in code.**
+
+Jeff also ruled on the retro question — *"we're building a new. we don't
+need to rebuild the old reports."* The published editions stand as history
+(LD-167); the board move is not backfitted into them.
