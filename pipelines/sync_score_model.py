@@ -42,6 +42,7 @@ sys.path.insert(0, HERE)
 import fact_tables as ft
 import score_model as sm
 import refresh_rows as rr
+import derive_scores as ds
 
 SRC = os.path.join(HERE, 'score_model.py')
 ISO = dict((v, k) for k, v in sm.LABEL.items())
@@ -218,13 +219,104 @@ def unwatched(cat='Inflation'):
     return out
 
 
-def ref_drift():
-    """[(iso, indicator, old_ref, new_ref)] where the vintage moved."""
+# *** F-196 - REFS IS A SNAPSHOT, AND A SNAPSHOT DRAGS ROWS BACKWARDS.
+#
+# The dict above was written for the 2026-10-11 build. After the 2026-11-20
+# advance it asked to move NINE ref months the WRONG WAY - Oct/26 -> Sep/26
+# on rows the advance never touched (the PMI family, CHF inflation) - because
+# it still described October's vintage and nothing had updated it.
+#
+# A ref month that moves BACKWARDS is never a sync; it is the sync being out
+# of date. So TE's own reference month is the authority where we can read it
+# (LD-3: the calendar is a SCHEDULE authority but the indicator page's
+# released row IS the value authority for what month a print belongs to),
+# and REFS is the fallback for rows TE cannot confirm.
+#
+# AND A BACKWARD MOVE IS REFUSED EITHER WAY. Whatever the source says, a ref
+# month earlier than the one we hold is reported and skipped rather than
+# applied - the one direction that cannot be a new print.
+_MON3 = ('jan feb mar apr may jun jul aug sep oct nov dec').split()
+
+
+def _refkey(ref):
+    """('Sep/26' | 'Sep/26 (Q)') -> a sortable (year, month), or None."""
+    m = re.match(r'([A-Za-z]{3})/(\d{2})', (ref or '').strip())
+    if not m:
+        return None
+    mon = m.group(1).lower()
+    if mon not in _MON3:
+        return None
+    return int(m.group(2)), _MON3.index(mon) + 1
+
+
+def te_refs():
+    """{(iso, indicator): 'Mon/YY'} from the landed TE vintages."""
+    try:
+        import indicator_pages as ip
+    except Exception:
+        return {}
+    out = {}
+    for cat, iso, name, act, prev, ref, thr, v in sm.ROWS:
+        if name == 'GDP Growth Rate QoQ':
+            continue
+        try:
+            url, text = ip.fetch(sm.LABEL[iso], name, False)
+            hit = ip.latest(text, name)
+        except Exception:
+            continue
+        if not hit:
+            continue
+        # *** A NONSENSE PARSE IS NOT A VINTAGE (the sweep's own rule).
+        # ROW needs a MONTH name, and NZD's releases are quarterly - 'Q2',
+        # 'Q3' - so on that page the regex matched stray text far below the
+        # table and returned actual='2026', series='Employment', month='sep'.
+        # sweep() throws that away as NO PAGE; trusting the month alone had
+        # this asking to move NZD Unemployment from Jun/26 (Q) to Sep/26 (Q)
+        # off a parse that never saw a release row. If the ACTUAL is not a
+        # number, or looks like a bare year, the whole hit is discarded.
+        pact = hit[2]
+        if sm._num(pact) is None or re.match(r'^(19|20)\d\d$', str(pact)):
+            continue
+        mon = (hit[1] or '').lower()[:3]
+        if mon not in _MON3:
+            continue
+        # the page gives the month, not the year; take the year from the ref
+        # we already hold so a December/January boundary cannot roll it wrong
+        held = _refkey(ref)
+        yr = held[0] if held else None
+        if yr is None:
+            continue
+        # a month LATER than ours in the same year, else the next year only
+        # if ours is December and theirs is January
+        if _MON3.index(mon) + 1 < held[1] and held[1] == 12 and mon == 'jan':
+            yr += 1
+        out[(iso, name)] = '%s/%02d' % (mon.capitalize(), yr)
+    return out
+
+
+def ref_drift(use_te=True):
+    """[(iso, indicator, old_ref, new_ref)] where the vintage moved FORWARD."""
+    live = te_refs() if use_te else {}
     out = []
     for cat, iso, name, act, prev, ref, thr, v in sm.ROWS:
-        want = REFS.get((iso, name))
-        if want and want != (ref or '').strip():
-            out.append((iso, name, ref, want))
+        want = live.get((iso, name)) or REFS.get((iso, name))
+        if not want:
+            continue
+        cur = (ref or '').strip()
+        # a '(Q)' suffix is part of OUR label, not TE's - keep it, but only
+        # where the candidate does not already carry one. REFS entries do,
+        # te_refs() entries do not, and appending blindly produced the
+        # nonsense 'Sep/26 (Q) (Q)'.
+        if cur.endswith('(Q)') and not want.endswith('(Q)'):
+            want = want + ' (Q)'
+        if want == cur:
+            continue
+        a, b = _refkey(cur), _refkey(want)
+        if a and b and b < a:
+            print('  *** REFUSED backward ref move %s %s (%s -> %s)'
+                  % (iso, name, cur, want))
+            continue
+        out.append((iso, name, ref, want))
     return out
 
 
@@ -237,6 +329,30 @@ def drift():
         if got is not None and got != (act or '').strip():
             bad.append((iso, name, act, got))
     return bad
+
+
+def verdict_drift():
+    """[(iso, indicator, old_verdict, new_verdict)] where the rule disagrees.
+
+    The DERIVED score is the authority (LD-112): the cell holds the actual
+    and the rule owns the reading, so a stored verdict is a label for it,
+    never a second opinion. Where they differ the label is stale.
+
+    A row the rule cannot grade is left alone - employment_grade() and the
+    others return None rather than guess (F-73), and overwriting a human's
+    verdict with silence would delete information.
+    """
+    S2V = {1: 'GOOD', -1: 'BAD', 0: 'NEUTRAL'}
+    out = []
+    for cat, iso, name, act, prev, ref, thr, v in sm.ROWS:
+        try:
+            sc = ds.score_row(cat, sm.LABEL[iso], name, act)
+        except Exception:
+            continue
+        want = S2V.get(sc)
+        if want and want != (v or '').strip():
+            out.append((iso, name, v, want))
+    return out
 
 
 def rewrite(dry=True):
@@ -271,6 +387,33 @@ def rewrite(dry=True):
         else:
             print('  *** could not place REF %s %s (%s -> %s)'
                   % (iso, name, old, new))
+    # *** F-196b - AND THE VERDICT, OR THE REPORT PRINTS A LABEL THAT
+    # CONTRADICTS ITS OWN SCORE.
+    #
+    # After the 2026-11-20 advance, FIFTEEN rows carried a stored verdict
+    # that disagreed with the rule - USD Non Farm Payrolls read 'BAD' beside
+    # a derived +1 on a 165K print. The BOARD is safe (R-53 proves 0 rows
+    # reach the verdict fallback in score_row, so nothing is scored from it),
+    # but section2.py and render_edition.py PRINT this field. An edition
+    # built on it would show GOOD/BAD text next to a number that says the
+    # opposite, and a reader would have no way to tell which was wrong.
+    #
+    # Five of the fifteen were older than the advance (NZD Dairy, NZD Card
+    # Spending, CAD Building Permits and the LD-155 inflation family), so
+    # this was already latent. Syncing the actual without the verdict just
+    # moved the inconsistency rather than introducing it.
+    for iso, name, old, new in verdict_drift():
+        # ("Cat","US","Indicator","actual","prev","ref","thr","VERDICT")
+        pat = re.compile(
+            r'(\("[A-Za-z_ ]+","' + re.escape(iso) + r'","'
+            + re.escape(name) + r'",'
+            + r'(?:"[^"]*",){4})"' + re.escape(old) + r'"')
+        src, k = pat.subn(r'\g<1>"' + new + r'"', src)
+        if k:
+            n += k
+        else:
+            print('  *** could not place VERDICT %s %s (%s -> %s)'
+                  % (iso, name, old, new))
     if not dry and n:
         io.open(SRC, 'w', encoding='utf-8', newline='\n').write(src)
     return n
@@ -293,11 +436,22 @@ if __name__ == '__main__':
     # F-152 - report the rows NOTHING is watching, before claiming "in step".
     uw = unwatched('Inflation')
     print('  Inflation rows with no vintage watcher : %d' % len(uw))
+    vd = verdict_drift()
+    print('  rows whose VERDICT contradicts the rule : %d' % len(vd))
+    for iso, name, have, want in vd:
+        print('    %-4s %-34s %-9s -> %s'
+              % (sm.LABEL[iso], name[:34], have, want))
     for iso, name, ref in uw:
         print('    *** %-4s %-34s ref=%s  UNCHECKED'
               % (sm.LABEL[iso], name[:34], ref))
-    if not d and not rd:
-        print('  values and vintages in step - nothing to rewrite')
+    # *** THE EARLY EXIT MUST COUNT EVERY KIND OF DRIFT IT CAN FIX.
+    # It tested only `d` and `rd`, so once the actuals and ref months were in
+    # step it returned "nothing to rewrite" and exited BEFORE rewrite() ran -
+    # with 15 contradicted verdicts still on disk, reported in the output
+    # immediately above and then silently not fixed. A gate that names fewer
+    # things than the writer handles turns a successful run into a no-op.
+    if not d and not rd and not vd:
+        print('  values, vintages and verdicts in step - nothing to rewrite')
         if uw:
             print('  *** but %d Inflation row(s) are unwatched - add them to'
                   ' REFS' % len(uw))
@@ -308,4 +462,10 @@ if __name__ == '__main__':
     print('  %s %d field(s)' % ('WOULD REWRITE' if dry else '*** REWROTE', n))
     if dry:
         print('  re-run with --write to apply')
-    sys.exit(0 if n == len(d) + len(ref_drift()) or not dry else 1)
+        sys.exit(0)
+    want = len(d) + len(rd) + len(vd)
+    if n != want:
+        print('  *** placed %d of %d - %d field(s) could not be matched'
+              % (n, want, want - n))
+        sys.exit(1)
+    sys.exit(0)

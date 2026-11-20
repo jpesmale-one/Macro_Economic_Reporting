@@ -5167,3 +5167,146 @@ claim goes to become permanent.
 
 **70 rows probed, 0 frozen, 21 rule assertions pass.** Verified to fail with
 either wiring disabled.
+
+---
+
+## F-196 — THE ADVANCE, AND THE TWO MIRRORS THAT DID NOT FOLLOW IT
+
+**2026-11-20.** Jeff: *"go."* The 36 stale rows advanced into Nov-26 with the
+held print preserved in Oct-26. `pipelines/advance_month.py`, dry-run by
+default.
+
+### The rule, applied once
+
+```
+Oct-26  <-  whatever Nov-26 held    (the held print, preserved)
+Nov-26  <-  TE's newer print        (the advance)
+```
+
+Only for rows `indicator_pages.sweep()` calls STALE. The sweep already
+enforces Final vs Prel (F-37), yoy/mom/qoq (F-132) and the release-timestamp
+filter (LD-115), so a forecast in TE's Actual column cannot be read as a
+print. **36 rows, 0 skipped, 7 score changes, 3 sign flips.**
+
+| | |
+|---|---|
+| AUD Balance of Trade | −1 → +1 |
+| USD Non Farm Payrolls | −1 → +1 (29K → 165K) |
+| EUR Inflation Rate YoY Final | −1 → +1 |
+| AUD Employment Change | 0 → −1 *(new, via LD-151)* |
+| EUR Retail Sales YoY | +1 → 0 |
+| USD Unemployment Rate | −1 → 0 |
+| AUD Unemployment Rate | 0 → −1 |
+
+Board: **AUD −0.67 → +2.67** (rank 5→4), USD −2.00 → −0.50, EUR −3.00 →
+−2.00. JPY and GBP hold 1st and 2nd.
+
+### What the advance was actually for
+
+**`>Prev` self-equal rows: 19 of 26 → 3.** Jeff's rule — *previous comes from
+our own table, whatever populated it* — could not be applied while Nov-26 and
+Oct-26 held the same value on 19 rows, because each would have scored 0
+against itself. The three that remain are genuine flat prints (CHF
+unemployment 3% → 3%) that correctly score 0.
+
+And the prior column is now the better authority, measured rather than
+assumed: against TE's own published previous, **`score_model.prev` agrees on
+4 of 22 readable rows; the prior column agrees on 10 of 22.** Most of the
+residual gap is TE restating a revised prior while our column holds it as
+first published — correct under vintage discipline, not an error.
+
+**Switching the rule is NOT done here.** It moves 10 scores including 5 sign
+flips, which is a scoring change and Jeff's call (F-3), not a defect fix.
+
+### Mirror 1: `REFS` dragged nine rows BACKWARDS
+
+`sync_score_model.REFS` is a hardcoded snapshot from the 2026-10-11 build.
+Asked to sync after the advance, it wanted to move nine ref months
+**Oct/26 → Sep/26** — on rows the advance never touched (the PMI family, CHF
+inflation) — because it still described October's vintage.
+
+> A ref month that moves backwards is never a sync; it is the sync being out
+> of date.
+
+`ref_drift()` now reads TE's own reference month where it can (`te_refs()`),
+falls back to `REFS`, and **refuses any backward move from either source**,
+naming it. 7 refused, 36 applied forward, every one matching an advanced row.
+
+Two bugs of my own surfaced while building it, both worth recording:
+
+- **A nonsense parse is not a vintage.** NZD's releases are quarterly
+  (`Q2`, `Q3`), and `ROW` needs a month name, so on that page the regex
+  matched stray text far below the table and returned `actual='2026'`,
+  `series='Employment'`, `month='sep'`. `sweep()` discards that as NO PAGE;
+  trusting the month alone had this asking to move NZD Unemployment from
+  Jun/26 (Q) to Sep/26 (Q) off a parse that never saw a release row. Now the
+  whole hit is discarded if the actual is not a number or looks like a year.
+- **`Sep/26 (Q) (Q)`** — the `(Q)` suffix was appended to candidates that
+  already carried it.
+
+### Mirror 2: the stored verdict contradicted its own score
+
+After the actuals and ref months were in step, **15 rows carried a verdict
+that disagreed with the rule.** USD Non Farm Payrolls read `BAD` beside a
+derived **+1** on a 165K print.
+
+**The board was never at risk** — R-53 proves 0 rows reach the verdict
+fallback in `score_row`, so nothing is scored from this field. But
+`section2.py` and `render_edition.py` **print** it, so an edition would have
+shown GOOD/BAD text next to a number saying the opposite, with no way for a
+reader to tell which was wrong.
+
+**Five of the fifteen predate the advance** (NZD Dairy, NZD Card Spending,
+CAD Building Permits, and the LD-155 inflation family), so this was already
+latent. Syncing the actual without the verdict moved the inconsistency
+rather than creating it.
+
+`verdict_drift()` now syncs it from the derived score, leaving a row the rule
+cannot grade alone (`None` is the rule refusing, F-73 — overwriting a human's
+verdict with silence would delete information).
+
+### The gate that turned a fix into a no-op
+
+Worth its own note. The CLI's early exit tested only the actual and ref drift:
+
+```python
+if not d and not rd:
+    print('  values and vintages in step - nothing to rewrite')
+    sys.exit(0)
+```
+
+So once those two were in step, the script printed all 15 contradicted
+verdicts, said *"nothing to rewrite"*, and exited **before `rewrite()` ran**.
+The first `--write` reported success and changed nothing.
+
+> A gate that names fewer things than the writer handles turns a successful
+> run into a silent no-op.
+
+Fixed, and the exit code now checks `n == len(d) + len(rd) + len(vd)` so a
+field that cannot be placed fails rather than passing quietly.
+
+### And it closed six standing failures
+
+**`test_inflation` (R-44) now PASSES, 41 cases.** The 6 failures carried
+across many sessions — and confirmed pre-existing by `git stash` twice today
+— were **stale verdicts the whole time**, not a rule defect. They were never
+going to be fixed by looking at the inflation logic.
+
+### Verified after the write, read from disk
+
+| | |
+|---|---|
+| Blank cells across all months | **0** (LD-39) |
+| Populated cells that will not score | **0** |
+| `>Prev` self-equal | **3** (was 19) |
+| Legged rows carry legs, prior preserved | yes, identity 0.00K |
+| `data/raw/` | **untouched** (§6) |
+| R-44, R-53, step 6, test_guards, test_phtime, test_session_log | **PASS** |
+| R-37 | 2 problems, both **pre-existing** NZD rows released 3 Nov and never landed |
+| R-48 | 7 rows scoring off a wrong `previous` — the open item above |
+
+A line-ending slip is also recorded: the first write emitted `\n` into files
+holding `\r\n`, so git showed all 150 lines modified for 36 changed cells.
+The values were right and the diff was unreadable — **a review that cannot
+see the change cannot catch a wrong one.** The writer now sniffs the
+ending from the bytes on disk; the diff is 33 lines.

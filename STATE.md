@@ -20,6 +20,61 @@ prev_edition: 2026-10-04 (r1 - graded 0 WIN / 2 CONTESTED / 2 LOSS under
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-11-20 *** THE NOV-26 ADVANCE IS APPLIED (F-196) ***
+#   Jeff: "go". 36 stale rows advanced: Oct-26 <- held print, Nov-26 <- TE.
+#   pipelines/advance_month.py, DRY RUN BY DEFAULT, --write to apply.
+#   36 rows, 0 skipped, 7 score changes, 3 sign flips.
+#     AUD Balance of Trade        -1 -> +1
+#     USD Non Farm Payrolls       -1 -> +1   (29K -> 165K)
+#     EUR Inflation Rate YoY Final -1 -> +1
+#     AUD Employment Change        0 -> -1   (new, via LD-151/F-195)
+#     EUR Retail Sales YoY        +1 ->  0
+#     USD Unemployment Rate       -1 ->  0
+#     AUD Unemployment Rate        0 -> -1
+#   BOARD: AUD -0.67 -> +2.67 (rank 5->4), USD -2.00 -> -0.50,
+#          EUR -3.00 -> -2.00. JPY 1st, GBP 2nd, CAD 3rd unchanged.
+#   >Prev SELF-EQUAL ROWS: 19 of 26 -> 3. That was the point of the
+#   advance. The 3 remaining are genuine flat prints (CHF unemployment
+#   3% -> 3%) that correctly score 0.
+#   VERIFIED FROM DISK: 0 blank cells (LD-39), 0 unscorable cells, legs
+#   intact with prior preserved, data/raw/ UNTOUCHED (section 6).
+#
+#   *** STILL OPEN AND IT IS JEFF'S CALL: switching >Prev to read
+#   `previous` from the PRIOR COLUMN. Measured against TE's published
+#   previous: score_model.prev agrees on 4 of 22 readable rows, the prior
+#   column agrees on 10 of 22 - better, and most of the residual gap is TE
+#   restating a REVISED prior while our column holds it as first published
+#   (correct under vintage discipline). But the switch moves 10 scores
+#   including 5 SIGN FLIPS, so it is a scoring change (F-3), not a defect
+#   fix, and it is NOT applied. R-48 currently reports 7 rows scoring off a
+#   wrong previous; those 7 are this item.
+#
+# 2026-11-20 *** F-196 - TWO MIRRORS DID NOT FOLLOW THE ADVANCE ***
+#   1) sync_score_model.REFS is a HARDCODED SNAPSHOT from the 2026-10-11
+#      build, and asked to sync it wanted to move NINE ref months BACKWARDS
+#      (Oct/26 -> Sep/26) on rows the advance never touched. A ref month
+#      that moves backwards is never a sync; it is the sync being stale.
+#      ref_drift() now reads TE's own month (te_refs()), falls back to REFS,
+#      and REFUSES any backward move from either source, naming it.
+#      7 refused, 36 applied forward, all 36 matching an advanced row.
+#   2) FIFTEEN rows carried a stored verdict contradicting the rule - USD
+#      Non Farm Payrolls read BAD beside a derived +1 on a 165K print. The
+#      BOARD was never at risk (R-53 proves 0 rows reach the verdict
+#      fallback) but section2.py and render_edition.py PRINT this field, so
+#      an edition would have shown GOOD/BAD next to a number saying the
+#      opposite. FIVE of the fifteen predate the advance.
+#      verdict_drift() now syncs it from the derived score.
+#   *** AND R-44 (test_inflation) NOW PASSES, 41 cases. The 6 failures
+#   carried for many sessions - and I confirmed "pre-existing" by git stash
+#   TWICE today - were STALE VERDICTS all along, not a rule defect. They
+#   were never going to be found by reading the inflation logic.
+#   THE GATE THAT MADE A FIX A NO-OP: the CLI's early exit tested only
+#   actual+ref drift, so once those were in step it printed all 15 bad
+#   verdicts, said "nothing to rewrite" and exited BEFORE rewrite() ran.
+#   The first --write reported success and changed nothing. A gate that
+#   names fewer things than the writer handles turns a successful run into
+#   a silent no-op. Exit code now checks n == len(d)+len(rd)+len(vd).
+#
 # 2026-11-20 *** F-194 - THREE ROWS WERE NOT BEING SCORED AT ALL ***
 #   Found while VERIFYING the Nov-26 advance before writing it, not by a
 #   check. score_row() reaches each rule by matching THRESHOLD TEXT and
