@@ -231,6 +231,119 @@ def releases(text):
     return out
 
 
+# *** THE CALENDAR TABLE IS NOT THE WHOLE PAGE (F-195).
+#
+# Every parser in this module read ONE table - the Calendar - and I then
+# reported what is not in it as absent from TE. Jeff, 2026-11-20: "I can
+# see FT/PT split in TE why you can't get it?" It is on the page, in the
+# SECOND table, which nothing here had ever looked at:
+#
+#     Related Last Previous Unit Reference
+#     Employment Change          -43531.00  -36400.00  Persons  Oct 2026
+#     Full Time Employment Chg    -2948.00   35398.00  Persons  Oct 2026
+#     Part Time Employment Chg   -40583.00  -71797.00  Persons  Oct 2026
+#
+# F-73, stated as a fact about the world instead of about our reach - and
+# the repo already knew better: F-145 recorded in October that TE publishes
+# the CAD split. I asserted over our own finding.
+#
+# TWO THINGS THE CALENDAR CANNOT GIVE, BOTH LOAD-BEARING:
+#   - the component SERIES (FT/PT legs, core prints, sub-indices)
+#   - the REVISED value of a prior month. The Calendar keeps the number as
+#     first published; this table carries the current one. AUD Sep/26 reads
+#     -39.3K in the Calendar and -36.4K here, with legs revised 34.4/-73.7
+#     -> 35.4/-71.8. Both are correct for what they are, so a caller MUST
+#     say which it wants; silently mixing them manufactures a disagreement.
+#
+# 'Last' here is NOT filtered for release time the way latest() filters the
+# Calendar - this table only ever carries printed values, never a forecast,
+# so there is no forward row to exclude. The reference month is returned
+# with every row so a caller can check vintage rather than assume it.
+# The name is bounded on the LEFT by the end of the previous row (a
+# reference month) or by the header, never left to run backwards into them.
+# The first draft had no left anchor and produced two corrupt keys on the
+# GBP page: 'Related Last Previous Unit Reference Consumer Price Index CPI'
+# swallowed the header, and 'Oct 2026 GDP Deflator' swallowed the row above.
+# Both looked like data and neither was a series TE publishes.
+_MON = r'(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)'
+COMP = re.compile(
+    r'(?:^|(?<=Reference)|(?<=\d{4}))\s*'
+    r'([A-Z][A-Za-z0-9 /%\.\,\-]*?[A-Za-z\.])\s+'
+    r'(-?[\d,]+\.?\d*)\s+(-?[\d,]+\.?\d*)\s+'
+    r'((?:[A-Z]{3}[ /][A-Za-z]+|[A-Z]{3}|[A-Za-z]+(?: [A-Za-z]+)?)?)\s*'
+    r'(' + _MON + r' \d{4})')
+
+
+def components(text):
+    """{series: (last, previous, unit, 'Mon YYYY')} from the second table.
+
+    The component series TE publishes beside the headline. Keys are TE's own
+    names, verbatim - never fuzzy-matched (LD-59), because 'Full Time
+    Employment Chg' and 'Employment Change' are different series and a loose
+    match would bind one to the other.
+
+    The table is headed 'Components' on some pages and 'Related' on others,
+    and SOME PAGES CARRY BOTH. Taking whichever appears FIRST is deliberate:
+    searching for one and falling back to the other found 'Related' far
+    down the GBP inflation page and parsed the wrong table, silently losing
+    every row of the right one.
+    """
+    if not text:
+        return {}
+    heads = [text.find('%s Last Previous Unit Reference' % h)
+             for h in ('Components', 'Related')]
+    heads = [h for h in heads if h >= 0]
+    if not heads:
+        return {}
+    i = min(heads)
+    seg = text[i:i + 3000]
+    out = {}
+    for m in COMP.finditer(seg):
+        name, last, prev, unit, ref = m.groups()
+        name = name.strip()
+        # a key that still carries the header or a month is a parse artefact,
+        # not a series - drop it rather than publish a fictional name
+        if re.search(r'Last Previous Unit Reference|%s \d{4}' % _MON, name):
+            continue
+        out[name] = (last, prev, unit.strip(), ref)
+    return out
+
+
+def legs(text):
+    """(headline, full_time, part_time, ref) in THOUSANDS, or Nones.
+
+    *** THE UNITS DIFFER BY COUNTRY AND THE CELL IS WRITTEN IN THOUSANDS.
+    TE reports AUD in Persons (-43531.00) and CAD in Thousand (-4.70). Both
+    become -43.5K and -4.7K. Reading the number without its unit is how a
+    43-thousand print becomes a 43-million one.
+
+    All three legs or nothing: employment_grade() needs the full triple and
+    returns None without it (F-73), and a part-time leg derived here by
+    subtraction would be an UNMARKED derived figure (F-1). Deriving it
+    belongs in capture_biquote.derive_part_time(), which labels it.
+    """
+    c = components(text)
+    want = ('Employment Change', 'Full Time Employment Chg',
+            'Part Time Employment Chg')
+    if not all(k in c for k in want):
+        return None, None, None, None
+    vals = []
+    ref = None
+    for k in want:
+        last, _prev, unit, r = c[k]
+        try:
+            v = float(str(last).replace(',', ''))
+        except ValueError:
+            return None, None, None, None
+        if 'Person' in unit:
+            v = v / 1000.0
+        vals.append(round(v, 1))
+        ref = ref or r
+        if r != ref:                  # legs from different months are not a
+            return None, None, None, None   # print - they are two prints
+    return vals[0], vals[1], vals[2], ref
+
+
 def latest(text, name, today=None):
     """The newest release on the page whose series matches `name`.
 

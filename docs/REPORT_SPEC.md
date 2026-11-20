@@ -5060,3 +5060,110 @@ row's new actual is 33.2K.
 
 `test_inflation`'s 6 failures were confirmed **pre-existing** by `git stash`
 — 6 at HEAD without the change, 6 with it.
+
+---
+
+## F-195 — I REPORTED TE AS NOT PUBLISHING SOMETHING I HAD NEVER LOOKED FOR
+
+**Found 2026-11-20 by Jeff**, minutes after F-194 shipped. Same function,
+same session, worse error.
+
+I closed F-194 with two rows declared permanently frozen and this reason:
+
+> *"TE's indicator page carries only the headline, never the FT/PT split
+> the rule needs."*
+
+**Jeff:** *"I can see FT/PT split in TE why you can't get it?"*
+
+He could see it because it is there. It sits in the page's **second table**,
+which no parser in `indicator_pages.py` had ever read:
+
+```
+Related Last Previous Unit Reference
+Employment Change          -43531.00  -36400.00  Persons  Oct 2026
+Full Time Employment Chg    -2948.00   35398.00  Persons  Oct 2026
+Part Time Employment Chg   -40583.00  -71797.00  Persons  Oct 2026
+```
+
+### Why this is worse than the defect it was attached to
+
+**F-73 says an absence we cannot see is a fact about our reach, not about
+the world.** I quoted F-73 in the F-194 commit message and committed this
+in the same breath. Every parser in the module reads the **Calendar** table;
+I checked the Calendar, found no legs, and wrote the conclusion as a
+property of *TE*.
+
+**And the repo already knew.** F-145, October 2026, recorded that the CAD
+row claimed "FT/PT split unsourced" when TE publishes it — the exact same
+false absence, about the exact same rows. I asserted over our own finding.
+
+> A declared gap I reasoned my way into is more durable than a bug. Nothing
+> re-tests a reason once it is written down.
+
+### What was actually missing: a parser, not a source
+
+`employment_grade()` already implemented LD-151 correctly, and R-44 already
+tested all six cases. As with LD-58 one hour earlier, **only the wiring was
+absent.** The legs even travel inside the fact-table cell already —
+`-39.3K (FT +34.4K, PT -73.7K)` — so the rule needs no second source.
+
+Reconciled before wiring anything, both currencies, latest vintage:
+
+```
+AUD  headline -43.5K == FT  -2.9K + PT -40.6K    diff 0.00K
+CAD  headline  -4.7K == FT -18.1K + PT +13.4K    diff 0.00K
+```
+
+and CAD's TE *previous* legs match our held Sep/26 legs to the decimal.
+AUD's differ — `-39.3K` held vs `-36.4K` on the page, legs `34.4/-73.7` vs
+`35.4/-71.8` — because **the Calendar keeps the number as first published
+and the Components table carries the current, revised one.** Both are
+correct for what they are. A caller must say which it wants; mixing them
+silently manufactures a disagreement, which is how F-194's own
+investigation nearly produced a phantom revision.
+
+### Delivered
+
+| | |
+|---|---|
+| `indicator_pages.components()` | the second table, keys verbatim (LD-59 — never fuzzy-matched) |
+| `indicator_pages.legs()` | headline/FT/PT normalised to thousands, all three or nothing |
+| `derive_scores._legs()` | parses the legs back out of the cell |
+| `score_row` | routes `LD-151` on threshold text, as LD-58 does |
+| R-53 | LD-151's six cases asserted **through `score_row`**, plus "a legless cell must not grade" |
+
+**Units differ by country**: TE reports AUD in `Persons` (−43531.00) and CAD
+in `Thousand` (−4.70). Reading the number without its unit turns a
+43-thousand print into a 43-million one.
+
+**A legless cell stays ungraded.** `employment_grade()` returns `None`
+without all three legs and the row falls through, rather than being scored
+on the headline alone — that is the F-145 defect, and it is now asserted.
+
+### Blast radius
+
+**None on the board.** Both rows derive exactly the scores their typed
+verdicts carried (AUD 0, CAD −1), so all eight totals are unchanged. The
+verdicts were right; the rule simply was not running. It matters for every
+future print — and immediately for the Nov-26 advance, where **AUD Oct/26
+`-43.5K (FT -2.9K, PT -40.6K)` scores −1 against the held 0**, because full
+time turned negative and now agrees with the headline.
+
+### The guard produced two false positives of the same family
+
+Worth recording, because both are F-73 inside the test harness:
+
+1. A **fixed probe ladder** (−500…+500) flagged JPY Balance of Trade, which
+   is `>Prev` against **−1111.9B** — every probe beat it, so the score was
+   constant because the probes never crossed the comparison point.
+2. After LD-151 was wired, both rows **still** read frozen: the probes were
+   bare numbers, so `employment_grade()` correctly returned `None` every
+   time. That is the rule **refusing to guess**, not the rule being absent.
+
+Probes now derive from the row's own previous value, carry legs for a legged
+row, and suppress LD-165 for inflation rows. `KNOWN_FROZEN` is **empty, and
+the comment says it should stay that way**: it is where a wrong absence
+claim goes to become permanent.
+
+**70 rows probed, 0 frozen, 21 rule assertions pass.** Verified to fail with
+either wiring disabled.

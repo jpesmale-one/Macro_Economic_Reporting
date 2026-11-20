@@ -71,12 +71,16 @@ import derive_scores as ds
 # (category, currency, indicator) -> why it is still scored from a verdict.
 # F-194: these are DEFECTS awaiting a source or an implementation, not
 # approved behaviour. Each one publishes a number nobody computed.
-KNOWN_FROZEN = {
-    ('Employment', 'AUD', 'Employment Change'):
-        'LD-151 not implemented AND TE gives no FT/PT split (needs ABS)',
-    ('Employment', 'CAD', 'Employment Change'):
-        'LD-151 not implemented AND TE gives no FT/PT split (needs StatCan)',
-}
+#
+# *** EMPTY, AND IT SHOULD STAY EMPTY (F-195). It briefly held AUD and CAD
+# Employment Change, on my claim that "TE gives no FT/PT split". Jeff asked
+# why, the split was on the page all along in the Components table, and the
+# entries came straight back out. The lesson is not "that one was wrong" -
+# it is that THIS DICT IS WHERE A WRONG ABSENCE CLAIM GOES TO BECOME
+# PERMANENT. Nothing re-tests a reason once it is written here; the guard
+# prints it and passes. So an entry needs the absence CHECKED, not reasoned
+# - and "I looked at one table and the value was not in it" is not a check.
+KNOWN_FROZEN = {}
 
 
 # *** THE PROBE SPREAD MUST STRADDLE THE ROW'S OWN REFERENCE POINT.
@@ -95,10 +99,24 @@ KNOWN_FROZEN = {
 # sign rules. A guard whose probe set is blind to the rule it tests
 # manufactures the finding it claims to detect - which is F-73 again, in
 # the test harness instead of the report.
+#
+# *** AND IT MUST BE SHAPED LIKE THE CELL, NOT JUST SCALED LIKE IT (F-195).
+# A second false positive of the same family: after LD-151 was wired, AUD
+# and CAD Employment Change STILL read frozen, because the probes were bare
+# numbers and employment_grade() needs three legs. It correctly returned
+# None for every one of them, so the score never moved - and that is the
+# rule REFUSING to guess (F-73), not the rule being absent. A legged row is
+# therefore probed with legged cells, FT carrying the headline's sign so
+# the probe exercises the agreement cases rather than sitting on NEUTRAL.
 def probes(held, previous):
     """Actuals that straddle `previous`, in the row's own units."""
     s = str(held)
     unit = '%' if '%' in s else ('K' if 'K' in s.upper() else '')
+    if 'FT' in s and 'PT' in s:
+        # headline, FT, PT - the four sign combinations LD-151 distinguishes
+        return ['%gK (FT %+gK, PT %+gK)' % t for t in (
+            (50, 30, 20), (50, -10, 60), (-50, 10, -60), (-50, -30, -20),
+            (40, 50, -10), (-40, -50, 10), (0, 0, 0))]
     p = sm._num(previous)
     if p is None:
         p = sm._num(held)
@@ -201,16 +219,52 @@ def main():
             'PASS' if ok else '*** FAIL', v, got, want))
     print()
 
+    # *** LD-151's SIX CASES, INCLUDING THE TWO JEFF HAD TO RULE ON (F-195).
+    # employment_grade() is right; what broke was the WIRING, so this asserts
+    # through score_row - the path the board actually uses - not through the
+    # grader directly. The two unlisted sign combinations (+,+,-) and
+    # (-,-,+) are the ones an earlier draft of the rule got backwards, so
+    # they are pinned here rather than left to the rule's own test.
+    print('LD-151 AUD/CAD Employment Change, three legs through score_row')
+    ld151 = [((50, 30, 20), 1, 'rule 1  + + +  GOOD'),
+             ((50, -10, 60), 0, 'rule 2  + - +  NEUTRAL, legs disagree'),
+             ((-50, 10, -60), 0, 'rule 3  - + -  NEUTRAL, legs disagree'),
+             ((-50, -30, -20), -1, 'rule 4  - - -  BAD'),
+             ((40, 50, -10), 1, 'unlisted + + -  GOOD, follow full time'),
+             ((-40, -50, 10), -1, 'unlisted - - +  BAD, follow full time')]
+    legbad = 0
+    for ccy in ('AUD', 'CAD'):
+        for (a, f, p), want, why in ld151:
+            cell = '%gK (FT %+gK, PT %+gK)' % (a, f, p)
+            got = ds.score_row('Employment', ccy, 'Employment Change', cell)
+            ok = got == want
+            if not ok:
+                legbad += 1
+            print('  %-6s %-4s %-28s got=%-5s want=%-5s %s' % (
+                'PASS' if ok else '*** FAIL', ccy, cell, got, want, why))
+    # a cell WITHOUT both legs must not be graded on the headline alone
+    # (F-145: that defect scored CAD off the headline for a stated reason
+    # that was not true). None here is the rule refusing, which is correct.
+    for ccy in ('AUD', 'CAD'):
+        g = sm.employment_grade(sm._num('-43.5K'), *ds._legs('-43.5K'))
+        ok = g is None
+        if not ok:
+            legbad += 1
+        print('  %-6s %-4s %-28s grade=%-5s a legless cell must not grade' % (
+            'PASS' if ok else '*** FAIL', ccy, '-43.5K (no legs)', g))
+    print()
+
     if undeclared:
         print('%d UNDECLARED FROZEN ROW(S) - a score nobody computed is '
               'being published.' % len(undeclared))
         print('Wire the rule into derive_scores.score_row, or declare it in')
         print('KNOWN_FROZEN with the reason. Do not declare it to pass.')
         return 1
-    if bad:
-        print('%d LD-58 CASE(S) FAIL - the row moves but reads wrong.' % bad)
+    if bad or legbad:
+        print('%d LD-58 and %d LD-151 case(s) FAIL - the row moves but '
+              'reads wrong.' % (bad, legbad))
         return 1
-    print('No undeclared frozen rows. LD-58 matches Jeff\'s ruling.')
+    print('No frozen rows. LD-58 and LD-151 both match Jeff\'s rulings.')
     return 0
 
 

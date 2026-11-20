@@ -52,6 +52,30 @@ def _rule(ccy, indicator):
     return None
 
 
+# *** THE LEGS TRAVEL INSIDE THE CELL (F-195). The Employment Change cell is
+# written with its split inline, so the rule that needs three numbers reads
+# one cell and no second source:
+#
+#     -39.3K (FT +34.4K, PT -73.7K)
+#
+# Both legs or neither. A cell carrying only one is NOT half-parsed into a
+# guess: employment_grade() returns None without all three and the row falls
+# through ungraded (F-73). Deriving the missing leg by subtraction belongs in
+# capture_biquote.derive_part_time(), where it is MARKED as derived -
+# computing it silently here would publish an unlabelled derived figure as
+# though it were the agency print, which is the F-1 class of error.
+_LEG = re.compile(r'\bFT\s*([+-]?[\d.,]+)\s*[KkMm]?.*?'
+                  r'\bPT\s*([+-]?[\d.,]+)\s*[KkMm]?', re.S)
+
+
+def _legs(actual):
+    """(full_time, part_time) parsed from the cell, or (None, None)."""
+    m = _LEG.search(str(actual or ''))
+    if not m:
+        return None, None
+    return sm._num(m.group(1)), sm._num(m.group(2))
+
+
 # LD-136 - THE INFLATION RULE IS A TARGET TEST, NOT A DIRECTION TEST.
 #
 # Jeff, 2026-09-14: "Actual > 2% and Actual >= Previous is Good. Higher chance
@@ -633,6 +657,45 @@ def score_row(cat, ccy, indicator, actual, _autoload_inf=True):
     # would put the rule in two places and let them drift apart.
     if 'ld-58' in (thr or '').lower():
         g = sm.claimant_grade(sm._num(actual))
+        sc = {'GOOD': 1, 'BAD': -1, 'NEUTRAL': 0}.get(g)
+        if sc is not None:
+            return sc
+    # *** F-195 - THE SECOND HALF OF F-194, AND I GOT THE REASON WRONG.
+    #
+    # I reported AUD/CAD Employment Change as unfixable because "TE's
+    # indicator page carries only the headline, never the FT/PT split".
+    # Jeff, 2026-11-20: "I can see FT/PT split in TE why you can't get it?"
+    #
+    # HE IS RIGHT AND I HAD NOT LOOKED. The split is on the page, in the
+    # Components table, as named series with their own reference month:
+    #
+    #     Full Time Employment Chg   -2948.00   35398.00  Persons  Oct 2026
+    #     Part Time Employment Chg  -40583.00  -71797.00  Persons  Oct 2026
+    #
+    # I had only ever parsed the Calendar table, which carries the headline,
+    # and stated the absence as a fact about TE. That is F-73 exactly - an
+    # absence we cannot see is a fact about OUR REACH, not about the world -
+    # and worse than the original F-194, because F-145 had ALREADY recorded
+    # that TE publishes this split for CAD. The repo knew; I asserted over it.
+    #
+    # Reconciled before wiring (both currencies, latest vintage):
+    #     AUD  headline -43.5K == FT -2.9K + PT -40.6K   diff 0.00K
+    #     CAD  headline  -4.7K == FT -18.1K + PT +13.4K  diff 0.00K
+    # and CAD's TE previous legs match our held Sep/26 legs to the decimal.
+    #
+    # employment_grade() already implemented LD-151 correctly, and R-44
+    # already tested all six cases. Only the wiring was missing - the same
+    # shape as the LD-58 defect above, in the same function, found the same
+    # day. The legs are read from the CELL, which carries them inline:
+    #
+    #     -39.3K (FT +34.4K, PT -73.7K)
+    #
+    # so the rule needs no second source and no new fetch. A cell without
+    # both legs returns None from employment_grade (never a guessed verdict,
+    # F-73) and falls through - a row we cannot grade stays ungraded rather
+    # than being scored on the headline alone, which is the F-145 defect.
+    if 'ld-151' in (thr or '').lower():
+        g = sm.employment_grade(sm._num(actual), *_legs(actual))
         sc = {'GOOD': 1, 'BAD': -1, 'NEUTRAL': 0}.get(g)
         if sc is not None:
             return sc

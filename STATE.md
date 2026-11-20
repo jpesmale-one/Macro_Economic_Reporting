@@ -37,10 +37,41 @@ track: LEAN (no section-2 trigger has fired)
 #   GUARD: R-53 pipelines/test_frozen_rows.py - probes each row with actuals
 #   straddling its OWN previous and fails if the score never moves. Verified
 #   to FAIL with the fix disabled. 70 probed, 0 undeclared frozen.
-#   STILL OPEN: AUD/CAD Employment Change need LD-151 IMPLEMENTED and an
-#   FT/PT SOURCE (TE's indicator page carries the headline only). They are
-#   in KNOWN_FROZEN with their reason - a declared gap, not approved
-#   behaviour. Do not add a row there to make the guard pass.
+#   CLOSED by F-195 below - the "no FT/PT source" reason was WRONG.
+#
+# 2026-11-20 *** F-195 - I REPORTED TE AS NOT PUBLISHING WHAT I NEVER
+#   LOOKED FOR *** Found by Jeff minutes after F-194 shipped: "I can see
+#   FT/PT split in TE why you can't get it?" It is on the page, in the
+#   SECOND table, which no parser in indicator_pages.py had ever read:
+#     Full Time Employment Chg   -2948.00   35398.00  Persons  Oct 2026
+#     Part Time Employment Chg  -40583.00  -71797.00  Persons  Oct 2026
+#   Every parser read the CALENDAR table; I checked it, found no legs, and
+#   wrote the conclusion as a property of TE. That is F-73 - quoted in the
+#   F-194 commit message and broken in the same breath - and F-145 had
+#   ALREADY recorded in October that TE publishes the CAD split. I asserted
+#   over our own finding.
+#   LESSON: a declared gap I reasoned my way into is more durable than a
+#   bug, because nothing re-tests a reason once it is written down.
+#   employment_grade() already implemented LD-151 and R-44 already tested
+#   all six cases; only the WIRING was missing, same as LD-58 an hour
+#   earlier. The legs travel INSIDE the cell already, so no second source.
+#   RECONCILED BEFORE WIRING: AUD -43.5 == -2.9 + -40.6 (diff 0.00K),
+#   CAD -4.7 == -18.1 + 13.4 (diff 0.00K); CAD's TE previous legs match our
+#   held Sep/26 legs to the decimal. AUD's differ because the CALENDAR keeps
+#   the first-published number and COMPONENTS carries the revised one -
+#   both correct, and mixing them manufactures a phantom revision.
+#   UNITS DIFFER BY COUNTRY: AUD in Persons, CAD in Thousand. Reading the
+#   number without its unit makes a 43-thousand print a 43-million one.
+#   BLAST RADIUS ON THE BOARD: NONE. Both rows derive exactly the scores
+#   their typed verdicts carried (AUD 0, CAD -1) - the verdicts were right,
+#   the rule just was not running. BUT the advance moves AUD: Oct/26
+#   -43.5K (FT -2.9K, PT -40.6K) scores -1 against the held 0.
+#   NEW: indicator_pages.components() and .legs(); derive_scores._legs();
+#   score_row routes 'ld-151' on threshold text. R-53 now asserts LD-151's
+#   six cases THROUGH score_row plus "a legless cell must not grade"
+#   (the F-145 defect). 70 rows probed, 0 frozen, 21 assertions pass.
+#   KNOWN_FROZEN IS NOW EMPTY and the comment says it should stay empty -
+#   it is where a wrong absence claim goes to become permanent.
 #
 # 2026-11-20 *** 23 OF 26 '>Prev' ROWS SCORE AGAINST AN UNSOURCED NUMBER ***
 #   score_row reads `previous` from score_model.ROWS, which agrees with
