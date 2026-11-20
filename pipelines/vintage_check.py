@@ -34,6 +34,7 @@ import io
 import os
 import sys
 import json
+import re
 import glob
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -170,6 +171,27 @@ def stale(since, until=None):
         _h = (held.get((c, n)) or '')
         _hn, _an = _norm_ccy(_h), _norm_ccy(act)
         _same = (_hn == _an) or (_an and _hn.startswith(_an + ' ('))
+        # *** F-201b - AND A PERCENT SIGN IS PRESENTATION TOO.
+        #
+        # F-139 taught this guard that an annotated cell is the same value
+        # ("-39.3K (FT ...)" vs "-39.3K") and F-159 that a glyph is the same
+        # value (EUR vs the euro sign). Both fixes were string-shaped, so
+        # the SAME CLASS kept arriving: TE's capture renders "4.9" where we
+        # store "4.9%", and on 2026-11-20 that put NINETEEN rows on a list
+        # headed "THE EDITION IS SCORED ON DATA THE WORLD HAS SUPERSEDED"
+        # when every one of them held exactly TE's number.
+        #
+        # Three string fixes for one idea is the tell. The question this
+        # guard asks is "is our NUMBER behind theirs", so once the vintage
+        # has been matched, compare the numbers and let presentation be
+        # presentation. The string test stays as the first, cheapest pass -
+        # it still catches a genuinely different rendering of a different
+        # value - and this only rescues a pair that the string test
+        # separated while the arithmetic says they agree.
+        if not _same:
+            _a, _b = sm._num(_hn), sm._num(_an)
+            if _a is not None and _b is not None and abs(_a - _b) < 1e-9:
+                _same = True
         if not _same:
             out.append((c, n, held.get((c, n)), act, ds, raw))
             continue
@@ -186,14 +208,45 @@ if __name__ == '__main__':
     if args:
         since = args[0]
     else:
+        # *** F-201 - THE WINDOW CAME FROM A HEADER NOBODY WAS WATCHING,
+        # AND THE FALLBACK WAS SILENT.
+        #
+        # `since` is the START OF THIS CHECK'S WINDOW, so whatever sets it
+        # decides what "stale" means. Two failures, both on 2026-11-20:
+        #
+        #   1. STATE.md's header still said prev_edition: 2026-10-04, six
+        #      weeks old, so every row was compared against releases back
+        #      to early October. R-40 reported THIRTY-EIGHT stale rows - 19
+        #      pure formatting ('4.9%' vs '4.9') and 19 where OURS WAS
+        #      NEWER than the print it matched. With the real baseline the
+        #      same check reports ZERO. Nothing was wrong with the data.
+        #
+        #   2. Then, fixing that header, it grew past 1200 chars and
+        #      prev_edition moved to char 1333 - outside the slice. The
+        #      loop found nothing and `since or '2026-09-06'` quietly
+        #      substituted a date from SEPTEMBER. The check went on
+        #      printing a confident number against a baseline nobody
+        #      chose.
+        #
+        # So: read the WHOLE file, and if prev_edition cannot be found,
+        # SAY SO AND STOP rather than invent a window. A guard that cannot
+        # establish its own baseline has no finding to report (F-73).
         hdr = io.open(os.path.join(REPO, 'STATE.md'),
-                      encoding='utf-8').read()[:1200]
+                      encoding='utf-8').read()
         since = ''
         for line in hdr.splitlines():
             if line.startswith('prev_edition:'):
-                since = line.split(':', 1)[1].strip().split()[0]
+                tok = line.split(':', 1)[1].strip().split()
+                if tok and re.match(r'^\d{4}-\d{2}-\d{2}$', tok[0]):
+                    since = tok[0]
                 break
-        since = since or '2026-09-06'
+        if not since:
+            print('R-40 VINTAGE CHECK   *** CANNOT RUN')
+            print('  STATE.md has no parseable `prev_edition: YYYY-MM-DD`,')
+            print('  and that line IS this check\'s window. Guessing one')
+            print('  would report staleness against a baseline nobody')
+            print('  chose - which is what F-201 was. Fix the header.')
+            sys.exit(2)
 
     rows, seen = stale(since)
     print('R-40 VINTAGE CHECK   releases after %s' % since)

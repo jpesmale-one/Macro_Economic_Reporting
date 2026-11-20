@@ -75,7 +75,7 @@ ROWS = [
  # the set not in expansion.
  ("Production","AU","S&P Global Mfg PMI Final","49.6","49.6","Oct/26",">50.5","BAD"),
  ("Production","NZ","Business NZ PMI","56.5","56.5","Sep/26",">50.5","GOOD"),
- ("Production","NZ","Global Dairy Trade Price Index","2.5%","2.5%","Oct/26",">0.5%","GOOD"),
+ ("Production","NZ","Global Dairy Trade Price Index","0%","2.5%","Nov/26",">0.5%","NEUTRAL"),
  ("Production","CA","S&P Global Mfg PMI","49.6","51.5","Oct/26",">50.5","BAD"),
  ("Production","CH","Procure.ch-UBS Mfg PMI","56.7","55.3","Oct/26",">50.5","GOOD"),
  # LD-102: CHF Industrial Production YoY REMOVED 2026-09-09 on Jeff's
@@ -114,7 +114,7 @@ ROWS = [
  ("Spending","NZ","Electronic Retail Card Spending YoY","0.9%","0.9%","Sep/26",">0.5%","GOOD"),
  ("Spending","NZ","ANZ Business Confidence","52.5","51.9","Oct/26",">Prev","GOOD"),
  ("Spending","NZ","ANZ Roy Morgan Consumer Conf","96.2","97.6","Oct/26",">Prev","BAD"),
- ("Spending","CA","Retail Sales YoY","5.4%","5.4%","Sep/26",">0.5%","GOOD"),
+ ("Spending","CA","Retail Sales YoY","7.5%","5.4%","Sep/26",">0.5%","GOOD"),
  ("Spending","CA","Building Permits MoM","8.8%","8.8%","Aug/26",">0.5%","GOOD"),
  ("Spending","CH","Consumer Confidence","-45","-36","Oct/26",">Prev","BAD"),
  ("Spending","CH","Retail Sales YoY","1.6%","3.2%","Sep/26",">0.5%","GOOD"),
@@ -169,7 +169,7 @@ ROWS = [
  ("Employment","AU","ANZ-Indeed Job Ads MoM","2.2%","2.2%","Sep/26",">0.5%","GOOD"),
  ("Employment","AU","Employment Change","-43.5K (FT -2.9K, PT -40.6K)","-39.3K (FT +34.4K, PT -73.7K)","Oct/26","LD-151 three legs","BAD"),
  ("Employment","AU","Unemployment Rate","4.9%","4.7%","Oct/26","<Prev","BAD"),
- ("Employment","NZ","Unemployment Rate","5.6%","5.6%","Jun/26 (Q)","<Prev","NEUTRAL"),
+ ("Employment","NZ","Unemployment Rate","5.7%","5.6%","Sep/26 (Q)","<Prev","BAD"),
  ("Employment","CA","Unemployment Rate","6.7%","6.5%","Oct/26","<Prev","BAD"),
  # F-97: the same mistake, and worse - this row's threshold encoded
  # LD-57, a LOCKED four-clause full-time/part-time rule with its own

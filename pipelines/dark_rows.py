@@ -60,21 +60,33 @@ READS = {
          'oct" actual 52.8, previous 51.9, consensus 52.8 - exactly on '
          'consensus, released 2 Nov. Updated in the F-185 sweep.'),
     ('NZD', 'Global Dairy Trade Price Index'):
-        ('2.5%', 'Oct/26', '2026-10-26',
-         'TE /new-zealand/global-dairy-trade-price-index - auction for the '
-         'two weeks ended 20 Oct, 1.2% -> 2.5%, released 20 Oct. Verified '
-         'on the indicator page, which R-45 cannot reach (no slug).'),
+        ('0%', 'Nov/26', '2026-11-20',
+         'RECOVERED FROM THE CAPTURE (LD-3), not the page: '
+         'data/raw/calendar/2026-11-20_0000PHT_cal_full.json carries the '
+         '17 Nov auction at actual=0, previous=3. R-37 flagged this as '
+         '"TE=3%" because 3 is the PREVIOUS on that row, not its actual - '
+         'the value 0% is correct and only our REF MONTH lagged (Oct/26). '
+         'The event text carries no month (it is a twice-monthly auction '
+         'index), so the ref is taken from the release date.'),
     ('NZD', 'Unemployment Rate'):
-        ('5.6%', 'Q2/26', '2026-09-30',
-         'TE /new-zealand/unemployment-rate - quarterly, Q3 due 3 Nov'),
+        ('5.7%', 'Q3/26', '2026-11-20',
+         'Q3 LANDED 2026-11-03 at 5.7% from 5.6% and sat unrecorded for 17 '
+         'days. RECOVERED FROM THE CAPTURE (LD-3) - the indicator page is '
+         'unreadable for this row because NZ releases are quarterly (Q2, '
+         'Q3) and indicator_pages.ROW needs a MONTH name, so the regex '
+         'matches stray text and returns actual=2026 (see F-196). Both the '
+         '2026-11-06 and 2026-11-18 captures carry act=5.7 prev=5.6.'),
     ('NZD', 'Inflation Rate YoY'):
         ('3.7%', 'Q3/26', '2026-10-26',
          'TE /new-zealand/inflation-cpi - quarterly, Q3 LANDED 21 Oct: '
          '4.1% -> 3.7%. The ledger had said "Q3 due 21 Oct" and it did.'),
     ('USD', 'Non Farm Payrolls'):
-        ('29K', 'Sep/26', '2026-10-04',
-         'TE /united-states/non-farm-payrolls - 162K Aug -> 29K Sep vs 100K '
-         'consensus, released 2 Oct'),
+        ('165K', 'Oct/26', '2026-11-20',
+         'TE /united-states/non-farm-payrolls - 29K Sep -> 165K Oct, '
+         'released 6 Nov, landed by the F-196 advance from the vintage '
+         'data/raw/indicators/vintages/USD_non-farm-payrolls.FETCHED-'
+         '2026-11-20_1715.html. FRED confirms it independently: PAYEMS '
+         'Oct 159,293 - Sep 159,128 = +165K.'),
 
     # *** UNRESOLVED. The slug points at a DIFFERENT SERIES and no alternative
     # URL has been found. Held at its last known value and SAID to be held

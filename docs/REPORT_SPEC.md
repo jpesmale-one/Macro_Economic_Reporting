@@ -5717,3 +5717,100 @@ vocabulary change, and the vocabulary lives in code.**
 Jeff also ruled on the retro question — *"we're building a new. we don't
 need to rebuild the old reports."* The published editions stand as history
 (LD-167); the board move is not backfitted into them.
+
+---
+
+## F-201 — A STALE HEADER SILENTLY REDEFINED WHAT A GUARD WAS TESTING
+
+**2026-11-20.** First full `build_check` run of the session. `vintage_check`
+(R-40) reported **38 stale rows** and stopped the build.
+
+**Nothing was stale.** `R-40` takes its window from `STATE.md`'s
+`prev_edition:` line, which still read **2026-10-04** — six weeks old — so
+every row was compared against releases back to early October. Run with the
+real baseline, the same check reports **zero**.
+
+Of the 38: **19 were pure formatting** (`4.9%` vs TE's `4.9`) and **19 were
+rows where OURS WAS NEWER** than the print it matched.
+
+> A stale header does not just mislead a reader. It redefines what a guard is
+> testing, and the guard goes on printing a confident number.
+
+### Then the fix broke the parser
+
+Updating the header pushed `prev_edition:` to char **1333**, outside the
+`[:1200]` slice the parser read. The loop found nothing and
+`since or '2026-09-06'` quietly substituted a date from **September**.
+
+Both fixed: the whole file is read, and a missing/unparseable
+`prev_edition` now **exits 2 with an explanation** instead of inventing a
+window. A guard that cannot establish its own baseline has no finding to
+report (F-73).
+
+### F-201b — three string fixes for one idea
+
+R-40 compares the held cell to TE's actual as **strings**. F-139 taught it
+that an annotated cell is the same value (`-39.3K (FT ...)`); F-159 that a
+glyph is the same value (`€` vs `EUR`). Both were string-shaped, so the same
+class kept arriving — this time a **percent sign**, putting 19 rows on a list
+headed *"THE EDITION IS SCORED ON DATA THE WORLD HAS SUPERSEDED"* when every
+one held exactly TE's number.
+
+Three string fixes for one idea is the tell. The question the guard asks is
+*"is our NUMBER behind theirs"*, so after the vintage matches it now compares
+numbers and lets presentation be presentation. **27 flagged rows → 8.**
+
+### What the remaining 8 show, and it is LD-59 again
+
+At least three are **wrong-series matches**:
+
+| Our row | TE event matched |
+|---|---|
+| USD Unemployment Rate | `u6 unemployment rate` |
+| USD ISM **Manufacturing** PMI | `ism non-manufacturing pmi` |
+| JPY Balance of Trade (NSA) | `adjusted trade balance` (SA) |
+
+The fourth instance this session of a matcher binding one series to another.
+**Open** — the other five need a value check.
+
+---
+
+## F-202 — A VINTAGE IS A CHANGE, NOT A CLOCK TICK
+
+The vintage stamp is per-**run**, so every `--refresh` landed a fresh copy of
+all 70 pages whether or not anything had moved. Seven `build_check` runs on
+2026-11-20 left **411 files and 129 MB**, of which — measured by hashing the
+tables we actually parse — **304 files and 100 MB are redundant**: 107
+distinct data states stored 411 times.
+
+That is not vintage discipline, it is noise wearing its clothes. The point of
+a vintage is to answer *"what did we believe, and when"*, and a thousand
+identical files answer it **worse** than two do, because the one real
+revision is now buried. §6 says a correction lands as a new vintage
+alongside; it does not say an unchanged page does.
+
+### Hashing the page was the wrong test
+
+The first attempt hashed the whole file and **still landed a copy every
+run**, because two fetches minutes apart differ in an ASP.NET `__VIEWSTATE`
+token and a rolling news sidebar:
+
+```
+< S&P and Nasdaq Lower
+> US Futures Extend Selloff
+```
+
+while every released figure is identical. Hashing the page asks *"did TE
+serve the same bytes"*; the question that matters is *"did the DATA move"*.
+The fingerprint now covers the **Calendar and Components tables only**.
+
+Verified both directions in the scratchpad, without writing to `data/raw/`:
+a byte-identical copy fingerprints **the same** (discarded), and a copy with
+**one data value changed** fingerprints **differently** (lands). Live: five
+refetches landed **0 new files** and all five still parsed.
+
+Raw stays immutable either way — nothing is overwritten, and the moment the
+data differs the new copy lands as its own vintage.
+
+**The 304 already on disk are left in place.** Deleting anything under
+`data/raw/` is Jeff's call, not a cleanup to do quietly.

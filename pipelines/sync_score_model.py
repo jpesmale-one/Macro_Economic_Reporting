@@ -316,6 +316,38 @@ def ref_drift(use_te=True):
             print('  *** REFUSED backward ref move %s %s (%s -> %s)'
                   % (iso, name, cur, want))
             continue
+        # *** F-200 - A REF MONTH MUST NOT ADVANCE AHEAD OF ITS VALUE.
+        #
+        # On 2026-11-20 this moved CAD Retail Sales YoY from Aug/26 to
+        # Sep/26 because TE's page had published the September release -
+        # and left the VALUE at 5.4%, the AUGUST print. The row then read
+        # "5.4% (Sep/26)" when September was 7.5%: a number wearing another
+        # month's label, which is F-141b's defect with the two fields
+        # swapped. Worse, it changes the row's FAILURE MODE - the sweep
+        # calls it DIFFERS (same month, different value) instead of STALE,
+        # and advance_month.py only advances STALE rows, so the row became
+        # invisible to the one tool that would have fixed it.
+        #
+        # The ref month is a LABEL FOR A VALUE, so it may only move when
+        # the value it describes has moved with it. If TE's print for the
+        # new month differs from what we hold, the row is STALE and belongs
+        # to the advance - not to a relabel.
+        _num = sm._num
+        try:
+            import indicator_pages as _ip
+            _u, _t = _ip.fetch(sm.LABEL[iso], name, False)
+            _hit = _ip.latest(_t, name)
+        except Exception:
+            _hit = None
+        if _hit is not None:
+            _a, _ours = _num(_hit[2]), _num(act)
+            if (_a is not None and _ours is not None
+                    and abs(_a - _ours) > 1e-9):
+                print('  *** REFUSED ref move %s %s (%s -> %s): the page\'s '
+                      '%s print is %s, we hold %s - that is STALE, for '
+                      'advance_month.py, not a relabel'
+                      % (iso, name, cur, want, _hit[1], _hit[2], act))
+                continue
         out.append((iso, name, ref, want))
     return out
 

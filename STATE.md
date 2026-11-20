@@ -4,22 +4,82 @@
 # Match = aligned in one line. Disk + git are truth, never conversation or
 # auto memory.
 
-edition: 2026-10-11 (r1, WEEKLY, UNSEALED - selection for the 12-16 Oct
-         cycle, built on SUNDAY 11 OCT VINTAGE, Oct-26 fact-table column)
-date: 2026-10-11
-data_asof: 2026-10-11 vintage (calendar captured 2026-10-11 22:30.
-           THIRTY-FIVE rows refreshed for prints that landed 5-9 Oct,
-           headed by CAD Employment -41.7K -> -68.3K (FT -35.4K, PT
-           -32.9K) and CAD Balance of Trade C$0.79B -> C$4.2B.)
-artifact: https://claude.ai/artifact/VYdPphZ1WtGXuBUrfGtK9n
-prev_edition: 2026-10-04 (r1 - graded 0 WIN / 2 CONTESTED / 2 LOSS under
-           LD-149, -245.0 pips, rho -0.62, AUD finished FIRST of eight
-           while ranked last. Retro
-           https://claude.ai/artifact/3nD99pz1btuNpGnHCbnftk)
-           https://claude.ai/artifact/Kn6pz8LXzpqkUReW1ffQgj
+edition: NONE IN FLIGHT - the DATA is current to 2026-11-20 and no edition
+         has been built on it. The last PUBLISHED weekly is 2026-11-01;
+         three editions are missing (9-13 Nov, 16-20 Nov, and no daily
+         since 6 Nov). Nov-26 is the live fact-table column.
+date: 2026-11-20
+data_asof: 2026-11-20 vintage. Calendar captured 2026-11-20 00:00 PHT.
+           THIRTY-SEVEN rows advanced from TE indicator-page vintages
+           landed 2026-11-20 (36 under F-196 plus CAD Retail Sales YoY
+           5.4% -> 7.5%, which released that afternoon mid-session), and
+           two NZD rows recovered from the capture under LD-3 (Unemployment
+           Q3 5.7%, Global Dairy 0%). Scoring source changed the same day:
+           LD-177 (`previous` from our own prior column) and F-199 (the
+           forward reader off the indicator pages).
+           BOARD: JPY +6.33, USD +6.00, CHF +5.00, CAD +3.00, GBP +2.00,
+           NZD +2.00, AUD +1.17, EUR +1.00.
+artifact: none for this vintage - nothing published since 2026-11-01.
+prev_edition: 2026-11-01 (the last PUBLISHED weekly;
+           reports/2026-11-01_weekly.html. ITS BOARD IS SUPERSEDED - R-49
+           reports it disagreeing with its own rows by up to 6.00 points
+           because LD-177 and F-199 both landed after it. Jeff, 2026-11-20:
+           "we're building a new. we don't need to rebuild the old
+           reports." It stands as history under LD-167; do NOT backfit it.)
 track: LEAN (no section-2 trigger has fired)
 
+# *** prev_edition IS A GUARD INPUT, NOT A NOTE (F-201).
+# vintage_check.py (R-40) reads it as the START OF ITS WINDOW. While this
+# header said 2026-10-04, R-40 compared every row against releases back to
+# early October and reported THIRTY-EIGHT rows stale - 19 of them pure
+# formatting ('4.9%' vs '4.9'), the other 19 rows where OURS WAS NEWER than
+# the print it matched. Run with the real baseline, the same check reports
+# ZERO. Nothing was wrong with the data; the baseline was six weeks old.
+# A stale header does not just mislead a reader - it silently redefines
+# what a guard is testing.
+
 # OPEN, DATED - do not let these lapse
+# 2026-11-20 *** WHERE THE PIPELINE STANDS - READ THIS FIRST TOMORROW ***
+#   Full build_check run: 5 FAILURES -> 3. The DATA is current and correct.
+#   PASSING: R-45 (coverage 60/70, STALE=0), R-44 (41 cases), R-48 (0 wrong
+#   previous - was failing all session), R-53 (70 probed, 0 frozen), F-143
+#   (10 dark rows current), steps 6/8b/9d, and all 7 guard suites.
+#   THREE FAILURES REMAIN:
+#   1) R-40 - 8 rows, and AT LEAST 3 ARE WRONG-SERIES MATCHES:
+#        USD Unemployment Rate   <- 'u6 unemployment rate'
+#        USD ISM Manufacturing   <- 'ism non-manufacturing pmi'
+#        JPY Balance of Trade    <- 'adjusted trade balance' (SA vs our NSA)
+#      Fourth instance this session of a matcher binding one series to
+#      another (LD-59). The other 5 NEED A VALUE CHECK - not yet done.
+#   2) F-134 published page behind the fact tables (22 values absent)
+#   3) R-49 the 2026-11-01 board disagrees with its own rows by up to 6.00
+#      WHY 2 AND 3 CANNOT BE FIXED AS DEFECTS: LD-177 and F-199 both landed
+#      AFTER that page was published. Jeff ruled: "we're building a new. we
+#      don't need to rebuild the old reports." THEY CLEAR WHEN A NEW WEEKLY
+#      IS BUILT - they are a MISSING EDITION, not pipeline defects.
+#   MY RECOMMENDATION, GIVEN TO JEFF: finish R-40's 5 unchecked rows, build
+#   the 16-20 Nov weekly, THEN the visualisation - a chart built now would
+#   be the first artifact of a board that has never been through a weekly,
+#   and would inherit any stale row R-40's bad matches are hiding.
+#   JEFF'S CALL PENDING: he asked whether to proceed to visualisation. I
+#   advised not yet. He said "lets continue tomorrow" - so the ORDER IS
+#   STILL HIS TO SET.
+#
+# 2026-11-20 *** F-202 - 100 MB OF REDUNDANT VINTAGES ON DISK, JEFF'S CALL **
+#   The vintage stamp is per-RUN, so every --refresh landed all 70 pages
+#   whether or not anything moved. Seven build_check runs today left 411
+#   files / 129 MB, of which 304 files / 100 MB are REDUNDANT - 107 distinct
+#   data states stored 411 times.
+#   FIXED GOING FORWARD: fetch() now fingerprints the CALENDAR AND
+#   COMPONENTS TABLES and discards an unchanged page. Hashing the whole FILE
+#   did not work - two fetches minutes apart differ in an ASP.NET
+#   __VIEWSTATE token and a rolling news sidebar while every figure is
+#   identical. Verified both ways in the scratchpad: identical copy ->
+#   discarded, one data value changed -> lands. Live: 5 refetches, 0 new
+#   files, all 5 still parse.
+#   *** THE 304 ALREADY ON DISK ARE LEFT IN PLACE. Deleting anything under
+#   data/raw/ is JEFF'S CALL (section 6), not a cleanup to do quietly.
+#
 # 2026-11-20 *** F-199 - THE FORWARD READER IS BUILT (Jeff: "build it") ***
 #   Both before-the-news rules test 32/32 against Jeff's stated rule and
 #   were firing on 1 OF 16 ROWS, because load_scheduled/load_inflation each

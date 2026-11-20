@@ -190,14 +190,69 @@ def fetch(ccy, name, refresh=False, stamp=None):
                             url, '-o', tmp], check=False)
             time.sleep(0.4)               # be a decent client
             good = os.path.exists(tmp) and os.path.getsize(tmp) >= 2000
+            # *** F-202 - A VINTAGE IS A CHANGE, NOT A CLOCK TICK.
+            #
+            # The stamp is per-RUN, so every --refresh landed a fresh copy
+            # of all 70 pages whether or not anything had moved. Seven
+            # build_check runs on 2026-11-20 left 408 files and 129 MB in
+            # here, and spot-checking one row found FIVE snapshots holding
+            # TWO distinct bodies - roughly 60% pure duplication, growing
+            # by ~18 MB per run, all of it bound for git.
+            #
+            # That is not vintage discipline, it is noise wearing its
+            # clothes: the point of a vintage is to answer "what did we
+            # believe, and when", and a thousand identical files answer it
+            # worse than two do, because the one real revision is now
+            # buried. CLAUDE.md s6 says a correction lands as a NEW vintage
+            # ALONGSIDE - it does not say an unchanged page does.
+            #
+            # So an identical body is DISCARDED and the existing vintage
+            # keeps answering. Raw stays immutable either way: nothing is
+            # overwritten, and the moment the body differs by one byte the
+            # new copy lands as its own vintage.
+            # *** COMPARE THE DATA, NOT THE BYTES. A first attempt hashed the
+            # whole file and still landed a copy every run, because two
+            # fetches two minutes apart differ in an ASP.NET __VIEWSTATE
+            # token and a rolling news sidebar ("S&P and Nasdaq Lower" ->
+            # "US Futures Extend Selloff") while every released figure is
+            # identical. Hashing the page asks "did TE serve the same
+            # bytes"; the question that matters is "did the DATA move", so
+            # this hashes the two tables we actually read.
+            if good and path is not None:
+                try:
+                    import hashlib
+
+                    def _fingerprint(p):
+                        b = io.open(p, encoding='utf-8',
+                                    errors='replace').read()
+                        t = re.sub(r'<script.*?</script>', ' ', b,
+                                   flags=re.S | re.I)
+                        t = re.sub(r'<[^>]+>', ' ', t)
+                        t = re.sub(r'\s+', ' ', t)
+                        keep = []
+                        for head in ('Calendar GMT Reference',
+                                     'Related Last Previous Unit Reference',
+                                     'Components Last Previous Unit Reference'):
+                            i = t.find(head)
+                            if i >= 0:
+                                keep.append(t[i:i + 3000])
+                        return hashlib.md5(
+                            ' '.join(keep).encode('utf-8')).hexdigest() \
+                            if keep else None
+
+                    _n, _o = _fingerprint(tmp), _fingerprint(path)
+                    if _n is not None and _n == _o:
+                        os.remove(tmp)
+                        good = False      # data unmoved - keep the vintage
+                except Exception:
+                    pass                  # cannot compare: land it, as before
             if good:
                 os.rename(tmp, new)
                 path, vint = new, st
-            else:
-                if os.path.exists(tmp):
-                    os.remove(tmp)
-                if path is None:
-                    return url, None      # nothing to fall back to
+            elif os.path.exists(tmp):
+                os.remove(tmp)
+            if path is None:
+                return url, None          # nothing landed, nothing to read
 
     try:
         h = io.open(path, encoding='utf-8', errors='replace').read()
