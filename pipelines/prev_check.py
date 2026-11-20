@@ -59,14 +59,35 @@ import derive_scores as ds
 ISO = {'USD': 'US', 'EUR': 'EA', 'GBP': 'GB', 'JPY': 'JP',
        'AUD': 'AU', 'NZD': 'NZ', 'CAD': 'CA', 'CHF': 'CH'}
 
-# Rows verified by direct TE page read on 2026-10-12, where the capture
-# history carries no released row to match against. Each is the value TE
-# shows as 'Previous' beside the actual we hold.
+# *** F-198 - THIS WAS A SNAPSHOT PINNED TO PRINTS THAT HAVE SINCE MOVED.
+#
+# "Rows verified by direct TE page read on 2026-10-12" - and read back as
+# current on 2026-11-20, five weeks later, by which time every print it was
+# pinned to had been superseded. Its OWN comments name them: "TE: Sep 51.9,
+# Aug 53.7" for NZD, "TE: Sep 4.2, Aug 4.1" for USD. The Nov-26 advance
+# landed the October prints, so the aligned previous is now 51.9 and 4.2.
+#
+# Because VERIFIED OVERRIDES the live lookup, the guard reported four rows
+# "scoring off a wrong previous" while comparing against its own stale
+# constants. Checked by aligning the pairs properly - find the TE release
+# whose ACTUAL equals the value we hold, then compare ITS previous against
+# our prior column - 4 of 5 agree exactly, and the fifth is the EUR
+# revision that LD-177 deliberately does not follow.
+#
+# THIS IS THE THIRD HARDCODED SNAPSHOT IN THREE SESSIONS: sync_score_model's
+# REFS dragged nine ref months BACKWARDS (F-196), rate_check's cache was a
+# day older than the BoE hike (F-197), and this one. The pattern is always
+# the same - a table written to fix a real gap, read later as if it were
+# still live, overriding the source it was derived from.
+#
+#     A constant that describes a moving value is a bug with a delay on it.
+#
+# So the override is now a LAST RESORT, consulted only when the capture
+# history and the indicator page both come back empty, and every entry
+# carries the date it was read so it can be seen going stale.
 VERIFIED = {
-    ('USD', 'Unemployment Rate'): '4.1%',     # TE: Sep 4.2, Aug 4.1
-    ('NZD', 'Unemployment Rate'): '5.4%',     # TE: Q2 5.6, Q1 5.4 (revised)
-    ('JPY', 'Consumer Confidence'): '35.5',   # TE: Actual 35.40 Previous 35.50
-    ('NZD', 'ANZ Business Confidence'): '53.7',   # TE: Sep 51.9, Aug 53.7
+    # ('JPY', 'Consumer Confidence') held 35.5 from 2026-10-12. The capture
+    # history answers this row, so the constant is no longer needed.
 }
 
 
@@ -134,17 +155,58 @@ _BYMON = {}
 
 
 def audit():
-    """([(ccy,ind,held,want,scores)], [unverified])"""
+    """([(ccy,ind,held,want,scores)], [unverified])
+
+    *** LD-177 - THIS NOW AUDITS THE FIELD THAT ACTUALLY SCORES.
+    It used to read `prev` from score_model.ROWS. Since 2026-11-20
+    score_row() takes `previous` from the fact table's PRIOR COLUMN
+    (ds._prev_cell), and ROWS.prev is only a fallback for a row the table
+    cannot answer for. So this read a field that no longer reaches the
+    board: after the switch it went on reporting the same 7 rows "scoring
+    off a wrong previous" when not one of them was scoring off it any more.
+
+    F-154 is the same lesson one turn earlier. Jeff, on CHF Mfg PMI:
+    "What's bugging me is that in CVS file the numbers are correct... Then
+    why are you printing a different value in the report?" The prior column
+    was right while ROWS was wrong, and I verified ROWS against TE pages
+    instead of looking at the adjacent column. A guard pointed at the stale
+    copy confirms the stale copy.
+    """
     idx = te_previous()
     if not _BYMON:
         _BYMON.update(te_previous_by_month())
     bad, unv = [], []
     for cat, iso, name, act, prev, ref, thr, v in sm.ROWS:
         ccy = sm.LABEL[iso]
-        want = VERIFIED.get((ccy, name))
-        if want is None:
-            e = idx.get((ISO[ccy], str(act).split(' (')[0].strip()))
-            want = e[2] if e else None
+        # the value the board actually scores with (LD-177), ROWS.prev only
+        # where the table has no answer - the same precedence as score_row
+        prev = ds._prev_cell(cat, ccy, name) or prev
+        # F-198 - THE LIVE SOURCE FIRST, the constant only as a last resort.
+        # VERIFIED used to be consulted FIRST and therefore overrode the
+        # capture history with five-week-old values. A hand-read constant
+        # is evidence about a moment, not an authority over the source it
+        # was read from.
+        #
+        # *** AND THE MATCH MUST NAME THE SERIES, NOT JUST THE NUMBER (LD-59).
+        # te_previous() keys on (iso, actual) - the VALUE alone - so any TE
+        # row of that country happening to print the same number answered
+        # for this one. Three live examples on 2026-11-20:
+        #
+        #   GBP Unemployment 4.6%  matched 'ppi output yoy sep'      prev 3.8%
+        #   AUD Unemployment 4.9%  matched 'consumer inflation
+        #                                   expectations sep'        prev 4.9%
+        #   EUR Unemployment 6.5%  matched the right row by luck
+        #
+        # and the guard then reported our previous "wrong" against the
+        # previous of an unrelated series. That is LD-59 exactly - "a loose
+        # match does not report an absence, it INVENTS a presence" - with
+        # the number standing in for the name. _evmatch() is the existing
+        # series test; requiring it here costs nothing and removes the
+        # whole class.
+        e = idx.get((ISO[ccy], str(act).split(' (')[0].strip()))
+        if e and not _evmatch(e[1], name):
+            e = None
+        want = e[2] if e else None
         if not want:
             # F-155 - SECOND CHANCE BEFORE EXCUSING THE ROW. Try the ref
             # month against rows that carry a `previous` whether or not they
@@ -159,6 +221,10 @@ def audit():
                         continue
                     want = pv2
                     break
+        if not want:
+            # F-198 - the hand-read constant, LAST. Only where neither the
+            # capture history nor a scheduled row can answer.
+            want = VERIFIED.get((ccy, name))
         if not want:
             unv.append((ccy, name, act, prev))
             continue
@@ -332,17 +398,56 @@ def csv_prev(ccy, name, tbl=None):
 
 
 def csv_audit():
-    """[(ccy, name, held, csv_says, s_held, s_csv, thr)] - prev vs the CSV."""
-    tbl = _csv()
+    """[(ccy, name, held, csv_says, s_held, s_csv, thr)] - prev vs the CSV.
+
+    *** WHAT THIS MEASURES CHANGED UNDER LD-177, AND SO DID WHAT IT MEANS.
+    It was built for F-154: score_model.ROWS.prev drifting away from the
+    CSV's prior column, which Jeff caught by reading the CSV line himself.
+    Since 2026-11-20 score_row() reads the prior column DIRECTLY, so a
+    ROWS.prev that disagrees with the CSV no longer affects any score - the
+    CSV already won.
+
+    It is kept, reporting against the field that SCORES, because ROWS.prev
+    is still the documented fallback for a row the table cannot answer for,
+    and still printed by the evidence tables. A drift here is now a
+    REPORTING defect rather than a scoring one, which is a smaller thing
+    and a true thing. Calling it a scoring failure after the switch would
+    be the mirror of the bug it was written to find.
+
+    *** AND csv_prev() IS NOT THE SAME QUESTION AS ds._prev_cell().
+    csv_prev walks back to the last DISTINCT value, skipping a carried
+    duplicate; _prev_cell takes the ADJACENT column as it stands. On a flat
+    series those are different months, and comparing them scored 4 rows as
+    failures that were only two definitions disagreeing.
+
+    TE settles which is right. On the nine rows where the two differ, taking
+    each row's own Nov-26 actual and asking TE for the previous of THAT
+    print:
+
+        TE agrees with the ADJACENT column on 4 rows, with last-distinct
+        on 0 (the other five are revisions TE restates, where TE's number
+        sits between the two and adjacent is the closer).
+
+    Which stands to reason: 'previous' means the print before this one, and
+    on a carried-forward series the adjacent column IS that print - the
+    duplicate is the series not having re-printed, which is exactly the
+    information `>Prev` needs to score 0. Skipping it reaches back two
+    months and compares October against August. So this reports against
+    _prev_cell, and csv_prev is left as the dedupe-aware view it was built
+    to be rather than being promoted to the authority.
+    """
     out = []
     for cat, iso, name, act, prev, ref, thr, v in sm.ROWS:
         ccy = sm.LABEL[iso]
-        cp = csv_prev(ccy, name, tbl)
-        if cp is None or _norm(prev) == _norm(cp):
+        live = ds._prev_cell(cat, ccy, name)
+        if live is None or _norm(prev) == _norm(live):
             continue
-        out.append((ccy, name, prev, cp,
+        # ROWS.prev vs the column that actually scores. Both scores come
+        # from the SAME definition of previous, so a difference here is a
+        # stale literal and nothing else.
+        out.append((ccy, name, prev, live,
                     ds.prev_score(act, prev, thr),
-                    ds.prev_score(act, cp, thr), thr))
+                    ds.prev_score(act, live, thr), thr))
     return out
 
 

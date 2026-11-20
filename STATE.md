@@ -20,6 +20,64 @@ prev_edition: 2026-10-04 (r1 - graded 0 WIN / 2 CONTESTED / 2 LOSS under
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-11-20 *** LD-177 APPLIED - `previous` COMES FROM OUR OWN TABLE ***
+#   Jeff: "Item A it is." score_row() now reads `previous` from the fact
+#   table's PRIOR MONTH COLUMN; score_model.ROWS.prev is the fallback only.
+#   Today 26 of 26 >Prev rows use the table, 0 fall back.
+#   MEASURED, with TE's published previous as referee - does our pair give
+#   the score TE's pair gives? On the 22 rows TE can answer:
+#      ROWS.prev    agrees on 15 of 22  (68%)
+#      prior column agrees on 21 of 22  (95%)
+#   The one residual is EUR Unemployment and it is NOT an error: TE revised
+#   August 6.4 -> 6.5, our Oct-26 holds August AS FIRST PUBLISHED. Different
+#   vintages of one month; LD-177 deliberately holds ours.
+#   (I briefed this as 10 of 22 by comparing NUMBERS. Wrong test - the four
+#   Balance of Trade rows are revisions that do NOT change the score.)
+#   THE COLUMNS ARE EDITION VINTAGES, NOT REFERENCE MONTHS: a Sep/26 print
+#   sits in Nov-26 because the column says WHEN WE HELD IT. So the prior
+#   column is "what this row read last edition" - exactly what >Prev wants,
+#   and why a later TE revision does not rewrite it.
+#   *** BOARD REORDERED - 10 rows move, 6 sign flips:
+#      JPY +5.33 (1st, unchanged)   CHF +1.00 -> +5.00  (5th -> 2nd)
+#      USD -0.50 -> +4.00 (6->3)    CAD +3.00 (3rd -> 4th)
+#      AUD +2.67 -> +2.17 (4->5)    GBP +4.00 -> +2.00  (2nd -> 6th)
+#      EUR -2.00 -> +1.00 (7th)     NZD -2.00 -> +0.00  (8th)
+#   Worked case CHF Balance of Trade: ROWS.prev said CHF5.4B (scoring -1)
+#   while Oct-26 said CHF1.4B and TE's own previous said CHF1.2B (both +1).
+#   A number with NO SOURCE was setting a 4.00-point cell.
+#   ORDER WAS FORCED: before the F-196 advance, 19 of 26 rows had Nov-26 ==
+#   Oct-26 and would have scored 0 against themselves. Now 3, all genuine
+#   flat prints. Advance first, derive second.
+#
+# 2026-11-20 *** F-198 - FOUR BUGS IN THE GUARD POLICING THIS ***
+#   R-48 reported the SAME 7 rows "scoring off a wrong previous" before AND
+#   after the switch - which was the tell.
+#   1) It audited ROWS.prev, the field that no longer reaches the board.
+#      F-154 is the same lesson one turn earlier. A guard pointed at the
+#      stale copy confirms the stale copy.
+#   2) VERIFIED was a 2026-10-12 snapshot that OVERRODE the live lookup.
+#      Its own comments name the superseded prints ("TE: Sep 51.9, Aug
+#      53.7"). Now consulted LAST, and emptied.
+#   3) te_previous() keyed on (iso, ACTUAL) with no event name, so GBP
+#      Unemployment 4.6% matched 'ppi output yoy sep' (prev 3.8%) and AUD
+#      4.9% matched 'consumer inflation expectations'. LD-59 with the
+#      NUMBER standing in for the NAME. _evmatch() now required.
+#   4) csv_audit() compared TWO DEFINITIONS of previous: csv_prev() walks
+#      back to the last DISTINCT value, _prev_cell() takes the ADJACENT
+#      column. TE settles it - on the 9 rows where they differ, TE agrees
+#      with ADJACENT on 4 and last-distinct on 0. On a carried-forward
+#      series the adjacent column IS the previous print; the duplicate is
+#      the series not re-printing, which is what >Prev needs to score 0.
+#   R-48 NOW: 0 scoring off a wrong previous vs TE, 0 vs the CSV. It had
+#   been FAILING before this session.
+#   *** AND `prev` WAS THE FOURTH COPY. sync_score_model now syncs it:
+#   F-141 fixed the ACTUAL drifting, F-141b the REF MONTH, F-196 the
+#   VERDICT, and prev disagreed with the table on 56 of 78 rows. That
+#   module's header says the CSVs "do NOT carry prev" - true of a COLUMN
+#   named prev, FALSE of the DATA. That sentence is why nobody looked,
+#   across four findings.
+#   A constant that describes a moving value is a bug with a delay on it.
+#
 # 2026-11-20 *** F-197 - JEFF'S RATE/INFLATION RULES WERE ALREADY RIGHT ***
 #   Jeff restated both rules in full. Tested as stated: 32 of 32 cases PASS
 #   against the code already there. decision_score() and

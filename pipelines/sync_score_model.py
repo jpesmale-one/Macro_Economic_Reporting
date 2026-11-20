@@ -331,6 +331,33 @@ def drift():
     return bad
 
 
+def prev_drift():
+    """[(iso, indicator, old_prev, new_prev)] where ROWS.prev is stale.
+
+    *** THE FOURTH FIELD, AND THE LAST ONE (LD-177 / F-198).
+    F-141 fixed the ACTUAL drifting out of sync with the CSVs, F-141b the
+    REF MONTH, F-196 the VERDICT - and `prev` was still a hand-maintained
+    literal. On 2026-11-20 it disagreed with the table's prior column on 23
+    of 26 >Prev rows.
+
+    Since LD-177 score_row() reads the prior column directly, so this field
+    no longer sets a score. It is still PRINTED by the evidence tables and
+    still the documented fallback, so a stale value is now a reporting
+    defect: the report would show one `previous` beside a score computed
+    from another. Syncing it closes the third copy.
+
+    This module's own header says the CSVs "do NOT carry prev" - true of a
+    COLUMN NAMED prev, false of the DATA, which is the adjacent month. That
+    sentence is why nobody looked for four findings running.
+    """
+    out = []
+    for cat, iso, name, act, prev, ref, thr, v in sm.ROWS:
+        want = ds._prev_cell(cat, sm.LABEL[iso], name)
+        if want and want != (prev or '').strip():
+            out.append((iso, name, prev, want))
+    return out
+
+
 def verdict_drift():
     """[(iso, indicator, old_verdict, new_verdict)] where the rule disagrees.
 
@@ -402,6 +429,21 @@ def rewrite(dry=True):
     # Spending, CAD Building Permits and the LD-155 inflation family), so
     # this was already latent. Syncing the actual without the verdict just
     # moved the inconsistency rather than introducing it.
+    # LD-177 - the PREV field, from the column that scores. Placed before
+    # the verdict pass because both edit the same line and the actual/ref
+    # passes above have already run; the regex anchors on the two fields to
+    # its left, which are now final.
+    for iso, name, old, new in prev_drift():
+        # ("Cat","US","Indicator","actual","PREV","ref","thr","verdict")
+        pat = re.compile(
+            r'(\("[A-Za-z_ ]+","' + re.escape(iso) + r'","'
+            + re.escape(name) + r'","[^"]*",)"' + re.escape(old or '') + r'"')
+        src, k = pat.subn(r'\g<1>"' + new.replace('\\', '\\\\') + r'"', src)
+        if k:
+            n += k
+        else:
+            print('  *** could not place PREV %s %s (%s -> %s)'
+                  % (iso, name, old, new))
     for iso, name, old, new in verdict_drift():
         # ("Cat","US","Indicator","actual","prev","ref","thr","VERDICT")
         pat = re.compile(
@@ -436,6 +478,11 @@ if __name__ == '__main__':
     # F-152 - report the rows NOTHING is watching, before claiming "in step".
     uw = unwatched('Inflation')
     print('  Inflation rows with no vintage watcher : %d' % len(uw))
+    pd = prev_drift()
+    print('  rows whose PREV is stale vs the column  : %d' % len(pd))
+    for iso, name, have, want in pd:
+        print('    %-4s %-34s %-12s -> %s'
+              % (sm.LABEL[iso], name[:34], have, want))
     vd = verdict_drift()
     print('  rows whose VERDICT contradicts the rule : %d' % len(vd))
     for iso, name, have, want in vd:
@@ -450,8 +497,8 @@ if __name__ == '__main__':
     # with 15 contradicted verdicts still on disk, reported in the output
     # immediately above and then silently not fixed. A gate that names fewer
     # things than the writer handles turns a successful run into a no-op.
-    if not d and not rd and not vd:
-        print('  values, vintages and verdicts in step - nothing to rewrite')
+    if not d and not rd and not vd and not pd:
+        print('  values, vintages, prevs and verdicts in step - nothing to rewrite')
         if uw:
             print('  *** but %d Inflation row(s) are unwatched - add them to'
                   ' REFS' % len(uw))
@@ -463,7 +510,7 @@ if __name__ == '__main__':
     if dry:
         print('  re-run with --write to apply')
         sys.exit(0)
-    want = len(d) + len(rd) + len(vd)
+    want = len(d) + len(rd) + len(vd) + len(pd)
     if n != want:
         print('  *** placed %d of %d - %d field(s) could not be matched'
               % (n, want, want - n))

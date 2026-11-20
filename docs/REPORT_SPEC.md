@@ -5432,3 +5432,149 @@ inflation rows** (F-195's `components()` reads that table now). Wiring that
 in is what takes Jeff's "Before the News" half from 1 row to 13. Not built
 here — it needs his go-ahead, and the parse must be structural, because a
 blank Consensus vanishes from the collapsed text.
+
+---
+
+## LD-177 / F-198 — `previous` COMES FROM OUR OWN TABLE
+
+**Jeff, 2026-11-20: "Item A it is."** The rule he stated earlier that day:
+
+> *"we based it from the data we have captured before. Before we are getting
+> data from TE. After this Biquote will populate our tables now. Nevertheless
+> we get the previous data from the table itself no matter where it came
+> from."*
+
+`score_row()` now reads `previous` from the fact table's **prior month
+column**. `score_model.ROWS.prev` is the fallback for a row the table cannot
+answer for — today **26 of 26 `>Prev` rows use the table, 0 fall back.**
+
+### The accuracy case, measured
+
+TE's own published previous is the referee: does our pair produce the score
+TE's pair produces? Across the 22 `>Prev` rows where TE's previous is
+readable:
+
+| `previous` source | Agrees with TE |
+|---|---|
+| `score_model.ROWS.prev` | **15 of 22 — 68%** |
+| the prior column | **21 of 22 — 95%** |
+
+The one residual is **EUR Unemployment, and it is not an error.** TE revised
+August 6.4% → 6.5%; our Oct-26 column holds August **as first published**.
+Different vintages of the same month, and LD-177 deliberately holds ours —
+which is the whole point of a vintage chain.
+
+**I had this wrong when I briefed it.** I first measured 10 of 22 by
+comparing *numbers*, which is the wrong test: the four Balance of Trade rows
+show revisions that **do not change the score** (USD prior −105.6B vs TE
+−105.7B, both +1). What matters is whether it scores the same.
+
+### The order was forced
+
+Before the Nov-26 advance (F-196), Nov-26 and Oct-26 held the **same value
+on 19 of 26 rows** — rows never advanced — so this rule would have scored 19
+rows 0 against themselves. The advance took that to 3, all genuine flat
+prints (CHF unemployment 3% → 3%) that correctly score 0. **Advance first,
+derive second.**
+
+### Board: 10 rows move, 6 sign flips, the top reorders
+
+```
+CCY    BEFORE    AFTER   DELTA   RANK
+JPY    +5.33    +5.33    0.00    1 -> 1
+CHF    +1.00    +5.00   +4.00    5 -> 2
+USD    -0.50    +4.00   +4.50    6 -> 3
+CAD    +3.00    +3.00    0.00    3 -> 4
+AUD    +2.67    +2.17   -0.50    4 -> 5
+GBP    +4.00    +2.00   -2.00    2 -> 6
+EUR    -2.00    +1.00   +3.00    7 -> 7
+NZD    -2.00    +0.00   +2.00    8 -> 8
+```
+
+**GBP drops 2nd → 6th, CHF rises 5th → 2nd.** The worked case is CHF Balance
+of Trade: `ROWS.prev` said `CHF5.4B` (scoring −1) while the table's Oct-26
+said `CHF1.4B` and TE's own previous said `CHF1.2B` (both +1). **A number
+with no source was setting a 4.00-point cell.**
+
+### The columns are EDITION VINTAGES, not reference months
+
+A print whose ref month is Sep/26 sits in the **Nov-26** column, because the
+column says *when we held it*. So the prior column is "what this row read at
+the last edition" — exactly the comparison `>Prev` wants, and the reason a
+later TE revision does not retroactively rewrite it.
+
+### Four bugs in the guard that was supposed to police this
+
+R-48 reported **7 rows "scoring off a wrong previous"** both before and after
+the switch — the same 7 either way, which was the tell.
+
+**1. It audited the dead field.** `prev_check.audit()` read `ROWS.prev`,
+which no longer reaches the board. F-154 is the same lesson one turn
+earlier — Jeff: *"in CVS file the numbers are correct… Then why are you
+printing a different value in the report?"* **A guard pointed at the stale
+copy confirms the stale copy.**
+
+**2. `VERIFIED` was a five-week-old snapshot that OVERRODE the live lookup.**
+Header: *"verified by direct TE page read on 2026-10-12."* Its own comments
+name the prints it was pinned to — *"TE: Sep 51.9, Aug 53.7"* — all
+superseded by the advance. Now consulted **last**, and emptied.
+
+**3. `te_previous()` matched on the NUMBER, not the series.** Keyed on
+`(iso, actual)` with no event name, so:
+
+```
+GBP Unemployment 4.6%  matched 'ppi output yoy sep'                prev 3.8%
+AUD Unemployment 4.9%  matched 'consumer inflation expectations'   prev 4.9%
+```
+
+and the guard reported our previous "wrong" against the previous of an
+unrelated series. **LD-59 with the number standing in for the name** — "a
+loose match does not report an absence, it INVENTS a presence." `_evmatch()`
+is now required.
+
+**4. `csv_audit()` compared two different definitions of "previous."**
+`csv_prev()` walks back to the last **distinct** value (skipping a carried
+duplicate); `_prev_cell()` takes the **adjacent** column. On a flat series
+those are different months, and the mismatch scored 4 rows as failures.
+
+TE settles it. On the nine rows where the two differ, asking TE for the
+previous of each row's own actual: **TE agrees with ADJACENT on 4, with
+last-distinct on 0.** Which stands to reason — on a carried-forward series
+the adjacent column *is* the previous print, and the duplicate is the series
+not having re-printed, which is exactly the information `>Prev` needs to
+score 0. Skipping it reaches back two months and compares October against
+August.
+
+**R-48 now: 0 rows scoring off a wrong previous against TE, 0 against the
+CSV.** It had been failing before this session.
+
+### `prev` was the fourth copy, and the last
+
+`sync_score_model` now syncs it: **F-141** fixed the ACTUAL drifting out of
+step with the CSVs, **F-141b** the REF MONTH, **F-196** the VERDICT, and
+`prev` was still a hand-maintained literal disagreeing with the table on
+**56 of 78 rows**.
+
+That module's own header says the CSVs *"do NOT carry prev"* — **true of a
+column named `prev`, false of the data**, which is the adjacent month. That
+one sentence is why nobody looked, across four findings.
+
+> A constant that describes a moving value is a bug with a delay on it.
+
+Three hardcoded snapshots surfaced in three sessions on exactly this
+pattern: `REFS` dragging nine ref months **backwards** (F-196),
+`rate_check`'s cache a day older than the BoE hike (F-197), and `VERIFIED`
+here. Each was written to fix a real gap, then read later as if still live,
+overriding the source it came from.
+
+### Verified
+
+| | |
+|---|---|
+| `>Prev` rows using the table / falling back | **26 / 0** |
+| Prior cells returning a blank | **0** (None, so `score_row` falls back — never a guessed 0) |
+| Self-equal rows still scoring 0 | **3**, all genuine flat prints |
+| Recursion (`_prev_cell` → `ft.load` → `score_row`) | none |
+| `sync_score_model` after the write | **0 / 0 / 0 / 0** on all four fields |
+| R-44, R-48, R-53, steps 6, 8b, 9d + 7 guard suites | **PASS** |
+| `data/raw/`, fact tables | **untouched** — this is a scoring-source change only |

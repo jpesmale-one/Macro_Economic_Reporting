@@ -52,6 +52,68 @@ def _rule(ccy, indicator):
     return None
 
 
+# *** LD-177 - `previous` COMES FROM OUR OWN TABLE (Jeff, 2026-11-20).
+#
+# Jeff: "we based it from the data we have captured before. Before we are
+# getting data from TE. After this Biquote will populate our tables now.
+# Nevertheless we get the previous data from the table itself no matter
+# where it came from."
+#
+# A third of the board is scored `>Prev` - 26 of 78 cells - and `previous`
+# used to come from score_model.ROWS, a hand-maintained literal that is a
+# THIRD COPY of a number the fact table already holds. On 2026-11-20 it
+# agreed with NEITHER the table's prior column NOR TE on 23 of 26 rows.
+# CHF Balance of Trade was the worked case: ROWS said CHF5.4B (scoring -1)
+# while the table's Oct-26 said CHF1.4B and TE's own previous said CHF1.2B
+# (both scoring +1). A number with no source was setting a 4.00-point cell.
+#
+# MEASURED, NOT ASSUMED. Using TE's own published previous as the referee -
+# does our score match the one TE's pair produces? - across the 22 rows
+# where TE's previous is readable:
+#
+#     scored with ROWS.prev    -> agrees with TE on 15 of 22   (68%)
+#     scored with the prior column -> agrees on 21 of 22       (95%)
+#
+# The single residual is EUR Unemployment, and it is NOT an error: TE
+# revised August 6.4% -> 6.5%, our Oct-26 column holds August as FIRST
+# PUBLISHED, and the two are different vintages of the same month. Jeff's
+# rule deliberately holds our own prior, so 21 of 22 is the correct answer
+# rather than a near miss.
+#
+# THE ORDER WAS FORCED AND IT IS WHY THIS COULD NOT SHIP EARLIER. Before
+# the Nov-26 advance (F-196), Nov-26 and Oct-26 held the SAME value on 19
+# of 26 rows - rows that had never been advanced - so this rule would have
+# scored 19 rows 0 against themselves. The advance took that to 3, and all
+# three are genuine flat prints (CHF unemployment 3% -> 3%) that correctly
+# score 0. Advance first, derive second.
+#
+# THE COLUMNS ARE EDITION VINTAGES, NOT REFERENCE MONTHS. A print whose ref
+# month is Sep/26 sits in the Nov-26 column, because the column says WHEN WE
+# HELD IT, not what month it describes. So the prior column is "what this
+# row read at the last edition" - exactly the comparison `>Prev` wants, and
+# the reason a TE revision does not retroactively rewrite it.
+def _prev_cell(cat, ccy, indicator):
+    """The PRIOR month's cell for one row, or None if there is no prior.
+
+    None - never a guessed value - when the row, the column or the cell is
+    missing, so score_row falls back to ROWS.prev rather than scoring off a
+    blank (F-73). A row that cannot be compared is ungraded, not neutral.
+    """
+    try:
+        ms = ft.months()
+        if len(ms) < 2:
+            return None
+        prior = ms[-2]
+        for r in ft.load(cat):
+            if (r['Currency'].strip() == ccy
+                    and r['Indicator'].strip() == indicator):
+                v = (r.get(prior) or '').strip()
+                return v or None
+    except Exception:
+        return None
+    return None
+
+
 # *** THE LEGS TRAVEL INSIDE THE CELL (F-195). The Employment Change cell is
 # written with its split inline, so the rule that needs three numbers reads
 # one cell and no second source:
@@ -699,7 +761,12 @@ def score_row(cat, ccy, indicator, actual, _autoload_inf=True):
         sc = {'GOOD': 1, 'BAD': -1, 'NEUTRAL': 0}.get(g)
         if sc is not None:
             return sc
-    sc = prev_score(actual, prev, thr)
+    # LD-177 - the table's own prior column is `previous`, and ROWS.prev is
+    # only the fallback for a row the table cannot answer for (a row absent
+    # from the CSV, or a first month with no prior column). Reading the
+    # table FIRST is the whole rule: the literal is a third copy, and a
+    # third copy of a number is a third chance to be wrong about it.
+    sc = prev_score(actual, _prev_cell(cat, ccy, indicator) or prev, thr)
     if sc is not None:
         return sc
     b = band(actual, thr)
