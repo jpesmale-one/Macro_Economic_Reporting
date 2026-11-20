@@ -54,8 +54,36 @@ sys.path.insert(0, HERE)
 import score_model as sm
 
 CACHE = os.path.join(REPO, 'data/raw/indicators')
-UA = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
-      '(KHTML, like Gecko) Chrome/120 Safari/537.36')
+
+# *** RAW IS IMMUTABLE (CLAUDE.md section 6), AND --refresh USED TO BREAK IT.
+#
+# The old fetch() wrote straight to data/raw/indicators/<CCY>_<slug>.html and
+# --refresh overwrote it in place. That is a landed vintage being destroyed by
+# the next fetch: 44 files were rewritten in one build-check run, and the only
+# reason a real change was noticed (CHF Balance of Trade moving Sep -> Oct)
+# was that the diffs happened to be read one by one before the restore.
+#
+#     AN OVERWRITE LOSES THE ONE THING RAW EXISTS TO KEEP - what the source
+#     said AT A MOMENT. Without it there is no way to show a revision
+#     happened, which is precisely the evidence a >Prev row is scored on.
+#
+# So a refresh now LANDS A NEW VINTAGE beside the old, named by the fetch
+# date, and reads resolve to the newest vintage available. Nothing is ever
+# rewritten. Captures already work this way (data/raw/calendar/<stamp>_...),
+# and this just brings the indicator pages into line with them.
+VINTAGE = os.path.join(CACHE, 'vintages')
+
+# *** AN HONEST CLIENT, VERIFIED (2026-11-20).
+#
+# This used to send a spoofed Chrome User-Agent. Checked against TE today:
+# robots.txt carries NO Disallow at all (just a Sitemap line), and all 36
+# pages behind the stale rows return 200 with a full body to a plainly
+# identified client. The spoof bought nothing and misrepresented what we are,
+# so it is gone. If TE ever does refuse an honest client, that is a FINDING to
+# report and a limit to respect - not a thing to disguise.
+#
+# The UA names the tool and carries no personal detail: no name, no email.
+UA = 'macro-research-bot/1.0 (automated macro data collection; low volume)'
 
 COUNTRY = {'USD': 'united-states', 'EUR': 'euro-area', 'GBP': 'united-kingdom',
            'JPY': 'japan', 'AUD': 'australia', 'NZD': 'new-zealand',
@@ -112,17 +140,65 @@ def slug(name):
     return re.sub(r'[^a-z0-9]+', '-', s).strip('-')
 
 
-def fetch(ccy, name, refresh=False):
-    """The indicator page text, cached on disk (provenance, LD-3)."""
+def vintages(ccy, sl):
+    """Every landed vintage for one page, newest LAST. [(stamp, path)]."""
+    out = []
+    if os.path.isdir(VINTAGE):
+        pre = '%s_%s.FETCHED-' % (ccy, sl)
+        for f in os.listdir(VINTAGE):
+            if f.startswith(pre) and f.endswith('.html'):
+                out.append((f[len(pre):-5], os.path.join(VINTAGE, f)))
+    return sorted(out)
+
+
+def newest(ccy, sl):
+    """The newest readable source for a page: a vintage, else the flat file.
+
+    The flat data/raw/indicators/<CCY>_<slug>.html files are the PRE-VINTAGE
+    landed copies. They are still raw and still immutable - they are read as
+    the oldest vintage, never rewritten.
+    """
+    vs = vintages(ccy, sl)
+    if vs:
+        return vs[-1][1], vs[-1][0]
+    flat = os.path.join(CACHE, '%s_%s.html' % (ccy, sl))
+    return (flat, 'legacy') if os.path.exists(flat) else (None, None)
+
+
+def fetch(ccy, name, refresh=False, stamp=None):
+    """The indicator page text, read from the newest landed vintage (LD-3).
+
+    refresh=True LANDS A NEW VINTAGE and never touches an existing file. If
+    the download fails or comes back short, the new vintage is discarded and
+    the previous one still answers - a failed fetch must not be able to
+    destroy the good copy it was meant to replace.
+    """
     sl = slug(name)
     url = 'https://tradingeconomics.com/%s/%s' % (COUNTRY[ccy], sl)
-    if not os.path.isdir(CACHE):
-        os.makedirs(CACHE)
-    path = os.path.join(CACHE, '%s_%s.html' % (ccy, sl))
-    if refresh or not os.path.exists(path):
-        subprocess.run(['curl', '-sL', '--max-time', '45', '-A', UA,
-                        url, '-o', path], check=False)
-        time.sleep(0.4)          # be a decent client
+    path, vint = newest(ccy, sl)
+
+    if refresh or path is None:
+        if not os.path.isdir(VINTAGE):
+            os.makedirs(VINTAGE)
+        st = stamp or dt.datetime.now().strftime('%Y-%m-%d_%H%M')
+        new = os.path.join(VINTAGE, '%s_%s.FETCHED-%s.html' % (ccy, sl, st))
+        if os.path.exists(new):
+            path, vint = new, st          # already landed this stamp
+        else:
+            tmp = new + '.part'
+            subprocess.run(['curl', '-sL', '--max-time', '45', '-A', UA,
+                            url, '-o', tmp], check=False)
+            time.sleep(0.4)               # be a decent client
+            good = os.path.exists(tmp) and os.path.getsize(tmp) >= 2000
+            if good:
+                os.rename(tmp, new)
+                path, vint = new, st
+            else:
+                if os.path.exists(tmp):
+                    os.remove(tmp)
+                if path is None:
+                    return url, None      # nothing to fall back to
+
     try:
         h = io.open(path, encoding='utf-8', errors='replace').read()
     except Exception:
