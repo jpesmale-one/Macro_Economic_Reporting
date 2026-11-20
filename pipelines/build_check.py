@@ -197,6 +197,29 @@ def s5_rules():
     return True, n.group(0) if n else 'passed'
 
 
+def s5b_frozen():
+    """R-53: no row is scored by a hand-typed verdict (F-194).
+
+    *** THE ONE FAILURE MODE NO OTHER STEP HERE CAN SEE.
+    Steps 3, 4 and 4b all compare a row's VALUE against TE or the capture,
+    and a frozen row's value is never wrong - only its score is, and only
+    because the score is not being computed. Step 5 covers the inflation
+    rules. So a threshold that matches no rule in score_row() passes every
+    check above while returning a constant: on 2026-11-20 GBP Claimant
+    Count scored BAD on a 50K FALL in claimants, through four clean sweeps.
+    """
+    code, out = _py(os.path.join(HERE, 'test_frozen_rows.py'))
+    if code != 0:
+        n = re.search(r'(\d+) UNDECLARED FROZEN', out)
+        m = re.search(r'(\d+) LD-58 CASE\(S\) FAIL', out)
+        why = n.group(0) if n else (m.group(0) if m else 'failed')
+        return False, 'R-53 %s' % why
+    n = re.search(r'rows probed\s*:\s*(\d+)', out)
+    d = re.search(r'declared in this file:\s*(\d+)', out)
+    return True, '%s rows probed, %s declared frozen' % (
+        n.group(1) if n else '?', d.group(1) if d else '?')
+
+
 def s6_rates():
     """LD-142: the fact table's rate cells must equal rate_model's.
 
@@ -834,6 +857,7 @@ STEPS = [
     ('4', 'held values vs capture (R-37/R-40)', s4_vintage),
     ('4b', 'prev vs TE, no wrong scoring (R-48)', s4b_prev),
     ('5', 'scoring rules (R-44)', s5_rules),
+    ('5b', 'no row frozen on a typed verdict (R-53)', s5b_frozen),
     ('6', 'policy rates match rate_model (LD-142)', s6_rates),
     ('7', 'one selector everywhere (F-127)', s7_selectors),
     ('8', 'no renderer pins a stale date (F-130)', s8_dates),

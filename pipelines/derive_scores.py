@@ -599,12 +599,58 @@ def score_row(cat, ccy, indicator, actual, _autoload_inf=True):
         sc, _src, _why = inflation_decision(actual=actual)
         if sc is not None:
             return sc
+    # *** F-194 - A THRESHOLD NO RULE RECOGNISES SILENTLY FREEZES THE ROW.
+    #
+    # Jeff, 2026-11-20, restating LD-58 unprompted while ruling on the
+    # Nov-26 advance: "Actual > 0 is Bad, Actual < 0 is Good, Actual = 0 is
+    # Neutral. Also the latest release for Oct data is 33.2K which should be
+    # scored as Bad or -1."
+    #
+    # score_model.claimant_grade() ALREADY implemented that rule, correctly,
+    # since 2026-08-24. Nothing here ever called it. The threshold text
+    # '<0 (LD-58)' matches neither prev_score (wants '>prev'/'<prev') nor
+    # band (wants '> N'), so the row fell through to the LAST line of this
+    # function - the verdict somebody TYPED into score_model.ROWS.
+    #
+    # THAT IS THE SECOND COPY OF THE SCORE LD-112 EXISTS TO REMOVE, and it
+    # is worse than a stale number because it cannot be seen going wrong.
+    # Measured by substitution before the fix, the row was INVARIANT:
+    #
+    #     actual=30.3K -> -1    actual=-50K  -> -1    actual=0 -> -1
+    #     actual=33.2K -> -1    actual=+500K -> -1
+    #
+    # A 50K FALL IN CLAIMANTS - unambiguously good, and the exact case LD-58
+    # was written to fix - scored BAD, because the score was not being
+    # computed at all. It happened to read -1 for the right answer on the
+    # held value, which is luck, not correctness: the same luck F-184 warned
+    # about on the inflation rows.
+    #
+    # Routed on the THRESHOLD TEXT, not on a hardcoded 'GBP'. The whitelist
+    # names the rule that owns the row (F-3: the list is the closed set and
+    # the rule travels with it), so a second currency given this threshold
+    # is scored by it automatically, and a row whose threshold is changed
+    # stops being scored by it automatically. Hardcoding the currency here
+    # would put the rule in two places and let them drift apart.
+    if 'ld-58' in (thr or '').lower():
+        g = sm.claimant_grade(sm._num(actual))
+        sc = {'GOOD': 1, 'BAD': -1, 'NEUTRAL': 0}.get(g)
+        if sc is not None:
+            return sc
     sc = prev_score(actual, prev, thr)
     if sc is not None:
         return sc
     b = band(actual, thr)
     if b is not None:
         return b
+    # *** REACHING HERE IS A DEFECT, NOT A FALLBACK (F-194). Every row in
+    # the whitelist should be answered by a RULE above. This line returns a
+    # hand-typed verdict, so a row that lands here is frozen - the score
+    # cannot respond to the actual. Two rows still reach it today, both
+    # 'LD-151 three legs' (AUD/CAD Employment Change), because LD-151 is
+    # documented in score_model and implemented nowhere, AND because TE's
+    # indicator page carries only the headline, never the FT/PT split the
+    # rule needs. They are KNOWN-FROZEN and reported as such, not quietly
+    # scored. Do not add a row to this path to make it score.
     return {'GOOD': 1, 'BAD': -1, 'NEUTRAL': 0}.get(verdict)
 
 

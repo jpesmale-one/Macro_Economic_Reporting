@@ -4948,3 +4948,115 @@ disagreement, surviving because the leg that would overturn it was absent. Five
 refusal cases are covered: a sourced PT is never overwritten, a future row with
 no actual is skipped, a missing FT never invents a leg from the headline alone,
 and an unparseable value is left absent.
+
+---
+
+## F-194 — THREE ROWS WERE NOT BEING SCORED AT ALL, AND ONE READ BACKWARDS
+
+**Found 2026-11-20**, while verifying the Nov-26 advance before writing it.
+Fixed the same session. **R-53 `test_frozen_rows.py`** is the guard.
+
+`derive_scores.score_row()` reaches each rule by matching the row's
+**threshold text**, and ends with
+
+```python
+return {'GOOD': 1, 'BAD': -1, 'NEUTRAL': 0}.get(verdict)
+```
+
+— the verdict somebody **typed** into `score_model.ROWS`. A threshold that
+matches no rule therefore does not raise, does not warn and does not score:
+it returns a constant. Three of 78 rows were in that state:
+
+| Row | Threshold | Matched |
+|---|---|---|
+| GBP Claimant Count Change | `<0 (LD-58)` | nothing |
+| AUD Employment Change | `LD-151 three legs` | nothing |
+| CAD Employment Change | `LD-151 three legs` | nothing |
+
+`prev_score` wants `>prev`/`<prev`; `band` wants `> N`. Neither string is
+either.
+
+### The GBP row read backwards, which is the defect LD-58 itself fixed
+
+`score_model.claimant_grade()` had implemented Jeff's rule **correctly**
+since 2026-08-24. Nothing ever called it. Measured by substitution:
+
+```
+actual=30.3K -> -1    actual=-50K  -> -1    actual=0 -> -1
+actual=33.2K -> -1    actual=+500K -> -1
+```
+
+A **50K fall in claimants** — unambiguously good, and the exact reading
+LD-58 was written to produce — scored BAD. The row happened to read −1 for
+the right answer on the held value, which is **luck, not correctness**:
+F-184's lesson one table over. A score that happens to be right is not a
+score that is being computed.
+
+### Jeff restated the rule unprompted, and it already matched the code
+
+**Jeff, 2026-11-20:** *"Actual > 0 is Bad, Actual < 0 is Good, Actual = 0 is
+Neutral. Also the latest release for Oct data is 33.2K which should be
+scored as Bad or −1."*
+
+That is `claimant_grade()` verbatim, and it is what LD-58 recorded on
+2026-08-24. **The rule was never in doubt; only its wiring was.** The fix is
+four lines routing on the threshold text, not on a hardcoded `'GBP'` — the
+whitelist names the rule that owns the row (F-3), so the rule travels with
+the row and cannot drift into a second place.
+
+### Why nothing else could see it
+
+| Check | Why it passed |
+|---|---|
+| R-37 / R-40 / R-45 | compare the **value** against TE — the value was never wrong |
+| render guards | check **shape** — the cell was populated and non-blank |
+| `test_inflation` (R-44) | covers the **inflation** rows only |
+| reading the board | the number displayed was plausible |
+
+**A frozen row is invisible to every check that reads it and visible only to
+one that interrogates it.** R-53 feeds each row a spread of actuals
+straddling its own previous value and fails if the score never moves.
+
+### Two rows are still frozen, and they are DECLARED rather than fixed
+
+AUD and CAD Employment Change carry `LD-151 three legs`. LD-151 is
+documented in `score_model.py` and **implemented nowhere**, and TE's
+indicator page carries only the **headline** — never the FT/PT split the
+rule needs. They cannot be fixed by wiring alone; they need a source for
+the legs (the open ABS/StatCan item). They sit in `KNOWN_FROZEN` with their
+reason so the guard reports them every run.
+
+> **A declared gap stays visible. An undeclared one becomes a habit.**
+
+Adding a row to `KNOWN_FROZEN` is a decision to publish a hand-typed score
+for it. That is not a way to make the guard pass.
+
+### The guard's own first version manufactured its findings
+
+Worth recording, because it is F-73 inside the test harness. The first
+`probes()` fed every row the same fixed ladder (−500 … +500) and reported
+**three** frozen rows. None was frozen:
+
+- **JPY Balance of Trade** is `>Prev` against **−1111.9B**, so every probe
+  beat it and all seven scored +1.
+- **AUD Westpac Consumer Conf Change** compares against −5.2%.
+- **CAD Inflation Rate YoY** was scoring from TE's scheduled 14 Dec
+  forecast under **LD-165**, which ignores the fact table's actual *by
+  design*.
+
+A constant score because the probes never crossed the comparison point
+looks exactly like a constant score because no rule ran. Probes are now
+derived from the row's **own previous value**, and inflation rows are probed
+with `_autoload_inf=False` so LD-165's override is not mistaken for a
+defect. **Scoring a working rule as broken would have pressured the next
+reader to "fix" it.**
+
+### Blast radius
+
+**None on the board.** The held value already read −1, so correcting how it
+is derived moves nothing today: all eight currency totals unchanged. The
+fix matters for every future print, and for the Nov-26 advance, where this
+row's new actual is 33.2K.
+
+`test_inflation`'s 6 failures were confirmed **pre-existing** by `git stash`
+— 6 at HEAD without the change, 6 with it.

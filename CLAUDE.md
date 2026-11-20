@@ -176,6 +176,7 @@ never writes to the fact tables — it reports, and you decide.
 | 3 | every row vs TE, **`--refresh`** (R-45) | **F-132 — without the flag it reads a week-old cache and reports OK** |
 | 4 | held values vs capture (R-37/R-40) | F-120, F-123 |
 | 5 | scoring rules (R-44) | LD-136/137/142 |
+| **5b** | **no row frozen on a typed verdict (R-53)** | **F-194 — a threshold matching no rule in `score_row` returns a CONSTANT; GBP Claimant Count scored BAD on a 50K FALL in claimants through four clean sweeps, because steps 3/4/4b check the VALUE and the value was never wrong** |
 | 6 | policy rates match `rate_model` | LD-142 — a decision changes the rate and nothing watched it |
 | 7 | one selector everywhere | F-127 — MD and HTML published different sets |
 | 8 | no renderer pins a stale date | F-130 — the calibrator grid on last week's days |

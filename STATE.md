@@ -20,6 +20,64 @@ prev_edition: 2026-10-04 (r1 - graded 0 WIN / 2 CONTESTED / 2 LOSS under
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-11-20 *** F-194 - THREE ROWS WERE NOT BEING SCORED AT ALL ***
+#   Found while VERIFYING the Nov-26 advance before writing it, not by a
+#   check. score_row() reaches each rule by matching THRESHOLD TEXT and
+#   ends on a hand-typed verdict, so a threshold matching no rule returns
+#   a CONSTANT. Three of 78 rows were frozen:
+#     GBP Claimant Count Change  '<0 (LD-58)'       -> FIXED this session
+#     AUD Employment Change      'LD-151 three legs' -> still frozen
+#     CAD Employment Change      'LD-151 three legs' -> still frozen
+#   GBP read BACKWARDS: a 50K FALL in claimants scored BAD. claimant_grade()
+#   had implemented Jeff's rule correctly since 2026-08-24; nothing called
+#   it. Jeff restated the rule unprompted on 2026-11-20 - ">0 Bad, <0 Good,
+#   =0 Neutral, and 33.2K should be -1" - and it already matched the code.
+#   BLAST RADIUS ON THE BOARD: NONE. The held value already read -1, so all
+#   eight totals are unchanged. It matters for every future print.
+#   GUARD: R-53 pipelines/test_frozen_rows.py - probes each row with actuals
+#   straddling its OWN previous and fails if the score never moves. Verified
+#   to FAIL with the fix disabled. 70 probed, 0 undeclared frozen.
+#   STILL OPEN: AUD/CAD Employment Change need LD-151 IMPLEMENTED and an
+#   FT/PT SOURCE (TE's indicator page carries the headline only). They are
+#   in KNOWN_FROZEN with their reason - a declared gap, not approved
+#   behaviour. Do not add a row there to make the guard pass.
+#
+# 2026-11-20 *** 23 OF 26 '>Prev' ROWS SCORE AGAINST AN UNSOURCED NUMBER ***
+#   score_row reads `previous` from score_model.ROWS, which agrees with
+#   NEITHER the fact table's prior column NOR TE on 23 of 26 rows. CHF
+#   Balance of Trade is the worked case: ROWS says CHF5.4B (scores -1),
+#   the table's Oct-26 says CHF1.4B, TE's own previous says CHF1.2B
+#   (aligned pair scores +1). A third hand-maintained copy of a number.
+#   Jeff's rule (2026-11-20): previous comes from OUR OWN table, whatever
+#   populated it. CANNOT BE APPLIED YET - Nov-26 and Oct-26 hold the same
+#   value on 19 of 26 rows, so switching today scores 19 rows as 0.
+#   ORDER IS FORCED: advance first, then switch. The advance takes
+#   self-equal >Prev rows from 19 to 3, and the 3 remaining are genuine
+#   flat prints (CHF unemployment 3% -> 3%) that correctly score 0.
+#
+# 2026-11-20 *** THE FORWARD-LOOKING READER SEES 2 OF 16 ROWS ***
+#   SCHED_INF and rate_model.SCHEDULED both read ONE calendar capture:
+#   live today that is GBP (rates) and CAD (inflation) only. TE's INDICATOR
+#   PAGES carry the same columns and reach 8 of 8 inflation + 5 of 8 rate
+#   forward rows - 6 expectations we currently cannot see, three of them
+#   unpriced HIKES (JPY 1.25->1.5, NZD 2.75->3.0, CAD 2.5->2.75).
+#   CONSENSUS IS BLANK ON ALL 16 FORWARD ROWS - a forward read is
+#   TEForecast-only and must be re-read as consensus lands (LD-154).
+#   PARSE STRUCTURALLY, NOT POSITIONALLY: a blank Consensus VANISHES from
+#   the whitespace-collapsed text. JPY's landed Oct row reads
+#   '2.3% 2.1% 2.0%' - three values where the schema says four - so by
+#   position the TEForecast looks like the Consensus. The rows ARE in the
+#   static HTML with id="actual"/id="previous", so <td> position is
+#   reliable. NOT YET BUILT - awaiting Jeff.
+#   USD/EUR/GBP genuinely have NO forward rate row (checked every row in
+#   all three tables): their December entries are statements and
+#   projections, not decisions. LD-154b's standing carry is correct there.
+#
+# 2026-11-20 *** GBP's RATE ROW IS STALE - F-185 STILL OPEN ***
+#   TE shows BoE HIKED 2026-11-05 to 4% from 3.75%, 9/9 vote.
+#   rate_model.LAST['GB'] still records 'HELD 17 Sep at 3.75%'. GBP scores
+#   raw=1.0 off a September hawkish hold while a real November hike sits
+#   unrecorded. Data is in hand; fix is item 2 of Jeff's four.
 # 2026-09-10 *** THE 2026-09-06 WEEKLY IS SEALED AT r5 *** P3 satisfied -
 #   Jeff read it and said "let's sealed this report".
 #   VERIFIED BEFORE SEALING, not assumed:
