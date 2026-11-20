@@ -20,6 +20,57 @@ prev_edition: 2026-10-04 (r1 - graded 0 WIN / 2 CONTESTED / 2 LOSS under
 track: LEAN (no section-2 trigger has fired)
 
 # OPEN, DATED - do not let these lapse
+# 2026-11-20 *** F-197 - JEFF'S RATE/INFLATION RULES WERE ALREADY RIGHT ***
+#   Jeff restated both rules in full. Tested as stated: 32 of 32 cases PASS
+#   against the code already there. decision_score() and
+#   inflation_decision() implement them exactly, consensus priority and
+#   retain-on-match included. NOTHING WAS WRONG WITH THE LOGIC.
+#   Three things were wrong with its INPUTS, each giving the RIGHT NUMBER
+#   FOR THE WRONG REASON:
+#   1) load_scheduled() took EVERY matching calendar row and let the LAST
+#      win - no actual check, no date check. It filed the 5 Nov BoE
+#      decision (actual sitting in the row) as "next scheduled", so GBP was
+#      paid +1 for a hike it had ALREADY MADE. load_inflation() has had
+#      both guards since F-186; the rate side never got them. A finding
+#      fixed on one table and not the other is half a fix.
+#   2) LAST['GBP'] and ROWS['GB'] carried the 17 Sep HOLD at 3.75% for
+#      SIXTEEN DAYS. F-185 was written about this row and its own comment
+#      predicted the recurrence. Now 4% / prev 3.75% / cons 4%, VERIFIED AT
+#      THE BANK (LD-3): meeting ending 4 Nov, published 5 Nov, VOTE 8-1 -
+#      Mann dissented for +50bp to 4.25%. TE's "MPC Vote Hike 9/9" counts
+#      everyone wanting SOME hike, a different question. ROWS['GB'] CPI
+#      also read 2.9 (August) against 3.6% now.
+#   3) rate_check.record() OVERWROTE data/raw/rates/<ISO>.txt - the same s6
+#      violation 26a970a fixed in indicator_pages. GB.txt read 3.75% dated
+#      2026-11-04, the day BEFORE the hike, its own note saying "next
+#      5 Nov". Step 8b called rate_model stale when the CACHE was stale.
+#      Now lands a vintage in rates/vintages/; GB.txt md5 unchanged.
+#   WHY NOTHING CAUGHT IT: under Jeff's rule the landed decision ALSO
+#   scores +1 (cons 4% > prev 3.75%, then act=cons RETAINS), so the board
+#   was identical either way. A right answer reached through a false
+#   premise survives exactly until the premise changes - had the BoE HELD,
+#   this would have gone on paying +1 for a hike that never happened.
+#   AFTER: all 8 rate rows hand-checked against Jeff's rule, 0 mismatches.
+#   USD/EUR/JPY/CHF 0 (retain HOLD), GBP/AUD/CAD +1 (retain HIKE),
+#   NZD -1 (act 2.75 < cons 3.0, override BAD). BOARD UNCHANGED.
+#   SCHEDULED is now honestly EMPTY - the calendar carries no future
+#   decision with a number, and saying so is the point (F-73).
+#   ALSO FIXED A STALE TEST: R-44's LD-147 case asserted GBPUSD LONG -> '-'
+#   off a comment reading "GBP 3.75 ... USD 4.00". GBP now EQUALS USD at
+#   4.00% so the differential is genuinely zero - pair_swap was right, the
+#   test was out of date. Now pinned as the EQUAL-RATE case, both sides '0'.
+#
+#   *** STILL OPEN - THE FORWARD REACH IS 1 OF 16 AND IT IS JEFF'S CALL.
+#   Both rules only fire when an expectation is readable, and both read ONE
+#   calendar capture. With load_scheduled() correctly refusing passed rows
+#   the rate side reaches 0 of 8 and inflation 1 of 8; the other 15 fall
+#   back to LD-154b's standing carry or the LD-155 level test. TE's
+#   INDICATOR PAGES carry 5 of 8 forward rate rows and 8 of 8 forward
+#   inflation rows - F-195's components() reads that table now. Wiring it
+#   in takes the "Before the News" half from 1 row to 13. NOT BUILT: needs
+#   Jeff's go-ahead, and the parse MUST be structural (a blank Consensus
+#   vanishes from the whitespace-collapsed text).
+#
 # 2026-11-20 *** THE NOV-26 ADVANCE IS APPLIED (F-196) ***
 #   Jeff: "go". 36 stale rows advanced: Oct-26 <- held print, Nov-26 <- TE.
 #   pipelines/advance_month.py, DRY RUN BY DEFAULT, --write to apply.

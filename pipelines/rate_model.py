@@ -212,7 +212,13 @@ ROWS = {
     # REFINANCING rate, 2.65%, so the LEVEL was already right - only the
     # decision was stale, and prev_rate goes 2.40% -> 2.65%.
     'EA': ('2.65%', 0.0, 2.9, True,  'HELD 29 Oct, main refinancing rate unchanged at 2.65% - no pre-commitment to a path', 0.0, 2.65, None, '2.65%'),
-    'GB': ('3.75%', 0.0, 2.9, True,  'HELD 17 Sep at 3.75%, 3 of 9 voting to HIKE - hawkish hold', 0.0, 3.75, 3.75, '3.75%'),
+    # F-197: BoE HIKED to 4% at the meeting ending 4 Nov (effective 5 Nov),
+    # 8-1, Mann dissenting for +50bp. This row carried the 17 Sep HOLD for
+    # sixteen days, so prev_rate goes 3.75% -> and the standing rate to 4%.
+    # CPI also refreshed here: it read 2.9 (the AUGUST print) while the Oct
+    # print is 3.6%. The two fields went stale together because nothing
+    # derives either from the fact tables - see the note on LAST['GBP'].
+    'GB': ('4.00%', 0.0, 3.6, True,  'HIKED 5 Nov to 4.00%, 8-1 - Mann dissented for +50bp to 4.25%', 0.0, 4.00, 3.75, '4%'),
     # F-185: BoJ HELD at around 1.25% on 30 Oct, 8-1. This row carried the
     # 18 Sep hike, so prev_rate goes 1.00% -> 1.25%.
     'JP': ('1.25%', 0.0, 1.9, True,  'HELD 30 Oct at around 1.25%, 8-1 majority - ETF sales pace raised to ~860bn yen/yr', 0.0, 1.25, None, '1.25%'),
@@ -427,7 +433,41 @@ def load_scheduled(capture=None):
     raw = _j.load(_io.open(capture, encoding='utf-8'))
     rows = raw if isinstance(raw, list) else raw.get(
         'rows', raw.get('events', []))
+    # *** F-197b - "SCHEDULED" HAD NO IDEA WHAT WAS SCHEDULED.
+    #
+    # This loop took EVERY matching row and let the LAST one win, with no
+    # check on the actual and no check on the date. The 2026-11-20 capture
+    # holds three BoE rows:
+    #
+    #     2026-09-17  act='3.75'  prev='3.75'  fcst='3.75'
+    #     2026-11-05  act='4'     prev='3.75'  fcst='4'     <- ALREADY HAPPENED
+    #     2026-12-17  act=''      prev='4'     fcst=''      <- the real next one
+    #
+    # and it filed the 5 Nov row - a decision two weeks in the PAST, with its
+    # actual sitting right there in the row - as the next scheduled decision.
+    # decision_score then read 'BEFORE - expected HIKE 3.75% -> 4' and paid
+    # GBP +1 for a hike it had already made.
+    #
+    # THE NUMBER WAS RIGHT, WHICH IS WHY NOTHING CAUGHT IT. Under Jeff's
+    # rule the landed decision also scores +1 (cons 4% > prev 3.75%, then
+    # act = cons RETAINS it), so the board total was identical and no guard
+    # fired. A right answer reached through a false premise survives exactly
+    # until the premise changes - had the BoE HELD at 3.75%, this would have
+    # gone on paying +1 for a hike that never happened.
+    #
+    # derive_scores.load_inflation() already had BOTH guards, added as F-186
+    # for this exact failure on the inflation table. The rate side never got
+    # them. A finding fixed on one table and not the other is half a fix.
+    #
+    #   - A ROW WITH AN ACTUAL IS HISTORY. LAST owns the landed decision.
+    #   - A DATE IN THE PAST IS NOT "NEXT", whatever the actual column says
+    #     (F-186: TE's window rolls forward faster than we capture, so the
+    #     actual can still be blank on a decision that has happened).
+    #   - EARLIEST FUTURE DATE WINS, because that is the next one.
+    import datetime as _dt
+    today = _dt.date.today().isoformat()
     n = 0
+    seen = {}
     for r in rows:
         e = (r.get('event', '') or '').lower()
         if 'interest rate decision' not in e:
@@ -435,11 +475,20 @@ def load_scheduled(capture=None):
         ccy = BANK.get(e.split()[0] if e.split() else '')
         if not ccy:
             continue
+        if (r.get('actual') or '').strip():
+            continue                     # released - LAST owns it
+        d = (r.get('date') or '')
+        if d < today:
+            continue                     # passed, whatever the actual says
         cons = (r.get('consensus') or '').strip()
         fcst = (r.get('forecast') or '').strip()
-        if cons or fcst:
-            SCHEDULED[ccy] = (cons or None, fcst or None)
-            n += 1
+        if not (cons or fcst):
+            continue                     # nothing to score from
+        if ccy in seen and seen[ccy] <= d:
+            continue                     # keep the EARLIEST future decision
+        seen[ccy] = d
+        SCHEDULED[ccy] = (cons or None, fcst or None)
+        n += 1
     return n
 
 
@@ -475,7 +524,38 @@ LAST = {
     # Every row below re-verified at the ISSUING AGENCY on 2026-11-04.
     # See s9d_rate_freshness in build_check.py for the gate that now fails
     # when a meeting has passed one of these rows by.
-    'GBP': ('3.75%', '3.75%', '3.75%'),   # BoE 17 Sep HELD  -> retains NEUTRAL
+    # *** F-197 - F-185 RECURRED ON THE ROW F-185 WAS WRITTEN ABOUT.
+    #
+    # The BoE HIKED to 4% at the meeting ending 4 Nov 2026 (published and
+    # effective 5 Nov), and this row still carried the 17 Sep HOLD at 3.75%
+    # on 2026-11-20 - sixteen days. Verified at the issuing agency, not TE:
+    #   bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/november-2026
+    #   "to increase Bank Rate by 0.25 percentage points, to 4%"
+    #   bankofengland.co.uk/boeapps/database/Bank-Rate.asp -> 05 Nov 26 | 4.00
+    #
+    # VOTE 8-1, NOT TE'S "9/9". Eight voted for +25bp to 4%; Catherine L Mann
+    # voted against the proposition, preferring +50bp to 4.25%. TE's "MPC Vote
+    # Hike 9/9" counts everyone who wanted SOME hike, which is a different
+    # question from the one the minutes answer. The agency wording is the
+    # record (LD-3), and this is why the row is re-verified at the bank.
+    #
+    # *** HOW IT WAS SCORING, AND WHY THE NUMBER LOOKED FINE.
+    # The calendar capture still held the 5 Nov decision as SCHEDULED with
+    # TE's forecast of 4 and no consensus, so decision_score read:
+    #     'BEFORE - expected HIKE 3.75% -> 4'   -> +1
+    # GBP was paid +1 for a hike it was still WAITING FOR, two weeks after
+    # the hike landed. Under Jeff's rule the correct reading is the same
+    # number by a different route - cons 4% > prev 3.75% gives base +1, and
+    # act 4% = cons 4% RETAINS it - so the board total never moved and
+    # nothing flagged. A right answer reached through a false premise is the
+    # F-77 class of error: it survives exactly until the premise changes,
+    # and then it is wrong with no warning. Had the BoE held at 3.75%, this
+    # row would have gone on paying +1 for a hike that never happened.
+    #
+    # F-185's own comment above predicted this: "standing_score does not
+    # decay... a missed update does not drift toward neutral, it keeps
+    # ACTIVELY PAYING the old score every week."
+    'GBP': ('4%',    '3.75%', '4%'),      # BoE  5 Nov HIKED 8-1 -> retains GOOD
     # RBA 3 Nov HIKED 4.60 -> 4.85%, 6-3, exactly on the 4.85% consensus.
     #   rba.gov.au/media-releases/2026/mr-26-30.html
     'AUD': ('4.85%', '4.6%',  '4.85%'),   # RBA  3 Nov HIKED -> retains GOOD

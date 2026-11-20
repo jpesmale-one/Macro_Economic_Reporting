@@ -1,0 +1,14 @@
+4%
+# https://tradingeconomics.com/united-kingdom/interest-rate
+# read 2026-11-20: BoE HIKED to 4% at the meeting ending 4 Nov 2026,
+# effective/published 5 Nov, 8-1 (Mann dissented for +50bp to 4.25%).
+# TE calendar row: 2026-11-05 BoE Interest Rate Decision
+#   Actual 4%  Previous 3.75%  Consensus 4%  TEForecast 4.0%
+# CONFIRMED AT THE ISSUING AGENCY (LD-3), not from TE alone:
+#   https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/november-2026
+#     "to increase Bank Rate by 0.25 percentage points, to 4%"
+#   https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp
+#     05 Nov 26 | 4.00   (previous row 18 Dec 25 | 3.75)
+# Next BoE decision: 17 December 2026.
+# Supersedes GB.txt (read 2026-11-04, the day BEFORE the hike, whose own
+# note says "next 5 Nov"). That file is NOT edited - CLAUDE.md section 6.

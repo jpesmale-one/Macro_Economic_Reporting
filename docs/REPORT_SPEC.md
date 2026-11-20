@@ -5310,3 +5310,125 @@ holding `\r\n`, so git showed all 150 lines modified for 36 changed cells.
 The values were right and the diff was unreadable — **a review that cannot
 see the change cannot catch a wrong one.** The writer now sniffs the
 ending from the bytes on disk; the diff is 33 lines.
+
+---
+
+## F-197 — JEFF'S RATE AND INFLATION RULES WERE ALREADY RIGHT; THEIR INPUTS WERE NOT
+
+**2026-11-20.** Jeff restated both rules in full. Tested as stated,
+**32 of 32 cases pass** against the code that was already there —
+`rate_model.decision_score()` and `derive_scores.inflation_decision()`
+implement them exactly, consensus priority and retain-on-match included.
+
+So nothing was wrong with the logic. Three things were wrong with what fed
+it, and each one produced **the right number for the wrong reason**.
+
+### 1. `load_scheduled()` had no idea what was scheduled
+
+It took every matching calendar row and let the **last one win**, with no
+check on the actual and no check on the date. The 2026-11-20 capture holds
+three BoE rows:
+
+```
+2026-09-17  act='3.75'  prev='3.75'  fcst='3.75'
+2026-11-05  act='4'     prev='3.75'  fcst='4'     <- ALREADY HAPPENED
+2026-12-17  act=''      prev='4'     fcst=''      <- the real next one
+```
+
+It filed **5 Nov** — a decision two weeks past, with its actual sitting in
+the row — as the next scheduled decision. `decision_score` then read
+*"BEFORE — expected HIKE 3.75% → 4"* and paid GBP **+1 for a hike it had
+already made.**
+
+`derive_scores.load_inflation()` already had both guards, added as **F-186
+for this exact failure on the inflation table.** The rate side never got
+them.
+
+> A finding fixed on one table and not the other is half a fix.
+
+### 2. `rate_model.LAST['GBP']` and `ROWS['GB']` were sixteen days stale
+
+Both still carried the 17 Sep HOLD at 3.75%. **F-185 was written about this
+row**, and its own comment predicted the recurrence: *"standing_score does
+not decay… a missed update does not drift toward neutral, it keeps ACTIVELY
+PAYING the old score every week."*
+
+Verified at the issuing agency, not TE (LD-3):
+
+- `bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/november-2026`
+  — *"to increase Bank Rate by 0.25 percentage points, to 4%"*, meeting
+  ending **4 Nov**, published **5 Nov**
+- `bankofengland.co.uk/boeapps/database/Bank-Rate.asp` — `05 Nov 26 | 4.00`
+
+**Vote 8–1, not TE's "9/9".** Eight voted +25bp to 4%; **Catherine L Mann
+voted against the proposition, preferring +50bp to 4.25%.** TE's "MPC Vote
+Hike 9/9" counts everyone who wanted *some* hike — a different question from
+the one the minutes answer.
+
+`ROWS['GB']` also carried **CPI 2.9** (the August print) against 3.6% now.
+Both fields went stale together because nothing derives either from the
+fact tables.
+
+### 3. `rate_check.record()` overwrote raw, and the cache was a day old
+
+Same CLAUDE.md §6 violation `26a970a` fixed in `indicator_pages.py`.
+`data/raw/rates/GB.txt` read **3.75%, dated 2026-11-04** — the day *before*
+the hike — with its own note saying *"next 5 Nov"*. Step 8b compared
+`rate_model` against that file and reported **`rate_model` stale when the
+cache was the stale side.** `compare()`'s docstring already warned about
+precisely this and the code still overwrote.
+
+A refresh now lands a vintage in `rates/vintages/`, reads resolve
+newest-first, and the flat files are read as the oldest vintage. GB's
+original md5 is unchanged.
+
+### Why none of it was caught
+
+**Under Jeff's rule the landed decision scores the same +1** — `cons 4% >
+prev 3.75%` gives base +1, and `act = cons` **retains** it. So the board
+total was identical whichever premise was used, and no guard fired.
+
+> A right answer reached through a false premise survives exactly until the
+> premise changes.
+
+Had the BoE **held** at 3.75%, this row would have gone on paying +1 for a
+hike that never happened. That is the F-77 class of error: the evidence
+appeared to confirm a conclusion built on a premise I had authored.
+
+### After the fix
+
+All eight rate rows now read from the landed decision, hand-checked against
+Jeff's rule: **0 mismatches.** `SCHEDULED` is honestly **empty** — the
+calendar carries no future decision with a number, and saying so is the
+point (F-73).
+
+| | |
+|---|---|
+| USD / EUR / JPY / CHF | 0 — `act = cons`, retain HOLD |
+| GBP / AUD / CAD | +1 — `act = cons`, retain HIKE |
+| NZD | −1 — `act 2.75% < cons 3.0%`, override BAD |
+
+**Board unchanged.** R-44, R-53, steps 6, 8b, 9d, test_guards, test_phtime,
+test_session_log, test_surprise all PASS.
+
+### A stale test, found by the fix
+
+R-44's LD-147 swap-sign case asserted `GBPUSD LONG → '-'` against a comment
+reading *"GBP 3.75, AUD 4.60, JPY 1.25, USD 4.00"*. **GBP now equals USD at
+4.00%, so the differential is genuinely zero** — `pair_swap` was right and
+the test was out of date. Now pinned as the **equal-rate** case, asserting
+both sides read `'0'`: the one case where "the two sides never agree" must
+not apply, because there is no differential to take a side of.
+
+### The forward reach is still 2 of 16, and that is the open item
+
+Both rules only fire when an expectation is readable, and both read **one
+calendar capture**. With `load_scheduled()` now correctly refusing passed
+rows, the rate side reaches **0 of 8** and inflation **1 of 8** — the other
+15 fall back to LD-154b's standing carry or the LD-155 level test.
+
+**TE's indicator pages carry 5 of 8 forward rate rows and 8 of 8 forward
+inflation rows** (F-195's `components()` reads that table now). Wiring that
+in is what takes Jeff's "Before the News" half from 1 row to 13. Not built
+here — it needs his go-ahead, and the parse must be structural, because a
+blank Consensus vanishes from the collapsed text.

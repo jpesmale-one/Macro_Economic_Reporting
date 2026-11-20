@@ -62,20 +62,56 @@ def url(iso):
     return 'https://tradingeconomics.com/%s' % SLUG[iso]
 
 
+# *** F-197c - RAW IS IMMUTABLE, SO A CORRECTION LANDS BESIDE IT (s6).
+#
+# record() used to OVERWRITE data/raw/rates/<ISO>.txt, which is the same
+# CLAUDE.md section 6 violation that 26a970a fixed in indicator_pages.py:
+# the file raw exists to preserve is the one the overwrite destroys, and
+# with it the answer to "what did we believe, and when".
+#
+# It bit immediately. On 2026-11-20 GB.txt read 3.75% and was dated
+# 2026-11-04 - the day BEFORE the BoE hiked - with its own note saying
+# "next 5 Nov". Step 8b compared rate_model against that file and reported
+# rate_model STALE, when the CACHE was the stale side. The docstring on
+# compare() already warned about exactly this and the code still overwrote.
+#
+# So a refresh now LANDS A NEW VINTAGE in rates/vintages/ and reads resolve
+# newest-first. The flat <ISO>.txt files are the pre-vintage landed copies:
+# still raw, still immutable, read as the oldest vintage.
+VINTAGE = os.path.join(CACHE, 'vintages')
+
+
+def vintages(iso):
+    """Every landed vintage for one rate, newest LAST. [(stamp, path)]."""
+    out = []
+    if os.path.isdir(VINTAGE):
+        pre = '%s.FETCHED-' % iso
+        for f in os.listdir(VINTAGE):
+            if f.startswith(pre) and f.endswith('.txt'):
+                out.append((f[len(pre):-4], os.path.join(VINTAGE, f)))
+    return sorted(out)
+
+
 def cached(iso):
+    vs = vintages(iso)
+    if vs:
+        return io.open(vs[-1][1], encoding='utf-8').read().strip()
     p = os.path.join(CACHE, '%s.txt' % iso)
     if not os.path.exists(p):
         return None
     return io.open(p, encoding='utf-8').read().strip()
 
 
-def record(iso, rate, note=''):
-    """Store a rate read from TE, with where and when it came from."""
-    if not os.path.isdir(CACHE):
-        os.makedirs(CACHE)
-    p = os.path.join(CACHE, '%s.txt' % iso)
+def record(iso, rate, note='', stamp=None):
+    """Land a rate read from TE as a NEW VINTAGE, never over an old one."""
+    import datetime as _dt
+    if not os.path.isdir(VINTAGE):
+        os.makedirs(VINTAGE)
+    st = stamp or _dt.datetime.now().strftime('%Y-%m-%d_%H%M')
+    p = os.path.join(VINTAGE, '%s.FETCHED-%s.txt' % (iso, st))
     io.open(p, 'w', encoding='utf-8', newline='\n').write(
         '%s\n# %s\n# %s\n' % (rate, url(iso), note))
+    return p
 
 
 def held(iso):

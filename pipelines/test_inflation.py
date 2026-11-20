@@ -383,13 +383,22 @@ def main():
     print()
     print('  LD-147 - swap sign in the direction of the bias')
     import pair_swap as psw
+    # *** THESE CASES ARE PINNED TO LIVE RATES, SO A DECISION DATES THEM.
+    # The list used to assert GBPUSD LONG -> '-' against a comment reading
+    # "GBP 3.75, AUD 4.60, JPY 1.25, USD 4.00". The BoE hiked to 4% on
+    # 5 Nov 2026 (F-197), so GBP now EQUALS USD and the differential is
+    # genuinely zero - pair_swap was right and the test was out of date.
+    # Rates as of 2026-11-20: GBP 4.00, USD 4.00, AUD 4.85, JPY 1.25.
     _sw_cases = [
-        # (pair, side, expected sign) - GBP 3.75, AUD 4.60, JPY 1.25, USD 4.00
         ('GBPAUD', 'LONG',  '-'),   # long the lower rate: costs
         ('GBPAUD', 'SHORT', '+'),   # *** SAME PAIR, OTHER SIDE, OTHER SIGN
         ('AUDJPY', 'LONG',  '+'),   # long the higher rate: earns
         ('AUDJPY', 'SHORT', '-'),
-        ('GBPUSD', 'LONG',  '-'),
+        # EQUAL RATES CARRY NO SIGN, AND BOTH SIDES AGREE - the one case
+        # where the "two sides never agree" rule below must not apply,
+        # because there is no differential to take a side of.
+        ('GBPUSD', 'LONG',  '0'),
+        ('GBPUSD', 'SHORT', '0'),
     ]
     _nb = 0
     for _p, _sd, _want in _sw_cases:
